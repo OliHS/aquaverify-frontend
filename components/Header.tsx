@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { Language } from '../utils/translations';
-
-// Embedded SVG Logo (Water Droplet with Checkmark)
-const LOGO_SRC = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230A4F7D'/%3E%3Cstop offset='1' stop-color='%2300AEEF'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M100 20c0 0-60 60-60 100 0 33.14 26.86 60 60 60s60-26.86 60-60c0-40-60-100-60-100z' fill='url(%23a)'/%3E%3Cpath d='M70 115l20 20 40-40' fill='none' stroke='%23fff' stroke-width='12' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
+import logoSrc from '../src/assets/logo.png';
 
 export const Header: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
@@ -19,7 +17,7 @@ export const Header: React.FC = () => {
 
       // Handle active section highlighting (Scroll Spy)
       const sections = ['solutions', 'products', 'platform', 'distributors', 'oem'];
-      const scrollPosition = window.scrollY + 150; 
+      const scrollPosition = window.scrollY + 150;
 
       let current = '';
       for (const sectionId of sections) {
@@ -42,9 +40,9 @@ export const Header: React.FC = () => {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
-    
+
     if (element) {
-      const headerOffset = 85; 
+      const headerOffset = 85;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -52,42 +50,41 @@ export const Header: React.FC = () => {
         top: offsetPosition,
         behavior: 'smooth'
       });
-      
+
       setActiveSection(id);
     }
-    
+
     setIsMenuOpen(false);
   };
 
   const getNavLinkClasses = (id: string, isMobile = false) => {
     const isActive = activeSection === id;
-    const baseClasses = isMobile 
-      ? "text-base font-medium transition-colors block py-2" 
+    const baseClasses = isMobile
+      ? "text-base font-medium transition-colors block py-2"
       : "text-sm font-medium transition-colors cursor-pointer";
-    
-    const colorClasses = isActive 
-      ? "text-primary font-bold" 
+
+    const colorClasses = isActive
+      ? "text-primary font-bold"
       : "text-gray-600 hover:text-primary";
 
     return `${baseClasses} ${colorClasses}`;
   };
 
   return (
-    <header 
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white py-5'
-      }`}
+    <header
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white py-5'
+        }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         {/* Logo */}
-        <div 
-          className="flex items-center space-x-3 group cursor-pointer" 
+        <div
+          className="flex items-center space-x-3 group cursor-pointer"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           {/* Logo Image */}
-          <img 
-            src={LOGO_SRC} 
-            alt="AquaVerify Logo" 
+          <img
+            src={logoSrc}
+            alt="AquaVerify Logo"
             className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
           <span className="font-heading font-bold text-xl tracking-tight text-primary">
@@ -114,8 +111,8 @@ export const Header: React.FC = () => {
             <div className="absolute right-0 top-full pt-2 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200">
               <div className="bg-white border border-gray-100 shadow-lg rounded-lg overflow-hidden py-1 w-24">
                 {(['en', 'es', 'fr', 'it'] as Language[]).map((l) => (
-                  <button 
-                    key={l} 
+                  <button
+                    key={l}
                     onClick={() => setLang(l)}
                     className={`block w-full text-left px-4 py-2 text-xs font-bold uppercase hover:bg-gray-50 ${lang === l ? 'text-secondary bg-blue-50' : 'text-gray-600'}`}
                   >
@@ -135,7 +132,7 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Mobile Menu Button */}
-        <button 
+        <button
           className="md:hidden text-gray-600 focus:outline-none p-2"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           aria-label="Toggle menu"
@@ -148,15 +145,15 @@ export const Header: React.FC = () => {
       {isMenuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white border-t border-gray-100 shadow-xl py-6 px-6 flex flex-col space-y-4 h-screen sm:h-auto">
           <div className="flex justify-end space-x-4 mb-2">
-             {(['en', 'es', 'fr', 'it'] as Language[]).map((l) => (
-                  <button 
-                    key={l} 
-                    onClick={() => setLang(l)}
-                    className={`text-xs font-bold uppercase px-2 py-1 rounded ${lang === l ? 'bg-secondary text-white' : 'bg-gray-100 text-gray-500'}`}
-                  >
-                    {l}
-                  </button>
-                ))}
+            {(['en', 'es', 'fr', 'it'] as Language[]).map((l) => (
+              <button
+                key={l}
+                onClick={() => setLang(l)}
+                className={`text-xs font-bold uppercase px-2 py-1 rounded ${lang === l ? 'bg-secondary text-white' : 'bg-gray-100 text-gray-500'}`}
+              >
+                {l}
+              </button>
+            ))}
           </div>
           <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions', true)}>{t.nav.solutions}</a>
           <a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products', true)}>{t.nav.products}</a>
