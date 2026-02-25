@@ -1,0 +1,13 @@
+{
+    "name": "aquaverify-theme",
+    "version": "1.0.0",
+    "description": "Custom WordPress Theme for AquaVerify",
+    "scripts": {
+        "build:css": "tailwindcss -i ../index.css -o ./assets/css/style.css"
+    },
+    "devDependencies": {
+        "tailwindcss": "^3.4.17",
+        "autoprefixer": "^10.4.17",
+        "postcss": "^8.4.35"
+    }
+}
