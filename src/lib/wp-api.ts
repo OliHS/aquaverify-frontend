@@ -1,4 +1,4 @@
-const WP_URL = import.meta.env.VITE_WORDPRESS_URL || 'https://aquaverify.com';
+const WP_URL = import.meta.env.VITE_WORDPRESS_URL || 'https://cms.aquaverify.com';
 const API_BASE = `${WP_URL}/wp-json/wp/v2`;
 
 export interface WPPage {
