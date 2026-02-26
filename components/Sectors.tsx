@@ -3,6 +3,7 @@ import { Factory, Droplets, Building2, FlaskRound, ArrowRight, X, CheckCircle2, 
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
+import { EditableImage } from './admin/EditableImage';
 
 // --- Data & Types ---
 interface Sector {
@@ -32,10 +33,11 @@ const SectorCard: React.FC<{ sector: Sector; onClick: (s: Sector) => void }> = (
       }
     }}
   >
-    {/* Background & Overlay */}
     <div className="absolute inset-0 z-0">
-      <img
-        src={sector.image}
+      <EditableImage
+        sectionId="sectors"
+        field={`sector_${sector.id}_image`}
+        fallbackSrc={sector.image}
         alt=""
         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
       />
@@ -199,8 +201,10 @@ export const Sectors: React.FC = () => {
 
               {/* Image Column */}
               <div className="w-full md:w-2/5 h-48 md:h-auto relative">
-                <img
-                  src={selectedSector.image}
+                <EditableImage
+                  sectionId="sectors"
+                  field={`sector_${selectedSector.id}_image`}
+                  fallbackSrc={selectedSector.image}
                   alt={selectedSector.title}
                   className="w-full h-full object-cover"
                 />
