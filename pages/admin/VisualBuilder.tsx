@@ -97,6 +97,8 @@ export const VisualBuilder: React.FC = () => {
 
         // Upsert all blocks
         let hasError = false;
+        let errorMessage = 'Error saving to database! Check browser console.';
+
         for (const [sectionId, content] of Object.entries(blocks)) {
             const { data: existing, error: selectError } = await supabase
                 .from('content_blocks')
@@ -105,13 +107,20 @@ export const VisualBuilder: React.FC = () => {
                 .eq('section_id', sectionId)
                 .single();
 
+            if (selectError && selectError.code !== 'PGRST116') {
+                console.error('Select error:', selectError);
+                hasError = true;
+                errorMessage = `Database Read Failed: ${selectError.message}. Are your Vercel Supabase API Keys valid?`;
+                break; // Stop processing further blocks
+            }
+
             if (existing) {
                 const { error } = await supabase.from('content_blocks').update({ content }).eq('id', existing.id);
                 if (error) {
                     console.error('Update error:', error);
                     hasError = true;
                 }
-            } else if (!selectError || selectError.code === 'PGRST116') { // PGRST116 is "no rows returned"
+            } else {
                 const { error } = await supabase.from('content_blocks').insert({
                     page_id: id,
                     section_id: sectionId,
@@ -126,7 +135,7 @@ export const VisualBuilder: React.FC = () => {
 
         setSaving(false);
         if (hasError) {
-            alert('Error saving to database! Check browser console. RLS policies might be blocking the update.');
+            alert(errorMessage);
         } else {
             setSaveSuccess(true);
             setTimeout(() => setSaveSuccess(false), 3000);
