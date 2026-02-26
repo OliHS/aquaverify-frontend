@@ -42,17 +42,10 @@ export const PublicSiteContent: React.FC = () => {
 };
 
 export const PublicSite: React.FC = () => {
-    const { lang } = useLanguage();
-
-    const slugMap: Record<string, string> = {
-        'en': 'home-english',
-        'es': 'home-espanol',  // Make sure this matches your spanish slug
-        'fr': 'home-francais',
-        'it': 'home-italiano',
-        'ca': 'home-catala',
-    };
-
-    const slug = slugMap[lang] || 'home';
+    // TEMPORARY FIX: Force all visitors to load the base "home" page from the database.
+    // This bypasses the language slugMap which was incorrectly looking for "home-english"
+    // when the user is editing the "home" page in the dashboard.
+    const slug = 'home';
 
     return (
         <PageContentProvider slug={slug}>
