@@ -4,6 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
+import { EditableText } from './admin/EditableText';
+import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 
 type Tab = 'mobile' | 'lims' | 'compliance';
 

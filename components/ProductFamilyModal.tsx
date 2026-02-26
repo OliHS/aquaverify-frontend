@@ -446,10 +446,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
       <AnimatePresence>
         {isLightboxOpen && selectedProduct && (
           <Lightbox
-            isOpen={isLightboxOpen}
             onClose={() => setIsLightboxOpen(false)}
             images={productImages}
-            initialIndex={0}
           />
         )}
       </AnimatePresence>
