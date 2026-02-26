@@ -6,7 +6,7 @@ interface EditableLinkWrapperProps {
     sectionId: string;
     field: string;
     fallback: string;
-    children: React.ReactElement;
+    children: React.ReactNode;
 }
 
 export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
@@ -18,14 +18,25 @@ export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
     const { blocks, isEditing, updateBlock } = usePageContent();
     const [isHovered, setIsHovered] = useState(false);
 
-    if (!isEditing) {
-        // In public mode, inject the latest href from CMS seamlessly
-        const currentHref = blocks[sectionId]?.[field] || fallback;
-        return React.cloneElement(React.Children.only(children), { href: currentHref });
+    // Safely extract href, ensuring object traversal doesn't throw if blocks map is stale
+    const currentHref = blocks?.[sectionId]?.[field] || fallback;
+
+    // Safely grab the first valid React Element we can clone. If there is no valid element, we can't wrap it.
+    let baseElement: React.ReactElement | null = null;
+    try {
+        const childArray = React.Children.toArray(children);
+        baseElement = childArray.find(child => React.isValidElement(child)) as React.ReactElement;
+    } catch (e) {
+        console.warn('EditableLinkWrapper failed to parse children', e);
     }
 
-    const currentHref = blocks[sectionId]?.[field] || fallback;
+    // Public Site Behavior
+    if (!isEditing) {
+        if (!baseElement) return <>{children}</>;
+        return React.cloneElement(baseElement, { href: currentHref } as any);
+    }
 
+    // Admin Builder Behavior
     const handleEditLink = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -35,22 +46,26 @@ export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
         }
     };
 
-    const child = React.Children.only(children);
-    const clonedChild = React.cloneElement(child, {
+    if (!baseElement) {
+        // Fallback: If for some reason we wrap undefined or a bare string, just render it without breaking.
+        return <>{children}</>;
+    }
+
+    const clonedChild = React.cloneElement(baseElement, {
         onMouseEnter: (e: any) => {
             setIsHovered(true);
-            if (child.props.onMouseEnter) child.props.onMouseEnter(e);
+            if (baseElement?.props.onMouseEnter) baseElement.props.onMouseEnter(e);
         },
         onMouseLeave: (e: any) => {
             setIsHovered(false);
-            if (child.props.onMouseLeave) child.props.onMouseLeave(e);
+            if (baseElement?.props.onMouseLeave) baseElement.props.onMouseLeave(e);
         },
         onClick: (e: React.MouseEvent) => {
             e.preventDefault(); // prevent actual navigation in visual builder
-            if (child.props.onClick) child.props.onClick(e);
+            if (baseElement?.props.onClick) baseElement.props.onClick(e);
         },
         href: currentHref
-    });
+    } as any);
 
     return (
         <div
