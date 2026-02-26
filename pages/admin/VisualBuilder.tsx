@@ -96,8 +96,9 @@ export const VisualBuilder: React.FC = () => {
         }).eq('id', id);
 
         // Upsert all blocks
+        let hasError = false;
         for (const [sectionId, content] of Object.entries(blocks)) {
-            const { data: existing } = await supabase
+            const { data: existing, error: selectError } = await supabase
                 .from('content_blocks')
                 .select('id')
                 .eq('page_id', id)
@@ -105,19 +106,31 @@ export const VisualBuilder: React.FC = () => {
                 .single();
 
             if (existing) {
-                await supabase.from('content_blocks').update({ content }).eq('id', existing.id);
-            } else {
-                await supabase.from('content_blocks').insert({
+                const { error } = await supabase.from('content_blocks').update({ content }).eq('id', existing.id);
+                if (error) {
+                    console.error('Update error:', error);
+                    hasError = true;
+                }
+            } else if (!selectError || selectError.code === 'PGRST116') { // PGRST116 is "no rows returned"
+                const { error } = await supabase.from('content_blocks').insert({
                     page_id: id,
                     section_id: sectionId,
                     content
                 });
+                if (error) {
+                    console.error('Insert error:', error);
+                    hasError = true;
+                }
             }
         }
 
         setSaving(false);
-        setSaveSuccess(true);
-        setTimeout(() => setSaveSuccess(false), 3000);
+        if (hasError) {
+            alert('Error saving to database! Check browser console. RLS policies might be blocking the update.');
+        } else {
+            setSaveSuccess(true);
+            setTimeout(() => setSaveSuccess(false), 3000);
+        }
     };
 
     if (loading) return <div className="p-12 text-center text-slate-500">Loading editor environment...</div>;
