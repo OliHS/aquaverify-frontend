@@ -5,6 +5,7 @@ import { ProductFamily, ProductItem } from '../types';
 import { Lightbox } from './Lightbox';
 import { useLanguage } from '../context/LanguageContext';
 import { EditableImage } from './admin/EditableImage';
+import { usePageContent } from '../context/PageContentContext';
 
 interface ProductFamilyModalProps {
   family: ProductFamily;
@@ -17,6 +18,7 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { t } = useLanguage();
+  const { isEditing } = usePageContent();
 
   // Comparison State
   const [compareList, setCompareList] = useState<ProductItem[]>([]);
@@ -266,8 +268,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                               key={idx}
                               onClick={() => setSelectedProduct(item)}
                               className={`group relative p-4 rounded-lg border transition-all cursor-pointer flex items-start gap-4 ${isSelected
-                                  ? 'bg-blue-50 border-secondary ring-1 ring-secondary'
-                                  : 'bg-white border-gray-100 hover:border-gray-300 hover:bg-gray-50'
+                                ? 'bg-blue-50 border-secondary ring-1 ring-secondary'
+                                : 'bg-white border-gray-100 hover:border-gray-300 hover:bg-gray-50'
                                 }`}
                             >
                               <div className={`p-2 rounded-md shadow-sm flex-shrink-0 ${isSelected ? 'bg-white text-secondary' : 'bg-gray-50 text-primary'}`}>
@@ -306,8 +308,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                           className="flex flex-col h-full"
                         >
                           <div
-                            className="aspect-video w-full bg-white rounded-lg shadow-sm border border-gray-100 mb-6 overflow-hidden relative group cursor-pointer"
-                            onClick={() => setIsLightboxOpen(true)}
+                            className={`aspect-video w-full bg-white rounded-lg shadow-sm border border-gray-100 mb-6 overflow-hidden relative group ${!isEditing ? 'cursor-pointer' : ''}`}
+                            onClick={() => !isEditing && setIsLightboxOpen(true)}
                           >
                             <EditableImage
                               sectionId="products"
@@ -316,11 +318,13 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                               alt={selectedProduct.name}
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />
-                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center">
-                              <div className="opacity-0 group-hover:opacity-100 bg-white/90 backdrop-blur-sm text-gray-800 px-4 py-2 rounded-full font-bold text-xs flex items-center shadow-lg">
-                                <Maximize2 size={14} className="mr-2" /> {t.products.modal.viewImage}
+                            {!isEditing && (
+                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center pointer-events-none">
+                                <div className="opacity-0 group-hover:opacity-100 bg-white/90 backdrop-blur-sm text-gray-800 px-4 py-2 rounded-full font-bold text-xs flex items-center shadow-lg">
+                                  <Maximize2 size={14} className="mr-2" /> {t.products.modal.viewImage}
+                                </div>
                               </div>
-                            </div>
+                            )}
                           </div>
 
                           <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">{selectedProduct.name}</h3>
@@ -420,8 +424,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                   onClick={startComparison}
                   disabled={compareList.length < 2}
                   className={`px-5 py-2 rounded-full text-sm font-bold transition-all flex items-center gap-2 ${compareList.length < 2
-                      ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
-                      : 'bg-secondary text-white hover:bg-secondary/90 shadow-lg'
+                    ? 'bg-gray-700 text-gray-400 cursor-not-allowed'
+                    : 'bg-secondary text-white hover:bg-secondary/90 shadow-lg'
                     }`}
                 >
                   {t.products.modal.compareBtn} <ArrowRight size={14} />
