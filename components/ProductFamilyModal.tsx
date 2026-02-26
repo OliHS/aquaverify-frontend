@@ -18,7 +18,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const { t } = useLanguage();
-  const { isEditing } = usePageContent();
+  const { isEditing, blocks } = usePageContent();
+  const productBlocks = blocks['products'] || {};
 
   // Comparison State
   const [compareList, setCompareList] = useState<ProductItem[]>([]);
@@ -30,15 +31,20 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
     (item.detail && item.detail.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-  // Helper to get image array
-  const getImages = (item: ProductItem | null) => {
+  // Helper to get image array, prioritizing CMS uploads over hardcoded fallbacks
+  const getCmsImages = (item: ProductItem | null) => {
     if (!item) return [];
-    if (item.images && item.images.length > 0) return item.images;
-    if (item.image) return [item.image];
-    return [];
+
+    const cmsField = `family_${family.id}_item_${item.name.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}_image`;
+    const cmsOverrideUrl = productBlocks[cmsField];
+
+    if (item.images && item.images.length > 0) {
+      return [cmsOverrideUrl || item.images[0], ...item.images.slice(1)];
+    }
+    return [cmsOverrideUrl || item.image || "https://picsum.photos/400/300?grayscale"];
   };
 
-  const productImages = getImages(selectedProduct);
+  const productImages = getCmsImages(selectedProduct);
 
   // Comparison Logic
   const toggleCompare = (e: React.MouseEvent, item: ProductItem) => {
@@ -440,8 +446,10 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
       <AnimatePresence>
         {isLightboxOpen && selectedProduct && (
           <Lightbox
-            images={productImages}
+            isOpen={isLightboxOpen}
             onClose={() => setIsLightboxOpen(false)}
+            images={productImages}
+            initialIndex={0}
           />
         )}
       </AnimatePresence>

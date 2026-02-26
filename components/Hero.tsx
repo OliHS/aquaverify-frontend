@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
+import { EditableText } from './admin/EditableText';
+import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -48,13 +50,18 @@ export const Hero: React.FC = () => {
           />
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-secondary text-white px-8 py-3 rounded hover:bg-white hover:text-primary transition-all font-semibold shadow-lg flex items-center justify-center group">
-              {heroBtnText}
-              <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </button>
-            <button className="px-8 py-3 rounded border border-white/30 hover:bg-white/10 transition-all font-semibold text-white">
-              {t.hero.data}
-            </button>
+            <EditableLinkWrapper sectionId="hero" field="primaryBtnLink" fallback="#products">
+              <a href="#products" className="bg-secondary text-white px-8 py-3 rounded hover:bg-white hover:text-primary transition-all font-semibold shadow-lg flex items-center justify-center group">
+                <EditableText sectionId="hero" field="primaryBtn" fallback={heroBtnText} />
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
+            </EditableLinkWrapper>
+
+            <EditableLinkWrapper sectionId="hero" field="secondaryBtnLink" fallback="#saas">
+              <a href="#saas" className="px-8 py-3 rounded border border-white/30 hover:bg-white/10 transition-all font-semibold text-white flex items-center justify-center">
+                <EditableText sectionId="hero" field="secondaryBtn" fallback={t.hero.data} />
+              </a>
+            </EditableLinkWrapper>
           </div>
         </div>
       </motion.div>

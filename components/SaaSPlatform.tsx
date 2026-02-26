@@ -99,9 +99,11 @@ export const SaaSPlatform: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <button className="text-secondary font-bold hover:text-primary transition-colors flex items-center mt-4">
-                    {t.saas.learnMore} {content[activeTab].title.split(' ')[0]} <span className="ml-1">→</span>
-                  </button>
+                  <EditableLinkWrapper sectionId="saas" field={`learnMore_link_${activeTab}`} fallback="#contact">
+                    <a href="#contact" className="text-secondary font-bold hover:text-primary transition-colors flex items-center mt-4 w-fit">
+                      <EditableText sectionId="saas" field={`learnMore_text_${activeTab}`} fallback={`${t.saas.learnMore} ${content[activeTab].title.split(' ')[0]}`} /> <span className="ml-1">→</span>
+                    </a>
+                  </EditableLinkWrapper>
                 </div>
                 <div className="md:w-1/2 w-full">
                   <div className="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 aspect-video shadow-inner flex items-center justify-center relative">

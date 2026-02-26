@@ -3,6 +3,7 @@ import { Package, RefreshCw } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
+import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 
 export const OEMSection: React.FC = () => {
   // ROI State
@@ -151,9 +152,11 @@ export const OEMSection: React.FC = () => {
       </div>
 
       <div className="mt-10 text-center">
-        <button className="bg-white text-primary hover:bg-secondary hover:text-white px-10 py-4 rounded-full font-bold shadow-xl transition-all transform hover:-translate-y-1">
-          {block.partnerBtn || t.oem.partnerBtn}
-        </button>
+        <EditableLinkWrapper sectionId="oem" field="partnerBtnLink" fallback="#contact">
+          <a href="#contact" className="inline-block bg-white text-primary hover:bg-secondary hover:text-white px-10 py-4 rounded-full font-bold shadow-xl transition-all transform hover:-translate-y-1">
+            <EditableText sectionId="oem" field="partnerBtn" fallback={t.oem.partnerBtn} />
+          </a>
+        </EditableLinkWrapper>
       </div>
 
     </section>

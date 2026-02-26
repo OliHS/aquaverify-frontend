@@ -139,7 +139,7 @@ export const DistributorsSection: React.FC = () => {
           className="bg-primary text-white px-8 py-4 rounded-full font-bold shadow-lg hover:bg-secondary transition-all transform hover:-translate-y-1 flex items-center justify-center mx-auto gap-3"
         >
           <GlobeIcon size={20} />
-          {block.cta || t.distributors.cta}
+          <EditableText sectionId="distributors" field="cta" fallback={t.distributors.cta} />
         </button>
       </div>
 
