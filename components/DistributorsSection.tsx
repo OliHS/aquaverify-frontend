@@ -4,6 +4,7 @@ import { Globe as GlobeIcon, X, MapPin, Mail, Phone, CheckCircle2, Radar, ArrowR
 import Globe from 'react-globe.gl';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
+import { EditableText } from './admin/EditableText';
 
 interface Partner {
   id: string;
