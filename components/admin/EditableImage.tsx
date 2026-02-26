@@ -25,7 +25,9 @@ export const EditableImage: React.FC<EditableImageProps> = ({
     const blockData = blocks[sectionId] || {};
     const currentSrc = blockData[field] || fallbackSrc;
 
-    const handleImageClick = () => {
+    const handleImageClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        e.preventDefault();
         if (!isEditing || isUploading) return;
         fileInputRef.current?.click();
     };
