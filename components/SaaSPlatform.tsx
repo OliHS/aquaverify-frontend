@@ -49,12 +49,20 @@ export const SaaSPlatform: React.FC = () => {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <span className="text-secondary font-bold tracking-wider uppercase text-sm block">
-            {block.badge || t.saas.badge}
-          </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-primary mt-2">
-            {block.title || t.saas.title}
-          </h2>
+          <EditableText
+            as="span"
+            sectionId="saas"
+            field="badge"
+            fallback={t.saas.badge}
+            className="text-secondary font-bold tracking-wider uppercase text-sm block"
+          />
+          <EditableText
+            as="h2"
+            sectionId="saas"
+            field="title"
+            fallback={t.saas.title}
+            className="font-heading font-bold text-3xl md:text-4xl text-primary mt-2"
+          />
         </div>
 
         <div className="max-w-5xl mx-auto">

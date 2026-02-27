@@ -237,21 +237,27 @@ export const ProductSection: React.FC = () => {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <span
+          <EditableText
+            as="span"
+            sectionId="products"
+            field="badge"
+            fallback={t.products.badge}
             className="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block"
-          >
-            {block.badge || t.products.badge}
-          </span>
-          <h2
-            className="font-heading font-bold text-4xl lg:text-5xl text-primary mb-6"
-          >
-            {block.title || t.products.title}
-          </h2>
-          <p
-            className="text-gray-600 text-lg leading-relaxed"
-          >
-            {block.subtitle || t.products.subtitle}
-          </p>
+          />
+          <EditableText
+            as="h2"
+            sectionId="products"
+            field="title"
+            fallback={t.products.title}
+            className="font-heading font-bold text-4xl lg:text-5xl text-primary mb-6 block"
+          />
+          <EditableText
+            as="p"
+            sectionId="products"
+            field="subtitle"
+            fallback={t.products.subtitle}
+            className="text-gray-600 text-lg leading-relaxed block"
+          />
         </div>
 
         {/* Flagship Hero Product - Card Style */}
@@ -277,17 +283,21 @@ export const ProductSection: React.FC = () => {
             </div>
 
             <div className="lg:w-1/2">
-              <h3
-                className="font-heading font-bold text-3xl md:text-4xl text-primary mb-6"
-              >
-                {block.flagshipTitle || t.products.flagship}
-              </h3>
+              <EditableText
+                as="h3"
+                sectionId="products"
+                field="flagshipTitle"
+                fallback={t.products.flagship}
+                className="font-heading font-bold text-3xl md:text-4xl text-primary mb-6 block"
+              />
 
-              <p
-                className="text-gray-600 text-lg mb-8 leading-relaxed"
-              >
-                {block.flagshipDesc || t.products.flagshipDesc}
-              </p>
+              <EditableText
+                as="p"
+                sectionId="products"
+                field="flagshipDesc"
+                fallback={t.products.flagshipDesc}
+                className="text-gray-600 text-lg mb-8 leading-relaxed block"
+              />
 
               <div className="grid sm:grid-cols-2 gap-6 mb-10">
                 <div className="flex items-start">

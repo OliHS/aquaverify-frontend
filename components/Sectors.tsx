@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
+import { EditableText } from './admin/EditableText';
 
 // --- Data & Types ---
 interface Sector {
@@ -145,12 +146,20 @@ export const Sectors: React.FC = () => {
     <section className="py-24 bg-surface relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
-          <span className="text-secondary font-bold tracking-wider uppercase text-sm block">
-            {block.badge || t.sectors.badge}
-          </span>
-          <h2 className="font-heading font-bold text-3xl md:text-4xl text-primary mt-2">
-            {block.title || t.sectors.title}
-          </h2>
+          <EditableText
+            as="span"
+            sectionId="sectors"
+            field="badge"
+            fallback={t.sectors.badge}
+            className="text-secondary font-bold tracking-wider uppercase text-sm block"
+          />
+          <EditableText
+            as="h2"
+            sectionId="sectors"
+            field="title"
+            fallback={t.sectors.title}
+            className="font-heading font-bold text-3xl md:text-4xl text-primary mt-2"
+          />
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">

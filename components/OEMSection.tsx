@@ -33,15 +33,27 @@ export const OEMSection: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-16">
           {/* Header */}
           <div>
-            <span className="bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide inline-block">
-              {block.badge || t.oem.badge}
-            </span>
-            <h2 className="font-heading font-bold text-3xl md:text-5xl mt-6 mb-6 text-gray-900">
-              {block.title || t.oem.title}
-            </h2>
-            <p className="text-gray-600 text-lg leading-relaxed">
-              {block.desc || t.oem.desc}
-            </p>
+            <EditableText
+              as="span"
+              sectionId="oem"
+              field="badge"
+              fallback={t.oem.badge}
+              className="bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide inline-block"
+            />
+            <EditableText
+              as="h2"
+              sectionId="oem"
+              field="title"
+              fallback={t.oem.title}
+              className="font-heading font-bold text-3xl md:text-5xl mt-6 mb-6 text-gray-900 block"
+            />
+            <EditableText
+              as="p"
+              sectionId="oem"
+              field="desc"
+              fallback={t.oem.desc}
+              className="text-gray-600 text-lg leading-relaxed block"
+            />
           </div>
         </div>
 

@@ -124,15 +124,27 @@ export const DistributorsSection: React.FC = () => {
   return (
     <section id="distributors" className="py-24 bg-white relative">
       <div className="container mx-auto px-6 text-center">
-        <span className="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block">
-          {block.badge || t.distributors.badge}
-        </span>
-        <h2 className="font-heading font-bold text-3xl md:text-5xl text-primary mb-6">
-          {block.title || t.distributors.title}
-        </h2>
-        <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-12">
-          {block.subtitle || t.distributors.subtitle}
-        </p>
+        <EditableText
+          as="span"
+          sectionId="distributors"
+          field="badge"
+          fallback={t.distributors.badge}
+          className="text-secondary font-bold tracking-wider uppercase text-sm mb-2 block"
+        />
+        <EditableText
+          as="h2"
+          sectionId="distributors"
+          field="title"
+          fallback={t.distributors.title}
+          className="font-heading font-bold text-3xl md:text-5xl text-primary mb-6"
+        />
+        <EditableText
+          as="p"
+          sectionId="distributors"
+          field="subtitle"
+          fallback={t.distributors.subtitle}
+          className="text-gray-600 text-lg max-w-2xl mx-auto mb-12 block"
+        />
 
         <button
           onClick={() => setIsModalOpen(true)}

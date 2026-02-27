@@ -39,14 +39,22 @@ export const Hero: React.FC = () => {
             <span className="text-sm font-medium tracking-wide">{t.hero.badge}</span>
           </div>
 
-          <h1
+          <EditableText
+            as="h1"
+            sectionId="hero"
+            field="title"
+            fallback={heroTitleHtml}
+            allowHtml={true}
             className="font-heading font-extrabold text-4xl lg:text-6xl leading-tight mb-6 [&_span]:text-secondary [&_p]:m-0"
-            dangerouslySetInnerHTML={{ __html: heroTitleHtml }}
           />
 
-          <div
-            className="text-lg text-gray-200 mb-10 leading-relaxed font-light [&_p]:mb-4 last:[&_p]:mb-0"
-            dangerouslySetInnerHTML={{ __html: heroDescHtml }}
+          <EditableText
+            as="div"
+            sectionId="hero"
+            field="desc"
+            fallback={heroDescHtml}
+            allowHtml={true}
+            className="text-lg text-gray-200 mb-10 leading-relaxed font-light [&_p]:mb-4 last:[&_p]:mb-0 block"
           />
 
           <div className="flex flex-col sm:flex-row gap-4">
