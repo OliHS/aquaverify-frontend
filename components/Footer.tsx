@@ -67,18 +67,20 @@ export const Footer: React.FC = () => {
           <div>
             <EditableText as="h4" sectionId="footer" field="companyTitle" fallback={t.footer.company} className="font-bold text-lg mb-4 block" />
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_aboutUs" fallback="About Us" /></a></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_aboutUs" fallback="#"><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_aboutUs" fallback="About Us" /></a></EditableLinkWrapper></li>
               <li>
-                <a
-                  href="#products"
-                  onClick={(e) => handleSmoothScroll(e, 'products')}
-                  className="hover:text-secondary"
-                >
-                  <EditableText as="span" sectionId="footer" field="link_scientificValidation" fallback="Scientific Validation" />
-                </a>
+                <EditableLinkWrapper sectionId="footer" field="url_scientificValidation" fallback="#products">
+                  <a
+                    href="#products"
+                    onClick={(e) => handleSmoothScroll(e, 'products')}
+                    className="hover:text-secondary"
+                  >
+                    <EditableText as="span" sectionId="footer" field="link_scientificValidation" fallback="Scientific Validation" />
+                  </a>
+                </EditableLinkWrapper>
               </li>
-              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></li>
-              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_careers" fallback="#"><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_contact" fallback="#"><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></EditableLinkWrapper></li>
             </ul>
           </div>
 
