@@ -5,6 +5,7 @@ import Globe from 'react-globe.gl';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
+import { supabase } from '../utils/supabase';
 
 interface Partner {
   id: string;
@@ -76,15 +77,36 @@ export const DistributorsSection: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  // Updated Partners Data with 'country', 'lat' and 'lng' fields
-  const partners: Partner[] = [
-    { id: '1', name: "AquaTech Solutions NY", location: "New York, USA", country: "United States", type: 'exclusive', address: "1200 Broadway, Suite 400, NY 10001", email: "sales.ny@aquatech.com", phone: "+1 212 555 0199", x: 29.5, y: 34, lat: 40.71, lng: -74.00 },
-    { id: '2', name: "EuroLab Supplies", location: "London, UK", country: "United Kingdom", type: 'exclusive', address: "15 Baker Street, London W1U 8AE", email: "info@eurolab.co.uk", phone: "+44 20 7946 0958", x: 49.5, y: 26, lat: 51.50, lng: -0.12 },
-    { id: '3', name: "Nippon Biotech", location: "Tokyo, Japan", country: "Japan", type: 'reseller', address: "Shinjuku City, Tokyo 160-0022", email: "contact@nipponbio.jp", phone: "+81 3 1234 5678", x: 86, y: 36, lat: 35.68, lng: 139.65 },
-    { id: '4', name: "BioSur Ltda", location: "Sao Paulo, Brazil", country: "Brazil", type: 'service', address: "Av. Paulista, 1578, Sao Paulo", email: "suporte@biosur.com.br", phone: "+55 11 98765 4321", x: 34, y: 72, lat: -23.55, lng: -46.63 },
-    { id: '5', name: "Oceanic Science", location: "Sydney, Australia", country: "Australia", type: 'reseller', address: "200 George St, Sydney NSW 2000", email: "sales@oceanic.com.au", phone: "+61 2 9876 5432", x: 91, y: 78, lat: -33.86, lng: 151.20 },
-    { id: '6', name: "Berlin Diagnostics", location: "Berlin, Germany", country: "Germany", type: 'service', address: "Alexanderplatz 1, 10178 Berlin", email: "service@berlindm.de", phone: "+49 30 1234567", x: 53, y: 25, lat: 52.52, lng: 13.40 },
-  ];
+  // Polling Map Coordinate Data from Supabase
+  const [partners, setPartners] = useState<Partner[]>([]);
+
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        const { data, error } = await supabase.from('distributors').select('*');
+        if (!error && data) {
+          if (data.length > 0) {
+            setPartners(data.map((p: any) => ({ ...p, x: 0, y: 0 })));
+          } else {
+            setPartners([]);
+          }
+        } else if (error?.code === '42P01') {
+          // Graceful fallback to static payload if the SQL Schema has not been initialized yet
+          setPartners([
+            { id: '1', name: "AquaTech Solutions NY", location: "New York, USA", country: "United States", type: 'exclusive', address: "1200 Broadway, Suite 400, NY 10001", email: "sales.ny@aquatech.com", phone: "+1 212 555 0199", x: 29.5, y: 34, lat: 40.71, lng: -74.00 },
+            { id: '2', name: "EuroLab Supplies", location: "London, UK", country: "United Kingdom", type: 'exclusive', address: "15 Baker Street, London W1U 8AE", email: "info@eurolab.co.uk", phone: "+44 20 7946 0958", x: 49.5, y: 26, lat: 51.50, lng: -0.12 },
+            { id: '3', name: "Nippon Biotech", location: "Tokyo, Japan", country: "Japan", type: 'reseller', address: "Shinjuku City, Tokyo 160-0022", email: "contact@nipponbio.jp", phone: "+81 3 1234 5678", x: 86, y: 36, lat: 35.68, lng: 139.65 },
+            { id: '4', name: "BioSur Ltda", location: "Sao Paulo, Brazil", country: "Brazil", type: 'service', address: "Av. Paulista, 1578, Sao Paulo", email: "suporte@biosur.com.br", phone: "+55 11 98765 4321", x: 34, y: 72, lat: -23.55, lng: -46.63 },
+            { id: '5', name: "Oceanic Science", location: "Sydney, Australia", country: "Australia", type: 'reseller', address: "200 George St, Sydney NSW 2000", email: "sales@oceanic.com.au", phone: "+61 2 9876 5432", x: 91, y: 78, lat: -33.86, lng: 151.20 },
+            { id: '6', name: "Berlin Diagnostics", location: "Berlin, Germany", country: "Germany", type: 'service', address: "Alexanderplatz 1, 10178 Berlin", email: "service@berlindm.de", phone: "+49 30 1234567", x: 53, y: 25, lat: 52.52, lng: 13.40 },
+          ]);
+        }
+      } catch (err) {
+        console.error("Failed to load map data", err);
+      }
+    };
+    fetchPartners();
+  }, []);
 
   const handleContact = () => {
     setTimeout(() => {

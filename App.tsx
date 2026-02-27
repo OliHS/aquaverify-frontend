@@ -8,6 +8,7 @@ import { Dashboard } from './pages/admin/Dashboard';
 import { PagesList } from './pages/admin/PagesList';
 import { PageEditor } from './pages/admin/PageEditor';
 import { VisualBuilder } from './pages/admin/VisualBuilder';
+import { DistributorsManager } from './pages/admin/DistributorsManager';
 
 const App: React.FC = () => {
   return (
@@ -27,6 +28,7 @@ const App: React.FC = () => {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="pages" element={<PagesList />} />
             <Route path="pages/:id" element={<PageEditor />} />
+            <Route path="distributors" element={<DistributorsManager />} />
           </Route>
 
           {/* Fallback */}

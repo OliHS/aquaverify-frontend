@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Outlet, Navigate, Link, useNavigate } from 'react-router-dom';
+import { Outlet, Navigate, Link, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../../utils/supabase';
-import { LayoutDashboard, LogOut, FileText, Settings } from 'lucide-react';
+import { LayoutDashboard, LogOut, FileText, Settings, Map } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
     const [session, setSession] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
@@ -47,15 +48,19 @@ export const AdminLayout: React.FC = () => {
                 </div>
 
                 <nav className="flex-1 p-4 space-y-2">
-                    <Link to="/admin/dashboard" className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors">
+                    <Link to="/admin/dashboard" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/dashboard' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
                         <LayoutDashboard size={20} className="text-blue-400" />
                         <span>Dashboard</span>
                     </Link>
-                    <Link to="/admin/pages" className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors">
+                    <Link to="/admin/pages" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/pages' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
                         <FileText size={20} className="text-blue-400" />
                         <span>Pages</span>
                     </Link>
-                    <Link to="/admin/settings" className="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-slate-800 transition-colors">
+                    <Link to="/admin/distributors" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/distributors' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
+                        <Map size={20} className="text-blue-400" />
+                        <span>Distributor Map</span>
+                    </Link>
+                    <Link to="/admin/settings" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/settings' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
                         <Settings size={20} className="text-blue-400" />
                         <span>Settings</span>
                     </Link>
