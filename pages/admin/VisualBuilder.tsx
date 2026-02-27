@@ -18,7 +18,7 @@ export const VisualBuilder: React.FC = () => {
 const VisualBuilderInner: React.FC = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { lang } = useLanguage();
+    const { lang, t } = useLanguage();
 
     const [page, setPage] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -66,9 +66,43 @@ const VisualBuilderInner: React.FC = () => {
     // Helper to get correct localized value for the sidebar input fields
     const getLocalizedValue = (sectionId: string, field: string) => {
         const val = blocks[sectionId]?.[field];
-        if (!val) return '';
-        if (typeof val === 'string') return val;
-        return val[lang] !== undefined ? val[lang] : (val['en'] || '');
+        if (val) {
+            if (typeof val === 'string') return val;
+            if (val[lang] !== undefined) return val[lang];
+            if (val['en'] !== undefined) return val['en'];
+        }
+
+        // Fallback mappings so sidebar inputs don't appear empty
+        const fallbacks: any = {
+            hero: {
+                title: `${t.hero.titleStart} <span class="text-secondary">${t.hero.titleEnd}</span>.`,
+                desc: 'AquaVerify bridges the gap between physical water analysis and digital truth. From our advanced biotech consumable kits to our immutable cloud platform, we deliver the world\'s most reliable decentralized water quality data.'
+            },
+            valueProps: {
+                title: t.valueProps.title,
+                subtitle: t.valueProps.subtitle
+            },
+            products: {
+                badge: t.products.badge,
+                title: t.products.title,
+                subtitle: t.products.subtitle,
+                flagshipTitle: t.products.flagship,
+                flagshipDesc: t.products.flagshipDesc
+            },
+            saas: {
+                badge: t.saas.badge,
+                title: t.saas.title
+            },
+            distributors: {
+                title: t.distributors.title
+            },
+            oem: {
+                title: t.oem.title,
+                desc: t.oem.desc
+            }
+        };
+
+        return fallbacks[sectionId]?.[field] || '';
     };
 
     const handleBlockChange = (sectionId: string, field: string, value: any, lang?: string) => {
@@ -264,12 +298,12 @@ const VisualBuilderInner: React.FC = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-xs font-medium text-slate-700 mb-1">Subtitle</label>
+                                    <label className="block text-xs font-medium text-slate-700 mb-1">Description</label>
                                     <textarea
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        rows={2}
-                                        value={getLocalizedValue('hero', 'subtitle')}
-                                        onChange={e => handleBlockChange('hero', 'subtitle', e.target.value, lang)}
+                                        rows={3}
+                                        value={getLocalizedValue('hero', 'desc')}
+                                        onChange={e => handleBlockChange('hero', 'desc', e.target.value, lang)}
                                     />
                                 </div>
                             </div>
