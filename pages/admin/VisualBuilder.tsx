@@ -4,8 +4,18 @@ import { supabase } from '../../utils/supabase';
 import { Save, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { PublicSiteContent } from '../PublicSite';
 import { PageContentContext } from '../../context/PageContentContext';
+import { LanguageProvider } from '../../context/LanguageContext';
+import { LanguageSelector } from '../../components/LanguageSelector';
 
 export const VisualBuilder: React.FC = () => {
+    return (
+        <LanguageProvider>
+            <VisualBuilderInner />
+        </LanguageProvider>
+    );
+};
+
+const VisualBuilderInner: React.FC = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [page, setPage] = useState<any>(null);
@@ -51,14 +61,37 @@ export const VisualBuilder: React.FC = () => {
         setLoading(false);
     };
 
-    const handleBlockChange = (sectionId: string, field: string, value: any) => {
-        setBlocks(prev => ({
-            ...prev,
-            [sectionId]: {
-                ...prev[sectionId],
-                [field]: value
+    const handleBlockChange = (sectionId: string, field: string, value: any, lang?: string) => {
+        setBlocks(prev => {
+            const currentFieldData = prev[sectionId]?.[field];
+
+            // If we are editing localized content (lang provided)
+            if (lang) {
+                // If existing data is a generic string (legacy), convert it to an object with english default before spreading
+                const isLegacyString = typeof currentFieldData === 'string';
+                const baseObj = isLegacyString ? { en: currentFieldData } : (currentFieldData || {});
+
+                return {
+                    ...prev,
+                    [sectionId]: {
+                        ...prev[sectionId],
+                        [field]: {
+                            ...baseObj,
+                            [lang]: value
+                        }
+                    }
+                };
             }
-        }));
+
+            // Normal generic field update (like SEO tags or components that don't pass lang)
+            return {
+                ...prev,
+                [sectionId]: {
+                    ...prev[sectionId],
+                    [field]: value
+                }
+            };
+        });
     };
 
     const uploadImage = async (file: File): Promise<string | null> => {
@@ -160,13 +193,16 @@ export const VisualBuilder: React.FC = () => {
                             <span className="text-xs text-slate-500">/{page.slug === 'home' ? '' : page.slug}</span>
                         </div>
                     </div>
-                    <button
-                        onClick={handleSave}
-                        disabled={saving}
-                        className="flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-sm disabled:opacity-50"
-                    >
-                        {saving ? <span className="animate-pulse">Saving...</span> : <><Save size={16} className="mr-2" /> Publish</>}
-                    </button>
+                    <div className="flex items-center gap-3">
+                        <LanguageSelector />
+                        <button
+                            onClick={handleSave}
+                            disabled={saving}
+                            className="flex items-center px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 transition-colors shadow-sm disabled:opacity-50"
+                        >
+                            {saving ? <span className="animate-pulse">Saving...</span> : <><Save size={16} className="mr-2" /> Publish</>}
+                        </button>
+                    </div>
                 </div>
 
                 {saveSuccess && (

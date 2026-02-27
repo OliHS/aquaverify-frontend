@@ -6,7 +6,7 @@ interface PageContentContextType {
     blocks: Record<string, any>;
     loading: boolean;
     isEditing?: boolean;
-    updateBlock?: (sectionId: string, field: string, value: any) => void;
+    updateBlock?: (sectionId: string, field: string, value: any, lang?: string) => void;
     uploadImage?: (file: File) => Promise<string | null>;
 }
 

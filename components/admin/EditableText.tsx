@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { usePageContent } from '../../context/PageContentContext';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface EditableTextProps {
     sectionId: string;
@@ -19,12 +20,27 @@ export const EditableText: React.FC<EditableTextProps> = ({
     allowHtml = false
 }) => {
     const { blocks, isEditing, updateBlock } = usePageContent();
+    const { lang } = useLanguage();
     const [isHovered, setIsHovered] = useState(false);
     const [isFocused, setIsFocused] = useState(false);
     const editRef = useRef<HTMLElement>(null);
 
     const blockData = blocks[sectionId] || {};
-    const rawContent = blockData[field] !== undefined ? blockData[field] : fallback;
+
+    // Legacy support: if blockData[field] is a string, use it.
+    // New i18n support: if blockData[field] is an object, read blockData[field][lang]
+    let rawContent = fallback;
+    const fieldValue = blockData[field];
+
+    if (fieldValue !== undefined && fieldValue !== null) {
+        if (typeof fieldValue === 'string') { // Legacy Data
+            rawContent = fieldValue;
+        } else if (typeof fieldValue === 'object' && fieldValue[lang] !== undefined) { // New i18n object Data
+            rawContent = fieldValue[lang];
+        } else if (typeof fieldValue === 'object' && fieldValue['en'] !== undefined) { // Fallback to english if current lang missing
+            rawContent = fieldValue['en'];
+        }
+    }
 
     // Optional safe HTML wrapper function
     const renderContent = () => {
@@ -50,7 +66,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
             ${isHovered && !isFocused ? 'ring-2 ring-blue-400/50 outline-none rounded-sm bg-blue-50/10' : ''}
             ${isFocused ? 'ring-2 ring-blue-500 outline-none rounded-sm bg-white text-slate-900 z-10 relative' : ''}
         `,
-        contentEditable: isEditing ? "true" : "false",
+        contentEditable: (isEditing ? "true" : "false") as any,
         suppressContentEditableWarning: true,
         onClick: (e: React.MouseEvent<HTMLElement>) => {
             if (isEditing) {
@@ -65,7 +81,8 @@ export const EditableText: React.FC<EditableTextProps> = ({
             setIsFocused(false);
             const newContent = allowHtml ? e.currentTarget.innerHTML : e.currentTarget.textContent;
             if (updateBlock && newContent !== rawContent && newContent !== undefined && newContent !== null) {
-                updateBlock(sectionId, field, newContent);
+                // Pass up the field and the new value. The context/builder will handle merging it into the language object
+                updateBlock(sectionId, field, newContent, lang);
             }
         },
         style: {
