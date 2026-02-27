@@ -3,10 +3,13 @@ import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { Language } from '../utils/translations';
 import { EditableText } from './admin/EditableText';
+import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { usePageContent } from '../context/PageContentContext';
 import logoSrc from '../src/assets/logo.png';
 
 export const Header: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
+  const { isEditing } = usePageContent();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -39,6 +42,9 @@ export const Header: React.FC = () => {
   }, []);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    const href = e.currentTarget.getAttribute('href');
+    if (href && !href.startsWith('#')) return;
+
     e.preventDefault();
     const element = document.getElementById(id);
 
@@ -73,7 +79,7 @@ export const Header: React.FC = () => {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white py-5'
+      className={`${isEditing ? 'absolute top-0' : 'fixed'} w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white py-5'
         }`}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
@@ -94,12 +100,12 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-8">
-          <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions')}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a>
-          <a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products')}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a>
-          <a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform')}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a>
-          <a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors')}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a>
-          <a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem')}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a>
+        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+          <EditableLinkWrapper sectionId="nav" field="link_solutions" fallback="#solutions"><a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions')}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_products" fallback="#products"><a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products')}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_platform" fallback="#platform"><a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform')}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback="#distributors"><a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors')}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_oem" fallback="#oem"><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem')}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
         </nav>
 
         {/* Desktop CTA & Lang Switcher */}
@@ -124,12 +130,16 @@ export const Header: React.FC = () => {
             </div>
           </div>
 
-          <button className="text-sm font-semibold text-primary hover:text-secondary transition-colors">
-            <EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} />
-          </button>
-          <button className="bg-primary text-white px-5 py-2 rounded shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-0.5 text-sm font-semibold">
-            <EditableText as="span" sectionId="nav" field="demo" fallback={t.nav.demo} />
-          </button>
+          <EditableLinkWrapper sectionId="nav" field="url_login" fallback="/login">
+            <a href="/login" className="block text-sm font-semibold text-primary hover:text-secondary transition-colors">
+              <EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} />
+            </a>
+          </EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback="/demo">
+            <a href="/demo" className="block bg-primary text-white px-5 py-2 rounded shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-0.5 text-sm font-semibold whitespace-nowrap">
+              <EditableText as="span" sectionId="nav" field="demo" fallback={t.nav.demo} />
+            </a>
+          </EditableLinkWrapper>
         </div>
 
         {/* Mobile Menu Button */}
@@ -156,18 +166,20 @@ export const Header: React.FC = () => {
               </button>
             ))}
           </div>
-          <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions', true)}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a>
-          <a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products', true)}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a>
-          <a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform', true)}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a>
-          <a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a>
-          <a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a>
-          <a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}>{t.nav.distributors}</a>
-          <a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}>{t.nav.oem}</a>
+          <EditableLinkWrapper sectionId="nav" field="link_solutions" fallback="#solutions"><a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions', true)}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_products" fallback="#products"><a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products', true)}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_platform" fallback="#platform"><a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform', true)}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback="#distributors"><a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_oem" fallback="#oem"><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
           <hr className="border-gray-100 my-2" />
-          <button className="text-primary font-semibold text-left py-2">{t.nav.login}</button>
-          <button className="bg-primary text-white px-4 py-3 rounded text-center font-semibold w-full">
-            {t.nav.demo}
-          </button>
+          <EditableLinkWrapper sectionId="nav" field="url_login" fallback="/login">
+            <a href="/login" className="block text-primary font-semibold text-left py-2"><EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} /></a>
+          </EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback="/demo">
+            <a href="/demo" className="block bg-primary text-white px-4 py-3 rounded text-center font-semibold w-full">
+              <EditableText as="span" sectionId="nav" field="demo" fallback={t.nav.demo} />
+            </a>
+          </EditableLinkWrapper>
         </div>
       )}
     </header>
