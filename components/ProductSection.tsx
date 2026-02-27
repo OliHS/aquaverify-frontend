@@ -13,6 +13,8 @@ import { ProductDetailModal } from './ProductDetailModal';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
+import { EditableText } from './admin/EditableText';
+import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 
 export const ProductSection: React.FC = () => {
   const [selectedFamily, setSelectedFamily] = useState<ProductFamily | null>(null);
@@ -308,9 +310,11 @@ export const ProductSection: React.FC = () => {
                 </div>
               </div>
 
-              <button className="bg-primary text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all font-bold flex items-center gap-3">
-                {t.products.download} <ArrowRight size={18} />
-              </button>
+              <EditableLinkWrapper sectionId="products" field="flagshipDownloadLink" fallback="#contact">
+                <a href="#contact" className="inline-flex bg-primary text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all font-bold items-center gap-3 w-fit">
+                  <EditableText sectionId="products" field="flagshipDownloadBtn" fallback={t.products.download} /> <ArrowRight size={18} />
+                </a>
+              </EditableLinkWrapper>
             </div>
           </div>
         </div>

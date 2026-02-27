@@ -68,22 +68,16 @@ export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
     } as any);
 
     return (
-        <div
-            className="relative inline-block w-fit group"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-        >
+        <div className="relative inline-block w-fit group">
             {clonedChild}
 
-            {isHovered && (
-                <div
-                    className="absolute -top-3 -right-3 z-[100] bg-blue-600 text-white p-1.5 rounded-full shadow-lg cursor-pointer hover:bg-blue-700 hover:scale-110 transition-transform flex items-center justify-center animate-in fade-in zoom-in duration-200"
-                    onClick={handleEditLink}
-                    title="Edit URL Link"
-                >
-                    <Link2 size={16} />
-                </div>
-            )}
+            <div
+                className="absolute -top-3 -right-3 z-[100] bg-blue-600 text-white p-1.5 rounded-full shadow-lg cursor-pointer hover:bg-blue-700 hover:scale-110 transition-transform flex items-center justify-center animate-in fade-in zoom-in duration-200"
+                onClick={handleEditLink}
+                title="Edit URL Link"
+            >
+                <Link2 size={16} />
+            </div>
         </div>
     );
 };
