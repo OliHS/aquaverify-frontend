@@ -95,17 +95,31 @@ export const SaaSPlatform: React.FC = () => {
                 className="flex flex-col md:flex-row gap-12 items-center"
               >
                 <div className="md:w-1/2 space-y-6">
-                  <h3 className="text-2xl font-heading font-bold text-gray-800">
-                    {content[activeTab].title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {content[activeTab].desc}
-                  </p>
+                  <EditableText
+                    as="h3"
+                    sectionId="saas"
+                    field={`tab_${activeTab}_title`}
+                    fallback={content[activeTab].title}
+                    className="text-2xl font-heading font-bold text-gray-800 block"
+                  />
+                  <EditableText
+                    as="p"
+                    sectionId="saas"
+                    field={`tab_${activeTab}_desc`}
+                    fallback={content[activeTab].desc}
+                    className="text-gray-600 leading-relaxed block"
+                  />
                   <ul className="space-y-3">
                     {content[activeTab].features.map((feature, idx) => (
                       <li key={idx} className="flex items-center text-gray-700 font-medium">
                         <Layers size={16} className="text-secondary mr-3" />
-                        {feature}
+                        <EditableText
+                          as="span"
+                          sectionId="saas"
+                          field={`tab_${activeTab}_feature_${idx}`}
+                          fallback={feature}
+                          className="block"
+                        />
                       </li>
                     ))}
                   </ul>

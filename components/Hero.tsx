@@ -105,10 +105,20 @@ export const Hero: React.FC = () => {
           </div>
 
           <div className="mt-8 text-right lg:text-left">
-            <h2 className="text-2xl font-heading font-bold text-primary mb-2">{t.hero.limsTitle}</h2>
-            <p className="text-gray-600">
-              {t.hero.limsDesc}
-            </p>
+            <EditableText
+              as="h2"
+              sectionId="hero"
+              field="limsTitle"
+              fallback={t.hero.limsTitle}
+              className="text-2xl font-heading font-bold text-primary mb-2 block"
+            />
+            <EditableText
+              as="p"
+              sectionId="hero"
+              field="limsDesc"
+              fallback={t.hero.limsDesc}
+              className="text-gray-600 block"
+            />
           </div>
         </div>
       </motion.div>

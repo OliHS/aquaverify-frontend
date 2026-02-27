@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { ProductFamily } from '../types';
+import { EditableText } from './admin/EditableText';
 
 interface ProductFamilyCardProps {
   family: ProductFamily;
@@ -22,14 +23,22 @@ export const ProductFamilyCard: React.FC<ProductFamilyCardProps> = ({ family, on
         <div className="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center mb-6 group-hover:bg-secondary/10 group-hover:text-secondary transition-colors duration-300">
           {family.icon}
         </div>
-        
-        <h3 className="font-heading font-bold text-xl text-gray-800 mb-3 group-hover:text-primary transition-colors">
-          {family.title}
-        </h3>
-        
-        <p className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3">
-          {family.description}
-        </p>
+
+        <EditableText
+          as="h3"
+          sectionId="products"
+          field={`family_${family.id}_title`}
+          fallback={family.title}
+          className="font-heading font-bold text-xl text-gray-800 mb-3 group-hover:text-primary transition-colors block"
+        />
+
+        <EditableText
+          as="p"
+          sectionId="products"
+          field={`family_${family.id}_desc`}
+          fallback={family.description}
+          className="text-gray-600 text-sm leading-relaxed mb-6 line-clamp-3 block"
+        />
 
         <div className="flex items-center text-secondary font-semibold text-sm group-hover:translate-x-2 transition-transform">
           Explore Family <ArrowRight size={16} className="ml-2" />

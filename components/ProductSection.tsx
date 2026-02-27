@@ -305,8 +305,8 @@ export const ProductSection: React.FC = () => {
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-800 text-sm">{t.products.zeroContam}</h4>
-                    <p className="text-xs text-gray-500 mt-1">Sealed delivery system.</p>
+                    <EditableText as="h4" sectionId="products" field="flagshipFeature1Title" fallback={t.products.zeroContam} className="font-bold text-gray-800 text-sm block" />
+                    <EditableText as="p" sectionId="products" field="flagshipFeature1Desc" fallback="Sealed delivery system." className="text-xs text-gray-500 mt-1 block" />
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -314,8 +314,8 @@ export const ProductSection: React.FC = () => {
                     <ShieldCheck className="w-6 h-6" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-gray-800 text-sm">{t.products.noUV}</h4>
-                    <p className="text-xs text-gray-500 mt-1">Visual color metrics.</p>
+                    <EditableText as="h4" sectionId="products" field="flagshipFeature2Title" fallback={t.products.noUV} className="font-bold text-gray-800 text-sm block" />
+                    <EditableText as="p" sectionId="products" field="flagshipFeature2Desc" fallback="Visual color metrics." className="text-xs text-gray-500 mt-1 block" />
                   </div>
                 </div>
               </div>

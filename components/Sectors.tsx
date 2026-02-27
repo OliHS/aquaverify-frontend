@@ -51,9 +51,13 @@ const SectorCard: React.FC<{ sector: Sector; onClick: (s: Sector) => void }> = (
         {sector.icon}
       </div>
 
-      <h3 className="font-heading font-bold text-2xl mb-1 drop-shadow-md tracking-tight group-hover:-translate-y-1 transition-transform duration-300">
-        {sector.title}
-      </h3>
+      <EditableText
+        as="h3"
+        sectionId="sectors"
+        field={`sector_${sector.id}_title`}
+        fallback={sector.title}
+        className="font-heading font-bold text-2xl mb-1 drop-shadow-md tracking-tight group-hover:-translate-y-1 transition-transform duration-300 block"
+      />
 
       {/* Prominent CTA Button */}
       <div className="mt-4 opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
@@ -234,13 +238,24 @@ export const Sectors: React.FC = () => {
                   <div className="p-2.5 bg-blue-50 text-primary rounded-xl">
                     {selectedSector.icon}
                   </div>
-                  <h3 id="modal-title" className="font-heading font-bold text-3xl text-primary">{selectedSector.title}</h3>
+                  <EditableText
+                    as="h3"
+                    id="modal-title"
+                    sectionId="sectors"
+                    field={`sector_${selectedSector.id}_title`}
+                    fallback={selectedSector.title}
+                    className="font-heading font-bold text-3xl text-primary block"
+                  />
                 </div>
 
                 <div className="prose prose-blue mb-8">
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    {selectedSector.fullDescription}
-                  </p>
+                  <EditableText
+                    as="p"
+                    sectionId="sectors"
+                    field={`sector_${selectedSector.id}_full_desc`}
+                    fallback={selectedSector.fullDescription}
+                    className="text-gray-600 leading-relaxed text-lg block"
+                  />
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-4">
@@ -254,7 +269,7 @@ export const Sectors: React.FC = () => {
                       {selectedSector.useCases.map((useCase, idx) => (
                         <li key={idx} className="flex items-start text-sm">
                           <CheckCircle2 className="w-4 h-4 text-secondary mr-2 mt-0.5 flex-shrink-0" />
-                          <span className="text-gray-700">{useCase}</span>
+                          <EditableText as="span" sectionId="sectors" field={`sector_${selectedSector.id}_useCase_${idx}`} fallback={useCase} className="text-gray-700 block" />
                         </li>
                       ))}
                     </ul>
@@ -270,7 +285,7 @@ export const Sectors: React.FC = () => {
                       {selectedSector.benefits.map((benefit, idx) => (
                         <li key={idx} className="flex items-start text-sm">
                           <div className="w-1.5 h-1.5 rounded-full bg-primary mr-2 mt-1.5 flex-shrink-0"></div>
-                          <span className="text-gray-700">{benefit}</span>
+                          <EditableText as="span" sectionId="sectors" field={`sector_${selectedSector.id}_benefit_${idx}`} fallback={benefit} className="text-gray-700 block" />
                         </li>
                       ))}
                     </ul>

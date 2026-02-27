@@ -376,11 +376,21 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                             {React.cloneElement(family.icon as React.ReactElement<any>, { size: 40 })}
                           </div>
 
-                          <h3 className="font-heading font-bold text-3xl text-gray-900 mb-4">{family.title}</h3>
+                          <EditableText
+                            as="h3"
+                            sectionId="products"
+                            field={`family_${family.id}_title`}
+                            fallback={family.title}
+                            className="font-heading font-bold text-3xl text-gray-900 mb-4 block"
+                          />
 
-                          <p className="text-gray-600 mb-12 max-w-md mx-auto leading-relaxed text-base">
-                            {family.description}
-                          </p>
+                          <EditableText
+                            as="p"
+                            sectionId="products"
+                            field={`family_${family.id}_desc`}
+                            fallback={family.description}
+                            className="text-gray-600 mb-12 max-w-md mx-auto leading-relaxed text-base block"
+                          />
 
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-xl">
                             {/* Instruction 1: Select Product */}
@@ -388,10 +398,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                               <div className="bg-blue-50 w-12 h-12 rounded-xl flex items-center justify-center text-primary mb-4 group-hover:scale-110 transition-transform">
                                 <MousePointerClick size={24} />
                               </div>
-                              <h5 className="font-bold text-gray-900 mb-2 text-lg">{t.products.modal.emptyViewDetails}</h5>
-                              <p className="text-sm text-gray-500 leading-relaxed">
-                                {t.products.modal.emptyViewDetailsDesc}
-                              </p>
+                              <EditableText as="h5" sectionId="products" field="modalInstr1Title" fallback={t.products.modal.emptyViewDetails} className="font-bold text-gray-900 mb-2 text-lg block" />
+                              <EditableText as="p" sectionId="products" field="modalInstr1Desc" fallback={t.products.modal.emptyViewDetailsDesc} className="text-sm text-gray-500 leading-relaxed block" />
                             </div>
 
                             {/* Instruction 2: Compare */}
@@ -399,10 +407,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                               <div className="bg-blue-50 w-12 h-12 rounded-xl flex items-center justify-center text-secondary mb-4 group-hover:scale-110 transition-transform">
                                 <ArrowLeftRight size={24} />
                               </div>
-                              <h5 className="font-bold text-gray-900 mb-2 text-lg">{t.products.modal.emptyCompare}</h5>
-                              <p className="text-sm text-gray-500 leading-relaxed">
-                                {t.products.modal.emptyCompareDesc}
-                              </p>
+                              <EditableText as="h5" sectionId="products" field="modalInstr2Title" fallback={t.products.modal.emptyCompare} className="font-bold text-gray-900 mb-2 text-lg block" />
+                              <EditableText as="p" sectionId="products" field="modalInstr2Desc" fallback={t.products.modal.emptyCompareDesc} className="text-sm text-gray-500 leading-relaxed block" />
                             </div>
                           </div>
                         </div>

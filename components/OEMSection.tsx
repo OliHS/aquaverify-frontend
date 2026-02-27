@@ -63,15 +63,15 @@ export const OEMSection: React.FC = () => {
             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-primary mb-4">
               <Package size={24} />
             </div>
-            <h4 className="font-bold text-gray-900 mb-2">{t.oem.packaging}</h4>
-            <p className="text-sm text-gray-500">{t.oem.packagingDesc}</p>
+            <EditableText as="h4" sectionId="oem" field="feature1Title" fallback={t.oem.packaging} className="font-bold text-gray-900 mb-2 block" />
+            <EditableText as="p" sectionId="oem" field="feature1Desc" fallback={t.oem.packagingDesc} className="text-sm text-gray-500 block" />
           </div>
           <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow">
             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center text-primary mb-4">
               <RefreshCw size={24} />
             </div>
-            <h4 className="font-bold text-gray-900 mb-2">{t.oem.revenue}</h4>
-            <p className="text-sm text-gray-500">{t.oem.revenueDesc}</p>
+            <EditableText as="h4" sectionId="oem" field="feature2Title" fallback={t.oem.revenue} className="font-bold text-gray-900 mb-2 block" />
+            <EditableText as="p" sectionId="oem" field="feature2Desc" fallback={t.oem.revenueDesc} className="text-sm text-gray-500 block" />
           </div>
         </div>
       </div>
@@ -94,9 +94,7 @@ export const OEMSection: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-9">
         {/* Input 1 */}
         <div className="flex flex-col">
-          <label className="block text-xs font-heading font-bold text-white/70 uppercase tracking-widest mb-2">
-            {t.oem.testsLabel}
-          </label>
+          <EditableText as="label" sectionId="oem" field="testsLabel" fallback={t.oem.testsLabel} className="block text-xs font-heading font-bold text-white/70 uppercase tracking-widest mb-2" />
           <input
             type="number"
             value={testsPerMonth}
