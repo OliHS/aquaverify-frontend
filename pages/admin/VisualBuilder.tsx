@@ -30,15 +30,7 @@ const VisualBuilderInner: React.FC = () => {
     const [seoDescription, setSeoDescription] = useState('');
 
     // Dynamic Content Blocks State
-    const [blocks, setBlocks] = useState<Record<string, any>>({
-        hero: { title: '', subtitle: '' },
-        valueProps: { title: '', subtitle: '' },
-        products: { badge: '', title: '', subtitle: '', flagshipTitle: '', flagshipDesc: '' },
-        saas: { badge: '', title: '' },
-        distributors: { badge: '', title: '', subtitle: '', cta: '', modalTitle: '' },
-        oem: { badge: '', title: '', desc: '', calculatorTitle: '', partnerBtn: '' },
-        sectors: { badge: '', title: '' }
-    });
+    const [blocks, setBlocks] = useState<Record<string, any>>({});
 
     useEffect(() => {
         if (id) fetchPageData();
@@ -55,7 +47,7 @@ const VisualBuilderInner: React.FC = () => {
             if (blocksData) {
                 const newBlocks = { ...blocks };
                 blocksData.forEach(b => {
-                    newBlocks[b.section_id] = { ...newBlocks[b.section_id], ...b.content };
+                    newBlocks[b.section_id] = { ...(newBlocks[b.section_id] || {}), ...b.content };
                 });
                 setBlocks(newBlocks);
             }
@@ -107,7 +99,8 @@ const VisualBuilderInner: React.FC = () => {
 
     const handleBlockChange = (sectionId: string, field: string, value: any, lang?: string) => {
         setBlocks(prev => {
-            const currentFieldData = prev[sectionId]?.[field];
+            const currentSection = prev[sectionId] || {};
+            const currentFieldData = currentSection[field];
 
             // If we are editing localized content (lang provided)
             if (lang) {
@@ -118,7 +111,7 @@ const VisualBuilderInner: React.FC = () => {
                 return {
                     ...prev,
                     [sectionId]: {
-                        ...prev[sectionId],
+                        ...currentSection,
                         [field]: {
                             ...baseObj,
                             [lang]: value
@@ -131,7 +124,7 @@ const VisualBuilderInner: React.FC = () => {
             return {
                 ...prev,
                 [sectionId]: {
-                    ...prev[sectionId],
+                    ...currentSection,
                     [field]: value
                 }
             };
