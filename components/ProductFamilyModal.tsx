@@ -286,8 +286,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                                 {item.icon || <Box size={16} />}
                               </div>
                               <div className="flex-grow">
-                                <h5 className={`font-bold text-sm ${isSelected ? 'text-secondary' : 'text-gray-800'}`}>{item.name}</h5>
-                                {item.detail && <p className="text-xs text-gray-500 mt-1">{item.detail}</p>}
+                                <EditableText as="h5" sectionId="products" field={`product_${item.id}_name`} fallback={item.name} className={`font-bold text-sm block ${isSelected ? 'text-secondary' : 'text-gray-800'}`} />
+                                {item.detail && <EditableText as="p" sectionId="products" field={`product_${item.id}_detail`} fallback={item.detail} className="text-xs text-gray-500 mt-1 block" />}
                               </div>
 
                               <button
@@ -337,10 +337,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                             )}
                           </div>
 
-                          <h3 className="font-heading font-bold text-2xl text-gray-900 mb-2">{selectedProduct.name}</h3>
-                          <p className="text-sm text-gray-600 mb-6 leading-relaxed">
-                            {selectedProduct.description || t.products.modal.fallbackDesc}
-                          </p>
+                          <EditableText as="h3" sectionId="products" field={`product_${selectedProduct.id}_name`} fallback={selectedProduct.name} className="font-heading font-bold text-2xl text-gray-900 mb-2 block" />
+                          <EditableText as="p" sectionId="products" field={`product_${selectedProduct.id}_fullDesc`} fallback={selectedProduct.description || t.products.modal.fallbackDesc} className="text-sm text-gray-600 mb-6 leading-relaxed block" allowHtml />
 
                           <h4 className="font-bold text-gray-900 mb-3 text-sm flex items-center">
                             <BookOpen size={16} className="text-primary mr-2" />

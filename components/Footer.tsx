@@ -1,6 +1,7 @@
 import React from 'react';
 import { Droplet, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { EditableText } from './admin/EditableText';
 
 export const Footer: React.FC = () => {
   const { t } = useLanguage();
@@ -8,9 +9,9 @@ export const Footer: React.FC = () => {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
     const element = document.getElementById(id);
-    
+
     if (element) {
-      const headerOffset = 85; 
+      const headerOffset = 85;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
 
@@ -25,18 +26,22 @@ export const Footer: React.FC = () => {
     <footer className="bg-gray-900 text-white pt-16 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
-          
+
           {/* Brand */}
           <div className="col-span-1 md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
-               <div className="relative w-8 h-8 flex items-center justify-center bg-white rounded-full">
+              <div className="relative w-8 h-8 flex items-center justify-center bg-white rounded-full">
                 <Droplet className="w-5 h-5 text-primary fill-current" />
               </div>
               <span className="font-heading font-bold text-xl tracking-tight">AquaVerify</span>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              {t.footer.tagline}
-            </p>
+            <EditableText
+              as="p"
+              sectionId="footer"
+              field="tagline"
+              fallback={t.footer.tagline}
+              className="text-gray-400 text-sm leading-relaxed mb-6 block"
+            />
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a>
               <a href="#" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a>
@@ -46,51 +51,51 @@ export const Footer: React.FC = () => {
 
           {/* Links */}
           <div>
-            <h4 className="font-bold text-lg mb-4">{t.footer.solutions}</h4>
+            <EditableText as="h4" sectionId="footer" field="solutionsTitle" fallback={t.footer.solutions} className="font-bold text-lg mb-4 block" />
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-secondary">Testing Kits</a></li>
-              <li><a href="#" className="hover:text-secondary">LIMS Software</a></li>
-              <li><a href="#" className="hover:text-secondary">Mobile App</a></li>
-              <li><a href="#" className="hover:text-secondary">OEM Program</a></li>
+              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_testingKits" fallback="Testing Kits" /></a></li>
+              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_lims" fallback="LIMS Software" /></a></li>
+              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_mobileApp" fallback="Mobile App" /></a></li>
+              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_oemProgram" fallback="OEM Program" /></a></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold text-lg mb-4">{t.footer.company}</h4>
+            <EditableText as="h4" sectionId="footer" field="companyTitle" fallback={t.footer.company} className="font-bold text-lg mb-4 block" />
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-secondary">About Us</a></li>
+              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_aboutUs" fallback="About Us" /></a></li>
               <li>
-                <a 
-                  href="#products" 
+                <a
+                  href="#products"
                   onClick={(e) => handleSmoothScroll(e, 'products')}
                   className="hover:text-secondary"
                 >
-                  Scientific Validation
+                  <EditableText as="span" sectionId="footer" field="link_scientificValidation" fallback="Scientific Validation" />
                 </a>
               </li>
-              <li><a href="#" className="hover:text-secondary">Careers</a></li>
-              <li><a href="#" className="hover:text-secondary">{t.footer.contact}</a></li>
+              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></li>
+              <li><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 className="font-bold text-lg mb-4">{t.footer.contact}</h4>
+            <EditableText as="h4" sectionId="footer" field="contactHeader" fallback={t.footer.contact} className="font-bold text-lg mb-4 block" />
             <ul className="space-y-2 text-sm text-gray-400">
-              <li>123 Science Park Drive</li>
-              <li>Innovation District, CA 90210</li>
-              <li className="pt-2">hello@aquaverify.com</li>
-              <li>+1 (555) 123-4567</li>
+              <li><EditableText as="span" sectionId="footer" field="address1" fallback="123 Science Park Drive" className="block" /></li>
+              <li><EditableText as="span" sectionId="footer" field="address2" fallback="Innovation District, CA 90210" className="block" /></li>
+              <li className="pt-2"><EditableText as="span" sectionId="footer" field="email" fallback="hello@aquaverify.com" className="block" /></li>
+              <li><EditableText as="span" sectionId="footer" field="phone" fallback="+1 (555) 123-4567" className="block" /></li>
             </ul>
           </div>
         </div>
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-          <p>&copy; {new Date().getFullYear()} {t.footer.rights}</p>
+          <p>&copy; {new Date().getFullYear()} <EditableText as="span" sectionId="footer" field="rights" fallback={t.footer.rights} /></p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white">{t.footer.privacy}</a>
-            <a href="#" className="hover:text-white">{t.footer.terms}</a>
-            <a href="#" className="hover:text-white">Cookie Settings</a>
+            <a href="#" className="hover:text-white"><EditableText as="span" sectionId="footer" field="privacy" fallback={t.footer.privacy} /></a>
+            <a href="#" className="hover:text-white"><EditableText as="span" sectionId="footer" field="terms" fallback={t.footer.terms} /></a>
+            <a href="#" className="hover:text-white"><EditableText as="span" sectionId="footer" field="cookie" fallback="Cookie Settings" /></a>
           </div>
         </div>
       </div>

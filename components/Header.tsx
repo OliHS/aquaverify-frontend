@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { Language } from '../utils/translations';
+import { EditableText } from './admin/EditableText';
 import logoSrc from '../src/assets/logo.png';
 
 export const Header: React.FC = () => {
@@ -94,11 +95,11 @@ export const Header: React.FC = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-8">
-          <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions')}>{t.nav.solutions}</a>
-          <a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products')}>{t.nav.products}</a>
-          <a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform')}>{t.nav.platform}</a>
-          <a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors')}>{t.nav.distributors}</a>
-          <a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem')}>{t.nav.oem}</a>
+          <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions')}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a>
+          <a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products')}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a>
+          <a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform')}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a>
+          <a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors')}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a>
+          <a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem')}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a>
         </nav>
 
         {/* Desktop CTA & Lang Switcher */}
@@ -124,10 +125,10 @@ export const Header: React.FC = () => {
           </div>
 
           <button className="text-sm font-semibold text-primary hover:text-secondary transition-colors">
-            {t.nav.login}
+            <EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} />
           </button>
           <button className="bg-primary text-white px-5 py-2 rounded shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-0.5 text-sm font-semibold">
-            {t.nav.demo}
+            <EditableText as="span" sectionId="nav" field="demo" fallback={t.nav.demo} />
           </button>
         </div>
 
@@ -155,9 +156,11 @@ export const Header: React.FC = () => {
               </button>
             ))}
           </div>
-          <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions', true)}>{t.nav.solutions}</a>
-          <a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products', true)}>{t.nav.products}</a>
-          <a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform', true)}>{t.nav.platform}</a>
+          <a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions', true)}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a>
+          <a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products', true)}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a>
+          <a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform', true)}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a>
+          <a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a>
+          <a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a>
           <a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}>{t.nav.distributors}</a>
           <a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}>{t.nav.oem}</a>
           <hr className="border-gray-100 my-2" />
