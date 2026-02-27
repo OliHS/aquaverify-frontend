@@ -15,168 +15,90 @@ import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { supabase } from '../utils/supabase';
+
+// Helper to map string family_ids to Lucide icons
+const getFamilyIcon = (familyId: string) => {
+  switch (familyId) {
+    case 'equipment': return <Settings2 size={24} />;
+    case 'micro': return <Microscope size={24} />;
+    case 'media': return <FlaskConical size={24} />;
+    case 'molecular': return <Dna size={24} />;
+    case 'physchem': return <TestTube2 size={24} />;
+    case 'services': return <GraduationCap size={24} />;
+    default: return <Package size={24} />;
+  }
+};
 
 export const ProductSection: React.FC = () => {
+  const [productFamilies, setProductFamilies] = useState<ProductFamily[]>([]);
+  const [loadingDb, setLoadingDb] = useState(true);
+
   const [selectedFamily, setSelectedFamily] = useState<ProductFamily | null>(null);
   const [selectedProductDetail, setSelectedProductDetail] = useState<{ product: ProductItem, familyTitle: string } | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+
   const { t } = useLanguage();
   const { blocks } = usePageContent();
   const block = blocks['products'] || {};
 
-  // Dynamic Product Data Generator
-  const productFamilies: ProductFamily[] = [
-    {
-      id: 'equipment',
-      title: t.products.families.equipment.title,
-      icon: <Settings2 size={24} />,
-      description: t.products.families.equipment.desc,
-      items: [
-        {
-          name: "Magnetic Filtration Ramps",
-          detail: "Disposable, low-cost rails, magnetically adjusted",
-          icon: <Filter size={16} />,
-          image: "https://picsum.photos/600/400?random=101",
-          images: [
-            "https://picsum.photos/800/600?random=101",
-            "https://picsum.photos/800/600?random=1011",
-            "https://picsum.photos/800/600?random=1012"
-          ],
-          description: "A revolutionary filtration manifold using magnetic couplings for single-handed funnel attachment. Eliminates O-ring wear and guarantees leak-proof seals.",
-          specificUseCases: ["High-throughput water filtration", "Field laboratories", "Simultaneous multi-sample processing"],
-          specs: { "Material": "Stainless Steel 316L", "Funnel Capacity": "300ml / 500ml", "Positions": "3 or 6 place manifold" }
-        },
-        {
-          name: "Automatic Filter Dispensers",
-          detail: "Hands-free sterile dispensing",
-          icon: <Settings2 size={16} />,
-          image: "https://picsum.photos/600/400?random=102",
-          images: [
-            "https://picsum.photos/800/600?random=102",
-            "https://picsum.photos/800/600?random=1021"
-          ],
-          description: "Touchless membrane dispenser that uses optical sensors to present a sterile filter membrane automatically when forceps approach.",
-          specificUseCases: ["Sterile technique maintenance", "Reducing cross-contamination", "Speeding up plating workflow"],
-          specs: { "Speed": "<1 second dispense", "Power": "Rechargeable Li-ion", "Compatibility": "Continuous rolled membranes" }
-        },
-        { name: "Digital Turbidimeters", detail: "Easy-to-use, high precision", icon: <Activity size={16} /> },
-        { name: "Conductivity Probes", detail: "Robust sensing for field use", icon: <Zap size={16} /> },
-        { name: "Tube Threaders", detail: "Automated cap handling", icon: <RotateCw size={16} /> },
-        { name: "MPN Trays", detail: "Modular Most Probable Number setups", icon: <LayoutGrid size={16} /> }
-      ],
-      useCases: [
-        "Standardizing filtration workflows across multiple lab sites",
-        "Reducing repetitive strain injuries for high-volume technicians",
-        "Automating data entry via IoT-connected instruments"
-      ]
-    },
-    {
-      id: 'micro',
-      title: t.products.families.micro.title,
-      icon: <Microscope size={24} />,
-      description: t.products.families.micro.desc,
-      items: [
-        {
-          name: "E. coli & Enterococci",
-          detail: "Rapid enumeration kits",
-          icon: <Bug size={16} />,
-          image: "https://picsum.photos/600/400?random=103",
-          description: "Chromogenic media kits designed for the simultaneous detection and enumeration of E. coli and coliform bacteria in water samples.",
-          specificUseCases: ["Drinking water compliance", "Well water testing", "Network maintenance verification"],
-          specs: { "Incubation": "24 hours @ 37°C", "Limit of Detection": "1 CFU/100mL", "Shelf Life": "18 months" }
-        },
-        {
-          name: "Pseudomonas Control",
-          detail: "For recreational waters",
-          icon: <Droplets size={16} />,
-          image: "https://picsum.photos/600/400?random=104",
-          description: "Specific detection of P. aeruginosa using membrane filtration or MPN formats. Critical for hospital water systems and spas.",
-          specificUseCases: ["Hospital water safety plans", "Swimming pools & spas", "Bottled water Q.C."],
-          specs: { "Method": "Membrane Filtration", "Volume": "100mL / 250mL", "Standard": "ISO 16266" }
-        },
-        { name: "Marine Vibrio Control", detail: "Specialized for fish farms", icon: <Fish size={16} /> },
-        { name: "Somatic Coliphages", detail: "1-5 mL and 100 mL variants", icon: <Dna size={16} /> },
-        { name: "Legionella", detail: "Culture vs. molecular options", icon: <Activity size={16} /> },
-        { name: "Cryptosporidium & Giardia", detail: "Complete assay reagents", icon: <ShieldCheck size={16} /> },
-        { name: "Fungi, Yeasts & Staphylococci", detail: "Broad spectrum detection", icon: <Microscope size={16} /> },
-        { name: "Algal Control", detail: "Early bloom detection", icon: <Sprout size={16} /> }
-      ],
-      useCases: [
-        "Rapid detection of fecal contamination in drinking water",
-        "Regulatory compliance testing (ISO/EPA standards)",
-        "Recreational water safety monitoring (beaches & pools)"
-      ]
-    },
-    {
-      id: 'media',
-      title: t.products.families.media.title,
-      icon: <FlaskConical size={24} />,
-      description: t.products.families.media.desc,
-      items: [
-        { name: "Dehydrated Media", detail: "MSA, MSB, R2A formulations", icon: <Package size={16} /> },
-        { name: "RTU Culture Media", detail: "Pre-mixed, sterile solutions", icon: <FlaskConical size={16} /> },
-        { name: "Thiosulfate Bottles", detail: "Chlorine neutralization for collection", icon: <Beaker size={16} /> },
-        { name: "Strain Maintenance", detail: "Preservation & freezing media", icon: <Snowflake size={16} /> },
-        { name: "MEVAG Medium", detail: "For glycoside pathway study", icon: <TestTube2 size={16} /> },
-        { name: "MUG Test", detail: "Rapid enzymatic detection", icon: <Zap size={16} /> }
-      ],
-      useCases: [
-        "Streamlining media preparation in busy labs",
-        "Ensuring sample integrity during transport with thiosulfate",
-        "Long-term strain banking for research and validation"
-      ]
-    },
-    {
-      id: 'molecular',
-      title: t.products.families.molecular.title,
-      icon: <Dna size={24} />,
-      description: t.products.families.molecular.desc,
-      items: [
-        { name: "MST Tracking", detail: "qPCR kits for Human, Swine, Bovine, Avian", icon: <MapPin size={16} /> },
-        { name: "ARG Determination", detail: "Antibiotic Resistant Gene detection", icon: <ShieldCheck size={16} /> },
-        { name: "Molecular Legionella", detail: "Rapid DNA-based quantification", icon: <Dna size={16} /> }
-      ],
-      useCases: [
-        "Identifying the specific source of pollution (Microbial Source Tracking)",
-        "Monitoring antimicrobial resistance in wastewater",
-        "Rapid outbreak investigation where culture methods are too slow"
-      ]
-    },
-    {
-      id: 'physchem',
-      title: t.products.families.physchem.title,
-      icon: <TestTube2 size={24} />,
-      description: t.products.families.physchem.desc,
-      items: [
-        { name: "Chemical Detection Kits", detail: "Anxiolytes, narcotics, trace residues", icon: <FlaskConical size={16} /> },
-        { name: "Physicochemical Sensors", detail: "pH, Dissolved Oxygen, Nitrates", icon: <Gauge size={16} /> },
-        { name: "Heavy Metals", detail: "Rapid field tests", icon: <Atom size={16} /> },
-        { name: "Certified Standards", detail: "Reference materials for calibration", icon: <CheckCircle2 size={16} /> }
-      ],
-      useCases: [
-        "Comprehensive environmental impact assessments",
-        "Real-time monitoring of industrial effluent",
-        "Detecting emerging contaminants like pharmaceuticals"
-      ]
-    },
-    {
-      id: 'services',
-      title: t.products.families.services.title,
-      icon: <GraduationCap size={24} />,
-      description: t.products.families.services.desc,
-      items: [
-        { name: "AquaVerify Academy™", detail: "Certified user training programs", icon: <GraduationCap size={16} /> },
-        { name: "Technical Support", detail: "Personalized client troubleshooting", icon: <Headphones size={16} /> },
-        { name: "Method Validation", detail: "Consulting for ISO/EPA accreditation", icon: <FileCheck size={16} /> },
-        { name: "After-sales Support", detail: "Maintenance and calibration services", icon: <Wrench size={16} /> }
-      ],
-      useCases: [
-        "Onboarding new lab staff with certified training",
-        "Assistance with ISO 17025 accreditation processes",
-        "Optimizing lab workflows for efficiency and compliance"
-      ]
-    }
-  ];
+  useEffect(() => {
+    const fetchCatalog = async () => {
+      setLoadingDb(true);
+      try {
+        // Fetch visible families
+        const { data: dbFamilies, error: famError } = await supabase
+          .from('product_families')
+          .select('*')
+          .eq('is_hidden', false)
+          .order('sort_order', { ascending: true });
+
+        if (famError) throw famError;
+
+        // Fetch visible products
+        const { data: dbProducts, error: prodError } = await supabase
+          .from('products')
+          .select('*')
+          .eq('is_hidden', false)
+          .order('sort_order', { ascending: true });
+
+        if (prodError) throw prodError;
+
+        // Map DB schemas to the UI ProductFamily interface
+        const formattedFamilies: ProductFamily[] = (dbFamilies || []).map(fam => {
+          const familyProducts = (dbProducts || []).filter(p => p.family_id === fam.id);
+
+          return {
+            id: fam.family_id, // Map for backward compatibility with translations? We'll use the DB title though directly below
+            title: fam.title,
+            description: fam.description,
+            icon: getFamilyIcon(fam.family_id),
+            useCases: fam.use_cases || [],
+            items: familyProducts.map(fp => ({
+              name: fp.name,
+              detail: fp.detail || undefined,
+              // Use default icon for all products for now, or you could do a similar mapping
+              icon: <Package size={16} />,
+              image: fp.image || undefined,
+              images: (fp.images && fp.images.length > 0) ? fp.images : undefined,
+              description: fp.description || undefined,
+              specificUseCases: (fp.specific_use_cases && fp.specific_use_cases.length > 0) ? fp.specific_use_cases : undefined,
+              specs: (fp.specs && Object.keys(fp.specs).length > 0) ? fp.specs : undefined,
+            }))
+          };
+        });
+
+        setProductFamilies(formattedFamilies);
+      } catch (err) {
+        console.error("Error fetching catalog from Supabase:", err);
+      } finally {
+        setLoadingDb(false);
+      }
+    };
+
+    fetchCatalog();
+  }, []);
+
 
   // Lock body scroll when modal is open
   useEffect(() => {
@@ -364,8 +286,12 @@ export const ProductSection: React.FC = () => {
         </div>
 
         {/* Grid Layout */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredFamilies.length > 0 ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]">
+          {loadingDb ? (
+            <div className="col-span-full flex items-center justify-center p-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+            </div>
+          ) : filteredFamilies.length > 0 ? (
             filteredFamilies.map((family) => (
               <ProductFamilyCard
                 key={family.id}

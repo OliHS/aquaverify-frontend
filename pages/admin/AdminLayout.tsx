@@ -60,6 +60,10 @@ export const AdminLayout: React.FC = () => {
                         <Map size={20} className="text-blue-400" />
                         <span>Distributor Map</span>
                     </Link>
+                    <Link to="/admin/products" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/products' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
+                        <LayoutDashboard size={20} className="text-blue-400" />
+                        <span>Products & Families</span>
+                    </Link>
                     <Link to="/admin/settings" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/settings' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
                         <Settings size={20} className="text-blue-400" />
                         <span>Settings</span>
