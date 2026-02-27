@@ -4,7 +4,7 @@ import { supabase } from '../../utils/supabase';
 import { Save, ArrowLeft, CheckCircle2 } from 'lucide-react';
 import { PublicSiteContent } from '../PublicSite';
 import { PageContentContext } from '../../context/PageContentContext';
-import { LanguageProvider } from '../../context/LanguageContext';
+import { LanguageProvider, useLanguage } from '../../context/LanguageContext';
 import { LanguageSelector } from '../../components/LanguageSelector';
 
 export const VisualBuilder: React.FC = () => {
@@ -18,6 +18,8 @@ export const VisualBuilder: React.FC = () => {
 const VisualBuilderInner: React.FC = () => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const { lang } = useLanguage();
+
     const [page, setPage] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -59,6 +61,14 @@ const VisualBuilderInner: React.FC = () => {
             }
         }
         setLoading(false);
+    };
+
+    // Helper to get correct localized value for the sidebar input fields
+    const getLocalizedValue = (sectionId: string, field: string) => {
+        const val = blocks[sectionId]?.[field];
+        if (!val) return '';
+        if (typeof val === 'string') return val;
+        return val[lang] !== undefined ? val[lang] : (val['en'] || '');
     };
 
     const handleBlockChange = (sectionId: string, field: string, value: any, lang?: string) => {
@@ -248,8 +258,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <textarea
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         rows={3}
-                                        value={blocks.hero?.title || ''}
-                                        onChange={e => handleBlockChange('hero', 'title', e.target.value)}
+                                        value={getLocalizedValue('hero', 'title')}
+                                        onChange={e => handleBlockChange('hero', 'title', e.target.value, lang)}
                                         placeholder="Use <span class='text-secondary'> for blue text"
                                     />
                                 </div>
@@ -258,8 +268,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <textarea
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         rows={2}
-                                        value={blocks.hero?.subtitle || ''}
-                                        onChange={e => handleBlockChange('hero', 'subtitle', e.target.value)}
+                                        value={getLocalizedValue('hero', 'subtitle')}
+                                        onChange={e => handleBlockChange('hero', 'subtitle', e.target.value, lang)}
                                     />
                                 </div>
                             </div>
@@ -271,8 +281,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={blocks.valueProps?.title || ''}
-                                        onChange={e => handleBlockChange('valueProps', 'title', e.target.value)}
+                                        value={getLocalizedValue('valueProps', 'title')}
+                                        onChange={e => handleBlockChange('valueProps', 'title', e.target.value, lang)}
                                     />
                                 </div>
                                 <div>
@@ -280,8 +290,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <textarea
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         rows={2}
-                                        value={blocks.valueProps?.subtitle || ''}
-                                        onChange={e => handleBlockChange('valueProps', 'subtitle', e.target.value)}
+                                        value={getLocalizedValue('valueProps', 'subtitle')}
+                                        onChange={e => handleBlockChange('valueProps', 'subtitle', e.target.value, lang)}
                                     />
                                 </div>
                             </div>
@@ -293,8 +303,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={blocks.products?.badge || ''}
-                                        onChange={e => handleBlockChange('products', 'badge', e.target.value)}
+                                        value={getLocalizedValue('products', 'badge')}
+                                        onChange={e => handleBlockChange('products', 'badge', e.target.value, lang)}
                                     />
                                 </div>
                                 <div>
@@ -302,8 +312,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={blocks.products?.title || ''}
-                                        onChange={e => handleBlockChange('products', 'title', e.target.value)}
+                                        value={getLocalizedValue('products', 'title')}
+                                        onChange={e => handleBlockChange('products', 'title', e.target.value, lang)}
                                     />
                                 </div>
                                 <div>
@@ -311,8 +321,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <textarea
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         rows={2}
-                                        value={blocks.products?.subtitle || ''}
-                                        onChange={e => handleBlockChange('products', 'subtitle', e.target.value)}
+                                        value={getLocalizedValue('products', 'subtitle')}
+                                        onChange={e => handleBlockChange('products', 'subtitle', e.target.value, lang)}
                                     />
                                 </div>
                                 <div>
@@ -320,8 +330,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={blocks.products?.flagshipTitle || ''}
-                                        onChange={e => handleBlockChange('products', 'flagshipTitle', e.target.value)}
+                                        value={getLocalizedValue('products', 'flagshipTitle')}
+                                        onChange={e => handleBlockChange('products', 'flagshipTitle', e.target.value, lang)}
                                     />
                                 </div>
                                 <div>
@@ -329,8 +339,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <textarea
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         rows={3}
-                                        value={blocks.products?.flagshipDesc || ''}
-                                        onChange={e => handleBlockChange('products', 'flagshipDesc', e.target.value)}
+                                        value={getLocalizedValue('products', 'flagshipDesc')}
+                                        onChange={e => handleBlockChange('products', 'flagshipDesc', e.target.value, lang)}
                                     />
                                 </div>
                             </div>
@@ -342,8 +352,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={blocks.saas?.badge || ''}
-                                        onChange={e => handleBlockChange('saas', 'badge', e.target.value)}
+                                        value={getLocalizedValue('saas', 'badge')}
+                                        onChange={e => handleBlockChange('saas', 'badge', e.target.value, lang)}
                                     />
                                 </div>
                                 <div>
@@ -351,8 +361,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={blocks.saas?.title || ''}
-                                        onChange={e => handleBlockChange('saas', 'title', e.target.value)}
+                                        value={getLocalizedValue('saas', 'title')}
+                                        onChange={e => handleBlockChange('saas', 'title', e.target.value, lang)}
                                     />
                                 </div>
                             </div>
@@ -364,8 +374,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={blocks.distributors?.title || ''}
-                                        onChange={e => handleBlockChange('distributors', 'title', e.target.value)}
+                                        value={getLocalizedValue('distributors', 'title')}
+                                        onChange={e => handleBlockChange('distributors', 'title', e.target.value, lang)}
                                     />
                                 </div>
                                 <div>
@@ -373,8 +383,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <input
                                         type="text"
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                        value={blocks.oem?.title || ''}
-                                        onChange={e => handleBlockChange('oem', 'title', e.target.value)}
+                                        value={getLocalizedValue('oem', 'title')}
+                                        onChange={e => handleBlockChange('oem', 'title', e.target.value, lang)}
                                     />
                                 </div>
                                 <div>
@@ -382,8 +392,8 @@ const VisualBuilderInner: React.FC = () => {
                                     <textarea
                                         className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
                                         rows={3}
-                                        value={blocks.oem?.desc || ''}
-                                        onChange={e => handleBlockChange('oem', 'desc', e.target.value)}
+                                        value={getLocalizedValue('oem', 'desc')}
+                                        onChange={e => handleBlockChange('oem', 'desc', e.target.value, lang)}
                                     />
                                 </div>
                             </div>
