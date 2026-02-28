@@ -93,13 +93,13 @@ export const Hero: React.FC = () => {
               <div className="w-3 h-3 rounded-full bg-green-400"></div>
               <div className="ml-4 text-xs text-gray-400 font-mono">dashboard.aquaverify.cloud</div>
             </div>
-            <div className="p-0 relative flex-1 bg-gray-100">
+            <div className="p-0 relative flex-1 bg-white">
               <EditableImage
                 sectionId="hero"
                 field="image"
                 fallbackSrc="https://picsum.photos/800/600?random=1"
                 alt="AquaVerify LIMS dashboard"
-                className="absolute inset-0 w-full h-full object-cover block"
+                className="absolute inset-0 w-full h-full object-contain object-center block"
               />
             </div>
           </div>
