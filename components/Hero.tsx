@@ -87,12 +87,6 @@ export const Hero: React.FC = () => {
 
         <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col h-full justify-center">
           <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 transform rotate-1 hover:rotate-0 transition-transform duration-500 flex-1 flex flex-col min-h-[300px]">
-            <div className="bg-gray-50 border-b border-gray-100 p-4 flex items-center space-x-2 shrink-0">
-              <div className="w-3 h-3 rounded-full bg-red-400"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
-              <div className="w-3 h-3 rounded-full bg-green-400"></div>
-              <div className="ml-4 text-xs text-gray-400 font-mono">dashboard.aquaverify.cloud</div>
-            </div>
             <div className="p-0 relative flex-1 bg-white">
               <EditableImage
                 sectionId="hero"
