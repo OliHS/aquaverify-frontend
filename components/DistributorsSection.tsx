@@ -37,6 +37,16 @@ export const DistributorsSection: React.FC = () => {
   const { blocks } = usePageContent();
   const block = blocks['distributors'] || {};
 
+  const [selectedPartner, setSelectedPartner] = useState<Partner | null>(null);
+  const [requestSent, setRequestSent] = useState(false);
+
+  // Search State
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [missingCountry, setMissingCountry] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const globeRef = useRef<any>(null);
+
   // Globe Hooks
   useEffect(() => {
     if (globeRef.current) {
