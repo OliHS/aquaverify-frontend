@@ -10,6 +10,7 @@ import { ProductFamily, ProductItem } from '../types';
 import { ProductFamilyCard } from './ProductFamilyCard';
 import { ProductFamilyModal } from './ProductFamilyModal';
 import { ProductDetailModal } from './ProductDetailModal';
+import { EnumeraModal } from './EnumeraModal';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
@@ -37,6 +38,7 @@ export const ProductSection: React.FC = () => {
   const [selectedFamily, setSelectedFamily] = useState<ProductFamily | null>(null);
   const [selectedProductDetail, setSelectedProductDetail] = useState<{ product: ProductItem, familyTitle: string } | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isEnumeraModalOpen, setIsEnumeraModalOpen] = useState(false);
 
   const { t } = useLanguage();
   const { blocks } = usePageContent();
@@ -102,7 +104,7 @@ export const ProductSection: React.FC = () => {
 
   // Lock body scroll when modal is open
   useEffect(() => {
-    if (selectedFamily || selectedProductDetail) {
+    if (selectedFamily || selectedProductDetail || isEnumeraModalOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
@@ -110,7 +112,7 @@ export const ProductSection: React.FC = () => {
     return () => {
       document.body.style.overflow = 'unset';
     };
-  }, [selectedFamily, selectedProductDetail]);
+  }, [selectedFamily, selectedProductDetail, isEnumeraModalOpen]);
 
   // Handle Escape key
   useEffect(() => {
@@ -118,11 +120,12 @@ export const ProductSection: React.FC = () => {
       if (e.key === 'Escape') {
         setSelectedFamily(null);
         setSelectedProductDetail(null);
+        setIsEnumeraModalOpen(false);
       }
     };
-    if (selectedFamily || selectedProductDetail) window.addEventListener('keydown', handleKeyDown);
+    if (selectedFamily || selectedProductDetail || isEnumeraModalOpen) window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedFamily, selectedProductDetail]);
+  }, [selectedFamily, selectedProductDetail, isEnumeraModalOpen]);
 
   const handleOpenProductDetail = (product: ProductItem, family: ProductFamily) => {
     setSelectedFamily(null); // Close family modal
@@ -242,11 +245,9 @@ export const ProductSection: React.FC = () => {
                 </div>
               </div>
 
-              <EditableLinkWrapper sectionId="products" field="flagshipDownloadLink" fallback="#contact">
-                <a href="#contact" className="inline-flex bg-primary text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all font-bold items-center gap-3 w-fit">
-                  <EditableText sectionId="products" field="flagshipDownloadBtn" fallback={t.products.download} /> <ArrowRight size={18} />
-                </a>
-              </EditableLinkWrapper>
+              <button onClick={() => setIsEnumeraModalOpen(true)} className="inline-flex bg-primary text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all font-bold items-center gap-3 w-fit">
+                <EditableText sectionId="products" field="flagshipDownloadBtn" fallback="View more details" /> <ArrowRight size={18} />
+              </button>
             </div>
           </div>
         </div>
@@ -337,6 +338,13 @@ export const ProductSection: React.FC = () => {
             familyTitle={selectedProductDetail.familyTitle}
             onClose={() => setSelectedProductDetail(null)}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Enumera Specific Modal */}
+      <AnimatePresence>
+        {isEnumeraModalOpen && (
+          <EnumeraModal onClose={() => setIsEnumeraModalOpen(false)} />
         )}
       </AnimatePresence>
     </section>
