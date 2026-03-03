@@ -12,7 +12,7 @@ interface Partner {
   name: string;
   location: string;
   country: string;
-  type: 'exclusive' | 'reseller' | 'service';
+  type: 'exclusive' | 'reseller' | 'service' | 'open';
   address: string;
   email: string;
   phone: string;
@@ -138,6 +138,7 @@ export const DistributorsSection: React.FC = () => {
       case 'exclusive': return t.distributors.partnerType.exclusive;
       case 'reseller': return t.distributors.partnerType.reseller;
       case 'service': return t.distributors.partnerType.service;
+      case 'open': return "Open For Distribution";
       default: return type;
     }
   };
@@ -193,7 +194,7 @@ export const DistributorsSection: React.FC = () => {
                                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full opacity-80 pointer-events-none"></div>
                                <div class="${isDimmed ? 'hidden' : 'absolute'} bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-30">
                                   <div class="bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-3 py-1.5 rounded shadow-xl flex items-center gap-1">
-                                     <div class="w-2 h-2 rounded-full ${d.type === 'exclusive' ? 'bg-purple-500' : 'bg-blue-500'}"></div>
+                                     <div class="w-2 h-2 rounded-full ${d.type === 'exclusive' ? 'bg-purple-500' : d.type === 'open' ? 'bg-green-500' : 'bg-blue-500'}"></div>
                                      ${d.location}
                                   </div>
                                   <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-white/90 absolute left-1/2 -translate-x-1/2"></div>
@@ -224,6 +225,9 @@ export const DistributorsSection: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-blue-500"></div> Reseller
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-green-500"></div> Open for New Distributor
               </div>
             </div>
           </div>
@@ -320,7 +324,8 @@ export const DistributorsSection: React.FC = () => {
                     <div className="mb-6">
                       <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide mb-3 ${selectedPartner.type === 'exclusive' ? 'bg-purple-100 text-purple-700' :
                         selectedPartner.type === 'service' ? 'bg-orange-100 text-orange-700' :
-                          'bg-blue-100 text-blue-700'
+                          selectedPartner.type === 'open' ? 'bg-green-100 text-green-700' :
+                            'bg-blue-100 text-blue-700'
                         }`}>
                         {getPartnerTypeLabel(selectedPartner.type)}
                       </span>
@@ -330,20 +335,28 @@ export const DistributorsSection: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="space-y-4 mb-8 bg-gray-50 p-5 rounded-xl border border-gray-100 shadow-inner">
-                      <div className="flex items-start">
-                        <MapPin size={18} className="text-gray-400 mr-3 mt-1 flex-shrink-0" />
-                        <p className="text-gray-700 text-sm font-medium">{selectedPartner.address}</p>
+                    {selectedPartner.type === 'open' ? (
+                      <div className="bg-green-50 p-6 rounded-xl border border-green-100 shadow-inner mb-8 mt-4">
+                        <p className="text-green-800 text-sm font-medium leading-relaxed">
+                          If you are interested in distributing our products in {selectedPartner.country}, please contact us to discuss partnership opportunities.
+                        </p>
                       </div>
-                      <div className="flex items-center">
-                        <Mail size={18} className="text-gray-400 mr-3 flex-shrink-0" />
-                        <a href={`mailto:${selectedPartner.email}`} className="text-secondary text-sm hover:underline">{selectedPartner.email}</a>
+                    ) : (
+                      <div className="space-y-4 mb-8 bg-gray-50 p-5 rounded-xl border border-gray-100 shadow-inner">
+                        <div className="flex items-start">
+                          <MapPin size={18} className="text-gray-400 mr-3 mt-1 flex-shrink-0" />
+                          <p className="text-gray-700 text-sm font-medium">{selectedPartner.address}</p>
+                        </div>
+                        <div className="flex items-center">
+                          <Mail size={18} className="text-gray-400 mr-3 flex-shrink-0" />
+                          <a href={`mailto:${selectedPartner.email}`} className="text-secondary text-sm hover:underline">{selectedPartner.email}</a>
+                        </div>
+                        <div className="flex items-center">
+                          <Phone size={18} className="text-gray-400 mr-3 flex-shrink-0" />
+                          <p className="text-gray-700 text-sm">{selectedPartner.phone}</p>
+                        </div>
                       </div>
-                      <div className="flex items-center">
-                        <Phone size={18} className="text-gray-400 mr-3 flex-shrink-0" />
-                        <p className="text-gray-700 text-sm">{selectedPartner.phone}</p>
-                      </div>
-                    </div>
+                    )}
 
                     <div className="mt-auto">
                       {requestSent ? (
