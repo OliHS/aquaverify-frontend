@@ -35,7 +35,7 @@ async function run() {
 
         const safeCountry = country.replace(/'/g, "''");
 
-        sqlChunks.push(`INSERT INTO distributors (name, location, country, type, address, email, phone, lat, lng, x, y) VALUES ('Open Territory: ${safeCountry}', '${safeCountry}', '${safeCountry}', 'open', 'Contact us for partnership details', 'partners@aquaverify.com', '', ${lat}, ${lng}, 0, 0);`);
+        sqlChunks.push(`INSERT INTO distributors (name, location, country, type, address, email, phone, lat, lng) VALUES ('Open Territory: ${safeCountry}', '${safeCountry}', '${safeCountry}', 'open', 'Contact us for partnership details', 'partners@aquaverify.com', '', ${lat}, ${lng});`);
 
         // slight delay to respect public API rate limits
         await new Promise(r => setTimeout(r, 100));
