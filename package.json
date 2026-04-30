@@ -14,7 +14,6 @@
     "deploy:prod": "node scripts/deploy-production.js"
   },
   "dependencies": {
-    "@google/genai": "latest",
     "@supabase/supabase-js": "^2.97.0",
     "@types/react-helmet": "^6.1.11",
     "@types/react-router-dom": "^5.3.3",
