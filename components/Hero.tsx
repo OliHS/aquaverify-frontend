@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Activity, Database } from 'lucide-react';
+import { ArrowRight, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
@@ -75,21 +75,15 @@ export const Hero: React.FC = () => {
       <div
         className="lg:w-1/2 bg-surface px-8 lg:px-20 py-20 flex flex-col justify-center relative"
       >
-        <div className="absolute top-10 right-10 opacity-5">
-          <Database size={200} />
-        </div>
-
         <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col h-full justify-center">
-          <div className="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 transform rotate-1 hover:rotate-0 transition-transform duration-500 flex-1 flex flex-col min-h-[300px]">
-            <div className="p-0 relative flex-1 bg-white">
-              <EditableImage
-                sectionId="hero"
-                field="image"
-                fallbackSrc={IMAGE_FALLBACKS.heroLimsDashboard}
-                alt="AquaVerify LIMS dashboard"
-                className="absolute inset-0 w-full h-full object-contain object-center block"
-              />
-            </div>
+          <div className="relative w-full aspect-[4/3] min-h-[300px]">
+            <EditableImage
+              sectionId="hero"
+              field="image"
+              fallbackSrc={IMAGE_FALLBACKS.heroLimsDashboard}
+              alt="AquaVerify LIMS dashboard"
+              className="absolute inset-0 w-full h-full object-contain object-center block"
+            />
           </div>
 
           <div className="mt-8 text-right lg:text-left shrink-0">

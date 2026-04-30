@@ -142,6 +142,14 @@ async function run() {
     assert(mainAssetText.includes('/login'), 'Login path missing from corporate bundle');
   });
 
+  await check('corporate bundle does not use random image fallbacks', async () => {
+    assert(!mainAssetText.includes('picsum.photos'), 'Random image fallback host is still present in corporate bundle');
+    assert(
+      mainAssetText.includes('koysa1xep3m_1772472595932.png'),
+      'Stable AquaVerify LIMS dashboard fallback is missing from corporate bundle'
+    );
+  });
+
   const failedChecks = checks.filter((item) => !item.ok);
   console.log(JSON.stringify({
     ok: failedChecks.length === 0,

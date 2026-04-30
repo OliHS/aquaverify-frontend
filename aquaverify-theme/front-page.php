@@ -61,21 +61,9 @@ get_header(); ?>
 
                 <!-- Right: Digital / SaaS World -->
                 <div class="lg:w-1/2 bg-surface px-8 lg:px-20 py-20 flex flex-col justify-center relative">
-                    <div class="absolute top-10 right-10 opacity-5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>
-                    </div>
-
                     <div class="relative z-10 w-full max-w-xl mx-auto">
-                        <div class="bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 transform rotate-1 hover:rotate-0 transition-transform duration-500">
-                            <div class="bg-gray-50 border-b border-gray-100 p-4 flex items-center space-x-2">
-                                <div class="w-3 h-3 rounded-full bg-red-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
-                                <div class="w-3 h-3 rounded-full bg-green-400"></div>
-                                <div class="ml-4 text-xs text-gray-400 font-mono">dashboard.aquaverify.cloud</div>
-                            </div>
-                            <div class="p-0">
-                                <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/koysa1xep3m_1772472595932.png" alt="AquaVerify LIMS dashboard" class="w-full h-auto object-cover block" />
-                            </div>
+                        <div class="relative w-full aspect-[4/3] min-h-[300px]">
+                            <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/koysa1xep3m_1772472595932.png" alt="AquaVerify LIMS dashboard" class="absolute inset-0 w-full h-full object-contain object-center block" />
                         </div>
 
                         <div class="mt-8 text-right lg:text-left">
