@@ -54,15 +54,15 @@ export const Hero: React.FC = () => {
           />
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <EditableLinkWrapper sectionId="hero" field="primaryBtnLink" fallback="#products">
+            <EditableLinkWrapper sectionId="hero" field="primaryBtnLink" fallback="#products" legacyFallbacks={['#']}>
               <a href="#products" className="bg-secondary text-white px-8 py-3 rounded hover:bg-white hover:text-primary transition-all font-semibold shadow-lg flex items-center justify-center group">
                 <EditableText sectionId="hero" field="primaryBtn" fallback={heroBtnText} />
                 <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
               </a>
             </EditableLinkWrapper>
 
-            <EditableLinkWrapper sectionId="hero" field="secondaryBtnLink" fallback="#saas">
-              <a href="#saas" className="px-8 py-3 rounded border border-white/30 hover:bg-white/10 transition-all font-semibold text-white flex items-center justify-center">
+            <EditableLinkWrapper sectionId="hero" field="secondaryBtnLink" fallback="#platform" legacyFallbacks={['#', '#saas']}>
+              <a href="#platform" className="px-8 py-3 rounded border border-white/30 hover:bg-white/10 transition-all font-semibold text-white flex items-center justify-center">
                 <EditableText sectionId="hero" field="secondaryBtn" fallback={t.hero.data} />
               </a>
             </EditableLinkWrapper>

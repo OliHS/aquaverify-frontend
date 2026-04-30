@@ -7,7 +7,7 @@ import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { usePageContent } from '../context/PageContentContext';
 import { getPlatformLoginUrl, getPlatformSignupUrl } from '../utils/platformLinks';
 
-const logoSrc = '/images/logo.png';
+const logoSrc = '/images/logo-mark-160.png';
 
 export const Header: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
@@ -96,6 +96,8 @@ export const Header: React.FC = () => {
           <img
             src={logoSrc}
             alt="AquaVerify Logo"
+            width={32}
+            height={40}
             className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
           />
           <span className="font-heading font-bold text-xl tracking-tight text-primary">
@@ -105,11 +107,11 @@ export const Header: React.FC = () => {
 
         {/* Desktop Nav */}
         <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
-          <EditableLinkWrapper sectionId="nav" field="link_solutions" fallback="#solutions"><a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions')}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a></EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="link_products" fallback="#products"><a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products')}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a></EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="link_platform" fallback="#platform"><a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform')}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a></EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback="#distributors"><a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors')}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="link_oem" fallback="#oem"><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem')}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_solutions" fallback="#solutions" legacyFallbacks={['#']}><a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions')}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_products" fallback="#products" legacyFallbacks={['#']}><a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products')}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_platform" fallback="#platform" legacyFallbacks={['#', '#saas']}><a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform')}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback="#distributors" legacyFallbacks={['#']}><a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors')}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_oem" fallback="#oem" legacyFallbacks={['#']}><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem')}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
         </nav>
 
         {/* Desktop CTA & Lang Switcher */}
@@ -170,11 +172,11 @@ export const Header: React.FC = () => {
               </button>
             ))}
           </div>
-          <EditableLinkWrapper sectionId="nav" field="link_solutions" fallback="#solutions"><a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions', true)}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a></EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="link_products" fallback="#products"><a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products', true)}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a></EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="link_platform" fallback="#platform"><a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform', true)}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a></EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback="#distributors"><a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="link_oem" fallback="#oem"><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_solutions" fallback="#solutions" legacyFallbacks={['#']}><a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions', true)}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_products" fallback="#products" legacyFallbacks={['#']}><a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products', true)}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_platform" fallback="#platform" legacyFallbacks={['#', '#saas']}><a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform', true)}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback="#distributors" legacyFallbacks={['#']}><a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_oem" fallback="#oem" legacyFallbacks={['#']}><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
           <hr className="border-gray-100 my-2" />
           <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={['/login']}>
             <a href={platformLoginUrl} onClick={() => setIsMenuOpen(false)} className="block text-primary font-semibold text-left py-2"><EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} /></a>

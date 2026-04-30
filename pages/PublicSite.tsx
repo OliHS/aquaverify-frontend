@@ -42,7 +42,7 @@ export const PublicSiteContent: React.FC = () => {
                     </DeferredSection>
                 </Suspense>
                 <Suspense fallback={<SectionFallback className="min-h-[620px] bg-white" />}>
-                    <DeferredSection id="saas" minHeightClassName="min-h-[620px] bg-white">
+                    <DeferredSection id="platform" minHeightClassName="min-h-[620px] bg-white">
                         <SaaSPlatform />
                     </DeferredSection>
                 </Suspense>
