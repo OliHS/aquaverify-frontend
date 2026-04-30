@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { Smartphone, PieChart, FileText, Layers } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformSignupUrl } from '../utils/platformLinks';
 
 type Tab = 'mobile' | 'lims' | 'compliance';
@@ -13,9 +13,12 @@ type Tab = 'mobile' | 'lims' | 'compliance';
 export const SaaSPlatform: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('lims');
   const { t, lang } = useLanguage();
-  const { blocks } = usePageContent();
-  const block = blocks['saas'] || {};
   const platformLearnMoreUrl = getPlatformSignupUrl({ intent: 'platform', module: activeTab }, lang);
+  const imageFallbacks: Record<Tab, string> = {
+    mobile: IMAGE_FALLBACKS.saasMobile,
+    lims: IMAGE_FALLBACKS.heroLimsDashboard,
+    compliance: IMAGE_FALLBACKS.saasCompliance,
+  };
 
   const tabs = [
     { id: 'mobile', label: t.saas.tabs.mobile, icon: <Smartphone size={18} /> },
@@ -136,7 +139,7 @@ export const SaaSPlatform: React.FC = () => {
                     <EditableImage
                       sectionId="saas"
                       field={`image_${activeTab}`}
-                      fallbackSrc={`https://picsum.photos/600/400?random=${activeTab === 'mobile' ? 10 : activeTab === 'lims' ? 11 : 12}`}
+                      fallbackSrc={imageFallbacks[activeTab]}
                       alt={content[activeTab].imgAlt}
                       className="w-full h-full object-cover block"
                     />

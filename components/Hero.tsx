@@ -5,6 +5,7 @@ import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -84,7 +85,7 @@ export const Hero: React.FC = () => {
               <EditableImage
                 sectionId="hero"
                 field="image"
-                fallbackSrc="https://picsum.photos/800/600?random=1"
+                fallbackSrc={IMAGE_FALLBACKS.heroLimsDashboard}
                 alt="AquaVerify LIMS dashboard"
                 className="absolute inset-0 w-full h-full object-contain object-center block"
               />

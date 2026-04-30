@@ -8,6 +8,7 @@ import { EditableImage } from './admin/EditableImage';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformSignupUrl } from '../utils/platformLinks';
 
 interface ProductFamilyModalProps {
@@ -54,7 +55,7 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
     if (item.images && item.images.length > 0) {
       return [cmsOverrideUrl || item.images[0], ...item.images.slice(1)];
     }
-    return [cmsOverrideUrl || item.image || "https://picsum.photos/400/300?grayscale"];
+    return [cmsOverrideUrl || item.image || IMAGE_FALLBACKS.productItem];
   };
 
   const productImages = getCmsImages(selectedProduct);
@@ -180,7 +181,7 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                                   <EditableImage
                                     sectionId="products"
                                     field={`family_${family.id}_item_${product.name.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}_image`}
-                                    fallbackSrc={product.image || "https://picsum.photos/200/200?grayscale"}
+                                    fallbackSrc={product.image || IMAGE_FALLBACKS.productItem}
                                     alt={product.name}
                                     className="max-h-full max-w-full object-contain"
                                   />
@@ -335,7 +336,7 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                             <EditableImage
                               sectionId="products"
                               field={`family_${family.id}_item_${selectedProduct.name.replace(/[^a-zA-Z0-9]/g, '_').toLowerCase()}_image`}
-                              fallbackSrc={productImages[0] || "https://picsum.photos/400/300?grayscale"}
+                              fallbackSrc={productImages[0] || IMAGE_FALLBACKS.productItem}
                               alt={selectedProduct.name}
                               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                             />

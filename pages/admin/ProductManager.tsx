@@ -443,7 +443,7 @@ export const ProductManager: React.FC = () => {
                                             value={productFormData.image || ''}
                                             onChange={(e) => setProductFormData({ ...productFormData, image: e.target.value })}
                                             className="w-full px-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors text-sm"
-                                            placeholder="https://picsum.photos/..."
+                                            placeholder="https://example.com/product-image.png"
                                         />
                                     </div>
                                 </div>

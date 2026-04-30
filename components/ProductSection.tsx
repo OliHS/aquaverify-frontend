@@ -12,10 +12,10 @@ import { ProductFamilyModal } from './ProductFamilyModal';
 import { ProductDetailModal } from './ProductDetailModal';
 import { EnumeraModal } from './EnumeraModal';
 import { useLanguage } from '../context/LanguageContext';
-import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { supabase } from '../utils/supabase';
 
 // Helper to map string family_ids to Lucide icons
@@ -41,8 +41,6 @@ export const ProductSection: React.FC = () => {
   const [isEnumeraModalOpen, setIsEnumeraModalOpen] = useState(false);
 
   const { t } = useLanguage();
-  const { blocks } = usePageContent();
-  const block = blocks['products'] || {};
 
   useEffect(() => {
     const fetchCatalog = async () => {
@@ -196,7 +194,7 @@ export const ProductSection: React.FC = () => {
                 <EditableImage
                   sectionId="products"
                   field="flagshipImage"
-                  fallbackSrc="https://picsum.photos/800/800?random=2"
+                  fallbackSrc={IMAGE_FALLBACKS.flagshipProduct}
                   alt="AquaVerify Smart Cap technology"
                   className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 block"
                 />

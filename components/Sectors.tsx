@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Factory, Droplets, Building2, FlaskRound, ArrowRight, X, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
-import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
+import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 
 // --- Data & Types ---
 interface Sector {
@@ -73,15 +73,13 @@ const SectorCard: React.FC<{ sector: Sector; onClick: (s: Sector) => void }> = (
 export const Sectors: React.FC = () => {
   const [selectedSector, setSelectedSector] = useState<Sector | null>(null);
   const { t, lang } = useLanguage();
-  const { blocks } = usePageContent();
-  const block = blocks['sectors'] || {};
 
   const sectors: Sector[] = [
     {
       id: 'municipal',
       title: t.sectors.list.municipal.title,
       icon: <Droplets size={32} />,
-      image: 'https://picsum.photos/400/600?random=20',
+      image: IMAGE_FALLBACKS.sector,
       shortDesc: t.sectors.list.municipal.desc,
       fullDescription: t.sectors.list.municipal.full,
       useCases: ['Distribution network monitoring', 'Pipe repair commissioning', 'Emergency response tracing', 'Regulatory compliance (EPA)'],
@@ -91,7 +89,7 @@ export const Sectors: React.FC = () => {
       id: 'fnb',
       title: t.sectors.list.fnb.title,
       icon: <Factory size={32} />,
-      image: 'https://picsum.photos/400/600?random=21',
+      image: IMAGE_FALLBACKS.sector,
       shortDesc: t.sectors.list.fnb.desc,
       fullDescription: t.sectors.list.fnb.full,
       useCases: ['Source water verification', 'CIP (Clean-in-Place) validation', 'Finished product lot release', 'HACCP critical control points'],
@@ -101,7 +99,7 @@ export const Sectors: React.FC = () => {
       id: 'labs',
       title: t.sectors.list.labs.title,
       icon: <FlaskRound size={32} />,
-      image: 'https://picsum.photos/400/600?random=22',
+      image: IMAGE_FALLBACKS.sector,
       shortDesc: t.sectors.list.labs.desc,
       fullDescription: t.sectors.list.labs.full,
       useCases: ['Field sampling expansion', 'Remote client monitoring', 'Overflow testing management', 'Digital certificate generation'],
@@ -111,7 +109,7 @@ export const Sectors: React.FC = () => {
       id: 'realestate',
       title: t.sectors.list.realestate.title,
       icon: <Building2 size={32} />,
-      image: 'https://picsum.photos/400/600?random=23',
+      image: IMAGE_FALLBACKS.sector,
       shortDesc: t.sectors.list.realestate.desc,
       fullDescription: t.sectors.list.realestate.full,
       useCases: ['Cooling tower screening', 'Swimming pool & spa safety', 'Tenant water quality assurance', 'ASHRAE 188 compliance'],

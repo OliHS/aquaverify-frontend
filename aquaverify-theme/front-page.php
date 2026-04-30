@@ -74,7 +74,7 @@ get_header(); ?>
                                 <div class="ml-4 text-xs text-gray-400 font-mono">dashboard.aquaverify.cloud</div>
                             </div>
                             <div class="p-0">
-                                <img src="https://picsum.photos/800/600?random=1" alt="AquaVerify LIMS dashboard" class="w-full h-auto object-cover block" />
+                                <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/koysa1xep3m_1772472595932.png" alt="AquaVerify LIMS dashboard" class="w-full h-auto object-cover block" />
                             </div>
                         </div>
 
@@ -268,7 +268,7 @@ get_header(); ?>
                                     </ul>
                                 </div>
                                 <div class="md:w-1/2 w-full">
-                                    <img src="https://picsum.photos/600/400?random=11" alt="LIMS Dashboard" class="w-full h-full object-cover rounded-lg shadow-inner border border-gray-200" />
+                                    <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/koysa1xep3m_1772472595932.png" alt="LIMS Dashboard" class="w-full h-full object-cover rounded-lg shadow-inner border border-gray-200" />
                                 </div>
                             </div>
                             
@@ -289,7 +289,7 @@ get_header(); ?>
                                     </ul>
                                 </div>
                                 <div class="md:w-1/2 w-full">
-                                    <img src="https://picsum.photos/600/400?random=10" alt="Mobile App" class="w-full h-full object-cover rounded-lg shadow-inner border border-gray-200" />
+                                    <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/lqgjiq6mbtm_1772273434579.png" alt="Mobile App" class="w-full h-full object-cover rounded-lg shadow-inner border border-gray-200" />
                                 </div>
                             </div>
 
@@ -310,7 +310,7 @@ get_header(); ?>
                                     </ul>
                                 </div>
                                 <div class="md:w-1/2 w-full">
-                                    <img src="https://picsum.photos/600/400?random=12" alt="Compliance Reports" class="w-full h-full object-cover rounded-lg shadow-inner border border-gray-200" />
+                                    <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/pyuchu8n55_1772353597384.png" alt="Compliance Reports" class="w-full h-full object-cover rounded-lg shadow-inner border border-gray-200" />
                                 </div>
                             </div>
 
@@ -386,7 +386,7 @@ get_header(); ?>
 
                     <!-- New Interactive Map CTA -->
                     <div class="relative bg-white rounded-3xl shadow-xl border border-gray-100 p-8 h-[500px] flex items-center justify-center">
-                       <img src="https://picsum.photos/1200/500?random=15" alt="Global Distribution Map" class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-3xl pointer-events-none" />
+                       <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/3esyi3jz9zb_1772117230391.png" alt="Global Distribution Map" class="absolute inset-0 w-full h-full object-cover opacity-20 rounded-3xl pointer-events-none" />
                        <div class="relative z-10 text-center">
                            <h3 class="text-3xl font-bold text-primary mb-4"><?php esc_html_e( 'Explore our Global Reach', 'aquaverify' ); ?></h3>
                            <button id="open-globe-btn" class="inline-flex items-center gap-2 bg-secondary text-white px-8 py-3 rounded-full font-bold shadow-lg hover:-translate-y-1 transition-transform">
@@ -400,7 +400,7 @@ get_header(); ?>
 
             <!-- OEM Section (Fixing the blank page bug in PHP) -->
             <section id="oem" class="py-24 bg-primary text-white relative overflow-hidden">
-                <div class="absolute inset-0 bg-[url('https://picsum.photos/1920/1080?random=20')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
+                <div class="absolute inset-0 bg-[url('https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/3esyi3jz9zb_1772117230391.png')] opacity-10 bg-cover bg-center mix-blend-overlay"></div>
                 <div class="container mx-auto px-6 relative z-10">
                     <div class="flex flex-col lg:flex-row items-center gap-16">
                         <div class="lg:w-1/2">
@@ -418,7 +418,7 @@ get_header(); ?>
                             </button>
                         </div>
                         <div class="lg:w-1/2">
-                             <img src="https://picsum.photos/800/600?random=21" alt="OEM Manufacturing" class="rounded-2xl shadow-2xl border-4 border-white/10" />
+                             <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/tb6yjv4bxcb_1772449206599.png" alt="OEM Manufacturing" class="rounded-2xl shadow-2xl border-4 border-white/10" />
                         </div>
                     </div>
                 </div>
@@ -703,49 +703,49 @@ get_header(); ?>
                         title: "Lab Equipment & Hardware",
                         desc: "Hardware designed to automate workflows and minimize contamination risks.",
                         items: [
-                            { name: "Magnetic Filtration Ramps", detail: "Disposable, low-cost rails, magnetically adjusted", img: "https://picsum.photos/600/400?random=101", useCases: ["High-throughput water filtration", "Field laboratories"], specs: { "Material": "Stainless Steel 316L", "Funnel Capacity": "300ml / 500ml" } },
-                            { name: "Automatic Filter Dispensers", detail: "Hands-free sterile dispensing", img: "https://picsum.photos/600/400?random=102", useCases: ["Sterile technique maintenance", "Reducing cross-contamination"] },
-                            { name: "Digital Turbidimeters", detail: "Easy-to-use, high precision", img: "https://picsum.photos/600/400?random=103" }
+                            { name: "Magnetic Filtration Ramps", detail: "Disposable, low-cost rails, magnetically adjusted", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png", useCases: ["High-throughput water filtration", "Field laboratories"], specs: { "Material": "Stainless Steel 316L", "Funnel Capacity": "300ml / 500ml" } },
+                            { name: "Automatic Filter Dispensers", detail: "Hands-free sterile dispensing", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png", useCases: ["Sterile technique maintenance", "Reducing cross-contamination"] },
+                            { name: "Digital Turbidimeters", detail: "Easy-to-use, high precision", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" }
                         ]
                     },
                     micro: {
                         title: "Microbiology Kits",
                         desc: "Rapid Chromogenic solutions for the detection of pathogens.",
                         items: [
-                            { name: "E. coli & Enterococci", detail: "Rapid enumeration kits", img: "https://picsum.photos/600/400?random=104", useCases: ["Drinking water compliance", "Well water testing"], specs: { "Incubation": "24 hours @ 37°C", "LOD": "1 CFU/100mL" } },
-                            { name: "Pseudomonas Control", detail: "For recreational waters", img: "https://picsum.photos/600/400?random=105" }
+                            { name: "E. coli & Enterococci", detail: "Rapid enumeration kits", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png", useCases: ["Drinking water compliance", "Well water testing"], specs: { "Incubation": "24 hours @ 37°C", "LOD": "1 CFU/100mL" } },
+                            { name: "Pseudomonas Control", detail: "For recreational waters", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" }
                         ]
                     },
                     media: {
                         title: "Culture Media & Reagents",
                         desc: "Dehydrated and Ready-to-Use media formulations.",
                         items: [
-                            { name: "Dehydrated Media", detail: "MSA, MSB, R2A formulations", img: "https://picsum.photos/600/400?random=106" },
-                            { name: "RTU Culture Media", detail: "Pre-mixed, sterile solutions", img: "https://picsum.photos/600/400?random=107" }
+                            { name: "Dehydrated Media", detail: "MSA, MSB, R2A formulations", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" },
+                            { name: "RTU Culture Media", detail: "Pre-mixed, sterile solutions", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" }
                         ]
                     },
                     molecular: {
                         title: "Molecular Biology",
                         desc: "qPCR assays for high precision source tracking and immediate detection.",
                         items: [
-                            { name: "MST Tracking", detail: "qPCR kits for Human, Swine, Bovine", img: "https://picsum.photos/600/400?random=108" },
-                            { name: "ARG Determination", detail: "Antibiotic Resistant Gene detection", img: "https://picsum.photos/600/400?random=109" }
+                            { name: "MST Tracking", detail: "qPCR kits for Human, Swine, Bovine", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" },
+                            { name: "ARG Determination", detail: "Antibiotic Resistant Gene detection", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" }
                         ]
                     },
                     physchem: {
                         title: "Physicochemical Analysis",
                         desc: "Rapid chemical strips and sensory probes for field water quality data.",
                         items: [
-                            { name: "Chemical Detection Kits", detail: "Anxiolytes, narcotics, trace residues", img: "https://picsum.photos/600/400?random=110" },
-                            { name: "Physicochemical Sensors", detail: "pH, Dissolved Oxygen, Nitrates", img: "https://picsum.photos/600/400?random=111" }
+                            { name: "Chemical Detection Kits", detail: "Anxiolytes, narcotics, trace residues", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" },
+                            { name: "Physicochemical Sensors", detail: "pH, Dissolved Oxygen, Nitrates", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" }
                         ]
                     },
                     services: {
                         title: "Services & Academy",
                         desc: "Consulting, method validation, and technical certifications.",
                         items: [
-                            { name: "AquaVerify Academy™", detail: "Certified user training programs", img: "https://picsum.photos/600/400?random=112" },
-                            { name: "Method Validation", detail: "Consulting for ISO/EPA accreditation", img: "https://picsum.photos/600/400?random=113" }
+                            { name: "AquaVerify Academy™", detail: "Certified user training programs", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" },
+                            { name: "Method Validation", detail: "Consulting for ISO/EPA accreditation", img: "https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/jdcbhz045rp_1772119325794.png" }
                         ]
                     }
                 };

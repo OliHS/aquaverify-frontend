@@ -4,6 +4,7 @@ import { X, CheckCircle2, FileText, Zap, ChevronRight, ChevronLeft, Box, Maximiz
 import { ProductItem } from '../types';
 import { Lightbox } from './Lightbox';
 import { useLanguage } from '../context/LanguageContext';
+import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 
 interface ProductDetailModalProps {
@@ -26,7 +27,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
   // Normalize images
   const images = (product.images && product.images.length > 0) 
     ? product.images 
-    : (product.image ? [product.image] : ["https://picsum.photos/600/400?grayscale"]);
+    : (product.image ? [product.image] : [IMAGE_FALLBACKS.productItem]);
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
