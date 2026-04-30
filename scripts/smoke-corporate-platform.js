@@ -231,9 +231,16 @@ async function run() {
   });
 
   await check('distributor globe textures are local', async () => {
-    const globeAssetMatch = mainAssetText.match(/DistributorsGlobe-[^"']+\.js/);
+    const distributorsSectionMatch = mainAssetText.match(/assets\/DistributorsSection-[^"',)]+\.js/);
+    assert(distributorsSectionMatch, 'Distributors section asset reference missing from main bundle');
+    const { text: distributorsSectionText } = await getText(`${CORPORATE_SITE_URL}/${distributorsSectionMatch[0]}`);
+
+    const globeAssetMatch = distributorsSectionText.match(/(?:assets\/)?DistributorsGlobe-[^"',)]+\.js/);
     assert(globeAssetMatch, 'Distributors globe asset reference missing from main bundle');
-    const { text: globeAssetText } = await getText(`${CORPORATE_SITE_URL}/assets/${globeAssetMatch[0]}`);
+    const globeAssetPath = globeAssetMatch[0].startsWith('assets/')
+      ? globeAssetMatch[0]
+      : `assets/${globeAssetMatch[0]}`;
+    const { text: globeAssetText } = await getText(`${CORPORATE_SITE_URL}/${globeAssetPath}`);
     assert(globeAssetText.includes('/images/globe/earth-blue-marble.jpg'), 'Local earth texture missing from globe asset');
     assert(globeAssetText.includes('/images/globe/earth-topology.png'), 'Local earth topology missing from globe asset');
     assert(!globeAssetText.includes('unpkg.com/three-globe'), 'Globe asset still references unpkg textures');
