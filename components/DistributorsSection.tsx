@@ -1,27 +1,15 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { Suspense, useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Globe as GlobeIcon, X, MapPin, Mail, Phone, CheckCircle2, Radar, ArrowRight, Package, Search, ChevronDown, UserPlus, Droplet } from 'lucide-react';
-import Globe from 'react-globe.gl';
+import { Globe as GlobeIcon, MapPin, Mail, Phone, CheckCircle2, Radar, Package, Search, ChevronDown, UserPlus } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
 import { supabase } from '../utils/supabase';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
+import type { DistributorPartner } from './DistributorsGlobe';
 
-interface Partner {
-  id: string;
-  name: string;
-  location: string;
-  country: string;
-  type: 'exclusive' | 'reseller' | 'service' | 'open';
-  address: string;
-  email: string;
-  phone: string;
-  x: number; // Percentage X
-  y: number; // Percentage Y
-  lat: number;
-  lng: number;
-}
+const DistributorsGlobe = React.lazy(() =>
+  import('./DistributorsGlobe').then((module) => ({ default: module.DistributorsGlobe }))
+);
 
 // Comprehensive list of countries for the dropdown
 const COUNTRIES = [
@@ -35,35 +23,14 @@ const COUNTRIES = [
 
 export const DistributorsSection: React.FC = () => {
   const { t, lang } = useLanguage();
-  const { blocks } = usePageContent();
-  const block = blocks['distributors'] || {};
 
-  const [selectedPartner, setSelectedPartner] = useState<Partner | null>(null);
+  const [selectedPartner, setSelectedPartner] = useState<DistributorPartner | null>(null);
 
   // Search State
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [missingCountry, setMissingCountry] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const globeRef = useRef<any>(null);
-
-  // Globe Hooks
-  useEffect(() => {
-    if (globeRef.current) {
-      const controls = globeRef.current.controls();
-      if (controls) {
-        controls.autoRotate = true;
-        controls.autoRotateSpeed = 0.5;
-        controls.enableZoom = true;
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    if (globeRef.current && selectedPartner) {
-      globeRef.current.pointOfView({ lat: selectedPartner.lat, lng: selectedPartner.lng, altitude: 1.5 }, 1000);
-    }
-  }, [selectedPartner]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -77,7 +44,7 @@ export const DistributorsSection: React.FC = () => {
   }, []);
 
   // Polling Map Coordinate Data from Supabase
-  const [partners, setPartners] = useState<Partner[]>([]);
+  const [partners, setPartners] = useState<DistributorPartner[]>([]);
 
   useEffect(() => {
     const fetchPartners = async () => {
@@ -149,6 +116,12 @@ export const DistributorsSection: React.FC = () => {
     }
   };
 
+  const handlePartnerSelect = (partner: DistributorPartner) => {
+    setSelectedPartner(partner);
+    setMissingCountry(null);
+    setSearchQuery(partner.country);
+  };
+
   const filteredCountries = COUNTRIES.filter(c =>
     c.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -195,48 +168,17 @@ export const DistributorsSection: React.FC = () => {
           <div className="relative w-full h-1/2 md:h-full md:w-2/3 bg-[#050B14] overflow-hidden flex items-center justify-center group flex-shrink-0">
             {/* Rotating 3D World Map */}
             <div className="relative w-full h-full flex flex-col items-center justify-center cursor-move">
-              {typeof window !== 'undefined' && (
-                <Globe
-                  ref={globeRef}
-                  backgroundColor="rgba(0,0,0,0)"
-                  globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-                  bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
-                  htmlElementsData={partners.map(p => ({ ...p, isSelected: selectedPartner?.id === p.id, isDimmed: selectedPartner && selectedPartner.id !== p.id }))}
-                  htmlElement={(d: any) => {
-                    const el = document.createElement('div');
-                    const isSelected = d.isSelected;
-                    const isDimmed = d.isDimmed;
-
-                    el.innerHTML = `
-                            <div class="relative group/pin flex items-center justify-center -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ${isDimmed ? 'opacity-40 blur-[1px]' : 'opacity-100 z-20'} ${isSelected ? 'scale-125' : 'hover:scale-110'} cursor-pointer" style="pointer-events: auto;">
-                               ${isSelected ? '<span class="absolute inset-0 rounded-full bg-secondary/30 animate-ping"></span><span class="absolute -inset-2 rounded-full bg-secondary/10 animate-pulse delay-75"></span>' : ''}
-                               <svg xmlns="http://www.w3.org/2000/svg" width="${isSelected ? '42' : '28'}" height="${isSelected ? '42' : '28'}" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="filter drop-shadow-md transition-colors ${isSelected ? 'text-secondary fill-secondary' : 'text-primary fill-[#AAD3DF] group-hover/pin:fill-secondary group-hover/pin:text-secondary'}"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path></svg>
-                               <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full opacity-80 pointer-events-none"></div>
-                               <div class="${isDimmed ? 'hidden' : 'absolute'} bottom-full left-1/2 -translate-x-1/2 mb-2 opacity-0 group-hover/pin:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-30">
-                                  <div class="bg-white/90 backdrop-blur text-gray-900 text-xs font-bold px-3 py-1.5 rounded shadow-xl flex items-center gap-1">
-                                     <div class="w-2 h-2 rounded-full ${d.type === 'exclusive' ? 'bg-purple-500' : d.type === 'open' ? 'bg-green-500' : 'bg-blue-500'}"></div>
-                                     ${d.location}
-                                  </div>
-                                  <div class="w-0 h-0 border-l-[6px] border-l-transparent border-r-[6px] border-r-transparent border-t-[6px] border-t-white/90 absolute left-1/2 -translate-x-1/2"></div>
-                               </div>
-                            </div>
-                          `;
-
-                    el.style.pointerEvents = 'none';
-                    const pinDiv = el.children[0] as HTMLElement;
-                    if (pinDiv) {
-                      pinDiv.onclick = (e) => {
-                        e.stopPropagation();
-                        setSelectedPartner(partners.find(p => p.id === d.id) || null);
-                        setMissingCountry(null);
-                        setSearchQuery(d.country);
-                      };
-                    }
-
-                    return el;
-                  }}
+              <Suspense
+                fallback={
+                  <div className="h-20 w-20 animate-pulse rounded-full border border-cyan-300/30 bg-cyan-400/10 shadow-[0_0_80px_rgba(34,211,238,0.18)]" />
+                }
+              >
+                <DistributorsGlobe
+                  partners={partners}
+                  selectedPartner={selectedPartner}
+                  onSelectPartner={handlePartnerSelect}
                 />
-              )}
+              </Suspense>
             </div>
 
             <div className="absolute bottom-6 left-6 flex items-center gap-4 text-gray-600 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-mono shadow-sm">
