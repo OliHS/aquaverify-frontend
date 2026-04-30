@@ -36,7 +36,7 @@ export const ProductSection: React.FC = () => {
   const [loadingDb, setLoadingDb] = useState(true);
 
   const [selectedFamily, setSelectedFamily] = useState<ProductFamily | null>(null);
-  const [selectedProductDetail, setSelectedProductDetail] = useState<{ product: ProductItem, familyTitle: string } | null>(null);
+  const [selectedProductDetail, setSelectedProductDetail] = useState<{ product: ProductItem, familyId: string, familyTitle: string } | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [isEnumeraModalOpen, setIsEnumeraModalOpen] = useState(false);
 
@@ -131,7 +131,7 @@ export const ProductSection: React.FC = () => {
   const handleOpenProductDetail = (product: ProductItem, family: ProductFamily) => {
     setSelectedFamily(null); // Close family modal
     setTimeout(() => {
-      setSelectedProductDetail({ product, familyTitle: family.title });
+      setSelectedProductDetail({ product, familyId: family.id, familyTitle: family.title });
     }, 100); // Small delay for smoother transition
   };
 
@@ -336,6 +336,7 @@ export const ProductSection: React.FC = () => {
         {selectedProductDetail && (
           <ProductDetailModal
             product={selectedProductDetail.product}
+            familyId={selectedProductDetail.familyId}
             familyTitle={selectedProductDetail.familyTitle}
             onClose={() => setSelectedProductDetail(null)}
           />

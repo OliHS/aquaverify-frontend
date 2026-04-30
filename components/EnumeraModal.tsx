@@ -1,13 +1,22 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { X, CheckCircle2, ShieldCheck, Zap, Microscope, Leaf } from 'lucide-react';
+import { X, CheckCircle2, ShieldCheck, Zap, Microscope, Leaf, ArrowRight } from 'lucide-react';
 import { EditableText } from './admin/EditableText';
+import { useLanguage } from '../context/LanguageContext';
+import { getPlatformSignupUrl } from '../utils/platformLinks';
 
 interface EnumeraModalProps {
     onClose: () => void;
 }
 
 export const EnumeraModal: React.FC<EnumeraModalProps> = ({ onClose }) => {
+    const { lang } = useLanguage();
+    const quoteUrl = getPlatformSignupUrl({
+        intent: 'quote',
+        family: 'micro',
+        product: 'enumera'
+    }, lang);
+
     // Lock body scroll when modal is open
     useEffect(() => {
         document.body.style.overflow = 'hidden';
@@ -140,6 +149,15 @@ export const EnumeraModal: React.FC<EnumeraModalProps> = ({ onClose }) => {
                                 <EditableText as="p" sectionId="enumera" field="why4Text" fallback="Significantly reduce your carbon footprint and waste. By eliminating the need for UV lamps, you eliminate a constant source of electronic waste (mercury bulbs) and reduce micro-waste from aluminum reagent sachets." className="text-gray-300 text-sm block" />
                             </div>
                         </div>
+                    </div>
+
+                    <div className="mt-8 flex justify-end">
+                        <a
+                            href={quoteUrl}
+                            className="inline-flex items-center rounded-xl bg-primary px-8 py-3 text-sm font-bold text-white shadow-lg transition-all hover:-translate-y-0.5 hover:bg-secondary"
+                        >
+                            Request Enumera Quote <ArrowRight size={16} className="ml-2" />
+                        </a>
                     </div>
 
                 </div>

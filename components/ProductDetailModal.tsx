@@ -3,16 +3,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, CheckCircle2, FileText, Zap, ChevronRight, ChevronLeft, Box, Maximize2 } from 'lucide-react';
 import { ProductItem } from '../types';
 import { Lightbox } from './Lightbox';
+import { useLanguage } from '../context/LanguageContext';
+import { getPlatformSignupUrl } from '../utils/platformLinks';
 
 interface ProductDetailModalProps {
   product: ProductItem;
+  familyId: string;
   familyTitle: string;
   onClose: () => void;
 }
 
-export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, familyTitle, onClose }) => {
+export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, familyId, familyTitle, onClose }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const { lang } = useLanguage();
+  const quoteUrl = getPlatformSignupUrl({
+    intent: 'quote',
+    family: familyId,
+    product: product.id || product.name
+  }, lang);
 
   // Normalize images
   const images = (product.images && product.images.length > 0) 
@@ -188,9 +197,9 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                 <h4 className="font-bold text-primary">Ready to order?</h4>
                 <p className="text-sm text-blue-800">Get a custom quote including volume discounts.</p>
               </div>
-              <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-bold shadow-lg transition-all flex items-center">
+              <a href={quoteUrl} className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-bold shadow-lg transition-all flex items-center">
                 Request Quote <ChevronRight size={18} className="ml-2" />
-              </button>
+              </a>
             </div>
           </div>
         </motion.div>

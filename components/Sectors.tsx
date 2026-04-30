@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
+import { getPlatformSignupUrl } from '../utils/platformLinks';
 
 // --- Data & Types ---
 interface Sector {
@@ -71,7 +72,7 @@ const SectorCard: React.FC<{ sector: Sector; onClick: (s: Sector) => void }> = (
 
 export const Sectors: React.FC = () => {
   const [selectedSector, setSelectedSector] = useState<Sector | null>(null);
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { blocks } = usePageContent();
   const block = blocks['sectors'] || {};
 
@@ -299,9 +300,16 @@ export const Sectors: React.FC = () => {
                   >
                     {t.sectors.close}
                   </button>
-                  <button className="w-full sm:w-auto bg-primary text-white px-8 py-3 rounded-lg shadow-lg hover:bg-secondary transition-all transform hover:-translate-y-0.5 text-sm font-bold flex items-center justify-center">
+                  <a
+                    href={getPlatformSignupUrl({
+                      intent: 'quote',
+                      module: 'sector',
+                      product: selectedSector.id
+                    }, lang)}
+                    className="w-full sm:w-auto bg-primary text-white px-8 py-3 rounded-lg shadow-lg hover:bg-secondary transition-all transform hover:-translate-y-0.5 text-sm font-bold flex items-center justify-center"
+                  >
                     {t.sectors.request}
-                  </button>
+                  </a>
                 </div>
               </div>
             </motion.div>
