@@ -85,6 +85,10 @@ async function run() {
     ]);
   });
 
+  await check('corporate site is not installable as PWA', async () => {
+    assert(!/rel=["']manifest["']/i.test(corporateHtml), 'Corporate HTML still exposes a web app manifest');
+  });
+
   await check('corporate bundle contains platform integration markers', async () => {
     const mainAssetUrl = getMainAssetUrl(corporateHtml);
     const { response, text } = await getText(mainAssetUrl);
