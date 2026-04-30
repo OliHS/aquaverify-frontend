@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "cms:links:audit": "node scripts/audit-cms-links.js",
-    "cms:links:fix": "node scripts/audit-cms-links.js --fix"
+    "cms:links:fix": "node scripts/audit-cms-links.js --fix",
+    "smoke:prod": "node scripts/smoke-corporate-platform.js",
+    "check:prod": "npm run cms:links:audit && npm run smoke:prod"
   },
   "dependencies": {
     "@google/genai": "latest",
