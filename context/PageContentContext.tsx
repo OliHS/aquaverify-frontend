@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { supabase } from '../utils/supabase';
 
 interface PageContentContextType {
     pageMeta: any;
@@ -24,35 +23,52 @@ export const PageContentProvider: React.FC<{ slug: string; children: React.React
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        let isMounted = true;
+
         const fetchContent = async () => {
-            // 1. Fetch Page Metadata by slug
-            const { data: pageData } = await supabase
-                .from('pages')
-                .select('*')
-                .eq('slug', slug)
-                .single();
+            try {
+                const { supabase } = await import('../utils/supabase');
 
-            if (pageData) {
-                setPageMeta(pageData);
-
-                // 2. Fetch all content blocks for this page
-                const { data: blocksData } = await supabase
-                    .from('content_blocks')
+                // 1. Fetch Page Metadata by slug
+                const { data: pageData } = await supabase
+                    .from('pages')
                     .select('*')
-                    .eq('page_id', pageData.id);
+                    .eq('slug', slug)
+                    .single();
 
-                if (blocksData) {
-                    const mappedBlocks: Record<string, any> = {};
-                    blocksData.forEach(block => {
-                        mappedBlocks[block.section_id] = block.content;
-                    });
-                    setBlocks(mappedBlocks);
+                if (!isMounted) return;
+
+                if (pageData) {
+                    setPageMeta(pageData);
+
+                    // 2. Fetch all content blocks for this page
+                    const { data: blocksData } = await supabase
+                        .from('content_blocks')
+                        .select('*')
+                        .eq('page_id', pageData.id);
+
+                    if (!isMounted) return;
+
+                    if (blocksData) {
+                        const mappedBlocks: Record<string, any> = {};
+                        blocksData.forEach(block => {
+                            mappedBlocks[block.section_id] = block.content;
+                        });
+                        setBlocks(mappedBlocks);
+                    }
                 }
+            } catch (error) {
+                console.warn('Failed to load CMS page content', error);
+            } finally {
+                if (isMounted) setLoading(false);
             }
-            setLoading(false);
         };
 
         fetchContent();
+
+        return () => {
+            isMounted = false;
+        };
     }, [slug]);
 
     return (

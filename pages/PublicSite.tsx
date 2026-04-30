@@ -1,19 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { Suspense, useEffect } from 'react';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { ValueProps } from '../components/ValueProps';
-import { ProductSection } from '../components/ProductSection';
-import { SaaSPlatform } from '../components/SaaSPlatform';
-import { DistributorsSection } from '../components/DistributorsSection';
-import { OEMSection } from '../components/OEMSection';
-import { Sectors } from '../components/Sectors';
 import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
+import { DeferredSection } from '../components/DeferredSection';
 import { PageContentProvider, usePageContent } from '../context/PageContentContext';
-import { useLanguage } from '../context/LanguageContext';
+
+const ProductSection = React.lazy(() => import('../components/ProductSection').then(module => ({ default: module.ProductSection })));
+const SaaSPlatform = React.lazy(() => import('../components/SaaSPlatform').then(module => ({ default: module.SaaSPlatform })));
+const DistributorsSection = React.lazy(() => import('../components/DistributorsSection').then(module => ({ default: module.DistributorsSection })));
+const OEMSection = React.lazy(() => import('../components/OEMSection').then(module => ({ default: module.OEMSection })));
+const Sectors = React.lazy(() => import('../components/Sectors').then(module => ({ default: module.Sectors })));
+
+const SectionFallback: React.FC<{ className?: string }> = ({ className = 'min-h-[560px] bg-white' }) => (
+    <section className={className} aria-hidden="true" />
+);
 
 export const PublicSiteContent: React.FC = () => {
-    const { pageMeta, loading } = usePageContent();
+    const { pageMeta } = usePageContent();
 
     useEffect(() => {
         if (pageMeta) {
@@ -25,25 +30,37 @@ export const PublicSiteContent: React.FC = () => {
         }
     }, [pageMeta]);
 
-    if (loading) {
-        return (
-            <div className="flex items-center justify-center min-h-screen bg-white">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
-            </div>
-        );
-    }
-
     return (
         <div className="flex flex-col min-h-screen font-sans">
             <Header />
             <main className="flex-grow">
                 <Hero />
                 <ValueProps />
-                <ProductSection />
-                <SaaSPlatform />
-                <DistributorsSection />
-                <OEMSection />
-                <Sectors />
+                <Suspense fallback={<SectionFallback className="min-h-[720px] bg-surface" />}>
+                    <DeferredSection id="products" minHeightClassName="min-h-[720px] bg-surface">
+                        <ProductSection />
+                    </DeferredSection>
+                </Suspense>
+                <Suspense fallback={<SectionFallback className="min-h-[620px] bg-white" />}>
+                    <DeferredSection id="saas" minHeightClassName="min-h-[620px] bg-white">
+                        <SaaSPlatform />
+                    </DeferredSection>
+                </Suspense>
+                <Suspense fallback={<SectionFallback className="min-h-[820px] bg-white" />}>
+                    <DeferredSection id="distributors" minHeightClassName="min-h-[820px] bg-white">
+                        <DistributorsSection />
+                    </DeferredSection>
+                </Suspense>
+                <Suspense fallback={<SectionFallback className="min-h-[620px] bg-surface" />}>
+                    <DeferredSection id="oem" minHeightClassName="min-h-[620px] bg-surface">
+                        <OEMSection />
+                    </DeferredSection>
+                </Suspense>
+                <Suspense fallback={<SectionFallback className="min-h-[620px] bg-white" />}>
+                    <DeferredSection id="sectors" minHeightClassName="min-h-[620px] bg-white">
+                        <Sectors />
+                    </DeferredSection>
+                </Suspense>
             </main>
             <Footer />
             <CookieConsent />

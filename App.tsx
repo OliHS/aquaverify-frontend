@@ -1,41 +1,48 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { PublicSite } from './pages/PublicSite';
-import { AdminLayout } from './pages/admin/AdminLayout';
-import { Login } from './pages/admin/Login';
-import { Dashboard } from './pages/admin/Dashboard';
-import { PagesList } from './pages/admin/PagesList';
-import { PageEditor } from './pages/admin/PageEditor';
-import { VisualBuilder } from './pages/admin/VisualBuilder';
-import { DistributorsManager } from './pages/admin/DistributorsManager';
-import { ProductManager } from './pages/admin/ProductManager';
+
+const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout').then(module => ({ default: module.AdminLayout })));
+const Login = React.lazy(() => import('./pages/admin/Login').then(module => ({ default: module.Login })));
+const Dashboard = React.lazy(() => import('./pages/admin/Dashboard').then(module => ({ default: module.Dashboard })));
+const PagesList = React.lazy(() => import('./pages/admin/PagesList').then(module => ({ default: module.PagesList })));
+const PageEditor = React.lazy(() => import('./pages/admin/PageEditor').then(module => ({ default: module.PageEditor })));
+const VisualBuilder = React.lazy(() => import('./pages/admin/VisualBuilder').then(module => ({ default: module.VisualBuilder })));
+const DistributorsManager = React.lazy(() => import('./pages/admin/DistributorsManager').then(module => ({ default: module.DistributorsManager })));
+const ProductManager = React.lazy(() => import('./pages/admin/ProductManager').then(module => ({ default: module.ProductManager })));
+
+const RouteFallback: React.FC = () => (
+  <div className="min-h-screen bg-white" aria-hidden="true" />
+);
 
 const App: React.FC = () => {
   return (
     <LanguageProvider>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<PublicSite />} />
+        <Suspense fallback={<RouteFallback />}>
+          <Routes>
+            <Route path="/" element={<PublicSite />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<Login />} />
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<Login />} />
 
-          {/* Visual Builder (Standalone Layout) */}
-          <Route path="/admin/pages/:id/builder" element={<VisualBuilder />} />
+            {/* Visual Builder (Standalone Layout) */}
+            <Route path="/admin/pages/:id/builder" element={<VisualBuilder />} />
 
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Navigate to="/admin/dashboard" replace />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="pages" element={<PagesList />} />
-            <Route path="pages/:id" element={<PageEditor />} />
-            <Route path="products" element={<ProductManager />} />
-            <Route path="distributors" element={<DistributorsManager />} />
-          </Route>
+            <Route path="/admin" element={<AdminLayout />}>
+              <Route index element={<Navigate to="/admin/dashboard" replace />} />
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="pages" element={<PagesList />} />
+              <Route path="pages/:id" element={<PageEditor />} />
+              <Route path="products" element={<ProductManager />} />
+              <Route path="distributors" element={<DistributorsManager />} />
+            </Route>
 
-          {/* Fallback */}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            {/* Fallback */}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </LanguageProvider>
   );

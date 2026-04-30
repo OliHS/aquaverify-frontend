@@ -1,6 +1,5 @@
 import React from 'react';
 import { ArrowRight, Activity, Database } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
@@ -21,10 +20,7 @@ export const Hero: React.FC = () => {
     <section className="relative pt-24 min-h-[90vh] flex flex-col lg:flex-row overflow-hidden">
 
       {/* Left: Biotech / Physical World */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+      <div
         className="lg:w-1/2 bg-primary text-white px-8 lg:px-20 py-20 flex flex-col justify-center relative"
       >
         <div className="absolute top-0 left-0 w-full h-full overflow-hidden opacity-10 pointer-events-none">
@@ -72,13 +68,10 @@ export const Hero: React.FC = () => {
             </EditableLinkWrapper>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Right: Digital / SaaS World */}
-      <motion.div
-        initial={{ x: 100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      <div
         className="lg:w-1/2 bg-surface px-8 lg:px-20 py-20 flex flex-col justify-center relative"
       >
         <div className="absolute top-10 right-10 opacity-5">
@@ -115,7 +108,7 @@ export const Hero: React.FC = () => {
             />
           </div>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
