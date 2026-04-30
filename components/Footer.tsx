@@ -5,6 +5,7 @@ import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformLegalUrl, getPlatformSignupUrl } from '../utils/platformLinks';
+import { OPEN_COOKIE_PREFERENCES_EVENT } from './CookieConsent';
 
 const logoSrc = '/images/logo-mark-160.png';
 
@@ -13,7 +14,6 @@ export const Footer: React.FC = () => {
   const { blocks, isEditing } = usePageContent();
   const privacyUrl = getPlatformLegalUrl('privacy', lang);
   const termsUrl = getPlatformLegalUrl('terms', lang);
-  const cookiesUrl = getPlatformLegalUrl('cookies', lang);
   const contactUrl = getPlatformSignupUrl({ intent: 'contact' }, lang);
   const careersUrl = getPlatformSignupUrl({ intent: 'careers' }, lang);
   const footerBlock = blocks.footer || {};
@@ -43,6 +43,10 @@ export const Footer: React.FC = () => {
         behavior: 'smooth'
       });
     }
+  };
+
+  const openCookiePreferences = () => {
+    window.dispatchEvent(new Event(OPEN_COOKIE_PREFERENCES_EVENT));
   };
 
   return (
@@ -128,7 +132,9 @@ export const Footer: React.FC = () => {
           <div className="flex space-x-6 mt-4 md:mt-0">
             <EditableLinkWrapper sectionId="footer" field="url_privacy" fallback={privacyUrl} legacyFallbacks={['#']}><a href={privacyUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="privacy" fallback={t.footer.privacy} /></a></EditableLinkWrapper>
             <EditableLinkWrapper sectionId="footer" field="url_terms" fallback={termsUrl} legacyFallbacks={['#']}><a href={termsUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="terms" fallback={t.footer.terms} /></a></EditableLinkWrapper>
-            <EditableLinkWrapper sectionId="footer" field="url_cookie" fallback={cookiesUrl} legacyFallbacks={['#']}><a href={cookiesUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="cookie" fallback={t.footer.cookie} /></a></EditableLinkWrapper>
+            <button type="button" onClick={openCookiePreferences} className="hover:text-white">
+              <EditableText as="span" sectionId="footer" field="cookie" fallback={t.footer.cookie} />
+            </button>
           </div>
         </div>
       </div>

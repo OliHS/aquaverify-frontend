@@ -155,6 +155,13 @@ async function run() {
     assert(mainAssetText.includes('home'), 'Base CMS home fallback missing from corporate bundle');
   });
 
+  await check('footer cookie settings opens preferences panel', async () => {
+    assert(
+      mainAssetText.includes('aquaverify:open-cookie-preferences'),
+      'Cookie preferences open event missing from corporate bundle'
+    );
+  });
+
   const failedChecks = checks.filter((item) => !item.ok);
   console.log(JSON.stringify({
     ok: failedChecks.length === 0,

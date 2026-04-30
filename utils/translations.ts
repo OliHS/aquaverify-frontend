@@ -140,7 +140,7 @@ export const translations = {
       rights: "AquaVerify Inc. All rights reserved.",
       privacy: "Privacy Policy",
       terms: "Terms of Service",
-      cookie: "Cookie Policy"
+      cookie: "Cookie Settings"
     }
   },
   es: {
@@ -281,7 +281,7 @@ export const translations = {
       rights: "AquaVerify Inc. Todos los derechos reservados.",
       privacy: "Política de Privacidad",
       terms: "Términos de Servicio",
-      cookie: "Política de Cookies"
+      cookie: "Configurar cookies"
     }
   },
   fr: {
@@ -422,7 +422,7 @@ export const translations = {
       rights: "AquaVerify Inc. Tous droits réservés.",
       privacy: "Politique de Confidentialité",
       terms: "Conditions d'Utilisation",
-      cookie: "Politique cookies"
+      cookie: "Parametres cookies"
     }
   },
   it: {
@@ -563,7 +563,7 @@ export const translations = {
       rights: "AquaVerify Inc. Tutti i diritti riservati.",
       privacy: "Privacy Policy",
       terms: "Termini di Servizio",
-      cookie: "Politica cookie"
+      cookie: "Impostazioni cookie"
     }
   }
 };

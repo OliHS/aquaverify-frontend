@@ -16,6 +16,7 @@ const COOKIE_NAME = 'aquaverify_cookie_consent';
 const COOKIE_STORAGE_KEY = COOKIE_NAME;
 const COOKIE_POLICY_VERSION = '2026-04';
 const COOKIE_MAX_AGE_SECONDS = 180 * 24 * 60 * 60;
+export const OPEN_COOKIE_PREFERENCES_EVENT = 'aquaverify:open-cookie-preferences';
 
 const LABELS = {
   en: {
@@ -180,6 +181,13 @@ export const CookieConsent: React.FC = () => {
     }
 
     setIsReady(true);
+  }, []);
+
+  useEffect(() => {
+    const handleOpenPreferences = () => setIsPanelOpen(true);
+
+    window.addEventListener(OPEN_COOKIE_PREFERENCES_EVENT, handleOpenPreferences);
+    return () => window.removeEventListener(OPEN_COOKIE_PREFERENCES_EVENT, handleOpenPreferences);
   }, []);
 
   const saveConsent = (analytics: boolean, marketing: boolean, status: CookieConsentState['status'] = 'custom') => {
