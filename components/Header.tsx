@@ -5,7 +5,9 @@ import { Language } from '../utils/translations';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { usePageContent } from '../context/PageContentContext';
-import logoSrc from '../src/assets/logo.png';
+import { getPlatformLoginUrl, getPlatformSignupUrl } from '../utils/platformLinks';
+
+const logoSrc = '/images/logo.png';
 
 export const Header: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
@@ -13,6 +15,8 @@ export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const platformLoginUrl = getPlatformLoginUrl(lang);
+  const platformDemoUrl = getPlatformSignupUrl({ intent: 'demo' }, lang);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,13 +134,13 @@ export const Header: React.FC = () => {
             </div>
           </div>
 
-          <EditableLinkWrapper sectionId="nav" field="url_login" fallback="/login">
-            <a href="/login" className="block text-sm font-semibold text-primary hover:text-secondary transition-colors">
+          <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={['/login']}>
+            <a href={platformLoginUrl} className="block text-sm font-semibold text-primary hover:text-secondary transition-colors">
               <EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} />
             </a>
           </EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback="/demo">
-            <a href="/demo" className="block bg-primary text-white px-5 py-2 rounded shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-0.5 text-sm font-semibold whitespace-nowrap">
+          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback={platformDemoUrl} legacyFallbacks={['/demo']}>
+            <a href={platformDemoUrl} className="block bg-primary text-white px-5 py-2 rounded shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-0.5 text-sm font-semibold whitespace-nowrap">
               <EditableText as="span" sectionId="nav" field="demo" fallback={t.nav.demo} />
             </a>
           </EditableLinkWrapper>
@@ -172,11 +176,11 @@ export const Header: React.FC = () => {
           <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback="#distributors"><a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_oem" fallback="#oem"><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
           <hr className="border-gray-100 my-2" />
-          <EditableLinkWrapper sectionId="nav" field="url_login" fallback="/login">
-            <a href="/login" className="block text-primary font-semibold text-left py-2"><EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} /></a>
+          <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={['/login']}>
+            <a href={platformLoginUrl} onClick={() => setIsMenuOpen(false)} className="block text-primary font-semibold text-left py-2"><EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} /></a>
           </EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback="/demo">
-            <a href="/demo" className="block bg-primary text-white px-4 py-3 rounded text-center font-semibold w-full">
+          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback={platformDemoUrl} legacyFallbacks={['/demo']}>
+            <a href={platformDemoUrl} onClick={() => setIsMenuOpen(false)} className="block bg-primary text-white px-4 py-3 rounded text-center font-semibold w-full">
               <EditableText as="span" sectionId="nav" field="demo" fallback={t.nav.demo} />
             </a>
           </EditableLinkWrapper>

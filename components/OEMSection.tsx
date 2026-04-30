@@ -4,6 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { getPlatformSignupUrl } from '../utils/platformLinks';
 
 export const OEMSection: React.FC = () => {
   // ROI State
@@ -13,6 +14,7 @@ export const OEMSection: React.FC = () => {
   const { t, lang } = useLanguage();
   const { blocks } = usePageContent();
   const block = blocks['oem'] || {};
+  const partnerUrl = getPlatformSignupUrl({ intent: 'oem' }, lang);
 
   // Determine currency symbol based on language
   const currencySymbol = lang === 'en' ? '$' : '€';
@@ -165,8 +167,8 @@ export const OEMSection: React.FC = () => {
         </div>
 
         <div className="mt-10 text-center">
-          <EditableLinkWrapper sectionId="oem" field="partnerBtnLink" fallback="#contact">
-            <a href="#contact" className="inline-block bg-white text-primary hover:bg-secondary hover:text-white px-10 py-4 rounded-full font-bold shadow-xl transition-all transform hover:-translate-y-1">
+          <EditableLinkWrapper sectionId="oem" field="partnerBtnLink" fallback={partnerUrl} legacyFallbacks={['#contact']}>
+            <a href={partnerUrl} className="inline-block bg-white text-primary hover:bg-secondary hover:text-white px-10 py-4 rounded-full font-bold shadow-xl transition-all transform hover:-translate-y-1">
               <EditableText sectionId="oem" field="partnerBtn" fallback={t.oem.partnerBtn} />
             </a>
           </EditableLinkWrapper>

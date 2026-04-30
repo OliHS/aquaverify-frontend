@@ -6,6 +6,7 @@ interface EditableLinkWrapperProps {
     sectionId: string;
     field: string;
     fallback: string;
+    legacyFallbacks?: string[];
     children: React.ReactNode;
 }
 
@@ -13,19 +14,25 @@ export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
     sectionId,
     field,
     fallback,
+    legacyFallbacks = [],
     children
 }) => {
     const { blocks, isEditing, updateBlock } = usePageContent();
     const [isHovered, setIsHovered] = useState(false);
 
-    // Safely extract href, ensuring object traversal doesn't throw if blocks map is stale
-    const currentHref = blocks?.[sectionId]?.[field] || fallback;
+    // Safely extract href, ensuring object traversal doesn't throw if blocks map is stale.
+    // Some CMS records may still contain old placeholder links; render the current fallback for those.
+    const savedHref = blocks?.[sectionId]?.[field];
+    const normalizedSavedHref = typeof savedHref === 'string' ? savedHref.trim() : savedHref;
+    const currentHref = normalizedSavedHref && !legacyFallbacks.includes(String(normalizedSavedHref))
+        ? normalizedSavedHref
+        : fallback;
 
     // Safely grab the first valid React Element we can clone. If there is no valid element, we can't wrap it.
-    let baseElement: React.ReactElement | null = null;
+    let baseElement: React.ReactElement<any> | null = null;
     try {
         const childArray = React.Children.toArray(children);
-        baseElement = childArray.find(child => React.isValidElement(child)) as React.ReactElement;
+        baseElement = childArray.find(child => React.isValidElement(child)) as React.ReactElement<any>;
     } catch (e) {
         console.warn('EditableLinkWrapper failed to parse children', e);
     }
@@ -54,15 +61,15 @@ export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
     const clonedChild = React.cloneElement(baseElement, {
         onMouseEnter: (e: any) => {
             setIsHovered(true);
-            if (baseElement?.props.onMouseEnter) baseElement.props.onMouseEnter(e);
+            if (baseElement?.props?.onMouseEnter) baseElement.props.onMouseEnter(e);
         },
         onMouseLeave: (e: any) => {
             setIsHovered(false);
-            if (baseElement?.props.onMouseLeave) baseElement.props.onMouseLeave(e);
+            if (baseElement?.props?.onMouseLeave) baseElement.props.onMouseLeave(e);
         },
         onClick: (e: React.MouseEvent) => {
             e.preventDefault(); // prevent actual navigation in visual builder
-            if (baseElement?.props.onClick) baseElement.props.onClick(e);
+            if (baseElement?.props?.onClick) baseElement.props.onClick(e);
         },
         href: currentHref
     } as any);

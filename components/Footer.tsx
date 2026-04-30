@@ -3,9 +3,14 @@ import { Droplet, Linkedin, Twitter, Facebook } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { getPlatformLegalUrl, getPlatformSignupUrl } from '../utils/platformLinks';
 
 export const Footer: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const privacyUrl = getPlatformLegalUrl('privacy', lang);
+  const termsUrl = getPlatformLegalUrl(undefined, lang);
+  const cookiesUrl = getPlatformLegalUrl('cookies', lang);
+  const contactUrl = getPlatformSignupUrl({ intent: 'contact' }, lang);
 
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     const href = e.currentTarget.getAttribute('href');
@@ -80,7 +85,7 @@ export const Footer: React.FC = () => {
                 </EditableLinkWrapper>
               </li>
               <li><EditableLinkWrapper sectionId="footer" field="url_careers" fallback="#"><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></EditableLinkWrapper></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_contact" fallback="#"><a href="#" className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_contact" fallback={contactUrl} legacyFallbacks={['#', '#contact']}><a href={contactUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></EditableLinkWrapper></li>
             </ul>
           </div>
 
@@ -99,9 +104,9 @@ export const Footer: React.FC = () => {
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
           <p>&copy; {new Date().getFullYear()} <EditableText as="span" sectionId="footer" field="rights" fallback={t.footer.rights} /></p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <EditableLinkWrapper sectionId="footer" field="url_privacy" fallback="#"><a href="#" className="hover:text-white"><EditableText as="span" sectionId="footer" field="privacy" fallback={t.footer.privacy} /></a></EditableLinkWrapper>
-            <EditableLinkWrapper sectionId="footer" field="url_terms" fallback="#"><a href="#" className="hover:text-white"><EditableText as="span" sectionId="footer" field="terms" fallback={t.footer.terms} /></a></EditableLinkWrapper>
-            <EditableLinkWrapper sectionId="footer" field="url_cookie" fallback="#"><a href="#" className="hover:text-white"><EditableText as="span" sectionId="footer" field="cookie" fallback="Cookie Settings" /></a></EditableLinkWrapper>
+            <EditableLinkWrapper sectionId="footer" field="url_privacy" fallback={privacyUrl} legacyFallbacks={['#']}><a href={privacyUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="privacy" fallback={t.footer.privacy} /></a></EditableLinkWrapper>
+            <EditableLinkWrapper sectionId="footer" field="url_terms" fallback={termsUrl} legacyFallbacks={['#']}><a href={termsUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="terms" fallback={t.footer.terms} /></a></EditableLinkWrapper>
+            <EditableLinkWrapper sectionId="footer" field="url_cookie" fallback={cookiesUrl} legacyFallbacks={['#']}><a href={cookiesUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="cookie" fallback="Cookie Settings" /></a></EditableLinkWrapper>
           </div>
         </div>
       </div>

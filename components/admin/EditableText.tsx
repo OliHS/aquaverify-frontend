@@ -6,7 +6,8 @@ interface EditableTextProps {
     sectionId: string;
     field: string;
     fallback: string;
-    as?: 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'p' | 'div';
+    as?: React.ElementType;
+    id?: string;
     className?: string;
     allowHtml?: boolean;
 }
@@ -16,6 +17,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
     field,
     fallback,
     as: Component = 'span',
+    id,
     className = '',
     allowHtml = false
 }) => {
@@ -52,7 +54,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
 
     if (!isEditing) {
         return (
-            <Component className={className}>
+            <Component id={id} className={className}>
                 {renderContent()}
             </Component>
         );
@@ -60,6 +62,7 @@ export const EditableText: React.FC<EditableTextProps> = ({
 
     const commonProps = {
         ref: editRef as any,
+        id,
         className: `
             ${className} 
             transition-all duration-200 cursor-text

@@ -77,6 +77,7 @@ export const ProductSection: React.FC = () => {
             icon: getFamilyIcon(fam.family_id),
             useCases: fam.use_cases || [],
             items: familyProducts.map(fp => ({
+              id: fp.id,
               name: fp.name,
               detail: fp.detail || undefined,
               // Use default icon for all products for now, or you could do a similar mapping

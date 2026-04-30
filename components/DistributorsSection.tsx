@@ -6,6 +6,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
 import { supabase } from '../utils/supabase';
+import { getPlatformSignupUrl } from '../utils/platformLinks';
 
 interface Partner {
   id: string;
@@ -33,12 +34,11 @@ const COUNTRIES = [
 ];
 
 export const DistributorsSection: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { blocks } = usePageContent();
   const block = blocks['distributors'] || {};
 
   const [selectedPartner, setSelectedPartner] = useState<Partner | null>(null);
-  const [requestSent, setRequestSent] = useState(false);
 
   // Search State
   const [searchQuery, setSearchQuery] = useState('');
@@ -107,11 +107,31 @@ export const DistributorsSection: React.FC = () => {
     fetchPartners();
   }, []);
 
+  const openPlatformSignup = (params: Record<string, string | undefined>) => {
+    window.location.assign(getPlatformSignupUrl(params, lang));
+  };
+
   const handleContact = () => {
-    setTimeout(() => {
-      setRequestSent(true);
-      setTimeout(() => setRequestSent(false), 3000);
-    }, 1000);
+    if (!selectedPartner) return;
+    openPlatformSignup({
+      intent: selectedPartner.type === 'open' ? 'distributor-opportunity' : 'partner-contact',
+      distributor: selectedPartner.id,
+      distributorName: selectedPartner.name,
+      country: selectedPartner.country
+    });
+  };
+
+  const handleMissingCountryContact = () => {
+    openPlatformSignup({
+      intent: 'direct-shipping',
+      country: missingCountry || undefined
+    });
+  };
+
+  const handleGlobalQuote = () => {
+    openPlatformSignup({
+      intent: 'global-quote'
+    });
   };
 
   const handleCountrySelect = (country: string) => {
@@ -358,30 +378,17 @@ export const DistributorsSection: React.FC = () => {
                       </div>
                     )}
 
-                    <div className="mt-auto">
-                      {requestSent ? (
-                        <motion.div
-                          initial={{ scale: 0.9 }}
-                          animate={{ scale: 1 }}
-                          className="bg-green-50 text-green-700 px-4 py-4 rounded-xl text-center font-bold flex items-center justify-center gap-2 border border-green-200 shadow-sm"
-                        >
-                          <CheckCircle2 size={20} />
-                          {t.distributors.contactSuccess}
-                        </motion.div>
-                      ) : (
-                        <div className="space-y-3">
-                          <button
-                            onClick={handleContact}
-                            className="w-full bg-primary hover:bg-secondary text-white py-4 rounded-xl font-bold shadow-lg transition-colors flex items-center justify-center gap-2 group"
-                          >
-                            <Mail size={18} className="group-hover:animate-bounce" />
-                            {t.distributors.contactBtn} via Platform
-                          </button>
-                          <p className="text-xs text-center text-gray-400 flex items-center justify-center gap-1">
-                            <CheckCircle2 size={10} /> Secure communication via AquaVerify
-                          </p>
-                        </div>
-                      )}
+                    <div className="mt-auto space-y-3">
+                      <button
+                        onClick={handleContact}
+                        className="w-full bg-primary hover:bg-secondary text-white py-4 rounded-xl font-bold shadow-lg transition-colors flex items-center justify-center gap-2 group"
+                      >
+                        <Mail size={18} className="group-hover:animate-bounce" />
+                        {t.distributors.contactBtn} via Platform
+                      </button>
+                      <p className="text-xs text-center text-gray-400 flex items-center justify-center gap-1">
+                        <CheckCircle2 size={10} /> Secure communication via AquaVerify
+                      </p>
                     </div>
                   </motion.div>
                 ) : missingCountry ? (
@@ -404,7 +411,10 @@ export const DistributorsSection: React.FC = () => {
                       We currently don't have a local distributor in this region. However, we can ship directly to you.
                     </p>
 
-                    <button className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 group">
+                    <button
+                      onClick={handleMissingCountryContact}
+                      className="w-full bg-orange-500 hover:bg-orange-600 text-white py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 group"
+                    >
                       <Mail size={18} className="text-white group-hover:scale-110 transition-transform" />
                       Request Contact
                     </button>
@@ -429,7 +439,10 @@ export const DistributorsSection: React.FC = () => {
                       AquaVerify delivers scientific solutions to over 140 countries. Select a partner on the map or search for your country.
                     </p>
 
-                    <button className="w-full bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 group">
+                    <button
+                      onClick={handleGlobalQuote}
+                      className="w-full bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 group"
+                    >
                       <Package size={18} className="text-secondary group-hover:scale-110 transition-transform" />
                       Request Global Quote
                     </button>

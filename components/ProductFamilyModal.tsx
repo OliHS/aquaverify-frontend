@@ -8,6 +8,7 @@ import { EditableImage } from './admin/EditableImage';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
+import { getPlatformSignupUrl } from '../utils/platformLinks';
 
 interface ProductFamilyModalProps {
   family: ProductFamily;
@@ -19,13 +20,23 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const { isEditing, blocks } = usePageContent();
   const productBlocks = blocks['products'] || {};
 
   // Comparison State
   const [compareList, setCompareList] = useState<ProductItem[]>([]);
   const [isComparing, setIsComparing] = useState(false);
+  const combinedQuoteUrl = getPlatformSignupUrl({
+    intent: 'quote',
+    family: family.id,
+    products: compareList.map((product) => product.id || product.name).join(',')
+  }, lang);
+  const selectedProductQuoteUrl = getPlatformSignupUrl({
+    intent: 'quote',
+    family: family.id,
+    product: selectedProduct?.id || selectedProduct?.name
+  }, lang);
 
   // Filter products based on search query
   const filteredProducts = family.items.filter(item =>
@@ -221,8 +232,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                   </div>
 
                   <div className="sticky bottom-0 bg-white/95 backdrop-blur border-t border-gray-100 p-4 -mx-6 -mb-6 md:-mx-8 md:-mb-8 flex justify-end z-20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-                    <EditableLinkWrapper sectionId="products" field="quoteBtnLink_combined" fallback="#contact">
-                      <a href="#contact" className="inline-flex bg-primary hover:bg-secondary text-white px-8 py-3 rounded-lg font-bold shadow-lg transition-all items-center">
+                    <EditableLinkWrapper sectionId="products" field="quoteBtnLink_combined" fallback={combinedQuoteUrl} legacyFallbacks={['#contact']}>
+                      <a href={combinedQuoteUrl} className="inline-flex bg-primary hover:bg-secondary text-white px-8 py-3 rounded-lg font-bold shadow-lg transition-all items-center">
                         <EditableText sectionId="products" field="quoteBtnText_combined" fallback={t.products.modal.combinedQuote} /> <ArrowRight size={16} className="ml-2" />
                       </a>
                     </EditableLinkWrapper>
@@ -360,8 +371,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                             >
                               <Info size={16} /> <EditableText sectionId="products" field={`product_item_more_details`} fallback={t.products.modal.moreDetails} />
                             </button>
-                            <EditableLinkWrapper sectionId="products" field="quoteBtnLink_single" fallback="#contact">
-                              <a href="#contact" className="flex-1 bg-primary text-white py-3 px-4 rounded-lg font-bold shadow hover:bg-opacity-90 transition-all text-sm flex items-center justify-center gap-2 w-full">
+                            <EditableLinkWrapper sectionId="products" field="quoteBtnLink_single" fallback={selectedProductQuoteUrl} legacyFallbacks={['#contact']}>
+                              <a href={selectedProductQuoteUrl} className="flex-1 bg-primary text-white py-3 px-4 rounded-lg font-bold shadow hover:bg-opacity-90 transition-all text-sm flex items-center justify-center gap-2 w-full">
                                 <EditableText sectionId="products" field={`product_item_quote`} fallback={t.products.modal.quote} /> <ArrowRight size={16} />
                               </a>
                             </EditableLinkWrapper>

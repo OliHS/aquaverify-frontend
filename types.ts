@@ -1,6 +1,7 @@
 import React from 'react';
 
 export interface ProductItem {
+  id?: string;
   name: string;
   detail?: string;
   icon?: React.ReactNode;
