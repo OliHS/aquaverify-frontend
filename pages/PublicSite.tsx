@@ -8,6 +8,7 @@ import { DistributorsSection } from '../components/DistributorsSection';
 import { OEMSection } from '../components/OEMSection';
 import { Sectors } from '../components/Sectors';
 import { Footer } from '../components/Footer';
+import { CookieConsent } from '../components/CookieConsent';
 import { PageContentProvider, usePageContent } from '../context/PageContentContext';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -45,6 +46,7 @@ export const PublicSiteContent: React.FC = () => {
                 <Sectors />
             </main>
             <Footer />
+            <CookieConsent />
         </div>
     );
 };
