@@ -117,6 +117,7 @@ async function run() {
     assert(text.includes('app.aquaverify.com'), 'Platform host missing from corporate bundle');
     assert(text.includes('aqCookieManageButton'), 'Cookie manage button marker missing from bundle');
     assert(text.includes('corporate-preferences'), 'Corporate cookie sync endpoint missing from bundle');
+    assert(text.includes('corporate-policy'), 'Corporate cookie policy endpoint missing from bundle');
     assert(text.includes('terms'), 'Legal terms marker missing from bundle');
     assert(text.includes(LEGAL_POLICY_VERSION), 'Legal/cookie policy version marker missing from bundle');
     mainAssetText = text;
@@ -148,6 +149,27 @@ async function run() {
       response.headers.get('access-control-allow-origin') === CORPORATE_SITE_URL,
       'Corporate cookie CORS allow-origin header is incorrect'
     );
+  });
+
+  await check('corporate cookie policy metadata is aligned', async () => {
+    const { response, text } = await getText(
+      `${PLATFORM_URL}/legal/cookies/corporate-policy`,
+      {
+        headers: {
+          Origin: CORPORATE_SITE_URL,
+          Accept: 'application/json'
+        }
+      }
+    );
+    assert(response.status === 200, `Corporate cookie policy returned ${response.status}`);
+    assert(
+      response.headers.get('access-control-allow-origin') === CORPORATE_SITE_URL,
+      'Corporate cookie policy CORS allow-origin header is incorrect'
+    );
+    const payload = JSON.parse(text);
+    assert(payload.ok === true, 'Corporate cookie policy did not return ok=true');
+    assert(payload.cookiePolicyVersion === LEGAL_POLICY_VERSION, 'Corporate cookie policy version is not aligned');
+    assert(Number(payload.cookieConsentMaxAgeDays) >= 30, 'Corporate cookie max age is invalid');
   });
 
   await check('corporate cookie CORS blocks foreign origin', async () => {

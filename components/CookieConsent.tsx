@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { getPlatformCorporateCookiePreferencesUrl, getPlatformLegalUrl } from '../utils/platformLinks';
+import { getPlatformCorporateCookiePolicyUrl, getPlatformCorporateCookiePreferencesUrl, getPlatformLegalUrl } from '../utils/platformLinks';
 import { COOKIE_POLICY_VERSION } from '../utils/legalPolicy';
 
 interface CookieConsentState {
@@ -15,8 +15,13 @@ interface CookieConsentState {
 
 const COOKIE_NAME = 'aquaverify_cookie_consent';
 const COOKIE_STORAGE_KEY = COOKIE_NAME;
-const COOKIE_MAX_AGE_SECONDS = 180 * 24 * 60 * 60;
+const DEFAULT_COOKIE_MAX_AGE_DAYS = 180;
 export const OPEN_COOKIE_PREFERENCES_EVENT = 'aquaverify:open-cookie-preferences';
+
+interface CookiePolicyState {
+  version: string;
+  maxAgeDays: number;
+}
 
 const LABELS = {
   en: {
@@ -106,6 +111,13 @@ function readCookieValue(name: string) {
   return decodeURIComponent(cookie.slice(name.length + 1));
 }
 
+function getCookieMaxAgeSeconds(maxAgeDays = DEFAULT_COOKIE_MAX_AGE_DAYS) {
+  const normalizedDays = Number.isFinite(maxAgeDays) && maxAgeDays >= 30 && maxAgeDays <= 730
+    ? maxAgeDays
+    : DEFAULT_COOKIE_MAX_AGE_DAYS;
+  return normalizedDays * 24 * 60 * 60;
+}
+
 function normalizeConsent(raw: string | null): CookieConsentState | null {
   if (!raw) return null;
 
@@ -126,12 +138,40 @@ function normalizeConsent(raw: string | null): CookieConsentState | null {
   }
 }
 
-function persistConsent(consent: CookieConsentState) {
+function clearStoredConsent() {
+  localStorage.removeItem(COOKIE_STORAGE_KEY);
+  const secureFlag = window.location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = `${COOKIE_NAME}=; Max-Age=0; Path=/; SameSite=Lax${secureFlag}`;
+}
+
+function persistConsent(consent: CookieConsentState, maxAgeDays = DEFAULT_COOKIE_MAX_AGE_DAYS) {
   const serialized = JSON.stringify(consent);
   localStorage.setItem(COOKIE_STORAGE_KEY, serialized);
 
   const secureFlag = window.location.protocol === 'https:' ? '; Secure' : '';
-  document.cookie = `${COOKIE_NAME}=${encodeURIComponent(serialized)}; Max-Age=${COOKIE_MAX_AGE_SECONDS}; Path=/; SameSite=Lax${secureFlag}`;
+  document.cookie = `${COOKIE_NAME}=${encodeURIComponent(serialized)}; Max-Age=${getCookieMaxAgeSeconds(maxAgeDays)}; Path=/; SameSite=Lax${secureFlag}`;
+}
+
+async function fetchPlatformCookiePolicy(): Promise<CookiePolicyState> {
+  try {
+    const response = await fetch(getPlatformCorporateCookiePolicyUrl(), {
+      method: 'GET',
+      headers: { Accept: 'application/json' }
+    });
+    if (!response.ok) throw new Error('Policy endpoint unavailable');
+    const data = await response.json();
+    const version = String(data?.cookiePolicyVersion || COOKIE_POLICY_VERSION);
+    const maxAgeDays = Number.parseInt(String(data?.cookieConsentMaxAgeDays || DEFAULT_COOKIE_MAX_AGE_DAYS), 10);
+    return {
+      version,
+      maxAgeDays: Number.isFinite(maxAgeDays) ? maxAgeDays : DEFAULT_COOKIE_MAX_AGE_DAYS
+    };
+  } catch {
+    return {
+      version: COOKIE_POLICY_VERSION,
+      maxAgeDays: DEFAULT_COOKIE_MAX_AGE_DAYS
+    };
+  }
 }
 
 function syncConsentWithPlatform(consent: CookieConsentState, lang: string) {
@@ -164,23 +204,44 @@ export const CookieConsent: React.FC = () => {
   const cookiePolicyUrl = useMemo(() => getPlatformLegalUrl('cookies', lang), [lang]);
 
   const [isReady, setIsReady] = useState(false);
+  const [policy, setPolicy] = useState<CookiePolicyState>({
+    version: COOKIE_POLICY_VERSION,
+    maxAgeDays: DEFAULT_COOKIE_MAX_AGE_DAYS
+  });
   const [consent, setConsent] = useState<CookieConsentState | null>(null);
   const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [draft, setDraft] = useState({ analytics: false, marketing: false });
 
   useEffect(() => {
-    const storedConsent = normalizeConsent(localStorage.getItem(COOKIE_STORAGE_KEY))
-      || normalizeConsent(readCookieValue(COOKIE_NAME));
+    let isMounted = true;
 
-    if (storedConsent) {
-      setConsent(storedConsent);
-      setDraft({
-        analytics: storedConsent.analytics,
-        marketing: storedConsent.marketing
-      });
-    }
+    const loadConsentState = async () => {
+      const livePolicy = await fetchPlatformCookiePolicy();
+      if (!isMounted) return;
 
-    setIsReady(true);
+      setPolicy(livePolicy);
+
+      const storedConsent = normalizeConsent(localStorage.getItem(COOKIE_STORAGE_KEY))
+        || normalizeConsent(readCookieValue(COOKIE_NAME));
+
+      if (storedConsent && storedConsent.version === livePolicy.version) {
+        setConsent(storedConsent);
+        setDraft({
+          analytics: storedConsent.analytics,
+          marketing: storedConsent.marketing
+        });
+      } else if (storedConsent) {
+        clearStoredConsent();
+      }
+
+      setIsReady(true);
+    };
+
+    loadConsentState();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   useEffect(() => {
@@ -196,11 +257,11 @@ export const CookieConsent: React.FC = () => {
       necessary: true,
       analytics,
       marketing,
-      version: COOKIE_POLICY_VERSION,
+      version: policy.version,
       updatedAt: new Date().toISOString()
     };
 
-    persistConsent(nextConsent);
+    persistConsent(nextConsent, policy.maxAgeDays);
     syncConsentWithPlatform(nextConsent, lang);
     setConsent(nextConsent);
     setDraft({ analytics, marketing });

@@ -98,3 +98,7 @@ export function getPlatformLegalUrl(slug?: 'terms' | 'privacy' | 'cookies' | 'dp
 export function getPlatformCorporateCookiePreferencesUrl() {
   return buildPlatformUrl('/legal/cookies/corporate-preferences');
 }
+
+export function getPlatformCorporateCookiePolicyUrl() {
+  return buildPlatformUrl('/legal/cookies/corporate-policy');
+}
