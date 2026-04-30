@@ -4,7 +4,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
-import { getPlatformLegalUrl, getPlatformSignupUrl } from '../utils/platformLinks';
+import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformLegalUrl, getPlatformSignupUrl } from '../utils/platformLinks';
 
 const logoSrc = '/images/logo-mark-160.png';
 
@@ -106,8 +106,8 @@ export const Footer: React.FC = () => {
                   </a>
                 </EditableLinkWrapper>
               </li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_careers" fallback={careersUrl} legacyFallbacks={['#']}><a href={careersUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></EditableLinkWrapper></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_contact" fallback={contactUrl} legacyFallbacks={['#', '#contact']}><a href={contactUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_careers" fallback={careersUrl} legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}><a href={careersUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_contact" fallback={contactUrl} legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}><a href={contactUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></EditableLinkWrapper></li>
             </ul>
           </div>
 

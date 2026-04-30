@@ -21,6 +21,24 @@ export const PLATFORM_BASE_URL = trimTrailingSlash(
   String(import.meta.env.VITE_PLATFORM_URL || DEFAULT_PLATFORM_URL)
 );
 
+function uniqueLinks(values: string[]) {
+  return Array.from(new Set(values));
+}
+
+export const LEGACY_PLATFORM_LOGIN_URLS = uniqueLinks([
+  '/login',
+  `${DEFAULT_PLATFORM_URL}/login`,
+  `${PLATFORM_BASE_URL}/login`
+]);
+
+export const LEGACY_PLATFORM_SIGNUP_URLS = uniqueLinks([
+  '/signup',
+  '/demo',
+  '#contact',
+  `${DEFAULT_PLATFORM_URL}/signup`,
+  `${PLATFORM_BASE_URL}/signup`
+]);
+
 function getCorporateAttributionParams(): LinkParams {
   if (typeof window === 'undefined') return {};
 

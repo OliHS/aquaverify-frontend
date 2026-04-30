@@ -5,7 +5,12 @@ import { Language } from '../utils/translations';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { usePageContent } from '../context/PageContentContext';
-import { getPlatformLoginUrl, getPlatformSignupUrl } from '../utils/platformLinks';
+import {
+  LEGACY_PLATFORM_LOGIN_URLS,
+  LEGACY_PLATFORM_SIGNUP_URLS,
+  getPlatformLoginUrl,
+  getPlatformSignupUrl
+} from '../utils/platformLinks';
 
 const logoSrc = '/images/logo-mark-160.png';
 
@@ -136,12 +141,12 @@ export const Header: React.FC = () => {
             </div>
           </div>
 
-          <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={['/login']}>
+          <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={LEGACY_PLATFORM_LOGIN_URLS}>
             <a href={platformLoginUrl} className="block text-sm font-semibold text-primary hover:text-secondary transition-colors">
               <EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} />
             </a>
           </EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback={platformDemoUrl} legacyFallbacks={['/demo']}>
+          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback={platformDemoUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
             <a href={platformDemoUrl} className="block bg-primary text-white px-5 py-2 rounded shadow-lg hover:bg-opacity-90 transition-all transform hover:-translate-y-0.5 text-sm font-semibold whitespace-nowrap">
               <EditableText as="span" sectionId="nav" field="demo" fallback={t.nav.demo} />
             </a>
@@ -178,10 +183,10 @@ export const Header: React.FC = () => {
           <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback="#distributors" legacyFallbacks={['#']}><a href="#distributors" onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_oem" fallback="#oem" legacyFallbacks={['#']}><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
           <hr className="border-gray-100 my-2" />
-          <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={['/login']}>
+          <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={LEGACY_PLATFORM_LOGIN_URLS}>
             <a href={platformLoginUrl} onClick={() => setIsMenuOpen(false)} className="block text-primary font-semibold text-left py-2"><EditableText as="span" sectionId="nav" field="login" fallback={t.nav.login} /></a>
           </EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback={platformDemoUrl} legacyFallbacks={['/demo']}>
+          <EditableLinkWrapper sectionId="nav" field="url_demo" fallback={platformDemoUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
             <a href={platformDemoUrl} onClick={() => setIsMenuOpen(false)} className="block bg-primary text-white px-4 py-3 rounded text-center font-semibold w-full">
               <EditableText as="span" sectionId="nav" field="demo" fallback={t.nav.demo} />
             </a>

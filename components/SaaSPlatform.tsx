@@ -6,7 +6,7 @@ import { usePageContent } from '../context/PageContentContext';
 import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
-import { getPlatformSignupUrl } from '../utils/platformLinks';
+import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformSignupUrl } from '../utils/platformLinks';
 
 type Tab = 'mobile' | 'lims' | 'compliance';
 
@@ -125,7 +125,7 @@ export const SaaSPlatform: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <EditableLinkWrapper sectionId="saas" field={`learnMore_link_${activeTab}`} fallback={platformLearnMoreUrl} legacyFallbacks={['#contact']}>
+                  <EditableLinkWrapper sectionId="saas" field={`learnMore_link_${activeTab}`} fallback={platformLearnMoreUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
                     <a href={platformLearnMoreUrl} className="text-secondary font-bold hover:text-primary transition-colors flex items-center mt-4 w-fit">
                       <EditableText sectionId="saas" field={`learnMore_text_${activeTab}`} fallback={`${t.saas.learnMore} ${content[activeTab].title.split(' ')[0]}`} /> <span className="ml-1">→</span>
                     </a>
