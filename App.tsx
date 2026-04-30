@@ -23,6 +23,10 @@ const App: React.FC = () => {
         <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route path="/" element={<PublicSite />} />
+            <Route path="/en" element={<PublicSite />} />
+            <Route path="/es" element={<PublicSite />} />
+            <Route path="/fr" element={<PublicSite />} />
+            <Route path="/it" element={<PublicSite />} />
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={<Login />} />

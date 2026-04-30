@@ -85,6 +85,27 @@ async function run() {
     ]);
   });
 
+  await check('corporate SEO metadata is present', async () => {
+    assert(/<meta\s+name=["']description["']/i.test(corporateHtml), 'Meta description missing');
+    assert(/<link\s+rel=["']canonical["']\s+href=["']https:\/\/aquaverify\.com\/["']/i.test(corporateHtml), 'Canonical link missing');
+    assert(/property=["']og:title["']/i.test(corporateHtml), 'OpenGraph title missing');
+    assert(/name=["']twitter:card["']/i.test(corporateHtml), 'Twitter card metadata missing');
+    assert(/hreflang=["']es["']\s+href=["']https:\/\/aquaverify\.com\/es["']/i.test(corporateHtml), 'Spanish hreflang missing');
+    assert(/application\/ld\+json/i.test(corporateHtml), 'Organization JSON-LD missing');
+  });
+
+  await check('corporate robots and sitemap respond', async () => {
+    const [{ text: robotsText }, { text: sitemapText }] = await Promise.all([
+      getText(`${CORPORATE_SITE_URL}/robots.txt`),
+      getText(`${CORPORATE_SITE_URL}/sitemap.xml`)
+    ]);
+
+    assert(robotsText.includes('Sitemap: https://aquaverify.com/sitemap.xml'), 'Robots sitemap entry missing');
+    assert(sitemapText.includes('<loc>https://aquaverify.com/es</loc>'), 'Spanish sitemap URL missing');
+    assert(sitemapText.includes('hreflang="fr"'), 'French sitemap hreflang missing');
+    assert(sitemapText.includes('hreflang="it"'), 'Italian sitemap hreflang missing');
+  });
+
   await check('corporate site is not installable as PWA', async () => {
     assert(!/rel=["']manifest["']/i.test(corporateHtml), 'Corporate HTML still exposes a web app manifest');
   });

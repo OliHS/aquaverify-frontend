@@ -8,6 +8,8 @@ import { DeferredSection } from '../components/DeferredSection';
 import { PageContentProvider, usePageContent } from '../context/PageContentContext';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
+import { applyPublicSeo, getRouteLanguage } from '../utils/seo';
+import { useLocation } from 'react-router-dom';
 
 const ProductSection = React.lazy(() => import('../components/ProductSection').then(module => ({ default: module.ProductSection })));
 const SaaSPlatform = React.lazy(() => import('../components/SaaSPlatform').then(module => ({ default: module.SaaSPlatform })));
@@ -28,16 +30,12 @@ const HOME_PAGE_SLUGS: Record<Language, string[]> = {
 
 export const PublicSiteContent: React.FC = () => {
     const { pageMeta } = usePageContent();
+    const { lang } = useLanguage();
+    const location = useLocation();
 
     useEffect(() => {
-        if (pageMeta) {
-            document.title = pageMeta.seo_title || pageMeta.title || 'AquaVerify';
-            const metaDescription = document.querySelector('meta[name="description"]');
-            if (metaDescription && pageMeta.seo_description) {
-                metaDescription.setAttribute('content', pageMeta.seo_description);
-            }
-        }
-    }, [pageMeta]);
+        applyPublicSeo({ lang, pageMeta, pathname: location.pathname });
+    }, [lang, location.pathname, pageMeta]);
 
     return (
         <div className="flex flex-col min-h-screen font-sans">
@@ -78,8 +76,17 @@ export const PublicSiteContent: React.FC = () => {
 };
 
 export const PublicSite: React.FC = () => {
-    const { lang } = useLanguage();
-    const [slug, ...fallbackSlugs] = HOME_PAGE_SLUGS[lang] || HOME_PAGE_SLUGS.en;
+    const { lang, setLang } = useLanguage();
+    const location = useLocation();
+    const routeLanguage = getRouteLanguage(location.pathname);
+    const activeLanguage = routeLanguage || lang;
+    const [slug, ...fallbackSlugs] = HOME_PAGE_SLUGS[activeLanguage] || HOME_PAGE_SLUGS.en;
+
+    useEffect(() => {
+        if (routeLanguage && routeLanguage !== lang) {
+            setLang(routeLanguage);
+        }
+    }, [lang, routeLanguage, setLang]);
 
     return (
         <PageContentProvider slug={slug} fallbackSlugs={fallbackSlugs}>

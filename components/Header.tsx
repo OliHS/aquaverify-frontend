@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { Language } from '../utils/translations';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { usePageContent } from '../context/PageContentContext';
+import { getLanguagePath } from '../utils/seo';
 import {
   LEGACY_PLATFORM_LOGIN_URLS,
   LEGACY_PLATFORM_SIGNUP_URLS,
@@ -17,6 +19,8 @@ const logoSrc = '/images/logo-mark-160.png';
 export const Header: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
   const { isEditing } = usePageContent();
+  const navigate = useNavigate();
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -86,6 +90,13 @@ export const Header: React.FC = () => {
     return `${baseClasses} ${colorClasses}`;
   };
 
+  const handleLanguageChange = (nextLang: Language) => {
+    setLang(nextLang);
+    if (!isEditing) {
+      navigate(`${getLanguagePath(nextLang)}${location.hash || ''}`);
+    }
+  };
+
   return (
     <header
       className={`${isEditing ? 'absolute top-0' : 'fixed'} w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white py-5'
@@ -131,7 +142,7 @@ export const Header: React.FC = () => {
                 {(['en', 'es', 'fr', 'it'] as Language[]).map((l) => (
                   <button
                     key={l}
-                    onClick={() => setLang(l)}
+                    onClick={() => handleLanguageChange(l)}
                     className={`block w-full text-left px-4 py-2 text-xs font-bold uppercase hover:bg-gray-50 ${lang === l ? 'text-secondary bg-blue-50' : 'text-gray-600'}`}
                   >
                     {l}
@@ -170,7 +181,7 @@ export const Header: React.FC = () => {
             {(['en', 'es', 'fr', 'it'] as Language[]).map((l) => (
               <button
                 key={l}
-                onClick={() => setLang(l)}
+                onClick={() => handleLanguageChange(l)}
                 className={`text-xs font-bold uppercase px-2 py-1 rounded ${lang === l ? 'bg-secondary text-white' : 'bg-gray-100 text-gray-500'}`}
               >
                 {l}
