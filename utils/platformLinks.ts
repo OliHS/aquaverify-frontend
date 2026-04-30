@@ -76,3 +76,7 @@ export function getPlatformLegalUrl(slug?: 'privacy' | 'cookies' | 'dpa' | 'subp
     lang
   });
 }
+
+export function getPlatformCorporateCookiePreferencesUrl() {
+  return buildPlatformUrl('/legal/cookies/corporate-preferences');
+}

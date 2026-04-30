@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { getPlatformLegalUrl } from '../utils/platformLinks';
+import { getPlatformCorporateCookiePreferencesUrl, getPlatformLegalUrl } from '../utils/platformLinks';
 
 interface CookieConsentState {
   status: 'accepted' | 'custom';
@@ -133,6 +133,30 @@ function persistConsent(consent: CookieConsentState) {
   document.cookie = `${COOKIE_NAME}=${encodeURIComponent(serialized)}; Max-Age=${COOKIE_MAX_AGE_SECONDS}; Path=/; SameSite=Lax${secureFlag}`;
 }
 
+function syncConsentWithPlatform(consent: CookieConsentState, lang: string) {
+  if (typeof window === 'undefined' || typeof fetch !== 'function') return;
+
+  const body = new URLSearchParams({
+    status: consent.status,
+    analytics: consent.analytics ? '1' : '0',
+    marketing: consent.marketing ? '1' : '0',
+    version: consent.version,
+    lang,
+    source_url: window.location.href
+  });
+
+  if (document.referrer) body.set('referrer', document.referrer);
+
+  fetch(getPlatformCorporateCookiePreferencesUrl(), {
+    method: 'POST',
+    credentials: 'include',
+    keepalive: true,
+    body
+  }).catch(() => {
+    // Local consent remains valid; platform sync is best-effort.
+  });
+}
+
 export const CookieConsent: React.FC = () => {
   const { lang } = useLanguage();
   const labels = LABELS[lang] || LABELS.en;
@@ -169,6 +193,7 @@ export const CookieConsent: React.FC = () => {
     };
 
     persistConsent(nextConsent);
+    syncConsentWithPlatform(nextConsent, lang);
     setConsent(nextConsent);
     setDraft({ analytics, marketing });
     setIsPanelOpen(false);
