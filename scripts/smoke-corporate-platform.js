@@ -69,12 +69,36 @@ async function expectStatus(url, expectedStatus = 200, options = {}) {
 async function run() {
   let corporateHtml = '';
   let mainAssetText = '';
+  let corporateHomeHeaders = null;
 
   await check('corporate home responds', async () => {
     const { response, text } = await getText(CORPORATE_SITE_URL);
     assert(response.status === 200, `Corporate site returned ${response.status}`);
     assert(text.includes('<div id="root">'), 'Corporate root container missing');
     corporateHtml = text;
+    corporateHomeHeaders = response.headers;
+  });
+
+  await check('corporate security headers are present', async () => {
+    assert(corporateHomeHeaders, 'Corporate home headers were not captured');
+
+    const contentSecurityPolicy = corporateHomeHeaders.get('content-security-policy') || '';
+    assert(contentSecurityPolicy.includes("default-src 'self'"), 'CSP default-src missing');
+    assert(contentSecurityPolicy.includes("frame-ancestors 'none'"), 'CSP frame-ancestors missing');
+    assert(contentSecurityPolicy.includes('https://app.aquaverify.com'), 'CSP platform origin missing');
+    assert(
+      corporateHomeHeaders.get('x-content-type-options') === 'nosniff',
+      'X-Content-Type-Options is not nosniff'
+    );
+    assert(corporateHomeHeaders.get('x-frame-options') === 'DENY', 'X-Frame-Options is not DENY');
+    assert(
+      corporateHomeHeaders.get('referrer-policy') === 'strict-origin-when-cross-origin',
+      'Referrer-Policy is incorrect'
+    );
+    assert(
+      (corporateHomeHeaders.get('permissions-policy') || '').includes('camera=()'),
+      'Permissions-Policy camera directive missing'
+    );
   });
 
   await check('corporate identity assets respond', async () => {
