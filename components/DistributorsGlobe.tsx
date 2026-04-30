@@ -71,8 +71,8 @@ export const DistributorsGlobe: React.FC<DistributorsGlobeProps> = ({
     <Globe
       ref={globeRef}
       backgroundColor="rgba(0,0,0,0)"
-      globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
-      bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
+      globeImageUrl="/images/globe/earth-blue-marble.jpg"
+      bumpImageUrl="/images/globe/earth-topology.png"
       htmlElementsData={partners.map((partner) => ({
         ...partner,
         isSelected: selectedPartner?.id === partner.id,

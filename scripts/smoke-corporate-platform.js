@@ -86,6 +86,7 @@ async function run() {
     assert(contentSecurityPolicy.includes("default-src 'self'"), 'CSP default-src missing');
     assert(contentSecurityPolicy.includes("frame-ancestors 'none'"), 'CSP frame-ancestors missing');
     assert(contentSecurityPolicy.includes('https://app.aquaverify.com'), 'CSP platform origin missing');
+    assert(!contentSecurityPolicy.includes('unpkg.com'), 'CSP still allows unpkg.com');
     assert(
       corporateHomeHeaders.get('x-content-type-options') === 'nosniff',
       'X-Content-Type-Options is not nosniff'
@@ -227,6 +228,19 @@ async function run() {
     assert(mainAssetText.includes('home-es'), 'Localized CMS home slug candidate missing from corporate bundle');
     assert(mainAssetText.includes('home'), 'Base CMS home fallback missing from corporate bundle');
     assert(mainAssetText.includes('/rest/v1/'), 'Public CMS REST marker missing from corporate bundle');
+  });
+
+  await check('distributor globe textures are local', async () => {
+    const globeAssetMatch = mainAssetText.match(/DistributorsGlobe-[^"']+\.js/);
+    assert(globeAssetMatch, 'Distributors globe asset reference missing from main bundle');
+    const { text: globeAssetText } = await getText(`${CORPORATE_SITE_URL}/assets/${globeAssetMatch[0]}`);
+    assert(globeAssetText.includes('/images/globe/earth-blue-marble.jpg'), 'Local earth texture missing from globe asset');
+    assert(globeAssetText.includes('/images/globe/earth-topology.png'), 'Local earth topology missing from globe asset');
+    assert(!globeAssetText.includes('unpkg.com/three-globe'), 'Globe asset still references unpkg textures');
+    await Promise.all([
+      expectStatus(`${CORPORATE_SITE_URL}/images/globe/earth-blue-marble.jpg`),
+      expectStatus(`${CORPORATE_SITE_URL}/images/globe/earth-topology.png`)
+    ]);
   });
 
   await check('footer cookie settings opens preferences panel', async () => {
