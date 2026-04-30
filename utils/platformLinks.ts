@@ -70,7 +70,7 @@ export function getPlatformSignupUrl(params: LinkParams = {}, lang?: Language) {
   });
 }
 
-export function getPlatformLegalUrl(slug?: 'privacy' | 'cookies' | 'dpa' | 'subprocessors' | 'retention' | 'rights' | 'security', lang?: Language) {
+export function getPlatformLegalUrl(slug?: 'terms' | 'privacy' | 'cookies' | 'dpa' | 'subprocessors' | 'retention' | 'rights' | 'security', lang?: Language) {
   return buildPlatformUrl(slug ? `/legal/${slug}` : '/legal', {
     source: 'corporate',
     lang

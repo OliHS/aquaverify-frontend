@@ -12,7 +12,7 @@ export const Footer: React.FC = () => {
   const { t, lang } = useLanguage();
   const { blocks, isEditing } = usePageContent();
   const privacyUrl = getPlatformLegalUrl('privacy', lang);
-  const termsUrl = getPlatformLegalUrl(undefined, lang);
+  const termsUrl = getPlatformLegalUrl('terms', lang);
   const cookiesUrl = getPlatformLegalUrl('cookies', lang);
   const contactUrl = getPlatformSignupUrl({ intent: 'contact' }, lang);
   const careersUrl = getPlatformSignupUrl({ intent: 'careers' }, lang);
@@ -128,7 +128,7 @@ export const Footer: React.FC = () => {
           <div className="flex space-x-6 mt-4 md:mt-0">
             <EditableLinkWrapper sectionId="footer" field="url_privacy" fallback={privacyUrl} legacyFallbacks={['#']}><a href={privacyUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="privacy" fallback={t.footer.privacy} /></a></EditableLinkWrapper>
             <EditableLinkWrapper sectionId="footer" field="url_terms" fallback={termsUrl} legacyFallbacks={['#']}><a href={termsUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="terms" fallback={t.footer.terms} /></a></EditableLinkWrapper>
-            <EditableLinkWrapper sectionId="footer" field="url_cookie" fallback={cookiesUrl} legacyFallbacks={['#']}><a href={cookiesUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="cookie" fallback="Cookie Settings" /></a></EditableLinkWrapper>
+            <EditableLinkWrapper sectionId="footer" field="url_cookie" fallback={cookiesUrl} legacyFallbacks={['#']}><a href={cookiesUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="cookie" fallback={t.footer.cookie} /></a></EditableLinkWrapper>
           </div>
         </div>
       </div>
