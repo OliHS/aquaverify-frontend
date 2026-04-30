@@ -25,6 +25,7 @@ export const DistributorsSection: React.FC = () => {
   const { t, lang } = useLanguage();
 
   const [selectedPartner, setSelectedPartner] = useState<DistributorPartner | null>(null);
+  const [isGlobeEnabled, setIsGlobeEnabled] = useState(false);
 
   // Search State
   const [searchQuery, setSearchQuery] = useState('');
@@ -166,22 +167,49 @@ export const DistributorsSection: React.FC = () => {
         <div className="bg-gray-900 w-full rounded-2xl shadow-2xl shadow-primary/10 relative z-10 overflow-hidden flex flex-col md:flex-row h-[85vh] md:h-[700px] border border-gray-100">
           {/* Left: Map Area (Top on Mobile) */}
           <div className="relative w-full h-1/2 md:h-full md:w-2/3 bg-[#050B14] overflow-hidden flex items-center justify-center group flex-shrink-0">
-            {/* Rotating 3D World Map */}
-            <div className="relative w-full h-full flex flex-col items-center justify-center cursor-move">
-              <Suspense
-                fallback={
-                  <div className="h-20 w-20 animate-pulse rounded-full border border-cyan-300/30 bg-cyan-400/10 shadow-[0_0_80px_rgba(34,211,238,0.18)]" />
-                }
-              >
-                <DistributorsGlobe
-                  partners={partners}
-                  selectedPartner={selectedPartner}
-                  onSelectPartner={handlePartnerSelect}
-                />
-              </Suspense>
-            </div>
+            {isGlobeEnabled ? (
+              <div className="relative w-full h-full flex flex-col items-center justify-center cursor-move">
+                <Suspense
+                  fallback={
+                    <div className="h-20 w-20 animate-pulse rounded-full border border-cyan-300/30 bg-cyan-400/10 shadow-[0_0_80px_rgba(34,211,238,0.18)]" />
+                  }
+                >
+                  <DistributorsGlobe
+                    partners={partners}
+                    selectedPartner={selectedPartner}
+                    onSelectPartner={handlePartnerSelect}
+                  />
+                </Suspense>
+              </div>
+            ) : (
+              <div className="relative z-10 flex h-full w-full flex-col items-center justify-center px-8 text-center text-white">
+                <div className="absolute inset-0 bg-[#071521]" />
+                <div className="relative mx-auto flex max-w-lg flex-col items-center">
+                  <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-400/10 shadow-lg">
+                    <GlobeIcon size={42} className="text-cyan-200" />
+                  </div>
+                  <h3 className="font-heading text-2xl font-bold md:text-4xl">Interactive distributor map</h3>
+                  <p className="mt-4 max-w-md text-sm leading-6 text-cyan-50/75">
+                    Search by country on the right, or load the 3D globe when you want the full interactive view.
+                  </p>
+                  <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs font-bold uppercase tracking-wide text-cyan-100/80">
+                    <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1">{partners.length} nodes</span>
+                    <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1">140+ countries</span>
+                    <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1">Local support</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setIsGlobeEnabled(true)}
+                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-black text-white shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+                  >
+                    <GlobeIcon size={18} />
+                    Load interactive globe
+                  </button>
+                </div>
+              </div>
+            )}
 
-            <div className="absolute bottom-6 left-6 flex items-center gap-4 text-gray-600 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-mono shadow-sm">
+            <div className="absolute bottom-6 left-6 right-6 hidden flex-wrap items-center gap-3 text-gray-600 bg-white/80 backdrop-blur-sm px-3 py-1.5 rounded-full text-xs font-mono shadow-sm md:right-auto md:flex md:gap-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-purple-500"></div> Exclusive
               </div>
