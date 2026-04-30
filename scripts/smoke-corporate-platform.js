@@ -150,6 +150,11 @@ async function run() {
     );
   });
 
+  await check('corporate CMS home slug fallback is present', async () => {
+    assert(mainAssetText.includes('home-es'), 'Localized CMS home slug candidate missing from corporate bundle');
+    assert(mainAssetText.includes('home'), 'Base CMS home fallback missing from corporate bundle');
+  });
+
   const failedChecks = checks.filter((item) => !item.ok);
   console.log(JSON.stringify({
     ok: failedChecks.length === 0,

@@ -6,6 +6,8 @@ import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
 import { DeferredSection } from '../components/DeferredSection';
 import { PageContentProvider, usePageContent } from '../context/PageContentContext';
+import { useLanguage } from '../context/LanguageContext';
+import type { Language } from '../utils/translations';
 
 const ProductSection = React.lazy(() => import('../components/ProductSection').then(module => ({ default: module.ProductSection })));
 const SaaSPlatform = React.lazy(() => import('../components/SaaSPlatform').then(module => ({ default: module.SaaSPlatform })));
@@ -16,6 +18,13 @@ const Sectors = React.lazy(() => import('../components/Sectors').then(module => 
 const SectionFallback: React.FC<{ className?: string }> = ({ className = 'min-h-[560px] bg-white' }) => (
     <section className={className} aria-hidden="true" />
 );
+
+const HOME_PAGE_SLUGS: Record<Language, string[]> = {
+    en: ['home', 'home-en', 'home-english'],
+    es: ['home-es', 'home-spanish', 'inicio', 'home'],
+    fr: ['home-fr', 'home-french', 'accueil', 'home'],
+    it: ['home-it', 'home-italian', 'home'],
+};
 
 export const PublicSiteContent: React.FC = () => {
     const { pageMeta } = usePageContent();
@@ -69,13 +78,11 @@ export const PublicSiteContent: React.FC = () => {
 };
 
 export const PublicSite: React.FC = () => {
-    // TEMPORARY FIX: Force all visitors to load the base "home" page from the database.
-    // This bypasses the language slugMap which was incorrectly looking for "home-english"
-    // when the user is editing the "home" page in the dashboard.
-    const slug = 'home';
+    const { lang } = useLanguage();
+    const [slug, ...fallbackSlugs] = HOME_PAGE_SLUGS[lang] || HOME_PAGE_SLUGS.en;
 
     return (
-        <PageContentProvider slug={slug}>
+        <PageContentProvider slug={slug} fallbackSlugs={fallbackSlugs}>
             <PublicSiteContent />
         </PageContentProvider>
     );

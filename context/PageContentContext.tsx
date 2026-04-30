@@ -17,31 +17,43 @@ export const PageContentContext = createContext<PageContentContextType>({
 
 export const usePageContent = () => useContext(PageContentContext);
 
-export const PageContentProvider: React.FC<{ slug: string; children: React.ReactNode }> = ({ slug, children }) => {
+interface PageContentProviderProps {
+    slug: string;
+    fallbackSlugs?: string[];
+    children: React.ReactNode;
+}
+
+export const PageContentProvider: React.FC<PageContentProviderProps> = ({ slug, fallbackSlugs = [], children }) => {
     const [pageMeta, setPageMeta] = useState<any>(null);
     const [blocks, setBlocks] = useState<Record<string, any>>({});
     const [loading, setLoading] = useState(true);
+    const fallbackSlugKey = fallbackSlugs.join('|');
 
     useEffect(() => {
         let isMounted = true;
+        const slugCandidates = Array.from(new Set([slug, ...fallbackSlugs].filter(Boolean)));
 
         const fetchContent = async () => {
             try {
+                setLoading(true);
                 const { supabase } = await import('../utils/supabase');
 
-                // 1. Fetch Page Metadata by slug
-                const { data: pageData } = await supabase
+                const { data: pagesData, error: pagesError } = await supabase
                     .from('pages')
                     .select('*')
-                    .eq('slug', slug)
-                    .single();
+                    .in('slug', slugCandidates);
+
+                if (pagesError) throw pagesError;
 
                 if (!isMounted) return;
+
+                const pageData = slugCandidates
+                    .map(candidate => pagesData?.find(page => page.slug === candidate))
+                    .find(Boolean);
 
                 if (pageData) {
                     setPageMeta(pageData);
 
-                    // 2. Fetch all content blocks for this page
                     const { data: blocksData } = await supabase
                         .from('content_blocks')
                         .select('*')
@@ -56,6 +68,9 @@ export const PageContentProvider: React.FC<{ slug: string; children: React.React
                         });
                         setBlocks(mappedBlocks);
                     }
+                } else {
+                    setPageMeta(null);
+                    setBlocks({});
                 }
             } catch (error) {
                 console.warn('Failed to load CMS page content', error);
@@ -69,7 +84,7 @@ export const PageContentProvider: React.FC<{ slug: string; children: React.React
         return () => {
             isMounted = false;
         };
-    }, [slug]);
+    }, [slug, fallbackSlugKey]);
 
     return (
         <PageContentContext.Provider value={{ pageMeta, blocks, loading }}>
