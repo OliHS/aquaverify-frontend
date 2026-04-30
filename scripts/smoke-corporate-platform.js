@@ -202,6 +202,7 @@ async function run() {
   await check('corporate CMS home slug fallback is present', async () => {
     assert(mainAssetText.includes('home-es'), 'Localized CMS home slug candidate missing from corporate bundle');
     assert(mainAssetText.includes('home'), 'Base CMS home fallback missing from corporate bundle');
+    assert(mainAssetText.includes('/rest/v1/'), 'Public CMS REST marker missing from corporate bundle');
   });
 
   await check('footer cookie settings opens preferences panel', async () => {

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { fetchPublicPageContent } from '../utils/publicCms';
 
 interface PageContentContextType {
     pageMeta: any;
@@ -31,48 +32,23 @@ export const PageContentProvider: React.FC<PageContentProviderProps> = ({ slug, 
 
     useEffect(() => {
         let isMounted = true;
-        const slugCandidates = Array.from(new Set([slug, ...fallbackSlugs].filter(Boolean)));
+        const controller = new AbortController();
 
         const fetchContent = async () => {
             try {
                 setLoading(true);
-                const { supabase } = await import('../utils/supabase');
-
-                const { data: pagesData, error: pagesError } = await supabase
-                    .from('pages')
-                    .select('*')
-                    .in('slug', slugCandidates);
-
-                if (pagesError) throw pagesError;
+                const { pageMeta: nextPageMeta, blocks: nextBlocks } = await fetchPublicPageContent(
+                    slug,
+                    fallbackSlugs,
+                    controller.signal
+                );
 
                 if (!isMounted) return;
 
-                const pageData = slugCandidates
-                    .map(candidate => pagesData?.find(page => page.slug === candidate))
-                    .find(Boolean);
-
-                if (pageData) {
-                    setPageMeta(pageData);
-
-                    const { data: blocksData } = await supabase
-                        .from('content_blocks')
-                        .select('*')
-                        .eq('page_id', pageData.id);
-
-                    if (!isMounted) return;
-
-                    if (blocksData) {
-                        const mappedBlocks: Record<string, any> = {};
-                        blocksData.forEach(block => {
-                            mappedBlocks[block.section_id] = block.content;
-                        });
-                        setBlocks(mappedBlocks);
-                    }
-                } else {
-                    setPageMeta(null);
-                    setBlocks({});
-                }
+                setPageMeta(nextPageMeta);
+                setBlocks(nextBlocks);
             } catch (error) {
+                if ((error as Error).name === 'AbortError') return;
                 console.warn('Failed to load CMS page content', error);
             } finally {
                 if (isMounted) setLoading(false);
@@ -83,6 +59,7 @@ export const PageContentProvider: React.FC<PageContentProviderProps> = ({ slug, 
 
         return () => {
             isMounted = false;
+            controller.abort();
         };
     }, [slug, fallbackSlugKey]);
 
