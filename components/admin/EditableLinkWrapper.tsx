@@ -10,6 +10,48 @@ interface EditableLinkWrapperProps {
     children: React.ReactNode;
 }
 
+const FALLBACK_STORAGE_VALUE = '';
+const PLATFORM_HOST = 'app.aquaverify.com';
+
+function normalizeComparableHref(value: string) {
+    const trimmed = value.trim();
+    if (!trimmed) return '';
+    if (trimmed.startsWith('#')) return trimmed;
+
+    try {
+        const url = new URL(trimmed, 'https://aquaverify.com');
+        const pathname = url.pathname.replace(/\/+$/, '') || '/';
+        return `${url.origin}${pathname}`.toLowerCase();
+    } catch {
+        return trimmed.replace(/\/+$/, '').toLowerCase();
+    }
+}
+
+function getManagedPlatformPath(value: string) {
+    const trimmed = value.trim();
+    if (!trimmed) return null;
+
+    try {
+        const url = new URL(trimmed, 'https://aquaverify.com');
+        if (url.hostname !== PLATFORM_HOST) return null;
+        return url.pathname.replace(/\/+$/, '') || '/';
+    } catch {
+        return null;
+    }
+}
+
+function shouldUseFallbackHref(value: string, fallback: string, legacyFallbacks: string[]) {
+    const normalizedValue = normalizeComparableHref(value);
+    if (!normalizedValue) return true;
+
+    const fallbackValues = [fallback, ...legacyFallbacks].map(normalizeComparableHref);
+    if (fallbackValues.includes(normalizedValue)) return true;
+
+    const valuePlatformPath = getManagedPlatformPath(value);
+    const fallbackPlatformPath = getManagedPlatformPath(fallback);
+    return Boolean(valuePlatformPath && fallbackPlatformPath && valuePlatformPath === fallbackPlatformPath);
+}
+
 export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
     sectionId,
     field,
@@ -24,7 +66,7 @@ export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
     // Some CMS records may still contain old placeholder links; render the current fallback for those.
     const savedHref = blocks?.[sectionId]?.[field];
     const normalizedSavedHref = typeof savedHref === 'string' ? savedHref.trim() : savedHref;
-    const currentHref = normalizedSavedHref && !legacyFallbacks.includes(String(normalizedSavedHref))
+    const currentHref = normalizedSavedHref && !shouldUseFallbackHref(String(normalizedSavedHref), fallback, legacyFallbacks)
         ? normalizedSavedHref
         : fallback;
 
@@ -49,7 +91,16 @@ export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
         e.stopPropagation();
         const newHref = window.prompt("Edit Link URL destination:", currentHref);
         if (newHref !== null && updateBlock) {
-            updateBlock(sectionId, field, newHref);
+            const trimmedHref = newHref.trim();
+            if (trimmedHref === currentHref.trim()) return;
+
+            updateBlock(
+                sectionId,
+                field,
+                shouldUseFallbackHref(trimmedHref, fallback, legacyFallbacks)
+                    ? FALLBACK_STORAGE_VALUE
+                    : trimmedHref
+            );
         }
     };
 
