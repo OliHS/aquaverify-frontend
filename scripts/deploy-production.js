@@ -3,7 +3,7 @@ import { spawnSync } from 'node:child_process';
 const VERCEL_CLI_VERSION = process.env.VERCEL_CLI_VERSION || '51.6.1';
 const skipSmoke = process.argv.includes('--no-smoke');
 const skipBuild = process.argv.includes('--no-build');
-const npmCache = process.env.npm_config_cache || '.npm-cache';
+const npmCache = process.env.AQUAVERIFY_NPM_CACHE || '.npm-cache';
 
 function run(command, args, options = {}) {
   const label = [command, ...args].join(' ');
