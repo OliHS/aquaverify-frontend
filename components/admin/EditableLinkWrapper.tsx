@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { usePageContent } from '../../context/PageContentContext';
 import { Link2 } from 'lucide-react';
+import { isPlaceholderHref, normalizeEditableHref } from '../../utils/cmsLinks';
 
 interface EditableLinkWrapperProps {
     sectionId: string;
@@ -14,7 +15,8 @@ const FALLBACK_STORAGE_VALUE = '';
 const PLATFORM_HOST = 'app.aquaverify.com';
 
 function normalizeComparableHref(value: string) {
-    const trimmed = value.trim();
+    const normalized = normalizeEditableHref(value);
+    const trimmed = normalized.ok ? normalized.value : '';
     if (!trimmed) return '';
     if (trimmed.startsWith('#')) return trimmed;
 
@@ -28,7 +30,8 @@ function normalizeComparableHref(value: string) {
 }
 
 function getManagedPlatformPath(value: string) {
-    const trimmed = value.trim();
+    const normalized = normalizeEditableHref(value);
+    const trimmed = normalized.ok ? normalized.value : '';
     if (!trimmed) return null;
 
     try {
@@ -41,6 +44,8 @@ function getManagedPlatformPath(value: string) {
 }
 
 function shouldUseFallbackHref(value: string, fallback: string, legacyFallbacks: string[]) {
+    if (isPlaceholderHref(value)) return true;
+
     const normalizedValue = normalizeComparableHref(value);
     if (!normalizedValue) return true;
 
@@ -91,15 +96,20 @@ export const EditableLinkWrapper: React.FC<EditableLinkWrapperProps> = ({
         e.stopPropagation();
         const newHref = window.prompt("Edit Link URL destination:", currentHref);
         if (newHref !== null && updateBlock) {
-            const trimmedHref = newHref.trim();
-            if (trimmedHref === currentHref.trim()) return;
+            const normalizedHref = normalizeEditableHref(newHref);
+            if (!normalizedHref.ok) {
+                window.alert(normalizedHref.reason || 'Introduce una URL valida.');
+                return;
+            }
+
+            if (normalizedHref.value === currentHref.trim()) return;
 
             updateBlock(
                 sectionId,
                 field,
-                shouldUseFallbackHref(trimmedHref, fallback, legacyFallbacks)
+                shouldUseFallbackHref(normalizedHref.value, fallback, legacyFallbacks)
                     ? FALLBACK_STORAGE_VALUE
-                    : trimmedHref
+                    : normalizedHref.value
             );
         }
     };

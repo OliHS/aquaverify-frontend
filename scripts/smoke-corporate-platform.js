@@ -1,6 +1,7 @@
 const CORPORATE_SITE_URL = trimTrailingSlash(process.env.CORPORATE_SITE_URL || 'https://aquaverify.com');
 const PLATFORM_URL = trimTrailingSlash(process.env.PLATFORM_URL || 'https://app.aquaverify.com');
 const REQUEST_TIMEOUT_MS = Number.parseInt(process.env.SMOKE_TIMEOUT_MS || '15000', 10);
+const LEGAL_POLICY_VERSION = process.env.LEGAL_POLICY_VERSION || '2026-04';
 
 const checks = [];
 
@@ -92,6 +93,7 @@ async function run() {
     assert(text.includes('aqCookieManageButton'), 'Cookie manage button marker missing from bundle');
     assert(text.includes('corporate-preferences'), 'Corporate cookie sync endpoint missing from bundle');
     assert(text.includes('terms'), 'Legal terms marker missing from bundle');
+    assert(text.includes(LEGAL_POLICY_VERSION), 'Legal/cookie policy version marker missing from bundle');
     mainAssetText = text;
   });
 

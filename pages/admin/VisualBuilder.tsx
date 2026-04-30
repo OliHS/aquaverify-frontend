@@ -6,6 +6,7 @@ import { PublicSiteContent } from '../PublicSite';
 import { PageContentContext } from '../../context/PageContentContext';
 import { LanguageProvider, useLanguage } from '../../context/LanguageContext';
 import { LanguageSelector } from '../../components/LanguageSelector';
+import { sanitizeCmsContentLinks } from '../../utils/cmsLinks';
 
 export const VisualBuilder: React.FC = () => {
     return (
@@ -91,10 +92,29 @@ const VisualBuilderInner: React.FC = () => {
             oem: {
                 title: t.oem.title,
                 desc: t.oem.desc
+            },
+            footer: {
+                tagline: t.footer.tagline,
+                solutionsTitle: t.footer.solutions,
+                companyTitle: t.footer.company,
+                contactHeader: t.footer.contact,
+                rights: t.footer.rights,
+                privacy: t.footer.privacy,
+                terms: t.footer.terms,
+                cookie: t.footer.cookie,
+                address1: 'Corporate enquiries',
+                address2: 'Sales, distributors and OEM partnerships',
+                email: 'hello@aquaverify.com',
+                phone: 'Use the contact form for the fastest response'
             }
         };
 
         return fallbacks[sectionId]?.[field] || '';
+    };
+
+    const getRawValue = (sectionId: string, field: string) => {
+        const value = blocks[sectionId]?.[field];
+        return typeof value === 'string' ? value : '';
     };
 
     const handleBlockChange = (sectionId: string, field: string, value: any, lang?: string) => {
@@ -159,6 +179,17 @@ const VisualBuilderInner: React.FC = () => {
     const handleSave = async () => {
         setSaving(true);
 
+        const sanitized = sanitizeCmsContentLinks(blocks);
+        if (sanitized.invalidLinks.length > 0) {
+            setSaving(false);
+            alert(`Corrige estos enlaces antes de publicar:\n\n${sanitized.invalidLinks.map((item) => `${item.path}: ${item.reason}`).join('\n')}`);
+            return;
+        }
+
+        if (sanitized.clearedPlaceholders.length > 0) {
+            setBlocks(sanitized.content);
+        }
+
         // Update SEO
         await supabase.from('pages').update({
             seo_title: seoTitle,
@@ -169,7 +200,7 @@ const VisualBuilderInner: React.FC = () => {
         let hasError = false;
         let errorMessage = 'Error saving to database! Check browser console.';
 
-        for (const [sectionId, content] of Object.entries(blocks)) {
+        for (const [sectionId, content] of Object.entries(sanitized.content)) {
             const { data: existing, error: selectError } = await supabase
                 .from('content_blocks')
                 .select('id')
@@ -422,6 +453,119 @@ const VisualBuilderInner: React.FC = () => {
                                         value={getLocalizedValue('oem', 'desc')}
                                         onChange={e => handleBlockChange('oem', 'desc', e.target.value, lang)}
                                     />
+                                </div>
+                            </div>
+
+                            <div className="space-y-4 pt-4 border-t border-slate-200">
+                                <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wider">Footer, Contact & Social</h2>
+                                <div>
+                                    <label className="block text-xs font-medium text-slate-700 mb-1">Footer tagline</label>
+                                    <textarea
+                                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                        rows={2}
+                                        value={getLocalizedValue('footer', 'tagline')}
+                                        onChange={e => handleBlockChange('footer', 'tagline', e.target.value, lang)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Contact title</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getLocalizedValue('footer', 'contactHeader')}
+                                            onChange={e => handleBlockChange('footer', 'contactHeader', e.target.value, lang)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Rights text</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getLocalizedValue('footer', 'rights')}
+                                            onChange={e => handleBlockChange('footer', 'rights', e.target.value, lang)}
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-medium text-slate-700 mb-1">Contact line 1</label>
+                                    <input
+                                        type="text"
+                                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                        value={getLocalizedValue('footer', 'address1')}
+                                        onChange={e => handleBlockChange('footer', 'address1', e.target.value, lang)}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-medium text-slate-700 mb-1">Contact line 2</label>
+                                    <input
+                                        type="text"
+                                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                        value={getLocalizedValue('footer', 'address2')}
+                                        onChange={e => handleBlockChange('footer', 'address2', e.target.value, lang)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Email</label>
+                                        <input
+                                            type="email"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getRawValue('footer', 'email') || 'hello@aquaverify.com'}
+                                            onChange={e => handleBlockChange('footer', 'email', e.target.value)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Phone/helper</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getLocalizedValue('footer', 'phone')}
+                                            onChange={e => handleBlockChange('footer', 'phone', e.target.value, lang)}
+                                        />
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-1 gap-3">
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">LinkedIn URL</label>
+                                        <input
+                                            type="url"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getRawValue('footer', 'url_linkedin')}
+                                            onChange={e => handleBlockChange('footer', 'url_linkedin', e.target.value)}
+                                            placeholder="https://www.linkedin.com/company/aquaverify"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">X URL</label>
+                                        <input
+                                            type="url"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getRawValue('footer', 'url_twitter')}
+                                            onChange={e => handleBlockChange('footer', 'url_twitter', e.target.value)}
+                                            placeholder="https://x.com/aquaverify"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Facebook URL</label>
+                                        <input
+                                            type="url"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getRawValue('footer', 'url_facebook')}
+                                            onChange={e => handleBlockChange('footer', 'url_facebook', e.target.value)}
+                                            placeholder="https://www.facebook.com/aquaverify"
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Contact CTA URL</label>
+                                        <input
+                                            type="url"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getRawValue('footer', 'url_contact')}
+                                            onChange={e => handleBlockChange('footer', 'url_contact', e.target.value)}
+                                            placeholder="Blank uses the platform signup contact link"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </>

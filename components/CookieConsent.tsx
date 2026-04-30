@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { getPlatformCorporateCookiePreferencesUrl, getPlatformLegalUrl } from '../utils/platformLinks';
+import { COOKIE_POLICY_VERSION } from '../utils/legalPolicy';
 
 interface CookieConsentState {
   status: 'accepted' | 'custom';
@@ -14,7 +15,6 @@ interface CookieConsentState {
 
 const COOKIE_NAME = 'aquaverify_cookie_consent';
 const COOKIE_STORAGE_KEY = COOKIE_NAME;
-const COOKIE_POLICY_VERSION = '2026-04';
 const COOKIE_MAX_AGE_SECONDS = 180 * 24 * 60 * 60;
 export const OPEN_COOKIE_PREFERENCES_EVENT = 'aquaverify:open-cookie-preferences';
 
