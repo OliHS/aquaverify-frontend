@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -10,7 +13,9 @@
     "cms:links:audit": "node scripts/audit-cms-links.js",
     "cms:links:fix": "node scripts/audit-cms-links.js --fix",
     "smoke:prod": "node scripts/smoke-corporate-platform.js",
+    "check:local": "npm run cms:links:audit && npm run build",
     "check:prod": "npm run cms:links:audit && npm run smoke:prod",
+    "check:release": "npm run check:local && npm audit --audit-level=high && npm run smoke:prod",
     "deploy:prod": "node scripts/deploy-production.js"
   },
   "dependencies": {
