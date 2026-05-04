@@ -205,6 +205,8 @@ async function run() {
     assert(text.includes('aqCookieManageButton'), 'Cookie manage button marker missing from bundle');
     assert(text.includes('corporate-preferences'), 'Corporate cookie sync endpoint missing from bundle');
     assert(text.includes('corporate-policy'), 'Corporate cookie policy endpoint missing from bundle');
+    assert(text.includes('corporate-events'), 'Corporate analytics endpoint missing from bundle');
+    assert(text.includes('platform_link_click'), 'Corporate CRO click event marker missing from bundle');
     assert(text.includes('terms'), 'Legal terms marker missing from bundle');
     assert(text.includes('buyer-pathways'), 'Buyer pathway conversion marker missing from bundle');
     assert(text.includes(LEGAL_POLICY_VERSION), 'Legal/cookie policy version marker missing from bundle');
@@ -271,6 +273,29 @@ async function run() {
           'Access-Control-Request-Method': 'POST'
         }
       }
+    );
+  });
+
+  await check('corporate analytics endpoint respects consent gate', async () => {
+    const response = await expectStatus(
+      `${PLATFORM_URL}/legal/cookies/corporate-events`,
+      202,
+      {
+        method: 'POST',
+        headers: {
+          Origin: CORPORATE_SITE_URL,
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+          event_name: 'smoke_no_consent',
+          analytics: '0',
+          path: '/smoke'
+        })
+      }
+    );
+    assert(
+      response.headers.get('access-control-allow-origin') === CORPORATE_SITE_URL,
+      'Corporate analytics CORS allow-origin header is incorrect'
     );
   });
 

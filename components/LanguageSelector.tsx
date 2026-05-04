@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Globe } from 'lucide-react';
+import { trackCorporateEvent } from '../utils/corporateAnalytics';
 
 export const LanguageSelector: React.FC = () => {
     const { lang, setLang } = useLanguage();
@@ -29,6 +30,13 @@ export const LanguageSelector: React.FC = () => {
                             <button
                                 key={l}
                                 onClick={() => {
+                                    if (l !== lang) {
+                                        trackCorporateEvent('language_switch', {
+                                            from_lang: lang,
+                                            to_lang: l,
+                                            path: window.location.pathname
+                                        });
+                                    }
                                     setLang(l);
                                     setIsOpen(false);
                                 }}

@@ -3,6 +3,7 @@ import { X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { getPlatformCorporateCookiePolicyUrl, getPlatformCorporateCookiePreferencesUrl, getPlatformLegalUrl } from '../utils/platformLinks';
 import { COOKIE_POLICY_VERSION } from '../utils/legalPolicy';
+import { trackCorporateEvent } from '../utils/corporateAnalytics';
 
 interface CookieConsentState {
   status: 'accepted' | 'custom';
@@ -285,6 +286,12 @@ export const CookieConsent: React.FC = () => {
     setConsent(nextConsent);
     setDraft({ analytics, marketing });
     setIsPanelOpen(false);
+    trackCorporateEvent('cookie_consent_update', {
+      analytics,
+      marketing,
+      status,
+      version: nextConsent.version
+    });
   };
 
   if (!isReady) return null;

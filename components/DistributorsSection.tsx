@@ -5,6 +5,7 @@ import { useLanguage } from '../context/LanguageContext';
 import { EditableText } from './admin/EditableText';
 import { supabase } from '../utils/supabase';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
+import { trackCorporateEvent } from '../utils/corporateAnalytics';
 import type { DistributorPartner } from './DistributorsGlobe';
 
 const DistributorsGlobe = React.lazy(() =>
@@ -76,7 +77,17 @@ export const DistributorsSection: React.FC = () => {
   }, []);
 
   const openPlatformSignup = (params: Record<string, string | undefined>) => {
-    window.location.assign(getPlatformSignupUrl(params, lang));
+    const url = getPlatformSignupUrl(params, lang);
+    trackCorporateEvent('platform_link_click', {
+      target_url: url,
+      target_path: '/signup',
+      intent: params.intent,
+      country: params.country,
+      distributor: params.distributor,
+      distributorName: params.distributorName,
+      label: 'Distributors section'
+    });
+    window.location.assign(url);
   };
 
   const handleContact = () => {
@@ -105,12 +116,21 @@ export const DistributorsSection: React.FC = () => {
   const handleCountrySelect = (country: string) => {
     setSearchQuery(country);
     setIsDropdownOpen(false);
+    trackCorporateEvent('distributor_country_search', {
+      country
+    });
 
     // Logic to find partner
     const partner = partners.find(p => p.country.toLowerCase() === country.toLowerCase());
     if (partner) {
       setSelectedPartner(partner);
       setMissingCountry(null);
+      trackCorporateEvent('distributor_partner_match', {
+        country,
+        distributor: partner.id,
+        distributorName: partner.name,
+        partner_type: partner.type
+      });
     } else {
       setSelectedPartner(null);
       setMissingCountry(country);
@@ -121,6 +141,12 @@ export const DistributorsSection: React.FC = () => {
     setSelectedPartner(partner);
     setMissingCountry(null);
     setSearchQuery(partner.country);
+    trackCorporateEvent('distributor_partner_select', {
+      country: partner.country,
+      distributor: partner.id,
+      distributorName: partner.name,
+      partner_type: partner.type
+    });
   };
 
   const filteredCountries = COUNTRIES.filter(c =>
@@ -199,7 +225,12 @@ export const DistributorsSection: React.FC = () => {
                   </div>
                   <button
                     type="button"
-                    onClick={() => setIsGlobeEnabled(true)}
+                    onClick={() => {
+                      setIsGlobeEnabled(true);
+                      trackCorporateEvent('distributor_globe_load', {
+                        partners: partners.length
+                      });
+                    }}
                     className="mt-8 inline-flex items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-black text-white shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200"
                   >
                     <GlobeIcon size={18} />

@@ -11,7 +11,8 @@ Actualizado: 2026-05-04.
 - Home, productos, industrias, OEM/distribuidores, SaaS, `Sobre nosotros`, sitemap, hreflang, canonical, JSON-LD y CMS de paginas marketing: implementado.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
-- Pendiente principal: validar claims/naming con equipo tecnico/legal, enriquecer contenido con assets reales, activar analitica CRO avanzada y crear pipeline CI/CD mas limpio para plataforma.
+- Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.
+- Pendiente principal: validar claims/naming con equipo tecnico/legal, enriquecer contenido con assets reales, crear dashboard CRM de reporting y seguir limpiando el pipeline CI/CD de plataforma.
 
 ## Decision Estrategica
 

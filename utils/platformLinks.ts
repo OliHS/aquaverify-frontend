@@ -102,3 +102,7 @@ export function getPlatformCorporateCookiePreferencesUrl() {
 export function getPlatformCorporateCookiePolicyUrl() {
   return buildPlatformUrl('/legal/cookies/corporate-policy');
 }
+
+export function getPlatformCorporateAnalyticsUrl() {
+  return buildPlatformUrl('/legal/cookies/corporate-events');
+}

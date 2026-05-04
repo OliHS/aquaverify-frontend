@@ -2,6 +2,7 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { PublicSite } from './pages/PublicSite';
+import { CorporateAnalytics } from './components/CorporateAnalytics';
 
 const AdminLayout = React.lazy(() => import('./pages/admin/AdminLayout').then(module => ({ default: module.AdminLayout })));
 const Login = React.lazy(() => import('./pages/admin/Login').then(module => ({ default: module.Login })));
@@ -23,6 +24,7 @@ const App: React.FC = () => {
   return (
     <LanguageProvider>
       <BrowserRouter>
+        <CorporateAnalytics />
         <Suspense fallback={<RouteFallback />}>
           <Routes>
             <Route path="/" element={<PublicSite />} />

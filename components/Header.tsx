@@ -14,6 +14,7 @@ import {
   getPlatformLoginUrl,
   getPlatformSignupUrl
 } from '../utils/platformLinks';
+import { trackCorporateEvent } from '../utils/corporateAnalytics';
 
 const logoSrc = '/images/logo-mark-160.png';
 
@@ -102,6 +103,13 @@ export const Header: React.FC = () => {
   };
 
   const handleLanguageChange = (nextLang: Language) => {
+    if (nextLang !== lang) {
+      trackCorporateEvent('language_switch', {
+        from_lang: lang,
+        to_lang: nextLang,
+        path: location.pathname
+      });
+    }
     setLang(nextLang);
     if (!isEditing) {
       const marketingMatch = findMarketingPageByPath(location.pathname);
