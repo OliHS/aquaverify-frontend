@@ -12,7 +12,8 @@ Actualizado: 2026-05-04.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.
-- Pendiente principal: validar claims/naming con equipo tecnico/legal, enriquecer contenido con assets reales, crear dashboard CRM de reporting y seguir limpiando el pipeline CI/CD de plataforma.
+- Dashboard CRM inicial para eventos de la web corporativa: implementado en plataforma, con KPIs, paginas, CTAs, intents, campanas, idiomas y eventos recientes.
+- Pendiente principal: validar claims/naming con equipo tecnico/legal, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
 
 ## Decision Estrategica
 
@@ -420,7 +421,7 @@ Duracion estimada: 2-3 dias.
 
 Tareas:
 
-- Medir eventos respetando consentimiento de cookies.
+- Medir eventos respetando consentimiento de cookies. Implementado.
 - Eventos recomendados:
   - CTA click
   - language switch
@@ -430,8 +431,8 @@ Tareas:
   - signup complete
   - distributor country search
   - OEM form start
-- Enviar UTMs e intent a plataforma.
-- Crear dashboard CRM por fuente, idioma, pais, producto e intent.
+- Enviar UTMs e intent a plataforma. Implementado.
+- Crear dashboard CRM por fuente, idioma, pais, producto e intent. Implementado en version inicial; queda iterar conversion real lead -> oportunidad -> cliente.
 
 Criterio de cierre:
 
@@ -547,7 +548,8 @@ Para cada producto prioritario:
 6. Traducir/localizar Frances, Italiano y Catalan.
 7. Publicar OEM y SaaS.
 8. Publicar recursos tecnicos.
-9. Activar analitica avanzada y dashboard CRM.
+9. Activar analitica avanzada y dashboard CRM inicial.
+10. Iterar conversion real lead -> oportunidad -> cliente y reporting por campana.
 
 ## Riesgos
 
