@@ -212,6 +212,7 @@ async function run() {
     assert(text.includes('saas_demo_start'), 'SaaS start conversion marker missing from bundle');
     assert(text.includes('terms'), 'Legal terms marker missing from bundle');
     assert(text.includes('buyer-pathways'), 'Buyer pathway conversion marker missing from bundle');
+    assert(text.includes('home-final-cta'), 'Final home CTA conversion marker missing from bundle');
     assert(text.includes(LEGAL_POLICY_VERSION), 'Legal/cookie policy version marker missing from bundle');
     mainAssetText = text;
   });

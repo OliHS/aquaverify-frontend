@@ -6,6 +6,7 @@ import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
 import { DeferredSection } from '../components/DeferredSection';
 import { AudiencePathways } from '../components/AudiencePathways';
+import { FinalDecisionCta } from '../components/FinalDecisionCta';
 import { PageContentProvider, usePageContent } from '../context/PageContentContext';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
@@ -71,6 +72,7 @@ export const PublicSiteContent: React.FC = () => {
                         <Sectors />
                     </DeferredSection>
                 </Suspense>
+                <FinalDecisionCta />
             </main>
             <Footer />
             <CookieConsent />

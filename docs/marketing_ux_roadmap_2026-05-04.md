@@ -9,6 +9,7 @@ Objetivo: convertir `aquaverify.com` en un site B2B orientado a captacion organi
 Actualizado: 2026-05-04.
 
 - Home, productos, industrias, OEM/distribuidores, SaaS, `Sobre nosotros`, sitemap, hreflang, canonical, JSON-LD y CMS de paginas marketing: implementado.
+- CTA final segmentado por ruta de compra en la home: implementado.
 - Breadcrumbs visibles y JSON-LD en URLs marketing: implementado.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
@@ -277,6 +278,10 @@ Estructura recomendada de home:
 6. Industrias.
 7. Recursos tecnicos.
 8. CTA final segmentado.
+
+Avance implementado:
+
+- Home cierra con decision B2B segmentada: productos, OEM/distribucion, SaaS y recursos tecnicos, con CTAs trazables hacia plataforma o URLs SEO internas.
 
 Criterio de cierre:
 
