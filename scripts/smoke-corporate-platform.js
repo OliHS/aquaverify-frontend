@@ -153,6 +153,31 @@ async function run() {
     ]);
   });
 
+  await check('corporate marketing routes expose static SEO HTML', async () => {
+    const [
+      { text: englishProductHtml },
+      { text: spanishProductHtml },
+      { text: spanishHomeHtml }
+    ] = await Promise.all([
+      getText(`${CORPORATE_SITE_URL}/products/enumera-soma100`),
+      getText(`${CORPORATE_SITE_URL}/es/productos/indica-coli`),
+      getText(`${CORPORATE_SITE_URL}/es`)
+    ]);
+
+    assert(englishProductHtml.includes('<title>ENUMERA Soma100 | AquaVerify ENUMERA</title>'), 'Static product title missing');
+    assert(englishProductHtml.includes('"@type": "Product"'), 'Static Product JSON-LD missing');
+    assert(englishProductHtml.includes('"@type": "FAQPage"'), 'Static FAQ JSON-LD missing');
+    assert(englishProductHtml.includes('"@type": "BreadcrumbList"'), 'Static Breadcrumb JSON-LD missing');
+    assert(
+      spanishProductHtml.includes('<html lang="es"') && spanishProductHtml.includes('INDICA Coli | AquaVerify INDICA'),
+      'Spanish product static SEO HTML missing'
+    );
+    assert(
+      spanishHomeHtml.includes('<html lang="es"') && spanishHomeHtml.includes('AquaVerify | Kits de Agua'),
+      'Spanish home static SEO HTML missing'
+    );
+  });
+
   await check('corporate site is not installable as PWA', async () => {
     assert(!/rel=["']manifest["']/i.test(corporateHtml), 'Corporate HTML still exposes a web app manifest');
   });
