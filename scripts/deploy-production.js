@@ -32,7 +32,7 @@ try {
   run('npm', ['run', 'cms:claims:audit']);
   run('npm', ['run', 'seo:sitemap']);
   if (!skipBuild) run('npm', ['run', 'build']);
-  run('npx', ['-y', `vercel@${VERCEL_CLI_VERSION}`, '--prod', '--yes']);
+  run('npx', ['-y', `vercel@${VERCEL_CLI_VERSION}`, '--prod', '--yes', '--archive=tgz']);
   if (!skipSmoke) run('npm', ['run', 'smoke:prod']);
 } catch (error) {
   console.error(error.message);
