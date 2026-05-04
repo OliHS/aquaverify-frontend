@@ -26,6 +26,7 @@ function run(command, args, options = {}) {
 
 try {
   run('npm', ['run', 'cms:links:audit']);
+  run('npm', ['run', 'cms:marketing:audit']);
   run('npm', ['run', 'claims:audit']);
   run('npm', ['run', 'cms:claims:audit']);
   run('npm', ['run', 'seo:sitemap']);

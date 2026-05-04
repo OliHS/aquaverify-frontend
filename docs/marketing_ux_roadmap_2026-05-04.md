@@ -17,8 +17,10 @@ Actualizado: 2026-05-04.
 - Reporting comercial de leads web con presupuestos, pipeline, pedidos, valor de pedidos y facturado: implementado en plataforma.
 - Registro de claims/naming, auditor automatico de claims publicos y guardrails CMS: implementado en web corporativa.
 - Todas las URLs marketing multidioma quedan accesibles desde `Marketing URLs` en el CMS, con accion para enlazarlas como registros editables sin pisar contenido existente.
-- Auditor/sincronizador CLI de URLs marketing CMS: `npm run cms:marketing:audit` y `npm run cms:marketing:sync`.
-- El CMS muestra aviso operativo cuando faltan URLs marketing por enlazar y el CLI de sync exige clave Supabase de escritura para evitar falsas sincronizaciones.
+- Auditor/sincronizador CLI de URLs marketing CMS: `npm run cms:marketing:audit`, `npm run cms:marketing:strict` y `npm run cms:marketing:sync`.
+- El CMS muestra aviso operativo cuando faltan URLs marketing por enlazar y diferencia entre `page-only` y registro completo con bloque de contenido editable.
+- El deploy corporativo audita la cobertura CMS marketing en cada release sin bloquear produccion mientras falte la sincronizacion inicial.
+- El CLI de sync exige clave Supabase de escritura para evitar falsas sincronizaciones.
 - Pendiente principal: aprobacion final tecnico/legal de la tabla maestra, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
 
 ## Decision Estrategica
@@ -227,8 +229,8 @@ Avance implementado:
 - Editores CMS de paginas marketing, visual builder y productos bloquean guardado con wording sensible.
 - La proyeccion publica del catalogo sanea terminos legacy que aun requieren correccion desde admin autenticado.
 - El panel `Marketing URLs` permite enlazar todas las rutas SEO en Supabase como paginas CMS editables, conservando overrides ya existentes.
-- Scripts CLI equivalentes permiten auditar cobertura CMS o sincronizarla con una clave Supabase de escritura.
-- El estado de cobertura aparece en el CMS y se puede refrescar desde el panel.
+- Scripts CLI equivalentes permiten auditar cobertura CMS, exigir modo estricto cuando se quiera bloquear release, o sincronizarla con una clave Supabase de escritura.
+- El estado de cobertura aparece en el CMS, diferencia pagina sin bloque de contenido y registro completo, y se puede refrescar desde el panel.
 - Reescrito copy publico sensible hacia lenguaje de producto, trazabilidad, workflow e informes tecnicos.
 - Se mantienen avisos no bloqueantes para revisar la ambiguedad `ENUMERAColi100` / `ENUMERAEntero100` detectada en el DOCX.
 

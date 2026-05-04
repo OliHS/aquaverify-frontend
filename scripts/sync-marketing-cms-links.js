@@ -13,6 +13,7 @@ dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
 
 const shouldSync = process.argv.includes('--sync');
+const strictMode = process.argv.includes('--strict');
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_KEY;
 const supabaseKey = serviceKey || process.env.VITE_SUPABASE_ANON_KEY;
@@ -149,17 +150,33 @@ async function run() {
     insertedBlocks = await insertBlocks(supabase, missingBlocks);
   }
 
+  const finalMissingPages = shouldSync ? Math.max(0, missingPages.length - insertedPages.length) : missingPages.length;
+  const finalLinkedPageCount = shouldSync ? existingPages.length + insertedPages.length : existingPages.length;
+  const finalLinkedBlockCount = shouldSync
+    ? existingBlocks.length + insertedBlocks
+    : existingBlocks.length;
+  const finalMissingBlocks = shouldSync
+    ? Math.max(0, expected.length - finalLinkedBlockCount)
+    : expected.length - existingBlocks.length;
+  const isComplete = finalMissingPages === 0 && finalMissingBlocks === 0;
+
   console.log(JSON.stringify({
-    ok: true,
+    ok: isComplete,
     mode: shouldSync ? 'sync' : 'audit',
     expectedUrls: expected.length,
-    linkedPages: shouldSync ? existingPages.length + insertedPages.length : existingPages.length,
-    missingPages: shouldSync ? Math.max(0, missingPages.length - insertedPages.length) : missingPages.length,
-    missingBlocks: shouldSync ? Math.max(0, missingBlocks.length - insertedBlocks) : missingBlocks.length,
+    linkedPages: finalLinkedPageCount,
+    linkedContentBlocks: finalLinkedBlockCount,
+    completeCmsRecords: Math.min(finalLinkedPageCount, finalLinkedBlockCount),
+    missingPages: finalMissingPages,
+    missingBlocks: finalMissingBlocks,
     insertedPages: insertedPages.length,
     insertedBlocks,
     sampleMissingSlugs: shouldSync ? [] : missingPageRows.slice(0, 20).map((row) => row.slug)
   }, null, 2));
+
+  if (strictMode && !isComplete) {
+    process.exitCode = 1;
+  }
 }
 
 run().catch((error) => {

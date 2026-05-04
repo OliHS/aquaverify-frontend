@@ -52,6 +52,8 @@ type MarketingRow = {
   cmsSlug: string;
 };
 
+type CmsLinkStatus = 'linked' | 'page-only';
+
 const rows = (MARKETING_PAGES as MarketingPage[]).flatMap((page) =>
   (MARKETING_LANGUAGES as MarketingLanguage[]).map((language) => {
     const content = page.translations[language];
@@ -97,7 +99,7 @@ export const MarketingPagesList: React.FC = () => {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('all');
   const [language, setLanguage] = useState<MarketingLanguage | 'all'>('all');
-  const [linkedSlugs, setLinkedSlugs] = useState<Set<string>>(new Set());
+  const [cmsStatusBySlug, setCmsStatusBySlug] = useState<Map<string, CmsLinkStatus>>(new Map());
   const [loadingLinks, setLoadingLinks] = useState(true);
   const [syncingLinks, setSyncingLinks] = useState(false);
   const [syncMessage, setSyncMessage] = useState('');
@@ -108,7 +110,7 @@ export const MarketingPagesList: React.FC = () => {
     setSyncError('');
     const { data, error } = await supabase
       .from('pages')
-      .select('slug')
+      .select('id,slug')
       .like('slug', 'marketing-%');
 
     if (error) {
@@ -118,7 +120,31 @@ export const MarketingPagesList: React.FC = () => {
     }
 
     if (!error && data) {
-      setLinkedSlugs(new Set(data.map((item) => item.slug)));
+      const pageRows = data || [];
+      const pageIds = pageRows.map((item) => item.id);
+      const blockPageIds = new Set<string>();
+
+      for (const pageIdChunk of chunk(pageIds, 100)) {
+        if (pageIdChunk.length === 0) continue;
+        const { data: blockRows, error: blockError } = await supabase
+          .from('content_blocks')
+          .select('page_id')
+          .eq('section_id', MARKETING_OVERRIDE_SECTION_ID)
+          .in('page_id', pageIdChunk);
+
+        if (blockError) {
+          setSyncError(blockError.message || 'Unable to read CMS marketing content status.');
+          setLoadingLinks(false);
+          return;
+        }
+
+        (blockRows || []).forEach((item) => blockPageIds.add(item.page_id));
+      }
+
+      setCmsStatusBySlug(new Map<string, CmsLinkStatus>(pageRows.map((item) => [
+        item.slug,
+        blockPageIds.has(item.id) ? 'linked' : 'page-only'
+      ])));
     }
     setLoadingLinks(false);
   };
@@ -205,7 +231,7 @@ export const MarketingPagesList: React.FC = () => {
         if (error) throw error;
       }
 
-      setLinkedSlugs(new Set(expectedSlugs));
+      setCmsStatusBySlug(new Map<string, CmsLinkStatus>(expectedSlugs.map((slug) => [slug, 'linked'])));
       setSyncMessage(`CMS linked ${insertedPages.length} pages and ${missingBlocks.length} content records. Existing edits were preserved.`);
       await fetchLinkedSlugs();
     } catch (err: any) {
@@ -215,7 +241,8 @@ export const MarketingPagesList: React.FC = () => {
     }
   };
 
-  const linkedCount = rows.filter((row) => linkedSlugs.has(row.cmsSlug)).length;
+  const linkedCount = rows.filter((row) => cmsStatusBySlug.get(row.cmsSlug) === 'linked').length;
+  const pageOnlyCount = rows.filter((row) => cmsStatusBySlug.get(row.cmsSlug) === 'page-only').length;
   const missingLinkedCount = Math.max(0, rows.length - linkedCount);
 
   const filteredRows = useMemo(() => {
@@ -293,9 +320,10 @@ export const MarketingPagesList: React.FC = () => {
             <div className="flex gap-3">
               <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
               <div>
-                <h2 className="font-semibold">{missingLinkedCount} marketing URLs still use code defaults</h2>
+                <h2 className="font-semibold">{missingLinkedCount} marketing URLs are not fully CMS-linked</h2>
                 <p className="mt-1 text-sm text-amber-800">
-                  Link them once so every product, industry, resource and language URL has a CMS record before editors start changing content.
+                  Link them once so every product, industry, resource and language URL has a CMS page plus editable content before editors start changing content.
+                  {pageOnlyCount > 0 ? ` ${pageOnlyCount} already have a page record but still need the content block.` : ''}
                 </p>
               </div>
             </div>
@@ -340,7 +368,7 @@ export const MarketingPagesList: React.FC = () => {
             <Link2 className="h-4 w-4 text-slate-400" />
           </div>
           <p className="mt-2 text-2xl font-bold text-slate-900">{loadingLinks ? '...' : `${linkedCount}/${rows.length}`}</p>
-          <p className="mt-1 text-xs text-slate-500">{totalFaqs} FAQ items</p>
+          <p className="mt-1 text-xs text-slate-500">{pageOnlyCount > 0 ? `${pageOnlyCount} page-only records` : `${totalFaqs} FAQ items`}</p>
         </div>
       </div>
 
@@ -417,10 +445,14 @@ export const MarketingPagesList: React.FC = () => {
                     <p className="mt-1 text-xs text-slate-500">{row.schemaType}</p>
                   </td>
                   <td className="px-5 py-4 text-sm">
-                    {linkedSlugs.has(row.cmsSlug) ? (
+                    {cmsStatusBySlug.get(row.cmsSlug) === 'linked' ? (
                       <span className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-700">
                         <CheckCircle2 size={13} className="mr-1" />
                         Linked
+                      </span>
+                    ) : cmsStatusBySlug.get(row.cmsSlug) === 'page-only' ? (
+                      <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-1 text-xs font-semibold text-blue-700">
+                        Page only
                       </span>
                     ) : (
                       <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-700">
