@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, Navigate, Link, useNavigate, useLocation } from 'react-router-dom';
 import { supabase } from '../../utils/supabase';
-import { LayoutDashboard, LogOut, FileText, Settings, Map } from 'lucide-react';
+import { LayoutDashboard, LogOut, FileText, Settings, Map, Globe2 } from 'lucide-react';
 
 export const AdminLayout: React.FC = () => {
     const [session, setSession] = useState<any>(null);
@@ -55,6 +55,10 @@ export const AdminLayout: React.FC = () => {
                     <Link to="/admin/pages" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/pages' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
                         <FileText size={20} className="text-blue-400" />
                         <span>Pages</span>
+                    </Link>
+                    <Link to="/admin/marketing-pages" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/marketing-pages' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
+                        <Globe2 size={20} className="text-blue-400" />
+                        <span>Marketing URLs</span>
                     </Link>
                     <Link to="/admin/distributors" className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${location.pathname === '/admin/distributors' ? 'bg-slate-800 text-white' : 'hover:bg-slate-800 text-slate-300'}`}>
                         <Map size={20} className="text-blue-400" />

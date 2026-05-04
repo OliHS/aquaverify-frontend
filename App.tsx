@@ -11,6 +11,7 @@ const PageEditor = React.lazy(() => import('./pages/admin/PageEditor').then(modu
 const VisualBuilder = React.lazy(() => import('./pages/admin/VisualBuilder').then(module => ({ default: module.VisualBuilder })));
 const DistributorsManager = React.lazy(() => import('./pages/admin/DistributorsManager').then(module => ({ default: module.DistributorsManager })));
 const ProductManager = React.lazy(() => import('./pages/admin/ProductManager').then(module => ({ default: module.ProductManager })));
+const MarketingPagesList = React.lazy(() => import('./pages/admin/MarketingPagesList').then(module => ({ default: module.MarketingPagesList })));
 const MarketingRoutePage = React.lazy(() => import('./pages/MarketingRoutePage').then(module => ({ default: module.MarketingRoutePage })));
 
 const RouteFallback: React.FC = () => (
@@ -41,6 +42,7 @@ const App: React.FC = () => {
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="pages" element={<PagesList />} />
               <Route path="pages/:id" element={<PageEditor />} />
+              <Route path="marketing-pages" element={<MarketingPagesList />} />
               <Route path="products" element={<ProductManager />} />
               <Route path="distributors" element={<DistributorsManager />} />
             </Route>

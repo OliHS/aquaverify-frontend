@@ -53,6 +53,15 @@ export const Dashboard: React.FC = () => {
                                 <p className="text-sm text-slate-500">Modify the hero section and content blocks.</p>
                             </div>
                         </Link>
+                        <Link to="/admin/marketing-pages" className="flex items-center p-3 w-full bg-slate-50 rounded-lg hover:bg-blue-50 transition-colors group">
+                            <div className="bg-white p-2 rounded-md shadow-sm mr-4 group-hover:text-blue-600">
+                                <Activity size={20} />
+                            </div>
+                            <div>
+                                <p className="font-medium text-slate-900">Review Marketing URLs</p>
+                                <p className="text-sm text-slate-500">Audit multilingual product, industry and platform routes.</p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
             </div>
