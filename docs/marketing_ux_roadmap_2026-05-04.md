@@ -4,6 +4,15 @@ Fecha: 2026-05-04
 
 Objetivo: convertir `aquaverify.com` en un site B2B orientado a captacion organica, distribuidores, laboratorios, empresas que necesitan analisis de calidad del agua y empresas biotech que buscan una plataforma SaaS todo en uno.
 
+## Estado de Implementacion
+
+Actualizado: 2026-05-04.
+
+- Home, productos, industrias, OEM/distribuidores, SaaS, `Sobre nosotros`, sitemap, hreflang, canonical, JSON-LD y CMS de paginas marketing: implementado.
+- Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
+- Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
+- Pendiente principal: validar claims/naming con equipo tecnico/legal, enriquecer contenido con assets reales, activar analitica CRO avanzada y crear pipeline CI/CD mas limpio para plataforma.
+
 ## Decision Estrategica
 
 AquaVerify no debe posicionarse solo como "water testing" o solo como "LIMS". La propuesta ganadora es:
@@ -55,9 +64,13 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/distributors`
 - `/industries/water-testing-laboratories`
 - `/industries/water-quality-control`
+- `/resources`
 - `/resources/iso-10705-2-somatic-coliphages`
 - `/resources/epa-1602-coliphage-testing`
 - `/resources/coliphages-water-quality-indicators`
+- `/resources/presence-absence-vs-enumeration`
+- `/resources/water-sample-digital-traceability`
+- `/resources/water-testing-kit-distributor-checklist`
 - `/about`
 - `/contact`
 
@@ -78,9 +91,13 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/es/distribuidores`
 - `/es/industrias/laboratorios-analisis-agua`
 - `/es/industrias/control-calidad-agua`
+- `/es/recursos`
 - `/es/recursos/iso-10705-2-colifagos-somaticos`
 - `/es/recursos/epa-1602-colifagos`
 - `/es/recursos/colifagos-indicadores-calidad-agua`
+- `/es/recursos/presencia-ausencia-vs-enumeracion`
+- `/es/recursos/trazabilidad-digital-muestras-agua`
+- `/es/recursos/checklist-distribuidores-kits-analisis-agua`
 - `/es/sobre-nosotros`
 - `/es/contacto`
 
@@ -97,7 +114,13 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/fr/oem-kits-analyse-eau`
 - `/fr/distributeurs`
 - `/fr/industries/laboratoires-analyse-eau`
+- `/fr/ressources`
 - `/fr/ressources/iso-10705-2-coliphages-somatiques`
+- `/fr/ressources/epa-1602-coliphages`
+- `/fr/ressources/coliphages-indicateurs-qualite-eau`
+- `/fr/ressources/presence-absence-vs-denombrement`
+- `/fr/ressources/tracabilite-numerique-echantillons-eau`
+- `/fr/ressources/checklist-distributeurs-kits-analyse-eau`
 - `/fr/a-propos`
 - `/fr/contact`
 
@@ -114,7 +137,13 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/it/oem-kit-analisi-acqua`
 - `/it/distributori`
 - `/it/settori/laboratori-analisi-acqua`
+- `/it/risorse`
 - `/it/risorse/iso-10705-2-colifagi-somatici`
+- `/it/risorse/epa-1602-colifagi`
+- `/it/risorse/colifagi-indicatori-qualita-acqua`
+- `/it/risorse/presenza-assenza-vs-enumerazione`
+- `/it/risorse/tracciabilita-digitale-campioni-acqua`
+- `/it/risorse/checklist-distributori-kit-analisi-acqua`
 - `/it/chi-siamo`
 - `/it/contatto`
 
@@ -131,7 +160,13 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/ca/oem-kits-analisi-aigua`
 - `/ca/distribuidors`
 - `/ca/sectors/laboratoris-analisi-aigua`
+- `/ca/recursos`
 - `/ca/recursos/iso-10705-2-colifags-somatics`
+- `/ca/recursos/epa-1602-colifags`
+- `/ca/recursos/colifags-indicadors-qualitat-aigua`
+- `/ca/recursos/presencia-absencia-vs-enumeracio`
+- `/ca/recursos/tracabilitat-digital-mostres-aigua`
+- `/ca/recursos/checklist-distribuidors-kits-analisi-aigua`
 - `/ca/sobre-nosaltres`
 - `/ca/contacte`
 

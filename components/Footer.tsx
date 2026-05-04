@@ -24,6 +24,9 @@ const FOOTER_COPY: Record<Language, {
   industrial: string;
   facilities: string;
   resources: string;
+  presenceEnumeration: string;
+  traceabilityGuide: string;
+  distributorChecklist: string;
   epa: string;
   indicators: string;
 }> = {
@@ -40,6 +43,9 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Industrial process water',
     facilities: 'Facilities',
     resources: 'Resources',
+    presenceEnumeration: 'Presence vs enumeration',
+    traceabilityGuide: 'Sample traceability',
+    distributorChecklist: 'Distributor checklist',
     epa: 'EPA workflows',
     indicators: 'Coliphage indicators'
   },
@@ -56,6 +62,9 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Agua de proceso industrial',
     facilities: 'Instalaciones',
     resources: 'Recursos',
+    presenceEnumeration: 'Presencia vs enumeración',
+    traceabilityGuide: 'Trazabilidad de muestras',
+    distributorChecklist: 'Checklist distribuidores',
     epa: 'Flujos EPA',
     indicators: 'Indicadores colífagos'
   },
@@ -72,6 +81,9 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Eau de process',
     facilities: 'Bâtiments',
     resources: 'Ressources',
+    presenceEnumeration: 'Présence vs dénombrement',
+    traceabilityGuide: 'Traçabilité échantillons',
+    distributorChecklist: 'Checklist distributeurs',
     epa: 'Flux EPA',
     indicators: 'Indicateurs coliphages'
   },
@@ -88,6 +100,9 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Acqua di processo',
     facilities: 'Strutture',
     resources: 'Risorse',
+    presenceEnumeration: 'Presenza vs enumerazione',
+    traceabilityGuide: 'Tracciabilità campioni',
+    distributorChecklist: 'Checklist distributori',
     epa: 'Flussi EPA',
     indicators: 'Indicatori colifagi'
   },
@@ -104,6 +119,9 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Aigua de procés',
     facilities: 'Instal·lacions',
     resources: 'Recursos',
+    presenceEnumeration: 'Presència vs enumeració',
+    traceabilityGuide: 'Traçabilitat de mostres',
+    distributorChecklist: 'Checklist distribuïdors',
     epa: 'Fluxos EPA',
     indicators: 'Indicadors colífags'
   }
@@ -133,9 +151,13 @@ export const Footer: React.FC = () => {
   const industrialUrl = getMarketingPagePath('industrial-process-water', lang);
   const facilitiesUrl = getMarketingPagePath('facility-water-risk', lang);
   const aboutUrl = getMarketingPagePath('about', lang);
+  const resourcesUrl = getMarketingPagePath('resources', lang);
   const isoResourceUrl = getMarketingPagePath('iso-10705-2', lang);
   const epaResourceUrl = getMarketingPagePath('epa-1602', lang);
   const indicatorResourceUrl = getMarketingPagePath('coliphages-indicators', lang);
+  const presenceEnumerationUrl = getMarketingPagePath('presence-vs-enumeration', lang);
+  const traceabilityGuideUrl = getMarketingPagePath('sample-traceability', lang);
+  const distributorChecklistUrl = getMarketingPagePath('distributor-checklist', lang);
   const footerBlock = blocks.footer || {};
   const hasConfiguredHref = (field: string) => {
     const value = footerBlock[field];
@@ -230,6 +252,7 @@ export const Footer: React.FC = () => {
               <li><a href={industrialUrl} className="hover:text-secondary">{copy.industrial}</a></li>
               <li><a href={facilitiesUrl} className="hover:text-secondary">{copy.facilities}</a></li>
               <li><a href={distributorsUrl} className="hover:text-secondary">{t.nav.distributors}</a></li>
+              <li><a href={resourcesUrl} className="hover:text-secondary">{copy.resources}</a></li>
               <li>
                 <EditableLinkWrapper sectionId="footer" field="url_scientificValidation" fallback={isoResourceUrl} legacyFallbacks={['#']}>
                   <a
@@ -243,6 +266,9 @@ export const Footer: React.FC = () => {
               </li>
               <li><a href={epaResourceUrl} className="hover:text-secondary">{copy.epa}</a></li>
               <li><a href={indicatorResourceUrl} className="hover:text-secondary">{copy.indicators}</a></li>
+              <li><a href={presenceEnumerationUrl} className="hover:text-secondary">{copy.presenceEnumeration}</a></li>
+              <li><a href={traceabilityGuideUrl} className="hover:text-secondary">{copy.traceabilityGuide}</a></li>
+              <li><a href={distributorChecklistUrl} className="hover:text-secondary">{copy.distributorChecklist}</a></li>
               <li><EditableLinkWrapper sectionId="footer" field="url_careers" fallback={careersUrl} legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}><a href={careersUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></EditableLinkWrapper></li>
               <li><EditableLinkWrapper sectionId="footer" field="url_contact" fallback={contactUrl} legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}><a href={contactUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></EditableLinkWrapper></li>
             </ul>

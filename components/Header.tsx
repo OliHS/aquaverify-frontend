@@ -33,7 +33,7 @@ export const Header: React.FC = () => {
     solutions: isHomePath ? '#solutions' : getMarketingPagePath('water-quality-control', lang),
     products: isHomePath ? '#products' : getMarketingPagePath('products', lang),
     platform: isHomePath ? '#platform' : getMarketingPagePath('platform', lang),
-    resources: getMarketingPagePath('iso-10705-2', lang),
+    resources: getMarketingPagePath('resources', lang),
     distributors: isHomePath ? '#distributors' : getMarketingPagePath('distributors', lang),
     oem: isHomePath ? '#oem' : getMarketingPagePath('oem', lang)
   };

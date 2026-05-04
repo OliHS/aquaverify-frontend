@@ -794,6 +794,66 @@
     <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sectors/control-qualitat-aigua" />
   </url>
   <url>
+    <loc>https://aquaverify.com/resources</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/recursos</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/ressources</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/risorse</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/recursos</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos" />
+  </url>
+  <url>
     <loc>https://aquaverify.com/resources/iso-10705-2-somatic-coliphages</loc>
     <lastmod>2026-05-04</lastmod>
     <changefreq>weekly</changefreq>
@@ -972,6 +1032,186 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/coliphages-indicateurs-qualite-eau" />
     <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/colifagi-indicatori-qualita-acqua" />
     <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/colifags-indicadors-qualitat-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/resources/presence-absence-vs-enumeration</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/presencia-ausencia-vs-enumeracion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/presence-absence-vs-denombrement" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/presenza-assenza-vs-enumerazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/presencia-absencia-vs-enumeracio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/recursos/presencia-ausencia-vs-enumeracion</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/presencia-ausencia-vs-enumeracion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/presence-absence-vs-denombrement" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/presenza-assenza-vs-enumerazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/presencia-absencia-vs-enumeracio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/ressources/presence-absence-vs-denombrement</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/presencia-ausencia-vs-enumeracion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/presence-absence-vs-denombrement" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/presenza-assenza-vs-enumerazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/presencia-absencia-vs-enumeracio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/risorse/presenza-assenza-vs-enumerazione</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/presencia-ausencia-vs-enumeracion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/presence-absence-vs-denombrement" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/presenza-assenza-vs-enumerazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/presencia-absencia-vs-enumeracio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/recursos/presencia-absencia-vs-enumeracio</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/presence-absence-vs-enumeration" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/presencia-ausencia-vs-enumeracion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/presence-absence-vs-denombrement" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/presenza-assenza-vs-enumerazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/presencia-absencia-vs-enumeracio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/resources/water-sample-digital-traceability</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/trazabilidad-digital-muestras-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/tracabilite-numerique-echantillons-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/tracciabilita-digitale-campioni-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/tracabilitat-digital-mostres-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/recursos/trazabilidad-digital-muestras-agua</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/trazabilidad-digital-muestras-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/tracabilite-numerique-echantillons-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/tracciabilita-digitale-campioni-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/tracabilitat-digital-mostres-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/ressources/tracabilite-numerique-echantillons-eau</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/trazabilidad-digital-muestras-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/tracabilite-numerique-echantillons-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/tracciabilita-digitale-campioni-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/tracabilitat-digital-mostres-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/risorse/tracciabilita-digitale-campioni-acqua</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/trazabilidad-digital-muestras-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/tracabilite-numerique-echantillons-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/tracciabilita-digitale-campioni-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/tracabilitat-digital-mostres-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/recursos/tracabilitat-digital-mostres-aigua</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-sample-digital-traceability" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/trazabilidad-digital-muestras-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/tracabilite-numerique-echantillons-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/tracciabilita-digitale-campioni-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/tracabilitat-digital-mostres-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/resources/water-testing-kit-distributor-checklist</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/checklist-distribuidores-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/checklist-distributeurs-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/checklist-distributori-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/checklist-distribuidors-kits-analisi-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/recursos/checklist-distribuidores-kits-analisis-agua</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/checklist-distribuidores-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/checklist-distributeurs-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/checklist-distributori-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/checklist-distribuidors-kits-analisi-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/ressources/checklist-distributeurs-kits-analyse-eau</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/checklist-distribuidores-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/checklist-distributeurs-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/checklist-distributori-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/checklist-distribuidors-kits-analisi-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/risorse/checklist-distributori-kit-analisi-acqua</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/checklist-distribuidores-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/checklist-distributeurs-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/checklist-distributori-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/checklist-distribuidors-kits-analisi-aigua" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/recursos/checklist-distribuidors-kits-analisi-aigua</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/resources/water-testing-kit-distributor-checklist" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/recursos/checklist-distribuidores-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/ressources/checklist-distributeurs-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/risorse/checklist-distributori-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/recursos/checklist-distribuidors-kits-analisi-aigua" />
   </url>
   <url>
     <loc>https://aquaverify.com/about</loc>

@@ -314,6 +314,43 @@ export const MARKETING_PAGES = [
       section('Per a equips de qualitat operativa', 'Fes servir AquaVerify per estructurar sol·licituds d’anàlisi, informes i monitoratge recurrent.', ['Qualitat de l’aigua en food & beverage', 'Control de risc en instal·lacions', 'Aigua de procés industrial', 'Coordinació amb proveïdors i laboratoris'])
     ], { eyebrow: 'Control de qualitat de l’aigua', primaryCta: 'Demanar recomanació', secondaryCta: 'Veure productes' })
   }),
+  page('resources', 'resources', 'quote', {
+    en: locale('/resources', 'Water microbiology resources and buyer guides', 'Technical and commercial guides for water microbiology products, digital traceability, OEM distribution and quality workflows.', [
+      section('Resources for technical buyers', 'Use this hub to compare qualitative and quantitative workflows, understand coliphage indicators, and prepare product or OEM discussions with a clearer buying brief.', ['ISO and EPA-oriented water microbiology workflows', 'Presence/absence and enumeration decision guides', 'Digital traceability for samples, reports and customers', 'Distributor and OEM evaluation checklists']),
+      section('From reading to action', 'Each guide connects scientific context with AquaVerify products, platform workflows and the next commercial step for laboratories, distributors and quality teams.')
+    ], { eyebrow: 'Resources', primaryCta: 'Talk to AquaVerify', secondaryCta: 'View products', seoTitle: 'Water Microbiology Resources | AquaVerify Guides', faqs: [
+      { question: 'Who are these resources for?', answer: 'They are written for laboratories, distributors, water quality teams and biotech companies evaluating water microbiology products or connected software workflows.' },
+      { question: 'Can AquaVerify help after reading a guide?', answer: 'Yes. AquaVerify can help map the relevant product family, OEM option or platform workflow for the use case.' }
+    ] }),
+    es: locale('/es/recursos', 'Recursos de microbiología del agua y guías para compradores', 'Guías técnicas y comerciales sobre productos de microbiología del agua, trazabilidad digital, distribución OEM y flujos de calidad.', [
+      section('Recursos para compradores técnicos', 'Usa este hub para comparar flujos cualitativos y cuantitativos, entender indicadores colífagos y preparar conversaciones de producto u OEM con un brief de compra más claro.', ['Flujos de microbiología del agua orientados a ISO y EPA', 'Guías de decisión presencia/ausencia y enumeración', 'Trazabilidad digital de muestras, informes y clientes', 'Checklists para distribuidores y evaluación OEM']),
+      section('De la lectura a la acción', 'Cada guía conecta contexto científico con productos AquaVerify, flujos de plataforma y el siguiente paso comercial para laboratorios, distribuidores y equipos de calidad.')
+    ], { eyebrow: 'Recursos', primaryCta: 'Hablar con AquaVerify', secondaryCta: 'Ver productos', seoTitle: 'Recursos de microbiología del agua | Guías AquaVerify', faqs: [
+      { question: '¿Para quién son estos recursos?', answer: 'Están escritos para laboratorios, distribuidores, equipos de calidad del agua y empresas biotech que evalúan productos de microbiología del agua o flujos digitales conectados.' },
+      { question: '¿AquaVerify puede ayudar después de leer una guía?', answer: 'Sí. AquaVerify puede ayudar a mapear la familia de producto, opción OEM o flujo de plataforma más adecuado para el caso de uso.' }
+    ] }),
+    fr: locale('/fr/ressources', 'Ressources microbiologie de l’eau et guides acheteurs', 'Guides techniques et commerciaux sur les produits de microbiologie de l’eau, la traçabilité numérique, la distribution OEM et les flux qualité.', [
+      section('Ressources pour acheteurs techniques', 'Utilisez ce hub pour comparer les flux qualitatifs et quantitatifs, comprendre les indicateurs coliphages et préparer des échanges produit ou OEM avec un brief d’achat plus clair.', ['Flux de microbiologie de l’eau orientés ISO et EPA', 'Guides de décision présence/absence et dénombrement', 'Traçabilité numérique des échantillons, rapports et clients', 'Checklists distributeurs et évaluation OEM']),
+      section('De la lecture à l’action', 'Chaque guide relie le contexte scientifique aux produits AquaVerify, aux flux plateforme et à l’étape commerciale suivante pour laboratoires, distributeurs et équipes qualité.')
+    ], { eyebrow: 'Ressources', primaryCta: 'Parler à AquaVerify', secondaryCta: 'Voir les produits', seoTitle: 'Ressources microbiologie de l’eau | Guides AquaVerify', faqs: [
+      { question: 'À qui s’adressent ces ressources?', answer: 'Elles s’adressent aux laboratoires, distributeurs, équipes qualité eau et entreprises biotech qui évaluent des produits de microbiologie de l’eau ou des flux logiciels connectés.' },
+      { question: 'AquaVerify peut-il aider après la lecture?', answer: 'Oui. AquaVerify peut aider à cartographier la famille produit, l’option OEM ou le flux plateforme adapté au cas d’usage.' }
+    ] }),
+    it: locale('/it/risorse', 'Risorse di microbiologia dell’acqua e guide per buyer', 'Guide tecniche e commerciali su prodotti di microbiologia dell’acqua, tracciabilità digitale, distribuzione OEM e flussi qualità.', [
+      section('Risorse per buyer tecnici', 'Usa questo hub per confrontare flussi qualitativi e quantitativi, comprendere gli indicatori colifagi e preparare conversazioni prodotto o OEM con un brief d’acquisto più chiaro.', ['Flussi di microbiologia dell’acqua orientati a ISO ed EPA', 'Guide decisionali presenza/assenza ed enumerazione', 'Tracciabilità digitale di campioni, report e clienti', 'Checklist per distributori e valutazione OEM']),
+      section('Dalla lettura all’azione', 'Ogni guida collega il contesto scientifico ai prodotti AquaVerify, ai flussi piattaforma e al passo commerciale successivo per laboratori, distributori e team qualità.')
+    ], { eyebrow: 'Risorse', primaryCta: 'Parla con AquaVerify', secondaryCta: 'Vedi prodotti', seoTitle: 'Risorse di microbiologia dell’acqua | Guide AquaVerify', faqs: [
+      { question: 'A chi sono rivolte queste risorse?', answer: 'Sono scritte per laboratori, distributori, team qualità acqua e aziende biotech che valutano prodotti di microbiologia dell’acqua o flussi software collegati.' },
+      { question: 'AquaVerify può aiutare dopo la lettura?', answer: 'Sì. AquaVerify può aiutare a mappare la famiglia prodotto, l’opzione OEM o il flusso piattaforma adatto al caso d’uso.' }
+    ] }),
+    ca: locale('/ca/recursos', 'Recursos de microbiologia de l’aigua i guies per a compradors', 'Guies tècniques i comercials sobre productes de microbiologia de l’aigua, traçabilitat digital, distribució OEM i fluxos de qualitat.', [
+      section('Recursos per a compradors tècnics', 'Fes servir aquest hub per comparar fluxos qualitatius i quantitatius, entendre indicadors colífags i preparar converses de producte o OEM amb un brief de compra més clar.', ['Fluxos de microbiologia de l’aigua orientats a ISO i EPA', 'Guies de decisió presència/absència i enumeració', 'Traçabilitat digital de mostres, informes i clients', 'Checklists per a distribuïdors i avaluació OEM']),
+      section('De la lectura a l’acció', 'Cada guia connecta context científic amb productes AquaVerify, fluxos de plataforma i el següent pas comercial per a laboratoris, distribuïdors i equips de qualitat.')
+    ], { eyebrow: 'Recursos', primaryCta: 'Parlar amb AquaVerify', secondaryCta: 'Veure productes', seoTitle: 'Recursos de microbiologia de l’aigua | Guies AquaVerify', faqs: [
+      { question: 'Per a qui són aquests recursos?', answer: 'Estan escrits per a laboratoris, distribuïdors, equips de qualitat de l’aigua i empreses biotech que avaluen productes de microbiologia de l’aigua o fluxos digitals connectats.' },
+      { question: 'AquaVerify pot ajudar després de llegir una guia?', answer: 'Sí. AquaVerify pot ajudar a mapar la família de producte, opció OEM o flux de plataforma més adequat per al cas d’ús.' }
+    ] })
+  }),
   page('iso-10705-2', 'resources', 'quote', {
     en: locale('/resources/iso-10705-2-somatic-coliphages', 'ISO 10705-2 and somatic coliphage testing', 'A practical resource for teams evaluating somatic coliphage workflows in water microbiology.', [
       section('Why it matters', 'Somatic coliphages are important viral indicators for water quality because they can be more resistant to disinfection than common bacterial indicators.'),
@@ -335,7 +372,7 @@ export const MARKETING_PAGES = [
       section('Per què importa', 'Els colífags somàtics són indicadors virals importants en qualitat de l’aigua perquè poden resistir la desinfecció millor que indicadors bacterians habituals.'),
       section('Com encaixa AquaVerify', 'AquaVerify dona suport a laboratoris amb kits, controls, essentials i traçabilitat digital al voltant de fluxos de colífags.')
     ], { eyebrow: 'Recurs', primaryCta: 'Parlar de flux ISO', secondaryCta: 'Veure kits estàndard' })
-  }),
+  }, { parentId: 'resources' }),
   page('epa-1602', 'resources', 'quote', {
     en: locale('/resources/epa-1602-coliphage-testing', 'EPA 1602 coliphage testing workflows', 'Understand how EPA-oriented coliphage workflows can be supported with products, controls and traceability.', [
       section('For laboratories working with EPA methods', 'AquaVerify helps organize products, consumables and data around EPA-oriented coliphage testing.')
@@ -352,7 +389,7 @@ export const MARKETING_PAGES = [
     ca: locale('/ca/recursos/epa-1602-colifags', 'Fluxos EPA 1602 per a anàlisi de colífags', 'Entén com els fluxos orientats a EPA poden recolzar-se amb productes, controls i traçabilitat.', [
       section('Per a laboratoris que treballen amb mètodes EPA', 'AquaVerify ajuda a organitzar productes, consumibles i dades al voltant de l’anàlisi de colífags orientada a EPA.')
     ], { eyebrow: 'Recurs', primaryCta: 'Parlar de flux EPA', secondaryCta: 'Veure productes' })
-  }),
+  }, { parentId: 'resources' }),
   page('coliphages-indicators', 'resources', 'quote', {
     en: locale('/resources/coliphages-water-quality-indicators', 'Coliphages as viral indicators for water quality', 'A practical introduction to why coliphages matter in modern water quality monitoring.', [
       section('A stronger indicator story', 'Coliphages can provide useful viral-indicator information in addition to traditional bacterial indicators.'),
@@ -374,7 +411,133 @@ export const MARKETING_PAGES = [
       section('Una història d’indicador més forta', 'Els colífags poden aportar informació útil com a indicadors virals a més dels indicadors bacterians tradicionals.'),
       section('De la necessitat científica al flux operatiu', 'AquaVerify connecta productes d’anàlisi d’indicadors amb reporting digital i traçabilitat.')
     ], { eyebrow: 'Recurs', primaryCta: 'Preguntar per productes colífags', secondaryCta: 'Veure ENUMERA' })
-  }),
+  }, { parentId: 'resources' }),
+  page('presence-vs-enumeration', 'resources', 'quote', {
+    en: locale('/resources/presence-absence-vs-enumeration', 'Presence/absence vs enumeration in water microbiology', 'Understand when qualitative screening and quantitative enumeration workflows fit water microbiology decisions.', [
+      section('When presence/absence fits', 'Presence/absence workflows are useful when a team needs a clear qualitative answer for screening, release decisions or escalation.', ['Fast yes/no decision points', 'Operational monitoring where a qualitative answer is enough', 'Field, quality or routine laboratory workflows', 'Clear link to INDICA product families']),
+      section('When enumeration fits', 'Enumeration workflows are stronger when decisions depend on concentration, trend, limit comparison or quantitative reporting.', ['Quantitative result records', 'Trend monitoring across sites or batches', 'Laboratory reporting and customer certificates', 'Clear link to ENUMERA and standard kits']),
+      section('Why the platform matters', 'AquaVerify Cloud can connect either workflow to sample context, operators, customer communication and CRM attribution.')
+    ], { eyebrow: 'Guide', primaryCta: 'Discuss the right workflow', secondaryCta: 'View INDICA and ENUMERA', seoTitle: 'Presence/Absence vs Enumeration | Water Microbiology Guide', faqs: [
+      { question: 'Is presence/absence less useful than enumeration?', answer: 'No. It answers a different operational question. Presence/absence is useful for screening, while enumeration is useful when the concentration or trend matters.' },
+      { question: 'Can one organization use both workflows?', answer: 'Yes. Many teams combine qualitative screening with quantitative confirmation or periodic enumeration depending on the sample type and decision.' }
+    ] }),
+    es: locale('/es/recursos/presencia-ausencia-vs-enumeracion', 'Presencia/ausencia vs enumeración en microbiología del agua', 'Entiende cuándo encajan los flujos cualitativos y cuantitativos en decisiones de microbiología del agua.', [
+      section('Cuándo encaja presencia/ausencia', 'Los flujos de presencia/ausencia son útiles cuando el equipo necesita una respuesta cualitativa clara para cribado, liberación o escalado.', ['Decisiones rápidas sí/no', 'Monitorización operativa donde una respuesta cualitativa es suficiente', 'Flujos de campo, calidad o laboratorio rutinario', 'Conexión clara con la familia INDICA']),
+      section('Cuándo encaja enumeración', 'Los flujos de enumeración son más fuertes cuando la decisión depende de concentración, tendencia, comparación con límites o informe cuantitativo.', ['Registros de resultado cuantitativo', 'Seguimiento de tendencias por punto o lote', 'Informes de laboratorio y certificados cliente', 'Conexión clara con ENUMERA y kits estándar']),
+      section('Por qué importa la plataforma', 'AquaVerify Cloud puede conectar ambos flujos con contexto de muestra, operadores, comunicación cliente y atribución CRM.')
+    ], { eyebrow: 'Guía', primaryCta: 'Hablar del flujo adecuado', secondaryCta: 'Ver INDICA y ENUMERA', seoTitle: 'Presencia/Ausencia vs Enumeración | Guía microbiología del agua', faqs: [
+      { question: '¿Presencia/ausencia es menos útil que enumeración?', answer: 'No. Responde a una pregunta operativa diferente. Presencia/ausencia sirve para cribado, mientras que enumeración sirve cuando importan la concentración o la tendencia.' },
+      { question: '¿Una organización puede usar ambos flujos?', answer: 'Sí. Muchos equipos combinan cribado cualitativo con confirmación cuantitativa o enumeración periódica según el tipo de muestra y la decisión.' }
+    ] }),
+    fr: locale('/fr/ressources/presence-absence-vs-denombrement', 'Présence/absence vs dénombrement en microbiologie de l’eau', 'Comprendre quand les flux qualitatifs et quantitatifs conviennent aux décisions de microbiologie de l’eau.', [
+      section('Quand la présence/absence convient', 'Les flux présence/absence sont utiles lorsqu’une équipe a besoin d’une réponse qualitative claire pour le dépistage, la libération ou l’escalade.', ['Décisions rapides oui/non', 'Surveillance opérationnelle quand une réponse qualitative suffit', 'Flux terrain, qualité ou laboratoire de routine', 'Lien clair avec la famille INDICA']),
+      section('Quand le dénombrement convient', 'Les flux de dénombrement sont plus adaptés quand la décision dépend d’une concentration, d’une tendance, d’une comparaison de limite ou d’un rapport quantitatif.', ['Enregistrements de résultat quantitatif', 'Suivi des tendances par site ou lot', 'Rapports laboratoire et certificats client', 'Lien clair avec ENUMERA et kits standard']),
+      section('Pourquoi la plateforme compte', 'AquaVerify Cloud peut connecter les deux flux au contexte échantillon, aux opérateurs, à la communication client et à l’attribution CRM.')
+    ], { eyebrow: 'Guide', primaryCta: 'Discuter du bon flux', secondaryCta: 'Voir INDICA et ENUMERA', seoTitle: 'Présence/absence vs dénombrement | Guide microbiologie eau', faqs: [
+      { question: 'La présence/absence est-elle moins utile que le dénombrement?', answer: 'Non. Elle répond à une question opérationnelle différente. La présence/absence sert au dépistage, tandis que le dénombrement sert lorsque la concentration ou la tendance compte.' },
+      { question: 'Une organisation peut-elle utiliser les deux flux?', answer: 'Oui. De nombreuses équipes combinent dépistage qualitatif et confirmation quantitative ou dénombrement périodique selon l’échantillon et la décision.' }
+    ] }),
+    it: locale('/it/risorse/presenza-assenza-vs-enumerazione', 'Presenza/assenza vs enumerazione nella microbiologia dell’acqua', 'Comprendi quando flussi qualitativi e quantitativi sono adatti alle decisioni di microbiologia dell’acqua.', [
+      section('Quando serve presenza/assenza', 'I flussi presenza/assenza sono utili quando un team richiede una risposta qualitativa chiara per screening, rilascio o escalation.', ['Decisioni rapide sì/no', 'Monitoraggio operativo quando una risposta qualitativa è sufficiente', 'Flussi sul campo, qualità o laboratorio di routine', 'Collegamento chiaro con la famiglia INDICA']),
+      section('Quando serve enumerazione', 'I flussi di enumerazione sono più forti quando la decisione dipende da concentrazione, trend, confronto con limiti o reporting quantitativo.', ['Registri di risultato quantitativo', 'Monitoraggio trend per sito o lotto', 'Report di laboratorio e certificati cliente', 'Collegamento chiaro con ENUMERA e kit standard']),
+      section('Perché conta la piattaforma', 'AquaVerify Cloud può collegare entrambi i flussi a contesto campione, operatori, comunicazione cliente e attribuzione CRM.')
+    ], { eyebrow: 'Guida', primaryCta: 'Discuti il flusso giusto', secondaryCta: 'Vedi INDICA ed ENUMERA', seoTitle: 'Presenza/assenza vs enumerazione | Guida microbiologia acqua', faqs: [
+      { question: 'La presenza/assenza è meno utile dell’enumerazione?', answer: 'No. Risponde a una domanda operativa diversa. La presenza/assenza è utile per lo screening, mentre l’enumerazione serve quando contano concentrazione o trend.' },
+      { question: 'Un’organizzazione può usare entrambi i flussi?', answer: 'Sì. Molti team combinano screening qualitativo con conferma quantitativa o enumerazione periodica in base al campione e alla decisione.' }
+    ] }),
+    ca: locale('/ca/recursos/presencia-absencia-vs-enumeracio', 'Presència/absència vs enumeració en microbiologia de l’aigua', 'Entén quan encaixen els fluxos qualitatius i quantitatius en decisions de microbiologia de l’aigua.', [
+      section('Quan encaixa presència/absència', 'Els fluxos de presència/absència són útils quan l’equip necessita una resposta qualitativa clara per a cribratge, alliberament o escalat.', ['Decisions ràpides sí/no', 'Monitoratge operatiu on una resposta qualitativa és suficient', 'Fluxos de camp, qualitat o laboratori rutinari', 'Connexió clara amb la família INDICA']),
+      section('Quan encaixa enumeració', 'Els fluxos d’enumeració són més forts quan la decisió depèn de concentració, tendència, comparació amb límits o informe quantitatiu.', ['Registres de resultat quantitatiu', 'Seguiment de tendències per punt o lot', 'Informes de laboratori i certificats client', 'Connexió clara amb ENUMERA i kits estàndard']),
+      section('Per què importa la plataforma', 'AquaVerify Cloud pot connectar tots dos fluxos amb context de mostra, operadors, comunicació client i atribució CRM.')
+    ], { eyebrow: 'Guia', primaryCta: 'Parlar del flux adequat', secondaryCta: 'Veure INDICA i ENUMERA', seoTitle: 'Presència/absència vs enumeració | Guia microbiologia aigua', faqs: [
+      { question: 'Presència/absència és menys útil que enumeració?', answer: 'No. Respon a una pregunta operativa diferent. Presència/absència serveix per a cribratge, mentre que enumeració serveix quan importen la concentració o la tendència.' },
+      { question: 'Una organització pot usar tots dos fluxos?', answer: 'Sí. Molts equips combinen cribratge qualitatiu amb confirmació quantitativa o enumeració periòdica segons el tipus de mostra i la decisió.' }
+    ] })
+  }, { parentId: 'resources' }),
+  page('sample-traceability', 'resources', 'quote', {
+    en: locale('/resources/water-sample-digital-traceability', 'How to digitalize water sample traceability', 'A practical guide to linking samples, operators, products, reports and customer context in water quality workflows.', [
+      section('Start with sample context', 'Digital traceability begins before the analysis: customer, site, sampling point, date, operator and requested workflow should be captured consistently.', ['Customer and site record', 'Sampling point and sample metadata', 'Requested parameter and product family', 'Chain of responsibility']),
+      section('Connect execution and evidence', 'A useful system links the test workflow to products, operators, results, images, calculations and review steps.', ['Product or kit used', 'Operator and reviewer history', 'Result and report status', 'Evidence attached to the sample']),
+      section('Turn results into CRM intelligence', 'When the public site, CRM and reporting system share attribution, teams can see which pages, campaigns and products generated qualified demand.')
+    ], { eyebrow: 'Guide', primaryCta: 'Map your traceability workflow', secondaryCta: 'Explore platform', seoTitle: 'Water Sample Digital Traceability Guide | AquaVerify', faqs: [
+      { question: 'Is digital traceability only for large laboratories?', answer: 'No. Smaller laboratories and quality teams can also benefit when samples, products, reports and customer communication are connected from the start.' },
+      { question: 'Does traceability replace laboratory validation?', answer: 'No. Digital traceability organizes records and workflows; technical method validation remains a separate scientific and quality process.' }
+    ] }),
+    es: locale('/es/recursos/trazabilidad-digital-muestras-agua', 'Cómo digitalizar la trazabilidad de muestras de agua', 'Guía práctica para conectar muestras, operadores, productos, informes y contexto cliente en flujos de calidad del agua.', [
+      section('Empezar por el contexto de muestra', 'La trazabilidad digital empieza antes del análisis: cliente, instalación, punto de muestreo, fecha, operador y flujo solicitado deben capturarse de forma consistente.', ['Registro de cliente e instalación', 'Punto de muestreo y metadatos de muestra', 'Parámetro solicitado y familia de producto', 'Cadena de responsabilidad']),
+      section('Conectar ejecución y evidencia', 'Un sistema útil vincula el flujo de análisis con productos, operadores, resultados, imágenes, cálculos y pasos de revisión.', ['Producto o kit utilizado', 'Historial de operador y revisor', 'Estado de resultado e informe', 'Evidencia asociada a la muestra']),
+      section('Convertir resultados en inteligencia CRM', 'Cuando la web pública, el CRM y el reporting comparten atribución, el equipo ve qué páginas, campañas y productos generan demanda cualificada.')
+    ], { eyebrow: 'Guía', primaryCta: 'Mapear trazabilidad', secondaryCta: 'Explorar plataforma', seoTitle: 'Guía de trazabilidad digital de muestras de agua | AquaVerify', faqs: [
+      { question: '¿La trazabilidad digital es solo para laboratorios grandes?', answer: 'No. Laboratorios pequeños y equipos de calidad también ganan cuando muestras, productos, informes y comunicación cliente están conectados desde el inicio.' },
+      { question: '¿La trazabilidad sustituye la validación de laboratorio?', answer: 'No. La trazabilidad digital organiza registros y flujos; la validación técnica del método sigue siendo un proceso científico y de calidad separado.' }
+    ] }),
+    fr: locale('/fr/ressources/tracabilite-numerique-echantillons-eau', 'Comment numériser la traçabilité des échantillons d’eau', 'Guide pratique pour relier échantillons, opérateurs, produits, rapports et contexte client dans les flux qualité eau.', [
+      section('Commencer par le contexte échantillon', 'La traçabilité numérique commence avant l’analyse: client, site, point de prélèvement, date, opérateur et flux demandé doivent être capturés de manière cohérente.', ['Fiche client et site', 'Point de prélèvement et métadonnées échantillon', 'Paramètre demandé et famille produit', 'Chaîne de responsabilité']),
+      section('Connecter exécution et preuve', 'Un système utile relie le flux d’analyse aux produits, opérateurs, résultats, images, calculs et étapes de revue.', ['Produit ou kit utilisé', 'Historique opérateur et relecteur', 'Statut du résultat et du rapport', 'Preuve associée à l’échantillon']),
+      section('Transformer les résultats en intelligence CRM', 'Lorsque le site public, le CRM et le reporting partagent l’attribution, les équipes voient quelles pages, campagnes et produits génèrent une demande qualifiée.')
+    ], { eyebrow: 'Guide', primaryCta: 'Cartographier votre traçabilité', secondaryCta: 'Explorer la plateforme', seoTitle: 'Guide traçabilité numérique échantillons eau | AquaVerify', faqs: [
+      { question: 'La traçabilité numérique est-elle réservée aux grands laboratoires?', answer: 'Non. Les petits laboratoires et équipes qualité en bénéficient aussi lorsque échantillons, produits, rapports et communication client sont connectés dès le départ.' },
+      { question: 'La traçabilité remplace-t-elle la validation laboratoire?', answer: 'Non. La traçabilité numérique organise les enregistrements et flux; la validation technique de méthode reste un processus scientifique et qualité séparé.' }
+    ] }),
+    it: locale('/it/risorse/tracciabilita-digitale-campioni-acqua', 'Come digitalizzare la tracciabilità dei campioni d’acqua', 'Guida pratica per collegare campioni, operatori, prodotti, report e contesto cliente nei flussi qualità acqua.', [
+      section('Partire dal contesto campione', 'La tracciabilità digitale inizia prima dell’analisi: cliente, sito, punto di campionamento, data, operatore e flusso richiesto devono essere acquisiti in modo coerente.', ['Record cliente e sito', 'Punto di campionamento e metadati campione', 'Parametro richiesto e famiglia prodotto', 'Catena di responsabilità']),
+      section('Collegare esecuzione ed evidenza', 'Un sistema utile collega il flusso analitico a prodotti, operatori, risultati, immagini, calcoli e passaggi di revisione.', ['Prodotto o kit utilizzato', 'Storico operatore e revisore', 'Stato di risultato e report', 'Evidenza associata al campione']),
+      section('Trasformare i risultati in intelligence CRM', 'Quando sito pubblico, CRM e reporting condividono attribuzione, i team vedono quali pagine, campagne e prodotti generano domanda qualificata.')
+    ], { eyebrow: 'Guida', primaryCta: 'Mappa la tracciabilità', secondaryCta: 'Esplora piattaforma', seoTitle: 'Guida tracciabilità digitale campioni acqua | AquaVerify', faqs: [
+      { question: 'La tracciabilità digitale serve solo ai grandi laboratori?', answer: 'No. Anche piccoli laboratori e team qualità beneficiano quando campioni, prodotti, report e comunicazione cliente sono collegati dall’inizio.' },
+      { question: 'La tracciabilità sostituisce la validazione di laboratorio?', answer: 'No. La tracciabilità digitale organizza registri e flussi; la validazione tecnica del metodo resta un processo scientifico e qualità separato.' }
+    ] }),
+    ca: locale('/ca/recursos/tracabilitat-digital-mostres-aigua', 'Com digitalitzar la traçabilitat de mostres d’aigua', 'Guia pràctica per connectar mostres, operadors, productes, informes i context client en fluxos de qualitat de l’aigua.', [
+      section('Començar pel context de mostra', 'La traçabilitat digital comença abans de l’anàlisi: client, instal·lació, punt de mostreig, data, operador i flux sol·licitat s’han de capturar de manera consistent.', ['Registre de client i instal·lació', 'Punt de mostreig i metadades de mostra', 'Paràmetre sol·licitat i família de producte', 'Cadena de responsabilitat']),
+      section('Connectar execució i evidència', 'Un sistema útil vincula el flux d’anàlisi amb productes, operadors, resultats, imatges, càlculs i passos de revisió.', ['Producte o kit utilitzat', 'Historial d’operador i revisor', 'Estat de resultat i informe', 'Evidència associada a la mostra']),
+      section('Convertir resultats en intel·ligència CRM', 'Quan la web pública, el CRM i el reporting comparteixen atribució, l’equip veu quines pàgines, campanyes i productes generen demanda qualificada.')
+    ], { eyebrow: 'Guia', primaryCta: 'Mapar traçabilitat', secondaryCta: 'Explorar plataforma', seoTitle: 'Guia de traçabilitat digital de mostres d’aigua | AquaVerify', faqs: [
+      { question: 'La traçabilitat digital és només per a laboratoris grans?', answer: 'No. Laboratoris petits i equips de qualitat també guanyen quan mostres, productes, informes i comunicació client estan connectats des de l’inici.' },
+      { question: 'La traçabilitat substitueix la validació de laboratori?', answer: 'No. La traçabilitat digital organitza registres i fluxos; la validació tècnica del mètode continua sent un procés científic i de qualitat separat.' }
+    ] })
+  }, { parentId: 'resources' }),
+  page('distributor-checklist', 'resources', 'quote', {
+    en: locale('/resources/water-testing-kit-distributor-checklist', 'Checklist for distributors of water testing kits', 'A practical checklist for scientific distributors evaluating water microbiology kits, OEM options and connected software workflows.', [
+      section('Portfolio fit', 'A distributor should first validate whether the product range adds a clear water microbiology story to its existing catalogue.', ['Quantitative and qualitative product families', 'Standard ISO/EPA-oriented kits and essentials', 'Clear customer segments and use cases', 'Repeatable consumable demand']),
+      section('Technical and commercial support', 'The strongest distribution programs make it easier to sell, train and support customers without increasing operational friction.', ['Technical onboarding and product training', 'Sales material and multilingual content', 'Quote, demo and support handover', 'Optional OEM or private-label route']),
+      section('Digital differentiation', 'A connected platform can make the offer stronger by linking product use with traceability, reporting, CRM and customer communication.')
+    ], { eyebrow: 'Distributor guide', primaryCta: 'Discuss distribution', secondaryCta: 'View OEM program', seoTitle: 'Water Testing Kit Distributor Checklist | AquaVerify OEM', faqs: [
+      { question: 'Can distributors sell AquaVerify under their own brand?', answer: 'AquaVerify can evaluate OEM or private-label supply depending on product scope, territory, volumes and technical requirements.' },
+      { question: 'Why does software matter for distributors?', answer: 'Software can help distributors move beyond a product-only catalogue by offering customers traceability, reporting and connected service workflows.' }
+    ] }),
+    es: locale('/es/recursos/checklist-distribuidores-kits-analisis-agua', 'Checklist para distribuidores de kits de análisis de agua', 'Checklist práctica para distribuidores científicos que evalúan kits de microbiología del agua, opciones OEM y flujos digitales conectados.', [
+      section('Encaje de portfolio', 'El distribuidor debe validar primero si la gama añade una historia clara de microbiología del agua a su catálogo actual.', ['Familias de producto cuantitativas y cualitativas', 'Kits orientados a ISO/EPA y essentials', 'Segmentos cliente y casos de uso claros', 'Demanda recurrente de consumibles']),
+      section('Soporte técnico y comercial', 'Los programas de distribución más fuertes facilitan vender, formar y dar soporte a clientes sin aumentar fricción operativa.', ['Onboarding técnico y formación de producto', 'Material comercial y contenido multilingüe', 'Traspaso de cotización, demo y soporte', 'Ruta opcional OEM o marca blanca']),
+      section('Diferenciación digital', 'Una plataforma conectada puede hacer la oferta más fuerte al vincular uso de producto con trazabilidad, reporting, CRM y comunicación cliente.')
+    ], { eyebrow: 'Guía distribuidor', primaryCta: 'Hablar de distribución', secondaryCta: 'Ver programa OEM', seoTitle: 'Checklist distribuidores kits análisis de agua | AquaVerify OEM', faqs: [
+      { question: '¿Los distribuidores pueden vender AquaVerify bajo su propia marca?', answer: 'AquaVerify puede evaluar suministro OEM o marca blanca según alcance de producto, territorio, volúmenes y requisitos técnicos.' },
+      { question: '¿Por qué importa el software para distribuidores?', answer: 'El software ayuda a pasar de un catálogo solo de productos a una oferta con trazabilidad, reporting y flujos de servicio conectados.' }
+    ] }),
+    fr: locale('/fr/ressources/checklist-distributeurs-kits-analyse-eau', 'Checklist pour distributeurs de kits d’analyse de l’eau', 'Checklist pratique pour distributeurs scientifiques évaluant kits de microbiologie de l’eau, options OEM et flux logiciels connectés.', [
+      section('Adéquation portefeuille', 'Le distributeur doit d’abord valider si la gamme ajoute une histoire claire de microbiologie de l’eau à son catalogue existant.', ['Familles produit quantitatives et qualitatives', 'Kits orientés ISO/EPA et essentiels', 'Segments clients et cas d’usage clairs', 'Demande récurrente de consommables']),
+      section('Support technique et commercial', 'Les meilleurs programmes de distribution facilitent la vente, la formation et le support client sans augmenter la friction opérationnelle.', ['Onboarding technique et formation produit', 'Supports commerciaux et contenu multilingue', 'Passage de devis, démo et support', 'Route optionnelle OEM ou marque blanche']),
+      section('Différenciation numérique', 'Une plateforme connectée peut renforcer l’offre en reliant utilisation produit, traçabilité, reporting, CRM et communication client.')
+    ], { eyebrow: 'Guide distributeur', primaryCta: 'Discuter distribution', secondaryCta: 'Voir programme OEM', seoTitle: 'Checklist distributeurs kits analyse eau | AquaVerify OEM', faqs: [
+      { question: 'Les distributeurs peuvent-ils vendre AquaVerify sous leur propre marque?', answer: 'AquaVerify peut évaluer un approvisionnement OEM ou marque blanche selon périmètre produit, territoire, volumes et exigences techniques.' },
+      { question: 'Pourquoi le logiciel compte-t-il pour les distributeurs?', answer: 'Le logiciel peut aider à dépasser un catalogue uniquement produit en offrant traçabilité, reporting et flux de service connectés.' }
+    ] }),
+    it: locale('/it/risorse/checklist-distributori-kit-analisi-acqua', 'Checklist per distributori di kit analisi acqua', 'Checklist pratica per distributori scientifici che valutano kit di microbiologia dell’acqua, opzioni OEM e flussi software collegati.', [
+      section('Coerenza di portfolio', 'Il distributore dovrebbe prima validare se la gamma aggiunge una storia chiara di microbiologia dell’acqua al catalogo esistente.', ['Famiglie prodotto quantitative e qualitative', 'Kit orientati a ISO/EPA ed essentials', 'Segmenti cliente e casi d’uso chiari', 'Domanda ricorrente di consumabili']),
+      section('Supporto tecnico e commerciale', 'I programmi di distribuzione più forti facilitano vendita, formazione e supporto clienti senza aumentare la frizione operativa.', ['Onboarding tecnico e formazione prodotto', 'Materiale commerciale e contenuti multilingue', 'Passaggio di preventivo, demo e supporto', 'Percorso opzionale OEM o private label']),
+      section('Differenziazione digitale', 'Una piattaforma collegata può rendere l’offerta più forte collegando uso del prodotto, tracciabilità, reporting, CRM e comunicazione cliente.')
+    ], { eyebrow: 'Guida distributori', primaryCta: 'Discuti distribuzione', secondaryCta: 'Vedi programma OEM', seoTitle: 'Checklist distributori kit analisi acqua | AquaVerify OEM', faqs: [
+      { question: 'I distributori possono vendere AquaVerify con il proprio brand?', answer: 'AquaVerify può valutare fornitura OEM o private label in base a perimetro prodotto, territorio, volumi e requisiti tecnici.' },
+      { question: 'Perché il software conta per i distributori?', answer: 'Il software può aiutare a superare un catalogo solo prodotto offrendo tracciabilità, reporting e flussi di servizio collegati.' }
+    ] }),
+    ca: locale('/ca/recursos/checklist-distribuidors-kits-analisi-aigua', 'Checklist per a distribuïdors de kits d’anàlisi d’aigua', 'Checklist pràctica per a distribuïdors científics que avaluen kits de microbiologia de l’aigua, opcions OEM i fluxos digitals connectats.', [
+      section('Encaix de portfolio', 'El distribuïdor ha de validar primer si la gamma afegeix una història clara de microbiologia de l’aigua al seu catàleg actual.', ['Famílies de producte quantitatives i qualitatives', 'Kits orientats a ISO/EPA i essentials', 'Segments client i casos d’ús clars', 'Demanda recurrent de consumibles']),
+      section('Suport tècnic i comercial', 'Els programes de distribució més forts faciliten vendre, formar i donar suport a clients sense augmentar fricció operativa.', ['Onboarding tècnic i formació de producte', 'Material comercial i contingut multilingüe', 'Traspàs de pressupost, demo i suport', 'Ruta opcional OEM o marca blanca']),
+      section('Diferenciació digital', 'Una plataforma connectada pot fer l’oferta més forta vinculant ús de producte amb traçabilitat, reporting, CRM i comunicació client.')
+    ], { eyebrow: 'Guia distribuïdor', primaryCta: 'Parlar de distribució', secondaryCta: 'Veure programa OEM', seoTitle: 'Checklist distribuïdors kits anàlisi aigua | AquaVerify OEM', faqs: [
+      { question: 'Els distribuïdors poden vendre AquaVerify sota la seva pròpia marca?', answer: 'AquaVerify pot avaluar subministrament OEM o marca blanca segons abast de producte, territori, volums i requisits tècnics.' },
+      { question: 'Per què importa el software per a distribuïdors?', answer: 'El software pot ajudar a passar d’un catàleg només de productes a una oferta amb traçabilitat, reporting i fluxos de servei connectats.' }
+    ] })
+  }, { parentId: 'resources' }),
   page('about', 'company', 'contact', {
     en: locale('/about', 'About AquaVerify', 'AquaVerify develops water microbiology products and digital workflows to make water quality verifiable and traceable.', [
       section('Who we are', 'AquaVerify combines biotechnology, laboratory operations and cloud software in one B2B water quality ecosystem.'),
