@@ -37,11 +37,11 @@ export const translations = {
     },
     saas: {
       badge: "The AquaVerify Cloud",
-      title: "From Sample to Report. Instantly.",
-      tabs: { mobile: "Field App", lims: "LIMS Dashboard", compliance: "Technical Reports" },
-      mobile: { title: "Field Data Collection", desc: "Empower your technicians with the AquaVerify Mobile App. Scan sample QR codes and log GPS coordinates automatically." },
-      lims: { title: "Centralized LIMS Control", desc: "A powerful command center for your lab. Monitor testing volume and track trends over time." },
-      compliance: { title: "Automated Reporting", desc: "Generate reports aligned with ISO/EPA workflow documentation. Eliminate manual data entry errors." },
+      title: "CRM, LIMS and operations in one platform.",
+      tabs: { mobile: "CRM & Portal", lims: "LIMS Dashboard", compliance: "Operations" },
+      mobile: { title: "Customer and partner CRM", desc: "Connect leads, accounts, distributors, support history and customer portal context in one commercial record." },
+      lims: { title: "Centralized LIMS control", desc: "Coordinate sample reception, workload, validation and reports from a single laboratory workspace." },
+      compliance: { title: "Operational visibility", desc: "Track KPIs, margin, workload and reporting so management sees what is happening in real time." },
       learnMore: "Learn more about"
     },
     distributors: {
@@ -179,11 +179,11 @@ export const translations = {
     },
     saas: {
       badge: "La Nube AquaVerify",
-      title: "De la muestra al informe. Al instante.",
-      tabs: { mobile: "App de Campo", lims: "Panel LIMS", compliance: "Informes técnicos" },
-      mobile: { title: "Recolección de Datos en Campo", desc: "Empodere a sus técnicos con la App Móvil AquaVerify. Escanee códigos QR y registre coordenadas GPS automáticamente." },
-      lims: { title: "Control LIMS Centralizado", desc: "Un centro de comando para su laboratorio. Monitoree el volumen de pruebas y rastree tendencias en el tiempo." },
-      compliance: { title: "Informes Automatizados", desc: "Genere informes alineados con documentación de flujos ISO/EPA. Elimine errores de entrada manual de datos." },
+      title: "CRM, LIMS y operaciones en una sola plataforma.",
+      tabs: { mobile: "CRM y portal", lims: "Dashboard LIMS", compliance: "Operaciones" },
+      mobile: { title: "CRM de clientes y partners", desc: "Conecta leads, cuentas, distribuidores, historial de soporte y contexto de portal cliente en un registro comercial." },
+      lims: { title: "Control LIMS centralizado", desc: "Coordina recepción de muestras, carga de trabajo, validación e informes desde un único espacio de laboratorio." },
+      compliance: { title: "Visibilidad operativa", desc: "Sigue KPIs, margen, carga de trabajo y reporting para que dirección vea lo que ocurre en tiempo real." },
       learnMore: "Más información sobre"
     },
     distributors: {
@@ -321,11 +321,11 @@ export const translations = {
     },
     saas: {
       badge: "Le Cloud AquaVerify",
-      title: "De l'échantillon au rapport. Instantanément.",
-      tabs: { mobile: "App Terrain", lims: "Tableau de Bord LIMS", compliance: "Rapports techniques" },
-      mobile: { title: "Collecte de Données Terrain", desc: "Donnez les moyens à vos techniciens avec l'App Mobile AquaVerify. Scannez les codes QR et enregistrez les coordonnées GPS." },
-      lims: { title: "Contrôle LIMS Centralisé", desc: "Un centre de commande pour votre labo. Surveillez le volume de tests et suivez les tendances dans le temps." },
-      compliance: { title: "Rapports Automatisés", desc: "Générez des rapports alignés avec la documentation des flux ISO/EPA. Éliminez les erreurs de saisie manuelle." },
+      title: "CRM, LIMS et opérations dans une seule plateforme.",
+      tabs: { mobile: "CRM et portail", lims: "Dashboard LIMS", compliance: "Opérations" },
+      mobile: { title: "CRM clients et partenaires", desc: "Connectez leads, comptes, distributeurs, historique support et contexte du portail client dans un registre commercial." },
+      lims: { title: "Contrôle LIMS centralisé", desc: "Coordonnez réception d’échantillons, charge de travail, validation et rapports depuis un même espace laboratoire." },
+      compliance: { title: "Visibilité opérationnelle", desc: "Suivez KPIs, marge, charge de travail et reporting pour donner une vision temps réel à la direction." },
       learnMore: "En savoir plus sur"
     },
     distributors: {
@@ -463,11 +463,11 @@ export const translations = {
     },
     saas: {
       badge: "Il Cloud AquaVerify",
-      title: "Dal campione al report. Istantaneamente.",
-      tabs: { mobile: "App Campo", lims: "Dashboard LIMS", compliance: "Report tecnici" },
-      mobile: { title: "Raccolta Dati su Campo", desc: "Potenzia i tuoi tecnici con l'App Mobile AquaVerify. Scansiona codici QR e registra coordinate GPS automaticamente." },
-      lims: { title: "Controllo LIMS Centralizzato", desc: "Un centro di comando per il tuo laboratorio. Monitora il volume dei test e traccia le tendenze nel tempo." },
-      compliance: { title: "Report Automatizzati", desc: "Genera report allineati alla documentazione dei flussi ISO/EPA. Elimina errori di inserimento manuale." },
+      title: "CRM, LIMS e operations in un’unica piattaforma.",
+      tabs: { mobile: "CRM e portale", lims: "Dashboard LIMS", compliance: "Operations" },
+      mobile: { title: "CRM clienti e partner", desc: "Collega lead, account, distributori, storico supporto e contesto portale clienti in un record commerciale." },
+      lims: { title: "Controllo LIMS centralizzato", desc: "Coordina ricezione campioni, carico di lavoro, validazione e report da un unico spazio laboratorio." },
+      compliance: { title: "Visibilità operativa", desc: "Monitora KPI, margine, carico di lavoro e reporting per dare al management una vista in tempo reale." },
       learnMore: "Scopri di più su"
     },
     distributors: {
@@ -606,6 +606,15 @@ const caTranslation: typeof translations.en = {
       cloud: { title: 'Traçabilitat digital', desc: 'Registre digital de mostres, operadors, resultats, informes i activitat comercial.' },
       oem: { title: 'B2B, distribució i OEM', desc: 'Productes AquaVerify o marca blanca per a distribuïdors que volen ampliar catàleg amb software connectat.' }
     }
+  },
+  saas: {
+    badge: 'AquaVerify Cloud',
+    title: 'CRM, LIMS i operacions en una sola plataforma.',
+    tabs: { mobile: 'CRM i portal', lims: 'Dashboard LIMS', compliance: 'Operacions' },
+    mobile: { title: 'CRM de clients i partners', desc: 'Connecta leads, comptes, distribuïdors, historial de suport i context de portal client en un registre comercial.' },
+    lims: { title: 'Control LIMS centralitzat', desc: 'Coordina recepció de mostres, càrrega de treball, validació i informes des d’un únic espai de laboratori.' },
+    compliance: { title: 'Visibilitat operativa', desc: 'Segueix KPIs, marge, càrrega de treball i reporting perquè direcció vegi què passa en temps real.' },
+    learnMore: 'Més informació sobre'
   },
   footer: {
     tagline: 'Biotech verificable. Dades traçables. El nou estàndard en seguretat de l’aigua.',

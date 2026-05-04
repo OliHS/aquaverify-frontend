@@ -341,6 +341,24 @@ async function run() {
     );
   });
 
+  await check('home platform teaser uses SaaS route and local screenshots', async () => {
+    const saasSectionMatch = mainAssetText.match(/assets\/SaaSPlatform-[^"',)]+\.js/);
+    assert(saasSectionMatch, 'SaaS platform home section asset reference missing from main bundle');
+    const { text: saasSectionText } = await getText(`${CORPORATE_SITE_URL}/${saasSectionMatch[0]}`);
+    assert(mainAssetText.includes('/saas/biotech-lims-platform'), 'SaaS landing route is missing from the main bundle');
+    assert(saasSectionText.includes('saas-biotech'), 'Home platform teaser does not resolve the SaaS landing route id');
+    assert(saasSectionText.includes('saasLims'), 'Home platform teaser does not reference the local LIMS screenshot key');
+    assert(saasSectionText.includes('saasCrm'), 'Home platform teaser does not reference the local CRM screenshot key');
+    assert(
+      mainAssetText.includes('/images/platform/saas/aquaverify-lims-dashboard.jpg'),
+      'Local LIMS screenshot path is missing from the corporate bundle'
+    );
+    assert(
+      mainAssetText.includes('/images/platform/saas/aquaverify-crm-customer-360.jpg'),
+      'Local CRM screenshot path is missing from the corporate bundle'
+    );
+  });
+
   await check('corporate CMS home slug fallback is present', async () => {
     assert(mainAssetText.includes('home-es'), 'Localized CMS home slug candidate missing from corporate bundle');
     assert(mainAssetText.includes('home'), 'Base CMS home fallback missing from corporate bundle');

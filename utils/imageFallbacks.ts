@@ -7,4 +7,7 @@ export const IMAGE_FALLBACKS = {
   sector: `${PUBLIC_IMAGES_BASE}/3esyi3jz9zb_1772117230391.png`,
   saasMobile: `${PUBLIC_IMAGES_BASE}/lqgjiq6mbtm_1772273434579.png`,
   saasCompliance: `${PUBLIC_IMAGES_BASE}/pyuchu8n55_1772353597384.png`,
+  saasCrm: '/images/platform/saas/aquaverify-crm-customer-360.jpg',
+  saasLims: '/images/platform/saas/aquaverify-lims-dashboard.jpg',
+  saasDashboard: '/images/platform/saas/aquaverify-cloud-dashboard.jpg',
 } as const;

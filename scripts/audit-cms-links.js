@@ -28,6 +28,36 @@ const editableLinkFields = new Set([
 const legacyManagedLinks = [
   {
     section: 'nav',
+    field: 'link_solutions',
+    values: ['#solutions']
+  },
+  {
+    section: 'nav',
+    field: 'link_products',
+    values: ['#products']
+  },
+  {
+    section: 'nav',
+    field: 'link_platform',
+    values: ['#platform', '#saas']
+  },
+  {
+    section: 'nav',
+    field: 'link_resources',
+    values: ['#resources']
+  },
+  {
+    section: 'nav',
+    field: 'link_distributors',
+    values: ['#distributors']
+  },
+  {
+    section: 'nav',
+    field: 'link_oem',
+    values: ['#oem']
+  },
+  {
+    section: 'nav',
     field: 'url_demo',
     values: ['https://app.aquaverify.com/signup']
   },
@@ -54,6 +84,11 @@ const legacyManagedLinks = [
   {
     section: 'saas',
     fieldPrefix: 'learnMore_link_',
+    values: ['https://app.aquaverify.com/signup']
+  },
+  {
+    section: 'saas',
+    fieldPrefix: 'url_demo_',
     values: ['https://app.aquaverify.com/signup']
   },
   {

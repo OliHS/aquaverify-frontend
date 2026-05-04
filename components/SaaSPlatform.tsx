@@ -6,18 +6,59 @@ import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
+import type { Language } from '../utils/translations';
+import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformSignupUrl } from '../utils/platformLinks';
 
 type Tab = 'mobile' | 'lims' | 'compliance';
 
+const CTA_COPY: Record<Language, { learnMore: string; demo: string }> = {
+  en: { learnMore: 'View SaaS platform', demo: 'Request demo' },
+  es: { learnMore: 'Ver plataforma SaaS', demo: 'Solicitar demo' },
+  fr: { learnMore: 'Voir la plateforme SaaS', demo: 'Demander une démo' },
+  it: { learnMore: 'Vedi piattaforma SaaS', demo: 'Richiedi demo' },
+  ca: { learnMore: 'Veure plataforma SaaS', demo: 'Sol·licitar demo' }
+};
+
+const FEATURE_COPY: Record<Language, Record<Tab, string[]>> = {
+  en: {
+    mobile: ['Customer and partner CRM', 'Customer portal context', 'Sales and support history'],
+    lims: ['Sample traceability', 'Workload control', 'Validation and reports'],
+    compliance: ['Executive KPIs', 'Operational reporting', 'Live workload visibility']
+  },
+  es: {
+    mobile: ['CRM de clientes y partners', 'Contexto del portal cliente', 'Historial comercial y soporte'],
+    lims: ['Trazabilidad de muestras', 'Control de carga de trabajo', 'Validación e informes'],
+    compliance: ['KPIs ejecutivos', 'Reporting operativo', 'Visibilidad de carga viva']
+  },
+  fr: {
+    mobile: ['CRM clients et partenaires', 'Contexte du portail client', 'Historique ventes et support'],
+    lims: ['Traçabilité des échantillons', 'Contrôle de la charge', 'Validation et rapports'],
+    compliance: ['KPIs exécutifs', 'Reporting opérationnel', 'Visibilité de charge active']
+  },
+  it: {
+    mobile: ['CRM clienti e partner', 'Contesto portale clienti', 'Storico vendite e supporto'],
+    lims: ['Tracciabilità campioni', 'Controllo carico di lavoro', 'Validazione e report'],
+    compliance: ['KPI executive', 'Reporting operativo', 'Visibilità carico attivo']
+  },
+  ca: {
+    mobile: ['CRM de clients i partners', 'Context del portal client', 'Historial comercial i suport'],
+    lims: ['Traçabilitat de mostres', 'Control de càrrega de treball', 'Validació i informes'],
+    compliance: ['KPIs executius', 'Reporting operatiu', 'Visibilitat de càrrega activa']
+  }
+};
+
 export const SaaSPlatform: React.FC = () => {
   const [activeTab, setActiveTab] = useState<Tab>('lims');
   const { t, lang } = useLanguage();
-  const platformLearnMoreUrl = getPlatformSignupUrl({ intent: 'platform', module: activeTab }, lang);
+  const copy = CTA_COPY[lang] || CTA_COPY.en;
+  const featureCopy = FEATURE_COPY[lang] || FEATURE_COPY.en;
+  const saasPageUrl = getMarketingPagePath('saas-biotech', lang);
+  const platformDemoUrl = getPlatformSignupUrl({ intent: 'saas', page: 'home-platform-teaser', module: activeTab }, lang);
   const imageFallbacks: Record<Tab, string> = {
-    mobile: IMAGE_FALLBACKS.saasMobile,
-    lims: IMAGE_FALLBACKS.heroLimsDashboard,
-    compliance: IMAGE_FALLBACKS.saasCompliance,
+    mobile: IMAGE_FALLBACKS.saasCrm,
+    lims: IMAGE_FALLBACKS.saasLims,
+    compliance: IMAGE_FALLBACKS.saasDashboard,
   };
 
   const tabs = [
@@ -30,20 +71,20 @@ export const SaaSPlatform: React.FC = () => {
     mobile: {
       title: t.saas.mobile.title,
       desc: t.saas.mobile.desc,
-      imgAlt: "Smartphone displaying AquaVerify mobile app interface scanning a test kit QR code, held by a technician in a sterile glove.",
-      features: ["Offline capability", "GPS Geo-tagging", "QR Code Scanning"]
+      imgAlt: "AquaVerify CRM and customer portfolio screen connected to laboratory and sales activity.",
+      features: featureCopy.mobile
     },
     lims: {
       title: t.saas.lims.title,
       desc: t.saas.lims.desc,
-      imgAlt: "Wide screenshot of AquaVerify Web Dashboard showing analytical graphs, heatmaps of water quality, and user management tables.",
-      features: ["Real-time Analytics", "Multi-site Management", "API Integration"]
+      imgAlt: "AquaVerify LIMS workstation dashboard for sample workflow, validation and reports.",
+      features: featureCopy.lims
     },
     compliance: {
       title: t.saas.compliance.title,
       desc: t.saas.compliance.desc,
-      imgAlt: "Preview of a generated PDF report with charts and traceability stamps, floating over a blurred interface background.",
-      features: ["1-Click Export", "Audit Logs", "Custom Templates"]
+      imgAlt: "AquaVerify Cloud executive dashboard with operational KPIs, margin and workload indicators.",
+      features: featureCopy.compliance
     }
   };
 
@@ -128,11 +169,18 @@ export const SaaSPlatform: React.FC = () => {
                       </li>
                     ))}
                   </ul>
-                  <EditableLinkWrapper sectionId="saas" field={`learnMore_link_${activeTab}`} fallback={platformLearnMoreUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
-                    <a href={platformLearnMoreUrl} className="text-secondary font-bold hover:text-primary transition-colors flex items-center mt-4 w-fit">
-                      <EditableText sectionId="saas" field={`learnMore_text_${activeTab}`} fallback={`${t.saas.learnMore} ${content[activeTab].title.split(' ')[0]}`} /> <span className="ml-1">→</span>
-                    </a>
-                  </EditableLinkWrapper>
+                  <div className="flex flex-wrap items-center gap-3 pt-1">
+                    <EditableLinkWrapper sectionId="saas" field={`learnMore_link_${activeTab}`} fallback={saasPageUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
+                      <a href={saasPageUrl} className="inline-flex items-center rounded border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-primary transition-colors hover:border-secondary hover:text-secondary">
+                        <EditableText sectionId="saas" field={`learnMore_text_${activeTab}`} fallback={copy.learnMore} /> <span className="ml-1">→</span>
+                      </a>
+                    </EditableLinkWrapper>
+                    <EditableLinkWrapper sectionId="saas" field={`url_demo_${activeTab}`} fallback={platformDemoUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
+                      <a href={platformDemoUrl} className="inline-flex items-center rounded bg-primary px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-primary/90">
+                        <EditableText sectionId="saas" field={`demo_text_${activeTab}`} fallback={copy.demo} />
+                      </a>
+                    </EditableLinkWrapper>
+                  </div>
                 </div>
                 <div className="md:w-1/2 w-full">
                   <div className="bg-gray-100 rounded-lg overflow-hidden border border-gray-200 aspect-video shadow-inner flex items-center justify-center relative">
