@@ -1,11 +1,16 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ExternalLink, FileEdit, FileText, Filter, Globe, Search } from 'lucide-react';
+import { CheckCircle2, ExternalLink, FileEdit, FileText, Filter, Globe, Link2, Search } from 'lucide-react';
+import { supabase } from '../../utils/supabase';
 import {
   LANGUAGE_NAMES,
   MARKETING_LANGUAGES,
   MARKETING_PAGES
 } from '../../utils/marketingPages.js';
+import {
+  getMarketingOverrideSlug,
+  MARKETING_OVERRIDE_SECTION_ID
+} from '../../utils/marketingPageOverrides.js';
 
 type MarketingLanguage = 'en' | 'es' | 'fr' | 'it' | 'ca';
 
@@ -44,6 +49,7 @@ type MarketingRow = {
   productName: string;
   sectionsCount: number;
   faqsCount: number;
+  cmsSlug: string;
 };
 
 const rows = (MARKETING_PAGES as MarketingPage[]).flatMap((page) =>
@@ -63,7 +69,8 @@ const rows = (MARKETING_PAGES as MarketingPage[]).flatMap((page) =>
       schemaType: page.schemaType || 'WebPage',
       productName: page.productName || '',
       sectionsCount: content.sections?.length || 0,
-      faqsCount: content.faqs?.length || 0
+      faqsCount: content.faqs?.length || 0,
+      cmsSlug: getMarketingOverrideSlug(page.id, language)
     };
   })
 );
@@ -73,10 +80,134 @@ const languages = MARKETING_LANGUAGES as MarketingLanguage[];
 const totalProducts = new Set(rows.filter((row) => row.productName).map((row) => row.pageId)).size;
 const totalFaqs = rows.reduce((total, row) => total + row.faqsCount, 0);
 
+function getDefaultContent(pageId: string, language: MarketingLanguage) {
+  const page = (MARKETING_PAGES as MarketingPage[]).find((item) => item.id === pageId);
+  return page?.translations[language] || null;
+}
+
+function chunk<T>(items: T[], size: number) {
+  const result: T[][] = [];
+  for (let index = 0; index < items.length; index += size) {
+    result.push(items.slice(index, index + size));
+  }
+  return result;
+}
+
 export const MarketingPagesList: React.FC = () => {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('all');
   const [language, setLanguage] = useState<MarketingLanguage | 'all'>('all');
+  const [linkedSlugs, setLinkedSlugs] = useState<Set<string>>(new Set());
+  const [loadingLinks, setLoadingLinks] = useState(true);
+  const [syncingLinks, setSyncingLinks] = useState(false);
+  const [syncMessage, setSyncMessage] = useState('');
+  const [syncError, setSyncError] = useState('');
+
+  const fetchLinkedSlugs = async () => {
+    setLoadingLinks(true);
+    const { data, error } = await supabase
+      .from('pages')
+      .select('slug')
+      .like('slug', 'marketing-%');
+
+    if (!error && data) {
+      setLinkedSlugs(new Set(data.map((item) => item.slug)));
+    }
+    setLoadingLinks(false);
+  };
+
+  useEffect(() => {
+    fetchLinkedSlugs();
+  }, []);
+
+  const syncMarketingCmsLinks = async () => {
+    setSyncingLinks(true);
+    setSyncError('');
+    setSyncMessage('');
+
+    try {
+      const expectedRows = rows.map((row) => ({
+        row,
+        content: getDefaultContent(row.pageId, row.language)
+      })).filter((item) => item.content);
+      const expectedSlugs = expectedRows.map((item) => item.row.cmsSlug);
+
+      let existingPages: Array<{ id: string; slug: string }> = [];
+      for (const slugChunk of chunk(expectedSlugs, 80)) {
+        const { data, error } = await supabase
+          .from('pages')
+          .select('id,slug')
+          .in('slug', slugChunk);
+        if (error) throw error;
+        existingPages = [...existingPages, ...(data || [])];
+      }
+
+      const existingSlugSet = new Set(existingPages.map((item) => item.slug));
+      const missingPages = expectedRows
+        .filter((item) => !existingSlugSet.has(item.row.cmsSlug))
+        .map(({ row, content }) => ({
+          slug: row.cmsSlug,
+          title: content!.title,
+          seo_title: content!.seoTitle || content!.title,
+          seo_description: content!.seoDescription || content!.description
+        }));
+
+      let insertedPages: Array<{ id: string; slug: string }> = [];
+      for (const pageChunk of chunk(missingPages, 100)) {
+        if (pageChunk.length === 0) continue;
+        const { data, error } = await supabase
+          .from('pages')
+          .insert(pageChunk)
+          .select('id,slug');
+        if (error) throw error;
+        insertedPages = [...insertedPages, ...(data || [])];
+      }
+
+      const allPages = [...existingPages, ...insertedPages];
+      const pageIdBySlug = new Map(allPages.map((item) => [item.slug, item.id]));
+      const pageIds = allPages.map((item) => item.id);
+      let existingBlocks: Array<{ page_id: string }> = [];
+
+      for (const pageIdChunk of chunk(pageIds, 100)) {
+        if (pageIdChunk.length === 0) continue;
+        const { data, error } = await supabase
+          .from('content_blocks')
+          .select('page_id')
+          .eq('section_id', MARKETING_OVERRIDE_SECTION_ID)
+          .in('page_id', pageIdChunk);
+        if (error) throw error;
+        existingBlocks = [...existingBlocks, ...(data || [])];
+      }
+
+      const existingBlockPageIds = new Set(existingBlocks.map((item) => item.page_id));
+      const missingBlocks = expectedRows
+        .map(({ row, content }) => ({
+          pageId: pageIdBySlug.get(row.cmsSlug),
+          content
+        }))
+        .filter((item) => item.pageId && !existingBlockPageIds.has(item.pageId))
+        .map((item) => ({
+          page_id: item.pageId,
+          section_id: MARKETING_OVERRIDE_SECTION_ID,
+          content: item.content
+        }));
+
+      for (const blockChunk of chunk(missingBlocks, 100)) {
+        if (blockChunk.length === 0) continue;
+        const { error } = await supabase.from('content_blocks').insert(blockChunk);
+        if (error) throw error;
+      }
+
+      setLinkedSlugs(new Set(expectedSlugs));
+      setSyncMessage(`CMS linked ${insertedPages.length} pages and ${missingBlocks.length} content records. Existing edits were preserved.`);
+    } catch (err: any) {
+      setSyncError(err.message || 'Unable to link marketing URLs in CMS.');
+    } finally {
+      setSyncingLinks(false);
+    }
+  };
+
+  const linkedCount = rows.filter((row) => linkedSlugs.has(row.cmsSlug)).length;
 
   const filteredRows = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -103,18 +234,40 @@ export const MarketingPagesList: React.FC = () => {
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-slate-900">Marketing URLs</h1>
-          <p className="mt-2 text-slate-500">Code-managed multilingual SEO routes published on the corporate site.</p>
+          <p className="mt-2 text-slate-500">Multilingual SEO routes linked to CMS records so each public URL can be edited.</p>
         </div>
-        <a
-          href="/sitemap.xml"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
-        >
-          <ExternalLink size={16} className="mr-2" />
-          Open sitemap
-        </a>
+        <div className="flex flex-wrap gap-3">
+          <button
+            type="button"
+            onClick={syncMarketingCmsLinks}
+            disabled={syncingLinks}
+            className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 disabled:opacity-60"
+          >
+            <Link2 size={16} className="mr-2" />
+            {syncingLinks ? 'Linking...' : 'Link all URLs in CMS'}
+          </button>
+          <a
+            href="/sitemap.xml"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+          >
+            <ExternalLink size={16} className="mr-2" />
+            Open sitemap
+          </a>
+        </div>
       </div>
+
+      {syncMessage && (
+        <div className="flex items-center rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-700 shadow-sm">
+          <CheckCircle2 size={18} className="mr-2" />
+          {syncMessage}
+        </div>
+      )}
+
+      {syncError && (
+        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700 shadow-sm">{syncError}</div>
+      )}
 
       <div className="grid gap-4 md:grid-cols-4">
         <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -140,10 +293,11 @@ export const MarketingPagesList: React.FC = () => {
         </div>
         <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
-            <p className="text-sm font-medium text-slate-500">FAQ items</p>
-            <FileText className="h-4 w-4 text-slate-400" />
+            <p className="text-sm font-medium text-slate-500">CMS linked</p>
+            <Link2 className="h-4 w-4 text-slate-400" />
           </div>
-          <p className="mt-2 text-2xl font-bold text-slate-900">{totalFaqs}</p>
+          <p className="mt-2 text-2xl font-bold text-slate-900">{loadingLinks ? '...' : `${linkedCount}/${rows.length}`}</p>
+          <p className="mt-1 text-xs text-slate-500">{totalFaqs} FAQ items</p>
         </div>
       </div>
 
@@ -192,6 +346,7 @@ export const MarketingPagesList: React.FC = () => {
                 <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Page</th>
                 <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Language</th>
                 <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Category</th>
+                <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">CMS</th>
                 <th className="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">SEO</th>
                 <th className="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">Public</th>
               </tr>
@@ -217,6 +372,19 @@ export const MarketingPagesList: React.FC = () => {
                   <td className="px-5 py-4 text-sm text-slate-700">
                     <p className="font-medium">{row.category}</p>
                     <p className="mt-1 text-xs text-slate-500">{row.schemaType}</p>
+                  </td>
+                  <td className="px-5 py-4 text-sm">
+                    {linkedSlugs.has(row.cmsSlug) ? (
+                      <span className="inline-flex items-center rounded-full bg-green-50 px-2.5 py-1 text-xs font-semibold text-green-700">
+                        <CheckCircle2 size={13} className="mr-1" />
+                        Linked
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-amber-700">
+                        Default
+                      </span>
+                    )}
+                    <p className="mt-2 text-xs text-slate-500">{row.cmsSlug}</p>
                   </td>
                   <td className="px-5 py-4 text-sm text-slate-700">
                     <p className="max-w-xs truncate font-medium">{row.seoTitle}</p>

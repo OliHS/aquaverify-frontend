@@ -16,6 +16,7 @@ Actualizado: 2026-05-04.
 - Reporting CRM de conversion web -> lead -> MQL/SQL/cliente por campana, intent y producto: implementado en plataforma.
 - Reporting comercial de leads web con presupuestos, pipeline, pedidos, valor de pedidos y facturado: implementado en plataforma.
 - Registro de claims/naming, auditor automatico de claims publicos y guardrails CMS: implementado en web corporativa.
+- Todas las URLs marketing multidioma quedan accesibles desde `Marketing URLs` en el CMS, con accion para enlazarlas como registros editables sin pisar contenido existente.
 - Pendiente principal: aprobacion final tecnico/legal de la tabla maestra, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
 
 ## Decision Estrategica
@@ -223,6 +224,7 @@ Avance implementado:
 - Creado `npm run cms:claims:audit` para revisar contenido vivo del CMS antes de release/deploy.
 - Editores CMS de paginas marketing, visual builder y productos bloquean guardado con wording sensible.
 - La proyeccion publica del catalogo sanea terminos legacy que aun requieren correccion desde admin autenticado.
+- El panel `Marketing URLs` permite enlazar todas las rutas SEO en Supabase como paginas CMS editables, conservando overrides ya existentes.
 - Reescrito copy publico sensible hacia lenguaje de producto, trazabilidad, workflow e informes tecnicos.
 - Se mantienen avisos no bloqueantes para revisar la ambiguedad `ENUMERAColi100` / `ENUMERAEntero100` detectada en el DOCX.
 

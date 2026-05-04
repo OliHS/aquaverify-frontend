@@ -28,6 +28,24 @@ export const PagesList: React.FC = () => {
                 </div>
             </div>
 
+            <div className="rounded-xl border border-blue-100 bg-blue-50 p-5 shadow-sm">
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <h2 className="font-semibold text-blue-950">Marketing URLs</h2>
+                        <p className="mt-1 text-sm text-blue-800">
+                            Product, industry, resource and multilingual SEO pages are editable from the Marketing URLs CMS.
+                        </p>
+                    </div>
+                    <Link
+                        to="/admin/marketing-pages"
+                        className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700"
+                    >
+                        <Globe size={16} className="mr-2" />
+                        Manage Marketing URLs
+                    </Link>
+                </div>
+            </div>
+
             {loading ? (
                 <div className="animate-pulse space-y-4">
                     {[1, 2, 3].map((n) => (
