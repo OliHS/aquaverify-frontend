@@ -304,6 +304,14 @@ async function run() {
     assert(mainAssetText.includes('/login'), 'Login path missing from corporate bundle');
   });
 
+  await check('marketing product analytics markers are present', async () => {
+    const marketingRouteMatch = mainAssetText.match(/assets\/MarketingRoutePage-[^"',)]+\.js/);
+    assert(marketingRouteMatch, 'Marketing route asset reference missing from main bundle');
+    const { text: marketingRouteText } = await getText(`${CORPORATE_SITE_URL}/${marketingRouteMatch[0]}`);
+    assert(marketingRouteText.includes('product_view'), 'Product view analytics marker missing from marketing route bundle');
+    assert(marketingRouteText.includes('datasheet_click'), 'Datasheet analytics marker missing from marketing route bundle');
+  });
+
   await check('corporate bundle does not use random image fallbacks', async () => {
     assert(!mainAssetText.includes('picsum.photos'), 'Random image fallback host is still present in corporate bundle');
     assert(

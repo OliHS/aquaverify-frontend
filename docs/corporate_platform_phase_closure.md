@@ -22,6 +22,7 @@ This document records the closure state for the Aquaverify corporate site and it
 - Signup attribution: corporate signup intent and UTM data are passed to the platform, stored in CRM, and surfaced in the client detail view.
 - AquaChat notification: new web signups create a Sales channel notification with the CRM link.
 - CRM visibility: web-origin filters and attribution cards are available in the platform CRM.
+- Product CRO visibility: product page views and datasheet clicks from marketing URLs are tracked with consent and surfaced in the platform CRM dashboard.
 - CMS hardening: editable links are validated, placeholder `#` links are blocked from being saved as real destinations, and footer/social/contact fields are structured.
 - SEO: canonical URLs, language routes, sitemap, robots, OpenGraph/Twitter metadata and JSON-LD are in place.
 - Security headers: CSP, frame, content-type, referrer and permissions headers are configured in Vercel.

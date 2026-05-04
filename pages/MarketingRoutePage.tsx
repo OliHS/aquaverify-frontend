@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Download } from 'lucide-react';
 import { Header } from '../components/Header';
@@ -7,6 +7,7 @@ import { CookieConsent } from '../components/CookieConsent';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
+import { trackCorporateEvent } from '../utils/corporateAnalytics';
 import { applyMarketingSeo } from '../utils/seo';
 import { fetchMarketingPageOverride } from '../utils/publicMarketingOverrides';
 import { mergeMarketingContent } from '../utils/marketingPageOverrides.js';
@@ -164,6 +165,7 @@ export const MarketingRoutePage: React.FC = () => {
   const match = findMarketingPageByPath(location.pathname);
   const { lang, setLang } = useLanguage();
   const [contentOverride, setContentOverride] = useState<Record<string, unknown> | null>(null);
+  const trackedProductViewRef = useRef('');
   const matchPageId = match?.page?.id;
   const matchLang = match?.lang;
 
@@ -210,6 +212,28 @@ export const MarketingRoutePage: React.FC = () => {
     });
   }, [match, mergedContent]);
 
+  useEffect(() => {
+    if (!match || !mergedContent || match.page.category !== 'products') return;
+
+    const pageLang = match.lang as Language;
+    const pageMeta = match.page as MarketingPageMeta;
+    const trackingKey = `${match.page.id}:${pageLang}:${mergedContent.path}`;
+    if (trackedProductViewRef.current === trackingKey) return;
+
+    const tracked = trackCorporateEvent('product_view', {
+      lang: pageLang,
+      page: match.page.id,
+      category: match.page.category,
+      product: pageMeta.productName || mergedContent.title,
+      label: mergedContent.title,
+      path: mergedContent.path
+    });
+
+    if (tracked) {
+      trackedProductViewRef.current = trackingKey;
+    }
+  }, [match, mergedContent]);
+
   if (!match || !mergedContent) {
     return <Navigate to="/" replace />;
   }
@@ -232,6 +256,17 @@ export const MarketingRoutePage: React.FC = () => {
   const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
   const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
+  const handleDatasheetClick = () => {
+    trackCorporateEvent('datasheet_click', {
+      lang: pageLang,
+      page: page.id,
+      category: page.category,
+      product: pageMeta.productName || content.title,
+      label: contentMeta.datasheetLabel || 'Datasheet',
+      target_url: datasheetUrl,
+      path: content.path
+    });
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
@@ -268,6 +303,7 @@ export const MarketingRoutePage: React.FC = () => {
                     href={datasheetUrl}
                     target="_blank"
                     rel="noreferrer"
+                    onClick={handleDatasheetClick}
                     className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10"
                   >
                     <Download className="mr-2 h-4 w-4" />

@@ -12,6 +12,7 @@ Actualizado: 2026-05-04.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.
+- Analitica de producto en URLs marketing: `product_view` y `datasheet_click` implementados y visibles en el CRM de la plataforma.
 - Dashboard CRM inicial para eventos de la web corporativa: implementado en plataforma, con KPIs, paginas, CTAs, intents, campanas, idiomas y eventos recientes.
 - Reporting CRM de conversion web -> lead -> MQL/SQL/cliente por campana, intent y producto: implementado en plataforma.
 - Reporting comercial de leads web con presupuestos, pipeline, pedidos, valor de pedidos y facturado: implementado en plataforma.
@@ -454,8 +455,8 @@ Tareas:
 - Eventos recomendados:
   - CTA click
   - language switch
-  - product view
-  - datasheet click
+  - product view. Implementado.
+  - datasheet click. Implementado.
   - quote start
   - signup complete
   - distributor country search
