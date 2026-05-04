@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AlertTriangle, CheckCircle2, ExternalLink, FileEdit, FileText, Filter, Globe, Link2, RotateCw, Search } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, ExternalLink, FileEdit, FileText, Filter, Globe, Image, Link2, RotateCw, Search } from 'lucide-react';
 import { supabase } from '../../utils/supabase';
 import {
   LANGUAGE_NAMES,
@@ -18,6 +18,9 @@ type MarketingContent = {
   path: string;
   title: string;
   description: string;
+  heroImage?: string;
+  ogImage?: string;
+  datasheetUrl?: string;
   seoTitle?: string;
   seoDescription?: string;
   sections?: Array<unknown>;
@@ -53,6 +56,12 @@ type MarketingRow = {
 };
 
 type CmsLinkStatus = 'linked' | 'page-only';
+
+type AssetStatus = {
+  heroImage: boolean;
+  ogImage: boolean;
+  datasheetUrl: boolean;
+};
 
 const rows = (MARKETING_PAGES as MarketingPage[]).flatMap((page) =>
   (MARKETING_LANGUAGES as MarketingLanguage[]).map((language) => {
@@ -100,6 +109,7 @@ export const MarketingPagesList: React.FC = () => {
   const [category, setCategory] = useState('all');
   const [language, setLanguage] = useState<MarketingLanguage | 'all'>('all');
   const [cmsStatusBySlug, setCmsStatusBySlug] = useState<Map<string, CmsLinkStatus>>(new Map());
+  const [assetStatusBySlug, setAssetStatusBySlug] = useState<Map<string, AssetStatus>>(new Map());
   const [loadingLinks, setLoadingLinks] = useState(true);
   const [syncingLinks, setSyncingLinks] = useState(false);
   const [syncMessage, setSyncMessage] = useState('');
@@ -123,12 +133,13 @@ export const MarketingPagesList: React.FC = () => {
       const pageRows = data || [];
       const pageIds = pageRows.map((item) => item.id);
       const blockPageIds = new Set<string>();
+      const contentByPageId = new Map<string, any>();
 
       for (const pageIdChunk of chunk(pageIds, 100)) {
         if (pageIdChunk.length === 0) continue;
         const { data: blockRows, error: blockError } = await supabase
           .from('content_blocks')
-          .select('page_id')
+          .select('page_id,content')
           .eq('section_id', MARKETING_OVERRIDE_SECTION_ID)
           .in('page_id', pageIdChunk);
 
@@ -138,13 +149,27 @@ export const MarketingPagesList: React.FC = () => {
           return;
         }
 
-        (blockRows || []).forEach((item) => blockPageIds.add(item.page_id));
+        (blockRows || []).forEach((item) => {
+          blockPageIds.add(item.page_id);
+          contentByPageId.set(item.page_id, item.content);
+        });
       }
 
       setCmsStatusBySlug(new Map<string, CmsLinkStatus>(pageRows.map((item) => [
         item.slug,
         blockPageIds.has(item.id) ? 'linked' : 'page-only'
       ])));
+      setAssetStatusBySlug(new Map<string, AssetStatus>(pageRows.map((item) => {
+        const content = contentByPageId.get(item.id) || {};
+        return [
+          item.slug,
+          {
+            heroImage: Boolean(content.heroImage?.trim?.()),
+            ogImage: Boolean(content.ogImage?.trim?.()),
+            datasheetUrl: Boolean(content.datasheetUrl?.trim?.())
+          }
+        ];
+      })));
     }
     setLoadingLinks(false);
   };
@@ -232,6 +257,7 @@ export const MarketingPagesList: React.FC = () => {
       }
 
       setCmsStatusBySlug(new Map<string, CmsLinkStatus>(expectedSlugs.map((slug) => [slug, 'linked'])));
+      setAssetStatusBySlug(new Map());
       setSyncMessage(`CMS linked ${insertedPages.length} pages and ${missingBlocks.length} content records. Existing edits were preserved.`);
       await fetchLinkedSlugs();
     } catch (err: any) {
@@ -244,6 +270,12 @@ export const MarketingPagesList: React.FC = () => {
   const linkedCount = rows.filter((row) => cmsStatusBySlug.get(row.cmsSlug) === 'linked').length;
   const pageOnlyCount = rows.filter((row) => cmsStatusBySlug.get(row.cmsSlug) === 'page-only').length;
   const missingLinkedCount = Math.max(0, rows.length - linkedCount);
+  const productAssetRows = rows.filter((row) => row.category === 'products');
+  const productAssetReadyCount = productAssetRows.filter((row) => {
+    const status = assetStatusBySlug.get(row.cmsSlug);
+    return status?.heroImage && status?.datasheetUrl;
+  }).length;
+  const missingProductAssetCount = Math.max(0, productAssetRows.length - productAssetReadyCount);
 
   const filteredRows = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -340,7 +372,7 @@ export const MarketingPagesList: React.FC = () => {
         </div>
       )}
 
-      <div className="grid gap-4 md:grid-cols-4">
+      <div className="grid gap-4 md:grid-cols-5">
         <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <div className="flex items-center justify-between">
             <p className="text-sm font-medium text-slate-500">URLs</p>
@@ -370,7 +402,29 @@ export const MarketingPagesList: React.FC = () => {
           <p className="mt-2 text-2xl font-bold text-slate-900">{loadingLinks ? '...' : `${linkedCount}/${rows.length}`}</p>
           <p className="mt-1 text-xs text-slate-500">{pageOnlyCount > 0 ? `${pageOnlyCount} page-only records` : `${totalFaqs} FAQ items`}</p>
         </div>
+        <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+          <div className="flex items-center justify-between">
+            <p className="text-sm font-medium text-slate-500">Product assets</p>
+            <Image className="h-4 w-4 text-slate-400" />
+          </div>
+          <p className="mt-2 text-2xl font-bold text-slate-900">{loadingLinks ? '...' : `${productAssetReadyCount}/${productAssetRows.length}`}</p>
+          <p className="mt-1 text-xs text-slate-500">Hero image + datasheet</p>
+        </div>
       </div>
+
+      {!loadingLinks && missingProductAssetCount > 0 && (
+        <div className="rounded-xl border border-blue-200 bg-blue-50 p-5 text-blue-950 shadow-sm">
+          <div className="flex gap-3">
+            <Image className="mt-0.5 h-5 w-5 flex-shrink-0 text-blue-600" />
+            <div>
+              <h2 className="font-semibold">{missingProductAssetCount} product URLs still need real assets</h2>
+              <p className="mt-1 text-sm text-blue-800">
+                Add hero images and datasheet URLs from each Marketing URL editor so product pages can move from SEO-ready to sales-ready.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
         <div className="grid gap-3 lg:grid-cols-[1fr_180px_180px]">
@@ -464,6 +518,11 @@ export const MarketingPagesList: React.FC = () => {
                   <td className="px-5 py-4 text-sm text-slate-700">
                     <p className="max-w-xs truncate font-medium">{row.seoTitle}</p>
                     <p className="mt-1 text-xs text-slate-500">{row.sectionsCount} sections · {row.faqsCount} FAQ</p>
+                    {row.category === 'products' && (
+                      <p className="mt-1 text-xs text-slate-500">
+                        {assetStatusBySlug.get(row.cmsSlug)?.heroImage ? 'Hero OK' : 'Hero missing'} · {assetStatusBySlug.get(row.cmsSlug)?.datasheetUrl ? 'Datasheet OK' : 'Datasheet missing'}
+                      </p>
+                    )}
                   </td>
                   <td className="px-5 py-4 text-right">
                     <div className="flex justify-end gap-2">
