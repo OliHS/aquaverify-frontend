@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import dotenv from 'dotenv';
+import { createClient } from '@supabase/supabase-js';
 import {
   MARKETING_LANGUAGES,
   MARKETING_PAGES,
@@ -7,9 +9,20 @@ import {
   getMarketingPagePath,
   getMarketingPageSummary
 } from '../utils/marketingPages.js';
+import {
+  getMarketingOverrideSlug,
+  MARKETING_OVERRIDE_SECTION_ID,
+  mergeMarketingContent,
+  normalizeMarketingOverride
+} from '../utils/marketingPageOverrides.js';
+
+dotenv.config({ path: '.env.local' });
+dotenv.config({ path: '.env' });
 
 const DIST_DIR = 'dist';
 const SITE_URL = 'https://aquaverify.com';
+const supabaseUrl = process.env.VITE_SUPABASE_URL;
+const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
 
 const SEO_LOCALES = {
   en: 'en_US',
@@ -225,7 +238,46 @@ async function writeRouteHtml(routePath, html) {
   await fs.writeFile(filePath, html);
 }
 
+async function fetchMarketingOverrides() {
+  if (!supabaseUrl || !supabaseKey) {
+    console.warn('Skipping marketing CMS overrides: missing Supabase env.');
+    return new Map();
+  }
+
+  const supabase = createClient(supabaseUrl, supabaseKey);
+  const { data: pages, error: pagesError } = await supabase
+    .from('pages')
+    .select('id,slug')
+    .like('slug', 'marketing-%');
+
+  if (pagesError || !pages?.length) {
+    if (pagesError) console.warn(`Skipping marketing CMS overrides: ${pagesError.message}`);
+    return new Map();
+  }
+
+  const pageIds = pages.map((page) => page.id);
+  const { data: blocks, error: blocksError } = await supabase
+    .from('content_blocks')
+    .select('page_id,content')
+    .eq('section_id', MARKETING_OVERRIDE_SECTION_ID)
+    .in('page_id', pageIds);
+
+  if (blocksError || !blocks?.length) {
+    if (blocksError) console.warn(`Skipping marketing CMS overrides: ${blocksError.message}`);
+    return new Map();
+  }
+
+  const slugByPageId = new Map(pages.map((page) => [page.id, page.slug]));
+  return blocks.reduce((acc, block) => {
+    const slug = slugByPageId.get(block.page_id);
+    const content = normalizeMarketingOverride(block.content);
+    if (slug && content) acc.set(slug, content);
+    return acc;
+  }, new Map());
+}
+
 const template = await fs.readFile(path.join(DIST_DIR, 'index.html'), 'utf8');
+const marketingOverrides = await fetchMarketingOverrides();
 let written = 0;
 
 await writeRouteHtml('/', renderHtml(template, {
@@ -256,7 +308,10 @@ for (const page of MARKETING_PAGES) {
   };
 
   for (const lang of MARKETING_LANGUAGES) {
-    const content = page.translations[lang];
+    const content = mergeMarketingContent(
+      page.translations[lang],
+      marketingOverrides.get(getMarketingOverrideSlug(page.id, lang))
+    );
     if (!content?.path) continue;
 
     await writeRouteHtml(content.path, renderHtml(template, {

@@ -14,7 +14,7 @@ export const PagesList: React.FC = () => {
     const fetchPages = async () => {
         const { data, error } = await supabase.from('pages').select('*').order('created_at', { ascending: false });
         if (!error && data) {
-            setPages(data);
+            setPages(data.filter((page) => !String(page.slug || '').startsWith('marketing-')));
         }
         setLoading(false);
     };

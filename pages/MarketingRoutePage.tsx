@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Header } from '../components/Header';
@@ -8,6 +8,8 @@ import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { applyMarketingSeo } from '../utils/seo';
+import { fetchMarketingPageOverride } from '../utils/publicMarketingOverrides';
+import { mergeMarketingContent } from '../utils/marketingPageOverrides.js';
 import {
   findMarketingPageByPath,
   getMarketingAlternates,
@@ -149,6 +151,9 @@ export const MarketingRoutePage: React.FC = () => {
   const location = useLocation();
   const match = findMarketingPageByPath(location.pathname);
   const { lang, setLang } = useLanguage();
+  const [contentOverride, setContentOverride] = useState<Record<string, unknown> | null>(null);
+  const matchPageId = match?.page?.id;
+  const matchLang = match?.lang;
 
   useEffect(() => {
     if (match && match.lang !== lang) {
@@ -157,29 +162,47 @@ export const MarketingRoutePage: React.FC = () => {
   }, [lang, match, setLang]);
 
   useEffect(() => {
-    if (!match) return;
+    setContentOverride(null);
+    if (!matchPageId || !matchLang) return;
+
+    const controller = new AbortController();
+    fetchMarketingPageOverride(matchPageId, matchLang, controller.signal)
+      .then(setContentOverride)
+      .catch((error) => {
+        if (error?.name !== 'AbortError') {
+          console.warn('Unable to load marketing CMS override', error);
+        }
+      });
+
+    return () => controller.abort();
+  }, [matchLang, matchPageId]);
+
+  const mergedContent = match ? mergeMarketingContent(match.content, contentOverride) : null;
+
+  useEffect(() => {
+    if (!match || !mergedContent) return;
     const pageLang = match.lang as Language;
     const labels = UI_LABELS[pageLang] || UI_LABELS.en;
-    const contentMeta = match.content as MarketingContentMeta;
+    const contentMeta = mergedContent as MarketingContentMeta;
 
     applyMarketingSeo({
       lang: pageLang,
-      title: match.content.seoTitle || match.content.title,
-      description: match.content.seoDescription || match.content.description,
-      canonicalPath: match.content.path,
+      title: mergedContent.seoTitle || mergedContent.title,
+      description: mergedContent.seoDescription || mergedContent.description,
+      canonicalPath: mergedContent.path,
       alternates: getMarketingAlternates(match.page),
       pageType: (match.page as MarketingPageMeta).schemaType || match.page.category,
       faqs: contentMeta.faqs,
       breadcrumbs: buildMarketingBreadcrumbs(match.page, contentMeta, pageLang, labels)
     });
-  }, [match]);
+  }, [match, mergedContent]);
 
-  if (!match) {
+  if (!match || !mergedContent) {
     return <Navigate to="/" replace />;
   }
 
   const page = match.page;
-  const content = match.content;
+  const content = mergedContent;
   const contentMeta = content as MarketingContentMeta;
   const pageLang = match.lang as Language;
   const pageMeta = page as MarketingPageMeta;

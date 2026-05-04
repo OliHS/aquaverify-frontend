@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { ExternalLink, FileText, Filter, Globe, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ExternalLink, FileEdit, FileText, Filter, Globe, Search } from 'lucide-react';
 import {
   LANGUAGE_NAMES,
   MARKETING_LANGUAGES,
@@ -222,15 +223,24 @@ export const MarketingPagesList: React.FC = () => {
                     <p className="mt-1 text-xs text-slate-500">{row.sectionsCount} sections · {row.faqsCount} FAQ</p>
                   </td>
                   <td className="px-5 py-4 text-right">
-                    <a
-                      href={row.path}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
-                    >
-                      <ExternalLink size={15} className="mr-2" />
-                      Open
-                    </a>
+                    <div className="flex justify-end gap-2">
+                      <Link
+                        to={`/admin/marketing-pages/${row.pageId}/${row.language}`}
+                        className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+                      >
+                        <FileEdit size={15} className="mr-2" />
+                        Edit
+                      </Link>
+                      <a
+                        href={row.path}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+                      >
+                        <ExternalLink size={15} className="mr-2" />
+                        Open
+                      </a>
+                    </div>
                     <p className="mt-2 text-xs text-slate-500">{row.path}</p>
                   </td>
                 </tr>
