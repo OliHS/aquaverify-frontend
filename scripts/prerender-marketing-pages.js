@@ -98,6 +98,80 @@ function escapeHtml(value) {
   })[char]);
 }
 
+function externalOrAbsolute(pathOrUrl) {
+  const value = String(pathOrUrl || '').trim();
+  if (!value) return '';
+  if (/^https?:\/\//i.test(value)) return value;
+  return absolute(value.startsWith('/') ? value : `/${value}`);
+}
+
+function renderSectionList(sections = []) {
+  return sections.map((section) => {
+    const bullets = Array.isArray(section.bullets) ? section.bullets : [];
+    return [
+      '      <section>',
+      `        <h2>${escapeHtml(section.title)}</h2>`,
+      `        <p>${escapeHtml(section.body)}</p>`,
+      bullets.length ? [
+        '        <ul>',
+        ...bullets.map((bullet) => `          <li>${escapeHtml(bullet)}</li>`),
+        '        </ul>'
+      ].join('\n') : '',
+      '      </section>'
+    ].filter(Boolean).join('\n');
+  }).join('\n');
+}
+
+function renderFaqs(faqs = []) {
+  if (!faqs.length) return '';
+
+  return [
+    '      <section>',
+    '        <h2>FAQ</h2>',
+    ...faqs.map((faq) => [
+      '        <article>',
+      `          <h3>${escapeHtml(faq.question)}</h3>`,
+      `          <p>${escapeHtml(faq.answer)}</p>`,
+      '        </article>'
+    ].join('\n')),
+    '      </section>'
+  ].join('\n');
+}
+
+function renderStaticRoot(meta) {
+  const content = meta.content;
+  const title = content?.title || meta.title;
+  const description = content?.description || meta.description;
+  const canonicalUrl = absolute(meta.canonicalPath || content?.path || '/');
+  const heroImage = content?.heroImage ? absoluteAsset(content.heroImage) : '';
+  const datasheetUrl = content?.datasheetUrl ? externalOrAbsolute(content.datasheetUrl) : '';
+
+  return [
+    '<main data-prerender="marketing-seo" style="font-family: Inter, Arial, sans-serif; color: #0f172a; background: #ffffff;">',
+    '  <section style="padding: 48px 24px; background: #0A4F7D; color: #ffffff;">',
+    '    <div style="max-width: 1040px; margin: 0 auto;">',
+    '      <p style="margin: 0 0 12px; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;">AquaVerify</p>',
+    `      <h1 style="margin: 0; max-width: 860px; font-size: 42px; line-height: 1.08;">${escapeHtml(title)}</h1>`,
+    `      <p style="margin: 20px 0 0; max-width: 760px; font-size: 18px; line-height: 1.7;">${escapeHtml(description)}</p>`,
+    heroImage ? `      <img src="${escapeHtml(heroImage)}" alt="${escapeHtml(content?.heroImageAlt || title)}" style="display: block; max-width: 560px; width: 100%; margin-top: 28px; border: 1px solid rgba(255,255,255,.22); background: #ffffff;" />` : '',
+    '      <p style="margin: 28px 0 0;">',
+    `        <a href="${escapeHtml(canonicalUrl)}" style="color: #ffffff; font-weight: 800;">${escapeHtml(title)}</a>`,
+    datasheetUrl ? `        <a href="${escapeHtml(datasheetUrl)}" style="color: #ffffff; font-weight: 800; margin-left: 18px;">${escapeHtml(content?.datasheetLabel || 'Datasheet')}</a>` : '',
+    '      </p>',
+    '    </div>',
+    '  </section>',
+    content ? [
+      '  <section style="padding: 42px 24px;">',
+      '    <div style="max-width: 1040px; margin: 0 auto;">',
+      renderSectionList(content.sections || []),
+      renderFaqs(content.faqs || []),
+      '    </div>',
+      '  </section>'
+    ].join('\n') : '',
+    '</main>'
+  ].filter(Boolean).join('\n');
+}
+
 function jsonLdScript(id, payload) {
   return `  <script type="application/ld+json" data-id="${id}">\n${JSON.stringify(payload, null, 2)}\n  </script>`;
 }
@@ -221,8 +295,22 @@ function seoHeadBlock({ lang, title, description, canonicalPath, alternates, pag
   ].join('\n');
 }
 
+function removeDefaultShareMetadata(suffix) {
+  const startMarker = '  <!-- AquaVerify default share metadata -->';
+  const endMarker = '  <!-- Google Fonts: Montserrat (Headers) & Inter (Body) -->';
+  const startIndex = suffix.indexOf(startMarker);
+  const endIndex = suffix.indexOf(endMarker);
+
+  if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
+    return suffix;
+  }
+
+  return `${suffix.slice(0, startIndex)}${suffix.slice(endIndex)}`;
+}
+
 function renderHtml(template, meta) {
   const identityMarker = '  <!-- AquaVerify platform identity -->';
+  const rootMarker = '  <div id="root"></div>';
   const titleIndex = template.indexOf('  <title>');
   const markerIndex = template.indexOf(identityMarker);
 
@@ -230,10 +318,16 @@ function renderHtml(template, meta) {
     throw new Error('Unable to find SEO head markers in dist/index.html');
   }
 
-  return template
+  const html = template
     .replace(/<html lang="[^"]+"/, `<html lang="${meta.lang}"`)
     .slice(0, titleIndex)
-    .concat(seoHeadBlock(meta), '\n', template.slice(markerIndex));
+    .concat(seoHeadBlock(meta), '\n', removeDefaultShareMetadata(template.slice(markerIndex)));
+
+  if (!html.includes(rootMarker)) {
+    throw new Error('Unable to find root marker in dist/index.html');
+  }
+
+  return html.replace(rootMarker, `  <div id="root">\n${renderStaticRoot(meta)}\n  </div>`);
 }
 
 async function writeRouteHtml(routePath, html) {

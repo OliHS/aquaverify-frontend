@@ -181,6 +181,19 @@ async function run() {
     assert(englishProductHtml.includes('"@type": "Product"'), 'Static Product JSON-LD missing');
     assert(englishProductHtml.includes('"@type": "FAQPage"'), 'Static FAQ JSON-LD missing');
     assert(englishProductHtml.includes('"@type": "BreadcrumbList"'), 'Static Breadcrumb JSON-LD missing');
+    assert(englishProductHtml.includes('data-prerender="marketing-seo"'), 'Static product SEO body missing');
+    assert(
+      englishProductHtml.includes('https://aquaverify.com/datasheets/products/enumera-soma100-en.html'),
+      'Static product datasheet link missing'
+    );
+    assert(
+      englishProductHtml.includes('https://aquaverify.com/images/products/marketing/enumera-soma100.svg'),
+      'Static product hero image missing'
+    );
+    assert(
+      (englishProductHtml.match(/property=["']og:title["']/g) || []).length === 1,
+      'Static product HTML has duplicate OpenGraph title metadata'
+    );
     assert(
       spanishProductHtml.includes('<html lang="es"') && spanishProductHtml.includes('INDICA Coli | AquaVerify INDICA'),
       'Spanish product static SEO HTML missing'
