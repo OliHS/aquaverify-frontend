@@ -25,6 +25,10 @@ function locale(path, title, description, sections, options = {}) {
     eyebrow: options.eyebrow,
     primaryCta: options.primaryCta,
     secondaryCta: options.secondaryCta,
+    heroImage: options.heroImage,
+    heroImageAlt: options.heroImageAlt,
+    ogImage: options.ogImage,
+    gallery: options.gallery || [],
     seoTitle: options.seoTitle || title,
     seoDescription: options.seoDescription || description,
     faqs: options.faqs || []
@@ -33,6 +37,82 @@ function locale(path, title, description, sections, options = {}) {
 
 function section(title, body, bullets = []) {
   return { title, body, bullets };
+}
+
+const PLATFORM_SCREENSHOT_ASSETS = {
+  dashboard: '/images/platform/saas/aquaverify-cloud-dashboard.jpg',
+  crm: '/images/platform/saas/aquaverify-crm-customer-360.jpg',
+  lims: '/images/platform/saas/aquaverify-lims-dashboard.jpg',
+  work: '/images/platform/saas/aquaverify-work-board.jpg',
+  wms: '/images/platform/saas/aquaverify-wms-dashboard.jpg',
+  finance: '/images/platform/saas/aquaverify-finance-treasury.jpg',
+  portal: '/images/platform/saas/aquaverify-customer-portal.jpg'
+};
+
+const PLATFORM_SCREENSHOT_COPY = {
+  en: [
+    { id: 'dashboard', title: 'Executive dashboard', body: 'Operational KPIs, revenue, margin and live workload in one cockpit.', alt: 'AquaVerify Cloud executive performance dashboard' },
+    { id: 'crm', title: 'CRM pipeline', body: 'Customer, partner and laboratory accounts connected to sales and support activity.', alt: 'AquaVerify CRM company portfolio screen' },
+    { id: 'lims', title: 'LIMS workstation', body: 'Sample reception, work distribution, validation and reports in the same workflow.', alt: 'AquaVerify LIMS workstation dashboard' },
+    { id: 'work', title: 'Work management', body: 'Projects, boards, documents and tasks for scientific and operational teams.', alt: 'AquaVerify work board and task management screen' },
+    { id: 'wms', title: 'Inventory and WMS', body: 'Warehouse, stock movement, traceability and fulfilment controls.', alt: 'AquaVerify WMS warehouse dashboard' },
+    { id: 'finance', title: 'Finance and treasury', body: 'Billing, cash, expenses and reporting tied to the operational record.', alt: 'AquaVerify finance and treasury dashboard' }
+  ],
+  es: [
+    { id: 'dashboard', title: 'Dashboard ejecutivo', body: 'KPIs operativos, ingresos, margen y carga viva en un solo cockpit.', alt: 'Dashboard ejecutivo de rendimiento en AquaVerify Cloud' },
+    { id: 'crm', title: 'Pipeline CRM', body: 'Cuentas de clientes, partners y laboratorios conectadas con ventas y soporte.', alt: 'Pantalla de cartera de empresas CRM en AquaVerify' },
+    { id: 'lims', title: 'Estación LIMS', body: 'Recepción de muestras, distribución de trabajo, validación e informes en el mismo flujo.', alt: 'Dashboard de estación LIMS en AquaVerify' },
+    { id: 'work', title: 'Gestión del trabajo', body: 'Proyectos, tableros, documentos y tareas para equipos científicos y operativos.', alt: 'Tablero de trabajo y tareas en AquaVerify' },
+    { id: 'wms', title: 'Inventario y WMS', body: 'Almacén, movimientos de stock, trazabilidad y controles de expedición.', alt: 'Dashboard de almacén WMS en AquaVerify' },
+    { id: 'finance', title: 'Finanzas y tesorería', body: 'Facturación, caja, gastos y reporting conectados al registro operativo.', alt: 'Dashboard de finanzas y tesorería en AquaVerify' }
+  ],
+  fr: [
+    { id: 'dashboard', title: 'Dashboard exécutif', body: 'KPIs opérationnels, revenus, marge et charge active dans un seul cockpit.', alt: 'Dashboard exécutif AquaVerify Cloud' },
+    { id: 'crm', title: 'Pipeline CRM', body: 'Comptes clients, partenaires et laboratoires reliés aux ventes et au support.', alt: 'Écran portefeuille CRM AquaVerify' },
+    { id: 'lims', title: 'Station LIMS', body: 'Réception échantillons, répartition du travail, validation et rapports dans un même flux.', alt: 'Dashboard station LIMS AquaVerify' },
+    { id: 'work', title: 'Gestion du travail', body: 'Projets, tableaux, documents et tâches pour équipes scientifiques et opérationnelles.', alt: 'Tableau de travail AquaVerify' },
+    { id: 'wms', title: 'Inventaire et WMS', body: 'Entrepôt, mouvements de stock, traçabilité et contrôles d’expédition.', alt: 'Dashboard WMS AquaVerify' },
+    { id: 'finance', title: 'Finance et trésorerie', body: 'Facturation, trésorerie, dépenses et reporting liés au registre opérationnel.', alt: 'Dashboard finance AquaVerify' }
+  ],
+  it: [
+    { id: 'dashboard', title: 'Dashboard executive', body: 'KPI operativi, ricavi, margine e carico attivo in un unico cockpit.', alt: 'Dashboard executive AquaVerify Cloud' },
+    { id: 'crm', title: 'Pipeline CRM', body: 'Account clienti, partner e laboratori collegati a vendite e supporto.', alt: 'Schermata portfolio CRM AquaVerify' },
+    { id: 'lims', title: 'Workstation LIMS', body: 'Ricezione campioni, distribuzione lavoro, validazione e report nello stesso flusso.', alt: 'Dashboard workstation LIMS AquaVerify' },
+    { id: 'work', title: 'Gestione lavoro', body: 'Progetti, board, documenti e task per team scientifici e operativi.', alt: 'Board di lavoro AquaVerify' },
+    { id: 'wms', title: 'Inventario e WMS', body: 'Magazzino, movimenti stock, tracciabilità e controlli di spedizione.', alt: 'Dashboard WMS AquaVerify' },
+    { id: 'finance', title: 'Finanza e tesoreria', body: 'Fatturazione, cassa, spese e reporting collegati al record operativo.', alt: 'Dashboard finanza AquaVerify' }
+  ],
+  ca: [
+    { id: 'dashboard', title: 'Dashboard executiu', body: 'KPIs operatius, ingressos, marge i càrrega activa en un sol cockpit.', alt: 'Dashboard executiu AquaVerify Cloud' },
+    { id: 'crm', title: 'Pipeline CRM', body: 'Comptes de clients, partners i laboratoris connectats amb vendes i suport.', alt: 'Pantalla de cartera CRM AquaVerify' },
+    { id: 'lims', title: 'Estació LIMS', body: 'Recepció de mostres, distribució de treball, validació i informes en el mateix flux.', alt: 'Dashboard estació LIMS AquaVerify' },
+    { id: 'work', title: 'Gestió del treball', body: 'Projectes, taulers, documents i tasques per a equips científics i operatius.', alt: 'Tauler de treball AquaVerify' },
+    { id: 'wms', title: 'Inventari i WMS', body: 'Magatzem, moviments d’estoc, traçabilitat i controls d’expedició.', alt: 'Dashboard WMS AquaVerify' },
+    { id: 'finance', title: 'Finances i tresoreria', body: 'Facturació, caixa, despeses i reporting connectats al registre operatiu.', alt: 'Dashboard finances AquaVerify' }
+  ]
+};
+
+function platformScreenshotGallery(lang, ids = ['dashboard', 'crm', 'lims', 'work', 'wms', 'finance']) {
+  return (PLATFORM_SCREENSHOT_COPY[lang] || PLATFORM_SCREENSHOT_COPY.en)
+    .filter((item) => ids.includes(item.id))
+    .map((item) => ({
+      ...item,
+      src: PLATFORM_SCREENSHOT_ASSETS[item.id]
+    }));
+}
+
+function platformVisualOptions(lang, {
+  hero = 'dashboard',
+  galleryIds
+} = {}) {
+  const copy = PLATFORM_SCREENSHOT_COPY[lang] || PLATFORM_SCREENSHOT_COPY.en;
+  const heroCopy = copy.find((item) => item.id === hero) || copy[0];
+  return {
+    heroImage: PLATFORM_SCREENSHOT_ASSETS[hero],
+    heroImageAlt: heroCopy?.alt || 'AquaVerify Cloud platform screenshot',
+    ogImage: PLATFORM_SCREENSHOT_ASSETS[hero],
+    gallery: platformScreenshotGallery(lang, galleryIds)
+  };
 }
 
 const DEFAULT_FAQS = {
@@ -298,45 +378,45 @@ export const MARKETING_PAGES = [
     en: locale('/platform', 'AquaVerify Cloud for traceable water analysis workflows', 'Connect samples, products, operators, reports and customer workflows in one digital platform.', [
       section('From product use to digital record', 'AquaVerify Cloud turns laboratory and field activity into structured, traceable operational data.', ['Sample traceability', 'Digital reports', 'CRM and customer portal', 'Inventory and work management']),
       section('Built around real operations', 'The platform supports laboratories, distributors and companies that need quality workflows beyond spreadsheets.')
-    ], { eyebrow: 'Platform', primaryCta: 'Request platform demo', secondaryCta: 'See SaaS option' }),
+    ], { eyebrow: 'Platform', primaryCta: 'Request platform demo', secondaryCta: 'See SaaS option', ...platformVisualOptions('en', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) }),
     es: locale('/es/plataforma', 'AquaVerify Cloud para flujos trazables de análisis de agua', 'Conecta muestras, productos, operadores, informes y flujos de cliente en una sola plataforma digital.', [
       section('Del uso del producto al registro digital', 'AquaVerify Cloud convierte actividad de laboratorio y campo en datos operativos estructurados y trazables.', ['Trazabilidad de muestras', 'Informes digitales', 'CRM y portal cliente', 'Inventario y gestión del trabajo']),
       section('Construida alrededor de la operación real', 'La plataforma da soporte a laboratorios, distribuidores y empresas que necesitan flujos de calidad más allá de hojas de cálculo.')
-    ], { eyebrow: 'Plataforma', primaryCta: 'Solicitar demo plataforma', secondaryCta: 'Ver opción SaaS' }),
+    ], { eyebrow: 'Plataforma', primaryCta: 'Solicitar demo plataforma', secondaryCta: 'Ver opción SaaS', ...platformVisualOptions('es', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) }),
     fr: locale('/fr/plateforme', 'AquaVerify Cloud pour des flux d’analyse de l’eau traçables', 'Connectez échantillons, produits, opérateurs, rapports et flux client dans une seule plateforme numérique.', [
       section('De l’utilisation du produit au registre numérique', 'AquaVerify Cloud transforme l’activité laboratoire et terrain en données opérationnelles structurées et traçables.', ['Traçabilité des échantillons', 'Rapports numériques', 'CRM et portail client', 'Inventaire et gestion du travail']),
       section('Construite autour des opérations réelles', 'La plateforme soutient laboratoires, distributeurs et entreprises qui ont besoin de flux qualité au-delà des tableurs.')
-    ], { eyebrow: 'Plateforme', primaryCta: 'Demander une démo', secondaryCta: 'Voir l’option SaaS' }),
+    ], { eyebrow: 'Plateforme', primaryCta: 'Demander une démo', secondaryCta: 'Voir l’option SaaS', ...platformVisualOptions('fr', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) }),
     it: locale('/it/piattaforma', 'AquaVerify Cloud per flussi tracciabili di analisi dell’acqua', 'Collega campioni, prodotti, operatori, report e flussi cliente in un’unica piattaforma digitale.', [
       section('Dall’uso del prodotto al record digitale', 'AquaVerify Cloud trasforma attività di laboratorio e campo in dati operativi strutturati e tracciabili.', ['Tracciabilità dei campioni', 'Report digitali', 'CRM e portale cliente', 'Inventario e gestione lavoro']),
       section('Costruita sulle operazioni reali', 'La piattaforma supporta laboratori, distributori e aziende che richiedono flussi qualità oltre i fogli di calcolo.')
-    ], { eyebrow: 'Piattaforma', primaryCta: 'Richiedi demo piattaforma', secondaryCta: 'Vedi opzione SaaS' }),
+    ], { eyebrow: 'Piattaforma', primaryCta: 'Richiedi demo piattaforma', secondaryCta: 'Vedi opzione SaaS', ...platformVisualOptions('it', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) }),
     ca: locale('/ca/plataforma', 'AquaVerify Cloud per a fluxos traçables d’anàlisi d’aigua', 'Connecta mostres, productes, operadors, informes i fluxos de client en una sola plataforma digital.', [
       section('De l’ús del producte al registre digital', 'AquaVerify Cloud converteix activitat de laboratori i camp en dades operatives estructurades i traçables.', ['Traçabilitat de mostres', 'Informes digitals', 'CRM i portal client', 'Inventari i gestió del treball']),
       section('Construïda al voltant de l’operació real', 'La plataforma dona suport a laboratoris, distribuïdors i empreses que necessiten fluxos de qualitat més enllà dels fulls de càlcul.')
-    ], { eyebrow: 'Plataforma', primaryCta: 'Sol·licitar demo plataforma', secondaryCta: 'Veure opció SaaS' })
+    ], { eyebrow: 'Plataforma', primaryCta: 'Sol·licitar demo plataforma', secondaryCta: 'Veure opció SaaS', ...platformVisualOptions('ca', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) })
   }),
   page('saas-biotech', 'platform', 'saas', {
     en: locale('/saas/biotech-lims-platform', 'All-in-one SaaS platform for biotech and laboratory operations', 'AquaVerify Cloud is also available as SaaS for biotech companies that need CRM, LIMS, work, inventory, reporting and customer portals.', [
       section('One operational backbone', 'Replace fragmented tools with one platform for scientific and operational work.', ['CRM and sales workflows', 'LIMS and sample traceability', 'Work management and documents', 'Inventory, WMS, finance and reporting']),
       section('For teams that need control', 'Designed for growing biotech and laboratory organizations that need execution, traceability and commercial visibility.')
-    ], { eyebrow: 'SaaS', primaryCta: 'Request SaaS demo', secondaryCta: 'Explore platform' }),
+    ], { eyebrow: 'SaaS', primaryCta: 'Request SaaS demo', secondaryCta: 'Explore platform', ...platformVisualOptions('en', { hero: 'dashboard', galleryIds: ['dashboard', 'crm', 'lims', 'work', 'wms', 'finance'] }) }),
     es: locale('/es/saas/plataforma-lims-biotech', 'Plataforma SaaS todo en uno para biotech y laboratorios', 'AquaVerify Cloud también está disponible como SaaS para empresas biotech que necesitan CRM, LIMS, work, inventario, reporting y portal cliente.', [
       section('Una columna vertebral operativa', 'Sustituye herramientas fragmentadas por una plataforma para trabajo científico y operativo.', ['CRM y flujos comerciales', 'LIMS y trazabilidad de muestras', 'Gestión del trabajo y documentos', 'Inventario, WMS, finanzas y reporting']),
       section('Para equipos que necesitan control', 'Diseñada para organizaciones biotech y laboratorios en crecimiento que necesitan ejecución, trazabilidad y visibilidad comercial.')
-    ], { eyebrow: 'SaaS', primaryCta: 'Solicitar demo SaaS', secondaryCta: 'Explorar plataforma' }),
+    ], { eyebrow: 'SaaS', primaryCta: 'Solicitar demo SaaS', secondaryCta: 'Explorar plataforma', ...platformVisualOptions('es', { hero: 'dashboard', galleryIds: ['dashboard', 'crm', 'lims', 'work', 'wms', 'finance'] }) }),
     fr: locale('/fr/saas/plateforme-lims-biotech', 'Plateforme SaaS tout-en-un pour biotech et laboratoires', 'AquaVerify Cloud est aussi disponible en SaaS pour les entreprises biotech ayant besoin de CRM, LIMS, work, inventaire, reporting et portail client.', [
       section('Une colonne vertébrale opérationnelle', 'Remplacez les outils fragmentés par une plateforme pour le travail scientifique et opérationnel.', ['CRM et flux commerciaux', 'LIMS et traçabilité des échantillons', 'Gestion du travail et documents', 'Inventaire, WMS, finance et reporting']),
       section('Pour les équipes qui veulent le contrôle', 'Conçue pour les organisations biotech et laboratoires en croissance qui ont besoin d’exécution, traçabilité et visibilité commerciale.')
-    ], { eyebrow: 'SaaS', primaryCta: 'Demander une démo SaaS', secondaryCta: 'Explorer la plateforme' }),
+    ], { eyebrow: 'SaaS', primaryCta: 'Demander une démo SaaS', secondaryCta: 'Explorer la plateforme', ...platformVisualOptions('fr', { hero: 'dashboard', galleryIds: ['dashboard', 'crm', 'lims', 'work', 'wms', 'finance'] }) }),
     it: locale('/it/saas/piattaforma-lims-biotech', 'Piattaforma SaaS all-in-one per biotech e laboratori', 'AquaVerify Cloud è disponibile anche come SaaS per aziende biotech che richiedono CRM, LIMS, work, inventario, reporting e portale clienti.', [
       section('Una dorsale operativa', 'Sostituisci strumenti frammentati con una piattaforma per lavoro scientifico e operativo.', ['CRM e flussi commerciali', 'LIMS e tracciabilità campioni', 'Gestione lavoro e documenti', 'Inventario, WMS, finanza e reporting']),
       section('Per team che vogliono controllo', 'Pensata per organizzazioni biotech e laboratori in crescita che richiedono esecuzione, tracciabilità e visibilità commerciale.')
-    ], { eyebrow: 'SaaS', primaryCta: 'Richiedi demo SaaS', secondaryCta: 'Esplora piattaforma' }),
+    ], { eyebrow: 'SaaS', primaryCta: 'Richiedi demo SaaS', secondaryCta: 'Esplora piattaforma', ...platformVisualOptions('it', { hero: 'dashboard', galleryIds: ['dashboard', 'crm', 'lims', 'work', 'wms', 'finance'] }) }),
     ca: locale('/ca/saas/plataforma-lims-biotech', 'Plataforma SaaS tot en un per a biotech i laboratoris', 'AquaVerify Cloud també està disponible com a SaaS per a empreses biotech que necessiten CRM, LIMS, work, inventari, reporting i portal client.', [
       section('Una columna vertebral operativa', 'Substitueix eines fragmentades per una plataforma per al treball científic i operatiu.', ['CRM i fluxos comercials', 'LIMS i traçabilitat de mostres', 'Gestió del treball i documents', 'Inventari, WMS, finances i reporting']),
       section('Per a equips que necessiten control', 'Dissenyada per a organitzacions biotech i laboratoris en creixement que necessiten execució, traçabilitat i visibilitat comercial.')
-    ], { eyebrow: 'SaaS', primaryCta: 'Sol·licitar demo SaaS', secondaryCta: 'Explorar plataforma' })
+    ], { eyebrow: 'SaaS', primaryCta: 'Sol·licitar demo SaaS', secondaryCta: 'Explorar plataforma', ...platformVisualOptions('ca', { hero: 'dashboard', galleryIds: ['dashboard', 'crm', 'lims', 'work', 'wms', 'finance'] }) })
   }),
   page('oem', 'partners', 'oem', {
     en: locale('/oem-water-testing-kits', 'OEM and distributor program for water testing kits', 'Bring AquaVerify water microbiology products and digital workflows to your market under AquaVerify or white-label models.', [

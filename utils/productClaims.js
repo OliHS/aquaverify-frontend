@@ -39,7 +39,7 @@ export const REVIEW_PRODUCT_CLAIM_RULES = [
   }
 ];
 
-const NON_COPY_KEYS = /(?:^|_|\b)(id|url|link|href|image|images|icon|path|slug|email|phone|lat|lng)(?:$|_|\b)/i;
+const NON_COPY_KEYS = /(?:^|_|\b)(id|url|link|href|image|images|icon|path|slug|src|email|phone|lat|lng)(?:$|_|\b)/i;
 
 const SAFE_TEXT_REPLACEMENTS = [
   [/\bCertified Standards\b/g, 'Reference Standards'],

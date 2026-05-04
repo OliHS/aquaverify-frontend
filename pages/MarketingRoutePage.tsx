@@ -46,6 +46,7 @@ const UI_LABELS: Record<Language, {
   nextStep: string;
   talkToAquaVerify: string;
   faqTitle: string;
+  screenshotsTitle: string;
 }> = {
   en: {
     bridgeEyebrow: 'AquaVerify',
@@ -58,7 +59,8 @@ const UI_LABELS: Record<Language, {
     relatedPages: 'Related pages',
     nextStep: 'Next step',
     talkToAquaVerify: 'Talk to AquaVerify',
-    faqTitle: 'Frequently asked questions'
+    faqTitle: 'Frequently asked questions',
+    screenshotsTitle: 'Product screens'
   },
   es: {
     bridgeEyebrow: 'AquaVerify',
@@ -71,7 +73,8 @@ const UI_LABELS: Record<Language, {
     relatedPages: 'Páginas relacionadas',
     nextStep: 'Siguiente paso',
     talkToAquaVerify: 'Hablar con AquaVerify',
-    faqTitle: 'Preguntas frecuentes'
+    faqTitle: 'Preguntas frecuentes',
+    screenshotsTitle: 'Pantallas reales'
   },
   fr: {
     bridgeEyebrow: 'AquaVerify',
@@ -84,7 +87,8 @@ const UI_LABELS: Record<Language, {
     relatedPages: 'Pages associées',
     nextStep: 'Étape suivante',
     talkToAquaVerify: 'Parler à AquaVerify',
-    faqTitle: 'Questions fréquentes'
+    faqTitle: 'Questions fréquentes',
+    screenshotsTitle: 'Écrans produit'
   },
   it: {
     bridgeEyebrow: 'AquaVerify',
@@ -97,7 +101,8 @@ const UI_LABELS: Record<Language, {
     relatedPages: 'Pagine correlate',
     nextStep: 'Passo successivo',
     talkToAquaVerify: 'Parla con AquaVerify',
-    faqTitle: 'Domande frequenti'
+    faqTitle: 'Domande frequenti',
+    screenshotsTitle: 'Schermate prodotto'
   },
   ca: {
     bridgeEyebrow: 'AquaVerify',
@@ -110,12 +115,14 @@ const UI_LABELS: Record<Language, {
     relatedPages: 'Pàgines relacionades',
     nextStep: 'Següent pas',
     talkToAquaVerify: 'Parlar amb AquaVerify',
-    faqTitle: 'Preguntes freqüents'
+    faqTitle: 'Preguntes freqüents',
+    screenshotsTitle: 'Pantalles reals'
   }
 };
 
 type MarketingContentMeta = {
   faqs?: Array<{ question: string; answer: string }>;
+  gallery?: Array<{ src: string; alt: string; title?: string; body?: string }>;
   heroImage?: string;
   heroImageAlt?: string;
   ogImage?: string;
@@ -257,6 +264,12 @@ export const MarketingRoutePage: React.FC = () => {
   const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
   const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
+  const galleryItems = (contentMeta.gallery || [])
+    .map((item) => ({
+      ...item,
+      src: toPublicAssetUrl(item.src)
+    }))
+    .filter((item) => item.src && item.alt);
   const handleDatasheetClick = () => {
     trackCorporateEvent('datasheet_click', {
       lang: pageLang,
@@ -378,6 +391,32 @@ export const MarketingRoutePage: React.FC = () => {
                   )}
                 </article>
               ))}
+              {galleryItems.length > 0 && (
+                <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+                  <h2 className="font-heading text-2xl font-black text-primary">{labels.screenshotsTitle}</h2>
+                  <div className="mt-6 grid gap-5 md:grid-cols-2">
+                    {galleryItems.map((item) => (
+                      <figure key={item.src} className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
+                        <div className="aspect-[16/10] bg-white">
+                          <img
+                            src={item.src}
+                            alt={item.alt}
+                            loading="lazy"
+                            decoding="async"
+                            className="h-full w-full object-cover object-top"
+                          />
+                        </div>
+                        {(item.title || item.body) && (
+                          <figcaption className="p-4">
+                            {item.title && <h3 className="font-heading text-base font-black text-slate-900">{item.title}</h3>}
+                            {item.body && <p className="mt-1 text-sm leading-6 text-slate-600">{item.body}</p>}
+                          </figcaption>
+                        )}
+                      </figure>
+                    ))}
+                  </div>
+                </article>
+              )}
               {contentMeta.faqs && contentMeta.faqs.length > 0 && (
                 <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                   <h2 className="font-heading text-2xl font-black text-primary">{labels.faqTitle}</h2>

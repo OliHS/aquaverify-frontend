@@ -13,6 +13,7 @@ Actualizado: 2026-05-04.
 - Breadcrumbs visibles y JSON-LD en URLs marketing: implementado.
 - FAQs comerciales y tecnicas por defecto en todas las URLs marketing, con `FAQPage` schema y auditor de release `npm run marketing:faqs:audit`: implementado.
 - Rutas marketing ligeras separadas del contenido SEO pesado para reducir el bundle inicial, con auditor de paridad `npm run marketing:routes:audit`: implementado.
+- Screenshots reales de la plataforma reutilizados desde la documentacion de AquaVerify Cloud para paginas `Platform` y `SaaS`, visibles en galeria CMS-editable y auditados con `npm run marketing:screenshots:audit`: implementado.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.
@@ -409,6 +410,11 @@ Tareas:
   - Reporting/compliance
 - Mostrar screenshots reales de plataforma.
 - CTA: solicitar demo SaaS.
+
+Avance implementado:
+
+- Paginas `Platform` y `SaaS` muestran hero image y galeria con capturas reales tomadas de la documentacion de la plataforma: dashboard ejecutivo, CRM, LIMS, Work, WMS/inventario y finanzas.
+- La galeria queda editable desde el CMS de Marketing URLs y se valida en release con `npm run marketing:screenshots:audit`.
 
 Criterio de cierre:
 

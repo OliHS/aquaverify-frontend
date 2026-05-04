@@ -168,11 +168,13 @@ async function run() {
     const [
       { text: englishProductHtml },
       { text: spanishProductHtml },
-      { text: spanishHomeHtml }
+      { text: spanishHomeHtml },
+      { text: englishSaasHtml }
     ] = await Promise.all([
       getText(`${CORPORATE_SITE_URL}/products/enumera-soma100`),
       getText(`${CORPORATE_SITE_URL}/es/productos/indica-coli`),
-      getText(`${CORPORATE_SITE_URL}/es`)
+      getText(`${CORPORATE_SITE_URL}/es`),
+      getText(`${CORPORATE_SITE_URL}/saas/biotech-lims-platform`)
     ]);
 
     assert(englishProductHtml.includes('<title>ENUMERA Soma100 | AquaVerify ENUMERA</title>'), 'Static product title missing');
@@ -187,6 +189,21 @@ async function run() {
       spanishHomeHtml.includes('<html lang="es"') && spanishHomeHtml.includes('AquaVerify | Kits de Agua'),
       'Spanish home static SEO HTML missing'
     );
+    assert(
+      englishSaasHtml.includes('/images/platform/saas/aquaverify-cloud-dashboard.jpg'),
+      'SaaS static SEO HTML does not expose platform screenshot image'
+    );
+  });
+
+  await check('corporate SaaS screenshot assets respond', async () => {
+    await Promise.all([
+      expectStatus(`${CORPORATE_SITE_URL}/images/platform/saas/aquaverify-cloud-dashboard.jpg`),
+      expectStatus(`${CORPORATE_SITE_URL}/images/platform/saas/aquaverify-crm-customer-360.jpg`),
+      expectStatus(`${CORPORATE_SITE_URL}/images/platform/saas/aquaverify-lims-dashboard.jpg`),
+      expectStatus(`${CORPORATE_SITE_URL}/images/platform/saas/aquaverify-work-board.jpg`),
+      expectStatus(`${CORPORATE_SITE_URL}/images/platform/saas/aquaverify-wms-dashboard.jpg`),
+      expectStatus(`${CORPORATE_SITE_URL}/images/platform/saas/aquaverify-finance-treasury.jpg`)
+    ]);
   });
 
   await check('corporate site is not installable as PWA', async () => {

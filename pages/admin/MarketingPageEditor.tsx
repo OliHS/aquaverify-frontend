@@ -27,6 +27,13 @@ type FaqDraft = {
   answer: string;
 };
 
+type GalleryDraft = {
+  src: string;
+  alt: string;
+  title: string;
+  body: string;
+};
+
 type MarketingContent = {
   path: string;
   title: string;
@@ -43,6 +50,7 @@ type MarketingContent = {
   seoDescription?: string;
   sections?: Array<{ title: string; body: string; bullets?: string[] }>;
   faqs?: Array<{ question: string; answer: string }>;
+  gallery?: Array<{ src: string; alt: string; title?: string; body?: string }>;
 };
 
 type MarketingPage = {
@@ -67,6 +75,7 @@ type EditorForm = {
   seoDescription: string;
   sections: SectionDraft[];
   faqs: FaqDraft[];
+  gallery: GalleryDraft[];
 };
 
 function isMarketingLanguage(value: string | undefined): value is MarketingLanguage {
@@ -95,6 +104,12 @@ function contentToForm(content: MarketingContent): EditorForm {
     faqs: (content.faqs || []).map((faq) => ({
       question: faq.question || '',
       answer: faq.answer || ''
+    })),
+    gallery: (content.gallery || []).map((item) => ({
+      src: item.src || '',
+      alt: item.alt || '',
+      title: item.title || '',
+      body: item.body || ''
     }))
   };
 }
@@ -129,7 +144,15 @@ function formToContent(form: EditorForm, path: string) {
         question: faq.question.trim(),
         answer: faq.answer.trim()
       }))
-      .filter((faq) => faq.question && faq.answer)
+      .filter((faq) => faq.question && faq.answer),
+    gallery: form.gallery
+      .map((item) => ({
+        src: item.src.trim(),
+        alt: item.alt.trim(),
+        title: item.title.trim(),
+        body: item.body.trim()
+      }))
+      .filter((item) => item.src && item.alt)
   };
 }
 
@@ -244,6 +267,16 @@ export const MarketingPageEditor: React.FC = () => {
     });
   };
 
+  const updateGallery = (index: number, field: keyof GalleryDraft, value: string) => {
+    setForm((current) => {
+      if (!current) return current;
+      const gallery = current.gallery.map((item, itemIndex) =>
+        itemIndex === index ? { ...item, [field]: value } : item
+      );
+      return { ...current, gallery };
+    });
+  };
+
   const addSection = () => {
     setForm((current) => current ? {
       ...current,
@@ -272,6 +305,20 @@ export const MarketingPageEditor: React.FC = () => {
     } : current);
   };
 
+  const addGalleryItem = () => {
+    setForm((current) => current ? {
+      ...current,
+      gallery: [...current.gallery, { src: '', alt: '', title: '', body: '' }]
+    } : current);
+  };
+
+  const removeGalleryItem = (index: number) => {
+    setForm((current) => current ? {
+      ...current,
+      gallery: current.gallery.filter((_, itemIndex) => itemIndex !== index)
+    } : current);
+  };
+
   const claimFindings = useMemo(() => (
     form ? scanProductClaimFields(form, { root: 'marketing_page', includeReviews: false }).findings : []
   ), [form]);
@@ -287,7 +334,8 @@ export const MarketingPageEditor: React.FC = () => {
     const urlFields: Array<[string, string | undefined]> = [
       ['heroImage', content.heroImage],
       ['ogImage', content.ogImage],
-      ['datasheetUrl', content.datasheetUrl]
+      ['datasheetUrl', content.datasheetUrl],
+      ...content.gallery.map((item, index) => [`gallery.${index}.src`, item.src] as [string, string | undefined])
     ];
     const invalidUrlFields = urlFields
       .filter(([, value]) => !isSafePublicUrl(value || ''))
@@ -484,6 +532,49 @@ export const MarketingPageEditor: React.FC = () => {
             <span className="mb-1 block text-sm font-medium text-slate-700">Datasheet label</span>
             <input value={form.datasheetLabel} onChange={(event) => updateField('datasheetLabel', event.target.value)} placeholder="Download datasheet" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
           </label>
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-semibold text-slate-800">Screenshot gallery</h2>
+          <button onClick={addGalleryItem} className="inline-flex items-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50">
+            <Plus size={16} className="mr-2" />
+            Add screenshot
+          </button>
+        </div>
+        <div className="space-y-5">
+          {form.gallery.map((item, index) => (
+            <div key={index} className="rounded-lg border border-slate-200 p-4">
+              <div className="mb-3 flex justify-end">
+                <button onClick={() => removeGalleryItem(index)} className="inline-flex items-center rounded-md px-3 py-2 text-sm font-medium text-red-600 hover:bg-red-50">
+                  <Trash2 size={16} className="mr-2" />
+                  Remove
+                </button>
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="block md:col-span-2">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Image URL</span>
+                  <input value={item.src} onChange={(event) => updateGallery(index, 'src', event.target.value)} placeholder="/images/platform/saas/dashboard.jpg" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block md:col-span-2">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Alt text</span>
+                  <input value={item.alt} onChange={(event) => updateGallery(index, 'alt', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Title</span>
+                  <input value={item.title} onChange={(event) => updateGallery(index, 'title', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Caption</span>
+                  <textarea rows={2} value={item.body} onChange={(event) => updateGallery(index, 'body', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+              </div>
+            </div>
+          ))}
+          {form.gallery.length === 0 && (
+            <div className="rounded-lg border border-dashed border-slate-300 p-6 text-center text-sm text-slate-500">No screenshots.</div>
+          )}
         </div>
       </div>
 

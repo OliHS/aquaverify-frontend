@@ -56,6 +56,19 @@ function normalizeFaqs(value) {
   return faqs.length > 0 ? faqs : null;
 }
 
+function normalizeGallery(value) {
+  if (!Array.isArray(value)) return null;
+  const gallery = value
+    .map((item) => ({
+      src: cleanText(item?.src),
+      alt: cleanText(item?.alt),
+      title: cleanText(item?.title),
+      body: cleanText(item?.body)
+    }))
+    .filter((item) => item.src && item.alt);
+  return gallery.length > 0 ? gallery : null;
+}
+
 export function normalizeMarketingOverride(value) {
   if (!value || typeof value !== 'object') return null;
 
@@ -74,7 +87,8 @@ export function normalizeMarketingOverride(value) {
     seoTitle: cleanText(value.seoTitle),
     seoDescription: cleanText(value.seoDescription),
     sections: normalizeSections(value.sections),
-    faqs: normalizeFaqs(value.faqs)
+    faqs: normalizeFaqs(value.faqs),
+    gallery: normalizeGallery(value.gallery)
   };
 
   return Object.fromEntries(
@@ -99,6 +113,7 @@ export function mergeMarketingContent(baseContent, overrideContent) {
       datasheetLabel: override.datasheetLabel || baseContent.datasheetLabel,
       primaryCta: override.primaryCta || baseContent.primaryCta,
       secondaryCta: override.secondaryCta || baseContent.secondaryCta,
+      gallery: override.gallery || baseContent.gallery || [],
       path: baseContent.path
     };
   }
@@ -108,6 +123,7 @@ export function mergeMarketingContent(baseContent, overrideContent) {
     ...override,
     path: baseContent.path,
     sections: override.sections || baseContent.sections,
-    faqs: override.faqs || baseContent.faqs || []
+    faqs: override.faqs || baseContent.faqs || [],
+    gallery: override.gallery || baseContent.gallery || []
   };
 }
