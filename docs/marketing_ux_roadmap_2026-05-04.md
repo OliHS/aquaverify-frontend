@@ -14,6 +14,7 @@ Actualizado: 2026-05-04.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.
 - Dashboard CRM inicial para eventos de la web corporativa: implementado en plataforma, con KPIs, paginas, CTAs, intents, campanas, idiomas y eventos recientes.
 - Reporting CRM de conversion web -> lead -> MQL/SQL/cliente por campana, intent y producto: implementado en plataforma.
+- Reporting comercial de leads web con presupuestos, pipeline, pedidos, valor de pedidos y facturado: implementado en plataforma.
 - Pendiente principal: validar claims/naming con equipo tecnico/legal, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
 
 ## Decision Estrategica
@@ -434,7 +435,8 @@ Tareas:
   - OEM form start
 - Enviar UTMs e intent a plataforma. Implementado.
 - Crear dashboard CRM por fuente, idioma, pais, producto e intent. Implementado.
-- Iterar conversion real lead -> oportunidad -> cliente y reporting por campana. Implementado en version inicial dentro del CRM; queda enriquecer con ingresos, presupuestos y pedidos cuando haya volumen.
+- Iterar conversion real lead -> oportunidad -> cliente y reporting por campana. Implementado.
+- Enriquecer con ingresos, presupuestos y pedidos. Implementado en version inicial; queda ampliar a cohortes cuando haya volumen suficiente.
 
 Criterio de cierre:
 
@@ -552,7 +554,8 @@ Para cada producto prioritario:
 8. Publicar recursos tecnicos.
 9. Activar analitica avanzada y dashboard CRM inicial.
 10. Iterar conversion real lead -> oportunidad -> cliente y reporting por campana.
-11. Enriquecer reporting con ingresos, presupuestos, pedidos y cohortes por canal.
+11. Enriquecer reporting con ingresos, presupuestos y pedidos.
+12. Ampliar reporting a cohortes por canal cuando haya volumen suficiente.
 
 ## Riesgos
 
