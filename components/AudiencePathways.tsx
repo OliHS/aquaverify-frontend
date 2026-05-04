@@ -92,23 +92,23 @@ export const AudiencePathways: React.FC = () => {
   const copy = COPY[lang] || COPY.en;
 
   return (
-    <section data-aq-section="buyer-pathways" className="bg-white py-14 md:py-16">
+    <section data-aq-section="buyer-pathways" className="bg-white pt-8 pb-12 md:pt-10 md:pb-14">
       <div className="container mx-auto px-6">
-        <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-          <div>
+        <div className="grid gap-7 lg:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] lg:items-start">
+          <div className="max-w-2xl lg:pt-1">
             <div className="text-xs font-black uppercase tracking-[0.18em] text-secondary">{copy.eyebrow}</div>
             <h2 className="mt-3 font-heading text-3xl font-black text-primary md:text-4xl">{copy.title}</h2>
             <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600">{copy.subtitle}</p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {copy.cards.map((card) => (
-              <article key={card.id} className="rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-primary/30 hover:bg-white hover:shadow-md">
+              <article key={card.id} className="flex h-full flex-col rounded-lg border border-slate-200 bg-slate-50 p-5 transition hover:border-primary/30 hover:bg-white hover:shadow-md">
                 <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-white text-primary shadow-sm">
                   {ICONS[card.id]}
                 </div>
                 <h3 className="font-heading text-lg font-black text-slate-900">{card.title}</h3>
                 <p className="mt-2 min-h-[3.5rem] text-sm leading-6 text-slate-600">{card.body}</p>
-                <div className="mt-5 flex flex-wrap items-center gap-3">
+                <div className="mt-auto flex flex-wrap items-center gap-3 pt-5">
                   <Link to={getMarketingPagePath(card.pageId, lang)} className="inline-flex items-center text-sm font-black text-primary hover:text-secondary">
                     {card.pageCta}
                     <ArrowRight className="ml-1 h-4 w-4" />
