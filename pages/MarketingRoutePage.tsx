@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Download } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
@@ -115,9 +115,21 @@ const UI_LABELS: Record<Language, {
 
 type MarketingContentMeta = {
   faqs?: Array<{ question: string; answer: string }>;
+  heroImage?: string;
+  heroImageAlt?: string;
+  ogImage?: string;
+  datasheetUrl?: string;
+  datasheetLabel?: string;
   path: string;
   title: string;
 };
+
+function toPublicAssetUrl(value: string | undefined) {
+  const trimmed = value?.trim();
+  if (!trimmed) return '';
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+}
 
 function getHomePath(lang: Language) {
   return lang === 'en' ? '/' : `/${lang}`;
@@ -192,6 +204,7 @@ export const MarketingRoutePage: React.FC = () => {
       canonicalPath: mergedContent.path,
       alternates: getMarketingAlternates(match.page),
       pageType: (match.page as MarketingPageMeta).schemaType || match.page.category,
+      imageUrl: toPublicAssetUrl(contentMeta.ogImage || contentMeta.heroImage),
       faqs: contentMeta.faqs,
       breadcrumbs: buildMarketingBreadcrumbs(match.page, contentMeta, pageLang, labels)
     });
@@ -216,13 +229,16 @@ export const MarketingRoutePage: React.FC = () => {
   const secondaryUrl = getMarketingPagePath(secondaryId, pageLang);
   const relatedPages = getRelatedMarketingPages(page.id, pageLang);
   const labels = UI_LABELS[pageLang] || UI_LABELS.en;
+  const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
+  const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
+  const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
 
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
       <Header />
       <main className="flex-grow pt-20">
         <section className="bg-primary text-white">
-          <div className="container mx-auto px-6 py-20 md:py-24">
+          <div className={`container mx-auto grid gap-10 px-6 py-20 md:py-24 ${heroImageUrl ? 'lg:grid-cols-[1fr_0.82fr] lg:items-center' : ''}`}>
             <div className="max-w-4xl">
               <div className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-100">
                 {content.eyebrow || page.category}
@@ -247,8 +263,29 @@ export const MarketingRoutePage: React.FC = () => {
                 >
                   {content.secondaryCta || 'Explore AquaVerify'}
                 </Link>
+                {datasheetUrl && (
+                  <a
+                    href={datasheetUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10"
+                  >
+                    <Download className="mr-2 h-4 w-4" />
+                    {contentMeta.datasheetLabel || 'Datasheet'}
+                  </a>
+                )}
               </div>
             </div>
+            {heroImageUrl && (
+              <div className="overflow-hidden rounded-md border border-white/15 bg-white/5">
+                <img
+                  src={heroImageUrl}
+                  alt={ogFallbackAlt}
+                  className="h-full max-h-[420px] w-full object-cover"
+                  loading="eager"
+                />
+              </div>
+            )}
           </div>
         </section>
 

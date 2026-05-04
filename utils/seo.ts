@@ -123,6 +123,13 @@ function getAbsoluteUrl(path: string) {
   return `${CORPORATE_SITE_URL}${path === '/' ? '/' : path}`;
 }
 
+function getAbsoluteAssetUrl(pathOrUrl?: string) {
+  const value = pathOrUrl?.trim();
+  if (!value) return `${CORPORATE_SITE_URL}/android-chrome-512x512.png`;
+  if (/^https?:\/\//i.test(value)) return value;
+  return `${CORPORATE_SITE_URL}${value.startsWith('/') ? value : `/${value}`}`;
+}
+
 function upsertJsonLd(id: string, payload: Record<string, unknown>) {
   let element = document.head.querySelector<HTMLScriptElement>(`script[type="application/ld+json"][data-id="${id}"]`);
   if (!element) {
@@ -145,6 +152,7 @@ export function applyMarketingSeo({
   canonicalPath,
   alternates,
   pageType,
+  imageUrl,
   faqs,
   breadcrumbs
 }: {
@@ -154,11 +162,12 @@ export function applyMarketingSeo({
   canonicalPath: string;
   alternates: Partial<Record<Language, string>>;
   pageType?: string;
+  imageUrl?: string;
   faqs?: Array<{ question: string; answer: string }>;
   breadcrumbs?: Array<{ name: string; path: string }>;
 }) {
   const canonicalUrl = getAbsoluteUrl(canonicalPath);
-  const imageUrl = `${CORPORATE_SITE_URL}/android-chrome-512x512.png`;
+  const socialImageUrl = getAbsoluteAssetUrl(imageUrl);
 
   document.documentElement.lang = lang;
   document.title = title;
@@ -170,12 +179,12 @@ export function applyMarketingSeo({
   upsertMeta('property', 'og:title', title);
   upsertMeta('property', 'og:description', description);
   upsertMeta('property', 'og:url', canonicalUrl);
-  upsertMeta('property', 'og:image', imageUrl);
+  upsertMeta('property', 'og:image', socialImageUrl);
   upsertMeta('property', 'og:locale', SEO_LOCALES[lang] || SEO_LOCALES.en);
   upsertMeta('name', 'twitter:card', 'summary_large_image');
   upsertMeta('name', 'twitter:title', title);
   upsertMeta('name', 'twitter:description', description);
-  upsertMeta('name', 'twitter:image', imageUrl);
+  upsertMeta('name', 'twitter:image', socialImageUrl);
 
   upsertLink('link[rel="canonical"]', { rel: 'canonical', href: canonicalUrl });
   upsertLink('link[rel="alternate"][hreflang="x-default"]', {
@@ -199,6 +208,7 @@ export function applyMarketingSeo({
     name: title,
     description,
     url: canonicalUrl,
+    image: socialImageUrl,
     ...(pageType === 'Product' ? {
       brand: {
         '@type': 'Brand',

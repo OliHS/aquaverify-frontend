@@ -21,6 +21,7 @@ Actualizado: 2026-05-04.
 - El CMS muestra aviso operativo cuando faltan URLs marketing por enlazar y diferencia entre `page-only` y registro completo con bloque de contenido editable.
 - El deploy corporativo audita la cobertura CMS marketing en cada release sin bloquear produccion mientras falte la sincronizacion inicial.
 - El CLI de sync exige clave Supabase de escritura para evitar falsas sincronizaciones.
+- El editor de paginas marketing permite gestionar assets reales por URL: imagen hero, alt text, imagen OpenGraph y enlace/label de datasheet, con validacion basica de URLs publicas.
 - Pendiente principal: aprobacion final tecnico/legal de la tabla maestra, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
 
 ## Decision Estrategica
@@ -231,6 +232,7 @@ Avance implementado:
 - El panel `Marketing URLs` permite enlazar todas las rutas SEO en Supabase como paginas CMS editables, conservando overrides ya existentes.
 - Scripts CLI equivalentes permiten auditar cobertura CMS, exigir modo estricto cuando se quiera bloquear release, o sincronizarla con una clave Supabase de escritura.
 - El estado de cobertura aparece en el CMS, diferencia pagina sin bloque de contenido y registro completo, y se puede refrescar desde el panel.
+- Las paginas marketing ya pueden mostrar assets reales opcionales y usar imagenes OpenGraph especificas sin introducir fallbacks genericos.
 - Reescrito copy publico sensible hacia lenguaje de producto, trazabilidad, workflow e informes tecnicos.
 - Se mantienen avisos no bloqueantes para revisar la ambiguedad `ENUMERAColi100` / `ENUMERAEntero100` detectada en el DOCX.
 

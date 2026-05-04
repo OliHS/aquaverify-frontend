@@ -81,6 +81,13 @@ function absolute(routePath) {
   return `${SITE_URL}${routePath === '/' ? '/' : routePath}`;
 }
 
+function absoluteAsset(pathOrUrl) {
+  const value = String(pathOrUrl || '').trim();
+  if (!value) return `${SITE_URL}/android-chrome-512x512.png`;
+  if (/^https?:\/\//i.test(value)) return value;
+  return `${SITE_URL}${value.startsWith('/') ? value : `/${value}`}`;
+}
+
 function escapeHtml(value) {
   return String(value || '').replace(/[&<>"']/g, (char) => ({
     '&': '&amp;',
@@ -117,7 +124,7 @@ function buildBreadcrumbs(page, content, lang) {
   return crumbs.filter((crumb, index, all) => all.findIndex((item) => item.path === crumb.path) === index);
 }
 
-function buildStructuredData({ page, content, lang, canonicalUrl, title, description }) {
+function buildStructuredData({ page, content, lang, canonicalUrl, title, description, imageUrl }) {
   const pageType = page?.schemaType || page?.category;
   const payloads = [{
     id: 'marketing-page',
@@ -127,6 +134,7 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
       name: title,
       description,
       url: canonicalUrl,
+      image: imageUrl,
       ...(pageType === 'Product' ? {
         brand: {
           '@type': 'Brand',
@@ -186,7 +194,7 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
 
 function seoHeadBlock({ lang, title, description, canonicalPath, alternates, page, content }) {
   const canonicalUrl = absolute(canonicalPath);
-  const imageUrl = `${SITE_URL}/android-chrome-512x512.png`;
+  const imageUrl = absoluteAsset(content?.ogImage || content?.heroImage);
   const alternateTags = Object.entries(alternates)
     .filter(([, routePath]) => Boolean(routePath))
     .map(([alternateLang, routePath]) => `  <link rel="alternate" hreflang="${alternateLang}" href="${absolute(routePath)}" />`)
@@ -209,7 +217,7 @@ function seoHeadBlock({ lang, title, description, canonicalPath, alternates, pag
     `  <meta name="twitter:title" content="${escapeHtml(title)}" />`,
     `  <meta name="twitter:description" content="${escapeHtml(description)}" />`,
     `  <meta name="twitter:image" content="${imageUrl}" />`,
-    buildStructuredData({ page, content, lang, canonicalUrl, title, description })
+    buildStructuredData({ page, content, lang, canonicalUrl, title, description, imageUrl })
   ].join('\n');
 }
 

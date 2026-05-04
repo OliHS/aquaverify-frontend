@@ -34,6 +34,11 @@ type MarketingContent = {
   eyebrow?: string;
   primaryCta?: string;
   secondaryCta?: string;
+  heroImage?: string;
+  heroImageAlt?: string;
+  ogImage?: string;
+  datasheetUrl?: string;
+  datasheetLabel?: string;
   seoTitle?: string;
   seoDescription?: string;
   sections?: Array<{ title: string; body: string; bullets?: string[] }>;
@@ -53,6 +58,11 @@ type EditorForm = {
   eyebrow: string;
   primaryCta: string;
   secondaryCta: string;
+  heroImage: string;
+  heroImageAlt: string;
+  ogImage: string;
+  datasheetUrl: string;
+  datasheetLabel: string;
   seoTitle: string;
   seoDescription: string;
   sections: SectionDraft[];
@@ -70,6 +80,11 @@ function contentToForm(content: MarketingContent): EditorForm {
     eyebrow: content.eyebrow || '',
     primaryCta: content.primaryCta || '',
     secondaryCta: content.secondaryCta || '',
+    heroImage: content.heroImage || '',
+    heroImageAlt: content.heroImageAlt || '',
+    ogImage: content.ogImage || '',
+    datasheetUrl: content.datasheetUrl || '',
+    datasheetLabel: content.datasheetLabel || '',
     seoTitle: content.seoTitle || content.title || '',
     seoDescription: content.seoDescription || content.description || '',
     sections: (content.sections || []).map((section) => ({
@@ -92,6 +107,11 @@ function formToContent(form: EditorForm, path: string) {
     eyebrow: form.eyebrow.trim(),
     primaryCta: form.primaryCta.trim(),
     secondaryCta: form.secondaryCta.trim(),
+    heroImage: form.heroImage.trim(),
+    heroImageAlt: form.heroImageAlt.trim(),
+    ogImage: form.ogImage.trim(),
+    datasheetUrl: form.datasheetUrl.trim(),
+    datasheetLabel: form.datasheetLabel.trim(),
     seoTitle: form.seoTitle.trim(),
     seoDescription: form.seoDescription.trim(),
     sections: form.sections
@@ -115,6 +135,19 @@ function formToContent(form: EditorForm, path: string) {
 
 function claimMessage(findings: Array<{ path: string; rule: { name: string; guidance: string } }>) {
   return findings.map((item) => `${item.path}: ${item.rule.guidance}`).join('\n');
+}
+
+function isSafePublicUrl(value: string) {
+  const trimmed = value.trim();
+  if (!trimmed) return true;
+  if (/[\u0000-\u001F\u007F\s]/.test(trimmed)) return false;
+  if (trimmed.startsWith('/')) return !trimmed.startsWith('//');
+  try {
+    const url = new URL(trimmed);
+    return url.protocol === 'https:' || url.protocol === 'http:';
+  } catch {
+    return false;
+  }
 }
 
 export const MarketingPageEditor: React.FC = () => {
@@ -251,10 +284,24 @@ export const MarketingPageEditor: React.FC = () => {
     const slug = getMarketingOverrideSlug(pageId, lang);
     const content = formToContent(form, defaultContent.path);
     const blockedClaims = scanProductClaimFields(content, { root: 'marketing_page', includeReviews: false }).findings;
+    const urlFields: Array<[string, string | undefined]> = [
+      ['heroImage', content.heroImage],
+      ['ogImage', content.ogImage],
+      ['datasheetUrl', content.datasheetUrl]
+    ];
+    const invalidUrlFields = urlFields
+      .filter(([, value]) => !isSafePublicUrl(value || ''))
+      .map(([field]) => field);
 
     if (blockedClaims.length > 0) {
       setSaving(false);
       setError(`Blocked product/marketing claim. Adjust wording before publishing.\n${claimMessage(blockedClaims)}`);
+      return;
+    }
+
+    if (invalidUrlFields.length > 0) {
+      setSaving(false);
+      setError(`Invalid public asset URL: ${invalidUrlFields.join(', ')}. Use https:// or a site-relative path starting with /.`);
       return;
     }
 
@@ -410,6 +457,32 @@ export const MarketingPageEditor: React.FC = () => {
           <label className="block">
             <span className="mb-1 block text-sm font-medium text-slate-700">Secondary CTA</span>
             <input value={form.secondaryCta} onChange={(event) => updateField('secondaryCta', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+          </label>
+        </div>
+      </div>
+
+      <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
+        <h2 className="mb-4 text-xl font-semibold text-slate-800">Assets and datasheet</h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          <label className="block md:col-span-2">
+            <span className="mb-1 block text-sm font-medium text-slate-700">Hero image URL</span>
+            <input value={form.heroImage} onChange={(event) => updateField('heroImage', event.target.value)} placeholder="/images/product-photo.webp" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+          </label>
+          <label className="block md:col-span-2">
+            <span className="mb-1 block text-sm font-medium text-slate-700">Hero image alt text</span>
+            <input value={form.heroImageAlt} onChange={(event) => updateField('heroImageAlt', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+          </label>
+          <label className="block md:col-span-2">
+            <span className="mb-1 block text-sm font-medium text-slate-700">OpenGraph image URL</span>
+            <input value={form.ogImage} onChange={(event) => updateField('ogImage', event.target.value)} placeholder="/images/og-product.webp" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+          </label>
+          <label className="block">
+            <span className="mb-1 block text-sm font-medium text-slate-700">Datasheet URL</span>
+            <input value={form.datasheetUrl} onChange={(event) => updateField('datasheetUrl', event.target.value)} placeholder="/datasheets/enumera.pdf" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+          </label>
+          <label className="block">
+            <span className="mb-1 block text-sm font-medium text-slate-700">Datasheet label</span>
+            <input value={form.datasheetLabel} onChange={(event) => updateField('datasheetLabel', event.target.value)} placeholder="Download datasheet" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
           </label>
         </div>
       </div>

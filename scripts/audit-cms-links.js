@@ -21,7 +21,8 @@ const editableLinkFields = new Set([
   'secondaryBtnLink',
   'partnerBtnLink',
   'quoteBtnLink_single',
-  'quoteBtnLink_combined'
+  'quoteBtnLink_combined',
+  'datasheetUrl'
 ]);
 
 const legacyManagedLinks = [
