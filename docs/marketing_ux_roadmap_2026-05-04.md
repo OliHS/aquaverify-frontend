@@ -22,6 +22,7 @@ Actualizado: 2026-05-04.
 - El deploy corporativo exige cobertura CMS marketing completa en cada release con `npm run cms:marketing:strict`.
 - El CLI de sync exige clave Supabase de escritura para evitar falsas sincronizaciones.
 - El editor de paginas marketing permite gestionar assets reales por URL: imagen hero, alt text, imagen OpenGraph y enlace/label de datasheet, con validacion basica de URLs publicas.
+- Las paginas publicas de `ENUMERA Coli100` y `ENUMERA Entero100` quedan en wording generico de indicadores bacterianos hasta validar definitivamente el parametro de cada nombre.
 - Pendiente principal: aprobacion final tecnico/legal de la tabla maestra, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
 
 ## Decision Estrategica
@@ -233,6 +234,7 @@ Avance implementado:
 - Scripts CLI equivalentes permiten auditar cobertura CMS, exigir modo estricto en release, o sincronizarla con una clave Supabase de escritura.
 - El estado de cobertura aparece en el CMS, diferencia pagina sin bloque de contenido y registro completo, se puede refrescar desde el panel y queda cerrado actualmente en 280/280.
 - Las paginas marketing ya pueden mostrar assets reales opcionales y usar imagenes OpenGraph especificas sin introducir fallbacks genericos.
+- La proyeccion publica de marketing evita publicar parametros especificos en `ENUMERA Coli100` / `ENUMERA Entero100` mientras el documento de gama siga mostrando naming ambiguo.
 - Reescrito copy publico sensible hacia lenguaje de producto, trazabilidad, workflow e informes tecnicos.
 - Se mantienen avisos no bloqueantes para revisar la ambiguedad `ENUMERAColi100` / `ENUMERAEntero100` detectada en el DOCX.
 

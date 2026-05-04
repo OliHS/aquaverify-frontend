@@ -5,7 +5,10 @@ import { scanProductClaimText } from '../utils/productClaims.js';
 const ROOT = process.cwd();
 const SCAN_DIRS = ['components', 'pages', 'utils', 'src'];
 const EXTRA_FILES = ['App.tsx', 'index.tsx', 'scripts/prerender-marketing-pages.js'];
-const EXCLUDED_FILES = new Set(['utils/productClaims.js']);
+const EXCLUDED_FILES = new Set([
+  'utils/productClaims.js',
+  'utils/marketingPageOverrides.js'
+]);
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];

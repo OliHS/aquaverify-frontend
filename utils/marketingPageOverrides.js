@@ -1,11 +1,29 @@
 export const MARKETING_OVERRIDE_SECTION_ID = 'marketing_page';
+const PENDING_PARAMETER_VALIDATION_PATHS = [
+  'enumera-coli100',
+  'enumera-entero100'
+];
 
 export function getMarketingOverrideSlug(pageId, lang) {
   return `marketing-${pageId}-${lang}`;
 }
 
 function cleanText(value) {
-  return typeof value === 'string' ? value : '';
+  return typeof value === 'string' ? sanitizePendingParameterCopy(value) : '';
+}
+
+function sanitizePendingParameterCopy(value) {
+  return value
+    .replace(/\bENUMERA\s+Coli100\s+for\s+enterococci\s+workflows\b/gi, 'ENUMERA Coli100 for bacterial indicator workflows')
+    .replace(/\bENUMERA\s+Entero100\s+for\s+enterococci\s+workflows\b/gi, 'ENUMERA Entero100 for bacterial indicator workflows')
+    .replace(/\bENUMERA\s+Coli100\s+para\s+enterococos\b/gi, 'ENUMERA Coli100 para indicadores bacterianos')
+    .replace(/\bENUMERA\s+Entero100\s+para\s+enterococos\b/gi, 'ENUMERA Entero100 para indicadores bacterianos')
+    .replace(/\bENUMERA\s+Coli100\s+pour\s+les\s+entérocoques\b/gi, 'ENUMERA Coli100 pour les indicateurs bactériens')
+    .replace(/\bENUMERA\s+Entero100\s+pour\s+les\s+entérocoques\b/gi, 'ENUMERA Entero100 pour les indicateurs bactériens')
+    .replace(/\bENUMERA\s+Coli100\s+per\s+enterococchi\b/gi, 'ENUMERA Coli100 per indicatori batterici')
+    .replace(/\bENUMERA\s+Entero100\s+per\s+enterococchi\b/gi, 'ENUMERA Entero100 per indicatori batterici')
+    .replace(/\bENUMERA\s+Coli100\s+per\s+a\s+enterococs\b/gi, 'ENUMERA Coli100 per a indicadors bacterians')
+    .replace(/\bENUMERA\s+Entero100\s+per\s+a\s+enterococs\b/gi, 'ENUMERA Entero100 per a indicadors bacterians');
 }
 
 function normalizeBullets(value) {
@@ -70,6 +88,20 @@ export function normalizeMarketingOverride(value) {
 export function mergeMarketingContent(baseContent, overrideContent) {
   const override = normalizeMarketingOverride(overrideContent);
   if (!override) return baseContent;
+
+  if (PENDING_PARAMETER_VALIDATION_PATHS.some((path) => baseContent.path?.includes(path))) {
+    return {
+      ...baseContent,
+      heroImage: override.heroImage || baseContent.heroImage,
+      heroImageAlt: override.heroImageAlt || baseContent.heroImageAlt,
+      ogImage: override.ogImage || baseContent.ogImage,
+      datasheetUrl: override.datasheetUrl || baseContent.datasheetUrl,
+      datasheetLabel: override.datasheetLabel || baseContent.datasheetLabel,
+      primaryCta: override.primaryCta || baseContent.primaryCta,
+      secondaryCta: override.secondaryCta || baseContent.secondaryCta,
+      path: baseContent.path
+    };
+  }
 
   return {
     ...baseContent,

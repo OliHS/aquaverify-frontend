@@ -1,6 +1,15 @@
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
 import { sanitizeProductClaimFields, scanProductClaimFields } from '../utils/productClaims.js';
+import {
+  MARKETING_LANGUAGES,
+  MARKETING_PAGES
+} from '../utils/marketingPages.js';
+import {
+  getMarketingOverrideSlug,
+  MARKETING_OVERRIDE_SECTION_ID,
+  mergeMarketingContent
+} from '../utils/marketingPageOverrides.js';
 
 dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
@@ -33,6 +42,19 @@ function addSanitizedPublicCatalogScan(result, root, value) {
   result.reviews.push(...projected.reviews);
 }
 
+function getMarketingDefaultsBySlug() {
+  const entries = [];
+  for (const page of MARKETING_PAGES) {
+    for (const lang of MARKETING_LANGUAGES) {
+      entries.push([
+        getMarketingOverrideSlug(page.id, lang),
+        page.translations[lang]
+      ]);
+    }
+  }
+  return new Map(entries);
+}
+
 async function run() {
   ensureEnv();
   const supabase = createClient(supabaseUrl, supabaseKey);
@@ -44,6 +66,7 @@ async function run() {
   if (pagesError) throw pagesError;
 
   const pageSlugById = new Map((pages || []).map((page) => [page.id, page.slug]));
+  const marketingDefaultsBySlug = getMarketingDefaultsBySlug();
   for (const page of pages || []) {
     addScan(result, `pages.${page.slug}`, {
       title: page.title,
@@ -59,7 +82,13 @@ async function run() {
 
   for (const block of blocks || []) {
     const slug = pageSlugById.get(block.page_id) || block.page_id || 'unknown-page';
-    addScan(result, `content_blocks.${slug}.${block.section_id}`, block.content);
+    const marketingDefault = block.section_id === MARKETING_OVERRIDE_SECTION_ID
+      ? marketingDefaultsBySlug.get(slug)
+      : null;
+    const publicContent = marketingDefault
+      ? mergeMarketingContent(marketingDefault, block.content)
+      : block.content;
+    addScan(result, `content_blocks.${slug}.${block.section_id}`, publicContent);
   }
 
   const { data: families, error: familiesError } = await supabase

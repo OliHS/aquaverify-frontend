@@ -25,6 +25,7 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 - `ENUMERAColi100` aparece en el documento de gama como "Enterocci in 100 mL of water".
 - `ENUMERAEntero100` aparece en el documento de gama como "Escherichia coli and total coliforms in 100 mL of water".
 - Antes de cerrar naming publico definitivo, confirmar si los nombres o las descripciones estan invertidos.
+- Mientras no se valide, las paginas publicas de `ENUMERA Coli100` y `ENUMERA Entero100` usan wording generico de indicadores bacterianos y no publican el parametro especifico.
 - Confirmar si se puede usar `Smart Cap`, `Smart Cap System` y cualquier claim de propiedad intelectual.
 
 ## Tabla Maestra Inicial
@@ -75,5 +76,6 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 
 - Public copy de la web ajustado a wording seguro el 2026-05-04.
 - CMS auditado contra contenido vivo en Supabase; bloques editables de home limpiados el 2026-05-04.
+- Paginas marketing de `ENUMERA Coli100` y `ENUMERA Entero100` protegidas con proyeccion publica generica hasta validacion de parametro/naming.
 - Pendiente operativo: corregir en admin autenticado los registros legacy de catalogo `Certified Standards`, `AquaVerify Academy` y `services.use_cases`.
 - Falta aprobacion tecnico/legal final de naming, claims y referencias ISO/EPA.
