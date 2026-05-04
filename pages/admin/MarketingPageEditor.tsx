@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, Plus, Save, Trash2 } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, CheckCircle2, Plus, Save, Trash2 } from 'lucide-react';
 import { supabase } from '../../utils/supabase';
 import {
   LANGUAGE_NAMES,
@@ -12,6 +12,7 @@ import {
   MARKETING_OVERRIDE_SECTION_ID,
   mergeMarketingContent
 } from '../../utils/marketingPageOverrides.js';
+import { scanProductClaimFields } from '../../utils/productClaims.js';
 
 type MarketingLanguage = 'en' | 'es' | 'fr' | 'it' | 'ca';
 
@@ -110,6 +111,10 @@ function formToContent(form: EditorForm, path: string) {
       }))
       .filter((faq) => faq.question && faq.answer)
   };
+}
+
+function claimMessage(findings: Array<{ path: string; rule: { name: string; guidance: string } }>) {
+  return findings.map((item) => `${item.path}: ${item.rule.guidance}`).join('\n');
 }
 
 export const MarketingPageEditor: React.FC = () => {
@@ -234,6 +239,10 @@ export const MarketingPageEditor: React.FC = () => {
     } : current);
   };
 
+  const claimFindings = useMemo(() => (
+    form ? scanProductClaimFields(form, { root: 'marketing_page', includeReviews: false }).findings : []
+  ), [form]);
+
   const handleSave = async () => {
     if (!form || !defaultContent || !pageId) return;
 
@@ -241,6 +250,13 @@ export const MarketingPageEditor: React.FC = () => {
     setError('');
     const slug = getMarketingOverrideSlug(pageId, lang);
     const content = formToContent(form, defaultContent.path);
+    const blockedClaims = scanProductClaimFields(content, { root: 'marketing_page', includeReviews: false }).findings;
+
+    if (blockedClaims.length > 0) {
+      setSaving(false);
+      setError(`Blocked product/marketing claim. Adjust wording before publishing.\n${claimMessage(blockedClaims)}`);
+      return;
+    }
 
     try {
       const { data: pageRow, error: pageError } = await supabase
@@ -351,7 +367,17 @@ export const MarketingPageEditor: React.FC = () => {
       )}
 
       {error && (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div>
+        <div className="whitespace-pre-line rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div>
+      )}
+
+      {claimFindings.length > 0 && (
+        <div className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-800 shadow-sm">
+          <div className="mb-2 flex items-center font-semibold">
+            <AlertTriangle size={18} className="mr-2" />
+            Blocked claim wording
+          </div>
+          <div className="whitespace-pre-line">{claimMessage(claimFindings)}</div>
+        </div>
       )}
 
       <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">

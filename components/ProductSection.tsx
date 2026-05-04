@@ -20,6 +20,7 @@ import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { supabase } from '../utils/supabase';
 import type { Language } from '../utils/translations';
 import { getMarketingPagePath } from '../utils/marketingPages.js';
+import { sanitizeProductClaimFields, sanitizeProductClaimText } from '../utils/productClaims.js';
 
 // Helper to map string family_ids to Lucide icons
 const getFamilyIcon = (familyId: string) => {
@@ -140,24 +141,25 @@ export const ProductSection: React.FC = () => {
         // Map DB schemas to the UI ProductFamily interface
         const formattedFamilies: ProductFamily[] = (dbFamilies || []).map(fam => {
           const familyProducts = (dbProducts || []).filter(p => p.family_id === fam.id);
+          const safeUseCases = sanitizeProductClaimFields(fam.use_cases || []) as string[];
 
           return {
             id: fam.family_id, // Map for backward compatibility with translations? We'll use the DB title though directly below
-            title: fam.title,
-            description: fam.description,
+            title: sanitizeProductClaimText(fam.title),
+            description: sanitizeProductClaimText(fam.description),
             icon: getFamilyIcon(fam.family_id),
-            useCases: fam.use_cases || [],
+            useCases: safeUseCases,
             items: familyProducts.map(fp => ({
               id: fp.id,
-              name: fp.name,
-              detail: fp.detail || undefined,
+              name: sanitizeProductClaimText(fp.name),
+              detail: fp.detail ? sanitizeProductClaimText(fp.detail) : undefined,
               // Use default icon for all products for now, or you could do a similar mapping
               icon: <Package size={16} />,
               image: fp.image || undefined,
               images: (fp.images && fp.images.length > 0) ? fp.images : undefined,
-              description: fp.description || undefined,
-              specificUseCases: (fp.specific_use_cases && fp.specific_use_cases.length > 0) ? fp.specific_use_cases : undefined,
-              specs: (fp.specs && Object.keys(fp.specs).length > 0) ? fp.specs : undefined,
+              description: fp.description ? sanitizeProductClaimText(fp.description) : undefined,
+              specificUseCases: (fp.specific_use_cases && fp.specific_use_cases.length > 0) ? sanitizeProductClaimFields(fp.specific_use_cases) as string[] : undefined,
+              specs: (fp.specs && Object.keys(fp.specs).length > 0) ? sanitizeProductClaimFields(fp.specs) as Record<string, string> : undefined,
             }))
           };
         });

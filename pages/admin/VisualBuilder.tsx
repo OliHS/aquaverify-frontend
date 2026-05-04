@@ -7,6 +7,7 @@ import { PageContentContext } from '../../context/PageContentContext';
 import { LanguageProvider, useLanguage } from '../../context/LanguageContext';
 import { LanguageSelector } from '../../components/LanguageSelector';
 import { sanitizeCmsContentLinks } from '../../utils/cmsLinks';
+import { scanProductClaimFields } from '../../utils/productClaims.js';
 
 export const VisualBuilder: React.FC = () => {
     return (
@@ -188,6 +189,18 @@ const VisualBuilderInner: React.FC = () => {
 
         if (sanitized.clearedPlaceholders.length > 0) {
             setBlocks(sanitized.content);
+        }
+
+        const blockedClaims = scanProductClaimFields({
+            seoTitle,
+            seoDescription,
+            blocks: sanitized.content
+        }, { root: 'visual_builder', includeReviews: false }).findings;
+
+        if (blockedClaims.length > 0) {
+            setSaving(false);
+            alert(`Corrige estos claims antes de publicar:\n\n${blockedClaims.map((item: any) => `${item.path}: ${item.rule.guidance}`).join('\n')}`);
+            return;
         }
 
         // Update SEO

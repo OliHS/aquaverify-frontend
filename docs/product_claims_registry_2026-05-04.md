@@ -14,8 +14,11 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 ## Bloqueos Activos
 
 - Auditor automatico: `npm run claims:audit`.
+- Auditor de contenido CMS vivo: `npm run cms:claims:audit`.
 - Incluido en release local: `npm run check:local`.
 - Escanea copy publico en `components`, `pages`, `utils`, `src`, `App.tsx`, `index.tsx` y metadatos prerender.
+- Los editores de marketing, visual builder y productos bloquean guardado con wording sensible.
+- La proyeccion publica del catalogo sanea terminos legacy de producto que aun estan protegidos por RLS en Supabase.
 
 ## Puntos a Validar
 
@@ -71,4 +74,6 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 ## Estado
 
 - Public copy de la web ajustado a wording seguro el 2026-05-04.
+- CMS auditado contra contenido vivo en Supabase; bloques editables de home limpiados el 2026-05-04.
+- Pendiente operativo: corregir en admin autenticado los registros legacy de catalogo `Certified Standards`, `AquaVerify Academy` y `services.use_cases`.
 - Falta aprobacion tecnico/legal final de naming, claims y referencias ISO/EPA.

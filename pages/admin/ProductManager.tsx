@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../utils/supabase';
-import { Plus, Edit2, Trash2, Check, X, Eye, EyeOff, GripVertical } from 'lucide-react';
+import { AlertTriangle, Plus, Edit2, Trash2, Check, X, Eye, EyeOff, GripVertical } from 'lucide-react';
+import { scanProductClaimFields } from '../../utils/productClaims.js';
 
 interface DBProductFamily {
     id: string;
@@ -24,6 +25,10 @@ interface DBProduct {
     specs: Record<string, string>;
     is_hidden: boolean;
     sort_order: number;
+}
+
+function claimMessage(findings: Array<{ path: string; rule: { guidance: string } }>) {
+    return findings.map((item) => `${item.path}: ${item.rule.guidance}`).join('\n');
 }
 
 export const ProductManager: React.FC = () => {
@@ -111,6 +116,11 @@ export const ProductManager: React.FC = () => {
 
     const handleSaveFamily = async (e: React.FormEvent) => {
         e.preventDefault();
+        const blockedClaims = scanProductClaimFields(familyFormData, { root: 'product_family', includeReviews: false }).findings;
+        if (blockedClaims.length > 0) {
+            alert(`Adjust these claims before saving:\n\n${claimMessage(blockedClaims)}`);
+            return;
+        }
         try {
             if (editingFamilyId) {
                 const { error } = await supabase.from('product_families').update(familyFormData).eq('id', editingFamilyId);
@@ -165,6 +175,11 @@ export const ProductManager: React.FC = () => {
 
     const handleSaveProduct = async (e: React.FormEvent) => {
         e.preventDefault();
+        const blockedClaims = scanProductClaimFields(productFormData, { root: 'product', includeReviews: false }).findings;
+        if (blockedClaims.length > 0) {
+            alert(`Adjust these claims before saving:\n\n${claimMessage(blockedClaims)}`);
+            return;
+        }
         try {
             if (editingProductId) {
                 const { error } = await supabase.from('products').update(productFormData).eq('id', editingProductId);
@@ -200,6 +215,13 @@ export const ProductManager: React.FC = () => {
             alert('Error updating product: ' + err.message);
         }
     };
+
+    const familyClaimFindings = isFamilyModalOpen
+        ? scanProductClaimFields(familyFormData, { root: 'product_family', includeReviews: false }).findings
+        : [];
+    const productClaimFindings = isProductModalOpen
+        ? scanProductClaimFields(productFormData, { root: 'product', includeReviews: false }).findings
+        : [];
 
     return (
         <div className="flex h-[calc(100vh-64px)] overflow-hidden">
@@ -379,6 +401,15 @@ export const ProductManager: React.FC = () => {
                                         rows={3}
                                     />
                                 </div>
+                                {familyClaimFindings.length > 0 && (
+                                    <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
+                                        <div className="mb-1 flex items-center font-semibold">
+                                            <AlertTriangle size={14} className="mr-1.5" />
+                                            Blocked claim wording
+                                        </div>
+                                        <div className="whitespace-pre-line">{claimMessage(familyClaimFindings)}</div>
+                                    </div>
+                                )}
                             </form>
                         </div>
                         <div className="px-6 py-4 border-t border-gray-100 bg-gray-50 flex justify-end gap-3 mt-auto">
@@ -446,6 +477,15 @@ export const ProductManager: React.FC = () => {
                                             placeholder="https://example.com/product-image.png"
                                         />
                                     </div>
+                                    {productClaimFindings.length > 0 && (
+                                        <div className="col-span-2 rounded-lg border border-amber-200 bg-amber-50 p-3 text-xs text-amber-800">
+                                            <div className="mb-1 flex items-center font-semibold">
+                                                <AlertTriangle size={14} className="mr-1.5" />
+                                                Blocked claim wording
+                                            </div>
+                                            <div className="whitespace-pre-line">{claimMessage(productClaimFindings)}</div>
+                                        </div>
+                                    )}
                                 </div>
                             </form>
                         </div>

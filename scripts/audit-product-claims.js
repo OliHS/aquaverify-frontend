@@ -1,50 +1,11 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { scanProductClaimText } from '../utils/productClaims.js';
 
 const ROOT = process.cwd();
 const SCAN_DIRS = ['components', 'pages', 'utils', 'src'];
 const EXTRA_FILES = ['App.tsx', 'index.tsx', 'scripts/prerender-marketing-pages.js'];
-
-const BLOCKED_PATTERNS = [
-  {
-    name: 'certification_claim',
-    pattern: /\b(certified|certificado|certificada|certificados|certificadas|certifi[eé]|certifi[eé]e|certifi[eé]s|certifi[eé]es|certificato|certificata|certificati|certified-compatible)\b/i,
-    guidance: 'Avoid certification claims until a product/market evidence pack is approved.'
-  },
-  {
-    name: 'iso_epa_compliance_claim',
-    pattern: /\b(iso|epa)[/\w\s-]{0,28}\b(compliant|compatible|conforme|conformes|conformi|compatibles?)\b|\b(compliant|conforme|conformes|conformi)[/\w\s-]{0,28}\b(iso|epa)\b/i,
-    guidance: 'Use workflow-alignment language instead of ISO/EPA compliance wording.'
-  },
-  {
-    name: 'patent_claim',
-    pattern: /\b(patented|patentada|patentado|brevet[eé]e|brevettata|brevetado)\b/i,
-    guidance: 'Avoid patent claims unless the patent reference is approved for the market.'
-  },
-  {
-    name: 'guarantee_claim',
-    pattern: /\b(guarantee|guaranteed|garantice|garantiza|garantizado|garantissant|garantisce|garantito)\b/i,
-    guidance: 'Avoid absolute guarantee language in public product copy.'
-  },
-  {
-    name: 'according_to_method_claim',
-    pattern: /\baccording to\s+(iso|epa)\b/i,
-    guidance: 'Prefer "oriented to", "supports", or "for workflows using" until regulatory wording is approved.'
-  }
-];
-
-const REVIEW_PATTERNS = [
-  {
-    name: 'enumera_coli100_mapping_review',
-    pattern: /ENUMERA\s*Coli100[\s\S]{0,160}(E\.?\s*coli|enterococc|enterocci)/i,
-    guidance: 'Review Coli100 parameter mapping against the approved product master.'
-  },
-  {
-    name: 'enumera_entero100_mapping_review',
-    pattern: /ENUMERA\s*Entero100[\s\S]{0,160}(E\.?\s*coli|coliform|enterococc|enterocci)/i,
-    guidance: 'Review Entero100 parameter mapping against the approved product master.'
-  }
-];
+const EXCLUDED_FILES = new Set(['utils/productClaims.js']);
 
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -56,7 +17,8 @@ function walk(dir) {
 }
 
 function shouldScan(file) {
-  return /\.(tsx?|jsx?|html)$/.test(file)
+  return !EXCLUDED_FILES.has(path.relative(ROOT, file))
+    && /\.(tsx?|jsx?|html)$/.test(file)
     && !file.includes(`${path.sep}dist${path.sep}`)
     && !file.includes(`${path.sep}node_modules${path.sep}`);
 }
@@ -67,30 +29,17 @@ function lineFor(content, index) {
 
 function scanFile(file) {
   const content = fs.readFileSync(file, 'utf8');
-  const findings = [];
-  const reviews = [];
-
-  BLOCKED_PATTERNS.forEach((rule) => {
-    const match = rule.pattern.exec(content);
-    if (match) {
-      findings.push({
-        file,
-        line: lineFor(content, match.index),
-        rule
-      });
-    }
-  });
-
-  REVIEW_PATTERNS.forEach((rule) => {
-    const match = rule.pattern.exec(content);
-    if (match) {
-      reviews.push({
-        file,
-        line: lineFor(content, match.index),
-        rule
-      });
-    }
-  });
+  const scanned = scanProductClaimText(content);
+  const findings = scanned.findings.map((item) => ({
+    file,
+    line: lineFor(content, item.index),
+    rule: item.rule
+  }));
+  const reviews = scanned.reviews.map((item) => ({
+    file,
+    line: lineFor(content, item.index),
+    rule: item.rule
+  }));
 
   return { findings, reviews };
 }
