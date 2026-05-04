@@ -139,6 +139,10 @@ async function run() {
     const mainAssetUrl = getMainAssetUrl(corporateHtml);
     const { response, text } = await getText(mainAssetUrl);
     assert(response.status === 200, `Main asset returned ${response.status}`);
+    assert(
+      (response.headers.get('cache-control') || '').includes('immutable'),
+      'Main hashed asset is not served with immutable cache'
+    );
     assert(text.includes('app.aquaverify.com'), 'Platform host missing from corporate bundle');
     assert(text.includes('aqCookieManageButton'), 'Cookie manage button marker missing from bundle');
     assert(text.includes('corporate-preferences'), 'Corporate cookie sync endpoint missing from bundle');
@@ -244,10 +248,16 @@ async function run() {
     assert(globeAssetText.includes('/images/globe/earth-blue-marble.jpg'), 'Local earth texture missing from globe asset');
     assert(globeAssetText.includes('/images/globe/earth-topology.png'), 'Local earth topology missing from globe asset');
     assert(!globeAssetText.includes('unpkg.com/three-globe'), 'Globe asset still references unpkg textures');
-    await Promise.all([
+    const textureResponses = await Promise.all([
       expectStatus(`${CORPORATE_SITE_URL}/images/globe/earth-blue-marble.jpg`),
       expectStatus(`${CORPORATE_SITE_URL}/images/globe/earth-topology.png`)
     ]);
+    textureResponses.forEach((response) => {
+      assert(
+        (response.headers.get('cache-control') || '').includes('immutable'),
+        'Local globe texture is not served with immutable cache'
+      );
+    });
   });
 
   await check('footer cookie settings opens preferences panel', async () => {
