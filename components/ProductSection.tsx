@@ -19,7 +19,7 @@ import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { supabase } from '../utils/supabase';
 import type { Language } from '../utils/translations';
-import { getMarketingPagePath } from '../utils/marketingPages.js';
+import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import { sanitizeProductClaimFields, sanitizeProductClaimText } from '../utils/productClaims.js';
 
 // Helper to map string family_ids to Lucide icons

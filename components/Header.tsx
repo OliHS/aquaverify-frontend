@@ -7,7 +7,7 @@ import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { usePageContent } from '../context/PageContentContext';
 import { getLanguagePath } from '../utils/seo';
-import { findMarketingPageByPath, getMarketingPagePath } from '../utils/marketingPages.js';
+import { findMarketingRouteByPath, getMarketingPagePath } from '../utils/marketingRoutes.js';
 import {
   LEGACY_PLATFORM_LOGIN_URLS,
   LEGACY_PLATFORM_SIGNUP_URLS,
@@ -112,8 +112,8 @@ export const Header: React.FC = () => {
     }
     setLang(nextLang);
     if (!isEditing) {
-      const marketingMatch = findMarketingPageByPath(location.pathname);
-      const nextPath = marketingMatch?.page?.translations?.[nextLang]?.path || getLanguagePath(nextLang);
+      const marketingMatch = findMarketingRouteByPath(location.pathname);
+      const nextPath = marketingMatch?.translations?.[nextLang] || getLanguagePath(nextLang);
       navigate(`${nextPath}${location.hash || ''}`);
     }
   };

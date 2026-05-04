@@ -11,6 +11,8 @@ Actualizado: 2026-05-04.
 - Home, productos, industrias, OEM/distribuidores, SaaS, `Sobre nosotros`, sitemap, hreflang, canonical, JSON-LD y CMS de paginas marketing: implementado.
 - CTA final segmentado por ruta de compra en la home: implementado.
 - Breadcrumbs visibles y JSON-LD en URLs marketing: implementado.
+- FAQs comerciales y tecnicas por defecto en todas las URLs marketing, con `FAQPage` schema y auditor de release `npm run marketing:faqs:audit`: implementado.
+- Rutas marketing ligeras separadas del contenido SEO pesado para reducir el bundle inicial, con auditor de paridad `npm run marketing:routes:audit`: implementado.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.

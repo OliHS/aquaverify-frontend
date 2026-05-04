@@ -6,7 +6,7 @@ import type { Language } from '../utils/translations';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformSignupUrl } from '../utils/platformLinks';
-import { getMarketingPagePath } from '../utils/marketingPages.js';
+import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 
 type DecisionItem = {
   id: string;

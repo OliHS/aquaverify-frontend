@@ -6,7 +6,7 @@ import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformLegalUrl, getPlatformSignupUrl } from '../utils/platformLinks';
 import { OPEN_COOKIE_PREFERENCES_EVENT } from './CookieConsent';
-import { getMarketingPagePath } from '../utils/marketingPages.js';
+import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import type { Language } from '../utils/translations';
 
 const logoSrc = '/images/logo-mark-160.png';

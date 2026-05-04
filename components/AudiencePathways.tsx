@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Building2, FlaskConical, Handshake, Microscope } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
-import { getMarketingPagePath } from '../utils/marketingPages.js';
+import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 
 type AudienceCard = {

@@ -30,6 +30,8 @@ try {
   run('npm', ['run', 'cms:assets:audit']);
   run('npm', ['run', 'claims:audit']);
   run('npm', ['run', 'cms:claims:audit']);
+  run('npm', ['run', 'marketing:routes:audit']);
+  run('npm', ['run', 'marketing:faqs:audit']);
   run('npm', ['run', 'seo:sitemap']);
   if (!skipBuild) run('npm', ['run', 'build']);
   run('npx', ['-y', `vercel@${VERCEL_CLI_VERSION}`, '--prod', '--yes', '--archive=tgz']);
