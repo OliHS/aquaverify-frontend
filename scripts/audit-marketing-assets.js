@@ -1,5 +1,8 @@
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import {
   MARKETING_LANGUAGES,
   MARKETING_PAGES
@@ -13,6 +16,8 @@ import {
 dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
 
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(__dirname, '..');
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
 
@@ -24,6 +29,13 @@ function ensureEnv() {
 
 function hasValue(value) {
   return typeof value === 'string' && value.trim().length > 0;
+}
+
+function assetExists(value) {
+  if (!hasValue(value)) return false;
+  if (/^https?:\/\//i.test(value)) return true;
+  if (!value.startsWith('/')) return false;
+  return fs.existsSync(path.join(repoRoot, 'public', value));
 }
 
 function expectedRows() {
@@ -75,12 +87,20 @@ async function run() {
       path: row.defaultContent.path,
       hasHeroImage: hasValue(content.heroImage),
       hasOgImage: hasValue(content.ogImage),
-      hasDatasheet: hasValue(content.datasheetUrl)
+      hasDatasheet: hasValue(content.datasheetUrl),
+      heroImageExists: assetExists(content.heroImage),
+      ogImageExists: assetExists(content.ogImage),
+      datasheetExists: assetExists(content.datasheetUrl)
     };
   });
 
   const productRows = rows.filter((row) => row.category === 'products');
-  const productAssetReadyRows = productRows.filter((row) => row.hasHeroImage && row.hasDatasheet);
+  const productAssetReadyRows = productRows.filter((row) =>
+    row.hasHeroImage &&
+    row.hasDatasheet &&
+    row.heroImageExists &&
+    row.datasheetExists
+  );
 
   console.log(JSON.stringify({
     ok: true,
@@ -89,17 +109,21 @@ async function run() {
     heroImages: rows.filter((row) => row.hasHeroImage).length,
     ogImages: rows.filter((row) => row.hasOgImage).length,
     productDatasheets: productRows.filter((row) => row.hasDatasheet).length,
+    productHeroFiles: productRows.filter((row) => row.heroImageExists).length,
+    productDatasheetFiles: productRows.filter((row) => row.datasheetExists).length,
     productAssetReady: productAssetReadyRows.length,
     missingProductAssets: productRows.length - productAssetReadyRows.length,
     sampleMissingProductAssets: productRows
-      .filter((row) => !row.hasHeroImage || !row.hasDatasheet)
+      .filter((row) => !row.hasHeroImage || !row.hasDatasheet || !row.heroImageExists || !row.datasheetExists)
       .slice(0, 20)
       .map((row) => ({
         slug: row.slug,
         path: row.path,
         missing: [
           !row.hasHeroImage ? 'heroImage' : '',
-          !row.hasDatasheet ? 'datasheetUrl' : ''
+          !row.hasDatasheet ? 'datasheetUrl' : '',
+          row.hasHeroImage && !row.heroImageExists ? 'heroImageFile' : '',
+          row.hasDatasheet && !row.datasheetExists ? 'datasheetFile' : ''
         ].filter(Boolean)
       }))
   }, null, 2));

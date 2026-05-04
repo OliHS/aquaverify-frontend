@@ -1,3 +1,5 @@
+import { getProductAssetOptions } from './productAssets.js';
+
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
 export const LANGUAGE_NAMES = {
@@ -28,6 +30,8 @@ function locale(path, title, description, sections, options = {}) {
     heroImage: options.heroImage,
     heroImageAlt: options.heroImageAlt,
     ogImage: options.ogImage,
+    datasheetUrl: options.datasheetUrl,
+    datasheetLabel: options.datasheetLabel,
     gallery: options.gallery || [],
     seoTitle: options.seoTitle || title,
     seoDescription: options.seoDescription || description,
@@ -268,111 +272,111 @@ export const MARKETING_PAGES = [
     en: locale('/products', 'Water microbiology products connected to digital traceability', 'Explore AquaVerify kits, lab essentials and connected workflows for water quality analysis.', [
       section('A portfolio built for technical buyers', 'AquaVerify combines quantitative kits, presence/absence tests, ISO/EPA-oriented workflows and laboratory essentials in one product ecosystem.', ['ENUMERA for enumeration workflows', 'INDICA for rapid presence/absence screening', 'Standard kits for ISO and EPA workflows', 'Lab Essentials for daily microbiology operations']),
       section('Products that open the digital workflow', 'Product use can be connected to AquaVerify Cloud for sample traceability, reporting, CRM and customer portal workflows.')
-    ], { eyebrow: 'Products', primaryCta: 'Request product quote', secondaryCta: 'Explore platform', seoTitle: 'Water Testing Products | AquaVerify ENUMERA, INDICA and Lab Essentials' }),
+    ], { eyebrow: 'Products', primaryCta: 'Request product quote', secondaryCta: 'Explore platform', seoTitle: 'Water Testing Products | AquaVerify ENUMERA, INDICA and Lab Essentials', ...getProductAssetOptions('products', 'en', 'AquaVerify water microbiology product ecosystem') }),
     es: locale('/es/productos', 'Productos de microbiología del agua conectados a trazabilidad digital', 'Descubre kits AquaVerify, material esencial de laboratorio y flujos conectados para análisis de calidad del agua.', [
       section('Una gama creada para compradores técnicos', 'AquaVerify combina kits cuantitativos, pruebas de presencia/ausencia, flujos orientados a ISO/EPA y productos esenciales de laboratorio en un mismo ecosistema.', ['ENUMERA para flujos de enumeración', 'INDICA para cribado rápido presencia/ausencia', 'Kits estándar para flujos ISO y EPA', 'Lab Essentials para la operación diaria de microbiología']),
       section('Productos que abren el flujo digital', 'El uso de productos puede conectarse a AquaVerify Cloud para trazabilidad de muestras, reporting, CRM y portal cliente.')
-    ], { eyebrow: 'Productos', primaryCta: 'Solicitar cotización', secondaryCta: 'Ver plataforma', seoTitle: 'Productos de análisis de agua | AquaVerify ENUMERA, INDICA y Lab Essentials' }),
+    ], { eyebrow: 'Productos', primaryCta: 'Solicitar cotización', secondaryCta: 'Ver plataforma', seoTitle: 'Productos de análisis de agua | AquaVerify ENUMERA, INDICA y Lab Essentials', ...getProductAssetOptions('products', 'es', 'Ecosistema de productos AquaVerify para microbiologia del agua') }),
     fr: locale('/fr/produits', 'Produits de microbiologie de l’eau connectés à la traçabilité numérique', 'Découvrez les kits AquaVerify, les essentiels de laboratoire et les flux connectés pour l’analyse de la qualité de l’eau.', [
       section('Une gamme pensée pour les acheteurs techniques', 'AquaVerify réunit kits quantitatifs, tests présence/absence, flux orientés ISO/EPA et essentiels de laboratoire dans un même écosystème.', ['ENUMERA pour les flux de dénombrement', 'INDICA pour le dépistage présence/absence', 'Kits standard pour les flux ISO et EPA', 'Lab Essentials pour la microbiologie quotidienne']),
       section('Des produits qui ouvrent le flux numérique', 'L’utilisation des produits peut être connectée à AquaVerify Cloud pour la traçabilité des échantillons, les rapports, le CRM et le portail client.')
-    ], { eyebrow: 'Produits', primaryCta: 'Demander un devis', secondaryCta: 'Voir la plateforme', seoTitle: 'Produits d’analyse de l’eau | AquaVerify ENUMERA, INDICA et Lab Essentials' }),
+    ], { eyebrow: 'Produits', primaryCta: 'Demander un devis', secondaryCta: 'Voir la plateforme', seoTitle: 'Produits d’analyse de l’eau | AquaVerify ENUMERA, INDICA et Lab Essentials', ...getProductAssetOptions('products', 'fr', 'Ecosysteme de produits AquaVerify pour microbiologie de l eau') }),
     it: locale('/it/prodotti', 'Prodotti di microbiologia dell’acqua con tracciabilità digitale', 'Esplora kit AquaVerify, materiali essenziali di laboratorio e flussi collegati per l’analisi della qualità dell’acqua.', [
       section('Una gamma pensata per acquirenti tecnici', 'AquaVerify combina kit quantitativi, test presenza/assenza, flussi orientati a ISO/EPA e materiali essenziali di laboratorio in un unico ecosistema.', ['ENUMERA per flussi di enumerazione', 'INDICA per screening presenza/assenza', 'Kit standard per flussi ISO ed EPA', 'Lab Essentials per la microbiologia quotidiana']),
       section('Prodotti che aprono il flusso digitale', 'L’uso dei prodotti può collegarsi ad AquaVerify Cloud per tracciabilità campioni, reporting, CRM e portale clienti.')
-    ], { eyebrow: 'Prodotti', primaryCta: 'Richiedi preventivo', secondaryCta: 'Vedi piattaforma', seoTitle: 'Prodotti per analisi dell’acqua | AquaVerify ENUMERA, INDICA e Lab Essentials' }),
+    ], { eyebrow: 'Prodotti', primaryCta: 'Richiedi preventivo', secondaryCta: 'Vedi piattaforma', seoTitle: 'Prodotti per analisi dell’acqua | AquaVerify ENUMERA, INDICA e Lab Essentials', ...getProductAssetOptions('products', 'it', 'Ecosistema prodotti AquaVerify per microbiologia dell acqua') }),
     ca: locale('/ca/productes', 'Productes de microbiologia de l’aigua connectats a traçabilitat digital', 'Descobreix kits AquaVerify, material essencial de laboratori i fluxos connectats per a l’anàlisi de qualitat de l’aigua.', [
       section('Una gamma creada per a compradors tècnics', 'AquaVerify combina kits quantitatius, proves de presència/absència, fluxos orientats a ISO/EPA i productes essencials de laboratori en un mateix ecosistema.', ['ENUMERA per a fluxos d’enumeració', 'INDICA per a cribratge ràpid presència/absència', 'Kits estàndard per a fluxos ISO i EPA', 'Lab Essentials per a l’operació diària de microbiologia']),
       section('Productes que obren el flux digital', 'L’ús dels productes es pot connectar a AquaVerify Cloud per a traçabilitat de mostres, reporting, CRM i portal client.')
-    ], { eyebrow: 'Productes', primaryCta: 'Sol·licitar pressupost', secondaryCta: 'Veure plataforma', seoTitle: 'Productes d’anàlisi d’aigua | AquaVerify ENUMERA, INDICA i Lab Essentials' })
+    ], { eyebrow: 'Productes', primaryCta: 'Sol·licitar pressupost', secondaryCta: 'Veure plataforma', seoTitle: 'Productes d’anàlisi d’aigua | AquaVerify ENUMERA, INDICA i Lab Essentials', ...getProductAssetOptions('products', 'ca', 'Ecosistema de productes AquaVerify per microbiologia de l aigua') })
   }),
   page('enumera', 'products', 'quote', {
     en: locale('/products/enumera', 'ENUMERA quantitative water microbiology kits', 'ENUMERA is the AquaVerify family for enumeration workflows in water microbiology.', [
       section('Built for counting, not guessing', 'ENUMERA is designed for quantitative workflows where laboratories need clear, repeatable and traceable results.', ['ENUMERA Soma100 for somatic coliphage workflows', 'ENUMERA Coli100 for bacterial indicator workflows', 'ENUMERA Entero100 for bacterial indicator workflows', 'Refills and tools for repeatable operation']),
       section('Connected to AquaVerify Cloud', 'Results, operators, sample context and reporting can be linked to the digital platform.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Request ENUMERA quote', secondaryCta: 'View all products' }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Request ENUMERA quote', secondaryCta: 'View all products', ...getProductAssetOptions('enumera', 'en', 'AquaVerify ENUMERA quantitative kit family') }),
     es: locale('/es/productos/enumera', 'Kits cuantitativos ENUMERA para microbiología del agua', 'ENUMERA es la familia AquaVerify para flujos de enumeración en microbiología del agua.', [
       section('Diseñada para contar, no para adivinar', 'ENUMERA está pensada para flujos cuantitativos donde el laboratorio necesita resultados claros, repetibles y trazables.', ['ENUMERA Soma100 para flujos de colífagos somáticos', 'ENUMERA Coli100 para indicadores bacterianos', 'ENUMERA Entero100 para indicadores bacterianos', 'Refills y herramientas para operación repetible']),
       section('Conectada a AquaVerify Cloud', 'Resultados, operadores, contexto de muestra e informes pueden vincularse a la plataforma digital.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Solicitar cotización ENUMERA', secondaryCta: 'Ver productos' }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Solicitar cotización ENUMERA', secondaryCta: 'Ver productos', ...getProductAssetOptions('enumera', 'es', 'Familia de kits cuantitativos AquaVerify ENUMERA') }),
     fr: locale('/fr/produits/enumera', 'Kits quantitatifs ENUMERA pour la microbiologie de l’eau', 'ENUMERA est la famille AquaVerify dédiée aux flux de dénombrement en microbiologie de l’eau.', [
       section('Conçu pour compter, pas pour deviner', 'ENUMERA répond aux flux quantitatifs où le laboratoire a besoin de résultats clairs, reproductibles et traçables.', ['ENUMERA Soma100 pour les coliphages somatiques', 'ENUMERA Coli100 pour les indicateurs bactériens', 'ENUMERA Entero100 pour les indicateurs bactériens', 'Recharges et outils pour une opération répétable']),
       section('Connecté à AquaVerify Cloud', 'Résultats, opérateurs, contexte d’échantillon et rapports peuvent être reliés à la plateforme numérique.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Demander un devis ENUMERA', secondaryCta: 'Voir les produits' }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Demander un devis ENUMERA', secondaryCta: 'Voir les produits', ...getProductAssetOptions('enumera', 'fr', 'Famille de kits quantitatifs AquaVerify ENUMERA') }),
     it: locale('/it/prodotti/enumera', 'Kit quantitativi ENUMERA per microbiologia dell’acqua', 'ENUMERA è la famiglia AquaVerify per flussi di enumerazione nella microbiologia dell’acqua.', [
       section('Creato per contare, non per indovinare', 'ENUMERA è pensato per flussi quantitativi in cui il laboratorio richiede risultati chiari, ripetibili e tracciabili.', ['ENUMERA Soma100 per colifagi somatici', 'ENUMERA Coli100 per indicatori batterici', 'ENUMERA Entero100 per indicatori batterici', 'Refill e strumenti per operazioni ripetibili']),
       section('Collegato ad AquaVerify Cloud', 'Risultati, operatori, contesto del campione e report possono essere collegati alla piattaforma digitale.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Richiedi preventivo ENUMERA', secondaryCta: 'Vedi prodotti' }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Richiedi preventivo ENUMERA', secondaryCta: 'Vedi prodotti', ...getProductAssetOptions('enumera', 'it', 'Famiglia kit quantitativi AquaVerify ENUMERA') }),
     ca: locale('/ca/productes/enumera', 'Kits quantitatius ENUMERA per a microbiologia de l’aigua', 'ENUMERA és la família AquaVerify per a fluxos d’enumeració en microbiologia de l’aigua.', [
       section('Dissenyada per comptar, no per endevinar', 'ENUMERA està pensada per a fluxos quantitatius on el laboratori necessita resultats clars, repetibles i traçables.', ['ENUMERA Soma100 per a colífags somàtics', 'ENUMERA Coli100 per a indicadors bacterians', 'ENUMERA Entero100 per a indicadors bacterians', 'Refills i eines per a operació repetible']),
       section('Connectada a AquaVerify Cloud', 'Resultats, operadors, context de mostra i informes es poden vincular a la plataforma digital.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Sol·licitar pressupost ENUMERA', secondaryCta: 'Veure productes' })
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Sol·licitar pressupost ENUMERA', secondaryCta: 'Veure productes', ...getProductAssetOptions('enumera', 'ca', 'Familia de kits quantitatius AquaVerify ENUMERA') })
   }),
   page('indica', 'products', 'quote', {
     en: locale('/products/indica', 'INDICA presence/absence water testing kits', 'INDICA is designed for fast qualitative water microbiology workflows where the answer must be clear: present or absent.', [
       section('Clear screening workflows', 'INDICA supports rapid decision making for laboratories, field teams and quality control teams.', ['Somatic coliphage presence/absence', 'E. coli presence/absence', 'Enterococci presence/absence', 'Colorimetric matching tools']),
       section('From test to traceable record', 'INDICA workflows can feed AquaVerify Cloud so each result is linked to sample, site, operator and report.')
-    ], { eyebrow: 'INDICA', primaryCta: 'Request INDICA quote', secondaryCta: 'Explore platform' }),
+    ], { eyebrow: 'INDICA', primaryCta: 'Request INDICA quote', secondaryCta: 'Explore platform', ...getProductAssetOptions('indica', 'en', 'AquaVerify INDICA presence absence kit family') }),
     es: locale('/es/productos/indica', 'Kits INDICA de presencia/ausencia para análisis de agua', 'INDICA está diseñada para flujos cualitativos rápidos en microbiología del agua donde la respuesta debe ser clara: presente o ausente.', [
       section('Cribado claro y operativo', 'INDICA ayuda a tomar decisiones rápidas en laboratorios, equipos de campo y control de calidad.', ['Presencia/ausencia de colífagos somáticos', 'Presencia/ausencia de E. coli', 'Presencia/ausencia de enterococos', 'Herramientas de comparación colorimétrica']),
       section('Del test al registro trazable', 'Los flujos INDICA pueden alimentar AquaVerify Cloud para vincular resultado, muestra, punto, operador e informe.')
-    ], { eyebrow: 'INDICA', primaryCta: 'Solicitar cotización INDICA', secondaryCta: 'Explorar plataforma' }),
+    ], { eyebrow: 'INDICA', primaryCta: 'Solicitar cotización INDICA', secondaryCta: 'Explorar plataforma', ...getProductAssetOptions('indica', 'es', 'Familia de kits presencia ausencia AquaVerify INDICA') }),
     fr: locale('/fr/produits/indica', 'Kits INDICA présence/absence pour l’analyse de l’eau', 'INDICA est conçu pour les flux qualitatifs rapides en microbiologie de l’eau où la réponse doit être claire: présent ou absent.', [
       section('Des flux de dépistage clairs', 'INDICA aide les laboratoires, équipes terrain et équipes qualité à décider rapidement.', ['Présence/absence de coliphages somatiques', 'Présence/absence d’E. coli', 'Présence/absence d’entérocoques', 'Outils de comparaison colorimétrique']),
       section('Du test au registre traçable', 'Les flux INDICA peuvent alimenter AquaVerify Cloud afin de relier résultat, échantillon, site, opérateur et rapport.')
-    ], { eyebrow: 'INDICA', primaryCta: 'Demander un devis INDICA', secondaryCta: 'Explorer la plateforme' }),
+    ], { eyebrow: 'INDICA', primaryCta: 'Demander un devis INDICA', secondaryCta: 'Explorer la plateforme', ...getProductAssetOptions('indica', 'fr', 'Famille de kits presence absence AquaVerify INDICA') }),
     it: locale('/it/prodotti/indica', 'Kit INDICA presenza/assenza per analisi dell’acqua', 'INDICA è progettata per flussi qualitativi rapidi in microbiologia dell’acqua, dove la risposta deve essere chiara: presente o assente.', [
       section('Workflow di screening chiari', 'INDICA supporta decisioni rapide per laboratori, squadre sul campo e controllo qualità.', ['Presenza/assenza di colifagi somatici', 'Presenza/assenza di E. coli', 'Presenza/assenza di enterococchi', 'Strumenti di confronto colorimetrico']),
       section('Dal test al record tracciabile', 'I flussi INDICA possono alimentare AquaVerify Cloud collegando risultato, campione, sito, operatore e report.')
-    ], { eyebrow: 'INDICA', primaryCta: 'Richiedi preventivo INDICA', secondaryCta: 'Esplora piattaforma' }),
+    ], { eyebrow: 'INDICA', primaryCta: 'Richiedi preventivo INDICA', secondaryCta: 'Esplora piattaforma', ...getProductAssetOptions('indica', 'it', 'Famiglia kit presenza assenza AquaVerify INDICA') }),
     ca: locale('/ca/productes/indica', 'Kits INDICA de presència/absència per a anàlisi d’aigua', 'INDICA està dissenyada per a fluxos qualitatius ràpids en microbiologia de l’aigua on la resposta ha de ser clara: present o absent.', [
       section('Cribratge clar i operatiu', 'INDICA ajuda a prendre decisions ràpides en laboratoris, equips de camp i control de qualitat.', ['Presència/absència de colífags somàtics', 'Presència/absència d’E. coli', 'Presència/absència d’enterococs', 'Eines de comparació colorimètrica']),
       section('Del test al registre traçable', 'Els fluxos INDICA poden alimentar AquaVerify Cloud per vincular resultat, mostra, punt, operador i informe.')
-    ], { eyebrow: 'INDICA', primaryCta: 'Sol·licitar pressupost INDICA', secondaryCta: 'Explorar plataforma' })
+    ], { eyebrow: 'INDICA', primaryCta: 'Sol·licitar pressupost INDICA', secondaryCta: 'Explorar plataforma', ...getProductAssetOptions('indica', 'ca', 'Familia de kits presencia absencia AquaVerify INDICA') })
   }),
   page('standard-kits', 'products', 'quote', {
     en: locale('/products/standard-iso-epa-kits', 'Standard ISO and EPA coliphage testing kits', 'AquaVerify standard kits support laboratories working with ISO 10705-2 and EPA coliphage testing workflows.', [
       section('For regulated microbiology workflows', 'The standard kit range is built for teams that need method alignment, repeatability and technical confidence.', ['Somatic coliphage kits for ISO 10705-2 workflows', 'EPA-oriented somatic coliphage workflows', 'F-specific coliphage workflows', 'Support for method validation and training']),
       section('Keep the method, improve the workflow', 'AquaVerify helps laboratories connect technical methods with digital sample and report traceability.')
-    ], { eyebrow: 'Standard Kits', primaryCta: 'Request standard kit quote', secondaryCta: 'Read ISO guide' }),
+    ], { eyebrow: 'Standard Kits', primaryCta: 'Request standard kit quote', secondaryCta: 'Read ISO guide', ...getProductAssetOptions('standard-kits', 'en', 'AquaVerify standard ISO and EPA kit family') }),
     es: locale('/es/productos/kits-iso-epa', 'Kits estándar ISO y EPA para análisis de colífagos', 'Los kits estándar AquaVerify apoyan a laboratorios que trabajan con flujos ISO 10705-2 y EPA para colífagos.', [
       section('Para flujos de microbiología regulada', 'La gama estándar está pensada para equipos que necesitan alineación metodológica, repetibilidad y confianza técnica.', ['Kits de colífagos somáticos para flujos ISO 10705-2', 'Flujos de colífagos somáticos orientados a EPA', 'Flujos de colífagos F-específicos', 'Soporte para validación y formación']),
       section('Mantener el método, mejorar el flujo', 'AquaVerify ayuda a conectar métodos técnicos con trazabilidad digital de muestra e informe.')
-    ], { eyebrow: 'Kits estándar', primaryCta: 'Solicitar cotización', secondaryCta: 'Leer guía ISO' }),
+    ], { eyebrow: 'Kits estándar', primaryCta: 'Solicitar cotización', secondaryCta: 'Leer guía ISO', ...getProductAssetOptions('standard-kits', 'es', 'Familia de kits estandar ISO y EPA AquaVerify') }),
     fr: locale('/fr/produits/kits-iso-epa', 'Kits standard ISO et EPA pour l’analyse des coliphages', 'Les kits standard AquaVerify accompagnent les laboratoires travaillant avec les flux ISO 10705-2 et EPA pour les coliphages.', [
       section('Pour les flux de microbiologie réglementée', 'La gamme standard est pensée pour les équipes qui recherchent alignement méthodologique, répétabilité et confiance technique.', ['Kits coliphages somatiques pour flux ISO 10705-2', 'Flux coliphages somatiques orientés EPA', 'Flux coliphages F-spécifiques', 'Support de validation et formation']),
       section('Garder la méthode, améliorer le flux', 'AquaVerify aide à connecter les méthodes techniques avec la traçabilité numérique des échantillons et rapports.')
-    ], { eyebrow: 'Kits standard', primaryCta: 'Demander un devis', secondaryCta: 'Lire le guide ISO' }),
+    ], { eyebrow: 'Kits standard', primaryCta: 'Demander un devis', secondaryCta: 'Lire le guide ISO', ...getProductAssetOptions('standard-kits', 'fr', 'Famille de kits standard ISO et EPA AquaVerify') }),
     it: locale('/it/prodotti/kit-iso-epa', 'Kit standard ISO ed EPA per analisi dei colifagi', 'I kit standard AquaVerify supportano i laboratori che lavorano con flussi ISO 10705-2 ed EPA per colifagi.', [
       section('Per flussi di microbiologia regolata', 'La gamma standard è pensata per team che richiedono allineamento metodologico, ripetibilità e fiducia tecnica.', ['Kit colifagi somatici per flussi ISO 10705-2', 'Flussi colifagi somatici orientati EPA', 'Flussi colifagi F-specifici', 'Supporto per validazione e formazione']),
       section('Mantenere il metodo, migliorare il flusso', 'AquaVerify aiuta a collegare metodi tecnici con tracciabilità digitale di campioni e report.')
-    ], { eyebrow: 'Kit standard', primaryCta: 'Richiedi preventivo', secondaryCta: 'Leggi guida ISO' }),
+    ], { eyebrow: 'Kit standard', primaryCta: 'Richiedi preventivo', secondaryCta: 'Leggi guida ISO', ...getProductAssetOptions('standard-kits', 'it', 'Famiglia kit standard ISO ed EPA AquaVerify') }),
     ca: locale('/ca/productes/kits-iso-epa', 'Kits estàndard ISO i EPA per a anàlisi de colífags', 'Els kits estàndard AquaVerify donen suport a laboratoris que treballen amb fluxos ISO 10705-2 i EPA per a colífags.', [
       section('Per a fluxos de microbiologia regulada', 'La gamma estàndard està pensada per a equips que necessiten alineació metodològica, repetibilitat i confiança tècnica.', ['Kits de colífags somàtics per a fluxos ISO 10705-2', 'Fluxos de colífags somàtics orientats a EPA', 'Fluxos de colífags F-específics', 'Suport per a validació i formació']),
       section('Mantenir el mètode, millorar el flux', 'AquaVerify ajuda a connectar mètodes tècnics amb traçabilitat digital de mostra i informe.')
-    ], { eyebrow: 'Kits estàndard', primaryCta: 'Sol·licitar pressupost', secondaryCta: 'Llegir guia ISO' })
+    ], { eyebrow: 'Kits estàndard', primaryCta: 'Sol·licitar pressupost', secondaryCta: 'Llegir guia ISO', ...getProductAssetOptions('standard-kits', 'ca', 'Familia de kits estandard ISO i EPA AquaVerify') })
   }),
   page('lab-essentials', 'products', 'quote', {
     en: locale('/products/lab-essentials', 'Lab Essentials for water microbiology laboratories', 'Culture media, reagents, controls and biological materials for daily water microbiology operations.', [
       section('The operational core of the laboratory', 'Lab Essentials supports the daily work behind reliable water microbiology results.', ['Culture media and reagents', 'Positive controls', 'Host strains', 'Prepared and frozen biological materials']),
       section('Designed for repeatability', 'Pair essentials with kits and the digital platform to standardize purchasing, execution and reporting.')
-    ], { eyebrow: 'Lab Essentials', primaryCta: 'Request lab essentials quote', secondaryCta: 'View products' }),
+    ], { eyebrow: 'Lab Essentials', primaryCta: 'Request lab essentials quote', secondaryCta: 'View products', ...getProductAssetOptions('lab-essentials', 'en', 'AquaVerify Lab Essentials product family') }),
     es: locale('/es/productos/lab-essentials', 'Lab Essentials para laboratorios de microbiología del agua', 'Medios de cultivo, reactivos, controles y materiales biológicos para la operación diaria de microbiología del agua.', [
       section('El corazón operativo del laboratorio', 'Lab Essentials da soporte al trabajo diario que hay detrás de resultados fiables en microbiología del agua.', ['Medios de cultivo y reactivos', 'Controles positivos', 'Cepas huésped', 'Materiales biológicos preparados y congelados']),
       section('Pensado para la repetibilidad', 'Combina essentials con kits y plataforma digital para estandarizar compra, ejecución e informes.')
-    ], { eyebrow: 'Lab Essentials', primaryCta: 'Solicitar cotización', secondaryCta: 'Ver productos' }),
+    ], { eyebrow: 'Lab Essentials', primaryCta: 'Solicitar cotización', secondaryCta: 'Ver productos', ...getProductAssetOptions('lab-essentials', 'es', 'Familia de productos AquaVerify Lab Essentials') }),
     fr: locale('/fr/produits/lab-essentials', 'Lab Essentials pour laboratoires de microbiologie de l’eau', 'Milieux de culture, réactifs, contrôles et matériaux biologiques pour les opérations quotidiennes de microbiologie de l’eau.', [
       section('Le cœur opérationnel du laboratoire', 'Lab Essentials soutient le travail quotidien nécessaire à des résultats fiables en microbiologie de l’eau.', ['Milieux de culture et réactifs', 'Contrôles positifs', 'Souches hôtes', 'Matériaux biologiques préparés et congelés']),
       section('Pensé pour la répétabilité', 'Associez essentiels, kits et plateforme numérique pour standardiser achat, exécution et rapports.')
-    ], { eyebrow: 'Lab Essentials', primaryCta: 'Demander un devis', secondaryCta: 'Voir les produits' }),
+    ], { eyebrow: 'Lab Essentials', primaryCta: 'Demander un devis', secondaryCta: 'Voir les produits', ...getProductAssetOptions('lab-essentials', 'fr', 'Famille de produits AquaVerify Lab Essentials') }),
     it: locale('/it/prodotti/lab-essentials', 'Lab Essentials per laboratori di microbiologia dell’acqua', 'Terreni di coltura, reagenti, controlli e materiali biologici per le operazioni quotidiane di microbiologia dell’acqua.', [
       section('Il cuore operativo del laboratorio', 'Lab Essentials supporta il lavoro quotidiano dietro risultati affidabili in microbiologia dell’acqua.', ['Terreni di coltura e reagenti', 'Controlli positivi', 'Ceppi ospiti', 'Materiali biologici preparati e congelati']),
       section('Pensato per la ripetibilità', 'Abbina essentials, kit e piattaforma digitale per standardizzare acquisti, esecuzione e report.')
-    ], { eyebrow: 'Lab Essentials', primaryCta: 'Richiedi preventivo', secondaryCta: 'Vedi prodotti' }),
+    ], { eyebrow: 'Lab Essentials', primaryCta: 'Richiedi preventivo', secondaryCta: 'Vedi prodotti', ...getProductAssetOptions('lab-essentials', 'it', 'Famiglia prodotti AquaVerify Lab Essentials') }),
     ca: locale('/ca/productes/lab-essentials', 'Lab Essentials per a laboratoris de microbiologia de l’aigua', 'Medis de cultiu, reactius, controls i materials biològics per a l’operació diària de microbiologia de l’aigua.', [
       section('El cor operatiu del laboratori', 'Lab Essentials dona suport al treball diari que hi ha darrere de resultats fiables en microbiologia de l’aigua.', ['Medis de cultiu i reactius', 'Controls positius', 'Soques hoste', 'Materials biològics preparats i congelats']),
       section('Pensat per a la repetibilitat', 'Combina essentials amb kits i plataforma digital per estandarditzar compra, execució i informes.')
-    ], { eyebrow: 'Lab Essentials', primaryCta: 'Sol·licitar pressupost', secondaryCta: 'Veure productes' })
+    ], { eyebrow: 'Lab Essentials', primaryCta: 'Sol·licitar pressupost', secondaryCta: 'Veure productes', ...getProductAssetOptions('lab-essentials', 'ca', 'Familia de productes AquaVerify Lab Essentials') })
   }),
   page('platform', 'platform', 'demo', {
     en: locale('/platform', 'AquaVerify Cloud for traceable water analysis workflows', 'Connect samples, products, operators, reports and customer workflows in one digital platform.', [
@@ -1474,7 +1478,8 @@ function buildProductLocale(product, lang) {
       secondaryCta: labels.secondary,
       seoTitle: `${product.name} | AquaVerify ${family}`,
       seoDescription: description,
-      faqs: buildProductFaqs(product, lang)
+      faqs: buildProductFaqs(product, lang),
+      ...getProductAssetOptions(product.id, lang, `${product.name} AquaVerify product visual`)
     }
   );
 }

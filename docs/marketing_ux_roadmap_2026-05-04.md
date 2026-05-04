@@ -15,6 +15,7 @@ Actualizado: 2026-05-04.
 - Rutas marketing ligeras separadas del contenido SEO pesado para reducir el bundle inicial, con auditor de paridad `npm run marketing:routes:audit`: implementado.
 - Screenshots reales de la plataforma reutilizados desde la documentacion de AquaVerify Cloud para paginas `Platform` y `SaaS`, visibles en galeria CMS-editable y auditados con `npm run marketing:screenshots:audit`: implementado.
 - Home Cloud alineada con la landing SaaS: teaser con capturas reales locales, CTA a la URL SaaS antes del signup y menu principal apuntando a URLs marketing canonicas: implementado.
+- Assets de producto fase 1: generadas 36 imagenes hero SVG y 180 fichas tecnicas HTML imprimibles desde contenido publico validado, con auditoria `cms:assets:audit` en `180/180`: implementado.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.

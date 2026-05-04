@@ -206,6 +206,21 @@ async function run() {
     ]);
   });
 
+  await check('corporate product assets and datasheets respond', async () => {
+    const [heroResponse, datasheetResponse] = await Promise.all([
+      expectStatus(`${CORPORATE_SITE_URL}/images/products/marketing/enumera-soma100.svg`),
+      expectStatus(`${CORPORATE_SITE_URL}/datasheets/products/enumera-soma100-es.html`)
+    ]);
+    assert(
+      (heroResponse.headers.get('content-type') || '').includes('image/svg+xml'),
+      'Product hero asset content-type is not SVG'
+    );
+    assert(
+      (datasheetResponse.headers.get('content-type') || '').includes('text/html'),
+      'Product datasheet content-type is not HTML'
+    );
+  });
+
   await check('corporate site is not installable as PWA', async () => {
     assert(!/rel=["']manifest["']/i.test(corporateHtml), 'Corporate HTML still exposes a web app manifest');
   });

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">EPA Soma AquaVerify visual</title>
+  <desc id="desc">EPA Soma is an AquaVerify standard kit for somatic coliphages in water microbiology workflows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#eef2ff"/>
+      <stop offset="55%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="22" stdDeviation="28" flood-color="#0f172a" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1320" cy="180" r="260" fill="#7c3aed" opacity="0.09"/>
+  <circle cx="1300" cy="780" r="320" fill="#1d4ed8" opacity="0.08"/>
+  <g transform="translate(100 100)">
+    <rect width="1400" height="800" rx="46" fill="rgba(255,255,255,0.76)" stroke="rgba(15,23,42,0.08)" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="1400" height="18" rx="9" fill="#1d4ed8"/>
+    <text x="70" y="105" fill="#7c3aed" font-size="26" font-weight="800" letter-spacing="5" font-family="Inter, Arial, sans-serif">AQUAVERIFY</text>
+    <text x="70" y="160" fill="#1d4ed8" font-size="30" font-weight="900" font-family="Inter, Arial, sans-serif">Standard Kits</text>
+    <text x="70" y="250" fill="#0f172a" font-size="76" font-weight="900" font-family="Inter, Arial, sans-serif">EPA Soma</text>
+    <text x="72" y="510" fill="#475569" font-size="28" font-weight="600" font-family="Inter, Arial, sans-serif">EPA Soma is an AquaVerify standard kit for somatic</text><text x="72" y="547.8" fill="#475569" font-size="28" font-weight="600" font-family="Inter, Arial, sans-serif">coliphages in water microbiology workflows.</text>
+    <g transform="translate(70 650)">
+      <g transform="translate(0 0)"><rect width="520" height="36" rx="18" fill="#eef2ff" stroke="#7c3aed" stroke-opacity="0.28"/><circle cx="22" cy="18" r="7" fill="#7c3aed"/><text x="46" y="24" fill="#334155" font-size="20" font-weight="700" font-family="Inter, Arial, sans-serif">Family: Standard ISO/EPA Kits</text></g><g transform="translate(0 52)"><rect width="520" height="36" rx="18" fill="#eef2ff" stroke="#7c3aed" stroke-opacity="0.28"/><circle cx="22" cy="18" r="7" fill="#7c3aed"/><text x="46" y="24" fill="#334155" font-size="20" font-weight="700" font-family="Inter, Arial, sans-serif">Sub-family: EPA Kits</text></g><g transform="translate(0 104)"><rect width="520" height="36" rx="18" fill="#eef2ff" stroke="#7c3aed" stroke-opacity="0.28"/><circle cx="22" cy="18" r="7" fill="#7c3aed"/><text x="46" y="24" fill="#334155" font-size="20" font-weight="700" font-family="Inter, Arial, sans-serif">Format: Kit</text></g>
+    </g>
+    <g>
+      <g transform="translate(1010 350)"><rect width="310" height="390" rx="26" fill="rgba(255,255,255,0.86)" stroke="#1d4ed8" stroke-width="8"/><rect x="44" y="54" width="150" height="18" rx="9" fill="#1d4ed8"/><rect x="44" y="106" width="220" height="14" rx="7" fill="#7c3aed"/><rect x="44" y="150" width="190" height="14" rx="7" fill="#94a3b8"/><polyline points="48,278 105,225 162,250 225,185 270,205" fill="none" stroke="#7c3aed" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/></g><circle cx="1110" cy="685" r="125" fill="rgba(255,255,255,0.78)" stroke="#1d4ed8" stroke-width="8"/><circle cx="1110" cy="685" r="82" fill="#eef2ff" stroke="#7c3aed" stroke-width="4"/><circle cx="1080" cy="660" r="10" fill="#7c3aed"/><circle cx="1148" cy="704" r="8" fill="#1d4ed8"/><circle cx="1105" cy="735" r="6" fill="#7c3aed"/>
+    </g>
+  </g>
+</svg>
