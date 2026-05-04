@@ -13,6 +13,8 @@
     "cms:links:audit": "node scripts/audit-cms-links.js",
     "cms:links:fix": "node scripts/audit-cms-links.js --fix",
     "cms:claims:audit": "node scripts/audit-cms-claims.js",
+    "cms:marketing:audit": "node scripts/sync-marketing-cms-links.js",
+    "cms:marketing:sync": "node scripts/sync-marketing-cms-links.js --sync",
     "claims:audit": "node scripts/audit-product-claims.js",
     "seo:sitemap": "node scripts/generate-sitemap.js",
     "smoke:prod": "node scripts/smoke-corporate-platform.js",
