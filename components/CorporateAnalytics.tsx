@@ -31,6 +31,25 @@ function getPlatformLinkPayload(anchor: HTMLAnchorElement) {
   }
 }
 
+function getIntentStartEvent(intent: string | null) {
+  switch ((intent || '').toLowerCase()) {
+    case 'quote':
+      return 'quote_start';
+    case 'demo':
+      return 'demo_start';
+    case 'oem':
+      return 'oem_form_start';
+    case 'distributor':
+      return 'distributor_start';
+    case 'saas':
+      return 'saas_demo_start';
+    case 'contact':
+      return 'contact_start';
+    default:
+      return '';
+  }
+}
+
 export const CorporateAnalytics: React.FC = () => {
   const location = useLocation();
   const { lang } = useLanguage();
@@ -53,7 +72,13 @@ export const CorporateAnalytics: React.FC = () => {
       const url = new URL(anchor.href);
       if (!['/signup', '/login'].includes(url.pathname)) return;
 
-      trackCorporateEvent('platform_link_click', getPlatformLinkPayload(anchor));
+      const payload = getPlatformLinkPayload(anchor);
+      trackCorporateEvent('platform_link_click', payload);
+
+      if (url.pathname === '/signup') {
+        const startEvent = getIntentStartEvent(url.searchParams.get('intent'));
+        if (startEvent) trackCorporateEvent(startEvent, payload);
+      }
     };
 
     document.addEventListener('click', handleClick, true);

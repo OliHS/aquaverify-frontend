@@ -207,6 +207,9 @@ async function run() {
     assert(text.includes('corporate-policy'), 'Corporate cookie policy endpoint missing from bundle');
     assert(text.includes('corporate-events'), 'Corporate analytics endpoint missing from bundle');
     assert(text.includes('platform_link_click'), 'Corporate CRO click event marker missing from bundle');
+    assert(text.includes('quote_start'), 'Quote start conversion marker missing from bundle');
+    assert(text.includes('oem_form_start'), 'OEM start conversion marker missing from bundle');
+    assert(text.includes('saas_demo_start'), 'SaaS start conversion marker missing from bundle');
     assert(text.includes('terms'), 'Legal terms marker missing from bundle');
     assert(text.includes('buyer-pathways'), 'Buyer pathway conversion marker missing from bundle');
     assert(text.includes(LEGAL_POLICY_VERSION), 'Legal/cookie policy version marker missing from bundle');
