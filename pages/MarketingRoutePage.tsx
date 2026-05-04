@@ -12,6 +12,7 @@ import {
   findMarketingPageByPath,
   getMarketingAlternates,
   getMarketingPagePath,
+  getMarketingPageSummary,
   getRelatedMarketingPages
 } from '../utils/marketingPages.js';
 
@@ -40,6 +41,7 @@ const UI_LABELS: Record<Language, {
   relatedPages: string;
   nextStep: string;
   talkToAquaVerify: string;
+  faqTitle: string;
 }> = {
   en: {
     bridgeEyebrow: 'AquaVerify',
@@ -51,7 +53,8 @@ const UI_LABELS: Record<Language, {
     distributors: 'Distributors',
     relatedPages: 'Related pages',
     nextStep: 'Next step',
-    talkToAquaVerify: 'Talk to AquaVerify'
+    talkToAquaVerify: 'Talk to AquaVerify',
+    faqTitle: 'Frequently asked questions'
   },
   es: {
     bridgeEyebrow: 'AquaVerify',
@@ -63,7 +66,8 @@ const UI_LABELS: Record<Language, {
     distributors: 'Distribuidores',
     relatedPages: 'Páginas relacionadas',
     nextStep: 'Siguiente paso',
-    talkToAquaVerify: 'Hablar con AquaVerify'
+    talkToAquaVerify: 'Hablar con AquaVerify',
+    faqTitle: 'Preguntas frecuentes'
   },
   fr: {
     bridgeEyebrow: 'AquaVerify',
@@ -75,7 +79,8 @@ const UI_LABELS: Record<Language, {
     distributors: 'Distributeurs',
     relatedPages: 'Pages associées',
     nextStep: 'Étape suivante',
-    talkToAquaVerify: 'Parler à AquaVerify'
+    talkToAquaVerify: 'Parler à AquaVerify',
+    faqTitle: 'Questions fréquentes'
   },
   it: {
     bridgeEyebrow: 'AquaVerify',
@@ -87,7 +92,8 @@ const UI_LABELS: Record<Language, {
     distributors: 'Distributori',
     relatedPages: 'Pagine correlate',
     nextStep: 'Passo successivo',
-    talkToAquaVerify: 'Parla con AquaVerify'
+    talkToAquaVerify: 'Parla con AquaVerify',
+    faqTitle: 'Domande frequenti'
   },
   ca: {
     bridgeEyebrow: 'AquaVerify',
@@ -99,9 +105,44 @@ const UI_LABELS: Record<Language, {
     distributors: 'Distribuïdors',
     relatedPages: 'Pàgines relacionades',
     nextStep: 'Següent pas',
-    talkToAquaVerify: 'Parlar amb AquaVerify'
+    talkToAquaVerify: 'Parlar amb AquaVerify',
+    faqTitle: 'Preguntes freqüents'
   }
 };
+
+type MarketingContentMeta = {
+  faqs?: Array<{ question: string; answer: string }>;
+  path: string;
+  title: string;
+};
+
+function getHomePath(lang: Language) {
+  return lang === 'en' ? '/' : `/${lang}`;
+}
+
+function buildMarketingBreadcrumbs(page: any, content: MarketingContentMeta, lang: Language, labels: typeof UI_LABELS.en) {
+  const pageMeta = page as MarketingPageMeta;
+  const crumbs = [
+    { name: 'AquaVerify', path: getHomePath(lang) }
+  ];
+
+  if (page.category === 'products' && page.id !== 'products') {
+    crumbs.push({
+      name: labels.products,
+      path: getMarketingPagePath('products', lang)
+    });
+  }
+
+  if (pageMeta.parentId) {
+    const parent = getMarketingPageSummary(pageMeta.parentId, lang);
+    if (parent && parent.path !== content.path) {
+      crumbs.push({ name: parent.title, path: parent.path });
+    }
+  }
+
+  crumbs.push({ name: content.title, path: content.path });
+  return crumbs.filter((crumb, index, all) => all.findIndex((item) => item.path === crumb.path) === index);
+}
 
 export const MarketingRoutePage: React.FC = () => {
   const location = useLocation();
@@ -116,14 +157,19 @@ export const MarketingRoutePage: React.FC = () => {
 
   useEffect(() => {
     if (!match) return;
+    const pageLang = match.lang as Language;
+    const labels = UI_LABELS[pageLang] || UI_LABELS.en;
+    const contentMeta = match.content as MarketingContentMeta;
 
     applyMarketingSeo({
-      lang: match.lang as Language,
+      lang: pageLang,
       title: match.content.seoTitle || match.content.title,
       description: match.content.seoDescription || match.content.description,
       canonicalPath: match.content.path,
       alternates: getMarketingAlternates(match.page),
-      pageType: (match.page as MarketingPageMeta).schemaType || match.page.category
+      pageType: (match.page as MarketingPageMeta).schemaType || match.page.category,
+      faqs: contentMeta.faqs,
+      breadcrumbs: buildMarketingBreadcrumbs(match.page, contentMeta, pageLang, labels)
     });
   }, [match]);
 
@@ -133,6 +179,7 @@ export const MarketingRoutePage: React.FC = () => {
 
   const page = match.page;
   const content = match.content;
+  const contentMeta = content as MarketingContentMeta;
   const pageLang = match.lang as Language;
   const pageMeta = page as MarketingPageMeta;
   const primaryUrl = getPlatformSignupUrl({
@@ -215,6 +262,19 @@ export const MarketingRoutePage: React.FC = () => {
                   )}
                 </article>
               ))}
+              {contentMeta.faqs && contentMeta.faqs.length > 0 && (
+                <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+                  <h2 className="font-heading text-2xl font-black text-primary">{labels.faqTitle}</h2>
+                  <div className="mt-6 divide-y divide-slate-200">
+                    {contentMeta.faqs.map((faq) => (
+                      <div key={faq.question} className="py-5 first:pt-0 last:pb-0">
+                        <h3 className="font-heading text-lg font-black text-slate-900">{faq.question}</h3>
+                        <p className="mt-2 text-sm leading-7 text-slate-600">{faq.answer}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              )}
             </div>
           </div>
         </section>

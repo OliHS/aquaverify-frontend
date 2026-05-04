@@ -26,7 +26,8 @@ function locale(path, title, description, sections, options = {}) {
     primaryCta: options.primaryCta,
     secondaryCta: options.secondaryCta,
     seoTitle: options.seoTitle || title,
-    seoDescription: options.seoDescription || description
+    seoDescription: options.seoDescription || description,
+    faqs: options.faqs || []
   };
 }
 
@@ -654,6 +655,90 @@ function buildProductDescription(product, lang) {
   }
 }
 
+function buildProductFaqs(product, lang) {
+  const labels = PRODUCT_UI[lang];
+  const productType = i18n(product.type, lang);
+  const parameter = i18n(product.parameter, lang);
+
+  switch (lang) {
+    case 'es':
+      return [
+        {
+          question: `¿Para qué se utiliza ${product.name}?`,
+          answer: `${product.name} es un ${productType} para ${parameter} en flujos de microbiología del agua, con formato ${product.format} y volumen de referencia ${product.volume}.`
+        },
+        {
+          question: `¿Puede ${product.name} conectarse a AquaVerify Cloud?`,
+          answer: labels.bridge
+        },
+        {
+          question: `¿Está ${product.name} disponible para distribuidores u OEM?`,
+          answer: 'AquaVerify puede valorar suministro bajo marca AquaVerify, distribución técnica u opciones OEM según mercado, volumen, soporte requerido y restricciones regulatorias.'
+        }
+      ];
+    case 'fr':
+      return [
+        {
+          question: `À quoi sert ${product.name} ?`,
+          answer: `${product.name} est un ${productType} pour ${parameter} dans les flux de microbiologie de l’eau, avec format ${product.format} et volume de référence ${product.volume}.`
+        },
+        {
+          question: `${product.name} peut-il être connecté à AquaVerify Cloud ?`,
+          answer: labels.bridge
+        },
+        {
+          question: `${product.name} est-il disponible pour distributeurs ou OEM ?`,
+          answer: 'AquaVerify peut étudier une fourniture sous marque AquaVerify, distribution technique ou options OEM selon marché, volume, support requis et contraintes réglementaires.'
+        }
+      ];
+    case 'it':
+      return [
+        {
+          question: `A cosa serve ${product.name}?`,
+          answer: `${product.name} è un ${productType} per ${parameter} nei flussi di microbiologia dell’acqua, con formato ${product.format} e volume di riferimento ${product.volume}.`
+        },
+        {
+          question: `${product.name} può collegarsi ad AquaVerify Cloud?`,
+          answer: labels.bridge
+        },
+        {
+          question: `${product.name} è disponibile per distributori o OEM?`,
+          answer: 'AquaVerify può valutare fornitura a marchio AquaVerify, distribuzione tecnica o opzioni OEM in base a mercato, volume, supporto richiesto e vincoli regolatori.'
+        }
+      ];
+    case 'ca':
+      return [
+        {
+          question: `Per a què s’utilitza ${product.name}?`,
+          answer: `${product.name} és un ${productType} per a ${parameter} en fluxos de microbiologia de l’aigua, amb format ${product.format} i volum de referència ${product.volume}.`
+        },
+        {
+          question: `${product.name} es pot connectar a AquaVerify Cloud?`,
+          answer: labels.bridge
+        },
+        {
+          question: `${product.name} està disponible per a distribuïdors o OEM?`,
+          answer: 'AquaVerify pot valorar subministrament sota marca AquaVerify, distribució tècnica o opcions OEM segons mercat, volum, suport requerit i restriccions regulatòries.'
+        }
+      ];
+    default:
+      return [
+        {
+          question: `What is ${product.name} used for?`,
+          answer: `${product.name} is an AquaVerify ${productType} for ${parameter} in water microbiology workflows, with ${product.format} format and ${product.volume} reference volume.`
+        },
+        {
+          question: `Can ${product.name} connect to AquaVerify Cloud?`,
+          answer: labels.bridge
+        },
+        {
+          question: `Is ${product.name} available for distributors or OEM?`,
+          answer: 'AquaVerify can evaluate AquaVerify-branded supply, technical distribution or OEM options depending on market, volume, required support and regulatory constraints.'
+        }
+      ];
+  }
+}
+
 function buildProductLocale(product, lang) {
   const labels = PRODUCT_UI[lang];
   const family = i18n(FAMILY_LABELS[product.parentId], lang);
@@ -686,7 +771,8 @@ function buildProductLocale(product, lang) {
       primaryCta: labels.cta,
       secondaryCta: labels.secondary,
       seoTitle: `${product.name} | AquaVerify ${family}`,
-      seoDescription: description
+      seoDescription: description,
+      faqs: buildProductFaqs(product, lang)
     }
   );
 }
@@ -727,6 +813,18 @@ export function findMarketingPageByPath(pathname) {
 export function getMarketingPagePath(id, lang = 'en') {
   const page = MARKETING_PAGES.find((item) => item.id === id);
   return page?.translations[lang]?.path || page?.translations.en?.path || '/';
+}
+
+export function getMarketingPageSummary(id, lang = 'en') {
+  const page = MARKETING_PAGES.find((item) => item.id === id);
+  if (!page) return null;
+  const content = page.translations[lang] || page.translations.en;
+  return {
+    id: page.id,
+    title: content.title,
+    description: content.description,
+    path: content.path
+  };
 }
 
 export function getMarketingAlternates(page) {

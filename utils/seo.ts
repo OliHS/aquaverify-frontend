@@ -134,13 +134,19 @@ function upsertJsonLd(id: string, payload: Record<string, unknown>) {
   element.textContent = JSON.stringify(payload);
 }
 
+function removeJsonLd(id: string) {
+  document.head.querySelector<HTMLScriptElement>(`script[type="application/ld+json"][data-id="${id}"]`)?.remove();
+}
+
 export function applyMarketingSeo({
   lang,
   title,
   description,
   canonicalPath,
   alternates,
-  pageType
+  pageType,
+  faqs,
+  breadcrumbs
 }: {
   lang: Language;
   title: string;
@@ -148,6 +154,8 @@ export function applyMarketingSeo({
   canonicalPath: string;
   alternates: Partial<Record<Language, string>>;
   pageType?: string;
+  faqs?: Array<{ question: string; answer: string }>;
+  breadcrumbs?: Array<{ name: string; path: string }>;
 }) {
   const canonicalUrl = getAbsoluteUrl(canonicalPath);
   const imageUrl = `${CORPORATE_SITE_URL}/android-chrome-512x512.png`;
@@ -209,4 +217,36 @@ export function applyMarketingSeo({
       logo: `${CORPORATE_SITE_URL}/images/logo-mark-160.png`
     }
   });
+
+  if (breadcrumbs?.length) {
+    upsertJsonLd('marketing-breadcrumbs', {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: breadcrumbs.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        item: getAbsoluteUrl(item.path)
+      }))
+    });
+  } else {
+    removeJsonLd('marketing-breadcrumbs');
+  }
+
+  if (faqs?.length) {
+    upsertJsonLd('marketing-faq', {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer
+        }
+      }))
+    });
+  } else {
+    removeJsonLd('marketing-faq');
+  }
 }
