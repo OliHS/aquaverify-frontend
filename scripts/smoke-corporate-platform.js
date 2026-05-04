@@ -138,6 +138,7 @@ async function run() {
     assert(sitemapText.includes('<loc>https://aquaverify.com/es/productos/indica-coli</loc>'), 'Spanish INDICA Coli sitemap URL missing');
     assert(sitemapText.includes('<loc>https://aquaverify.com/ca/productes/epa-f-plus</loc>'), 'Catalan EPA F-Plus sitemap URL missing');
     assert(sitemapText.includes('<loc>https://aquaverify.com/oem/private-label-water-testing-kits</loc>'), 'Private-label OEM sitemap URL missing');
+    assert(sitemapText.includes('<loc>https://aquaverify.com/industries/food-beverage-water-quality</loc>'), 'Food & beverage industry sitemap URL missing');
   });
 
   await check('corporate marketing routes respond', async () => {
@@ -151,6 +152,8 @@ async function run() {
       expectStatus(`${CORPORATE_SITE_URL}/ca/productes/epa-f-plus`),
       expectStatus(`${CORPORATE_SITE_URL}/oem-water-testing-kits`),
       expectStatus(`${CORPORATE_SITE_URL}/oem/private-label-water-testing-kits`),
+      expectStatus(`${CORPORATE_SITE_URL}/industries/food-beverage-water-quality`),
+      expectStatus(`${CORPORATE_SITE_URL}/es/industrias/agua-proceso-industrial`),
       expectStatus(`${CORPORATE_SITE_URL}/about`)
     ]);
   });

@@ -19,6 +19,10 @@ const FOOTER_COPY: Record<Language, {
   privateLabel: string;
   labs: string;
   quality: string;
+  municipal: string;
+  foodBeverage: string;
+  industrial: string;
+  facilities: string;
   resources: string;
   epa: string;
   indicators: string;
@@ -31,6 +35,10 @@ const FOOTER_COPY: Record<Language, {
     privateLabel: 'Private-label kits',
     labs: 'Water testing labs',
     quality: 'Quality teams',
+    municipal: 'Municipal water',
+    foodBeverage: 'Food & beverage',
+    industrial: 'Industrial process water',
+    facilities: 'Facilities',
     resources: 'Resources',
     epa: 'EPA workflows',
     indicators: 'Coliphage indicators'
@@ -43,6 +51,10 @@ const FOOTER_COPY: Record<Language, {
     privateLabel: 'Kits marca blanca',
     labs: 'Laboratorios de agua',
     quality: 'Equipos de calidad',
+    municipal: 'Agua municipal',
+    foodBeverage: 'Alimentación y bebidas',
+    industrial: 'Agua de proceso industrial',
+    facilities: 'Instalaciones',
     resources: 'Recursos',
     epa: 'Flujos EPA',
     indicators: 'Indicadores colífagos'
@@ -55,6 +67,10 @@ const FOOTER_COPY: Record<Language, {
     privateLabel: 'Kits marque blanche',
     labs: 'Laboratoires eau',
     quality: 'Équipes qualité',
+    municipal: 'Eau municipale',
+    foodBeverage: 'Agroalimentaire',
+    industrial: 'Eau de process',
+    facilities: 'Bâtiments',
     resources: 'Ressources',
     epa: 'Flux EPA',
     indicators: 'Indicateurs coliphages'
@@ -67,6 +83,10 @@ const FOOTER_COPY: Record<Language, {
     privateLabel: 'Kit private label',
     labs: 'Laboratori acqua',
     quality: 'Team qualità',
+    municipal: 'Acqua municipale',
+    foodBeverage: 'Food & beverage',
+    industrial: 'Acqua di processo',
+    facilities: 'Strutture',
     resources: 'Risorse',
     epa: 'Flussi EPA',
     indicators: 'Indicatori colifagi'
@@ -79,6 +99,10 @@ const FOOTER_COPY: Record<Language, {
     privateLabel: 'Kits marca blanca',
     labs: 'Laboratoris d’aigua',
     quality: 'Equips de qualitat',
+    municipal: 'Aigua municipal',
+    foodBeverage: 'Alimentació i begudes',
+    industrial: 'Aigua de procés',
+    facilities: 'Instal·lacions',
     resources: 'Recursos',
     epa: 'Fluxos EPA',
     indicators: 'Indicadors colífags'
@@ -104,6 +128,10 @@ export const Footer: React.FC = () => {
   const distributorsUrl = getMarketingPagePath('distributors', lang);
   const labsUrl = getMarketingPagePath('water-testing-labs', lang);
   const qualityUrl = getMarketingPagePath('water-quality-control', lang);
+  const municipalUrl = getMarketingPagePath('municipal-water-testing', lang);
+  const foodBeverageUrl = getMarketingPagePath('food-beverage-water-quality', lang);
+  const industrialUrl = getMarketingPagePath('industrial-process-water', lang);
+  const facilitiesUrl = getMarketingPagePath('facility-water-risk', lang);
   const aboutUrl = getMarketingPagePath('about', lang);
   const isoResourceUrl = getMarketingPagePath('iso-10705-2', lang);
   const epaResourceUrl = getMarketingPagePath('epa-1602', lang);
@@ -197,6 +225,10 @@ export const Footer: React.FC = () => {
               <li><EditableLinkWrapper sectionId="footer" field="url_aboutUs" fallback={aboutUrl} legacyFallbacks={['#']}><a href={aboutUrl} onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_aboutUs" fallback="About Us" /></a></EditableLinkWrapper></li>
               <li><a href={labsUrl} className="hover:text-secondary">{copy.labs}</a></li>
               <li><a href={qualityUrl} className="hover:text-secondary">{copy.quality}</a></li>
+              <li><a href={municipalUrl} className="hover:text-secondary">{copy.municipal}</a></li>
+              <li><a href={foodBeverageUrl} className="hover:text-secondary">{copy.foodBeverage}</a></li>
+              <li><a href={industrialUrl} className="hover:text-secondary">{copy.industrial}</a></li>
+              <li><a href={facilitiesUrl} className="hover:text-secondary">{copy.facilities}</a></li>
               <li><a href={distributorsUrl} className="hover:text-secondary">{t.nav.distributors}</a></li>
               <li>
                 <EditableLinkWrapper sectionId="footer" field="url_scientificValidation" fallback={isoResourceUrl} legacyFallbacks={['#']}>

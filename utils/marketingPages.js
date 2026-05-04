@@ -416,6 +416,272 @@ export const MARKETING_PAGES = [
   })
 ];
 
+const INDUSTRY_PAGE_DATA = [
+  {
+    id: 'municipal-water-testing',
+    paths: {
+      en: '/industries/municipal-water-testing',
+      es: '/es/industrias/analisis-agua-municipal',
+      fr: '/fr/industries/analyse-eau-municipale',
+      it: '/it/settori/analisi-acqua-municipale',
+      ca: '/ca/sectors/analisi-aigua-municipal'
+    },
+    titles: {
+      en: 'Municipal water testing workflows with traceable reporting',
+      es: 'Flujos de análisis de agua municipal con reporting trazable',
+      fr: 'Flux d’analyse de l’eau municipale avec rapports traçables',
+      it: 'Workflow di analisi dell’acqua municipale con report tracciabili',
+      ca: 'Fluxos d’anàlisi d’aigua municipal amb reporting traçable'
+    },
+    descriptions: {
+      en: 'AquaVerify helps municipalities and public laboratories connect water microbiology products, partners and digital reporting workflows.',
+      es: 'AquaVerify ayuda a municipios y laboratorios públicos a conectar productos de microbiología del agua, partners y reporting digital.',
+      fr: 'AquaVerify aide municipalités et laboratoires publics à connecter produits de microbiologie de l’eau, partenaires et rapports numériques.',
+      it: 'AquaVerify aiuta comuni e laboratori pubblici a collegare prodotti di microbiologia dell’acqua, partner e reporting digitale.',
+      ca: 'AquaVerify ajuda municipis i laboratoris públics a connectar productes de microbiologia de l’aigua, partners i reporting digital.'
+    },
+    sections: {
+      en: [
+        section('For public water quality operations', 'Municipal teams need reliable sampling context, clear reporting and coordination between field teams, laboratories and decision makers.', ['Drinking water monitoring workflows', 'Public laboratory coordination', 'Recurring sampling programs', 'Traceable reports for stakeholders']),
+        section('Products and platform together', 'AquaVerify connects kits, lab essentials and AquaVerify Cloud so each sample, operator, result and report can stay linked.')
+      ],
+      es: [
+        section('Para operaciones públicas de calidad del agua', 'Los equipos municipales necesitan contexto de muestra fiable, reporting claro y coordinación entre campo, laboratorio y responsables.', ['Flujos de monitorización de agua potable', 'Coordinación con laboratorio público', 'Programas recurrentes de muestreo', 'Informes trazables para stakeholders']),
+        section('Productos y plataforma juntos', 'AquaVerify conecta kits, lab essentials y AquaVerify Cloud para mantener vinculados muestra, operador, resultado e informe.')
+      ],
+      fr: [
+        section('Pour les opérations publiques de qualité de l’eau', 'Les équipes municipales ont besoin d’un contexte échantillon fiable, de rapports clairs et de coordination entre terrain, laboratoire et décideurs.', ['Flux de surveillance eau potable', 'Coordination laboratoire public', 'Programmes d’échantillonnage récurrents', 'Rapports traçables pour parties prenantes']),
+        section('Produits et plateforme ensemble', 'AquaVerify connecte kits, lab essentials et AquaVerify Cloud afin de relier échantillon, opérateur, résultat et rapport.')
+      ],
+      it: [
+        section('Per operazioni pubbliche di qualità dell’acqua', 'I team municipali richiedono contesto campione affidabile, report chiari e coordinamento tra campo, laboratorio e responsabili.', ['Workflow monitoraggio acqua potabile', 'Coordinamento laboratorio pubblico', 'Programmi ricorrenti di campionamento', 'Report tracciabili per stakeholder']),
+        section('Prodotti e piattaforma insieme', 'AquaVerify collega kit, lab essentials e AquaVerify Cloud per mantenere collegati campione, operatore, risultato e report.')
+      ],
+      ca: [
+        section('Per a operacions públiques de qualitat de l’aigua', 'Els equips municipals necessiten context de mostra fiable, reporting clar i coordinació entre camp, laboratori i responsables.', ['Fluxos de monitoratge d’aigua potable', 'Coordinació amb laboratori públic', 'Programes recurrents de mostreig', 'Informes traçables per a stakeholders']),
+        section('Productes i plataforma junts', 'AquaVerify connecta kits, lab essentials i AquaVerify Cloud per mantenir vinculats mostra, operador, resultat i informe.')
+      ]
+    },
+    ctas: {
+      en: ['Discuss municipal workflow', 'View products'],
+      es: ['Hablar de flujo municipal', 'Ver productos'],
+      fr: ['Discuter flux municipal', 'Voir produits'],
+      it: ['Discuti flusso municipale', 'Vedi prodotti'],
+      ca: ['Parlar de flux municipal', 'Veure productes']
+    }
+  },
+  {
+    id: 'food-beverage-water-quality',
+    paths: {
+      en: '/industries/food-beverage-water-quality',
+      es: '/es/industrias/calidad-agua-alimentacion-bebidas',
+      fr: '/fr/industries/qualite-eau-agroalimentaire',
+      it: '/it/settori/qualita-acqua-alimenti-bevande',
+      ca: '/ca/sectors/qualitat-aigua-alimentacio-begudes'
+    },
+    titles: {
+      en: 'Water quality control for food and beverage operations',
+      es: 'Control de calidad del agua para alimentación y bebidas',
+      fr: 'Contrôle qualité de l’eau pour l’agroalimentaire',
+      it: 'Controllo qualità dell’acqua per food & beverage',
+      ca: 'Control de qualitat de l’aigua per a alimentació i begudes'
+    },
+    descriptions: {
+      en: 'Connect water quality requests, laboratory partners, microbiology products and digital reports for food and beverage quality teams.',
+      es: 'Conecta solicitudes de calidad del agua, partners de laboratorio, productos de microbiología e informes digitales para equipos de alimentación y bebidas.',
+      fr: 'Connectez demandes qualité eau, partenaires laboratoire, produits de microbiologie et rapports numériques pour équipes agroalimentaires.',
+      it: 'Collega richieste qualità acqua, partner di laboratorio, prodotti di microbiologia e report digitali per team food & beverage.',
+      ca: 'Connecta sol·licituds de qualitat de l’aigua, partners de laboratori, productes de microbiologia i informes digitals per a equips d’alimentació i begudes.'
+    },
+    sections: {
+      en: [
+        section('For operational quality teams', 'Food and beverage teams need water quality workflows that are repeatable, documented and easy to coordinate with internal or external laboratories.', ['Process water checks', 'Supplier and laboratory coordination', 'Recurring monitoring schedules', 'Digital report history']),
+        section('From request to report', 'AquaVerify helps structure each request, link it to products or laboratory work and keep outcomes visible in the platform.')
+      ],
+      es: [
+        section('Para equipos de calidad operativa', 'Los equipos de alimentación y bebidas necesitan flujos de calidad del agua repetibles, documentados y fáciles de coordinar con laboratorios internos o externos.', ['Controles de agua de proceso', 'Coordinación con proveedores y laboratorios', 'Calendarios de monitorización recurrente', 'Historial digital de informes']),
+        section('De la solicitud al informe', 'AquaVerify ayuda a estructurar cada solicitud, vincularla a productos o trabajo de laboratorio y mantener los resultados visibles en la plataforma.')
+      ],
+      fr: [
+        section('Pour équipes qualité opérationnelle', 'Les équipes agroalimentaires ont besoin de flux qualité eau répétables, documentés et faciles à coordonner avec laboratoires internes ou externes.', ['Contrôles eau de process', 'Coordination fournisseurs et laboratoires', 'Calendriers de surveillance récurrente', 'Historique numérique des rapports']),
+        section('De la demande au rapport', 'AquaVerify aide à structurer chaque demande, la relier aux produits ou au travail laboratoire et garder les résultats visibles dans la plateforme.')
+      ],
+      it: [
+        section('Per team qualità operativa', 'I team food & beverage richiedono flussi qualità acqua ripetibili, documentati e facili da coordinare con laboratori interni o esterni.', ['Controlli acqua di processo', 'Coordinamento fornitori e laboratori', 'Calendari di monitoraggio ricorrente', 'Storico digitale dei report']),
+        section('Dalla richiesta al report', 'AquaVerify aiuta a strutturare ogni richiesta, collegarla a prodotti o lavoro di laboratorio e mantenere gli esiti visibili in piattaforma.')
+      ],
+      ca: [
+        section('Per a equips de qualitat operativa', 'Els equips d’alimentació i begudes necessiten fluxos de qualitat de l’aigua repetibles, documentats i fàcils de coordinar amb laboratoris interns o externs.', ['Controls d’aigua de procés', 'Coordinació amb proveïdors i laboratoris', 'Calendaris de monitoratge recurrent', 'Historial digital d’informes']),
+        section('De la sol·licitud a l’informe', 'AquaVerify ajuda a estructurar cada sol·licitud, vincular-la a productes o treball de laboratori i mantenir els resultats visibles a la plataforma.')
+      ]
+    },
+    ctas: {
+      en: ['Ask for quality workflow fit', 'View platform'],
+      es: ['Pedir encaje de flujo calidad', 'Ver plataforma'],
+      fr: ['Demander un cadrage qualité', 'Voir plateforme'],
+      it: ['Chiedi inquadramento qualità', 'Vedi piattaforma'],
+      ca: ['Demanar encaix de flux qualitat', 'Veure plataforma']
+    }
+  },
+  {
+    id: 'industrial-process-water',
+    paths: {
+      en: '/industries/industrial-process-water',
+      es: '/es/industrias/agua-proceso-industrial',
+      fr: '/fr/industries/eau-process-industriel',
+      it: '/it/settori/acqua-processo-industriale',
+      ca: '/ca/sectors/aigua-proces-industrial'
+    },
+    titles: {
+      en: 'Industrial process water monitoring with digital traceability',
+      es: 'Monitorización de agua de proceso industrial con trazabilidad digital',
+      fr: 'Surveillance eau de process industriel avec traçabilité numérique',
+      it: 'Monitoraggio acqua di processo industriale con tracciabilità digitale',
+      ca: 'Monitoratge d’aigua de procés industrial amb traçabilitat digital'
+    },
+    descriptions: {
+      en: 'AquaVerify helps industrial teams coordinate water quality checks, laboratory work, reports and recurring monitoring in one connected workflow.',
+      es: 'AquaVerify ayuda a equipos industriales a coordinar controles de calidad del agua, trabajo de laboratorio, informes y monitorización recurrente.',
+      fr: 'AquaVerify aide les équipes industrielles à coordonner contrôles qualité eau, travail laboratoire, rapports et surveillance récurrente.',
+      it: 'AquaVerify aiuta i team industriali a coordinare controlli qualità acqua, lavoro di laboratorio, report e monitoraggio ricorrente.',
+      ca: 'AquaVerify ajuda equips industrials a coordinar controls de qualitat de l’aigua, treball de laboratori, informes i monitoratge recurrent.'
+    },
+    sections: {
+      en: [
+        section('For plants and technical operations', 'Industrial teams need a practical way to request tests, manage suppliers, follow reports and keep a traceable history of water quality work.', ['Process water checkpoints', 'Supplier and lab coordination', 'Recurring task planning', 'Centralized report access']),
+        section('A platform-backed workflow', 'AquaVerify Cloud keeps context around sites, samples, operators, documents and customer-facing reports.')
+      ],
+      es: [
+        section('Para plantas y operaciones técnicas', 'Los equipos industriales necesitan una forma práctica de solicitar análisis, gestionar proveedores, seguir informes y mantener historial trazable.', ['Puntos de control de agua de proceso', 'Coordinación con proveedores y laboratorio', 'Planificación de tareas recurrentes', 'Acceso centralizado a informes']),
+        section('Un flujo apoyado por plataforma', 'AquaVerify Cloud mantiene contexto sobre puntos, muestras, operadores, documentos e informes para cliente.')
+      ],
+      fr: [
+        section('Pour sites et opérations techniques', 'Les équipes industrielles ont besoin d’un moyen pratique pour demander analyses, gérer fournisseurs, suivre rapports et garder un historique traçable.', ['Points de contrôle eau de process', 'Coordination fournisseurs et laboratoire', 'Planification de tâches récurrentes', 'Accès centralisé aux rapports']),
+        section('Un flux appuyé par plateforme', 'AquaVerify Cloud conserve le contexte sites, échantillons, opérateurs, documents et rapports client.')
+      ],
+      it: [
+        section('Per impianti e operazioni tecniche', 'I team industriali richiedono un modo pratico per richiedere analisi, gestire fornitori, seguire report e mantenere storico tracciabile.', ['Punti controllo acqua di processo', 'Coordinamento fornitori e laboratorio', 'Pianificazione attività ricorrenti', 'Accesso centralizzato ai report']),
+        section('Un flusso supportato dalla piattaforma', 'AquaVerify Cloud mantiene contesto su siti, campioni, operatori, documenti e report per cliente.')
+      ],
+      ca: [
+        section('Per a plantes i operacions tècniques', 'Els equips industrials necessiten una forma pràctica de sol·licitar anàlisis, gestionar proveïdors, seguir informes i mantenir historial traçable.', ['Punts de control d’aigua de procés', 'Coordinació amb proveïdors i laboratori', 'Planificació de tasques recurrents', 'Accés centralitzat a informes']),
+        section('Un flux recolzat per plataforma', 'AquaVerify Cloud manté context sobre punts, mostres, operadors, documents i informes per a client.')
+      ]
+    },
+    ctas: {
+      en: ['Discuss process water workflow', 'Explore SaaS'],
+      es: ['Hablar de flujo industrial', 'Explorar SaaS'],
+      fr: ['Discuter flux industriel', 'Explorer SaaS'],
+      it: ['Discuti flusso industriale', 'Esplora SaaS'],
+      ca: ['Parlar de flux industrial', 'Explorar SaaS']
+    }
+  },
+  {
+    id: 'facility-water-risk',
+    paths: {
+      en: '/industries/facility-water-risk-management',
+      es: '/es/industrias/gestion-riesgo-agua-instalaciones',
+      fr: '/fr/industries/gestion-risque-eau-batiments',
+      it: '/it/settori/gestione-rischio-acqua-strutture',
+      ca: '/ca/sectors/gestio-risc-aigua-installacions'
+    },
+    titles: {
+      en: 'Facility water risk workflows for buildings and sites',
+      es: 'Flujos de riesgo del agua para edificios e instalaciones',
+      fr: 'Flux de risque eau pour bâtiments et sites',
+      it: 'Workflow rischio acqua per edifici e strutture',
+      ca: 'Fluxos de risc de l’aigua per a edificis i instal·lacions'
+    },
+    descriptions: {
+      en: 'Coordinate water quality requests, laboratory reports and recurring monitoring for buildings, facilities and managed sites.',
+      es: 'Coordina solicitudes de calidad del agua, informes de laboratorio y monitorización recurrente para edificios, instalaciones y activos gestionados.',
+      fr: 'Coordonnez demandes qualité eau, rapports laboratoire et surveillance récurrente pour bâtiments, installations et sites gérés.',
+      it: 'Coordina richieste qualità acqua, report di laboratorio e monitoraggio ricorrente per edifici, strutture e siti gestiti.',
+      ca: 'Coordina sol·licituds de qualitat de l’aigua, informes de laboratori i monitoratge recurrent per a edificis, instal·lacions i actius gestionats.'
+    },
+    sections: {
+      en: [
+        section('For recurring site control', 'Facility teams need visibility over what has been sampled, who performed the work, where reports are stored and what needs follow-up.', ['Managed site records', 'Recurring monitoring tasks', 'Supplier and laboratory coordination', 'Report history by asset or site']),
+        section('Keep evidence organized', 'AquaVerify connects products, laboratories and platform workflows so water quality activity is easier to review and share.')
+      ],
+      es: [
+        section('Para control recurrente de instalaciones', 'Los equipos de facility necesitan visibilidad sobre qué se ha muestreado, quién realizó el trabajo, dónde están los informes y qué requiere seguimiento.', ['Registros por instalación', 'Tareas recurrentes de monitorización', 'Coordinación con proveedores y laboratorio', 'Historial de informes por activo o punto']),
+        section('Mantener la evidencia organizada', 'AquaVerify conecta productos, laboratorios y flujos de plataforma para que la actividad de calidad del agua sea más fácil de revisar y compartir.')
+      ],
+      fr: [
+        section('Pour contrôle récurrent de sites', 'Les équipes facility ont besoin de visibilité sur ce qui a été échantillonné, qui a réalisé le travail, où sont les rapports et ce qui demande suivi.', ['Registres par site', 'Tâches de surveillance récurrentes', 'Coordination fournisseurs et laboratoire', 'Historique rapports par actif ou site']),
+        section('Garder les preuves organisées', 'AquaVerify connecte produits, laboratoires et flux plateforme afin que l’activité qualité eau soit plus facile à revoir et partager.')
+      ],
+      it: [
+        section('Per controllo ricorrente dei siti', 'I team facility richiedono visibilità su cosa è stato campionato, chi ha eseguito il lavoro, dove sono i report e cosa richiede follow-up.', ['Record per sito', 'Attività ricorrenti di monitoraggio', 'Coordinamento fornitori e laboratorio', 'Storico report per asset o sito']),
+        section('Tenere le evidenze organizzate', 'AquaVerify collega prodotti, laboratori e flussi piattaforma affinché l’attività qualità acqua sia più semplice da rivedere e condividere.')
+      ],
+      ca: [
+        section('Per a control recurrent d’instal·lacions', 'Els equips de facility necessiten visibilitat sobre què s’ha mostrejat, qui ha fet el treball, on són els informes i què requereix seguiment.', ['Registres per instal·lació', 'Tasques recurrents de monitoratge', 'Coordinació amb proveïdors i laboratori', 'Historial d’informes per actiu o punt']),
+        section('Mantenir l’evidència organitzada', 'AquaVerify connecta productes, laboratoris i fluxos de plataforma perquè l’activitat de qualitat de l’aigua sigui més fàcil de revisar i compartir.')
+      ]
+    },
+    ctas: {
+      en: ['Ask for facility workflow fit', 'Contact AquaVerify'],
+      es: ['Pedir encaje para instalaciones', 'Contactar con AquaVerify'],
+      fr: ['Demander cadrage installations', 'Contacter AquaVerify'],
+      it: ['Chiedi inquadramento strutture', 'Contatta AquaVerify'],
+      ca: ['Demanar encaix per instal·lacions', 'Contactar amb AquaVerify']
+    }
+  }
+];
+
+function buildIndustryFaqs(item, lang) {
+  const common = {
+    en: [
+      { question: `Can AquaVerify support ${item.titles.en.toLowerCase()}?`, answer: item.descriptions.en },
+      { question: 'Does the workflow include digital traceability?', answer: 'Yes. AquaVerify Cloud can connect samples, operators, reports, customer context and CRM attribution in one operational workflow.' }
+    ],
+    es: [
+      { question: `¿Puede AquaVerify apoyar ${item.titles.es.toLowerCase()}?`, answer: item.descriptions.es },
+      { question: '¿El flujo incluye trazabilidad digital?', answer: 'Sí. AquaVerify Cloud puede conectar muestras, operadores, informes, contexto de cliente y atribución CRM en un mismo flujo operativo.' }
+    ],
+    fr: [
+      { question: `AquaVerify peut-il accompagner ${item.titles.fr.toLowerCase()} ?`, answer: item.descriptions.fr },
+      { question: 'Le flux inclut-il la traçabilité numérique ?', answer: 'Oui. AquaVerify Cloud peut connecter échantillons, opérateurs, rapports, contexte client et attribution CRM dans un même flux opérationnel.' }
+    ],
+    it: [
+      { question: `AquaVerify può supportare ${item.titles.it.toLowerCase()}?`, answer: item.descriptions.it },
+      { question: 'Il flusso include tracciabilità digitale?', answer: 'Sì. AquaVerify Cloud può collegare campioni, operatori, report, contesto cliente e attribuzione CRM in un unico flusso operativo.' }
+    ],
+    ca: [
+      { question: `AquaVerify pot donar suport a ${item.titles.ca.toLowerCase()}?`, answer: item.descriptions.ca },
+      { question: 'El flux inclou traçabilitat digital?', answer: 'Sí. AquaVerify Cloud pot connectar mostres, operadors, informes, context de client i atribució CRM en un mateix flux operatiu.' }
+    ]
+  };
+  return common[lang] || common.en;
+}
+
+function buildIndustryPages() {
+  return INDUSTRY_PAGE_DATA.map((item) => page(
+    item.id,
+    'industries',
+    'contact',
+    Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, locale(
+      item.paths[lang],
+      item.titles[lang],
+      item.descriptions[lang],
+      item.sections[lang],
+      {
+        eyebrow: 'Industry',
+        primaryCta: item.ctas[lang][0],
+        secondaryCta: item.ctas[lang][1],
+        seoTitle: `${item.titles[lang]} | AquaVerify`,
+        seoDescription: item.descriptions[lang],
+        faqs: buildIndustryFaqs(item, lang)
+      }
+    )])),
+    { parentId: 'water-quality-control' }
+  ));
+}
+
+MARKETING_PAGES.push(...buildIndustryPages());
+
 const PRODUCT_LANGUAGE_BASE = {
   en: '/products',
   es: '/es/productos',
