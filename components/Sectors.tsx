@@ -82,7 +82,7 @@ export const Sectors: React.FC = () => {
       image: IMAGE_FALLBACKS.sector,
       shortDesc: t.sectors.list.municipal.desc,
       fullDescription: t.sectors.list.municipal.full,
-      useCases: ['Distribution network monitoring', 'Pipe repair commissioning', 'Emergency response tracing', 'Regulatory compliance (EPA)'],
+      useCases: ['Distribution network monitoring', 'Pipe repair commissioning', 'Emergency response tracing', 'EPA workflow documentation'],
       benefits: ['Real-time contamination alerts', 'Reduced public health risk', 'Data-driven infrastructure planning']
     },
     {
@@ -93,7 +93,7 @@ export const Sectors: React.FC = () => {
       shortDesc: t.sectors.list.fnb.desc,
       fullDescription: t.sectors.list.fnb.full,
       useCases: ['Source water verification', 'CIP (Clean-in-Place) validation', 'Finished product lot release', 'HACCP critical control points'],
-      benefits: ['Zero production downtime', 'Audit-ready compliance logs', 'Brand equity protection']
+      benefits: ['Reduced production interruption risk', 'Audit-ready quality logs', 'Brand equity protection']
     },
     {
       id: 'labs',
@@ -102,7 +102,7 @@ export const Sectors: React.FC = () => {
       image: IMAGE_FALLBACKS.sector,
       shortDesc: t.sectors.list.labs.desc,
       fullDescription: t.sectors.list.labs.full,
-      useCases: ['Field sampling expansion', 'Remote client monitoring', 'Overflow testing management', 'Digital certificate generation'],
+      useCases: ['Field sampling expansion', 'Remote client monitoring', 'Overflow testing management', 'Digital report generation'],
       benefits: ['Paperless workflow', 'Instant client reporting', 'Higher daily sample throughput']
     },
     {
@@ -112,7 +112,7 @@ export const Sectors: React.FC = () => {
       image: IMAGE_FALLBACKS.sector,
       shortDesc: t.sectors.list.realestate.desc,
       fullDescription: t.sectors.list.realestate.full,
-      useCases: ['Cooling tower screening', 'Swimming pool & spa safety', 'Tenant water quality assurance', 'ASHRAE 188 compliance'],
+      useCases: ['Cooling tower screening', 'Swimming pool & spa safety', 'Tenant water quality assurance', 'ASHRAE 188 documentation support'],
       benefits: ['Liability reduction', 'Tenant confidence', 'Proactive maintenance scheduling']
     }
   ];

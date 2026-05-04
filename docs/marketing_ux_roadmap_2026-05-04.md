@@ -15,7 +15,8 @@ Actualizado: 2026-05-04.
 - Dashboard CRM inicial para eventos de la web corporativa: implementado en plataforma, con KPIs, paginas, CTAs, intents, campanas, idiomas y eventos recientes.
 - Reporting CRM de conversion web -> lead -> MQL/SQL/cliente por campana, intent y producto: implementado en plataforma.
 - Reporting comercial de leads web con presupuestos, pipeline, pedidos, valor de pedidos y facturado: implementado en plataforma.
-- Pendiente principal: validar claims/naming con equipo tecnico/legal, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
+- Registro de claims/naming y auditor automatico de claims publicos: implementado en web corporativa.
+- Pendiente principal: aprobacion final tecnico/legal de la tabla maestra, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
 
 ## Decision Estrategica
 
@@ -214,6 +215,13 @@ Tareas:
 - Definir que claims son comerciales y cuales pueden ser regulatorios.
 - Validar si se pueden mencionar ISO/EPA como "according to", "based on", "compatible with" o "for use with".
 - Recopilar fotos reales, renders, datasheets, certificados, manuales y packaging.
+
+Avance implementado:
+
+- Creado `docs/product_claims_registry_2026-05-04.md` con tabla maestra provisional, reglas de redaccion segura y lista de assets necesarios.
+- Creado `npm run claims:audit` para bloquear claims publicos de certificacion, compatibilidad ISO/EPA, patente o garantia absoluta antes de aprobacion.
+- Reescrito copy publico sensible hacia lenguaje de producto, trazabilidad, workflow e informes tecnicos.
+- Se mantienen avisos no bloqueantes para revisar la ambiguedad `ENUMERAColi100` / `ENUMERAEntero100` detectada en el DOCX.
 
 Criterio de cierre:
 

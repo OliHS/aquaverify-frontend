@@ -35,28 +35,28 @@ const SEO_LOCALES = {
 const HOME_META = {
   en: {
     path: '/en',
-    title: 'AquaVerify | Water Testing, LIMS Traceability & Compliance',
-    description: 'AquaVerify combines certified water testing kits, digital LIMS traceability, compliance reporting, distributor support and OEM partnerships.'
+    title: 'AquaVerify | Water Testing, LIMS Traceability & Technical Reporting',
+    description: 'AquaVerify combines water microbiology products, digital LIMS traceability, technical reporting, distributor support and OEM partnerships.'
   },
   es: {
     path: '/es',
-    title: 'AquaVerify | Kits de Agua, Trazabilidad LIMS y Cumplimiento',
-    description: 'AquaVerify combina kits certificados de análisis de agua, trazabilidad digital LIMS, informes de cumplimiento, distribuidores y programas OEM.'
+    title: 'AquaVerify | Kits de Agua, Trazabilidad LIMS e Informes Técnicos',
+    description: 'AquaVerify combina productos de microbiología del agua, trazabilidad digital LIMS, informes técnicos, distribuidores y programas OEM.'
   },
   fr: {
     path: '/fr',
-    title: 'AquaVerify | Tests Eau, Traçabilité LIMS et Conformité',
-    description: 'AquaVerify réunit kits certifiés de test de l’eau, traçabilité numérique LIMS, rapports de conformité, distributeurs et partenariats OEM.'
+    title: 'AquaVerify | Tests Eau, Traçabilité LIMS et Reporting Technique',
+    description: 'AquaVerify réunit produits de microbiologie de l’eau, traçabilité numérique LIMS, rapports techniques, distributeurs et partenariats OEM.'
   },
   it: {
     path: '/it',
-    title: 'AquaVerify | Test Acqua, Tracciabilità LIMS e Conformità',
-    description: 'AquaVerify unisce kit certificati per l’analisi dell’acqua, tracciabilità digitale LIMS, report di conformità, distributori e partnership OEM.'
+    title: 'AquaVerify | Test Acqua, Tracciabilità LIMS e Report Tecnici',
+    description: 'AquaVerify unisce prodotti di microbiologia dell’acqua, tracciabilità digitale LIMS, report tecnici, distributori e partnership OEM.'
   },
   ca: {
     path: '/ca',
-    title: 'AquaVerify | Kits d’Aigua, Traçabilitat LIMS i Compliment',
-    description: 'AquaVerify combina kits certificats d’anàlisi d’aigua, traçabilitat digital LIMS, informes de compliment, distribuïdors i programes OEM.'
+    title: 'AquaVerify | Kits d’Aigua, Traçabilitat LIMS i Informes Tècnics',
+    description: 'AquaVerify combina productes de microbiologia de l’aigua, traçabilitat digital LIMS, informes tècnics, distribuïdors i programes OEM.'
   }
 };
 

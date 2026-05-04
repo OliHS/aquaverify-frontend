@@ -150,7 +150,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                       Description
                     </h4>
                     <p className="text-gray-600 leading-relaxed mb-6">
-                      {product.description || product.detail || "High-performance solution designed for optimal precision in laboratory environments. Fully compliant with international safety standards."}
+                      {product.description || product.detail || "Technical product information for laboratory water microbiology workflows. Final method suitability should be validated for each use case and market."}
                     </p>
                   </div>
               </div>

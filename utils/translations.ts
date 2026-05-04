@@ -28,26 +28,26 @@ export const translations = {
     },
     valueProps: {
       title: "Unified Water Safety Ecosystem",
-      subtitle: "We bridge the gap between field testing and compliance reporting with a single, integrated solution.",
+      subtitle: "We bridge the gap between field testing and technical reporting with a single, integrated solution.",
       cards: {
-        bio: { title: "Verifiable Biotechnology", desc: "ISO-compliant testing kits for Coliphages and E. coli. Our patented Smart Cap technology eliminates the need for UV light." },
+        bio: { title: "Verifiable Biotechnology", desc: "Water microbiology kits for ISO-oriented workflows covering coliphages and E. coli. Smart Cap workflows can reduce UV-dependent steps." },
         cloud: { title: "Cloud Digitalization", desc: "Instant digitization of results via mobile app. Secure, immutable data storage ensures complete traceability." },
         oem: { title: "B2B & OEM Partnership", desc: "Scalable solutions for laboratories and municipalities. White-label our technology to expand your portfolio." }
       }
     },
     saas: {
       badge: "The AquaVerify Cloud",
-      title: "From Sample to Certificate. Instantly.",
-      tabs: { mobile: "Field App", lims: "LIMS Dashboard", compliance: "Compliance Reports" },
+      title: "From Sample to Report. Instantly.",
+      tabs: { mobile: "Field App", lims: "LIMS Dashboard", compliance: "Technical Reports" },
       mobile: { title: "Field Data Collection", desc: "Empower your technicians with the AquaVerify Mobile App. Scan sample QR codes and log GPS coordinates automatically." },
       lims: { title: "Centralized LIMS Control", desc: "A powerful command center for your lab. Monitor testing volume and track trends over time." },
-      compliance: { title: "Automated Reporting", desc: "Generate ISO/EPA compliant reports with one click. Eliminate manual data entry errors." },
+      compliance: { title: "Automated Reporting", desc: "Generate reports aligned with ISO/EPA workflow documentation. Eliminate manual data entry errors." },
       learnMore: "Learn more about"
     },
     distributors: {
       badge: "Global Network",
       title: "Authorized Distributors",
-      subtitle: "Find a certified AquaVerify partner near you for local support, stock availability, and training.",
+      subtitle: "Find an authorized AquaVerify partner near you for local support, stock availability, and training.",
       cta: "Find a Partner",
       modalTitle: "Global Partner Network",
       modalSubtitle: "Select a location to view partner details.",
@@ -62,7 +62,7 @@ export const translations = {
     oem: {
       badge: "OEM & White Label",
       title: "Your Brand. Our Technology.",
-      desc: "Expand your catalog with our white-label (OEM) program. We provide the certified kits and software infrastructure; you provide the branding.",
+      desc: "Expand your catalog with our white-label (OEM) program. We provide technical kits and software infrastructure; you provide the branding.",
       packaging: "Custom Packaging",
       packagingDesc: "Full brand alignment on boxes and interfaces.",
       revenue: "Recurring Revenue",
@@ -85,7 +85,7 @@ export const translations = {
       request: "Request Proposal",
       list: {
         municipal: { title: "Municipal Water", desc: "Safe drinking water for communities.", full: "Municipalities face increasing pressure to deliver safe water while managing aging infrastructure. AquaVerify provides rapid, on-site testing capabilities." },
-        fnb: { title: "Food & Beverage", desc: "Brand protection & HACCP compliance.", full: "In the food and beverage industry, water quality is synonymous with product safety. Our contamination-proof Smart Caps ensure hygiene standards." },
+        fnb: { title: "Food & Beverage", desc: "Brand protection & HACCP documentation.", full: "In the food and beverage industry, water quality is closely linked to product safety. AquaVerify workflows support hygiene monitoring and traceable records." },
         labs: { title: "Commercial Labs", desc: "High-throughput LIMS integration.", full: "Commercial laboratories can expand their service offerings by deploying AquaVerify kits for field samplers. Data syncs instantly to your central LIMS." },
         realestate: { title: "Real Estate", desc: "Facility safety & risk management.", full: "For commercial property managers, water safety is a liability issue. Proactively monitor cooling towers and domestic water systems." }
       }
@@ -93,9 +93,9 @@ export const translations = {
     products: {
       badge: "Our Technology",
       title: "Product Ecosystem",
-      subtitle: "From advanced field sensors to certified laboratory reagents, we provide end-to-end solutions.",
+      subtitle: "From advanced field workflows to technical laboratory reagents, we provide end-to-end solutions.",
       flagship: "The Smart Cap™ System",
-      flagshipDesc: "Revolutionize your field testing with our patented Smart Cap technology. Reagent delivery integrated directly into the sample bottle.",
+      flagshipDesc: "Streamline field testing with Smart Cap reagent delivery integrated directly into the sample bottle.",
       zeroContam: "Zero Contamination",
       noUV: "No UV Required",
       download: "Download Datasheet",
@@ -162,7 +162,7 @@ export const translations = {
       badge: "Biotecnología de Nueva Generación",
       titleStart: "La Ciencia de la",
       titleEnd: "Verificación",
-      subtitle: "Fusionamos biotecnología verificable con trazabilidad digital. Garantice la seguridad con precisión de laboratorio, en cualquier lugar.",
+      subtitle: "Fusionamos biotecnología verificable con trazabilidad digital para apoyar decisiones de calidad del agua con precisión de laboratorio.",
       explore: "Explorar Kits",
       data: "Ver Datos Científicos",
       limsTitle: "LIMS de Trazabilidad Digital",
@@ -172,24 +172,24 @@ export const translations = {
       title: "Ecosistema Unificado de Seguridad Hídrica",
       subtitle: "Unimos las pruebas de campo y los informes de cumplimiento con una solución integral.",
       cards: {
-        bio: { title: "Biotecnología Verificable", desc: "Kits compatibles con ISO para Colífagos y E. coli. Nuestra tecnología Smart Cap elimina la necesidad de luz UV." },
-        cloud: { title: "Digitalización en la Nube", desc: "Digitalización instantánea vía app móvil. Almacenamiento seguro e inmutable que garantiza trazabilidad total." },
+        bio: { title: "Biotecnología Verificable", desc: "Kits de microbiología del agua para flujos orientados a ISO sobre colífagos y E. coli. Los flujos Smart Cap pueden reducir pasos dependientes de UV." },
+        cloud: { title: "Digitalización en la Nube", desc: "Digitalización instantánea vía app móvil. Almacenamiento seguro e inmutable para trazabilidad completa." },
         oem: { title: "Asociación B2B y OEM", desc: "Soluciones escalables para laboratorios y municipios. Etiquete nuestra tecnología para expandir su portafolio." }
       }
     },
     saas: {
       badge: "La Nube AquaVerify",
-      title: "De la Muestra al Certificado. Al Instante.",
-      tabs: { mobile: "App de Campo", lims: "Panel LIMS", compliance: "Informes de Cumplimiento" },
+      title: "De la muestra al informe. Al instante.",
+      tabs: { mobile: "App de Campo", lims: "Panel LIMS", compliance: "Informes técnicos" },
       mobile: { title: "Recolección de Datos en Campo", desc: "Empodere a sus técnicos con la App Móvil AquaVerify. Escanee códigos QR y registre coordenadas GPS automáticamente." },
       lims: { title: "Control LIMS Centralizado", desc: "Un centro de comando para su laboratorio. Monitoree el volumen de pruebas y rastree tendencias en el tiempo." },
-      compliance: { title: "Informes Automatizados", desc: "Genere informes compatibles con ISO/EPA con un clic. Elimine errores de entrada manual de datos." },
+      compliance: { title: "Informes Automatizados", desc: "Genere informes alineados con documentación de flujos ISO/EPA. Elimine errores de entrada manual de datos." },
       learnMore: "Más información sobre"
     },
     distributors: {
       badge: "Red Global",
       title: "Distribuidores Autorizados",
-      subtitle: "Encuentre un socio certificado de AquaVerify cerca de usted para soporte local, inventario y capacitación.",
+      subtitle: "Encuentre un partner autorizado de AquaVerify cerca de usted para soporte local, inventario y capacitación.",
       cta: "Buscar Socio",
       modalTitle: "Red Global de Socios",
       modalSubtitle: "Seleccione una ubicación para ver los detalles del socio.",
@@ -204,7 +204,7 @@ export const translations = {
     oem: {
       badge: "OEM y Marca Blanca",
       title: "Su Marca. Nuestra Tecnología.",
-      desc: "Expanda su catálogo con nuestro programa de marca blanca (OEM). Proveemos los kits certificados y la infraestructura; usted pone la marca.",
+      desc: "Expanda su catálogo con nuestro programa de marca blanca (OEM). Proveemos kits técnicos e infraestructura; usted pone la marca.",
       packaging: "Empaque Personalizado",
       packagingDesc: "Alineación total de marca en cajas e interfaces.",
       revenue: "Ingresos Recurrentes",
@@ -235,9 +235,9 @@ export const translations = {
     products: {
       badge: "Nuestra Tecnología",
       title: "Ecosistema de Productos",
-      subtitle: "Desde sensores de campo avanzados hasta reactivos de laboratorio certificados, ofrecemos soluciones integrales.",
+      subtitle: "Desde flujos de campo avanzados hasta reactivos técnicos de laboratorio, ofrecemos soluciones integrales.",
       flagship: "El Sistema Smart Cap™",
-      flagshipDesc: "Revolucione sus pruebas de campo con nuestra tecnología patentada Smart Cap. Entrega de reactivos integrada directamente en la botella de muestra.",
+      flagshipDesc: "Optimice sus pruebas de campo con entrega de reactivos Smart Cap integrada directamente en la botella de muestra.",
       zeroContam: "Cero Contaminación",
       noUV: "No Requiere UV",
       download: "Descargar Ficha Técnica",
@@ -304,7 +304,7 @@ export const translations = {
       badge: "Biotechnologie Nouvelle Génération",
       titleStart: "La Science de la",
       titleEnd: "Vérification",
-      subtitle: "Nous fusionnons biotechnologie vérifiable et traçabilité numérique. Assurez la sécurité avec une précision de laboratoire, partout.",
+      subtitle: "Nous fusionnons biotechnologie vérifiable et traçabilité numérique pour soutenir les décisions de qualité de l’eau avec une précision de laboratoire.",
       explore: "Explorer les Kits",
       data: "Voir Données Scientifiques",
       limsTitle: "LIMS de Traçabilité Numérique",
@@ -312,26 +312,26 @@ export const translations = {
     },
     valueProps: {
       title: "Écosystème Unifié de Sécurité de l'Eau",
-      subtitle: "Nous comblons le fossé entre les tests sur le terrain et les rapports de conformité avec une solution unique.",
+      subtitle: "Nous comblons le fossé entre les tests sur le terrain et le reporting technique avec une solution unique.",
       cards: {
-        bio: { title: "Biotechnologie Vérifiable", desc: "Kits conformes ISO pour Coliphages et E. coli. Notre technologie Smart Cap élimine le besoin de lumière UV." },
-        cloud: { title: "Numérisation Cloud", desc: "Numérisation instantanée via app mobile. Stockage de données sécurisé et immuable garantissant une traçabilité totale." },
+        bio: { title: "Biotechnologie Vérifiable", desc: "Kits de microbiologie de l’eau pour flux orientés ISO couvrant coliphages et E. coli. Les flux Smart Cap peuvent réduire les étapes dépendantes des UV." },
+        cloud: { title: "Numérisation Cloud", desc: "Numérisation instantanée via app mobile. Stockage de données sécurisé et immuable pour une traçabilité complète." },
         oem: { title: "Partenariat B2B & OEM", desc: "Solutions évolutives pour laboratoires et municipalités. Marquez notre technologie pour élargir votre portefeuille." }
       }
     },
     saas: {
       badge: "Le Cloud AquaVerify",
-      title: "De l'Échantillon au Certificat. Instantanément.",
-      tabs: { mobile: "App Terrain", lims: "Tableau de Bord LIMS", compliance: "Rapports de Conformité" },
+      title: "De l'échantillon au rapport. Instantanément.",
+      tabs: { mobile: "App Terrain", lims: "Tableau de Bord LIMS", compliance: "Rapports techniques" },
       mobile: { title: "Collecte de Données Terrain", desc: "Donnez les moyens à vos techniciens avec l'App Mobile AquaVerify. Scannez les codes QR et enregistrez les coordonnées GPS." },
       lims: { title: "Contrôle LIMS Centralisé", desc: "Un centre de commande pour votre labo. Surveillez le volume de tests et suivez les tendances dans le temps." },
-      compliance: { title: "Rapports Automatisés", desc: "Générez des rapports conformes ISO/EPA en un clic. Éliminez les erreurs de saisie manuelle." },
+      compliance: { title: "Rapports Automatisés", desc: "Générez des rapports alignés avec la documentation des flux ISO/EPA. Éliminez les erreurs de saisie manuelle." },
       learnMore: "En savoir plus sur"
     },
     distributors: {
       badge: "Réseau Mondial",
       title: "Distributeurs Agréés",
-      subtitle: "Trouvez un partenaire certifié AquaVerify près de chez vous pour un support local, du stock et une formation.",
+      subtitle: "Trouvez un partenaire autorisé AquaVerify près de chez vous pour un support local, du stock et une formation.",
       cta: "Trouver un Partenaire",
       modalTitle: "Réseau Mondial de Partenaires",
       modalSubtitle: "Sélectionnez un emplacement pour voir les détails du partenaire.",
@@ -346,7 +346,7 @@ export const translations = {
     oem: {
       badge: "OEM & Marque Blanche",
       title: "Votre Marque. Notre Technologie.",
-      desc: "Développez votre catalogue avec notre programme marque blanche (OEM). Nous fournissons les kits certifiés; vous fournissez la marque.",
+      desc: "Développez votre catalogue avec notre programme marque blanche (OEM). Nous fournissons les kits techniques; vous fournissez la marque.",
       packaging: "Emballage Personnalisé",
       packagingDesc: "Alignement total de la marque sur les boîtes et interfaces.",
       revenue: "Revenus Récurrents",
@@ -369,7 +369,7 @@ export const translations = {
       request: "Demander Proposition",
       list: {
         municipal: { title: "Eau Municipale", desc: "Eau potable sûre pour les communautés.", full: "Les municipalités doivent fournir de l'eau sûre tout en gérant des infrastructures vieillissantes. AquaVerify offre des capacités de test rapides sur site." },
-        fnb: { title: "Alimentation & Boissons", desc: "Protection de la marque et conformité HACCP.", full: "Dans l'industrie agroalimentaire, la qualité de l'eau est synonyme de sécurité produit. Nos Smart Caps assurent les normes d'hygiène." },
+        fnb: { title: "Alimentation & Boissons", desc: "Protection de la marque et documentation HACCP.", full: "Dans l'industrie agroalimentaire, la qualité de l'eau est étroitement liée à la sécurité produit. Les flux AquaVerify soutiennent le suivi hygiène et les enregistrements traçables." },
         labs: { title: "Laboratoires Commerciaux", desc: "Intégration LIMS haut débit.", full: "Les laboratoires peuvent élargir leurs offres en déployant des kits AquaVerify. Les données se synchronisent instantanément avec votre LIMS central." },
         realestate: { title: "Immobilier", desc: "Sécurité des installations et gestion des risques.", full: "Pour les gestionnaires immobiliers, la sécurité de l'eau est une question de responsabilité. Surveillez les tours de refroidissement et les systèmes domestiques." }
       }
@@ -377,9 +377,9 @@ export const translations = {
     products: {
       badge: "Notre Technologie",
       title: "Écosystème Produit",
-      subtitle: "Des capteurs de terrain avancés aux réactifs de laboratoire certifiés, nous fournissons des solutions complètes.",
+      subtitle: "Des flux terrain avancés aux réactifs techniques de laboratoire, nous fournissons des solutions complètes.",
       flagship: "Le Système Smart Cap™",
-      flagshipDesc: "Révolutionnez vos tests sur le terrain avec notre technologie brevetée Smart Cap. Délivrance de réactif intégrée directement dans le flacon.",
+      flagshipDesc: "Optimisez vos tests terrain avec la délivrance de réactif Smart Cap intégrée directement dans le flacon.",
       zeroContam: "Zéro Contamination",
       noUV: "Pas d'UV Requis",
       download: "Télécharger Fiche Technique",
@@ -446,7 +446,7 @@ export const translations = {
       badge: "Biotecnologia di Nuova Generazione",
       titleStart: "La Scienza della",
       titleEnd: "Verifica",
-      subtitle: "Uniamo biotecnologia verificabile e tracciabilità digitale. Garantisci la sicurezza con precisione di laboratorio, ovunque.",
+      subtitle: "Uniamo biotecnologia verificabile e tracciabilità digitale per supportare decisioni sulla qualità dell’acqua con precisione di laboratorio.",
       explore: "Esplora Kit",
       data: "Vedi Dati Scientifici",
       limsTitle: "LIMS Tracciabilità Digitale",
@@ -454,26 +454,26 @@ export const translations = {
     },
     valueProps: {
       title: "Ecosistema Unificato Sicurezza Idrica",
-      subtitle: "Colmiamo il divario tra test sul campo e report di conformità con un'unica soluzione integrata.",
+      subtitle: "Colmiamo il divario tra test sul campo e reporting tecnico con un'unica soluzione integrata.",
       cards: {
-        bio: { title: "Biotecnologia Verificabile", desc: "Kit conformi ISO per Colifagi ed E. coli. La nostra tecnologia Smart Cap elimina la necessità di luce UV." },
-        cloud: { title: "Digitalizzazione Cloud", desc: "Digitalizzazione istantanea via app mobile. Archiviazione sicura e immutabile garantisce tracciabilità totale." },
+        bio: { title: "Biotecnologia Verificabile", desc: "Kit di microbiologia dell’acqua per flussi orientati ISO su colifagi ed E. coli. I flussi Smart Cap possono ridurre passaggi dipendenti da UV." },
+        cloud: { title: "Digitalizzazione Cloud", desc: "Digitalizzazione istantanea via app mobile. Archiviazione sicura e immutabile per tracciabilità completa." },
         oem: { title: "Partnership B2B & OEM", desc: "Soluzioni scalabili per laboratori e comuni. Marchia la nostra tecnologia per espandere il tuo portafoglio." }
       }
     },
     saas: {
       badge: "Il Cloud AquaVerify",
-      title: "Dal Campione al Certificato. Istantaneamente.",
-      tabs: { mobile: "App Campo", lims: "Dashboard LIMS", compliance: "Report Conformità" },
+      title: "Dal campione al report. Istantaneamente.",
+      tabs: { mobile: "App Campo", lims: "Dashboard LIMS", compliance: "Report tecnici" },
       mobile: { title: "Raccolta Dati su Campo", desc: "Potenzia i tuoi tecnici con l'App Mobile AquaVerify. Scansiona codici QR e registra coordinate GPS automaticamente." },
       lims: { title: "Controllo LIMS Centralizzato", desc: "Un centro di comando per il tuo laboratorio. Monitora il volume dei test e traccia le tendenze nel tempo." },
-      compliance: { title: "Report Automatizzati", desc: "Genera report conformi ISO/EPA con un clic. Elimina errori di inserimento manuale." },
+      compliance: { title: "Report Automatizzati", desc: "Genera report allineati alla documentazione dei flussi ISO/EPA. Elimina errori di inserimento manuale." },
       learnMore: "Scopri di più su"
     },
     distributors: {
       badge: "Rete Globale",
       title: "Distributori Autorizzati",
-      subtitle: "Trova un partner certificato AquaVerify vicino a te per supporto locale, stock e formazione.",
+      subtitle: "Trova un partner autorizzato AquaVerify vicino a te per supporto locale, stock e formazione.",
       cta: "Trova un Partner",
       modalTitle: "Rete Globale Partner",
       modalSubtitle: "Seleziona una posizione per vedere i dettagli del partner.",
@@ -488,7 +488,7 @@ export const translations = {
     oem: {
       badge: "OEM & White Label",
       title: "Il Tuo Brand. La Nostra Tecnologia.",
-      desc: "Espandi il tuo catalogo con il nostro programma white-label (OEM). Forniamo kit certificati e infrastruttura; tu metti il brand.",
+      desc: "Espandi il tuo catalogo con il nostro programma white-label (OEM). Forniamo kit tecnici e infrastruttura; tu metti il brand.",
       packaging: "Packaging Personalizzato",
       packagingDesc: "Allineamento totale del brand su scatole e interfacce.",
       revenue: "Ricavi Ricorrenti",
@@ -511,7 +511,7 @@ export const translations = {
       request: "Richiedi Proposta",
       list: {
         municipal: { title: "Acqua Municipale", desc: "Acqua potabile sicura per le comunità.", full: "I comuni devono fornire acqua sicura gestendo infrastrutture vecchie. AquaVerify offre capacità di test rapide in loco." },
-        fnb: { title: "Alimenti & Bevande", desc: "Protezione brand e conformità HACCP.", full: "Nell'industria F&B, la qualità dell'acqua è sinonimo di sicurezza del prodotto. I nostri Smart Caps garantiscono standard igienici." },
+        fnb: { title: "Alimenti & Bevande", desc: "Protezione brand e documentazione HACCP.", full: "Nell'industria F&B, la qualità dell'acqua è strettamente legata alla sicurezza del prodotto. I flussi AquaVerify supportano monitoraggio igienico e registri tracciabili." },
         labs: { title: "Laboratori Commerciali", desc: "Integrazione LIMS ad alto rendimento.", full: "I laboratori possono espandere l'offerta distribuendo kit AquaVerify. I dati si sincronizzano istantaneamente col tuo LIMS centrale." },
         realestate: { title: "Immobiliare", desc: "Sicurezza strutture e gestione rischi.", full: "Per i gestori immobiliari, la sicurezza dell'acqua è una questione di responsabilità. Monitora torri di raffreddamento e sistemi domestici." }
       }
@@ -519,9 +519,9 @@ export const translations = {
     products: {
       badge: "La Nostra Tecnologia",
       title: "Ecosistema Prodotti",
-      subtitle: "Da sensori da campo avanzati a reagenti di laboratorio certificati, offriamo soluzioni complete.",
+      subtitle: "Da flussi da campo avanzati a reagenti tecnici di laboratorio, offriamo soluzioni complete.",
       flagship: "Il Sistema Smart Cap™",
-      flagshipDesc: "Rivoluziona i tuoi test sul campo con la nostra tecnologia brevettata Smart Cap. Rilascio reagente integrato direttamente nella bottiglia.",
+      flagshipDesc: "Ottimizza i test sul campo con rilascio reagente Smart Cap integrato direttamente nella bottiglia.",
       zeroContam: "Zero Contaminazione",
       noUV: "Nessun UV Richiesto",
       download: "Scarica Scheda Tecnica",

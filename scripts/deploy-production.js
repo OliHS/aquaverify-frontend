@@ -26,6 +26,7 @@ function run(command, args, options = {}) {
 
 try {
   run('npm', ['run', 'cms:links:audit']);
+  run('npm', ['run', 'claims:audit']);
   run('npm', ['run', 'seo:sitemap']);
   if (!skipBuild) run('npm', ['run', 'build']);
   run('npx', ['-y', `vercel@${VERCEL_CLI_VERSION}`, '--prod', '--yes']);

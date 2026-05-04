@@ -42,7 +42,7 @@ export const SaaSPlatform: React.FC = () => {
     compliance: {
       title: t.saas.compliance.title,
       desc: t.saas.compliance.desc,
-      imgAlt: "Preview of a generated PDF report with charts and certified data stamps, floating over a blurred interface background.",
+      imgAlt: "Preview of a generated PDF report with charts and traceability stamps, floating over a blurred interface background.",
       features: ["1-Click Export", "Audit Logs", "Custom Templates"]
     }
   };
