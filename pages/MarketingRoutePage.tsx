@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Download } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight, Download } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
@@ -253,6 +253,7 @@ export const MarketingRoutePage: React.FC = () => {
   const secondaryUrl = getMarketingPagePath(secondaryId, pageLang);
   const relatedPages = getRelatedMarketingPages(page.id, pageLang);
   const labels = UI_LABELS[pageLang] || UI_LABELS.en;
+  const breadcrumbs = buildMarketingBreadcrumbs(page, contentMeta, pageLang, labels);
   const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
   const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
@@ -275,6 +276,23 @@ export const MarketingRoutePage: React.FC = () => {
         <section className="bg-primary text-white">
           <div className={`container mx-auto grid gap-10 px-6 py-20 md:py-24 ${heroImageUrl ? 'lg:grid-cols-[1fr_0.82fr] lg:items-center' : ''}`}>
             <div className="max-w-4xl">
+              {breadcrumbs.length > 1 && (
+                <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1 text-xs font-bold text-cyan-100/80">
+                  {breadcrumbs.map((crumb, index) => {
+                    const isLast = index === breadcrumbs.length - 1;
+                    return (
+                      <React.Fragment key={crumb.path}>
+                        {isLast ? (
+                          <span className="max-w-[18rem] truncate text-white" aria-current="page">{crumb.name}</span>
+                        ) : (
+                          <Link to={crumb.path} className="max-w-[12rem] truncate transition hover:text-white">{crumb.name}</Link>
+                        )}
+                        {!isLast && <ChevronRight className="h-3.5 w-3.5 shrink-0 text-cyan-100/45" aria-hidden="true" />}
+                      </React.Fragment>
+                    );
+                  })}
+                </nav>
+              )}
               <div className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-100">
                 {content.eyebrow || page.category}
               </div>

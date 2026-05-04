@@ -24,7 +24,7 @@ This document records the closure state for the Aquaverify corporate site and it
 - CRM visibility: web-origin filters and attribution cards are available in the platform CRM.
 - Product CRO visibility: product page views and datasheet clicks from marketing URLs are tracked with consent and surfaced in the platform CRM dashboard.
 - CMS hardening: editable links are validated, placeholder `#` links are blocked from being saved as real destinations, and footer/social/contact fields are structured.
-- SEO: canonical URLs, language routes, sitemap, robots, OpenGraph/Twitter metadata and JSON-LD are in place.
+- SEO: canonical URLs, language routes, sitemap, robots, OpenGraph/Twitter metadata, visible breadcrumbs and JSON-LD are in place.
 - Security headers: CSP, frame, content-type, referrer and permissions headers are configured in Vercel.
 - Dependency hygiene: production audit is clean for high-severity release gating.
 

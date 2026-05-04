@@ -9,6 +9,7 @@ Objetivo: convertir `aquaverify.com` en un site B2B orientado a captacion organi
 Actualizado: 2026-05-04.
 
 - Home, productos, industrias, OEM/distribuidores, SaaS, `Sobre nosotros`, sitemap, hreflang, canonical, JSON-LD y CMS de paginas marketing: implementado.
+- Breadcrumbs visibles y JSON-LD en URLs marketing: implementado.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.
