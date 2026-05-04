@@ -28,6 +28,7 @@ const secondaryTargetByCategory: Record<string, string> = {
 type MarketingPageMeta = {
   parentId?: string;
   schemaType?: string;
+  productName?: string;
 };
 
 const UI_LABELS: Record<Language, {
@@ -185,7 +186,8 @@ export const MarketingRoutePage: React.FC = () => {
   const primaryUrl = getPlatformSignupUrl({
     intent: page.primaryIntent,
     page: page.id,
-    category: page.category
+    category: page.category,
+    ...(pageMeta.productName ? { product: pageMeta.productName } : {})
   }, pageLang);
   const secondaryId = pageMeta.parentId || secondaryTargetByCategory[page.category] || 'products';
   const secondaryUrl = getMarketingPagePath(secondaryId, pageLang);
