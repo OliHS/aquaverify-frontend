@@ -18,8 +18,8 @@ Actualizado: 2026-05-04.
 - Registro de claims/naming, auditor automatico de claims publicos y guardrails CMS: implementado en web corporativa.
 - Todas las URLs marketing multidioma quedan accesibles desde `Marketing URLs` en el CMS, con accion para enlazarlas como registros editables sin pisar contenido existente.
 - Auditor/sincronizador CLI de URLs marketing CMS: `npm run cms:marketing:audit`, `npm run cms:marketing:strict` y `npm run cms:marketing:sync`.
-- El CMS muestra aviso operativo cuando faltan URLs marketing por enlazar y diferencia entre `page-only` y registro completo con bloque de contenido editable.
-- El deploy corporativo audita la cobertura CMS marketing en cada release sin bloquear produccion mientras falte la sincronizacion inicial.
+- El CMS muestra cobertura completa de URLs marketing enlazadas como registros editables: 280/280.
+- El deploy corporativo exige cobertura CMS marketing completa en cada release con `npm run cms:marketing:strict`.
 - El CLI de sync exige clave Supabase de escritura para evitar falsas sincronizaciones.
 - El editor de paginas marketing permite gestionar assets reales por URL: imagen hero, alt text, imagen OpenGraph y enlace/label de datasheet, con validacion basica de URLs publicas.
 - Pendiente principal: aprobacion final tecnico/legal de la tabla maestra, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
@@ -230,8 +230,8 @@ Avance implementado:
 - Editores CMS de paginas marketing, visual builder y productos bloquean guardado con wording sensible.
 - La proyeccion publica del catalogo sanea terminos legacy que aun requieren correccion desde admin autenticado.
 - El panel `Marketing URLs` permite enlazar todas las rutas SEO en Supabase como paginas CMS editables, conservando overrides ya existentes.
-- Scripts CLI equivalentes permiten auditar cobertura CMS, exigir modo estricto cuando se quiera bloquear release, o sincronizarla con una clave Supabase de escritura.
-- El estado de cobertura aparece en el CMS, diferencia pagina sin bloque de contenido y registro completo, y se puede refrescar desde el panel.
+- Scripts CLI equivalentes permiten auditar cobertura CMS, exigir modo estricto en release, o sincronizarla con una clave Supabase de escritura.
+- El estado de cobertura aparece en el CMS, diferencia pagina sin bloque de contenido y registro completo, se puede refrescar desde el panel y queda cerrado actualmente en 280/280.
 - Las paginas marketing ya pueden mostrar assets reales opcionales y usar imagenes OpenGraph especificas sin introducir fallbacks genericos.
 - Reescrito copy publico sensible hacia lenguaje de producto, trazabilidad, workflow e informes tecnicos.
 - Se mantienen avisos no bloqueantes para revisar la ambiguedad `ENUMERAColi100` / `ENUMERAEntero100` detectada en el DOCX.
