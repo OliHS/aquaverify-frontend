@@ -40,7 +40,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const value = {
     lang,
     setLang,
-    t: translations[lang]
+    t: (translations as Record<string, typeof translations.en>)[lang] || translations.en
   };
 
   return (

@@ -11,6 +11,7 @@ const PageEditor = React.lazy(() => import('./pages/admin/PageEditor').then(modu
 const VisualBuilder = React.lazy(() => import('./pages/admin/VisualBuilder').then(module => ({ default: module.VisualBuilder })));
 const DistributorsManager = React.lazy(() => import('./pages/admin/DistributorsManager').then(module => ({ default: module.DistributorsManager })));
 const ProductManager = React.lazy(() => import('./pages/admin/ProductManager').then(module => ({ default: module.ProductManager })));
+const MarketingRoutePage = React.lazy(() => import('./pages/MarketingRoutePage').then(module => ({ default: module.MarketingRoutePage })));
 
 const RouteFallback: React.FC = () => (
   <div className="min-h-screen bg-white" aria-hidden="true" />
@@ -27,6 +28,7 @@ const App: React.FC = () => {
             <Route path="/es" element={<PublicSite />} />
             <Route path="/fr" element={<PublicSite />} />
             <Route path="/it" element={<PublicSite />} />
+            <Route path="/ca" element={<PublicSite />} />
 
             {/* Admin Routes */}
             <Route path="/admin/login" element={<Login />} />
@@ -43,8 +45,8 @@ const App: React.FC = () => {
               <Route path="distributors" element={<DistributorsManager />} />
             </Route>
 
-            {/* Fallback */}
-            <Route path="*" element={<Navigate to="/" replace />} />
+            {/* Public marketing routes and fallback */}
+            <Route path="*" element={<MarketingRoutePage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

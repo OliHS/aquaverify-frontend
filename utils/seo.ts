@@ -1,13 +1,14 @@
 import type { Language } from './translations';
 
 export const CORPORATE_SITE_URL = 'https://aquaverify.com';
-export const SUPPORTED_SEO_LANGUAGES: Language[] = ['en', 'es', 'fr', 'it'];
+export const SUPPORTED_SEO_LANGUAGES: Language[] = ['en', 'es', 'fr', 'it', 'ca'];
 
 const SEO_LOCALES: Record<Language, string> = {
   en: 'en_US',
   es: 'es_ES',
   fr: 'fr_FR',
-  it: 'it_IT'
+  it: 'it_IT',
+  ca: 'ca_ES'
 };
 
 const DEFAULT_SEO: Record<Language, { title: string; description: string }> = {
@@ -26,6 +27,10 @@ const DEFAULT_SEO: Record<Language, { title: string; description: string }> = {
   it: {
     title: 'AquaVerify | Test Acqua, Tracciabilità LIMS e Conformità',
     description: 'AquaVerify unisce kit certificati per l’analisi dell’acqua, tracciabilità digitale LIMS, report di conformità, distributori e partnership OEM.'
+  },
+  ca: {
+    title: 'AquaVerify | Kits d’Aigua, Traçabilitat LIMS i Compliment',
+    description: 'AquaVerify combina kits certificats d’anàlisi d’aigua, traçabilitat digital LIMS, informes de compliment, distribuïdors i programes OEM.'
   }
 };
 
@@ -111,5 +116,91 @@ export function applyPublicSeo({
       hreflang: language,
       href: `${CORPORATE_SITE_URL}${getLanguagePath(language)}`
     });
+  });
+}
+
+function getAbsoluteUrl(path: string) {
+  return `${CORPORATE_SITE_URL}${path === '/' ? '/' : path}`;
+}
+
+function upsertJsonLd(id: string, payload: Record<string, unknown>) {
+  let element = document.head.querySelector<HTMLScriptElement>(`script[type="application/ld+json"][data-id="${id}"]`);
+  if (!element) {
+    element = document.createElement('script');
+    element.type = 'application/ld+json';
+    element.dataset.id = id;
+    document.head.appendChild(element);
+  }
+  element.textContent = JSON.stringify(payload);
+}
+
+export function applyMarketingSeo({
+  lang,
+  title,
+  description,
+  canonicalPath,
+  alternates,
+  pageType
+}: {
+  lang: Language;
+  title: string;
+  description: string;
+  canonicalPath: string;
+  alternates: Partial<Record<Language, string>>;
+  pageType?: string;
+}) {
+  const canonicalUrl = getAbsoluteUrl(canonicalPath);
+  const imageUrl = `${CORPORATE_SITE_URL}/android-chrome-512x512.png`;
+
+  document.documentElement.lang = lang;
+  document.title = title;
+
+  upsertMeta('name', 'description', description);
+  upsertMeta('name', 'robots', 'index, follow, max-image-preview:large');
+  upsertMeta('property', 'og:type', 'website');
+  upsertMeta('property', 'og:site_name', 'AquaVerify');
+  upsertMeta('property', 'og:title', title);
+  upsertMeta('property', 'og:description', description);
+  upsertMeta('property', 'og:url', canonicalUrl);
+  upsertMeta('property', 'og:image', imageUrl);
+  upsertMeta('property', 'og:locale', SEO_LOCALES[lang] || SEO_LOCALES.en);
+  upsertMeta('name', 'twitter:card', 'summary_large_image');
+  upsertMeta('name', 'twitter:title', title);
+  upsertMeta('name', 'twitter:description', description);
+  upsertMeta('name', 'twitter:image', imageUrl);
+
+  upsertLink('link[rel="canonical"]', { rel: 'canonical', href: canonicalUrl });
+  upsertLink('link[rel="alternate"][hreflang="x-default"]', {
+    rel: 'alternate',
+    hreflang: 'x-default',
+    href: getAbsoluteUrl(alternates.en || canonicalPath)
+  });
+  SUPPORTED_SEO_LANGUAGES.forEach((language) => {
+    const path = alternates[language];
+    if (!path) return;
+    upsertLink(`link[rel="alternate"][hreflang="${language}"]`, {
+      rel: 'alternate',
+      hreflang: language,
+      href: getAbsoluteUrl(path)
+    });
+  });
+
+  upsertJsonLd('marketing-page', {
+    '@context': 'https://schema.org',
+    '@type': pageType === 'resources' ? 'Article' : 'WebPage',
+    name: title,
+    description,
+    url: canonicalUrl,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'AquaVerify',
+      url: CORPORATE_SITE_URL
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'AquaVerify',
+      url: CORPORATE_SITE_URL,
+      logo: `${CORPORATE_SITE_URL}/images/logo-mark-160.png`
+    }
   });
 }

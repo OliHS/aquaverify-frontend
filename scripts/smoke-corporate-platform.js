@@ -116,6 +116,7 @@ async function run() {
     assert(/property=["']og:title["']/i.test(corporateHtml), 'OpenGraph title missing');
     assert(/name=["']twitter:card["']/i.test(corporateHtml), 'Twitter card metadata missing');
     assert(/hreflang=["']es["']\s+href=["']https:\/\/aquaverify\.com\/es["']/i.test(corporateHtml), 'Spanish hreflang missing');
+    assert(/hreflang=["']ca["']\s+href=["']https:\/\/aquaverify\.com\/ca["']/i.test(corporateHtml), 'Catalan hreflang missing');
     assert(/application\/ld\+json/i.test(corporateHtml), 'Organization JSON-LD missing');
   });
 
@@ -129,6 +130,21 @@ async function run() {
     assert(sitemapText.includes('<loc>https://aquaverify.com/es</loc>'), 'Spanish sitemap URL missing');
     assert(sitemapText.includes('hreflang="fr"'), 'French sitemap hreflang missing');
     assert(sitemapText.includes('hreflang="it"'), 'Italian sitemap hreflang missing');
+    assert(sitemapText.includes('hreflang="ca"'), 'Catalan sitemap hreflang missing');
+    assert(sitemapText.includes('<loc>https://aquaverify.com/products/enumera</loc>'), 'ENUMERA sitemap URL missing');
+    assert(sitemapText.includes('<loc>https://aquaverify.com/es/productos</loc>'), 'Spanish products sitemap URL missing');
+    assert(sitemapText.includes('<loc>https://aquaverify.com/ca/productes</loc>'), 'Catalan products sitemap URL missing');
+  });
+
+  await check('corporate marketing routes respond', async () => {
+    await Promise.all([
+      expectStatus(`${CORPORATE_SITE_URL}/products`),
+      expectStatus(`${CORPORATE_SITE_URL}/products/enumera`),
+      expectStatus(`${CORPORATE_SITE_URL}/es/productos`),
+      expectStatus(`${CORPORATE_SITE_URL}/ca/productes`),
+      expectStatus(`${CORPORATE_SITE_URL}/oem-water-testing-kits`),
+      expectStatus(`${CORPORATE_SITE_URL}/about`)
+    ]);
   });
 
   await check('corporate site is not installable as PWA', async () => {

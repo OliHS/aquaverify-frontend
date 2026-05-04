@@ -99,6 +99,25 @@ const LABELS = {
     marketingCopy: 'Aiuta a ricordare preferenze per campagne e contenuti prodotto.',
     alwaysOn: 'Sempre attivi',
     policy: 'Politica cookie'
+  },
+  ca: {
+    manage: 'Gestionar cookies',
+    badge: 'Cookies',
+    title: 'Preferències de cookies',
+    copy: 'Fem servir cookies tècniques perquè la web funcioni i cookies opcionals per millorar l’experiència AquaVerify.',
+    acceptAll: 'Acceptar-ho tot',
+    rejectOptional: 'Rebutjar opcionals',
+    customize: 'Personalitzar',
+    save: 'Guardar preferències',
+    close: 'Tancar',
+    necessaryTitle: 'Cookies tècniques',
+    necessaryCopy: 'Necessàries per a seguretat, idioma i funcionament bàsic de la web.',
+    analyticsTitle: 'Analítica',
+    analyticsCopy: 'Ens ajuda a entendre visites i millorar la web corporativa.',
+    marketingTitle: 'Màrqueting',
+    marketingCopy: 'Permet recordar preferències per a campanyes i contingut de producte.',
+    alwaysOn: 'Sempre actives',
+    policy: 'Política de cookies'
   }
 };
 

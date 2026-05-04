@@ -6,6 +6,7 @@ import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformLegalUrl, getPlatformSignupUrl } from '../utils/platformLinks';
 import { OPEN_COOKIE_PREFERENCES_EVENT } from './CookieConsent';
+import { getMarketingPagePath } from '../utils/marketingPages.js';
 
 const logoSrc = '/images/logo-mark-160.png';
 
@@ -16,6 +17,11 @@ export const Footer: React.FC = () => {
   const termsUrl = getPlatformLegalUrl('terms', lang);
   const contactUrl = getPlatformSignupUrl({ intent: 'contact' }, lang);
   const careersUrl = getPlatformSignupUrl({ intent: 'careers' }, lang);
+  const productsUrl = getMarketingPagePath('products', lang);
+  const platformUrl = getMarketingPagePath('platform', lang);
+  const oemUrl = getMarketingPagePath('oem', lang);
+  const aboutUrl = getMarketingPagePath('about', lang);
+  const isoResourceUrl = getMarketingPagePath('iso-10705-2', lang);
   const footerBlock = blocks.footer || {};
   const hasConfiguredHref = (field: string) => {
     const value = footerBlock[field];
@@ -88,21 +94,21 @@ export const Footer: React.FC = () => {
           <div>
             <EditableText as="h4" sectionId="footer" field="solutionsTitle" fallback={t.footer.solutions} className="font-bold text-lg mb-4 block" />
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><EditableLinkWrapper sectionId="footer" field="url_testingKits" fallback="#products" legacyFallbacks={['#']}><a href="#products" onClick={(e) => handleSmoothScroll(e, 'products')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_testingKits" fallback="Testing Kits" /></a></EditableLinkWrapper></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_lims" fallback="#platform" legacyFallbacks={['#']}><a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_lims" fallback="LIMS Software" /></a></EditableLinkWrapper></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_mobileApp" fallback="#platform" legacyFallbacks={['#']}><a href="#platform" onClick={(e) => handleSmoothScroll(e, 'platform')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_mobileApp" fallback="Mobile App" /></a></EditableLinkWrapper></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_oemProgram" fallback="#oem" legacyFallbacks={['#']}><a href="#oem" onClick={(e) => handleSmoothScroll(e, 'oem')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_oemProgram" fallback="OEM Program" /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_testingKits" fallback={productsUrl} legacyFallbacks={['#']}><a href={productsUrl} onClick={(e) => handleSmoothScroll(e, 'products')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_testingKits" fallback="Testing Kits" /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_lims" fallback={platformUrl} legacyFallbacks={['#']}><a href={platformUrl} onClick={(e) => handleSmoothScroll(e, 'platform')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_lims" fallback="LIMS Software" /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_mobileApp" fallback={platformUrl} legacyFallbacks={['#']}><a href={platformUrl} onClick={(e) => handleSmoothScroll(e, 'platform')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_mobileApp" fallback="Mobile App" /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_oemProgram" fallback={oemUrl} legacyFallbacks={['#']}><a href={oemUrl} onClick={(e) => handleSmoothScroll(e, 'oem')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_oemProgram" fallback="OEM Program" /></a></EditableLinkWrapper></li>
             </ul>
           </div>
 
           <div>
             <EditableText as="h4" sectionId="footer" field="companyTitle" fallback={t.footer.company} className="font-bold text-lg mb-4 block" />
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><EditableLinkWrapper sectionId="footer" field="url_aboutUs" fallback="#solutions" legacyFallbacks={['#']}><a href="#solutions" onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_aboutUs" fallback="About Us" /></a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_aboutUs" fallback={aboutUrl} legacyFallbacks={['#']}><a href={aboutUrl} onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_aboutUs" fallback="About Us" /></a></EditableLinkWrapper></li>
               <li>
-                <EditableLinkWrapper sectionId="footer" field="url_scientificValidation" fallback="#products" legacyFallbacks={['#']}>
+                <EditableLinkWrapper sectionId="footer" field="url_scientificValidation" fallback={isoResourceUrl} legacyFallbacks={['#']}>
                   <a
-                    href="#products"
+                    href={isoResourceUrl}
                     onClick={(e) => handleSmoothScroll(e, 'products')}
                     className="hover:text-secondary"
                   >

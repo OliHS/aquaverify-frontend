@@ -12,8 +12,9 @@
     "preview": "vite preview",
     "cms:links:audit": "node scripts/audit-cms-links.js",
     "cms:links:fix": "node scripts/audit-cms-links.js --fix",
+    "seo:sitemap": "node scripts/generate-sitemap.js",
     "smoke:prod": "node scripts/smoke-corporate-platform.js",
-    "check:local": "npm run cms:links:audit && npm run build",
+    "check:local": "npm run cms:links:audit && npm run seo:sitemap && npm run build",
     "check:prod": "npm run cms:links:audit && npm run smoke:prod",
     "check:release": "npm run check:local && npm audit --audit-level=high && npm run smoke:prod",
     "deploy:prod": "node scripts/deploy-production.js"

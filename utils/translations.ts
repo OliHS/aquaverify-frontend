@@ -1,5 +1,5 @@
 
-export type Language = 'en' | 'es' | 'fr' | 'it';
+export type Language = 'en' | 'es' | 'fr' | 'it' | 'ca';
 
 export const translations = {
   en: {
@@ -567,3 +567,51 @@ export const translations = {
     }
   }
 };
+
+const caTranslation: typeof translations.en = {
+  ...translations.es,
+  nav: {
+    ...translations.es.nav,
+    solutions: 'Solucions',
+    products: 'Productes',
+    platform: 'Plataforma',
+    distributors: 'Distribuïdors',
+    oem: 'Programa OEM',
+    login: 'Accés',
+    demo: 'Sol·licitar demo',
+    catalog: 'Catàleg complet',
+    viewPdf: 'Veure catàleg PDF',
+    searchPlaceholder: 'Cercar productes, kits o famílies...'
+  },
+  hero: {
+    badge: 'Biotecnologia de nova generació',
+    titleStart: 'Microbiologia de l’aigua',
+    titleEnd: 'amb traçabilitat digital',
+    subtitle: 'Combinem productes d’anàlisi de l’aigua amb una plataforma digital per fer cada mostra verificable.',
+    explore: 'Explorar kits',
+    data: 'Veure plataforma',
+    limsTitle: 'LIMS de traçabilitat digital',
+    limsDesc: 'Automatitza informes, elimina paper i connecta mostres, clients i resultats.'
+  },
+  valueProps: {
+    title: 'Productes de microbiologia de l’aigua amb plataforma integrada',
+    subtitle: 'AquaVerify connecta kits, laboratori, distribuïdors i dades en un flux B2B traçable.',
+    cards: {
+      bio: { title: 'Biotecnologia verificable', desc: 'Kits i essentials per a anàlisi microbiològica de l’aigua, incloent colífags, E. coli i enterococs.' },
+      cloud: { title: 'Traçabilitat digital', desc: 'Registre digital de mostres, operadors, resultats, informes i activitat comercial.' },
+      oem: { title: 'B2B, distribució i OEM', desc: 'Productes AquaVerify o marca blanca per a distribuïdors que volen ampliar catàleg amb software connectat.' }
+    }
+  },
+  footer: {
+    tagline: 'Biotech verificable. Dades traçables. El nou estàndard en seguretat de l’aigua.',
+    solutions: 'Solucions',
+    company: 'Empresa',
+    contact: 'Contacte',
+    rights: 'AquaVerify Inc. Tots els drets reservats.',
+    privacy: 'Política de privacitat',
+    terms: 'Condicions del servei',
+    cookie: 'Configuració de cookies'
+  }
+};
+
+(translations as Record<string, typeof translations.en>).ca = caTranslation;

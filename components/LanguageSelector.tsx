@@ -6,7 +6,7 @@ export const LanguageSelector: React.FC = () => {
     const { lang, setLang } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
 
-    const languages: ('en' | 'es' | 'fr' | 'it')[] = ['en', 'es', 'fr', 'it'];
+    const languages: ('en' | 'es' | 'fr' | 'it' | 'ca')[] = ['en', 'es', 'fr', 'it', 'ca'];
 
     return (
         <div className="relative">

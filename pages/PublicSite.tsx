@@ -26,6 +26,7 @@ const HOME_PAGE_SLUGS: Record<Language, string[]> = {
     es: ['home-es', 'home-spanish', 'inicio', 'home'],
     fr: ['home-fr', 'home-french', 'accueil', 'home'],
     it: ['home-it', 'home-italian', 'home'],
+    ca: ['home-ca', 'home-catalan', 'inici', 'home-es', 'home'],
 };
 
 export const PublicSiteContent: React.FC = () => {
