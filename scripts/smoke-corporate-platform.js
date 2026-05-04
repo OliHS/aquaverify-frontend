@@ -134,14 +134,20 @@ async function run() {
     assert(sitemapText.includes('<loc>https://aquaverify.com/products/enumera</loc>'), 'ENUMERA sitemap URL missing');
     assert(sitemapText.includes('<loc>https://aquaverify.com/es/productos</loc>'), 'Spanish products sitemap URL missing');
     assert(sitemapText.includes('<loc>https://aquaverify.com/ca/productes</loc>'), 'Catalan products sitemap URL missing');
+    assert(sitemapText.includes('<loc>https://aquaverify.com/products/enumera-soma100</loc>'), 'ENUMERA Soma100 sitemap URL missing');
+    assert(sitemapText.includes('<loc>https://aquaverify.com/es/productos/indica-coli</loc>'), 'Spanish INDICA Coli sitemap URL missing');
+    assert(sitemapText.includes('<loc>https://aquaverify.com/ca/productes/epa-f-plus</loc>'), 'Catalan EPA F-Plus sitemap URL missing');
   });
 
   await check('corporate marketing routes respond', async () => {
     await Promise.all([
       expectStatus(`${CORPORATE_SITE_URL}/products`),
       expectStatus(`${CORPORATE_SITE_URL}/products/enumera`),
+      expectStatus(`${CORPORATE_SITE_URL}/products/enumera-soma100`),
       expectStatus(`${CORPORATE_SITE_URL}/es/productos`),
+      expectStatus(`${CORPORATE_SITE_URL}/es/productos/indica-coli`),
       expectStatus(`${CORPORATE_SITE_URL}/ca/productes`),
+      expectStatus(`${CORPORATE_SITE_URL}/ca/productes/epa-f-plus`),
       expectStatus(`${CORPORATE_SITE_URL}/oem-water-testing-kits`),
       expectStatus(`${CORPORATE_SITE_URL}/about`)
     ]);

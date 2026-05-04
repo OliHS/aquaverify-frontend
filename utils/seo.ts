@@ -187,10 +187,16 @@ export function applyMarketingSeo({
 
   upsertJsonLd('marketing-page', {
     '@context': 'https://schema.org',
-    '@type': pageType === 'resources' ? 'Article' : 'WebPage',
+    '@type': pageType === 'Product' ? 'Product' : pageType === 'resources' ? 'Article' : 'WebPage',
     name: title,
     description,
     url: canonicalUrl,
+    ...(pageType === 'Product' ? {
+      brand: {
+        '@type': 'Brand',
+        name: 'AquaVerify'
+      }
+    } : {}),
     isPartOf: {
       '@type': 'WebSite',
       name: 'AquaVerify',

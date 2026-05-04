@@ -34,8 +34,8 @@ function section(title, body, bullets = []) {
   return { title, body, bullets };
 }
 
-function page(id, category, primaryIntent, translations) {
-  return { id, category, primaryIntent, translations };
+function page(id, category, primaryIntent, translations, meta = {}) {
+  return { id, category, primaryIntent, translations, ...meta };
 }
 
 export const MARKETING_PAGES = [
@@ -373,6 +373,340 @@ export const MARKETING_PAGES = [
   })
 ];
 
+const PRODUCT_LANGUAGE_BASE = {
+  en: '/products',
+  es: '/es/productos',
+  fr: '/fr/produits',
+  it: '/it/prodotti',
+  ca: '/ca/productes'
+};
+
+const PRODUCT_UI = {
+  en: {
+    productRole: 'Product role',
+    technicalFit: 'Technical fit',
+    connectedWorkflow: 'Connected workflow',
+    format: 'Format',
+    family: 'Family',
+    subFamily: 'Sub-family',
+    parameter: 'Target parameter',
+    method: 'Method / workflow',
+    volume: 'Sample volume',
+    cta: 'Request quote',
+    secondary: 'View family',
+    workflowBullets: ['Sample context', 'Operator traceability', 'Result capture', 'Digital reporting'],
+    bridge: 'Connect this product to AquaVerify Cloud to keep sample context, operator, result and report traceable from the first interaction.',
+    disclaimer: 'Method references should be read as workflow alignment unless a final regulatory claim is approved for the specific market.'
+  },
+  es: {
+    productRole: 'Función del producto',
+    technicalFit: 'Encaje técnico',
+    connectedWorkflow: 'Flujo conectado',
+    format: 'Formato',
+    family: 'Familia',
+    subFamily: 'Subfamilia',
+    parameter: 'Parámetro objetivo',
+    method: 'Método / flujo',
+    volume: 'Volumen de muestra',
+    cta: 'Solicitar cotización',
+    secondary: 'Ver familia',
+    workflowBullets: ['Contexto de muestra', 'Trazabilidad del operador', 'Captura de resultado', 'Informe digital'],
+    bridge: 'Conecta este producto a AquaVerify Cloud para mantener trazables contexto de muestra, operador, resultado e informe desde la primera interacción.',
+    disclaimer: 'Las referencias a métodos deben leerse como alineación de flujo salvo que exista una claim regulatoria final aprobada para el mercado concreto.'
+  },
+  fr: {
+    productRole: 'Rôle du produit',
+    technicalFit: 'Adéquation technique',
+    connectedWorkflow: 'Flux connecté',
+    format: 'Format',
+    family: 'Famille',
+    subFamily: 'Sous-famille',
+    parameter: 'Paramètre cible',
+    method: 'Méthode / flux',
+    volume: 'Volume d’échantillon',
+    cta: 'Demander un devis',
+    secondary: 'Voir la famille',
+    workflowBullets: ['Contexte d’échantillon', 'Traçabilité opérateur', 'Capture du résultat', 'Rapport numérique'],
+    bridge: 'Connectez ce produit à AquaVerify Cloud pour garder traçables le contexte d’échantillon, l’opérateur, le résultat et le rapport.',
+    disclaimer: 'Les références aux méthodes doivent être lues comme un alignement de flux sauf claim réglementaire finale approuvée pour le marché concerné.'
+  },
+  it: {
+    productRole: 'Ruolo del prodotto',
+    technicalFit: 'Inquadramento tecnico',
+    connectedWorkflow: 'Flusso collegato',
+    format: 'Formato',
+    family: 'Famiglia',
+    subFamily: 'Sottofamiglia',
+    parameter: 'Parametro target',
+    method: 'Metodo / flusso',
+    volume: 'Volume campione',
+    cta: 'Richiedi preventivo',
+    secondary: 'Vedi famiglia',
+    workflowBullets: ['Contesto del campione', 'Tracciabilità operatore', 'Acquisizione risultato', 'Report digitale'],
+    bridge: 'Collega questo prodotto ad AquaVerify Cloud per mantenere tracciabili contesto del campione, operatore, risultato e report.',
+    disclaimer: 'I riferimenti ai metodi vanno letti come allineamento del flusso salvo claim regolatoria finale approvata per il mercato specifico.'
+  },
+  ca: {
+    productRole: 'Funció del producte',
+    technicalFit: 'Encaix tècnic',
+    connectedWorkflow: 'Flux connectat',
+    format: 'Format',
+    family: 'Família',
+    subFamily: 'Subfamília',
+    parameter: 'Paràmetre objectiu',
+    method: 'Mètode / flux',
+    volume: 'Volum de mostra',
+    cta: 'Sol·licitar pressupost',
+    secondary: 'Veure família',
+    workflowBullets: ['Context de mostra', 'Traçabilitat de l’operador', 'Captura de resultat', 'Informe digital'],
+    bridge: 'Connecta aquest producte a AquaVerify Cloud per mantenir traçables context de mostra, operador, resultat i informe des de la primera interacció.',
+    disclaimer: 'Les referències a mètodes s’han de llegir com alineació de flux tret que hi hagi una claim regulatòria final aprovada per al mercat concret.'
+  }
+};
+
+const COMMON = {
+  somaticColiphages: {
+    en: 'somatic coliphages',
+    es: 'colífagos somáticos',
+    fr: 'coliphages somatiques',
+    it: 'colifagi somatici',
+    ca: 'colífags somàtics'
+  },
+  fSpecificColiphages: {
+    en: 'F-specific coliphages',
+    es: 'colífagos F-específicos',
+    fr: 'coliphages F-spécifiques',
+    it: 'colifagi F-specifici',
+    ca: 'colífags F-específics'
+  },
+  ecoliColiforms: {
+    en: 'Escherichia coli and total coliforms',
+    es: 'Escherichia coli y coliformes totales',
+    fr: 'Escherichia coli et coliformes totaux',
+    it: 'Escherichia coli e coliformi totali',
+    ca: 'Escherichia coli i coliformes totals'
+  },
+  enterococci: {
+    en: 'enterococci',
+    es: 'enterococos',
+    fr: 'entérocoques',
+    it: 'enterococchi',
+    ca: 'enterococs'
+  },
+  colorimetricReading: {
+    en: 'colorimetric reading',
+    es: 'lectura colorimétrica',
+    fr: 'lecture colorimétrique',
+    it: 'lettura colorimetrica',
+    ca: 'lectura colorimètrica'
+  },
+  labOperations: {
+    en: 'daily water microbiology laboratory operations',
+    es: 'operaciones diarias de laboratorio de microbiología del agua',
+    fr: 'opérations quotidiennes de laboratoire de microbiologie de l’eau',
+    it: 'operazioni quotidiane di laboratorio di microbiologia dell’acqua',
+    ca: 'operacions diàries de laboratori de microbiologia de l’aigua'
+  },
+  controls: {
+    en: 'positive controls and biological materials',
+    es: 'controles positivos y materiales biológicos',
+    fr: 'contrôles positifs et matériaux biologiques',
+    it: 'controlli positivi e materiali biologici',
+    ca: 'controls positius i materials biològics'
+  }
+};
+
+const PRODUCT_TYPE = {
+  quantitativeKit: {
+    en: 'quantitative kit',
+    es: 'kit cuantitativo',
+    fr: 'kit quantitatif',
+    it: 'kit quantitativo',
+    ca: 'kit quantitatiu'
+  },
+  presenceAbsenceKit: {
+    en: 'presence/absence kit',
+    es: 'kit de presencia/ausencia',
+    fr: 'kit présence/absence',
+    it: 'kit presenza/assenza',
+    ca: 'kit de presència/absència'
+  },
+  refill: {
+    en: 'refill',
+    es: 'refill',
+    fr: 'recharge',
+    it: 'refill',
+    ca: 'refill'
+  },
+  tool: {
+    en: 'tool',
+    es: 'herramienta',
+    fr: 'outil',
+    it: 'strumento',
+    ca: 'eina'
+  },
+  standardKit: {
+    en: 'standard kit',
+    es: 'kit estándar',
+    fr: 'kit standard',
+    it: 'kit standard',
+    ca: 'kit estàndard'
+  },
+  labEssential: {
+    en: 'lab essential',
+    es: 'lab essential',
+    fr: 'lab essential',
+    it: 'lab essential',
+    ca: 'lab essential'
+  }
+};
+
+const FAMILY_LABELS = {
+  enumera: {
+    en: 'ENUMERA',
+    es: 'ENUMERA',
+    fr: 'ENUMERA',
+    it: 'ENUMERA',
+    ca: 'ENUMERA'
+  },
+  indica: {
+    en: 'INDICA',
+    es: 'INDICA',
+    fr: 'INDICA',
+    it: 'INDICA',
+    ca: 'INDICA'
+  },
+  'standard-kits': {
+    en: 'Standard ISO/EPA Kits',
+    es: 'Kits estándar ISO/EPA',
+    fr: 'Kits standard ISO/EPA',
+    it: 'Kit standard ISO/EPA',
+    ca: 'Kits estàndard ISO/EPA'
+  },
+  'lab-essentials': {
+    en: 'Lab Essentials',
+    es: 'Lab Essentials',
+    fr: 'Lab Essentials',
+    it: 'Lab Essentials',
+    ca: 'Lab Essentials'
+  }
+};
+
+function i18n(value, lang) {
+  if (typeof value === 'string') return value;
+  return value?.[lang] || value?.en || '';
+}
+
+const PRODUCT_DETAIL_DATA = [
+  { id: 'enumera-soma100', parentId: 'enumera', slug: 'enumera-soma100', name: 'ENUMERA Soma100', type: PRODUCT_TYPE.quantitativeKit, subFamily: 'ENUMERA Kits', parameter: COMMON.somaticColiphages, method: 'ENUMERA quantitative workflow', volume: '100 mL', format: 'Kit' },
+  { id: 'enumera-coli100', parentId: 'enumera', slug: 'enumera-coli100', name: 'ENUMERA Coli100', type: PRODUCT_TYPE.quantitativeKit, subFamily: 'ENUMERA Kits', parameter: COMMON.enterococci, method: 'ENUMERA quantitative workflow', volume: '100 mL', format: 'Kit' },
+  { id: 'enumera-entero100', parentId: 'enumera', slug: 'enumera-entero100', name: 'ENUMERA Entero100', type: PRODUCT_TYPE.quantitativeKit, subFamily: 'ENUMERA Kits', parameter: COMMON.ecoliColiforms, method: 'ENUMERA quantitative workflow', volume: '100 mL', format: 'Kit' },
+  { id: 'soma-bottle-100', parentId: 'enumera', slug: 'soma-bottle-100', name: 'Soma Bottle 100', type: PRODUCT_TYPE.refill, subFamily: 'ENUMERA Refill', parameter: COMMON.somaticColiphages, method: 'MCB10 medium refill workflow', volume: '100 mL', format: 'Bottle' },
+  { id: 'coli-bottle-100', parentId: 'enumera', slug: 'coli-bottle-100', name: 'Coli Bottle 100', type: PRODUCT_TYPE.refill, subFamily: 'ENUMERA Refill', parameter: COMMON.ecoliColiforms, method: 'Coli medium refill workflow', volume: '100 mL', format: 'Bottle' },
+  { id: 'entero-bottle-100', parentId: 'enumera', slug: 'entero-bottle-100', name: 'Entero Bottle 100', type: PRODUCT_TYPE.refill, subFamily: 'ENUMERA Refill', parameter: COMMON.enterococci, method: 'Entero medium refill workflow', volume: '100 mL', format: 'Bottle' },
+  { id: 'enumera-sealer', parentId: 'enumera', slug: 'enumera-sealer', name: 'ENUMERA Sealer', type: PRODUCT_TYPE.tool, subFamily: 'ENUMERA Tools', parameter: COMMON.colorimetricReading, method: 'ENUMERA tray sealing workflow', volume: 'N/A', format: 'Electronic device' },
+  { id: 'enumera-mould', parentId: 'enumera', slug: 'enumera-mould', name: 'ENUMERA Mould', type: PRODUCT_TYPE.tool, subFamily: 'ENUMERA Tools', parameter: COMMON.colorimetricReading, method: 'ENUMERA tray sealing workflow', volume: 'N/A', format: 'Silicone mould' },
+  { id: 'enumera-comparator', parentId: 'enumera', slug: 'enumera-comparator', name: 'ENUMERA Comparator', type: PRODUCT_TYPE.tool, subFamily: 'ENUMERA Tools', parameter: COMMON.colorimetricReading, method: 'Threshold color comparison', volume: 'N/A', format: 'Comparator' },
+  { id: 'enumera-reader', parentId: 'enumera', slug: 'enumera-reader', name: 'ENUMERA Reader', type: PRODUCT_TYPE.tool, subFamily: 'ENUMERA Tools', parameter: COMMON.colorimetricReading, method: 'Image capture support', volume: 'N/A', format: 'Reader box' },
+  { id: 'enumera-tray', parentId: 'enumera', slug: 'enumera-tray', name: 'ENUMERA Tray', type: PRODUCT_TYPE.tool, subFamily: 'ENUMERA Tools', parameter: COMMON.colorimetricReading, method: 'ENUMERA testing tray workflow', volume: 'N/A', format: 'Testing tray' },
+  { id: 'enumera-mat', parentId: 'enumera', slug: 'enumera-mat', name: 'ENUMERA MAT', type: PRODUCT_TYPE.tool, subFamily: 'ENUMERA Tools', parameter: COMMON.colorimetricReading, method: 'Image capture support', volume: 'N/A', format: 'Dark mat' },
+  { id: 'indica-soma', parentId: 'indica', slug: 'indica-soma', name: 'INDICA Soma', type: PRODUCT_TYPE.presenceAbsenceKit, subFamily: 'INDICA Kits', parameter: COMMON.somaticColiphages, method: 'Presence/absence workflow', volume: '100 mL', format: 'Kit' },
+  { id: 'indica-coli', parentId: 'indica', slug: 'indica-coli', name: 'INDICA Coli', type: PRODUCT_TYPE.presenceAbsenceKit, subFamily: 'INDICA Kits', parameter: COMMON.ecoliColiforms, method: 'Presence/absence workflow', volume: '100 mL', format: 'Kit' },
+  { id: 'indica-entero', parentId: 'indica', slug: 'indica-entero', name: 'INDICA Entero', type: PRODUCT_TYPE.presenceAbsenceKit, subFamily: 'INDICA Kits', parameter: COMMON.enterococci, method: 'Presence/absence workflow', volume: '100 mL', format: 'Kit' },
+  { id: 'indica-match', parentId: 'indica', slug: 'indica-match', name: 'INDICA Match', type: PRODUCT_TYPE.tool, subFamily: 'INDICA Tools', parameter: COMMON.colorimetricReading, method: 'Presence/absence color matching', volume: 'N/A', format: 'Comparator' },
+  { id: 'plaque-soma-1ml', parentId: 'standard-kits', slug: 'plaque-soma-1ml', name: 'Plaque Soma 1ml', type: PRODUCT_TYPE.standardKit, subFamily: 'ISO Kits', parameter: COMMON.somaticColiphages, method: 'ISO 10705-2 Double Agar Layer (DAL) workflow', volume: '1 mL', format: 'Kit' },
+  { id: 'plaque-soma-100ml', parentId: 'standard-kits', slug: 'plaque-soma-100ml', name: 'Plaque Soma 100 ml', type: PRODUCT_TYPE.standardKit, subFamily: 'ISO Kits', parameter: COMMON.somaticColiphages, method: 'ISO 10705-2 Single Agar Layer (SAL) workflow', volume: '100 mL', format: 'Kit' },
+  { id: 'epa-soma', parentId: 'standard-kits', slug: 'epa-soma', name: 'EPA Soma', type: PRODUCT_TYPE.standardKit, subFamily: 'EPA Kits', parameter: COMMON.somaticColiphages, method: 'US-EPA 1602, 1642 and 1643 oriented workflow', volume: 'Method-dependent', format: 'Kit' },
+  { id: 'epa-f-plus', parentId: 'standard-kits', slug: 'epa-f-plus', name: 'EPA F-Plus', type: PRODUCT_TYPE.standardKit, subFamily: 'EPA Kits', parameter: COMMON.fSpecificColiphages, method: 'US-EPA 1602, 1642 and 1643 oriented workflow', volume: 'Method-dependent', format: 'Kit' },
+  { id: 'msa-semi-solido', parentId: 'lab-essentials', slug: 'msa-semi-solido', name: 'MSA Semi solido', type: PRODUCT_TYPE.labEssential, subFamily: 'Culture Media & Reagents', parameter: COMMON.labOperations, method: 'ssMSA prepared workflow', volume: '100 mL', format: 'Prepared medium' },
+  { id: 'msa-plate', parentId: 'lab-essentials', slug: 'msa-plate', name: 'MSA Plate', type: PRODUCT_TYPE.labEssential, subFamily: 'Culture Media & Reagents', parameter: COMMON.labOperations, method: 'MSA plate workflow', volume: '90 mm', format: 'Prepared plate' },
+  { id: 'msb', parentId: 'lab-essentials', slug: 'msb', name: 'MSB', type: PRODUCT_TYPE.labEssential, subFamily: 'Culture Media & Reagents', parameter: COMMON.labOperations, method: 'Modified Scholten’s Broth (MSB)', volume: 'N/A', format: 'Broth' },
+  { id: 'msa', parentId: 'lab-essentials', slug: 'msa', name: 'MSA', type: PRODUCT_TYPE.labEssential, subFamily: 'Culture Media & Reagents', parameter: COMMON.labOperations, method: 'Modified Scholten’s Agar (MSA)', volume: 'N/A', format: 'Agar' },
+  { id: 'soma-control-1ml', parentId: 'lab-essentials', slug: 'soma-control-1ml', name: 'Soma Control 1ml', type: PRODUCT_TYPE.labEssential, subFamily: 'Biological Materials', parameter: COMMON.controls, method: 'Positive control for ISO 10705-2 oriented workflows', volume: '1 mL', format: 'Positive control' },
+  { id: 'soma-control-100ml', parentId: 'lab-essentials', slug: 'soma-control-100ml', name: 'Soma Control 100ml', type: PRODUCT_TYPE.labEssential, subFamily: 'Biological Materials', parameter: COMMON.controls, method: 'Positive control for ISO 10705-2 oriented workflows', volume: '100 mL', format: 'Positive control' },
+  { id: 'wr5-host-strain', parentId: 'lab-essentials', slug: 'wr5-host-strain', name: 'WR5', type: PRODUCT_TYPE.labEssential, subFamily: 'Biological Materials', parameter: COMMON.somaticColiphages, method: 'Host strain for somatic coliphage enumeration', volume: 'N/A', format: 'Host strain' },
+  { id: 'gr8f', parentId: 'lab-essentials', slug: 'gr8f', name: 'GR8F', type: PRODUCT_TYPE.labEssential, subFamily: 'Biological Materials', parameter: COMMON.controls, method: 'GR8 somatic coliphage filterable format', volume: 'N/A', format: '-20ºC format' },
+  { id: 'gr8f-ultra', parentId: 'lab-essentials', slug: 'gr8f-ultra', name: 'GR8F-Ultra', type: PRODUCT_TYPE.labEssential, subFamily: 'Biological Materials', parameter: COMMON.controls, method: 'GR8 somatic coliphage filterable format', volume: 'N/A', format: '-70ºC format' },
+  { id: 'indica-control-100', parentId: 'lab-essentials', slug: 'indica-control-100', name: 'INDICA Control 100', type: PRODUCT_TYPE.labEssential, subFamily: 'Biological Materials', parameter: COMMON.controls, method: 'PHIX174 somatic coliphage filterable control', volume: '100 pfu/vial', format: '-70ºC vial' },
+  { id: 'indica-control-1000', parentId: 'lab-essentials', slug: 'indica-control-1000', name: 'INDICA Control 1000', type: PRODUCT_TYPE.labEssential, subFamily: 'Biological Materials', parameter: COMMON.controls, method: 'PHIX174 somatic coliphage filterable control', volume: '1000 pfu/vial', format: '-70ºC vial' }
+];
+
+function getProductPagePath(product, lang) {
+  return `${PRODUCT_LANGUAGE_BASE[lang]}/${product.slug}`;
+}
+
+function buildProductDescription(product, lang) {
+  const labels = PRODUCT_UI[lang];
+  const productType = i18n(product.type, lang);
+  const parameter = i18n(product.parameter, lang);
+
+  switch (lang) {
+    case 'es':
+      return `${product.name} es un ${productType} AquaVerify para ${parameter} en flujos de microbiología del agua.`;
+    case 'fr':
+      return `${product.name} est un ${productType} AquaVerify pour ${parameter} dans les flux de microbiologie de l’eau.`;
+    case 'it':
+      return `${product.name} è un ${productType} AquaVerify per ${parameter} nei flussi di microbiologia dell’acqua.`;
+    case 'ca':
+      return `${product.name} és un ${productType} AquaVerify per a ${parameter} en fluxos de microbiologia de l’aigua.`;
+    default:
+      return `${product.name} is an AquaVerify ${productType} for ${parameter} in water microbiology workflows.`;
+  }
+}
+
+function buildProductLocale(product, lang) {
+  const labels = PRODUCT_UI[lang];
+  const family = i18n(FAMILY_LABELS[product.parentId], lang);
+  const productType = i18n(product.type, lang);
+  const parameter = i18n(product.parameter, lang);
+  const description = buildProductDescription(product, lang);
+
+  return locale(
+    getProductPagePath(product, lang),
+    `${product.name}: ${parameter}`,
+    description,
+    [
+      section(labels.productRole, description, [
+        `${labels.family}: ${family}`,
+        `${labels.subFamily}: ${product.subFamily}`,
+        `${labels.format}: ${product.format}`,
+        `${labels.parameter}: ${parameter}`
+      ]),
+      section(labels.technicalFit, labels.disclaimer, [
+        `${labels.method}: ${product.method}`,
+        `${labels.volume}: ${product.volume}`,
+        `${labels.format}: ${product.format}`
+      ]),
+      section(labels.connectedWorkflow, labels.bridge, [
+        ...labels.workflowBullets
+      ])
+    ],
+    {
+      eyebrow: family,
+      primaryCta: labels.cta,
+      secondaryCta: labels.secondary,
+      seoTitle: `${product.name} | AquaVerify ${family}`,
+      seoDescription: description
+    }
+  );
+}
+
+function buildProductDetailPages() {
+  return PRODUCT_DETAIL_DATA.map((product) => page(
+    product.id,
+    'products',
+    'quote',
+    Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, buildProductLocale(product, lang)])),
+    {
+      parentId: product.parentId,
+      schemaType: 'Product',
+      productName: product.name
+    }
+  ));
+}
+
+MARKETING_PAGES.push(...buildProductDetailPages());
+
 export function normalizePath(pathname) {
   const normalized = pathname.split('?')[0].split('#')[0].replace(/\/+$/, '');
   return normalized || '/';
@@ -404,9 +738,18 @@ export function getMarketingAlternates(page) {
 export function getRelatedMarketingPages(currentId, lang = 'en') {
   const current = MARKETING_PAGES.find((page) => page.id === currentId);
   if (!current) return [];
-  return MARKETING_PAGES
-    .filter((page) => page.id !== currentId && page.category === current.category)
-    .slice(0, 4)
+
+  const children = MARKETING_PAGES.filter((page) => page.parentId === currentId);
+  const candidates = children.length > 0
+    ? children
+    : current.parentId
+      ? [
+          MARKETING_PAGES.find((page) => page.id === current.parentId),
+          ...MARKETING_PAGES.filter((page) => page.parentId === current.parentId && page.id !== currentId)
+        ].filter(Boolean)
+      : MARKETING_PAGES.filter((page) => page.id !== currentId && page.category === current.category);
+
+  return candidates.slice(0, 4)
     .map((page) => ({
       id: page.id,
       title: page.translations[lang]?.title || page.translations.en.title,

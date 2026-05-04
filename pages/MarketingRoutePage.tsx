@@ -24,6 +24,11 @@ const secondaryTargetByCategory: Record<string, string> = {
   company: 'products'
 };
 
+type MarketingPageMeta = {
+  parentId?: string;
+  schemaType?: string;
+};
+
 const UI_LABELS: Record<Language, {
   bridgeEyebrow: string;
   bridgeTitle: string;
@@ -118,7 +123,7 @@ export const MarketingRoutePage: React.FC = () => {
       description: match.content.seoDescription || match.content.description,
       canonicalPath: match.content.path,
       alternates: getMarketingAlternates(match.page),
-      pageType: match.page.category
+      pageType: (match.page as MarketingPageMeta).schemaType || match.page.category
     });
   }, [match]);
 
@@ -129,12 +134,13 @@ export const MarketingRoutePage: React.FC = () => {
   const page = match.page;
   const content = match.content;
   const pageLang = match.lang as Language;
+  const pageMeta = page as MarketingPageMeta;
   const primaryUrl = getPlatformSignupUrl({
     intent: page.primaryIntent,
     page: page.id,
     category: page.category
   }, pageLang);
-  const secondaryId = secondaryTargetByCategory[page.category] || 'products';
+  const secondaryId = pageMeta.parentId || secondaryTargetByCategory[page.category] || 'products';
   const secondaryUrl = getMarketingPagePath(secondaryId, pageLang);
   const relatedPages = getRelatedMarketingPages(page.id, pageLang);
   const labels = UI_LABELS[pageLang] || UI_LABELS.en;
