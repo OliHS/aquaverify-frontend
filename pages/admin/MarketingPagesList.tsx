@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ExternalLink, FileEdit, FileText, Filter, Globe, Link2, Search } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, ExternalLink, FileEdit, FileText, Filter, Globe, Link2, RotateCw, Search } from 'lucide-react';
 import { supabase } from '../../utils/supabase';
 import {
   LANGUAGE_NAMES,
@@ -105,10 +105,17 @@ export const MarketingPagesList: React.FC = () => {
 
   const fetchLinkedSlugs = async () => {
     setLoadingLinks(true);
+    setSyncError('');
     const { data, error } = await supabase
       .from('pages')
       .select('slug')
       .like('slug', 'marketing-%');
+
+    if (error) {
+      setSyncError(error.message || 'Unable to read CMS marketing URL status.');
+      setLoadingLinks(false);
+      return;
+    }
 
     if (!error && data) {
       setLinkedSlugs(new Set(data.map((item) => item.slug)));
@@ -200,14 +207,16 @@ export const MarketingPagesList: React.FC = () => {
 
       setLinkedSlugs(new Set(expectedSlugs));
       setSyncMessage(`CMS linked ${insertedPages.length} pages and ${missingBlocks.length} content records. Existing edits were preserved.`);
+      await fetchLinkedSlugs();
     } catch (err: any) {
-      setSyncError(err.message || 'Unable to link marketing URLs in CMS.');
+      setSyncError(`${err.message || 'Unable to link marketing URLs in CMS.'} Make sure you are logged in with an admin account that can write pages and content_blocks.`);
     } finally {
       setSyncingLinks(false);
     }
   };
 
   const linkedCount = rows.filter((row) => linkedSlugs.has(row.cmsSlug)).length;
+  const missingLinkedCount = Math.max(0, rows.length - linkedCount);
 
   const filteredRows = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -240,11 +249,20 @@ export const MarketingPagesList: React.FC = () => {
           <button
             type="button"
             onClick={syncMarketingCmsLinks}
-            disabled={syncingLinks}
+            disabled={syncingLinks || loadingLinks}
             className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 disabled:opacity-60"
           >
             <Link2 size={16} className="mr-2" />
             {syncingLinks ? 'Linking...' : 'Link all URLs in CMS'}
+          </button>
+          <button
+            type="button"
+            onClick={fetchLinkedSlugs}
+            disabled={syncingLinks || loadingLinks}
+            className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50 disabled:opacity-60"
+          >
+            <RotateCw size={16} className={`mr-2 ${loadingLinks ? 'animate-spin' : ''}`} />
+            Refresh status
           </button>
           <a
             href="/sitemap.xml"
@@ -267,6 +285,31 @@ export const MarketingPagesList: React.FC = () => {
 
       {syncError && (
         <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700 shadow-sm">{syncError}</div>
+      )}
+
+      {!loadingLinks && missingLinkedCount > 0 && (
+        <div className="rounded-xl border border-amber-200 bg-amber-50 p-5 text-amber-900 shadow-sm">
+          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div className="flex gap-3">
+              <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+              <div>
+                <h2 className="font-semibold">{missingLinkedCount} marketing URLs still use code defaults</h2>
+                <p className="mt-1 text-sm text-amber-800">
+                  Link them once so every product, industry, resource and language URL has a CMS record before editors start changing content.
+                </p>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={syncMarketingCmsLinks}
+              disabled={syncingLinks}
+              className="inline-flex items-center justify-center rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-700 disabled:opacity-60"
+            >
+              <Link2 size={16} className="mr-2" />
+              Link missing URLs
+            </button>
+          </div>
+        </div>
       )}
 
       <div className="grid gap-4 md:grid-cols-4">

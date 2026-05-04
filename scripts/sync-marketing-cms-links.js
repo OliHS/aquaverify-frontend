@@ -14,13 +14,15 @@ dotenv.config({ path: '.env' });
 
 const shouldSync = process.argv.includes('--sync');
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
-const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-  || process.env.SUPABASE_SERVICE_KEY
-  || process.env.VITE_SUPABASE_ANON_KEY;
+const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_KEY;
+const supabaseKey = serviceKey || process.env.VITE_SUPABASE_ANON_KEY;
 
 function ensureEnv() {
   if (!supabaseUrl || !supabaseKey) {
     throw new Error('Missing VITE_SUPABASE_URL and Supabase key in .env.local/.env');
+  }
+  if (shouldSync && !serviceKey) {
+    throw new Error('cms:marketing:sync requires SUPABASE_SERVICE_ROLE_KEY or SUPABASE_SERVICE_KEY. Use cms:marketing:audit for read-only checks.');
   }
 }
 
