@@ -18,6 +18,7 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 - Incluido en release local: `npm run check:local`.
 - Escanea copy publico en `components`, `pages`, `utils`, `src`, `App.tsx`, `index.tsx` y metadatos prerender.
 - Los editores de marketing, visual builder y productos bloquean guardado con wording sensible.
+- El CMS de productos muestra un aviso operativo si detecta wording legacy en `product_families` o `products` y permite limpiarlo con una accion admin.
 - La proyeccion publica del catalogo sanea terminos legacy de producto que aun estan protegidos por RLS en Supabase.
 
 ## Puntos a Validar
@@ -77,5 +78,6 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 - Public copy de la web ajustado a wording seguro el 2026-05-04.
 - CMS auditado contra contenido vivo en Supabase; bloques editables de home limpiados el 2026-05-04.
 - Paginas marketing de `ENUMERA Coli100` y `ENUMERA Entero100` protegidas con proyeccion publica generica hasta validacion de parametro/naming.
+- Product Manager preparado para corregir las filas legacy del catalogo desde sesion admin.
 - Pendiente operativo: corregir en admin autenticado los registros legacy de catalogo `Certified Standards`, `AquaVerify Academy` y `services.use_cases`.
 - Falta aprobacion tecnico/legal final de naming, claims y referencias ISO/EPA.

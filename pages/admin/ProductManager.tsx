@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../../utils/supabase';
-import { AlertTriangle, Plus, Edit2, Trash2, Check, X, Eye, EyeOff, GripVertical } from 'lucide-react';
-import { scanProductClaimFields } from '../../utils/productClaims.js';
+import { AlertTriangle, Plus, Edit2, Trash2, CheckCircle2, X, Eye, EyeOff, GripVertical, Wrench } from 'lucide-react';
+import { sanitizeProductClaimFields, scanProductClaimFields } from '../../utils/productClaims.js';
 
 interface DBProductFamily {
     id: string;
@@ -31,6 +31,10 @@ function claimMessage(findings: Array<{ path: string; rule: { guidance: string }
     return findings.map((item) => `${item.path}: ${item.rule.guidance}`).join('\n');
 }
 
+function hasChanged(before: unknown, after: unknown) {
+    return JSON.stringify(before) !== JSON.stringify(after);
+}
+
 export const ProductManager: React.FC = () => {
     const [families, setFamilies] = useState<DBProductFamily[]>([]);
     const [products, setProducts] = useState<DBProduct[]>([]);
@@ -39,6 +43,10 @@ export const ProductManager: React.FC = () => {
     const [selectedFamilyId, setSelectedFamilyId] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
+    const [cleanupLoading, setCleanupLoading] = useState(false);
+    const [cleanupFindingCount, setCleanupFindingCount] = useState(0);
+    const [cleanupMessage, setCleanupMessage] = useState('');
+    const [cleanupError, setCleanupError] = useState('');
 
     // Modals & Form State
     const [isFamilyModalOpen, setIsFamilyModalOpen] = useState(false);
@@ -52,6 +60,7 @@ export const ProductManager: React.FC = () => {
 
     useEffect(() => {
         fetchFamilies();
+        fetchCatalogClaimStatus();
     }, []);
 
     useEffect(() => {
@@ -79,6 +88,102 @@ export const ProductManager: React.FC = () => {
             setError(err.message || 'Error fetching families');
         } finally {
             setLoading(false);
+        }
+    };
+
+    const fetchCatalogClaimStatus = async () => {
+        try {
+            const [{ data: familyRows, error: familyError }, { data: productRows, error: productError }] = await Promise.all([
+                supabase
+                    .from('product_families')
+                    .select('family_id,title,description,use_cases'),
+                supabase
+                    .from('products')
+                    .select('name,detail,description,specific_use_cases,specs')
+            ]);
+
+            if (familyError) throw familyError;
+            if (productError) throw productError;
+
+            const familyFindings = (familyRows || []).flatMap((family) =>
+                scanProductClaimFields(family, { root: `product_families.${family.family_id || family.title}`, includeReviews: false }).findings
+            );
+            const productFindings = (productRows || []).flatMap((product) =>
+                scanProductClaimFields(product, { root: `products.${product.name || 'unnamed-product'}`, includeReviews: false }).findings
+            );
+            setCleanupFindingCount(familyFindings.length + productFindings.length);
+        } catch (err: any) {
+            setCleanupError(err.message || 'Unable to scan catalog claims.');
+        }
+    };
+
+    const repairCatalogClaims = async () => {
+        if (!window.confirm('Clean legacy claim wording in product_families and products?')) return;
+
+        setCleanupLoading(true);
+        setCleanupError('');
+        setCleanupMessage('');
+
+        try {
+            const [{ data: familyRows, error: familyError }, { data: productRows, error: productError }] = await Promise.all([
+                supabase
+                    .from('product_families')
+                    .select('id,title,description,use_cases'),
+                supabase
+                    .from('products')
+                    .select('id,name,detail,description,specific_use_cases,specs')
+            ]);
+
+            if (familyError) throw familyError;
+            if (productError) throw productError;
+
+            let updatedFamilies = 0;
+            let updatedProducts = 0;
+
+            for (const family of familyRows || []) {
+                const current = {
+                    title: family.title,
+                    description: family.description,
+                    use_cases: family.use_cases
+                };
+                const next = sanitizeProductClaimFields(current) as typeof current;
+                if (!hasChanged(current, next)) continue;
+
+                const { error: updateError } = await supabase
+                    .from('product_families')
+                    .update(next)
+                    .eq('id', family.id);
+                if (updateError) throw updateError;
+                updatedFamilies += 1;
+            }
+
+            for (const product of productRows || []) {
+                const current = {
+                    name: product.name,
+                    detail: product.detail,
+                    description: product.description,
+                    specific_use_cases: product.specific_use_cases,
+                    specs: product.specs
+                };
+                const next = sanitizeProductClaimFields(current) as typeof current;
+                if (!hasChanged(current, next)) continue;
+
+                const { error: updateError } = await supabase
+                    .from('products')
+                    .update(next)
+                    .eq('id', product.id);
+                if (updateError) throw updateError;
+                updatedProducts += 1;
+            }
+
+            setCleanupMessage(`Cleaned ${updatedFamilies} families and ${updatedProducts} products.`);
+            setCleanupFindingCount(0);
+            await fetchFamilies();
+            if (selectedFamilyId) await fetchProducts(selectedFamilyId);
+        } catch (err: any) {
+            setCleanupError(`${err.message || 'Unable to clean catalog claims.'} Make sure you are logged in with an admin account that can write product_families and products.`);
+        } finally {
+            setCleanupLoading(false);
         }
     };
 
@@ -288,6 +393,35 @@ export const ProductManager: React.FC = () => {
 
                         <div className="flex-1 overflow-y-auto p-6 bg-slate-50">
                             {error && <div className="bg-red-50 text-red-600 p-3 mb-4 rounded-lg text-sm">{error}</div>}
+                            {cleanupError && <div className="mb-4 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">{cleanupError}</div>}
+                            {cleanupMessage && (
+                                <div className="mb-4 flex items-center rounded-lg border border-green-200 bg-green-50 p-3 text-sm text-green-700">
+                                    <CheckCircle2 size={16} className="mr-2" />
+                                    {cleanupMessage}
+                                </div>
+                            )}
+                            {cleanupFindingCount > 0 && (
+                                <div className="mb-4 rounded-xl border border-amber-200 bg-amber-50 p-4 text-amber-900 shadow-sm">
+                                    <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                                        <div className="flex gap-3">
+                                            <AlertTriangle className="mt-0.5 h-5 w-5 flex-shrink-0 text-amber-600" />
+                                            <div>
+                                                <h3 className="font-semibold">{cleanupFindingCount} legacy catalog claim fields need cleanup</h3>
+                                                <p className="mt-1 text-sm text-amber-800">Public pages are sanitized, but the raw catalog should be cleaned for editors.</p>
+                                            </div>
+                                        </div>
+                                        <button
+                                            type="button"
+                                            onClick={repairCatalogClaims}
+                                            disabled={cleanupLoading}
+                                            className="inline-flex items-center justify-center rounded-md bg-amber-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-700 disabled:opacity-60"
+                                        >
+                                            <Wrench size={16} className="mr-2" />
+                                            {cleanupLoading ? 'Cleaning...' : 'Clean catalog wording'}
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
 
                             {loading && products.length === 0 ? (
                                 <p className="text-center text-slate-500 py-4">Loading products...</p>
