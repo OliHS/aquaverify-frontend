@@ -7,21 +7,107 @@ import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformLegalUrl, getPlatformSignupUrl } from '../utils/platformLinks';
 import { OPEN_COOKIE_PREFERENCES_EVENT } from './CookieConsent';
 import { getMarketingPagePath } from '../utils/marketingPages.js';
+import type { Language } from '../utils/translations';
 
 const logoSrc = '/images/logo-mark-160.png';
+
+const FOOTER_COPY: Record<Language, {
+  enumera: string;
+  indica: string;
+  standardKits: string;
+  labEssentials: string;
+  privateLabel: string;
+  labs: string;
+  quality: string;
+  resources: string;
+  epa: string;
+  indicators: string;
+}> = {
+  en: {
+    enumera: 'ENUMERA kits',
+    indica: 'INDICA kits',
+    standardKits: 'ISO/EPA kits',
+    labEssentials: 'Lab Essentials',
+    privateLabel: 'Private-label kits',
+    labs: 'Water testing labs',
+    quality: 'Quality teams',
+    resources: 'Resources',
+    epa: 'EPA workflows',
+    indicators: 'Coliphage indicators'
+  },
+  es: {
+    enumera: 'Kits ENUMERA',
+    indica: 'Kits INDICA',
+    standardKits: 'Kits ISO/EPA',
+    labEssentials: 'Lab Essentials',
+    privateLabel: 'Kits marca blanca',
+    labs: 'Laboratorios de agua',
+    quality: 'Equipos de calidad',
+    resources: 'Recursos',
+    epa: 'Flujos EPA',
+    indicators: 'Indicadores colífagos'
+  },
+  fr: {
+    enumera: 'Kits ENUMERA',
+    indica: 'Kits INDICA',
+    standardKits: 'Kits ISO/EPA',
+    labEssentials: 'Lab Essentials',
+    privateLabel: 'Kits marque blanche',
+    labs: 'Laboratoires eau',
+    quality: 'Équipes qualité',
+    resources: 'Ressources',
+    epa: 'Flux EPA',
+    indicators: 'Indicateurs coliphages'
+  },
+  it: {
+    enumera: 'Kit ENUMERA',
+    indica: 'Kit INDICA',
+    standardKits: 'Kit ISO/EPA',
+    labEssentials: 'Lab Essentials',
+    privateLabel: 'Kit private label',
+    labs: 'Laboratori acqua',
+    quality: 'Team qualità',
+    resources: 'Risorse',
+    epa: 'Flussi EPA',
+    indicators: 'Indicatori colifagi'
+  },
+  ca: {
+    enumera: 'Kits ENUMERA',
+    indica: 'Kits INDICA',
+    standardKits: 'Kits ISO/EPA',
+    labEssentials: 'Lab Essentials',
+    privateLabel: 'Kits marca blanca',
+    labs: 'Laboratoris d’aigua',
+    quality: 'Equips de qualitat',
+    resources: 'Recursos',
+    epa: 'Fluxos EPA',
+    indicators: 'Indicadors colífags'
+  }
+};
 
 export const Footer: React.FC = () => {
   const { t, lang } = useLanguage();
   const { blocks, isEditing } = usePageContent();
+  const copy = FOOTER_COPY[lang] || FOOTER_COPY.en;
   const privacyUrl = getPlatformLegalUrl('privacy', lang);
   const termsUrl = getPlatformLegalUrl('terms', lang);
   const contactUrl = getPlatformSignupUrl({ intent: 'contact' }, lang);
   const careersUrl = getPlatformSignupUrl({ intent: 'careers' }, lang);
   const productsUrl = getMarketingPagePath('products', lang);
+  const enumeraUrl = getMarketingPagePath('enumera', lang);
+  const indicaUrl = getMarketingPagePath('indica', lang);
+  const standardKitsUrl = getMarketingPagePath('standard-kits', lang);
+  const labEssentialsUrl = getMarketingPagePath('lab-essentials', lang);
   const platformUrl = getMarketingPagePath('platform', lang);
   const oemUrl = getMarketingPagePath('oem', lang);
+  const privateLabelUrl = getMarketingPagePath('private-label-kits', lang);
+  const distributorsUrl = getMarketingPagePath('distributors', lang);
+  const labsUrl = getMarketingPagePath('water-testing-labs', lang);
+  const qualityUrl = getMarketingPagePath('water-quality-control', lang);
   const aboutUrl = getMarketingPagePath('about', lang);
   const isoResourceUrl = getMarketingPagePath('iso-10705-2', lang);
+  const epaResourceUrl = getMarketingPagePath('epa-1602', lang);
+  const indicatorResourceUrl = getMarketingPagePath('coliphages-indicators', lang);
   const footerBlock = blocks.footer || {};
   const hasConfiguredHref = (field: string) => {
     const value = footerBlock[field];
@@ -95,9 +181,13 @@ export const Footer: React.FC = () => {
             <EditableText as="h4" sectionId="footer" field="solutionsTitle" fallback={t.footer.solutions} className="font-bold text-lg mb-4 block" />
             <ul className="space-y-2 text-sm text-gray-400">
               <li><EditableLinkWrapper sectionId="footer" field="url_testingKits" fallback={productsUrl} legacyFallbacks={['#']}><a href={productsUrl} onClick={(e) => handleSmoothScroll(e, 'products')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_testingKits" fallback="Testing Kits" /></a></EditableLinkWrapper></li>
+              <li><a href={enumeraUrl} className="hover:text-secondary">{copy.enumera}</a></li>
+              <li><a href={indicaUrl} className="hover:text-secondary">{copy.indica}</a></li>
+              <li><a href={standardKitsUrl} className="hover:text-secondary">{copy.standardKits}</a></li>
+              <li><a href={labEssentialsUrl} className="hover:text-secondary">{copy.labEssentials}</a></li>
               <li><EditableLinkWrapper sectionId="footer" field="url_lims" fallback={platformUrl} legacyFallbacks={['#']}><a href={platformUrl} onClick={(e) => handleSmoothScroll(e, 'platform')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_lims" fallback="LIMS Software" /></a></EditableLinkWrapper></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_mobileApp" fallback={platformUrl} legacyFallbacks={['#']}><a href={platformUrl} onClick={(e) => handleSmoothScroll(e, 'platform')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_mobileApp" fallback="Mobile App" /></a></EditableLinkWrapper></li>
               <li><EditableLinkWrapper sectionId="footer" field="url_oemProgram" fallback={oemUrl} legacyFallbacks={['#']}><a href={oemUrl} onClick={(e) => handleSmoothScroll(e, 'oem')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_oemProgram" fallback="OEM Program" /></a></EditableLinkWrapper></li>
+              <li><a href={privateLabelUrl} className="hover:text-secondary">{copy.privateLabel}</a></li>
             </ul>
           </div>
 
@@ -105,6 +195,9 @@ export const Footer: React.FC = () => {
             <EditableText as="h4" sectionId="footer" field="companyTitle" fallback={t.footer.company} className="font-bold text-lg mb-4 block" />
             <ul className="space-y-2 text-sm text-gray-400">
               <li><EditableLinkWrapper sectionId="footer" field="url_aboutUs" fallback={aboutUrl} legacyFallbacks={['#']}><a href={aboutUrl} onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_aboutUs" fallback="About Us" /></a></EditableLinkWrapper></li>
+              <li><a href={labsUrl} className="hover:text-secondary">{copy.labs}</a></li>
+              <li><a href={qualityUrl} className="hover:text-secondary">{copy.quality}</a></li>
+              <li><a href={distributorsUrl} className="hover:text-secondary">{t.nav.distributors}</a></li>
               <li>
                 <EditableLinkWrapper sectionId="footer" field="url_scientificValidation" fallback={isoResourceUrl} legacyFallbacks={['#']}>
                   <a
@@ -116,6 +209,8 @@ export const Footer: React.FC = () => {
                   </a>
                 </EditableLinkWrapper>
               </li>
+              <li><a href={epaResourceUrl} className="hover:text-secondary">{copy.epa}</a></li>
+              <li><a href={indicatorResourceUrl} className="hover:text-secondary">{copy.indicators}</a></li>
               <li><EditableLinkWrapper sectionId="footer" field="url_careers" fallback={careersUrl} legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}><a href={careersUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></EditableLinkWrapper></li>
               <li><EditableLinkWrapper sectionId="footer" field="url_contact" fallback={contactUrl} legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}><a href={contactUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></EditableLinkWrapper></li>
             </ul>

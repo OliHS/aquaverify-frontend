@@ -14,6 +14,7 @@ const editableLinkFields = new Set([
   'link_solutions',
   'link_products',
   'link_platform',
+  'link_resources',
   'link_distributors',
   'link_oem',
   'primaryBtnLink',

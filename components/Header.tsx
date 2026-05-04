@@ -33,6 +33,7 @@ export const Header: React.FC = () => {
     solutions: isHomePath ? '#solutions' : getMarketingPagePath('water-quality-control', lang),
     products: isHomePath ? '#products' : getMarketingPagePath('products', lang),
     platform: isHomePath ? '#platform' : getMarketingPagePath('platform', lang),
+    resources: getMarketingPagePath('iso-10705-2', lang),
     distributors: isHomePath ? '#distributors' : getMarketingPagePath('distributors', lang),
     oem: isHomePath ? '#oem' : getMarketingPagePath('oem', lang)
   };
@@ -109,6 +110,15 @@ export const Header: React.FC = () => {
     }
   };
 
+  const handleLogoClick = () => {
+    if (isHomePath) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    navigate(lang === 'en' ? '/' : getLanguagePath(lang));
+  };
+
   return (
     <header
       className={`${isEditing ? 'absolute top-0' : 'fixed'} w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white py-5'
@@ -118,7 +128,7 @@ export const Header: React.FC = () => {
         {/* Logo */}
         <div
           className="flex items-center space-x-3 group cursor-pointer"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={handleLogoClick}
         >
           {/* Logo Image */}
           <img
@@ -134,10 +144,11 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center space-x-6 lg:space-x-8">
+        <nav className="hidden md:flex items-center space-x-5 lg:space-x-7">
           <EditableLinkWrapper sectionId="nav" field="link_solutions" fallback={navHrefs.solutions} legacyFallbacks={['#']}><a href={navHrefs.solutions} onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions')}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_products" fallback={navHrefs.products} legacyFallbacks={['#']}><a href={navHrefs.products} onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products')}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_platform" fallback={navHrefs.platform} legacyFallbacks={['#', '#saas']}><a href={navHrefs.platform} onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform')}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_resources" fallback={navHrefs.resources} legacyFallbacks={['#']}><a href={navHrefs.resources} onClick={(e) => handleSmoothScroll(e, 'resources')} className={getNavLinkClasses('resources')}><EditableText as="span" sectionId="nav" field="resources" fallback={t.nav.resources} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback={navHrefs.distributors} legacyFallbacks={['#']}><a href={navHrefs.distributors} onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors')}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_oem" fallback={navHrefs.oem} legacyFallbacks={['#']}><a href={navHrefs.oem} onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem')}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
         </nav>
@@ -203,6 +214,7 @@ export const Header: React.FC = () => {
           <EditableLinkWrapper sectionId="nav" field="link_solutions" fallback={navHrefs.solutions} legacyFallbacks={['#']}><a href={navHrefs.solutions} onClick={(e) => handleSmoothScroll(e, 'solutions')} className={getNavLinkClasses('solutions', true)}><EditableText as="span" sectionId="nav" field="solutions" fallback={t.nav.solutions} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_products" fallback={navHrefs.products} legacyFallbacks={['#']}><a href={navHrefs.products} onClick={(e) => handleSmoothScroll(e, 'products')} className={getNavLinkClasses('products', true)}><EditableText as="span" sectionId="nav" field="products" fallback={t.nav.products} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_platform" fallback={navHrefs.platform} legacyFallbacks={['#', '#saas']}><a href={navHrefs.platform} onClick={(e) => handleSmoothScroll(e, 'platform')} className={getNavLinkClasses('platform', true)}><EditableText as="span" sectionId="nav" field="platform" fallback={t.nav.platform} /></a></EditableLinkWrapper>
+          <EditableLinkWrapper sectionId="nav" field="link_resources" fallback={navHrefs.resources} legacyFallbacks={['#']}><a href={navHrefs.resources} onClick={(e) => handleSmoothScroll(e, 'resources')} className={getNavLinkClasses('resources', true)}><EditableText as="span" sectionId="nav" field="resources" fallback={t.nav.resources} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_distributors" fallback={navHrefs.distributors} legacyFallbacks={['#']}><a href={navHrefs.distributors} onClick={(e) => handleSmoothScroll(e, 'distributors')} className={getNavLinkClasses('distributors', true)}><EditableText as="span" sectionId="nav" field="distributors" fallback={t.nav.distributors} /></a></EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="link_oem" fallback={navHrefs.oem} legacyFallbacks={['#']}><a href={navHrefs.oem} onClick={(e) => handleSmoothScroll(e, 'oem')} className={getNavLinkClasses('oem', true)}><EditableText as="span" sectionId="nav" field="oem" fallback={t.nav.oem} /></a></EditableLinkWrapper>
           <hr className="border-gray-100 my-2" />
