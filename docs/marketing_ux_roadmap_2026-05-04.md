@@ -17,6 +17,8 @@ Actualizado: 2026-05-04.
 - Home Cloud alineada con la landing SaaS: teaser con capturas reales locales, CTA a la URL SaaS antes del signup y menu principal apuntando a URLs marketing canonicas: implementado.
 - Assets de producto fase 1: generadas 36 imagenes hero SVG y 180 fichas tecnicas HTML imprimibles desde contenido publico validado, con auditoria `cms:assets:audit` en `180/180`: implementado.
 - SEO prerender fase 2: las 286 rutas SEO publicas inyectan cuerpo HTML estatico con H1, descripcion, secciones, FAQs, imagen hero y datasheet antes de cargar React, sin duplicar metadatos OpenGraph: implementado.
+- Performance distribuidores fase 2: el globe 3D queda bajo interaccion explicita, sin preload en HTML ni codigo/texturas en el bundle inicial; el smoke de produccion lo audita: implementado.
+- Claims fase 2: matriz operativa de validacion tecnico/legal generable con `npm run product:claims:matrix`: implementado.
 - Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.

@@ -394,9 +394,16 @@ async function run() {
   });
 
   await check('distributor globe textures are local', async () => {
+    assert(!corporateHtml.includes('DistributorsGlobe'), 'Home HTML preloads the distributor globe chunk');
+    assert(!mainAssetText.includes('/images/globe/earth-blue-marble.jpg'), 'Main bundle contains globe texture path');
+    assert(!mainAssetText.includes('/images/globe/earth-topology.png'), 'Main bundle contains globe topology path');
+    assert(!mainAssetText.includes('three-globe'), 'Main bundle contains three-globe code');
+    assert(!mainAssetText.includes('react-globe'), 'Main bundle contains react-globe code');
+
     const distributorsSectionMatch = mainAssetText.match(/assets\/DistributorsSection-[^"',)]+\.js/);
     assert(distributorsSectionMatch, 'Distributors section asset reference missing from main bundle');
     const { text: distributorsSectionText } = await getText(`${CORPORATE_SITE_URL}/${distributorsSectionMatch[0]}`);
+    assert(distributorsSectionText.includes('Load interactive globe'), 'Distributors section does not gate the globe behind an explicit interaction');
 
     const globeAssetMatch = distributorsSectionText.match(/(?:assets\/)?DistributorsGlobe-[^"',)]+\.js/);
     assert(globeAssetMatch, 'Distributors globe asset reference missing from main bundle');

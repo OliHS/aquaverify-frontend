@@ -18,6 +18,7 @@
     "cms:marketing:strict": "node scripts/sync-marketing-cms-links.js --strict",
     "cms:marketing:sync": "node scripts/sync-marketing-cms-links.js --sync",
     "product:assets:generate": "node scripts/generate-product-assets.js",
+    "product:claims:matrix": "node scripts/generate-product-claims-validation.js",
     "claims:audit": "node scripts/audit-product-claims.js",
     "marketing:routes:audit": "node scripts/audit-marketing-routes.js",
     "marketing:faqs:audit": "node scripts/audit-marketing-faqs.js",
