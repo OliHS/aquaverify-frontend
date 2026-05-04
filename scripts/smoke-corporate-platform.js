@@ -170,6 +170,7 @@ async function run() {
     assert(text.includes('corporate-preferences'), 'Corporate cookie sync endpoint missing from bundle');
     assert(text.includes('corporate-policy'), 'Corporate cookie policy endpoint missing from bundle');
     assert(text.includes('terms'), 'Legal terms marker missing from bundle');
+    assert(text.includes('buyer-pathways'), 'Buyer pathway conversion marker missing from bundle');
     assert(text.includes(LEGAL_POLICY_VERSION), 'Legal/cookie policy version marker missing from bundle');
     mainAssetText = text;
   });

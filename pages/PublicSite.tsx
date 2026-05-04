@@ -5,6 +5,7 @@ import { ValueProps } from '../components/ValueProps';
 import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
 import { DeferredSection } from '../components/DeferredSection';
+import { AudiencePathways } from '../components/AudiencePathways';
 import { PageContentProvider, usePageContent } from '../context/PageContentContext';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
@@ -43,6 +44,7 @@ export const PublicSiteContent: React.FC = () => {
             <Header />
             <main className="flex-grow">
                 <Hero />
+                <AudiencePathways />
                 <ValueProps />
                 <Suspense fallback={<SectionFallback className="min-h-[720px] bg-surface" />}>
                     <DeferredSection id="products" minHeightClassName="min-h-[720px] bg-surface">

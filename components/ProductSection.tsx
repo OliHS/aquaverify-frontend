@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { Tooltip } from './Tooltip';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ProductFamily, ProductItem } from '../types';
 import { ProductFamilyCard } from './ProductFamilyCard';
 import { ProductFamilyModal } from './ProductFamilyModal';
@@ -17,6 +18,8 @@ import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { supabase } from '../utils/supabase';
+import type { Language } from '../utils/translations';
+import { getMarketingPagePath } from '../utils/marketingPages.js';
 
 // Helper to map string family_ids to Lucide icons
 const getFamilyIcon = (familyId: string) => {
@@ -31,6 +34,75 @@ const getFamilyIcon = (familyId: string) => {
   }
 };
 
+const SEO_FAMILY_COPY: Record<Language, {
+  title: string;
+  subtitle: string;
+  cta: string;
+  items: Array<{
+    id: string;
+    pageId: string;
+    title: string;
+    body: string;
+    icon: React.ReactNode;
+  }>;
+}> = {
+  en: {
+    title: 'Core AquaVerify product ranges',
+    subtitle: 'Indexable product pages for buyers comparing technical fit, sample volume, method alignment and digital workflow.',
+    cta: 'Open page',
+    items: [
+      { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Quantitative kits and tools for water microbiology enumeration workflows.', icon: <Gauge className="h-5 w-5" /> },
+      { id: 'indica', pageId: 'indica', title: 'INDICA', body: 'Presence/absence kits for fast qualitative screening.', icon: <Activity className="h-5 w-5" /> },
+      { id: 'standards', pageId: 'standard-kits', title: 'ISO/EPA standard kits', body: 'Kits oriented to ISO 10705-2 and EPA coliphage workflows.', icon: <FileCheck className="h-5 w-5" /> },
+      { id: 'lab', pageId: 'lab-essentials', title: 'Lab Essentials', body: 'Culture media, reagents, controls and biological materials.', icon: <Beaker className="h-5 w-5" /> }
+    ]
+  },
+  es: {
+    title: 'Gamas principales AquaVerify',
+    subtitle: 'Páginas indexables para compradores que comparan encaje técnico, volumen de muestra, método y flujo digital.',
+    cta: 'Abrir página',
+    items: [
+      { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Kits y herramientas cuantitativas para flujos de enumeración en microbiología del agua.', icon: <Gauge className="h-5 w-5" /> },
+      { id: 'indica', pageId: 'indica', title: 'INDICA', body: 'Kits de presencia/ausencia para cribado cualitativo rápido.', icon: <Activity className="h-5 w-5" /> },
+      { id: 'standards', pageId: 'standard-kits', title: 'Kits estándar ISO/EPA', body: 'Kits orientados a ISO 10705-2 y flujos EPA de colífagos.', icon: <FileCheck className="h-5 w-5" /> },
+      { id: 'lab', pageId: 'lab-essentials', title: 'Lab Essentials', body: 'Medios, reactivos, controles y materiales biológicos.', icon: <Beaker className="h-5 w-5" /> }
+    ]
+  },
+  fr: {
+    title: 'Gammes principales AquaVerify',
+    subtitle: 'Pages indexables pour comparer adéquation technique, volume d’échantillon, méthode et flux numérique.',
+    cta: 'Ouvrir la page',
+    items: [
+      { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Kits et outils quantitatifs pour les flux de dénombrement en microbiologie de l’eau.', icon: <Gauge className="h-5 w-5" /> },
+      { id: 'indica', pageId: 'indica', title: 'INDICA', body: 'Kits présence/absence pour un dépistage qualitatif rapide.', icon: <Activity className="h-5 w-5" /> },
+      { id: 'standards', pageId: 'standard-kits', title: 'Kits standard ISO/EPA', body: 'Kits orientés ISO 10705-2 et flux EPA pour coliphages.', icon: <FileCheck className="h-5 w-5" /> },
+      { id: 'lab', pageId: 'lab-essentials', title: 'Lab Essentials', body: 'Milieux, réactifs, contrôles et matériaux biologiques.', icon: <Beaker className="h-5 w-5" /> }
+    ]
+  },
+  it: {
+    title: 'Gamme principali AquaVerify',
+    subtitle: 'Pagine indicizzabili per confrontare inquadramento tecnico, volume campione, metodo e flusso digitale.',
+    cta: 'Apri pagina',
+    items: [
+      { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Kit e strumenti quantitativi per flussi di enumerazione in microbiologia dell’acqua.', icon: <Gauge className="h-5 w-5" /> },
+      { id: 'indica', pageId: 'indica', title: 'INDICA', body: 'Kit presenza/assenza per screening qualitativo rapido.', icon: <Activity className="h-5 w-5" /> },
+      { id: 'standards', pageId: 'standard-kits', title: 'Kit standard ISO/EPA', body: 'Kit orientati a ISO 10705-2 e flussi EPA per colifagi.', icon: <FileCheck className="h-5 w-5" /> },
+      { id: 'lab', pageId: 'lab-essentials', title: 'Lab Essentials', body: 'Terreni, reagenti, controlli e materiali biologici.', icon: <Beaker className="h-5 w-5" /> }
+    ]
+  },
+  ca: {
+    title: 'Gammes principals AquaVerify',
+    subtitle: 'Pàgines indexables per comparar encaix tècnic, volum de mostra, mètode i flux digital.',
+    cta: 'Obrir pàgina',
+    items: [
+      { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Kits i eines quantitatives per a fluxos d’enumeració en microbiologia de l’aigua.', icon: <Gauge className="h-5 w-5" /> },
+      { id: 'indica', pageId: 'indica', title: 'INDICA', body: 'Kits de presència/absència per a cribratge qualitatiu ràpid.', icon: <Activity className="h-5 w-5" /> },
+      { id: 'standards', pageId: 'standard-kits', title: 'Kits estàndard ISO/EPA', body: 'Kits orientats a ISO 10705-2 i fluxos EPA de colífags.', icon: <FileCheck className="h-5 w-5" /> },
+      { id: 'lab', pageId: 'lab-essentials', title: 'Lab Essentials', body: 'Medis, reactius, controls i materials biològics.', icon: <Beaker className="h-5 w-5" /> }
+    ]
+  }
+};
+
 export const ProductSection: React.FC = () => {
   const [productFamilies, setProductFamilies] = useState<ProductFamily[]>([]);
   const [loadingDb, setLoadingDb] = useState(true);
@@ -40,7 +112,8 @@ export const ProductSection: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isEnumeraModalOpen, setIsEnumeraModalOpen] = useState(false);
 
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
+  const seoFamilyCopy = SEO_FAMILY_COPY[lang] || SEO_FAMILY_COPY.en;
 
   useEffect(() => {
     const fetchCatalog = async () => {
@@ -248,6 +321,34 @@ export const ProductSection: React.FC = () => {
                 <EditableText sectionId="products" field="flagshipDownloadBtn" fallback="View more details" /> <ArrowRight size={18} />
               </button>
             </div>
+          </div>
+        </div>
+
+        <div data-aq-section="product-family-seo-links" className="mb-16">
+          <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h3 className="font-heading text-2xl font-black text-primary">{seoFamilyCopy.title}</h3>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{seoFamilyCopy.subtitle}</p>
+            </div>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {seoFamilyCopy.items.map((item) => (
+              <Link
+                key={item.id}
+                to={getMarketingPagePath(item.pageId, lang)}
+                className="group rounded-lg border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-primary/30 hover:shadow-lg"
+              >
+                <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition group-hover:bg-secondary/10 group-hover:text-secondary">
+                  {item.icon}
+                </div>
+                <h4 className="font-heading text-lg font-black text-slate-900">{item.title}</h4>
+                <p className="mt-2 min-h-[4.5rem] text-sm leading-6 text-slate-600">{item.body}</p>
+                <span className="mt-4 inline-flex items-center text-sm font-black text-secondary">
+                  {seoFamilyCopy.cta}
+                  <ArrowRight className="ml-1 h-4 w-4" />
+                </span>
+              </Link>
+            ))}
           </div>
         </div>
 
