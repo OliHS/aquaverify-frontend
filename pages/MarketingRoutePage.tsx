@@ -120,6 +120,76 @@ const UI_LABELS: Record<Language, {
   }
 };
 
+const FEATURED_WHITEPAPER_IDS = [
+  'eu-drinking-water-directive-coliphages',
+  'water-compliance-software-guide',
+  'us-drinking-water-compliance-coliform-rule'
+];
+
+const FEATURED_WHITEPAPER_COPY: Record<Language, {
+  eyebrow: string;
+  title: string;
+  body: string;
+  cta: string;
+  badges: Record<string, string>;
+}> = {
+  en: {
+    eyebrow: 'Featured whitepapers',
+    title: 'Regulatory resources for qualified water quality buyers',
+    body: 'Start with the three highest-intent guides: European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
+    cta: 'Open whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'EU directive',
+      'water-compliance-software-guide': 'Software evidence',
+      'us-drinking-water-compliance-coliform-rule': 'US EPA / RTCR'
+    }
+  },
+  es: {
+    eyebrow: 'Whitepapers destacados',
+    title: 'Recursos normativos para compradores de calidad del agua',
+    body: 'Empieza por las tres guías con mayor intención comercial: cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
+    cta: 'Abrir whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'Directiva UE',
+      'water-compliance-software-guide': 'Evidencia software',
+      'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR EEUU'
+    }
+  },
+  fr: {
+    eyebrow: 'Whitepapers sélectionnés',
+    title: 'Ressources réglementaires pour acheteurs qualité de l’eau',
+    body: 'Commencez par les trois guides les plus qualifiants: conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
+    cta: 'Ouvrir le whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'Directive UE',
+      'water-compliance-software-guide': 'Preuve logicielle',
+      'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR USA'
+    }
+  },
+  it: {
+    eyebrow: 'Whitepaper in evidenza',
+    title: 'Risorse normative per buyer qualità acqua',
+    body: 'Parti dalle tre guide a maggiore intento: conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
+    cta: 'Apri whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'Direttiva UE',
+      'water-compliance-software-guide': 'Evidenza software',
+      'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR USA'
+    }
+  },
+  ca: {
+    eyebrow: 'Whitepapers destacats',
+    title: 'Recursos normatius per a compradors de qualitat de l’aigua',
+    body: 'Comença per les tres guies amb més intenció comercial: compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
+    cta: 'Obrir whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'Directiva UE',
+      'water-compliance-software-guide': 'Evidència software',
+      'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR EUA'
+    }
+  }
+};
+
 type MarketingContentMeta = {
   faqs?: Array<{ question: string; answer: string }>;
   gallery?: Array<{ src: string; alt: string; title?: string; body?: string }>;
@@ -317,6 +387,43 @@ const WhitepaperDeepDive: React.FC<{ content: WhitepaperDeepDiveContent }> = ({ 
   );
 };
 
+const FeaturedWhitepapersBlock: React.FC<{
+  lang: Language;
+  items: Array<{ id: string; title: string; description: string; path: string }>;
+}> = ({ lang, items }) => {
+  const copy = FEATURED_WHITEPAPER_COPY[lang] || FEATURED_WHITEPAPER_COPY.en;
+  if (!items.length) return null;
+
+  return (
+    <section className="pb-2">
+      <div className="max-w-3xl">
+        <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">{copy.eyebrow}</div>
+        <h2 className="mt-3 font-heading text-3xl font-black text-primary">{copy.title}</h2>
+        <p className="mt-3 text-base leading-7 text-slate-600">{copy.body}</p>
+      </div>
+      <div className="mt-6 grid gap-4 md:grid-cols-3">
+        {items.map((item) => (
+          <Link
+            key={item.id}
+            to={item.path}
+            className="group flex h-full flex-col rounded-2xl border border-cyan-100 bg-cyan-50/60 p-5 shadow-sm transition hover:-translate-y-1 hover:border-primary/30 hover:bg-white hover:shadow-lg"
+          >
+            <span className="w-fit rounded-full border border-cyan-100 bg-white px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-cyan-800">
+              {copy.badges[item.id] || copy.eyebrow}
+            </span>
+            <h3 className="mt-4 font-heading text-lg font-black leading-snug text-slate-900">{item.title}</h3>
+            <p className="mt-3 flex-grow text-sm leading-6 text-slate-600">{item.description}</p>
+            <span className="mt-5 inline-flex items-center text-sm font-black text-primary group-hover:text-secondary">
+              {copy.cta}
+              <ArrowRight className="ml-1 h-4 w-4" />
+            </span>
+          </Link>
+        ))}
+      </div>
+    </section>
+  );
+};
+
 function getHomePath(lang: Language) {
   return lang === 'en' ? '/' : `/${lang}`;
 }
@@ -439,6 +546,11 @@ export const MarketingRoutePage: React.FC = () => {
   const relatedPages = getRelatedMarketingPages(page.id, pageLang);
   const labels = UI_LABELS[pageLang] || UI_LABELS.en;
   const showBridgeAside = page.category !== 'resources';
+  const featuredWhitepapers = page.id === 'resources'
+    ? FEATURED_WHITEPAPER_IDS
+      .map((id) => getMarketingPageSummary(id, pageLang))
+      .filter(Boolean) as Array<{ id: string; title: string; description: string; path: string }>
+    : [];
   const breadcrumbs = buildMarketingBreadcrumbs(page, contentMeta, pageLang, labels);
   const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
@@ -556,6 +668,7 @@ export const MarketingRoutePage: React.FC = () => {
             )}
 
             <div className={`space-y-8 ${showBridgeAside ? '' : 'mx-auto w-full max-w-5xl'}`}>
+              <FeaturedWhitepapersBlock lang={pageLang} items={featuredWhitepapers} />
               {content.sections.map((section: any, index: number) => (
                 <article key={`${section.title}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                   <h2 className="font-heading text-2xl font-black text-primary">{section.title}</h2>

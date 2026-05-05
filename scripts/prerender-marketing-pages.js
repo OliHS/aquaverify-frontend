@@ -77,6 +77,70 @@ const PRODUCT_LABELS = {
   ca: 'Productes'
 };
 
+const FEATURED_WHITEPAPER_IDS = [
+  'eu-drinking-water-directive-coliphages',
+  'water-compliance-software-guide',
+  'us-drinking-water-compliance-coliform-rule'
+];
+
+const FEATURED_WHITEPAPER_COPY = {
+  en: {
+    eyebrow: 'Featured whitepapers',
+    title: 'Regulatory resources for qualified water quality buyers',
+    body: 'Start with the three highest-intent guides: European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
+    cta: 'Open whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'EU directive',
+      'water-compliance-software-guide': 'Software evidence',
+      'us-drinking-water-compliance-coliform-rule': 'US EPA / RTCR'
+    }
+  },
+  es: {
+    eyebrow: 'Whitepapers destacados',
+    title: 'Recursos normativos para compradores de calidad del agua',
+    body: 'Empieza por las tres guías con mayor intención comercial: cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
+    cta: 'Abrir whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'Directiva UE',
+      'water-compliance-software-guide': 'Evidencia software',
+      'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR EEUU'
+    }
+  },
+  fr: {
+    eyebrow: 'Whitepapers sélectionnés',
+    title: 'Ressources réglementaires pour acheteurs qualité de l’eau',
+    body: 'Commencez par les trois guides les plus qualifiants: conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
+    cta: 'Ouvrir le whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'Directive UE',
+      'water-compliance-software-guide': 'Preuve logicielle',
+      'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR USA'
+    }
+  },
+  it: {
+    eyebrow: 'Whitepaper in evidenza',
+    title: 'Risorse normative per buyer qualità acqua',
+    body: 'Parti dalle tre guide a maggiore intento: conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
+    cta: 'Apri whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'Direttiva UE',
+      'water-compliance-software-guide': 'Evidenza software',
+      'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR USA'
+    }
+  },
+  ca: {
+    eyebrow: 'Whitepapers destacats',
+    title: 'Recursos normatius per a compradors de qualitat de l’aigua',
+    body: 'Comença per les tres guies amb més intenció comercial: compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
+    cta: 'Obrir whitepaper',
+    badges: {
+      'eu-drinking-water-directive-coliphages': 'Directiva UE',
+      'water-compliance-software-guide': 'Evidència software',
+      'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR EUA'
+    }
+  }
+};
+
 function absolute(routePath) {
   return `${SITE_URL}${routePath === '/' ? '/' : routePath}`;
 }
@@ -120,6 +184,34 @@ function renderSectionList(sections = []) {
       '      </section>'
     ].filter(Boolean).join('\n');
   }).join('\n');
+}
+
+function renderFeaturedWhitepapers(page, lang) {
+  if (page?.id !== 'resources') return '';
+  const copy = FEATURED_WHITEPAPER_COPY[lang] || FEATURED_WHITEPAPER_COPY.en;
+  const items = FEATURED_WHITEPAPER_IDS
+    .map((id) => getMarketingPageSummary(id, lang))
+    .filter(Boolean);
+
+  if (!items.length) return '';
+
+  return [
+    '      <section>',
+    `        <p>${escapeHtml(copy.eyebrow)}</p>`,
+    `        <h2>${escapeHtml(copy.title)}</h2>`,
+    `        <p>${escapeHtml(copy.body)}</p>`,
+    '        <ul>',
+    ...items.map((item) => [
+      '          <li>',
+      `            <p><strong>${escapeHtml(copy.badges[item.id] || copy.eyebrow)}</strong></p>`,
+      `            <h3>${escapeHtml(item.title)}</h3>`,
+      `            <p>${escapeHtml(item.description)}</p>`,
+      `            <a href="${escapeHtml(absolute(item.path))}">${escapeHtml(copy.cta)}</a>`,
+      '          </li>'
+    ].join('\n')),
+    '        </ul>',
+    '      </section>'
+  ].join('\n');
 }
 
 function renderFaqs(faqs = []) {
@@ -196,6 +288,7 @@ function renderStaticRoot(meta) {
     content ? [
       '  <section style="padding: 42px 24px;">',
       '    <div style="max-width: 1040px; margin: 0 auto;">',
+      renderFeaturedWhitepapers(meta.page, meta.lang),
       renderSectionList(content.sections || []),
       renderWhitepaperDeepDive(content.whitepaper),
       renderFaqs(content.faqs || []),
