@@ -10,6 +10,7 @@ interface EditableTextProps {
     id?: string;
     className?: string;
     allowHtml?: boolean;
+    legacyFallbacks?: string[];
 }
 
 export const EditableText: React.FC<EditableTextProps> = ({
@@ -19,7 +20,8 @@ export const EditableText: React.FC<EditableTextProps> = ({
     as: Component = 'span',
     id,
     className = '',
-    allowHtml = false
+    allowHtml = false,
+    legacyFallbacks = []
 }) => {
     const { blocks, isEditing, updateBlock } = usePageContent();
     const { lang } = useLanguage();
@@ -33,14 +35,18 @@ export const EditableText: React.FC<EditableTextProps> = ({
     // New i18n support: if blockData[field] is an object, read blockData[field][lang]
     let rawContent = fallback;
     const fieldValue = blockData[field];
+    const isLegacyValue = (value: unknown) => (
+        typeof value === 'string'
+        && legacyFallbacks.some((legacy) => legacy.trim() === value.trim())
+    );
 
     if (fieldValue !== undefined && fieldValue !== null) {
         if (typeof fieldValue === 'string') { // Legacy Data
-            rawContent = fieldValue;
+            rawContent = isLegacyValue(fieldValue) ? fallback : fieldValue;
         } else if (typeof fieldValue === 'object' && fieldValue[lang] !== undefined) { // New i18n object Data
-            rawContent = fieldValue[lang];
+            rawContent = isLegacyValue(fieldValue[lang]) ? fallback : fieldValue[lang];
         } else if (typeof fieldValue === 'object' && fieldValue['en'] !== undefined) { // Fallback to english if current lang missing
-            rawContent = fieldValue['en'];
+            rawContent = isLegacyValue(fieldValue['en']) ? fallback : fieldValue['en'];
         }
     }
 

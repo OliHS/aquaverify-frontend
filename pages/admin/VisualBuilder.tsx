@@ -9,6 +9,8 @@ import { LanguageSelector } from '../../components/LanguageSelector';
 import { sanitizeCmsContentLinks } from '../../utils/cmsLinks';
 import { scanProductClaimFields } from '../../utils/productClaims.js';
 
+const LEGACY_CONTACT_FORM_HELPER = 'Use the contact form for the fastest response';
+
 export const VisualBuilder: React.FC = () => {
     return (
         <LanguageProvider>
@@ -59,14 +61,6 @@ const VisualBuilderInner: React.FC = () => {
 
     // Helper to get correct localized value for the sidebar input fields
     const getLocalizedValue = (sectionId: string, field: string) => {
-        const val = blocks[sectionId]?.[field];
-        if (val) {
-            if (typeof val === 'string') return val;
-            if (val[lang] !== undefined) return val[lang];
-            if (val['en'] !== undefined) return val['en'];
-        }
-
-        // Fallback mappings so sidebar inputs don't appear empty
         const fallbacks: any = {
             hero: {
                 title: `${t.hero.titleStart} <span class="text-secondary">${t.hero.titleEnd}</span>.`,
@@ -106,11 +100,29 @@ const VisualBuilderInner: React.FC = () => {
                 address1: 'Corporate enquiries',
                 address2: 'Sales, distributors and OEM partnerships',
                 email: 'info@aquaverify.com',
-                phone: 'Use the contact form for the fastest response'
+                phone: t.footer.contactHelper
             }
         };
 
-        return fallbacks[sectionId]?.[field] || '';
+        const fallback = fallbacks[sectionId]?.[field] || '';
+        const normalizeValue = (value: any) => (
+            sectionId === 'footer'
+            && field === 'phone'
+            && typeof value === 'string'
+            && value.trim() === LEGACY_CONTACT_FORM_HELPER
+                ? fallback
+                : value
+        );
+        const val = blocks[sectionId]?.[field];
+
+        if (val) {
+            if (typeof val === 'string') return normalizeValue(val);
+            if (val[lang] !== undefined) return normalizeValue(val[lang]);
+            if (val['en'] !== undefined) return normalizeValue(val['en']);
+        }
+
+        // Fallback mappings so sidebar inputs don't appear empty
+        return fallback;
     };
 
     const getRawValue = (sectionId: string, field: string) => {

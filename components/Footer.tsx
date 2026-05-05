@@ -10,6 +10,7 @@ import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import type { Language } from '../utils/translations';
 
 const logoSrc = '/images/logo-mark-160.png';
+const LEGACY_CONTACT_FORM_HELPER = 'Use the contact form for the fastest response';
 
 const FOOTER_COPY: Record<Language, {
   enumera: string;
@@ -281,7 +282,28 @@ export const Footer: React.FC = () => {
               <li><EditableText as="span" sectionId="footer" field="address1" fallback="Corporate enquiries" className="block" /></li>
               <li><EditableText as="span" sectionId="footer" field="address2" fallback="Sales, distributors and OEM partnerships" className="block" /></li>
               <li className="pt-2"><EditableText as="span" sectionId="footer" field="email" fallback="info@aquaverify.com" className="block" /></li>
-              <li><EditableText as="span" sectionId="footer" field="phone" fallback="Use the contact form for the fastest response" className="block" /></li>
+              <li>
+                <EditableText
+                  as="span"
+                  sectionId="footer"
+                  field="phone"
+                  fallback={t.footer.contactHelper}
+                  legacyFallbacks={[LEGACY_CONTACT_FORM_HELPER]}
+                  className="block"
+                />
+              </li>
+              <li className="pt-1">
+                <EditableLinkWrapper
+                  sectionId="footer"
+                  field="url_contact"
+                  fallback={contactUrl}
+                  legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}
+                >
+                  <a href={contactUrl} className="font-bold text-secondary transition-colors hover:text-white">
+                    <EditableText as="span" sectionId="footer" field="link_contactRequest" fallback={t.footer.contactRequest} />
+                  </a>
+                </EditableLinkWrapper>
+              </li>
             </ul>
           </div>
         </div>
