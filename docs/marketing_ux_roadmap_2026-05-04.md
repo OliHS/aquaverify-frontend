@@ -6,7 +6,7 @@ Objetivo: convertir `aquaverify.com` en un site B2B orientado a captacion organi
 
 ## Estado de Implementacion
 
-Actualizado: 2026-05-04.
+Actualizado: 2026-05-05.
 
 - Home, productos, industrias, OEM/distribuidores, SaaS, `Sobre nosotros`, sitemap, hreflang, canonical, JSON-LD y CMS de paginas marketing: implementado.
 - CTA final segmentado por ruta de compra en la home: implementado.
@@ -16,10 +16,11 @@ Actualizado: 2026-05-04.
 - Screenshots reales de la plataforma reutilizados desde la documentacion de AquaVerify Cloud para paginas `Platform` y `SaaS`, visibles en galeria CMS-editable y auditados con `npm run marketing:screenshots:audit`: implementado.
 - Home Cloud alineada con la landing SaaS: teaser con capturas reales locales, CTA a la URL SaaS antes del signup y menu principal apuntando a URLs marketing canonicas: implementado.
 - Assets de producto fase 1: generadas 36 imagenes hero SVG y 180 fichas tecnicas HTML imprimibles desde contenido publico validado, con auditoria `cms:assets:audit` en `180/180`: implementado.
-- SEO prerender fase 2: las 286 rutas SEO publicas inyectan cuerpo HTML estatico con H1, descripcion, secciones, FAQs, imagen hero y datasheet antes de cargar React, sin duplicar metadatos OpenGraph: implementado.
+- SEO prerender fase 2: las 301 rutas SEO publicas inyectan cuerpo HTML estatico con H1, descripcion, secciones, FAQs, imagen hero y datasheet antes de cargar React, sin duplicar metadatos OpenGraph: implementado.
 - Performance distribuidores fase 2: el globe 3D queda bajo interaccion explicita, sin preload en HTML ni codigo/texturas en el bundle inicial; el smoke de produccion lo audita: implementado.
 - Claims fase 2: matriz operativa de validacion tecnico/legal generable con `npm run product:claims:matrix`: implementado.
-- Recursos tecnicos evergreen: implementados 6 articulos mas hub de recursos en 5 idiomas.
+- Recursos tecnicos evergreen: implementados 6 guias, 3 whitepapers normativos y hub de recursos en 5 idiomas.
+- Whitepapers de captacion B2B sobre Directiva europea de agua potable/colifagos, software de cumplimiento y contexto EPA/Estados Unidos: implementados en codigo, sitemap y prerender; pendiente sincronizar los 15 registros nuevos en CMS con clave service role.
 - Atribucion web corporativa -> plataforma/CRM y mensaje AquaChat Sales para nuevos signup: implementado.
 - Analitica CRO first-party con consentimiento para page views, clicks a plataforma, cambios de idioma y acciones de distribuidores: implementado.
 - Eventos de inicio de funnel por intent (`quote_start`, `demo_start`, `oem_form_start`, `distributor_start`, `saas_demo_start`, `contact_start`): implementado.
@@ -30,7 +31,7 @@ Actualizado: 2026-05-04.
 - Registro de claims/naming, auditor automatico de claims publicos y guardrails CMS: implementado en web corporativa.
 - Todas las URLs marketing multidioma quedan accesibles desde `Marketing URLs` en el CMS, con accion para enlazarlas como registros editables sin pisar contenido existente.
 - Auditor/sincronizador CLI de URLs marketing CMS: `npm run cms:marketing:audit`, `npm run cms:marketing:strict` y `npm run cms:marketing:sync`.
-- El CMS muestra cobertura completa de URLs marketing enlazadas como registros editables: 280/280.
+- El CMS muestra cobertura completa de URLs marketing enlazadas como registros editables hasta la fase anterior: 280/280. Tras los nuevos whitepapers, la cobertura esperada pasa a 295/295 y quedan 15 registros pendientes de sincronizar en CMS.
 - El deploy corporativo exige cobertura CMS marketing completa en cada release con `npm run cms:marketing:strict`.
 - El CLI de sync exige clave Supabase de escritura para evitar falsas sincronizaciones.
 - El editor de paginas marketing permite gestionar assets reales por URL: imagen hero, alt text, imagen OpenGraph y enlace/label de datasheet, con validacion basica de URLs publicas.
@@ -97,6 +98,9 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/resources/presence-absence-vs-enumeration`
 - `/resources/water-sample-digital-traceability`
 - `/resources/water-testing-kit-distributor-checklist`
+- `/resources/eu-drinking-water-directive-coliphages`
+- `/resources/water-compliance-software-guide`
+- `/resources/us-drinking-water-compliance-coliform-rule`
 - `/about`
 - `/contact`
 
@@ -124,6 +128,9 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/es/recursos/presencia-ausencia-vs-enumeracion`
 - `/es/recursos/trazabilidad-digital-muestras-agua`
 - `/es/recursos/checklist-distribuidores-kits-analisis-agua`
+- `/es/recursos/directiva-europea-agua-potable-colifagos`
+- `/es/recursos/software-cumplimiento-calidad-agua`
+- `/es/recursos/eeuu-cumplimiento-agua-potable-regla-coliformes`
 - `/es/sobre-nosotros`
 - `/es/contacto`
 
@@ -147,6 +154,9 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/fr/ressources/presence-absence-vs-denombrement`
 - `/fr/ressources/tracabilite-numerique-echantillons-eau`
 - `/fr/ressources/checklist-distributeurs-kits-analyse-eau`
+- `/fr/ressources/directive-europeenne-eau-potable-coliphages`
+- `/fr/ressources/logiciel-conformite-qualite-eau`
+- `/fr/ressources/etats-unis-conformite-eau-potable-coliformes`
 - `/fr/a-propos`
 - `/fr/contact`
 
@@ -170,6 +180,9 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/it/risorse/presenza-assenza-vs-enumerazione`
 - `/it/risorse/tracciabilita-digitale-campioni-acqua`
 - `/it/risorse/checklist-distributori-kit-analisi-acqua`
+- `/it/risorse/direttiva-europea-acqua-potabile-colifagi`
+- `/it/risorse/software-conformita-qualita-acqua`
+- `/it/risorse/stati-uniti-conformita-acqua-potabile-coliformi`
 - `/it/chi-siamo`
 - `/it/contatto`
 
@@ -193,6 +206,9 @@ La home debe seguir existiendo, pero el crecimiento SEO vendra de paginas indexa
 - `/ca/recursos/presencia-absencia-vs-enumeracio`
 - `/ca/recursos/tracabilitat-digital-mostres-aigua`
 - `/ca/recursos/checklist-distribuidors-kits-analisi-aigua`
+- `/ca/recursos/directiva-europea-aigua-potable-colifags`
+- `/ca/recursos/software-compliment-qualitat-aigua`
+- `/ca/recursos/estats-units-compliment-aigua-potable-coliformes`
 - `/ca/sobre-nosaltres`
 - `/ca/contacte`
 
