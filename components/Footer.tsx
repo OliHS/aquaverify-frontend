@@ -280,7 +280,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-sm text-gray-400">
               <li><EditableText as="span" sectionId="footer" field="address1" fallback="Corporate enquiries" className="block" /></li>
               <li><EditableText as="span" sectionId="footer" field="address2" fallback="Sales, distributors and OEM partnerships" className="block" /></li>
-              <li className="pt-2"><EditableText as="span" sectionId="footer" field="email" fallback="hello@aquaverify.com" className="block" /></li>
+              <li className="pt-2"><EditableText as="span" sectionId="footer" field="email" fallback="info@aquaverify.com" className="block" /></li>
               <li><EditableText as="span" sectionId="footer" field="phone" fallback="Use the contact form for the fastest response" className="block" /></li>
             </ul>
           </div>

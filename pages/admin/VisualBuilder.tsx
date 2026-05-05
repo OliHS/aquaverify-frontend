@@ -105,7 +105,7 @@ const VisualBuilderInner: React.FC = () => {
                 cookie: t.footer.cookie,
                 address1: 'Corporate enquiries',
                 address2: 'Sales, distributors and OEM partnerships',
-                email: 'hello@aquaverify.com',
+                email: 'info@aquaverify.com',
                 phone: 'Use the contact form for the fastest response'
             }
         };
@@ -524,7 +524,7 @@ const VisualBuilderInner: React.FC = () => {
                                         <input
                                             type="email"
                                             className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
-                                            value={getRawValue('footer', 'email') || 'hello@aquaverify.com'}
+                                            value={getRawValue('footer', 'email') || 'info@aquaverify.com'}
                                             onChange={e => handleBlockChange('footer', 'email', e.target.value)}
                                         />
                                     </div>
