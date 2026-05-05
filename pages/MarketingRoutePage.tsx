@@ -260,6 +260,7 @@ export const MarketingRoutePage: React.FC = () => {
   const secondaryUrl = getMarketingPagePath(secondaryId, pageLang);
   const relatedPages = getRelatedMarketingPages(page.id, pageLang);
   const labels = UI_LABELS[pageLang] || UI_LABELS.en;
+  const showBridgeAside = page.category !== 'resources';
   const breadcrumbs = buildMarketingBreadcrumbs(page, contentMeta, pageLang, labels);
   const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
@@ -357,24 +358,26 @@ export const MarketingRoutePage: React.FC = () => {
         </section>
 
         <section className="bg-white py-16 md:py-20">
-          <div className="container mx-auto grid gap-8 px-6 lg:grid-cols-[0.8fr_1.2fr]">
-            <aside className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-              <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">{labels.bridgeEyebrow}</div>
-              <h2 className="mt-3 font-heading text-2xl font-black text-primary">
-                {labels.bridgeTitle}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-600">
-                {labels.bridgeBody}
-              </p>
-              <div className="mt-6 grid gap-2 text-sm font-bold text-slate-700">
-                <Link className="hover:text-primary" to={getMarketingPagePath('products', pageLang)}>{labels.products}</Link>
-                <Link className="hover:text-primary" to={getMarketingPagePath('platform', pageLang)}>{labels.platform}</Link>
-                <Link className="hover:text-primary" to={getMarketingPagePath('oem', pageLang)}>{labels.oem}</Link>
-                <Link className="hover:text-primary" to={getMarketingPagePath('distributors', pageLang)}>{labels.distributors}</Link>
-              </div>
-            </aside>
+          <div className={`container mx-auto grid gap-8 px-6 ${showBridgeAside ? 'lg:grid-cols-[0.8fr_1.2fr]' : ''}`}>
+            {showBridgeAside && (
+              <aside className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+                <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">{labels.bridgeEyebrow}</div>
+                <h2 className="mt-3 font-heading text-2xl font-black text-primary">
+                  {labels.bridgeTitle}
+                </h2>
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {labels.bridgeBody}
+                </p>
+                <div className="mt-6 grid gap-2 text-sm font-bold text-slate-700">
+                  <Link className="hover:text-primary" to={getMarketingPagePath('products', pageLang)}>{labels.products}</Link>
+                  <Link className="hover:text-primary" to={getMarketingPagePath('platform', pageLang)}>{labels.platform}</Link>
+                  <Link className="hover:text-primary" to={getMarketingPagePath('oem', pageLang)}>{labels.oem}</Link>
+                  <Link className="hover:text-primary" to={getMarketingPagePath('distributors', pageLang)}>{labels.distributors}</Link>
+                </div>
+              </aside>
+            )}
 
-            <div className="space-y-8">
+            <div className={`space-y-8 ${showBridgeAside ? '' : 'mx-auto w-full max-w-5xl'}`}>
               {content.sections.map((section: any, index: number) => (
                 <article key={`${section.title}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                   <h2 className="font-heading text-2xl font-black text-primary">{section.title}</h2>
