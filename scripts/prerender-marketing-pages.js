@@ -263,6 +263,43 @@ function renderWhitepaperDeepDive(whitepaper) {
   ].filter(Boolean).join('\n');
 }
 
+function renderPrerenderShell(meta) {
+  const content = meta.content;
+  const title = content?.title || meta.title || 'AquaVerify';
+  const description = content?.description || meta.description || '';
+
+  return [
+    '<div data-prerender-shell style="min-height: 100vh; background: #ffffff; color: #0f172a; font-family: Inter, Arial, sans-serif;">',
+    '  <header style="position: fixed; inset: 0 0 auto 0; z-index: 50; background: #ffffff; border-bottom: 1px solid #e2e8f0;">',
+    '    <div style="max-width: 1180px; margin: 0 auto; height: 80px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between;">',
+    '      <div style="display: flex; align-items: center; gap: 12px;">',
+    '        <img src="/images/logo-mark-160.png" alt="" width="32" height="40" style="display: block; width: 32px; height: 40px; object-fit: contain;" />',
+    '        <div style="font-size: 20px; font-weight: 800; letter-spacing: -0.01em; color: #0A4F7D;">Aqua<span style="color: #00AEEF;">Verify</span></div>',
+    '      </div>',
+    '      <div style="display: flex; gap: 14px;">',
+    '        <span style="display: block; width: 72px; height: 8px; border-radius: 999px; background: #f1f5f9;"></span>',
+    '        <span style="display: block; width: 56px; height: 8px; border-radius: 999px; background: #f1f5f9;"></span>',
+    '        <span style="display: block; width: 88px; height: 8px; border-radius: 999px; background: #f1f5f9;"></span>',
+    '      </div>',
+    '    </div>',
+    '  </header>',
+    '  <main style="padding-top: 80px;">',
+    '    <section style="background: #0A4F7D; color: #ffffff; padding: 72px 24px 84px;">',
+    '      <div style="max-width: 1040px; margin: 0 auto;">',
+    '        <div style="width: 132px; height: 12px; border-radius: 999px; background: rgba(255,255,255,.22);"></div>',
+    `        <h1 style="margin: 24px 0 0; max-width: 850px; font-size: clamp(36px, 7vw, 60px); line-height: 1.08; font-weight: 900;">${escapeHtml(title)}</h1>`,
+    description ? `        <p style="margin: 20px 0 0; max-width: 740px; font-size: 18px; line-height: 1.7; color: rgba(236,254,255,.88);">${escapeHtml(description)}</p>` : '',
+    '        <div style="margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap;">',
+    '          <span style="display: block; width: 150px; height: 44px; border-radius: 6px; background: #00AEEF;"></span>',
+    '          <span style="display: block; width: 138px; height: 44px; border-radius: 6px; border: 1px solid rgba(255,255,255,.28);"></span>',
+    '        </div>',
+    '      </div>',
+    '    </section>',
+    '  </main>',
+    '</div>'
+  ].filter(Boolean).join('\n');
+}
+
 function renderStaticRoot(meta) {
   const content = meta.content;
   const title = content?.title || meta.title;
@@ -272,6 +309,7 @@ function renderStaticRoot(meta) {
   const datasheetUrl = content?.datasheetUrl ? externalOrAbsolute(content.datasheetUrl) : '';
 
   return [
+    renderPrerenderShell(meta),
     '<main data-prerender="marketing-seo" style="font-family: Inter, Arial, sans-serif; color: #0f172a; background: #ffffff;">',
     '  <section style="padding: 48px 24px; background: #0A4F7D; color: #ffffff;">',
     '    <div style="max-width: 1040px; margin: 0 auto;">',
@@ -435,6 +473,29 @@ function removeDefaultShareMetadata(suffix) {
   return `${suffix.slice(0, startIndex)}${suffix.slice(endIndex)}`;
 }
 
+function moveStylesBeforeModuleScripts(html) {
+  const headEndIndex = html.indexOf('</head>');
+  if (headEndIndex === -1) return html;
+
+  const head = html.slice(0, headEndIndex);
+  const rest = html.slice(headEndIndex);
+  const stylesheetPattern = /^  <link rel="stylesheet"[^>]*>\n/gm;
+  const stylesheets = head.match(stylesheetPattern) || [];
+  if (!stylesheets.length) return html;
+
+  const headWithoutStyles = head.replace(stylesheetPattern, '');
+  const scriptIndex = headWithoutStyles.search(/^  <script type="module"/m);
+  if (scriptIndex === -1) return html;
+
+  const updatedHead = [
+    headWithoutStyles.slice(0, scriptIndex),
+    stylesheets.join(''),
+    headWithoutStyles.slice(scriptIndex)
+  ].join('');
+
+  return `${updatedHead}${rest}`;
+}
+
 function renderHtml(template, meta) {
   const identityMarker = '  <!-- AquaVerify platform identity -->';
   const rootMarker = '  <div id="root"></div>';
@@ -454,7 +515,9 @@ function renderHtml(template, meta) {
     throw new Error('Unable to find root marker in dist/index.html');
   }
 
-  return html.replace(rootMarker, `  <div id="root">\n${renderStaticRoot(meta)}\n  </div>`);
+  return moveStylesBeforeModuleScripts(
+    html.replace(rootMarker, `  <div id="root">\n${renderStaticRoot(meta)}\n  </div>`)
+  );
 }
 
 async function writeRouteHtml(routePath, html) {

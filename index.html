@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth scroll-pt-28">
+<html lang="en" class="no-js scroll-smooth scroll-pt-28">
 
 <head>
   <meta charset="UTF-8" />
@@ -23,6 +23,19 @@
   <meta name="application-name" content="AquaVerify" />
   <meta name="apple-mobile-web-app-title" content="AquaVerify" />
   <meta name="theme-color" content="#00AEEF" />
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+  </script>
+  <style>
+    .js [data-prerender="marketing-seo"] {
+      display: none !important;
+    }
+
+    .no-js [data-prerender-shell] {
+      display: none !important;
+    }
+  </style>
   <!-- AquaVerify default share metadata -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="AquaVerify" />

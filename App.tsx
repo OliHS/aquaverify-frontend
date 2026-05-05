@@ -17,7 +17,39 @@ const MarketingPageEditor = React.lazy(() => import('./pages/admin/MarketingPage
 const MarketingRoutePage = React.lazy(() => import('./pages/MarketingRoutePage').then(module => ({ default: module.MarketingRoutePage })));
 
 const RouteFallback: React.FC = () => (
-  <div className="min-h-screen bg-white" aria-hidden="true" />
+  <div className="min-h-screen bg-white" aria-hidden="true">
+    <header className="fixed top-0 z-50 w-full bg-white py-5 shadow-sm">
+      <div className="container mx-auto flex items-center justify-between px-6">
+        <div className="flex items-center space-x-3">
+          <img
+            src="/images/logo-mark-160.png"
+            alt=""
+            width={32}
+            height={40}
+            className="h-10 w-auto object-contain"
+          />
+          <span className="font-heading text-xl font-bold tracking-tight text-primary">
+            Aqua<span className="text-secondary">Verify</span>
+          </span>
+        </div>
+        <div className="hidden items-center gap-3 md:flex">
+          <span className="h-2 w-20 rounded-full bg-slate-100" />
+          <span className="h-2 w-16 rounded-full bg-slate-100" />
+          <span className="h-2 w-24 rounded-full bg-slate-100" />
+        </div>
+      </div>
+    </header>
+    <main className="pt-20">
+      <section className="bg-primary px-6 py-20 text-white md:py-24">
+        <div className="container mx-auto max-w-4xl">
+          <div className="h-3 w-32 rounded-full bg-white/20" />
+          <div className="mt-6 h-12 max-w-2xl rounded bg-white/20 md:h-16" />
+          <div className="mt-4 h-4 max-w-xl rounded bg-cyan-50/25" />
+          <div className="mt-3 h-4 max-w-lg rounded bg-cyan-50/20" />
+        </div>
+      </section>
+    </main>
+  </div>
 );
 
 const ScrollToTopOnRouteChange: React.FC = () => {
