@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import React, { Suspense, useEffect, useLayoutEffect, useRef } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
 import { PublicSite } from './pages/PublicSite';
 import { CorporateAnalytics } from './components/CorporateAnalytics';
@@ -20,10 +20,32 @@ const RouteFallback: React.FC = () => (
   <div className="min-h-screen bg-white" aria-hidden="true" />
 );
 
+const ScrollToTopOnRouteChange: React.FC = () => {
+  const { pathname, hash } = useLocation();
+  const previousPathname = useRef(pathname);
+
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    if (previousPathname.current === pathname) return;
+    previousPathname.current = pathname;
+    if (hash) return;
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [hash, pathname]);
+
+  return null;
+};
+
 const App: React.FC = () => {
   return (
     <LanguageProvider>
       <BrowserRouter>
+        <ScrollToTopOnRouteChange />
         <CorporateAnalytics />
         <Suspense fallback={<RouteFallback />}>
           <Routes>
