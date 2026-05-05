@@ -44,6 +44,30 @@
             ]
         }
     ],
+    "redirects": [
+        {
+            "source": "/",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.aquaverify.com"
+                }
+            ],
+            "destination": "https://aquaverify.com/",
+            "permanent": true
+        },
+        {
+            "source": "/:path*",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "www.aquaverify.com"
+                }
+            ],
+            "destination": "https://aquaverify.com/:path*",
+            "permanent": true
+        }
+    ],
     "rewrites": [
         {
             "source": "/(.*)",

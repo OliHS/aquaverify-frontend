@@ -120,6 +120,23 @@ async function run() {
     assert(/application\/ld\+json/i.test(corporateHtml), 'Organization JSON-LD missing');
   });
 
+  await check('www host redirects to canonical apex domain', async () => {
+    const url = new URL(CORPORATE_SITE_URL);
+    const apexHost = url.host.replace(/^www\./, '');
+    const cases = [
+      { source: `${url.protocol}//www.${apexHost}/`, destination: `${url.protocol}//${apexHost}/` },
+      { source: `${url.protocol}//www.${apexHost}/resources`, destination: `${url.protocol}//${apexHost}/resources` }
+    ];
+
+    for (const item of cases) {
+      const response = await fetchWithTimeout(item.source, { redirect: 'manual' });
+      const location = response.headers.get('location') || '';
+
+      assert([301, 308].includes(response.status), `${item.source} returned ${response.status}, expected permanent redirect`);
+      assert(location === item.destination, `${item.source} redirect location was ${location || 'empty'}`);
+    }
+  });
+
   await check('corporate robots and sitemap respond', async () => {
     const [{ text: robotsText }, { text: sitemapText }] = await Promise.all([
       getText(`${CORPORATE_SITE_URL}/robots.txt`),
