@@ -121,6 +121,7 @@ const UI_LABELS: Record<Language, {
 };
 
 const FEATURED_WHITEPAPER_IDS = [
+  'coliphages-indicators',
   'eu-drinking-water-directive-coliphages',
   'water-compliance-software-guide',
   'us-drinking-water-compliance-coliform-rule'
@@ -136,9 +137,10 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   en: {
     eyebrow: 'Featured whitepapers',
     title: 'Regulatory resources for qualified water quality buyers',
-    body: 'Start with the three highest-intent guides: European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
+    body: 'Start with the four highest-intent guides: viral indicators, European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
     cta: 'Open whitepaper',
     badges: {
+      'coliphages-indicators': 'Viral indicators',
       'eu-drinking-water-directive-coliphages': 'EU directive',
       'water-compliance-software-guide': 'Software evidence',
       'us-drinking-water-compliance-coliform-rule': 'US EPA / RTCR'
@@ -147,9 +149,10 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   es: {
     eyebrow: 'Whitepapers destacados',
     title: 'Recursos normativos para compradores de calidad del agua',
-    body: 'Empieza por las tres guías con mayor intención comercial: cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
+    body: 'Empieza por las cuatro guías con mayor intención comercial: indicadores virales, cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
     cta: 'Abrir whitepaper',
     badges: {
+      'coliphages-indicators': 'Indicadores virales',
       'eu-drinking-water-directive-coliphages': 'Directiva UE',
       'water-compliance-software-guide': 'Evidencia software',
       'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR EEUU'
@@ -158,9 +161,10 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   fr: {
     eyebrow: 'Whitepapers sélectionnés',
     title: 'Ressources réglementaires pour acheteurs qualité de l’eau',
-    body: 'Commencez par les trois guides les plus qualifiants: conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
+    body: 'Commencez par les quatre guides les plus qualifiants: indicateurs viraux, conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
     cta: 'Ouvrir le whitepaper',
     badges: {
+      'coliphages-indicators': 'Indicateurs viraux',
       'eu-drinking-water-directive-coliphages': 'Directive UE',
       'water-compliance-software-guide': 'Preuve logicielle',
       'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR USA'
@@ -169,9 +173,10 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   it: {
     eyebrow: 'Whitepaper in evidenza',
     title: 'Risorse normative per buyer qualità acqua',
-    body: 'Parti dalle tre guide a maggiore intento: conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
+    body: 'Parti dalle quattro guide a maggiore intento: indicatori virali, conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
     cta: 'Apri whitepaper',
     badges: {
+      'coliphages-indicators': 'Indicatori virali',
       'eu-drinking-water-directive-coliphages': 'Direttiva UE',
       'water-compliance-software-guide': 'Evidenza software',
       'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR USA'
@@ -180,9 +185,10 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   ca: {
     eyebrow: 'Whitepapers destacats',
     title: 'Recursos normatius per a compradors de qualitat de l’aigua',
-    body: 'Comença per les tres guies amb més intenció comercial: compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
+    body: 'Comença per les quatre guies amb més intenció comercial: indicadors virals, compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
     cta: 'Obrir whitepaper',
     badges: {
+      'coliphages-indicators': 'Indicadors virals',
       'eu-drinking-water-directive-coliphages': 'Directiva UE',
       'water-compliance-software-guide': 'Evidència software',
       'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR EUA'
@@ -225,6 +231,13 @@ type WhitepaperFlowStep = {
   body: string;
 };
 
+type WhitepaperTimelineItem = {
+  year: string;
+  region: string;
+  sector: string;
+  body: string;
+};
+
 type WhitepaperDeepDiveContent = {
   title: string;
   intro: string;
@@ -233,6 +246,8 @@ type WhitepaperDeepDiveContent = {
   comparison?: WhitepaperComparison[];
   flowTitle?: string;
   flow?: WhitepaperFlowStep[];
+  timelineTitle?: string;
+  timeline?: WhitepaperTimelineItem[];
   sourceLabel?: string;
   note?: string;
 };
@@ -297,6 +312,7 @@ const WhitepaperDeepDive: React.FC<{ content: WhitepaperDeepDiveContent }> = ({ 
   const metrics = content.metrics || [];
   const comparison = content.comparison || [];
   const flow = content.flow || [];
+  const timeline = content.timeline || [];
 
   return (
     <article className="overflow-hidden rounded-2xl border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-slate-50 shadow-sm">
@@ -373,6 +389,26 @@ const WhitepaperDeepDive: React.FC<{ content: WhitepaperDeepDiveContent }> = ({ 
         </div>
       )}
 
+      {timeline.length > 0 && (
+        <div className="border-t border-cyan-100/70 p-7">
+          {content.timelineTitle && (
+            <h3 className="font-heading text-xl font-black text-primary">{content.timelineTitle}</h3>
+          )}
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {timeline.map((item) => (
+              <div key={`${item.year}-${item.region}-${item.sector}`} className="rounded-xl border border-slate-200 bg-white p-5">
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-primary px-3 py-1 text-xs font-black text-white">{item.year}</span>
+                  <span className="rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-cyan-800">{item.region}</span>
+                </div>
+                <h4 className="mt-3 font-heading text-base font-black text-slate-900">{item.sector}</h4>
+                <p className="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {(content.sourceLabel || content.note) && (
         <div className="border-t border-cyan-100/70 bg-white/70 p-7">
           {content.sourceLabel && (
@@ -401,7 +437,7 @@ const FeaturedWhitepapersBlock: React.FC<{
         <h2 className="mt-3 font-heading text-3xl font-black text-primary">{copy.title}</h2>
         <p className="mt-3 text-base leading-7 text-slate-600">{copy.body}</p>
       </div>
-      <div className="mt-6 grid gap-4 md:grid-cols-3">
+      <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         {items.map((item) => (
           <Link
             key={item.id}

@@ -78,6 +78,7 @@ const PRODUCT_LABELS = {
 };
 
 const FEATURED_WHITEPAPER_IDS = [
+  'coliphages-indicators',
   'eu-drinking-water-directive-coliphages',
   'water-compliance-software-guide',
   'us-drinking-water-compliance-coliform-rule'
@@ -87,9 +88,10 @@ const FEATURED_WHITEPAPER_COPY = {
   en: {
     eyebrow: 'Featured whitepapers',
     title: 'Regulatory resources for qualified water quality buyers',
-    body: 'Start with the three highest-intent guides: European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
+    body: 'Start with four high-intent guides: viral indicators, European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
     cta: 'Open whitepaper',
     badges: {
+      'coliphages-indicators': 'Viral indicators',
       'eu-drinking-water-directive-coliphages': 'EU directive',
       'water-compliance-software-guide': 'Software evidence',
       'us-drinking-water-compliance-coliform-rule': 'US EPA / RTCR'
@@ -98,9 +100,10 @@ const FEATURED_WHITEPAPER_COPY = {
   es: {
     eyebrow: 'Whitepapers destacados',
     title: 'Recursos normativos para compradores de calidad del agua',
-    body: 'Empieza por las tres guías con mayor intención comercial: cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
+    body: 'Empieza por cuatro guías con alta intención comercial: indicadores virales, cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
     cta: 'Abrir whitepaper',
     badges: {
+      'coliphages-indicators': 'Indicadores virales',
       'eu-drinking-water-directive-coliphages': 'Directiva UE',
       'water-compliance-software-guide': 'Evidencia software',
       'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR EEUU'
@@ -109,9 +112,10 @@ const FEATURED_WHITEPAPER_COPY = {
   fr: {
     eyebrow: 'Whitepapers sélectionnés',
     title: 'Ressources réglementaires pour acheteurs qualité de l’eau',
-    body: 'Commencez par les trois guides les plus qualifiants: conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
+    body: 'Commencez par quatre guides à forte intention: indicateurs viraux, conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
     cta: 'Ouvrir le whitepaper',
     badges: {
+      'coliphages-indicators': 'Indicateurs viraux',
       'eu-drinking-water-directive-coliphages': 'Directive UE',
       'water-compliance-software-guide': 'Preuve logicielle',
       'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR USA'
@@ -120,9 +124,10 @@ const FEATURED_WHITEPAPER_COPY = {
   it: {
     eyebrow: 'Whitepaper in evidenza',
     title: 'Risorse normative per buyer qualità acqua',
-    body: 'Parti dalle tre guide a maggiore intento: conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
+    body: 'Parti da quattro guide ad alto intento: indicatori virali, conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
     cta: 'Apri whitepaper',
     badges: {
+      'coliphages-indicators': 'Indicatori virali',
       'eu-drinking-water-directive-coliphages': 'Direttiva UE',
       'water-compliance-software-guide': 'Evidenza software',
       'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR USA'
@@ -131,9 +136,10 @@ const FEATURED_WHITEPAPER_COPY = {
   ca: {
     eyebrow: 'Whitepapers destacats',
     title: 'Recursos normatius per a compradors de qualitat de l’aigua',
-    body: 'Comença per les tres guies amb més intenció comercial: compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
+    body: 'Comença per quatre guies amb alta intenció comercial: indicadors virals, compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
     cta: 'Obrir whitepaper',
     badges: {
+      'coliphages-indicators': 'Indicadors virals',
       'eu-drinking-water-directive-coliphages': 'Directiva UE',
       'water-compliance-software-guide': 'Evidència software',
       'us-drinking-water-compliance-coliform-rule': 'EPA / RTCR EUA'
@@ -235,6 +241,7 @@ function renderWhitepaperDeepDive(whitepaper) {
   const metrics = Array.isArray(whitepaper.metrics) ? whitepaper.metrics : [];
   const comparison = Array.isArray(whitepaper.comparison) ? whitepaper.comparison : [];
   const flow = Array.isArray(whitepaper.flow) ? whitepaper.flow : [];
+  const timeline = Array.isArray(whitepaper.timeline) ? whitepaper.timeline : [];
 
   return [
     '      <section>',
@@ -255,6 +262,12 @@ function renderWhitepaperDeepDive(whitepaper) {
     flow.length ? [
       '        <ol>',
       ...flow.map((step) => `          <li><strong>${escapeHtml(step.title || '')}</strong> ${escapeHtml(step.body || '')}</li>`),
+      '        </ol>'
+    ].join('\n') : '',
+    whitepaper.timelineTitle ? `        <h3>${escapeHtml(whitepaper.timelineTitle)}</h3>` : '',
+    timeline.length ? [
+      '        <ol>',
+      ...timeline.map((item) => `          <li><strong>${escapeHtml(item.year || '')} · ${escapeHtml(item.region || '')} · ${escapeHtml(item.sector || '')}</strong> ${escapeHtml(item.body || '')}</li>`),
       '        </ol>'
     ].join('\n') : '',
     whitepaper.sourceLabel ? `        <p><strong>${escapeHtml(whitepaper.sourceLabel)}</strong></p>` : '',

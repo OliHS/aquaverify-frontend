@@ -233,6 +233,158 @@ const WHITEPAPER_DEEP_DIVES = {
       note: 'Aquest recurs és material d’orientació. Els requisits d’autoritat competent, acreditació i sistema de qualitat continuen sent decisius.'
     }
   },
+  viralIndicator: {
+    en: {
+      title: 'Infographic: why coliphages are a stronger viral indicator',
+      intro: 'Traditional bacterial indicators remain useful, but they do not fully model enteric virus persistence, size, treatment behaviour or resistance. Coliphages give laboratories a more operational proxy for viral-risk conversations while keeping the workflow measurable with established microbiology methods.',
+      metrics: [
+        { label: 'Viral proxy', value: '20-100 nm', body: 'Coliphages are similar in scale to many enteric viruses and behave more like viruses than bacterial cells during treatment.', tone: 'cyan' },
+        { label: 'Decision gap', value: 'E. coli absence', body: 'A negative bacterial indicator result does not automatically prove that infectious viruses are absent.', tone: 'rose' },
+        { label: 'Workflow need', value: 'PFU + chain of custody', body: 'Plaque counts, host strains, incubation windows and reviewer history need controlled traceability.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Bacterial indicators versus coliphage indicators',
+      comparison: [
+        { label: 'E. coli / enterococci', title: 'Excellent fecal signal, weaker viral model', body: 'Useful for routine bacterial contamination control, but less representative of enteric virus resistance to disinfection and environmental persistence.', valuePercent: 45, tone: 'slate' },
+        { label: 'Somatic and F-specific coliphages', title: 'Closer operational model for viral behaviour', body: 'Non-enveloped bacteriophages provide a practical way to discuss viral indicators, treatment performance and source-water risk.', valuePercent: 88, tone: 'cyan' }
+      ],
+      flowTitle: 'From scientific rationale to operational workflow',
+      flow: [
+        { title: 'Define the monitoring question', body: 'Separate fecal-indicator screening, viral-indicator evidence, treatment validation and customer reporting needs.' },
+        { title: 'Select the coliphage route', body: 'Map somatic or F-specific coliphage workflows, sample volume, host strain, controls and acceptance language.' },
+        { title: 'Connect products and data', body: 'Link kits, controls, plaque counts, reviewer history and reports inside AquaVerify Cloud.' },
+        { title: 'Turn interest into action', body: 'Route whitepaper visitors to product quote, distributor, OEM or SaaS demo flows with CRM attribution.' }
+      ],
+      timelineTitle: 'Regulatory signal timeline',
+      timeline: [
+        { year: '1989', region: 'USA', sector: 'Treatment performance', body: 'US drinking-water filtration and disinfection rules helped frame virus removal as an operational treatment question.' },
+        { year: '2000', region: 'ISO', sector: 'Somatic coliphage enumeration', body: 'ISO 10705-2 provides a standardized context for detecting and enumerating somatic coliphages.' },
+        { year: '2001', region: 'EPA', sector: 'Methods 1601 / 1602', body: 'EPA methods formalized enrichment and single agar layer routes for male-specific and somatic coliphages.' },
+        { year: '2020', region: 'EU', sector: 'Drinking water risk assessment', body: 'Directive (EU) 2020/2184 includes somatic coliphages in raw-water operational monitoring when risk assessment indicates it is appropriate.' }
+      ],
+      sourceLabel: 'Directive (EU) 2020/2184, ISO 10705-2 and EPA Methods 1601/1602 context',
+      note: 'This whitepaper is technical orientation for B2B buyers. It does not replace accredited method validation, legal advice or competent-authority requirements.'
+    },
+    es: {
+      title: 'Infografía: por qué los colífagos son un indicador viral más sólido',
+      intro: 'Los indicadores bacterianos tradicionales siguen siendo útiles, pero no modelan por completo la persistencia, tamaño, comportamiento frente al tratamiento ni resistencia de los virus entéricos. Los colífagos ofrecen a los laboratorios un proxy más operativo para hablar de riesgo viral con métodos microbiológicos medibles.',
+      metrics: [
+        { label: 'Proxy viral', value: '20-100 nm', body: 'Los colífagos tienen una escala comparable a muchos virus entéricos y se comportan más como virus que como células bacterianas durante el tratamiento.', tone: 'cyan' },
+        { label: 'Brecha de decisión', value: 'Ausencia de E. coli', body: 'Un resultado negativo en indicador bacteriano no demuestra automáticamente ausencia de virus infecciosos.', tone: 'rose' },
+        { label: 'Necesidad operativa', value: 'UFP + custodia', body: 'Recuentos de placa, cepas huésped, ventanas de incubación e historial de revisión necesitan trazabilidad controlada.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Indicadores bacterianos frente a indicadores colífagos',
+      comparison: [
+        { label: 'E. coli / enterococos', title: 'Excelente señal fecal, modelo viral más débil', body: 'Útiles para control rutinario de contaminación bacteriana, pero menos representativos de resistencia viral a desinfección y persistencia ambiental.', valuePercent: 45, tone: 'slate' },
+        { label: 'Colífagos somáticos y F-específicos', title: 'Modelo operativo más cercano al comportamiento viral', body: 'Bacteriófagos sin envoltura que ayudan a discutir indicadores virales, eficacia de tratamiento y riesgo de agua de origen.', valuePercent: 88, tone: 'cyan' }
+      ],
+      flowTitle: 'De la base científica al flujo operativo',
+      flow: [
+        { title: 'Definir la pregunta de monitorización', body: 'Separar cribado fecal, evidencia de indicador viral, validación de tratamiento y reporting a cliente.' },
+        { title: 'Seleccionar la ruta colífagos', body: 'Mapear flujos somáticos o F-específicos, volumen, cepa huésped, controles y lenguaje de aceptación.' },
+        { title: 'Conectar productos y datos', body: 'Vincular kits, controles, recuentos, revisión e informes dentro de AquaVerify Cloud.' },
+        { title: 'Convertir interés en acción', body: 'Dirigir lectores del whitepaper a cotización, distribuidor, OEM o demo SaaS con atribución CRM.' }
+      ],
+      timelineTitle: 'Línea temporal de señal normativa',
+      timeline: [
+        { year: '1989', region: 'EEUU', sector: 'Eficacia de tratamiento', body: 'Las reglas de filtración y desinfección de agua potable ayudaron a enmarcar la eliminación de virus como cuestión operativa de tratamiento.' },
+        { year: '2000', region: 'ISO', sector: 'Enumeración de colífagos somáticos', body: 'ISO 10705-2 aporta contexto estandarizado para detección y enumeración de colífagos somáticos.' },
+        { year: '2001', region: 'EPA', sector: 'Métodos 1601 / 1602', body: 'Los métodos EPA formalizan rutas de enriquecimiento y single agar layer para colífagos F+ y somáticos.' },
+        { year: '2020', region: 'UE', sector: 'Evaluación de riesgo en agua potable', body: 'La Directiva (UE) 2020/2184 incluye colífagos somáticos en monitorización operativa de agua bruta cuando la evaluación de riesgos lo indique.' }
+      ],
+      sourceLabel: 'Contexto Directiva (UE) 2020/2184, ISO 10705-2 y EPA Methods 1601/1602',
+      note: 'Este whitepaper es orientación técnica para compradores B2B. No sustituye validación de método, asesoramiento legal ni requisitos de autoridad competente.'
+    },
+    fr: {
+      title: 'Infographie: pourquoi les coliphages sont un indicateur viral plus solide',
+      intro: 'Les indicateurs bactériens restent utiles, mais ne modélisent pas totalement la persistance, la taille, le comportement au traitement ni la résistance des virus entériques. Les coliphages donnent aux laboratoires un proxy plus opérationnel pour discuter le risque viral avec des méthodes mesurables.',
+      metrics: [
+        { label: 'Proxy viral', value: '20-100 nm', body: 'Les coliphages ont une échelle comparable à de nombreux virus entériques et se comportent davantage comme des virus que comme des cellules bactériennes.', tone: 'cyan' },
+        { label: 'Écart décisionnel', value: 'Absence d’E. coli', body: 'Un résultat négatif d’indicateur bactérien ne prouve pas automatiquement l’absence de virus infectieux.', tone: 'rose' },
+        { label: 'Besoin opérationnel', value: 'UFP + traçabilité', body: 'Dénombrements, souches hôtes, fenêtres d’incubation et historique de revue exigent une traçabilité contrôlée.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Indicateurs bactériens versus indicateurs coliphages',
+      comparison: [
+        { label: 'E. coli / entérocoques', title: 'Très bon signal fécal, modèle viral plus faible', body: 'Utiles pour le contrôle bactérien courant, mais moins représentatifs de la résistance virale à la désinfection et de la persistance environnementale.', valuePercent: 45, tone: 'slate' },
+        { label: 'Coliphages somatiques et F-spécifiques', title: 'Modèle opérationnel plus proche du comportement viral', body: 'Des bactériophages non enveloppés aident à discuter indicateurs viraux, performance de traitement et risque eau source.', valuePercent: 88, tone: 'cyan' }
+      ],
+      flowTitle: 'De la base scientifique au flux opérationnel',
+      flow: [
+        { title: 'Définir la question de surveillance', body: 'Distinguer dépistage fécal, preuve d’indicateur viral, validation traitement et reporting client.' },
+        { title: 'Choisir la route coliphages', body: 'Cartographier flux somatiques ou F-spécifiques, volume, souche hôte, contrôles et langage d’acceptation.' },
+        { title: 'Connecter produits et données', body: 'Relier kits, contrôles, dénombrements, revue et rapports dans AquaVerify Cloud.' },
+        { title: 'Transformer l’intérêt en action', body: 'Orienter les lecteurs vers devis produit, distributeur, OEM ou démo SaaS avec attribution CRM.' }
+      ],
+      timelineTitle: 'Chronologie du signal réglementaire',
+      timeline: [
+        { year: '1989', region: 'USA', sector: 'Performance de traitement', body: 'Les règles filtration et désinfection eau potable ont aidé à cadrer l’élimination des virus comme question opérationnelle.' },
+        { year: '2000', region: 'ISO', sector: 'Dénombrement coliphages somatiques', body: 'ISO 10705-2 fournit un contexte standardisé pour détecter et dénombrer les coliphages somatiques.' },
+        { year: '2001', region: 'EPA', sector: 'Méthodes 1601 / 1602', body: 'Les méthodes EPA formalisent les routes enrichissement et single agar layer pour coliphages F+ et somatiques.' },
+        { year: '2020', region: 'UE', sector: 'Évaluation du risque eau potable', body: 'La directive (UE) 2020/2184 inclut les coliphages somatiques en surveillance opérationnelle de l’eau brute lorsque l’évaluation des risques l’indique.' }
+      ],
+      sourceLabel: 'Contexte directive (UE) 2020/2184, ISO 10705-2 et EPA Methods 1601/1602',
+      note: 'Ce whitepaper est une orientation technique pour acheteurs B2B. Il ne remplace pas validation méthode, conseil juridique ou exigences d’autorité compétente.'
+    },
+    it: {
+      title: 'Infografica: perché i colifagi sono un indicatore virale più solido',
+      intro: 'Gli indicatori batterici tradizionali restano utili, ma non modellano pienamente persistenza, dimensione, comportamento al trattamento e resistenza dei virus enterici. I colifagi offrono ai laboratori un proxy più operativo per discutere rischio virale con metodi microbiologici misurabili.',
+      metrics: [
+        { label: 'Proxy virale', value: '20-100 nm', body: 'I colifagi hanno scala comparabile a molti virus enterici e si comportano più come virus che come cellule batteriche durante il trattamento.', tone: 'cyan' },
+        { label: 'Gap decisionale', value: 'Assenza di E. coli', body: 'Un risultato negativo per indicatore batterico non prova automaticamente l’assenza di virus infettivi.', tone: 'rose' },
+        { label: 'Bisogno operativo', value: 'PFU + custodia', body: 'Conteggi di placca, ceppi ospiti, finestre di incubazione e storico revisione richiedono tracciabilità controllata.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Indicatori batterici versus indicatori colifagi',
+      comparison: [
+        { label: 'E. coli / enterococchi', title: 'Ottimo segnale fecale, modello virale più debole', body: 'Utili per controllo batterico routinario, ma meno rappresentativi di resistenza virale a disinfezione e persistenza ambientale.', valuePercent: 45, tone: 'slate' },
+        { label: 'Colifagi somatici e F-specifici', title: 'Modello operativo più vicino al comportamento virale', body: 'Batteriofagi non avvolti aiutano a discutere indicatori virali, performance del trattamento e rischio acqua sorgente.', valuePercent: 88, tone: 'cyan' }
+      ],
+      flowTitle: 'Dalla base scientifica al flusso operativo',
+      flow: [
+        { title: 'Definire la domanda di monitoraggio', body: 'Separare screening fecale, evidenza indicatore virale, validazione trattamento e reporting cliente.' },
+        { title: 'Selezionare la rotta colifagi', body: 'Mappare flussi somatici o F-specifici, volume, ceppo ospite, controlli e linguaggio di accettazione.' },
+        { title: 'Collegare prodotti e dati', body: 'Collegare kit, controlli, conteggi, revisione e report in AquaVerify Cloud.' },
+        { title: 'Trasformare interesse in azione', body: 'Dirigere i lettori verso preventivo, distributore, OEM o demo SaaS con attribuzione CRM.' }
+      ],
+      timelineTitle: 'Timeline del segnale normativo',
+      timeline: [
+        { year: '1989', region: 'USA', sector: 'Performance trattamento', body: 'Le regole su filtrazione e disinfezione acqua potabile hanno inquadrato la rimozione dei virus come tema operativo.' },
+        { year: '2000', region: 'ISO', sector: 'Enumerazione colifagi somatici', body: 'ISO 10705-2 offre contesto standardizzato per rilevare ed enumerare colifagi somatici.' },
+        { year: '2001', region: 'EPA', sector: 'Metodi 1601 / 1602', body: 'I metodi EPA formalizzano rotte enrichment e single agar layer per colifagi F+ e somatici.' },
+        { year: '2020', region: 'UE', sector: 'Valutazione rischio acqua potabile', body: 'La Direttiva (UE) 2020/2184 include colifagi somatici nel monitoraggio operativo dell’acqua grezza quando indicato dalla valutazione del rischio.' }
+      ],
+      sourceLabel: 'Contesto Direttiva (UE) 2020/2184, ISO 10705-2 ed EPA Methods 1601/1602',
+      note: 'Questo whitepaper è orientamento tecnico per buyer B2B. Non sostituisce validazione metodo, consulenza legale o requisiti dell’autorità competente.'
+    },
+    ca: {
+      title: 'Infografia: per què els colífags són un indicador viral més sòlid',
+      intro: 'Els indicadors bacterians tradicionals continuen sent útils, però no modelen del tot persistència, mida, comportament davant el tractament ni resistència dels virus entèrics. Els colífags ofereixen als laboratoris un proxy més operatiu per parlar de risc viral amb mètodes mesurables.',
+      metrics: [
+        { label: 'Proxy viral', value: '20-100 nm', body: 'Els colífags tenen una escala comparable a molts virus entèrics i es comporten més com virus que com cèl·lules bacterianes durant el tractament.', tone: 'cyan' },
+        { label: 'Bretxa de decisió', value: 'Absència d’E. coli', body: 'Un resultat negatiu en indicador bacterià no prova automàticament absència de virus infecciosos.', tone: 'rose' },
+        { label: 'Necessitat operativa', value: 'UFP + custòdia', body: 'Recomptes de plaques, soques hoste, finestres d’incubació i historial de revisió necessiten traçabilitat controlada.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Indicadors bacterians davant indicadors colífags',
+      comparison: [
+        { label: 'E. coli / enterococs', title: 'Excel·lent senyal fecal, model viral més feble', body: 'Útils per al control bacterià rutinari, però menys representatius de resistència viral a desinfecció i persistència ambiental.', valuePercent: 45, tone: 'slate' },
+        { label: 'Colífags somàtics i F-específics', title: 'Model operatiu més proper al comportament viral', body: 'Bacteriòfags sense embolcall que ajuden a discutir indicadors virals, eficàcia de tractament i risc d’aigua d’origen.', valuePercent: 88, tone: 'cyan' }
+      ],
+      flowTitle: 'De la base científica al flux operatiu',
+      flow: [
+        { title: 'Definir la pregunta de monitoratge', body: 'Separar cribratge fecal, evidència d’indicador viral, validació de tractament i reporting a client.' },
+        { title: 'Seleccionar la ruta colífags', body: 'Mapar fluxos somàtics o F-específics, volum, soca hoste, controls i llenguatge d’acceptació.' },
+        { title: 'Connectar productes i dades', body: 'Vincular kits, controls, recomptes, revisió i informes dins AquaVerify Cloud.' },
+        { title: 'Convertir interès en acció', body: 'Dirigir lectors a pressupost, distribuïdor, OEM o demo SaaS amb atribució CRM.' }
+      ],
+      timelineTitle: 'Línia temporal de senyal normativa',
+      timeline: [
+        { year: '1989', region: 'EUA', sector: 'Eficàcia de tractament', body: 'Les regles de filtració i desinfecció d’aigua potable van ajudar a emmarcar eliminació de virus com a qüestió operativa.' },
+        { year: '2000', region: 'ISO', sector: 'Enumeració de colífags somàtics', body: 'ISO 10705-2 aporta context estandarditzat per detectar i enumerar colífags somàtics.' },
+        { year: '2001', region: 'EPA', sector: 'Mètodes 1601 / 1602', body: 'Els mètodes EPA formalitzen rutes d’enriquiment i single agar layer per a colífags F+ i somàtics.' },
+        { year: '2020', region: 'UE', sector: 'Avaluació de risc en aigua potable', body: 'La Directiva (UE) 2020/2184 inclou colífags somàtics en monitoratge operatiu d’aigua bruta quan l’avaluació de riscos ho indica.' }
+      ],
+      sourceLabel: 'Context Directiva (UE) 2020/2184, ISO 10705-2 i EPA Methods 1601/1602',
+      note: 'Aquest whitepaper és orientació tècnica per a compradors B2B. No substitueix validació de mètode, assessorament legal ni requisits d’autoritat competent.'
+    }
+  },
   software: {
     en: {
       title: 'Infographic: from manual records to automated compliance evidence',
@@ -973,26 +1125,51 @@ export const MARKETING_PAGES = [
     ], { eyebrow: 'Recurs', primaryCta: 'Parlar de flux EPA', secondaryCta: 'Veure productes' })
   }, { parentId: 'resources' }),
   page('coliphages-indicators', 'resources', 'quote', {
-    en: locale('/resources/coliphages-water-quality-indicators', 'Coliphages as viral indicators for water quality', 'A practical introduction to why coliphages matter in modern water quality monitoring.', [
-      section('A stronger indicator story', 'Coliphages can provide useful viral-indicator information in addition to traditional bacterial indicators.'),
-      section('From scientific need to operational workflow', 'AquaVerify connects indicator testing products with digital reporting and traceability.')
-    ], { eyebrow: 'Resource', primaryCta: 'Ask about coliphage products', secondaryCta: 'View ENUMERA' }),
-    es: locale('/es/recursos/colifagos-indicadores-calidad-agua', 'Colífagos como indicadores virales de calidad del agua', 'Introducción práctica a por qué los colífagos importan en la monitorización moderna de calidad del agua.', [
-      section('Una historia de indicador más fuerte', 'Los colífagos pueden aportar información útil como indicadores virales además de los indicadores bacterianos tradicionales.'),
-      section('De la necesidad científica al flujo operativo', 'AquaVerify conecta productos de análisis de indicadores con reporting digital y trazabilidad.')
-    ], { eyebrow: 'Recurso', primaryCta: 'Preguntar por productos colífagos', secondaryCta: 'Ver ENUMERA' }),
-    fr: locale('/fr/ressources/coliphages-indicateurs-qualite-eau', 'Coliphages comme indicateurs viraux de qualité de l’eau', 'Introduction pratique à l’importance des coliphages dans la surveillance moderne de la qualité de l’eau.', [
-      section('Une histoire d’indicateur plus forte', 'Les coliphages peuvent apporter une information utile d’indicateur viral en plus des indicateurs bactériens traditionnels.'),
-      section('Du besoin scientifique au flux opérationnel', 'AquaVerify connecte produits d’analyse d’indicateurs, reporting numérique et traçabilité.')
-    ], { eyebrow: 'Ressource', primaryCta: 'Demander produits coliphages', secondaryCta: 'Voir ENUMERA' }),
-    it: locale('/it/risorse/colifagi-indicatori-qualita-acqua', 'Colifagi come indicatori virali di qualità dell’acqua', 'Introduzione pratica al perché i colifagi contano nel monitoraggio moderno della qualità dell’acqua.', [
-      section('Una storia di indicatore più forte', 'I colifagi possono fornire informazioni utili come indicatori virali oltre agli indicatori batterici tradizionali.'),
-      section('Dal bisogno scientifico al flusso operativo', 'AquaVerify collega prodotti di analisi indicatori con reporting digitale e tracciabilità.')
-    ], { eyebrow: 'Risorsa', primaryCta: 'Chiedi prodotti colifagi', secondaryCta: 'Vedi ENUMERA' }),
-    ca: locale('/ca/recursos/colifags-indicadors-qualitat-aigua', 'Colífags com a indicadors virals de qualitat de l’aigua', 'Introducció pràctica a per què els colífags importen en el monitoratge modern de qualitat de l’aigua.', [
-      section('Una història d’indicador més forta', 'Els colífags poden aportar informació útil com a indicadors virals a més dels indicadors bacterians tradicionals.'),
-      section('De la necessitat científica al flux operatiu', 'AquaVerify connecta productes d’anàlisi d’indicadors amb reporting digital i traçabilitat.')
-    ], { eyebrow: 'Recurs', primaryCta: 'Preguntar per productes colífags', secondaryCta: 'Veure ENUMERA' })
+    en: locale('/resources/coliphages-water-quality-indicators', 'Why coliphages are the ultimate viral indicator for water quality', 'Whitepaper on why coliphages overcome the limits of traditional bacterial indicators and how labs can connect coliphage workflows to digital traceability.', [
+      section('Executive summary', 'For more than a century, water teams have relied on bacterial indicators such as E. coli and enterococci to evaluate fecal contamination. Those indicators remain essential, but viral waterborne risk exposes a critical blind spot: bacteria are not always adequate predictive models for human enteric viruses.', ['Enteric viruses can persist longer in water environments', 'Standard disinfection behaviour is not identical for bacteria and viruses', 'Absence of E. coli does not automatically prove absence of infectious viruses', 'Coliphages give a practical viral-indicator layer for modern monitoring']),
+      section('Why coliphages are the right proxy', 'Coliphages are bacteriophages that infect E. coli. From an environmental and analytical perspective, they share operational characteristics with enteric viruses: similar size range, no lipid envelope, no multiplication without a specific host and comparable resistance patterns.', ['Structural and size similarity with many enteric viruses', 'No environmental multiplication outside the host cell', 'Resistance profile closer to viral pathogens than bacterial indicators', 'Useful bridge between scientific risk and routine laboratory workflow']),
+      section('Somatic versus F-specific coliphages', 'Somatic coliphages infect bacteria through receptors on the cell wall and are abundant in raw wastewater, making them useful for general fecal-contamination and treatment-performance contexts. F-specific coliphages infect through sex pili and are especially relevant when teams discuss recent fecal contamination or UV-disinfection efficiency.', ['Somatic coliphages for broad fecal contamination and barrier performance', 'F-specific coliphages for viral-like behaviour and UV-disinfection discussions', 'Host strain, controls and incubation windows must be managed carefully', 'PFU results need audit-ready sample and review context']),
+      section('How AquaVerify turns the science into a workflow', 'AquaVerify connects coliphage-focused products with AquaVerify Cloud so laboratories, distributors and quality teams can manage sample context, host strains, plaque counts, review history and customer reports in one traceable workflow.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Ask about coliphage products', secondaryCta: 'Explore resources', seoTitle: 'Why Coliphages Are the Ultimate Viral Indicator | AquaVerify Whitepaper', seoDescription: 'Whitepaper on coliphages as viral indicators, E. coli limitations, somatic versus F-specific coliphages, ISO 10705, EPA methods and LIMS traceability.', whitepaper: whitepaperDeepDive('viralIndicator', 'en'), faqs: [
+      { question: 'Do coliphages replace E. coli or enterococci monitoring?', answer: 'No. Coliphages add a viral-indicator layer. Traditional bacterial indicators remain important and must be interpreted within the applicable method, regulation and quality system.' },
+      { question: 'Why are coliphages useful for SEO and qualified leads?', answer: 'Visitors searching for coliphages, viral indicators, ISO 10705 or EPA coliphage methods are usually closer to a technical buying, laboratory, OEM or SaaS workflow conversation.' }
+    ] }),
+    es: locale('/es/recursos/colifagos-indicadores-calidad-agua', 'Por qué los colífagos son el indicador viral definitivo para calidad del agua', 'Whitepaper sobre por qué los colífagos superan límites de los indicadores bacterianos tradicionales y cómo conectar estos flujos con trazabilidad digital.', [
+      section('Resumen ejecutivo', 'Durante más de un siglo, los equipos de agua han confiado en indicadores bacterianos como E. coli y enterococos para evaluar contaminación fecal. Siguen siendo esenciales, pero el riesgo viral transmitido por el agua muestra una vulnerabilidad crítica: las bacterias no siempre son modelos predictivos adecuados para virus entéricos humanos.', ['Los virus entéricos pueden persistir más tiempo en ambientes acuáticos', 'El comportamiento frente a desinfección no es idéntico en bacterias y virus', 'La ausencia de E. coli no demuestra automáticamente ausencia de virus infecciosos', 'Los colífagos aportan una capa práctica de indicador viral para monitorización moderna']),
+      section('Por qué los colífagos son el proxy adecuado', 'Los colífagos son bacteriófagos que infectan E. coli. Desde una perspectiva ambiental y analítica comparten características operativas con virus entéricos: rango de tamaño similar, ausencia de envoltura lipídica, no multiplicación sin huésped específico y patrones de resistencia comparables.', ['Similitud estructural y de tamaño con muchos virus entéricos', 'Sin multiplicación ambiental fuera de la célula huésped', 'Perfil de resistencia más cercano a patógenos virales que a indicadores bacterianos', 'Puente útil entre riesgo científico y flujo rutinario de laboratorio']),
+      section('Colífagos somáticos frente a F-específicos', 'Los colífagos somáticos infectan a través de receptores de pared celular y son abundantes en aguas residuales brutas, por lo que ayudan en contextos de contaminación fecal general y eficacia de barreras. Los F-específicos infectan mediante pili sexuales y son relevantes al discutir contaminación fecal reciente o eficiencia de desinfección UV.', ['Somáticos para contaminación fecal amplia y rendimiento de barreras', 'F-específicos para comportamiento tipo viral y discusiones de desinfección UV', 'Cepa huésped, controles y ventanas de incubación requieren gestión cuidadosa', 'Resultados UFP necesitan contexto de muestra y revisión listo para auditoría']),
+      section('Cómo AquaVerify convierte la ciencia en flujo operativo', 'AquaVerify conecta productos centrados en colífagos con AquaVerify Cloud para que laboratorios, distribuidores y equipos de calidad gestionen contexto de muestra, cepas huésped, recuentos de placa, revisión e informes en un único flujo trazable.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Preguntar por productos colífagos', secondaryCta: 'Explorar recursos', seoTitle: 'Por qué los colífagos son el indicador viral definitivo | Whitepaper AquaVerify', seoDescription: 'Whitepaper sobre colífagos como indicadores virales, límites de E. coli, colífagos somáticos frente a F-específicos, ISO 10705, métodos EPA y trazabilidad LIMS.', whitepaper: whitepaperDeepDive('viralIndicator', 'es'), faqs: [
+      { question: '¿Los colífagos sustituyen la monitorización de E. coli o enterococos?', answer: 'No. Añaden una capa de indicador viral. Los indicadores bacterianos siguen siendo importantes y deben interpretarse según método, regulación y sistema de calidad aplicables.' },
+      { question: '¿Por qué este tema atrae leads cualificados?', answer: 'Quien busca colífagos, indicadores virales, ISO 10705 o métodos EPA de colífagos suele estar cerca de una conversación técnica de compra, laboratorio, OEM o SaaS.' }
+    ] }),
+    fr: locale('/fr/ressources/coliphages-indicateurs-qualite-eau', 'Pourquoi les coliphages sont l’indicateur viral ultime pour la qualité de l’eau', 'Whitepaper sur les coliphages comme indicateurs viraux, les limites des indicateurs bactériens et la traçabilité numérique des flux laboratoire.', [
+      section('Résumé exécutif', 'Depuis plus d’un siècle, les équipes eau utilisent E. coli et entérocoques pour évaluer la contamination fécale. Ces indicateurs restent essentiels, mais le risque viral hydrique révèle une limite: les bactéries ne sont pas toujours des modèles prédictifs adaptés aux virus entériques humains.', ['Les virus entériques peuvent persister plus longtemps dans l’eau', 'Le comportement face à la désinfection diffère entre bactéries et virus', 'L’absence d’E. coli ne prouve pas automatiquement l’absence de virus infectieux', 'Les coliphages ajoutent une couche pratique d’indicateur viral']),
+      section('Pourquoi les coliphages sont le bon proxy', 'Les coliphages sont des bactériophages infectant E. coli. Ils partagent des caractéristiques opérationnelles avec les virus entériques: taille comparable, absence d’enveloppe lipidique, pas de multiplication sans hôte spécifique et profils de résistance proches.', ['Similarité structurelle et de taille avec de nombreux virus entériques', 'Pas de multiplication environnementale hors cellule hôte', 'Profil de résistance plus proche des pathogènes viraux que des indicateurs bactériens', 'Pont utile entre risque scientifique et routine laboratoire']),
+      section('Coliphages somatiques versus F-spécifiques', 'Les coliphages somatiques infectent via la paroi cellulaire et sont abondants dans les eaux usées brutes. Les coliphages F-spécifiques infectent via les pili sexuels et sont pertinents pour discuter contamination récente ou efficacité UV.', ['Somatiques pour contamination fécale large et performance des barrières', 'F-spécifiques pour comportement viral-like et discussions UV', 'Souches hôtes, contrôles et incubation doivent être maîtrisés', 'Les résultats UFP exigent un contexte échantillon et revue audit-ready']),
+      section('Comment AquaVerify transforme la science en flux', 'AquaVerify connecte produits axés coliphages et AquaVerify Cloud afin de gérer contexte échantillon, souches hôtes, dénombrements, revue et rapports dans un flux traçable.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Demander produits coliphages', secondaryCta: 'Explorer les ressources', seoTitle: 'Pourquoi les coliphages sont l’indicateur viral ultime | Whitepaper AquaVerify', seoDescription: 'Whitepaper sur coliphages indicateurs viraux, limites E. coli, coliphages somatiques et F-spécifiques, ISO 10705, méthodes EPA et traçabilité LIMS.', whitepaper: whitepaperDeepDive('viralIndicator', 'fr'), faqs: [
+      { question: 'Les coliphages remplacent-ils E. coli ou les entérocoques?', answer: 'Non. Ils ajoutent une couche d’indicateur viral. Les indicateurs bactériens restent importants selon la méthode, la réglementation et le système qualité applicables.' },
+      { question: 'Pourquoi ce sujet attire-t-il des leads qualifiés?', answer: 'Les recherches sur coliphages, indicateurs viraux, ISO 10705 ou méthodes EPA signalent souvent une intention technique proche d’un achat, laboratoire, OEM ou SaaS.' }
+    ] }),
+    it: locale('/it/risorse/colifagi-indicatori-qualita-acqua', 'Perché i colifagi sono l’indicatore virale definitivo per la qualità dell’acqua', 'Whitepaper sui colifagi come indicatori virali, i limiti degli indicatori batterici e la tracciabilità digitale dei flussi laboratorio.', [
+      section('Sintesi esecutiva', 'Per oltre un secolo i team acqua hanno usato E. coli ed enterococchi per valutare contaminazione fecale. Restano essenziali, ma il rischio virale idrico evidenzia un limite: i batteri non sono sempre modelli predittivi adeguati per virus enterici umani.', ['I virus enterici possono persistere più a lungo in acqua', 'Il comportamento alla disinfezione non è identico per batteri e virus', 'L’assenza di E. coli non prova automaticamente l’assenza di virus infettivi', 'I colifagi aggiungono un livello pratico di indicatore virale']),
+      section('Perché i colifagi sono il proxy corretto', 'I colifagi sono batteriofagi che infettano E. coli. Condividono caratteristiche operative con virus enterici: intervallo dimensionale simile, assenza di involucro lipidico, nessuna moltiplicazione senza ospite specifico e resistenza comparabile.', ['Somiglianza strutturale e dimensionale con molti virus enterici', 'Nessuna moltiplicazione ambientale fuori dalla cellula ospite', 'Profilo di resistenza più vicino a patogeni virali che a indicatori batterici', 'Ponte utile tra rischio scientifico e routine di laboratorio']),
+      section('Colifagi somatici versus F-specifici', 'I colifagi somatici infettano tramite recettori della parete cellulare e sono abbondanti in acque reflue grezze. I F-specifici infettano tramite pili sessuali e sono rilevanti per contaminazione recente o efficienza UV.', ['Somatici per contaminazione fecale ampia e performance barriere', 'F-specifici per comportamento viral-like e discussioni UV', 'Ceppi ospiti, controlli e incubazione richiedono gestione accurata', 'Risultati PFU richiedono contesto campione e revisione audit-ready']),
+      section('Come AquaVerify trasforma la scienza in workflow', 'AquaVerify collega prodotti focalizzati sui colifagi con AquaVerify Cloud per gestire contesto campione, ceppi ospiti, conteggi, revisione e report in un unico flusso tracciabile.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Chiedi prodotti colifagi', secondaryCta: 'Esplora risorse', seoTitle: 'Perché i colifagi sono l’indicatore virale definitivo | Whitepaper AquaVerify', seoDescription: 'Whitepaper su colifagi indicatori virali, limiti di E. coli, colifagi somatici e F-specifici, ISO 10705, metodi EPA e tracciabilità LIMS.', whitepaper: whitepaperDeepDive('viralIndicator', 'it'), faqs: [
+      { question: 'I colifagi sostituiscono E. coli o enterococchi?', answer: 'No. Aggiungono un livello di indicatore virale. Gli indicatori batterici restano importanti secondo metodo, normativa e sistema qualità applicabili.' },
+      { question: 'Perché questo tema attira lead qualificati?', answer: 'Ricerche su colifagi, indicatori virali, ISO 10705 o metodi EPA indicano spesso un intento tecnico vicino a acquisto, laboratorio, OEM o SaaS.' }
+    ] }),
+    ca: locale('/ca/recursos/colifags-indicadors-qualitat-aigua', 'Per què els colífags són l’indicador viral definitiu per a qualitat de l’aigua', 'Whitepaper sobre colífags com a indicadors virals, límits dels indicadors bacterians i traçabilitat digital dels fluxos de laboratori.', [
+      section('Resum executiu', 'Durant més d’un segle, els equips d’aigua han usat E. coli i enterococs per avaluar contaminació fecal. Continuen sent essencials, però el risc viral transmès per l’aigua mostra un límit: els bacteris no sempre són models predictius adequats per a virus entèrics humans.', ['Els virus entèrics poden persistir més temps en aigua', 'El comportament davant desinfecció no és idèntic en bacteris i virus', 'L’absència d’E. coli no prova automàticament absència de virus infecciosos', 'Els colífags afegeixen una capa pràctica d’indicador viral']),
+      section('Per què els colífags són el proxy adequat', 'Els colífags són bacteriòfags que infecten E. coli. Comparteixen característiques operatives amb virus entèrics: rang de mida similar, absència d’embolcall lipídic, no multiplicació sense hoste específic i patrons de resistència comparables.', ['Similitud estructural i de mida amb molts virus entèrics', 'Sense multiplicació ambiental fora de la cèl·lula hoste', 'Perfil de resistència més proper a patògens virals que a indicadors bacterians', 'Pont útil entre risc científic i rutina de laboratori']),
+      section('Colífags somàtics davant F-específics', 'Els colífags somàtics infecten via receptors de paret cel·lular i són abundants en aigües residuals brutes. Els F-específics infecten via pili sexuals i són rellevants per contaminació recent o eficiència UV.', ['Somàtics per contaminació fecal àmplia i rendiment de barreres', 'F-específics per comportament viral-like i discussions UV', 'Soques hoste, controls i incubació requereixen gestió acurada', 'Resultats UFP necessiten context de mostra i revisió audit-ready']),
+      section('Com AquaVerify transforma la ciència en flux operatiu', 'AquaVerify connecta productes centrats en colífags amb AquaVerify Cloud perquè laboratoris, distribuïdors i equips de qualitat gestionin context de mostra, soques hoste, recomptes, revisió i informes en un únic flux traçable.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Preguntar per productes colífags', secondaryCta: 'Explorar recursos', seoTitle: 'Per què els colífags són l’indicador viral definitiu | Whitepaper AquaVerify', seoDescription: 'Whitepaper sobre colífags com a indicadors virals, límits d’E. coli, colífags somàtics i F-específics, ISO 10705, mètodes EPA i traçabilitat LIMS.', whitepaper: whitepaperDeepDive('viralIndicator', 'ca'), faqs: [
+      { question: 'Els colífags substitueixen E. coli o enterococs?', answer: 'No. Afegeixen una capa d’indicador viral. Els indicadors bacterians continuen sent importants segons mètode, regulació i sistema de qualitat aplicables.' },
+      { question: 'Per què aquest tema atrau leads qualificats?', answer: 'Cerques sobre colífags, indicadors virals, ISO 10705 o mètodes EPA solen indicar intenció tècnica propera a compra, laboratori, OEM o SaaS.' }
+    ] })
   }, { parentId: 'resources' }),
   page('presence-vs-enumeration', 'resources', 'quote', {
     en: locale('/resources/presence-absence-vs-enumeration', 'Presence/absence vs enumeration in water microbiology', 'Understand when qualitative screening and quantitative enumeration workflows fit water microbiology decisions.', [
