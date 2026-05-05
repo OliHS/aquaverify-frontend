@@ -138,6 +138,39 @@ function renderFaqs(faqs = []) {
   ].join('\n');
 }
 
+function renderWhitepaperDeepDive(whitepaper) {
+  if (!whitepaper?.title || !whitepaper?.intro) return '';
+  const metrics = Array.isArray(whitepaper.metrics) ? whitepaper.metrics : [];
+  const comparison = Array.isArray(whitepaper.comparison) ? whitepaper.comparison : [];
+  const flow = Array.isArray(whitepaper.flow) ? whitepaper.flow : [];
+
+  return [
+    '      <section>',
+    `        <h2>${escapeHtml(whitepaper.title)}</h2>`,
+    `        <p>${escapeHtml(whitepaper.intro)}</p>`,
+    metrics.length ? [
+      '        <ul>',
+      ...metrics.map((metric) => `          <li><strong>${escapeHtml(metric.label || '')}: ${escapeHtml(metric.value || '')}</strong> ${escapeHtml(metric.body || '')}</li>`),
+      '        </ul>'
+    ].join('\n') : '',
+    whitepaper.comparisonTitle ? `        <h3>${escapeHtml(whitepaper.comparisonTitle)}</h3>` : '',
+    comparison.length ? [
+      '        <ul>',
+      ...comparison.map((item) => `          <li><strong>${escapeHtml(item.label || '')}: ${escapeHtml(item.title || '')}</strong> ${escapeHtml(item.body || '')}</li>`),
+      '        </ul>'
+    ].join('\n') : '',
+    whitepaper.flowTitle ? `        <h3>${escapeHtml(whitepaper.flowTitle)}</h3>` : '',
+    flow.length ? [
+      '        <ol>',
+      ...flow.map((step) => `          <li><strong>${escapeHtml(step.title || '')}</strong> ${escapeHtml(step.body || '')}</li>`),
+      '        </ol>'
+    ].join('\n') : '',
+    whitepaper.sourceLabel ? `        <p><strong>${escapeHtml(whitepaper.sourceLabel)}</strong></p>` : '',
+    whitepaper.note ? `        <p>${escapeHtml(whitepaper.note)}</p>` : '',
+    '      </section>'
+  ].filter(Boolean).join('\n');
+}
+
 function renderStaticRoot(meta) {
   const content = meta.content;
   const title = content?.title || meta.title;
@@ -164,6 +197,7 @@ function renderStaticRoot(meta) {
       '  <section style="padding: 42px 24px;">',
       '    <div style="max-width: 1040px; margin: 0 auto;">',
       renderSectionList(content.sections || []),
+      renderWhitepaperDeepDive(content.whitepaper),
       renderFaqs(content.faqs || []),
       '    </div>',
       '  </section>'

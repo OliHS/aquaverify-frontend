@@ -128,8 +128,43 @@ type MarketingContentMeta = {
   ogImage?: string;
   datasheetUrl?: string;
   datasheetLabel?: string;
+  whitepaper?: WhitepaperDeepDiveContent;
   path: string;
   title: string;
+};
+
+type WhitepaperTone = 'cyan' | 'emerald' | 'indigo' | 'rose' | 'slate';
+
+type WhitepaperMetric = {
+  label: string;
+  value: string;
+  body: string;
+  tone?: WhitepaperTone;
+};
+
+type WhitepaperComparison = {
+  label: string;
+  title: string;
+  body: string;
+  valuePercent?: number;
+  tone?: WhitepaperTone;
+};
+
+type WhitepaperFlowStep = {
+  title: string;
+  body: string;
+};
+
+type WhitepaperDeepDiveContent = {
+  title: string;
+  intro: string;
+  metrics?: WhitepaperMetric[];
+  comparisonTitle?: string;
+  comparison?: WhitepaperComparison[];
+  flowTitle?: string;
+  flow?: WhitepaperFlowStep[];
+  sourceLabel?: string;
+  note?: string;
 };
 
 function toPublicAssetUrl(value: string | undefined) {
@@ -138,6 +173,149 @@ function toPublicAssetUrl(value: string | undefined) {
   if (/^https?:\/\//i.test(trimmed)) return trimmed;
   return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
 }
+
+const whitepaperToneClasses: Record<WhitepaperTone, {
+  card: string;
+  eyebrow: string;
+  value: string;
+  bar: string;
+  step: string;
+}> = {
+  cyan: {
+    card: 'border-cyan-100 bg-cyan-50/70',
+    eyebrow: 'text-cyan-700',
+    value: 'text-cyan-900',
+    bar: 'bg-cyan-500',
+    step: 'bg-cyan-600 text-white'
+  },
+  emerald: {
+    card: 'border-emerald-100 bg-emerald-50/70',
+    eyebrow: 'text-emerald-700',
+    value: 'text-emerald-900',
+    bar: 'bg-emerald-500',
+    step: 'bg-emerald-600 text-white'
+  },
+  indigo: {
+    card: 'border-indigo-100 bg-indigo-50/70',
+    eyebrow: 'text-indigo-700',
+    value: 'text-indigo-900',
+    bar: 'bg-indigo-500',
+    step: 'bg-indigo-600 text-white'
+  },
+  rose: {
+    card: 'border-rose-100 bg-rose-50/70',
+    eyebrow: 'text-rose-700',
+    value: 'text-rose-900',
+    bar: 'bg-rose-500',
+    step: 'bg-rose-600 text-white'
+  },
+  slate: {
+    card: 'border-slate-200 bg-slate-50',
+    eyebrow: 'text-slate-500',
+    value: 'text-slate-900',
+    bar: 'bg-slate-400',
+    step: 'bg-slate-800 text-white'
+  }
+};
+
+function clampPercent(value: number | undefined) {
+  if (!Number.isFinite(value)) return 0;
+  return Math.min(100, Math.max(0, Number(value)));
+}
+
+const WhitepaperDeepDive: React.FC<{ content: WhitepaperDeepDiveContent }> = ({ content }) => {
+  const metrics = content.metrics || [];
+  const comparison = content.comparison || [];
+  const flow = content.flow || [];
+
+  return (
+    <article className="overflow-hidden rounded-2xl border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-slate-50 shadow-sm">
+      <div className="border-b border-cyan-100/70 p-7">
+        <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">Whitepaper visual brief</div>
+        <h2 className="mt-3 font-heading text-2xl font-black text-primary md:text-3xl">{content.title}</h2>
+        <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{content.intro}</p>
+      </div>
+
+      {metrics.length > 0 && (
+        <div className="grid gap-4 p-7 md:grid-cols-3">
+          {metrics.map((metric) => {
+            const tone = whitepaperToneClasses[metric.tone || 'cyan'];
+            return (
+              <div key={`${metric.label}-${metric.value}`} className={`rounded-xl border p-5 ${tone.card}`}>
+                <div className={`text-[10px] font-black uppercase tracking-[0.16em] ${tone.eyebrow}`}>{metric.label}</div>
+                <div className={`mt-3 font-heading text-2xl font-black leading-tight ${tone.value}`}>{metric.value}</div>
+                <p className="mt-3 text-sm leading-6 text-slate-600">{metric.body}</p>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {comparison.length > 0 && (
+        <div className="border-t border-cyan-100/70 p-7">
+          {content.comparisonTitle && (
+            <h3 className="font-heading text-xl font-black text-primary">{content.comparisonTitle}</h3>
+          )}
+          <div className="mt-5 grid gap-4 md:grid-cols-2">
+            {comparison.map((item) => {
+              const tone = whitepaperToneClasses[item.tone || 'cyan'];
+              const percent = clampPercent(item.valuePercent);
+              return (
+                <div key={`${item.label}-${item.title}`} className="rounded-xl border border-slate-200 bg-white p-5">
+                  <div className={`text-[10px] font-black uppercase tracking-[0.16em] ${tone.eyebrow}`}>{item.label}</div>
+                  <h4 className="mt-2 font-heading text-lg font-black text-slate-900">{item.title}</h4>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{item.body}</p>
+                  {percent > 0 && (
+                    <div className="mt-5">
+                      <div className="h-2 rounded-full bg-slate-100">
+                        <div className={`h-2 rounded-full ${tone.bar}`} style={{ width: `${percent}%` }} />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {flow.length > 0 && (
+        <div className="border-t border-cyan-100/70 p-7">
+          {content.flowTitle && (
+            <h3 className="font-heading text-xl font-black text-primary">{content.flowTitle}</h3>
+          )}
+          <div className="mt-5 grid gap-3 md:grid-cols-2">
+            {flow.map((step, index) => {
+              const tone = whitepaperToneClasses[index % 2 === 0 ? 'cyan' : 'indigo'];
+              return (
+                <div key={`${step.title}-${index}`} className="flex gap-4 rounded-xl border border-slate-200 bg-white p-5">
+                  <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black ${tone.step}`}>
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h4 className="font-heading text-base font-black text-slate-900">{step.title}</h4>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{step.body}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {(content.sourceLabel || content.note) && (
+        <div className="border-t border-cyan-100/70 bg-white/70 p-7">
+          {content.sourceLabel && (
+            <p className="text-xs font-black uppercase tracking-[0.14em] text-slate-500">{content.sourceLabel}</p>
+          )}
+          {content.note && (
+            <p className="mt-2 text-sm leading-6 text-slate-500">{content.note}</p>
+          )}
+        </div>
+      )}
+    </article>
+  );
+};
 
 function getHomePath(lang: Language) {
   return lang === 'en' ? '/' : `/${lang}`;
@@ -394,6 +572,9 @@ export const MarketingRoutePage: React.FC = () => {
                   )}
                 </article>
               ))}
+              {contentMeta.whitepaper && (
+                <WhitepaperDeepDive content={contentMeta.whitepaper} />
+              )}
               {galleryItems.length > 0 && (
                 <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                   <h2 className="font-heading text-2xl font-black text-primary">{labels.screenshotsTitle}</h2>

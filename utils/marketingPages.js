@@ -33,6 +33,7 @@ function locale(path, title, description, sections, options = {}) {
     datasheetUrl: options.datasheetUrl,
     datasheetLabel: options.datasheetLabel,
     gallery: options.gallery || [],
+    whitepaper: options.whitepaper,
     seoTitle: options.seoTitle || title,
     seoDescription: options.seoDescription || description,
     faqs: options.faqs || []
@@ -117,6 +118,354 @@ function platformVisualOptions(lang, {
     ogImage: PLATFORM_SCREENSHOT_ASSETS[hero],
     gallery: platformScreenshotGallery(lang, galleryIds)
   };
+}
+
+const WHITEPAPER_DEEP_DIVES = {
+  eu: {
+    en: {
+      title: 'Regulatory deep dive: viral indicator readiness in Europe',
+      intro: 'The recast EU Drinking Water Directive shifts the conversation from isolated microbiological checks toward risk assessment, operational monitoring and evidence that can be reviewed from catchment to final report. Somatic coliphages are especially relevant when the risk assessment indicates viral indicator monitoring is appropriate for raw water or treatment performance.',
+      metrics: [
+        { label: 'Directive trigger', value: '50 PFU/100 ml', body: 'Threshold for somatic coliphages in raw water when measurement is indicated by risk assessment.', tone: 'rose' },
+        { label: 'Method context', value: 'EN ISO 10705', body: 'Parts 2 and 3 are referenced for operational monitoring of somatic coliphages.', tone: 'cyan' },
+        { label: 'Evidence layer', value: 'Sample to report', body: 'Sampling point, method route, controls, reviewer history and customer communication should stay connected.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Why viral indicators change the workflow',
+      comparison: [
+        { label: 'Traditional bacterial indicators', title: 'Useful but incomplete for viral risk', body: 'E. coli and enterococci remain important, but they do not always reflect the persistence or treatment resistance profile of enteric viruses.', valuePercent: 42, tone: 'slate' },
+        { label: 'Somatic coliphages', title: 'Operational proxy for viral indicator monitoring', body: 'Coliphage monitoring helps teams discuss viral risk, treatment efficacy and raw water evidence with a stronger microbiological basis.', valuePercent: 86, tone: 'cyan' }
+      ],
+      flowTitle: 'A practical implementation flow',
+      flow: [
+        { title: 'Risk assessment', body: 'Map catchment, source water and treatment context before selecting the monitoring route.' },
+        { title: 'Method readiness', body: 'Prepare sample volume, controls, host strain, kit family and reviewer responsibilities.' },
+        { title: 'Digital evidence', body: 'Connect every sample, result, exception and report inside AquaVerify Cloud.' }
+      ],
+      sourceLabel: 'Directive (EU) 2020/2184 and EN ISO 10705 context',
+      note: 'This resource is orientation material. Competent authority, accreditation and quality-system requirements remain decisive.'
+    },
+    es: {
+      title: 'Análisis normativo: preparación para indicadores virales en Europa',
+      intro: 'La Directiva europea de agua potable pasa de controles microbiológicos aislados a evaluación de riesgos, monitorización operativa y evidencia revisable desde la captación hasta el informe final. Los colífagos somáticos son especialmente relevantes cuando la evaluación de riesgos indica que conviene medir indicadores virales en agua bruta o eficacia de tratamiento.',
+      metrics: [
+        { label: 'Umbral directiva', value: '50 UFP/100 ml', body: 'Umbral para colífagos somáticos en agua bruta cuando la evaluación de riesgos indica que debe medirse.', tone: 'rose' },
+        { label: 'Contexto método', value: 'EN ISO 10705', body: 'Las partes 2 y 3 se referencian para monitorización operativa de colífagos somáticos.', tone: 'cyan' },
+        { label: 'Capa de evidencia', value: 'Muestra a informe', body: 'Punto de muestreo, ruta metodológica, controles, revisión y comunicación cliente deben quedar conectados.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Por qué los indicadores virales cambian el flujo',
+      comparison: [
+        { label: 'Indicadores bacterianos tradicionales', title: 'Útiles, pero incompletos para riesgo viral', body: 'E. coli y enterococos siguen siendo importantes, pero no siempre reflejan la persistencia o resistencia de virus entéricos frente al tratamiento.', valuePercent: 42, tone: 'slate' },
+        { label: 'Colífagos somáticos', title: 'Proxy operativo para monitorización viral', body: 'El seguimiento de colífagos ayuda a discutir riesgo viral, eficacia de tratamiento y evidencia de agua bruta con una base microbiológica más fuerte.', valuePercent: 86, tone: 'cyan' }
+      ],
+      flowTitle: 'Flujo práctico de implantación',
+      flow: [
+        { title: 'Evaluación de riesgos', body: 'Mapear captación, agua de origen y tratamiento antes de seleccionar la ruta de monitorización.' },
+        { title: 'Preparación metodológica', body: 'Preparar volumen, controles, cepa huésped, familia de kit y responsabilidades de revisión.' },
+        { title: 'Evidencia digital', body: 'Conectar cada muestra, resultado, excepción e informe dentro de AquaVerify Cloud.' }
+      ],
+      sourceLabel: 'Directiva (UE) 2020/2184 y contexto EN ISO 10705',
+      note: 'Este recurso es material de orientación. Los requisitos de autoridad competente, acreditación y sistema de calidad siguen siendo decisivos.'
+    },
+    fr: {
+      title: 'Analyse réglementaire: préparation aux indicateurs viraux en Europe',
+      intro: 'La directive européenne eau potable déplace le sujet des contrôles microbiologiques isolés vers l’évaluation des risques, la surveillance opérationnelle et une preuve vérifiable du captage au rapport final. Les coliphages somatiques deviennent pertinents lorsque l’évaluation des risques indique une surveillance d’indicateurs viraux en eau brute ou efficacité de traitement.',
+      metrics: [
+        { label: 'Seuil directive', value: '50 UFP/100 ml', body: 'Seuil pour coliphages somatiques dans l’eau brute lorsque la mesure est indiquée par l’évaluation des risques.', tone: 'rose' },
+        { label: 'Contexte méthode', value: 'EN ISO 10705', body: 'Les parties 2 et 3 sont référencées pour la surveillance opérationnelle des coliphages somatiques.', tone: 'cyan' },
+        { label: 'Couche de preuve', value: 'Échantillon à rapport', body: 'Point de prélèvement, méthode, contrôles, revue et communication client doivent rester reliés.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Pourquoi les indicateurs viraux changent le flux',
+      comparison: [
+        { label: 'Indicateurs bactériens traditionnels', title: 'Utiles mais incomplets pour le risque viral', body: 'E. coli et entérocoques restent importants, mais ne reflètent pas toujours la persistance ou la résistance des virus entériques au traitement.', valuePercent: 42, tone: 'slate' },
+        { label: 'Coliphages somatiques', title: 'Proxy opérationnel pour la surveillance virale', body: 'Le suivi des coliphages aide à discuter risque viral, efficacité de traitement et preuve eau brute avec une base microbiologique plus forte.', valuePercent: 86, tone: 'cyan' }
+      ],
+      flowTitle: 'Flux pratique d’implémentation',
+      flow: [
+        { title: 'Évaluation des risques', body: 'Cartographier captage, eau source et traitement avant de choisir la route de surveillance.' },
+        { title: 'Préparation méthode', body: 'Préparer volume, contrôles, souche hôte, famille kit et responsabilités de revue.' },
+        { title: 'Preuve numérique', body: 'Relier chaque échantillon, résultat, exception et rapport dans AquaVerify Cloud.' }
+      ],
+      sourceLabel: 'Directive (UE) 2020/2184 et contexte EN ISO 10705',
+      note: 'Cette ressource est une orientation. Les exigences d’autorité compétente, d’accréditation et de système qualité restent décisives.'
+    },
+    it: {
+      title: 'Approfondimento normativo: preparazione agli indicatori virali in Europa',
+      intro: 'La Direttiva europea acqua potabile sposta il tema da controlli microbiologici isolati a valutazione del rischio, monitoraggio operativo ed evidenza verificabile dal punto di captazione al report finale. I colifagi somatici sono rilevanti quando la valutazione del rischio indica il monitoraggio di indicatori virali in acqua grezza o performance di trattamento.',
+      metrics: [
+        { label: 'Soglia direttiva', value: '50 PFU/100 ml', body: 'Soglia per colifagi somatici in acqua grezza quando la misura è indicata dalla valutazione del rischio.', tone: 'rose' },
+        { label: 'Contesto metodo', value: 'EN ISO 10705', body: 'Le parti 2 e 3 sono richiamate per il monitoraggio operativo dei colifagi somatici.', tone: 'cyan' },
+        { label: 'Livello evidenza', value: 'Campione a report', body: 'Punto di campionamento, metodo, controlli, revisione e comunicazione cliente devono restare collegati.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Perché gli indicatori virali cambiano il flusso',
+      comparison: [
+        { label: 'Indicatori batterici tradizionali', title: 'Utili ma incompleti per il rischio virale', body: 'E. coli ed enterococchi restano importanti, ma non sempre riflettono persistenza o resistenza dei virus enterici al trattamento.', valuePercent: 42, tone: 'slate' },
+        { label: 'Colifagi somatici', title: 'Proxy operativo per monitoraggio virale', body: 'Il monitoraggio dei colifagi aiuta a discutere rischio virale, efficacia del trattamento ed evidenza acqua grezza con base microbiologica più forte.', valuePercent: 86, tone: 'cyan' }
+      ],
+      flowTitle: 'Flusso pratico di implementazione',
+      flow: [
+        { title: 'Valutazione rischio', body: 'Mappare captazione, acqua sorgente e trattamento prima di scegliere la rotta di monitoraggio.' },
+        { title: 'Preparazione metodo', body: 'Preparare volume, controlli, ceppo ospite, famiglia kit e responsabilità di revisione.' },
+        { title: 'Evidenza digitale', body: 'Collegare ogni campione, risultato, eccezione e report in AquaVerify Cloud.' }
+      ],
+      sourceLabel: 'Direttiva (UE) 2020/2184 e contesto EN ISO 10705',
+      note: 'Questa risorsa è orientativa. Requisiti di autorità competente, accreditamento e sistema qualità restano decisivi.'
+    },
+    ca: {
+      title: 'Anàlisi normativa: preparació per a indicadors virals a Europa',
+      intro: 'La Directiva europea d’aigua potable passa de controls microbiològics aïllats a avaluació de riscos, monitoratge operatiu i evidència revisable des de la captació fins a l’informe final. Els colífags somàtics són especialment rellevants quan l’avaluació de riscos indica que convé mesurar indicadors virals en aigua bruta o eficàcia de tractament.',
+      metrics: [
+        { label: 'Llindar directiva', value: '50 UFP/100 ml', body: 'Llindar per a colífags somàtics en aigua bruta quan l’avaluació de riscos indica que cal mesurar.', tone: 'rose' },
+        { label: 'Context mètode', value: 'EN ISO 10705', body: 'Les parts 2 i 3 es referencien per al monitoratge operatiu de colífags somàtics.', tone: 'cyan' },
+        { label: 'Capa d’evidència', value: 'Mostra a informe', body: 'Punt de mostreig, ruta metodològica, controls, revisió i comunicació client han de quedar connectats.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Per què els indicadors virals canvien el flux',
+      comparison: [
+        { label: 'Indicadors bacterians tradicionals', title: 'Útils, però incomplets per a risc viral', body: 'E. coli i enterococs continuen sent importants, però no sempre reflecteixen persistència o resistència de virus entèrics davant el tractament.', valuePercent: 42, tone: 'slate' },
+        { label: 'Colífags somàtics', title: 'Proxy operatiu per a monitoratge viral', body: 'El seguiment de colífags ajuda a discutir risc viral, eficàcia de tractament i evidència d’aigua bruta amb una base microbiològica més forta.', valuePercent: 86, tone: 'cyan' }
+      ],
+      flowTitle: 'Flux pràctic d’implantació',
+      flow: [
+        { title: 'Avaluació de riscos', body: 'Mapar captació, aigua d’origen i tractament abans de seleccionar la ruta de monitoratge.' },
+        { title: 'Preparació metodològica', body: 'Preparar volum, controls, soca hoste, família de kit i responsabilitats de revisió.' },
+        { title: 'Evidència digital', body: 'Connectar cada mostra, resultat, excepció i informe dins AquaVerify Cloud.' }
+      ],
+      sourceLabel: 'Directiva (UE) 2020/2184 i context EN ISO 10705',
+      note: 'Aquest recurs és material d’orientació. Els requisits d’autoritat competent, acreditació i sistema de qualitat continuen sent decisius.'
+    }
+  },
+  software: {
+    en: {
+      title: 'Infographic: from manual records to automated compliance evidence',
+      intro: 'Spreadsheets and fragmented databases make audits harder because sample identity, chain of custody, method context, review history and customer communication are separated. A connected software layer supports ISO/IEC 17025-style data integrity expectations and helps teams prepare electronic reporting workflows such as CROMERR in the United States or equivalent EU reporting mechanisms.',
+      metrics: [
+        { label: 'Core record', value: 'Chain of custody', body: 'Sampling point, operator, time, method route and reviewer history are captured together.', tone: 'cyan' },
+        { label: 'Audit readiness', value: 'Traceable changes', body: 'Role-based access, version history and status changes reduce ambiguity during review.', tone: 'indigo' },
+        { label: 'Operational response', value: 'Alerts', body: 'Out-of-spec events can trigger internal review before a customer or regulatory report is issued.', tone: 'rose' }
+      ],
+      comparisonTitle: 'Manual process versus connected workflow',
+      comparison: [
+        { label: 'Spreadsheet workflow', title: 'Fragmented evidence', body: 'Manual entry, disconnected files and unclear version history increase operational risk.', valuePercent: 38, tone: 'slate' },
+        { label: 'AquaVerify Cloud workflow', title: 'Structured evidence layer', body: 'Samples, products, reports, CRM and customer portal activity share a single operational record.', valuePercent: 88, tone: 'emerald' }
+      ],
+      flowTitle: 'Digital chain of custody',
+      flow: [
+        { title: 'Field or lab sample intake', body: 'Capture sample metadata, source, account, requested parameter and responsible operator.' },
+        { title: 'LIMS-style execution', body: 'Connect product, method context, controls, reviewer and result state.' },
+        { title: 'Automated review signals', body: 'Flag out-of-spec or incomplete records for internal action.' },
+        { title: 'Report and CRM follow-up', body: 'Turn verified results into customer communication and pipeline intelligence.' }
+      ],
+      sourceLabel: 'ISO/IEC 17025 data integrity context and EPA CROMERR electronic reporting context',
+      note: 'Software supports evidence discipline; it does not replace method validation, accreditation review or regulatory approval.'
+    },
+    es: {
+      title: 'Infografía: de registros manuales a evidencia de cumplimiento automatizada',
+      intro: 'Las hojas de cálculo y bases fragmentadas complican las auditorías porque identidad de muestra, cadena de custodia, método, historial de revisión y comunicación cliente quedan separados. Una capa software conectada ayuda a sostener expectativas de integridad de datos tipo ISO/IEC 17025 y prepara flujos de reporte electrónico como CROMERR en Estados Unidos o mecanismos equivalentes en la UE.',
+      metrics: [
+        { label: 'Registro central', value: 'Cadena de custodia', body: 'Punto de muestreo, operador, hora, ruta metodológica e historial de revisión se capturan juntos.', tone: 'cyan' },
+        { label: 'Preparación auditoría', value: 'Cambios trazables', body: 'Acceso por roles, versiones y cambios de estado reducen ambigüedad durante la revisión.', tone: 'indigo' },
+        { label: 'Respuesta operativa', value: 'Alertas', body: 'Eventos fuera de especificación pueden activar revisión interna antes del informe final.', tone: 'rose' }
+      ],
+      comparisonTitle: 'Proceso manual frente a flujo conectado',
+      comparison: [
+        { label: 'Flujo con hoja de cálculo', title: 'Evidencia fragmentada', body: 'Entrada manual, archivos desconectados e historial de versión poco claro aumentan el riesgo operativo.', valuePercent: 38, tone: 'slate' },
+        { label: 'Flujo AquaVerify Cloud', title: 'Capa de evidencia estructurada', body: 'Muestras, productos, informes, CRM y portal cliente comparten un mismo registro operativo.', valuePercent: 88, tone: 'emerald' }
+      ],
+      flowTitle: 'Cadena de custodia digital',
+      flow: [
+        { title: 'Entrada de muestra campo/lab', body: 'Capturar metadatos, origen, cuenta, parámetro solicitado y operador responsable.' },
+        { title: 'Ejecución tipo LIMS', body: 'Conectar producto, contexto de método, controles, revisor y estado del resultado.' },
+        { title: 'Señales automáticas', body: 'Marcar registros incompletos o fuera de especificación para acción interna.' },
+        { title: 'Informe y seguimiento CRM', body: 'Convertir resultados verificados en comunicación cliente e inteligencia comercial.' }
+      ],
+      sourceLabel: 'Contexto ISO/IEC 17025 de integridad de datos y contexto EPA CROMERR de reporte electrónico',
+      note: 'El software apoya la disciplina de evidencia; no sustituye validación de método, revisión de acreditación ni aprobación regulatoria.'
+    },
+    fr: {
+      title: 'Infographie: des registres manuels à la preuve de conformité automatisée',
+      intro: 'Tableurs et bases fragmentées compliquent les audits car identité échantillon, chaîne de possession, méthode, historique de revue et communication client sont séparés. Une couche logicielle connectée soutient les attentes d’intégrité des données de type ISO/IEC 17025 et prépare les flux de reporting électronique comme CROMERR aux États-Unis ou mécanismes équivalents en Europe.',
+      metrics: [
+        { label: 'Registre central', value: 'Chaîne de possession', body: 'Point de prélèvement, opérateur, heure, route méthode et historique de revue sont capturés ensemble.', tone: 'cyan' },
+        { label: 'Audit ready', value: 'Changements traçables', body: 'Accès par rôles, versions et changements de statut réduisent l’ambiguïté en revue.', tone: 'indigo' },
+        { label: 'Réponse opérationnelle', value: 'Alertes', body: 'Les événements hors spécification peuvent déclencher une revue interne avant le rapport final.', tone: 'rose' }
+      ],
+      comparisonTitle: 'Processus manuel versus flux connecté',
+      comparison: [
+        { label: 'Flux tableur', title: 'Preuve fragmentée', body: 'Saisie manuelle, fichiers déconnectés et historique de version flou augmentent le risque opérationnel.', valuePercent: 38, tone: 'slate' },
+        { label: 'Flux AquaVerify Cloud', title: 'Couche de preuve structurée', body: 'Échantillons, produits, rapports, CRM et portail client partagent un même registre opérationnel.', valuePercent: 88, tone: 'emerald' }
+      ],
+      flowTitle: 'Chaîne de possession numérique',
+      flow: [
+        { title: 'Entrée échantillon terrain/lab', body: 'Capturer métadonnées, origine, compte, paramètre demandé et opérateur responsable.' },
+        { title: 'Exécution type LIMS', body: 'Relier produit, contexte méthode, contrôles, relecteur et état du résultat.' },
+        { title: 'Signaux automatiques', body: 'Signaler les registres incomplets ou hors spécification pour action interne.' },
+        { title: 'Rapport et suivi CRM', body: 'Transformer résultats vérifiés en communication client et intelligence commerciale.' }
+      ],
+      sourceLabel: 'Contexte ISO/IEC 17025 intégrité des données et contexte EPA CROMERR reporting électronique',
+      note: 'Le logiciel soutient la discipline de preuve; il ne remplace pas validation méthode, revue d’accréditation ou approbation réglementaire.'
+    },
+    it: {
+      title: 'Infografica: dai registri manuali all’evidenza di conformità automatizzata',
+      intro: 'Fogli di calcolo e database frammentati complicano gli audit perché identità campione, catena di custodia, metodo, storico revisione e comunicazione cliente sono separati. Un livello software collegato supporta aspettative di integrità dati tipo ISO/IEC 17025 e prepara flussi di reporting elettronico come CROMERR negli Stati Uniti o meccanismi equivalenti UE.',
+      metrics: [
+        { label: 'Record centrale', value: 'Catena di custodia', body: 'Punto di campionamento, operatore, ora, percorso metodo e storico revisione sono acquisiti insieme.', tone: 'cyan' },
+        { label: 'Audit readiness', value: 'Cambi tracciabili', body: 'Accesso per ruoli, versioni e cambi stato riducono ambiguità in revisione.', tone: 'indigo' },
+        { label: 'Risposta operativa', value: 'Alert', body: 'Eventi fuori specifica possono attivare revisione interna prima del report finale.', tone: 'rose' }
+      ],
+      comparisonTitle: 'Processo manuale versus flusso collegato',
+      comparison: [
+        { label: 'Flusso spreadsheet', title: 'Evidenza frammentata', body: 'Inserimento manuale, file scollegati e storico versione poco chiaro aumentano il rischio operativo.', valuePercent: 38, tone: 'slate' },
+        { label: 'Flusso AquaVerify Cloud', title: 'Livello di evidenza strutturato', body: 'Campioni, prodotti, report, CRM e portale cliente condividono un unico record operativo.', valuePercent: 88, tone: 'emerald' }
+      ],
+      flowTitle: 'Catena di custodia digitale',
+      flow: [
+        { title: 'Ingresso campione campo/lab', body: 'Acquisire metadati, origine, account, parametro richiesto e operatore responsabile.' },
+        { title: 'Esecuzione tipo LIMS', body: 'Collegare prodotto, contesto metodo, controlli, revisore e stato risultato.' },
+        { title: 'Segnali automatici', body: 'Segnalare record incompleti o fuori specifica per azione interna.' },
+        { title: 'Report e follow-up CRM', body: 'Trasformare risultati verificati in comunicazione cliente e intelligence commerciale.' }
+      ],
+      sourceLabel: 'Contesto ISO/IEC 17025 integrità dati e contesto EPA CROMERR reporting elettronico',
+      note: 'Il software supporta la disciplina dell’evidenza; non sostituisce validazione metodo, revisione accreditamento o approvazione normativa.'
+    },
+    ca: {
+      title: 'Infografia: de registres manuals a evidència de compliment automatitzada',
+      intro: 'Els fulls de càlcul i bases fragmentades compliquen auditories perquè identitat de mostra, cadena de custòdia, mètode, historial de revisió i comunicació client queden separats. Una capa software connectada ajuda a sostenir expectatives d’integritat de dades tipus ISO/IEC 17025 i prepara fluxos de report electrònic com CROMERR als Estats Units o mecanismes equivalents a la UE.',
+      metrics: [
+        { label: 'Registre central', value: 'Cadena de custòdia', body: 'Punt de mostreig, operador, hora, ruta metodològica i historial de revisió es capturen junts.', tone: 'cyan' },
+        { label: 'Preparació auditoria', value: 'Canvis traçables', body: 'Accés per rols, versions i canvis d’estat redueixen ambigüitat durant la revisió.', tone: 'indigo' },
+        { label: 'Resposta operativa', value: 'Alertes', body: 'Esdeveniments fora d’especificació poden activar revisió interna abans de l’informe final.', tone: 'rose' }
+      ],
+      comparisonTitle: 'Procés manual davant flux connectat',
+      comparison: [
+        { label: 'Flux amb full de càlcul', title: 'Evidència fragmentada', body: 'Entrada manual, arxius desconnectats i historial de versió poc clar augmenten el risc operatiu.', valuePercent: 38, tone: 'slate' },
+        { label: 'Flux AquaVerify Cloud', title: 'Capa d’evidència estructurada', body: 'Mostres, productes, informes, CRM i portal client comparteixen un mateix registre operatiu.', valuePercent: 88, tone: 'emerald' }
+      ],
+      flowTitle: 'Cadena de custòdia digital',
+      flow: [
+        { title: 'Entrada de mostra camp/lab', body: 'Capturar metadades, origen, compte, paràmetre sol·licitat i operador responsable.' },
+        { title: 'Execució tipus LIMS', body: 'Connectar producte, context de mètode, controls, revisor i estat del resultat.' },
+        { title: 'Senyals automàtics', body: 'Marcar registres incomplets o fora d’especificació per a acció interna.' },
+        { title: 'Informe i seguiment CRM', body: 'Convertir resultats verificats en comunicació client i intel·ligència comercial.' }
+      ],
+      sourceLabel: 'Context ISO/IEC 17025 d’integritat de dades i context EPA CROMERR de report electrònic',
+      note: 'El software dona suport a la disciplina d’evidència; no substitueix validació de mètode, revisió d’acreditació ni aprovació regulatòria.'
+    }
+  },
+  us: {
+    en: {
+      title: 'Infographic: RTCR compliance and the coliphage monitoring layer',
+      intro: 'The Revised Total Coliform Rule remains the core US drinking water framework for total coliform and E. coli monitoring. Coliphage methods sit in a related but separate microbiology layer that can help teams evaluate viral indicator questions, especially in ground-water and under-treated source contexts.',
+      metrics: [
+        { label: 'RTCR focus', value: 'Total coliform + E. coli', body: 'Public water systems monitor according to a sample siting plan and schedule.', tone: 'slate' },
+        { label: 'EPA methods', value: '1601 / 1602', body: 'Method context for male-specific and somatic coliphage monitoring and enumeration.', tone: 'cyan' },
+        { label: 'Commercial signal', value: 'Qualified intent', body: 'Visitors researching RTCR and EPA methods are strong product, SaaS or distributor leads.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Bacterial compliance versus viral indicator context',
+      comparison: [
+        { label: 'RTCR bacterial indicators', title: 'Compliance backbone', body: 'Total coliform and E. coli monitoring support assessment of distribution integrity and fecal contamination signals.', valuePercent: 68, tone: 'slate' },
+        { label: 'Coliphage indicator methods', title: 'Additional viral-risk context', body: 'Somatic and F-specific coliphages can support discussion of viral contamination risk and treatment resilience.', valuePercent: 82, tone: 'cyan' }
+      ],
+      flowTitle: 'How to structure a US-oriented lead journey',
+      flow: [
+        { title: 'Educate', body: 'Clarify RTCR obligations separately from coliphage method opportunities.' },
+        { title: 'Qualify', body: 'Capture utility, laboratory, distributor or quality-team intent from the resource page.' },
+        { title: 'Convert', body: 'Route the lead to products, datasheets, SaaS demo or CRM follow-up.' }
+      ],
+      sourceLabel: 'EPA RTCR, Ground Water Rule and Methods 1601/1602 context',
+      note: 'This page does not state that coliphage testing replaces RTCR obligations; it positions coliphages as a related monitoring and method-readiness topic.'
+    },
+    es: {
+      title: 'Infografía: cumplimiento RTCR y capa de monitorización de colífagos',
+      intro: 'La Revised Total Coliform Rule sigue siendo el marco central de agua potable en Estados Unidos para monitorizar coliformes totales y E. coli. Los métodos de colífagos pertenecen a una capa microbiológica relacionada pero separada, útil para evaluar indicadores virales, especialmente en agua subterránea o fuentes con tratamiento insuficiente.',
+      metrics: [
+        { label: 'Foco RTCR', value: 'Coliformes + E. coli', body: 'Los sistemas públicos monitorizan según plan y calendario de puntos de muestreo.', tone: 'slate' },
+        { label: 'Métodos EPA', value: '1601 / 1602', body: 'Contexto metodológico para monitorización y enumeración de colífagos F+ y somáticos.', tone: 'cyan' },
+        { label: 'Señal comercial', value: 'Intent cualificado', body: 'Visitantes que investigan RTCR y métodos EPA son buenos leads de producto, SaaS o distribución.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Cumplimiento bacteriano frente a contexto de indicador viral',
+      comparison: [
+        { label: 'Indicadores bacterianos RTCR', title: 'Base de cumplimiento', body: 'Coliformes totales y E. coli apoyan la evaluación de integridad de distribución y señales de contaminación fecal.', valuePercent: 68, tone: 'slate' },
+        { label: 'Métodos indicadores colífagos', title: 'Contexto adicional de riesgo viral', body: 'Colífagos somáticos y F+ ayudan a discutir riesgo de contaminación viral y resiliencia del tratamiento.', valuePercent: 82, tone: 'cyan' }
+      ],
+      flowTitle: 'Cómo estructurar un lead journey orientado a EEUU',
+      flow: [
+        { title: 'Educar', body: 'Separar claramente obligaciones RTCR de oportunidades metodológicas con colífagos.' },
+        { title: 'Cualificar', body: 'Capturar intención de utility, laboratorio, distribuidor o equipo de calidad desde la página.' },
+        { title: 'Convertir', body: 'Dirigir el lead a productos, datasheets, demo SaaS o seguimiento CRM.' }
+      ],
+      sourceLabel: 'Contexto EPA RTCR, Ground Water Rule y Methods 1601/1602',
+      note: 'Esta página no afirma que los colífagos sustituyan obligaciones RTCR; los posiciona como tema relacionado de monitorización y preparación metodológica.'
+    },
+    fr: {
+      title: 'Infographie: conformité RTCR et couche de surveillance coliphages',
+      intro: 'La Revised Total Coliform Rule reste le cadre central de l’eau potable aux États-Unis pour surveiller coliformes totaux et E. coli. Les méthodes coliphages appartiennent à une couche microbiologique liée mais séparée, utile pour évaluer les indicateurs viraux, surtout en eau souterraine ou sources insuffisamment traitées.',
+      metrics: [
+        { label: 'Focus RTCR', value: 'Coliformes + E. coli', body: 'Les systèmes publics surveillent selon plan et calendrier de points de prélèvement.', tone: 'slate' },
+        { label: 'Méthodes EPA', value: '1601 / 1602', body: 'Contexte méthode pour surveillance et dénombrement des coliphages F+ et somatiques.', tone: 'cyan' },
+        { label: 'Signal commercial', value: 'Intent qualifié', body: 'Les visiteurs recherchant RTCR et méthodes EPA sont de bons leads produit, SaaS ou distribution.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Conformité bactérienne versus contexte indicateur viral',
+      comparison: [
+        { label: 'Indicateurs bactériens RTCR', title: 'Base de conformité', body: 'Coliformes totaux et E. coli soutiennent l’évaluation de l’intégrité distribution et des signaux de contamination fécale.', valuePercent: 68, tone: 'slate' },
+        { label: 'Méthodes indicateurs coliphages', title: 'Contexte additionnel de risque viral', body: 'Coliphages somatiques et F+ aident à discuter risque viral et résilience du traitement.', valuePercent: 82, tone: 'cyan' }
+      ],
+      flowTitle: 'Structurer un parcours lead orienté États-Unis',
+      flow: [
+        { title: 'Éduquer', body: 'Distinguer obligations RTCR et opportunités méthode coliphages.' },
+        { title: 'Qualifier', body: 'Capturer intention utility, laboratoire, distributeur ou qualité depuis la page.' },
+        { title: 'Convertir', body: 'Diriger le lead vers produits, datasheets, démo SaaS ou suivi CRM.' }
+      ],
+      sourceLabel: 'Contexte EPA RTCR, Ground Water Rule et Methods 1601/1602',
+      note: 'Cette page ne dit pas que les coliphages remplacent la RTCR; elle les positionne comme sujet lié de surveillance et préparation méthode.'
+    },
+    it: {
+      title: 'Infografica: conformità RTCR e livello di monitoraggio colifagi',
+      intro: 'La Revised Total Coliform Rule resta il quadro centrale per acqua potabile negli Stati Uniti per monitorare coliformi totali ed E. coli. I metodi colifagi appartengono a un livello microbiologico correlato ma separato, utile per valutare indicatori virali, soprattutto in acque sotterranee o fonti sotto-trattate.',
+      metrics: [
+        { label: 'Focus RTCR', value: 'Coliformi + E. coli', body: 'I sistemi pubblici monitorano secondo piano e calendario dei punti di campionamento.', tone: 'slate' },
+        { label: 'Metodi EPA', value: '1601 / 1602', body: 'Contesto metodo per monitoraggio ed enumerazione di colifagi F+ e somatici.', tone: 'cyan' },
+        { label: 'Segnale commerciale', value: 'Intento qualificato', body: 'Visitatori che ricercano RTCR e metodi EPA sono buoni lead prodotto, SaaS o distribuzione.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Conformità batterica versus contesto indicatore virale',
+      comparison: [
+        { label: 'Indicatori batterici RTCR', title: 'Base di conformità', body: 'Coliformi totali ed E. coli supportano valutazione integrità distribuzione e segnali di contaminazione fecale.', valuePercent: 68, tone: 'slate' },
+        { label: 'Metodi indicatori colifagi', title: 'Contesto aggiuntivo di rischio virale', body: 'Colifagi somatici e F+ aiutano a discutere rischio virale e resilienza del trattamento.', valuePercent: 82, tone: 'cyan' }
+      ],
+      flowTitle: 'Come strutturare un lead journey orientato USA',
+      flow: [
+        { title: 'Educare', body: 'Separare obblighi RTCR da opportunità metodologiche con colifagi.' },
+        { title: 'Qualificare', body: 'Catturare intento di utility, laboratorio, distributore o team qualità dalla pagina.' },
+        { title: 'Convertire', body: 'Indirizzare il lead a prodotti, datasheet, demo SaaS o follow-up CRM.' }
+      ],
+      sourceLabel: 'Contesto EPA RTCR, Ground Water Rule e Methods 1601/1602',
+      note: 'Questa pagina non afferma che i colifagi sostituiscano obblighi RTCR; li posiziona come tema collegato di monitoraggio e preparazione metodo.'
+    },
+    ca: {
+      title: 'Infografia: compliment RTCR i capa de monitoratge de colífags',
+      intro: 'La Revised Total Coliform Rule continua sent el marc central d’aigua potable als Estats Units per monitorar coliformes totals i E. coli. Els mètodes de colífags formen una capa microbiològica relacionada però separada, útil per avaluar indicadors virals, especialment en aigua subterrània o fonts amb tractament insuficient.',
+      metrics: [
+        { label: 'Focus RTCR', value: 'Coliformes + E. coli', body: 'Els sistemes públics monitoren segons pla i calendari de punts de mostreig.', tone: 'slate' },
+        { label: 'Mètodes EPA', value: '1601 / 1602', body: 'Context metodològic per a monitoratge i enumeració de colífags F+ i somàtics.', tone: 'cyan' },
+        { label: 'Senyal comercial', value: 'Intent qualificat', body: 'Visitants que investiguen RTCR i mètodes EPA són bons leads de producte, SaaS o distribució.', tone: 'indigo' }
+      ],
+      comparisonTitle: 'Compliment bacterià davant context d’indicador viral',
+      comparison: [
+        { label: 'Indicadors bacterians RTCR', title: 'Base de compliment', body: 'Coliformes totals i E. coli donen suport a l’avaluació d’integritat de distribució i senyals de contaminació fecal.', valuePercent: 68, tone: 'slate' },
+        { label: 'Mètodes indicadors colífags', title: 'Context addicional de risc viral', body: 'Colífags somàtics i F+ ajuden a discutir risc viral i resiliència del tractament.', valuePercent: 82, tone: 'cyan' }
+      ],
+      flowTitle: 'Com estructurar un lead journey orientat als EUA',
+      flow: [
+        { title: 'Educar', body: 'Separar obligacions RTCR d’oportunitats metodològiques amb colífags.' },
+        { title: 'Qualificar', body: 'Capturar intenció de utility, laboratori, distribuïdor o equip de qualitat des de la pàgina.' },
+        { title: 'Convertir', body: 'Dirigir el lead a productes, datasheets, demo SaaS o seguiment CRM.' }
+      ],
+      sourceLabel: 'Context EPA RTCR, Ground Water Rule i Methods 1601/1602',
+      note: 'Aquesta pàgina no afirma que els colífags substitueixin obligacions RTCR; els posiciona com a tema relacionat de monitoratge i preparació metodològica.'
+    }
+  }
+};
+
+function whitepaperDeepDive(key, lang) {
+  return WHITEPAPER_DEEP_DIVES[key]?.[lang] || WHITEPAPER_DEEP_DIVES[key]?.en;
 }
 
 const DEFAULT_FAQS = {
@@ -776,7 +1125,7 @@ export const MARKETING_PAGES = [
       section('What changed in Europe', 'Directive (EU) 2020/2184 reinforces a risk-based approach to drinking water quality and extends the microbiological conversation to include somatic coliphages in treatment performance and raw water monitoring contexts. For laboratories and suppliers, the opportunity is to translate regulatory language into sample plans, method readiness and clear evidence records.', ['Risk-based monitoring instead of isolated results', 'Somatic coliphages as viral indicator context', 'Treatment efficacy and raw water evidence', 'Traceability from sampling point to report']),
       section('What technical buyers should prepare', 'A strong implementation brief should connect the regulatory driver with the real operational workflow: sampling locations, sample volumes, method route, controls, acceptance criteria, reporting language and escalation process.', ['Sampling plan and responsible roles', 'ISO 10705-2 oriented method discussion', 'Controls, batch records and reviewer history', 'Digital report and customer communication']),
       section('How AquaVerify supports the workflow', 'AquaVerify connects coliphage-focused products, laboratory essentials and AquaVerify Cloud so a buyer can move from whitepaper research to product selection, SaaS workflow design or distributor/OEM conversation without losing context.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Map EU compliance workflow', secondaryCta: 'Explore resources', seoTitle: 'EU Drinking Water Directive and Somatic Coliphages | AquaVerify Whitepaper', seoDescription: 'Whitepaper on Directive (EU) 2020/2184, somatic coliphages, ISO-oriented workflows and digital traceability for water quality teams.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Map EU compliance workflow', secondaryCta: 'Explore resources', seoTitle: 'EU Drinking Water Directive and Somatic Coliphages | AquaVerify Whitepaper', seoDescription: 'Whitepaper on Directive (EU) 2020/2184, somatic coliphages, ISO-oriented workflows and digital traceability for water quality teams.', whitepaper: whitepaperDeepDive('eu', 'en'), faqs: [
       { question: 'Does this whitepaper replace legal or accreditation advice?', answer: 'No. It is practical marketing and technical orientation. Laboratories, water suppliers and distributors should confirm requirements with their competent authority, accreditation body and quality system.' },
       { question: 'Why are somatic coliphages relevant for EU water quality teams?', answer: 'They strengthen the viral indicator discussion around treatment performance and microbiological risk, especially when a programme needs evidence beyond traditional bacterial indicators.' }
     ] }),
@@ -784,7 +1133,7 @@ export const MARKETING_PAGES = [
       section('Qué ha cambiado en Europa', 'La Directiva (UE) 2020/2184 refuerza el enfoque basado en riesgo para la calidad del agua de consumo y amplía la conversación microbiológica para incluir colífagos somáticos en contextos de eficacia de tratamiento y monitorización de agua bruta. Para laboratorios y proveedores, la oportunidad está en traducir la norma en planes de muestreo, preparación metodológica y registros de evidencia claros.', ['Monitorización basada en riesgo, no solo resultados aislados', 'Colífagos somáticos como contexto de indicador viral', 'Evidencia de eficacia de tratamiento y agua bruta', 'Trazabilidad desde punto de muestreo hasta informe']),
       section('Qué debe preparar un comprador técnico', 'Un buen brief de implantación conecta el driver regulatorio con el flujo operativo real: puntos de muestreo, volúmenes, ruta metodológica, controles, criterios de aceptación, lenguaje de informe y proceso de escalado.', ['Plan de muestreo y roles responsables', 'Discusión metodológica orientada a ISO 10705-2', 'Controles, registros de lote e historial de revisión', 'Informe digital y comunicación con cliente']),
       section('Cómo ayuda AquaVerify', 'AquaVerify conecta productos centrados en colífagos, essentials de laboratorio y AquaVerify Cloud para que el comprador pase de la investigación del whitepaper a selección de producto, diseño SaaS o conversación distribuidor/OEM sin perder contexto.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Mapear flujo de cumplimiento UE', secondaryCta: 'Explorar recursos', seoTitle: 'Directiva europea de agua potable y colífagos somáticos | Whitepaper AquaVerify', seoDescription: 'Whitepaper sobre Directiva (UE) 2020/2184, colífagos somáticos, flujos orientados a ISO y trazabilidad digital para equipos de calidad del agua.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Mapear flujo de cumplimiento UE', secondaryCta: 'Explorar recursos', seoTitle: 'Directiva europea de agua potable y colífagos somáticos | Whitepaper AquaVerify', seoDescription: 'Whitepaper sobre Directiva (UE) 2020/2184, colífagos somáticos, flujos orientados a ISO y trazabilidad digital para equipos de calidad del agua.', whitepaper: whitepaperDeepDive('eu', 'es'), faqs: [
       { question: '¿Este whitepaper sustituye asesoramiento legal o de acreditación?', answer: 'No. Es orientación práctica comercial y técnica. Laboratorios, operadores y distribuidores deben confirmar requisitos con su autoridad competente, entidad de acreditación y sistema de calidad.' },
       { question: '¿Por qué son relevantes los colífagos somáticos para equipos europeos?', answer: 'Refuerzan la conversación de indicador viral alrededor de eficacia de tratamiento y riesgo microbiológico, especialmente cuando un programa necesita evidencia más allá de indicadores bacterianos tradicionales.' }
     ] }),
@@ -792,7 +1141,7 @@ export const MARKETING_PAGES = [
       section('Ce qui change en Europe', 'La directive (UE) 2020/2184 renforce l’approche fondée sur le risque pour l’eau destinée à la consommation humaine et élargit la discussion microbiologique aux coliphages somatiques dans des contextes d’efficacité du traitement et de surveillance de l’eau brute. Pour les laboratoires et fournisseurs, l’enjeu consiste à transformer le texte réglementaire en plans de prélèvement, préparation méthodologique et preuves exploitables.', ['Surveillance fondée sur le risque, pas seulement résultats isolés', 'Coliphages somatiques comme contexte d’indicateur viral', 'Preuve d’efficacité du traitement et d’eau brute', 'Traçabilité du point de prélèvement au rapport']),
       section('Ce qu’un acheteur technique doit préparer', 'Un bon brief d’implémentation relie le moteur réglementaire au flux opérationnel réel: points de prélèvement, volumes, méthode, contrôles, critères d’acceptation, langage du rapport et processus d’escalade.', ['Plan de prélèvement et rôles responsables', 'Discussion méthode orientée ISO 10705-2', 'Contrôles, registres de lot et historique de revue', 'Rapport numérique et communication client']),
       section('Comment AquaVerify accompagne le flux', 'AquaVerify connecte produits axés coliphages, essentiels laboratoire et AquaVerify Cloud afin de passer de la lecture du whitepaper au choix produit, au design SaaS ou à l’échange distributeur/OEM sans perdre le contexte.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Cartographier le flux UE', secondaryCta: 'Explorer les ressources', seoTitle: 'Directive européenne eau potable et coliphages somatiques | Whitepaper AquaVerify', seoDescription: 'Whitepaper sur la directive (UE) 2020/2184, les coliphages somatiques, les flux orientés ISO et la traçabilité numérique pour équipes qualité eau.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Cartographier le flux UE', secondaryCta: 'Explorer les ressources', seoTitle: 'Directive européenne eau potable et coliphages somatiques | Whitepaper AquaVerify', seoDescription: 'Whitepaper sur la directive (UE) 2020/2184, les coliphages somatiques, les flux orientés ISO et la traçabilité numérique pour équipes qualité eau.', whitepaper: whitepaperDeepDive('eu', 'fr'), faqs: [
       { question: 'Ce whitepaper remplace-t-il un conseil juridique ou d’accréditation?', answer: 'Non. Il s’agit d’une orientation pratique commerciale et technique. Laboratoires, opérateurs et distributeurs doivent confirmer les exigences avec leur autorité compétente, organisme d’accréditation et système qualité.' },
       { question: 'Pourquoi les coliphages somatiques sont-ils pertinents en Europe?', answer: 'Ils renforcent la discussion d’indicateur viral autour de l’efficacité du traitement et du risque microbiologique, surtout lorsqu’un programme demande des preuves au-delà des indicateurs bactériens classiques.' }
     ] }),
@@ -800,7 +1149,7 @@ export const MARKETING_PAGES = [
       section('Cosa cambia in Europa', 'La Direttiva (UE) 2020/2184 rafforza l’approccio basato sul rischio per l’acqua destinata al consumo umano e amplia la conversazione microbiologica includendo i colifagi somatici in contesti di efficacia del trattamento e monitoraggio dell’acqua grezza. Per laboratori e fornitori, l’opportunità è trasformare il testo normativo in piani di campionamento, preparazione metodologica e registri di evidenza chiari.', ['Monitoraggio basato sul rischio, non solo risultati isolati', 'Colifagi somatici come contesto di indicatore virale', 'Evidenza di efficacia trattamento e acqua grezza', 'Tracciabilità dal punto di campionamento al report']),
       section('Cosa deve preparare un buyer tecnico', 'Un buon brief di implementazione collega il driver normativo al flusso operativo reale: punti di campionamento, volumi, percorso metodologico, controlli, criteri di accettazione, linguaggio del report e processo di escalation.', ['Piano di campionamento e ruoli responsabili', 'Discussione metodo orientata a ISO 10705-2', 'Controlli, registri lotto e storico revisione', 'Report digitale e comunicazione cliente']),
       section('Come AquaVerify supporta il flusso', 'AquaVerify collega prodotti focalizzati sui colifagi, essentials di laboratorio e AquaVerify Cloud affinché il buyer passi dalla ricerca nel whitepaper alla scelta prodotto, al design SaaS o alla conversazione distributore/OEM senza perdere contesto.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Mappa flusso conformità UE', secondaryCta: 'Esplora risorse', seoTitle: 'Direttiva europea acqua potabile e colifagi somatici | Whitepaper AquaVerify', seoDescription: 'Whitepaper su Direttiva (UE) 2020/2184, colifagi somatici, flussi orientati ISO e tracciabilità digitale per team qualità acqua.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Mappa flusso conformità UE', secondaryCta: 'Esplora risorse', seoTitle: 'Direttiva europea acqua potabile e colifagi somatici | Whitepaper AquaVerify', seoDescription: 'Whitepaper su Direttiva (UE) 2020/2184, colifagi somatici, flussi orientati ISO e tracciabilità digitale per team qualità acqua.', whitepaper: whitepaperDeepDive('eu', 'it'), faqs: [
       { question: 'Questo whitepaper sostituisce consulenza legale o di accreditamento?', answer: 'No. È orientamento pratico commerciale e tecnico. Laboratori, operatori e distributori devono confermare i requisiti con autorità competente, ente di accreditamento e sistema qualità.' },
       { question: 'Perché i colifagi somatici sono rilevanti per i team europei?', answer: 'Rafforzano la discussione di indicatore virale intorno a efficacia del trattamento e rischio microbiologico, soprattutto quando un programma richiede evidenza oltre agli indicatori batterici tradizionali.' }
     ] }),
@@ -808,7 +1157,7 @@ export const MARKETING_PAGES = [
       section('Què ha canviat a Europa', 'La Directiva (UE) 2020/2184 reforça l’enfocament basat en risc per a la qualitat de l’aigua de consum i amplia la conversa microbiològica per incloure colífags somàtics en contextos d’eficàcia de tractament i monitoratge d’aigua bruta. Per a laboratoris i proveïdors, l’oportunitat és traduir la norma en plans de mostreig, preparació metodològica i registres d’evidència clars.', ['Monitoratge basat en risc, no només resultats aïllats', 'Colífags somàtics com a context d’indicador viral', 'Evidència d’eficàcia de tractament i aigua bruta', 'Traçabilitat des del punt de mostreig fins a l’informe']),
       section('Què ha de preparar un comprador tècnic', 'Un bon brief d’implantació connecta el driver regulatori amb el flux operatiu real: punts de mostreig, volums, ruta metodològica, controls, criteris d’acceptació, llenguatge d’informe i procés d’escalat.', ['Pla de mostreig i rols responsables', 'Discussió metodològica orientada a ISO 10705-2', 'Controls, registres de lot i historial de revisió', 'Informe digital i comunicació amb client']),
       section('Com ajuda AquaVerify', 'AquaVerify connecta productes centrats en colífags, essentials de laboratori i AquaVerify Cloud perquè el comprador passi de la investigació del whitepaper a selecció de producte, disseny SaaS o conversa distribuïdor/OEM sense perdre context.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Mapar flux de compliment UE', secondaryCta: 'Explorar recursos', seoTitle: 'Directiva europea d’aigua potable i colífags somàtics | Whitepaper AquaVerify', seoDescription: 'Whitepaper sobre Directiva (UE) 2020/2184, colífags somàtics, fluxos orientats a ISO i traçabilitat digital per a equips de qualitat de l’aigua.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Mapar flux de compliment UE', secondaryCta: 'Explorar recursos', seoTitle: 'Directiva europea d’aigua potable i colífags somàtics | Whitepaper AquaVerify', seoDescription: 'Whitepaper sobre Directiva (UE) 2020/2184, colífags somàtics, fluxos orientats a ISO i traçabilitat digital per a equips de qualitat de l’aigua.', whitepaper: whitepaperDeepDive('eu', 'ca'), faqs: [
       { question: 'Aquest whitepaper substitueix assessorament legal o d’acreditació?', answer: 'No. És orientació pràctica comercial i tècnica. Laboratoris, operadors i distribuïdors han de confirmar requisits amb la seva autoritat competent, entitat d’acreditació i sistema de qualitat.' },
       { question: 'Per què són rellevants els colífags somàtics per a equips europeus?', answer: 'Reforcen la conversa d’indicador viral al voltant d’eficàcia de tractament i risc microbiològic, especialment quan un programa necessita evidència més enllà d’indicadors bacterians tradicionals.' }
     ] })
@@ -818,7 +1167,7 @@ export const MARKETING_PAGES = [
       section('Compliance is not only a result', 'For laboratories and water quality teams, compliance work depends on evidence: who requested the test, where the sample came from, which method route was used, which product or kit was consumed, who reviewed the result and what was communicated to the customer.', ['Sample metadata and chain of responsibility', 'Method, product and batch context', 'Review, approval and report status', 'Customer communication and CRM attribution']),
       section('What software should capture', 'A practical water quality platform should make the operational record useful for audits and commercial follow-up without pretending to replace laboratory validation or regulatory judgement.', ['Role-based access and audit trail', 'Structured sampling and result records', 'Report templates and version history', 'Dashboards for pipeline, product interest and recurring demand']),
       section('Why it creates B2B leads', 'A whitepaper about software evidence attracts buyers who already feel operational friction: growing labs, distributors selling technical products, quality teams managing suppliers and biotech companies looking for an all-in-one SaaS platform.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Request SaaS demo', secondaryCta: 'Explore resources', seoTitle: 'Water Compliance Software Guide | AquaVerify Cloud Whitepaper', seoDescription: 'Whitepaper on software evidence, audit trails, sample traceability and CRM attribution for water quality compliance workflows.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Request SaaS demo', secondaryCta: 'Explore resources', seoTitle: 'Water Compliance Software Guide | AquaVerify Cloud Whitepaper', seoDescription: 'Whitepaper on software evidence, audit trails, sample traceability and CRM attribution for water quality compliance workflows.', whitepaper: whitepaperDeepDive('software', 'en'), faqs: [
       { question: 'Can software make a laboratory compliant by itself?', answer: 'No. Software organizes evidence and workflow discipline; laboratories still need validated methods, trained staff, quality procedures and applicable regulatory review.' },
       { question: 'Who is the best audience for this whitepaper?', answer: 'Laboratories, water quality teams, distributors and biotech companies that need one workflow across samples, products, reports, CRM and customer communication.' }
     ] }),
@@ -826,7 +1175,7 @@ export const MARKETING_PAGES = [
       section('El cumplimiento no es solo un resultado', 'Para laboratorios y equipos de calidad del agua, el cumplimiento depende de la evidencia: quién pidió el análisis, de dónde viene la muestra, qué ruta metodológica se siguió, qué producto o kit se consumió, quién revisó el resultado y qué se comunicó al cliente.', ['Metadatos de muestra y cadena de responsabilidad', 'Contexto de método, producto y lote', 'Estado de revisión, aprobación e informe', 'Comunicación cliente y atribución CRM']),
       section('Qué debe capturar el software', 'Una plataforma práctica de calidad del agua debe hacer que el registro operativo sea útil para auditorías y seguimiento comercial sin pretender sustituir la validación de laboratorio ni el criterio regulatorio.', ['Acceso por roles y audit trail', 'Registros estructurados de muestra y resultado', 'Plantillas de informe e historial de versión', 'Dashboards de pipeline, interés de producto y demanda recurrente']),
       section('Por qué genera leads B2B', 'Un whitepaper sobre evidencia software atrae compradores que ya sienten fricción operativa: laboratorios en crecimiento, distribuidores de productos técnicos, equipos de calidad que coordinan proveedores y empresas biotech que buscan una plataforma SaaS todo en uno.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Solicitar demo SaaS', secondaryCta: 'Explorar recursos', seoTitle: 'Software de cumplimiento en calidad del agua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sobre evidencia software, audit trail, trazabilidad de muestras y atribución CRM para flujos de cumplimiento en calidad del agua.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Solicitar demo SaaS', secondaryCta: 'Explorar recursos', seoTitle: 'Software de cumplimiento en calidad del agua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sobre evidencia software, audit trail, trazabilidad de muestras y atribución CRM para flujos de cumplimiento en calidad del agua.', whitepaper: whitepaperDeepDive('software', 'es'), faqs: [
       { question: '¿El software puede hacer que un laboratorio sea compliant por sí solo?', answer: 'No. El software organiza evidencia y disciplina de flujo; el laboratorio sigue necesitando métodos validados, personal formado, procedimientos de calidad y revisión regulatoria aplicable.' },
       { question: '¿Para quién es este whitepaper?', answer: 'Laboratorios, equipos de calidad del agua, distribuidores y empresas biotech que necesitan un flujo común entre muestras, productos, informes, CRM y comunicación cliente.' }
     ] }),
@@ -834,7 +1183,7 @@ export const MARKETING_PAGES = [
       section('La conformité n’est pas seulement un résultat', 'Pour laboratoires et équipes qualité eau, la conformité dépend de la preuve: qui a demandé l’analyse, d’où vient l’échantillon, quelle route méthodologique a été suivie, quel produit ou kit a été consommé, qui a revu le résultat et ce qui a été communiqué au client.', ['Métadonnées échantillon et chaîne de responsabilité', 'Contexte méthode, produit et lot', 'Statut de revue, approbation et rapport', 'Communication client et attribution CRM']),
       section('Ce que le logiciel doit capturer', 'Une plateforme qualité eau pratique doit rendre le registre opérationnel utile aux audits et au suivi commercial sans remplacer la validation laboratoire ni le jugement réglementaire.', ['Accès par rôles et piste d’audit', 'Enregistrements structurés échantillon et résultat', 'Modèles de rapport et historique de version', 'Dashboards pipeline, intérêt produit et demande récurrente']),
       section('Pourquoi cela génère des leads B2B', 'Un whitepaper sur la preuve logicielle attire les acheteurs qui ressentent déjà une friction opérationnelle: laboratoires en croissance, distributeurs de produits techniques, équipes qualité coordonnant fournisseurs et biotech cherchant une plateforme SaaS tout-en-un.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Demander une démo SaaS', secondaryCta: 'Explorer les ressources', seoTitle: 'Logiciel conformité qualité eau | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sur preuve logicielle, piste d’audit, traçabilité échantillons et attribution CRM pour flux conformité qualité eau.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Demander une démo SaaS', secondaryCta: 'Explorer les ressources', seoTitle: 'Logiciel conformité qualité eau | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sur preuve logicielle, piste d’audit, traçabilité échantillons et attribution CRM pour flux conformité qualité eau.', whitepaper: whitepaperDeepDive('software', 'fr'), faqs: [
       { question: 'Le logiciel peut-il rendre un laboratoire conforme à lui seul?', answer: 'Non. Le logiciel organise la preuve et la discipline de flux; le laboratoire a toujours besoin de méthodes validées, personnel formé, procédures qualité et revue réglementaire applicable.' },
       { question: 'À qui s’adresse ce whitepaper?', answer: 'Aux laboratoires, équipes qualité eau, distributeurs et biotech qui ont besoin d’un flux commun entre échantillons, produits, rapports, CRM et communication client.' }
     ] }),
@@ -842,7 +1191,7 @@ export const MARKETING_PAGES = [
       section('La conformità non è solo un risultato', 'Per laboratori e team qualità acqua, la conformità dipende dall’evidenza: chi ha richiesto l’analisi, da dove proviene il campione, quale percorso metodologico è stato seguito, quale prodotto o kit è stato consumato, chi ha revisionato il risultato e cosa è stato comunicato al cliente.', ['Metadati campione e catena di responsabilità', 'Contesto metodo, prodotto e lotto', 'Stato di revisione, approvazione e report', 'Comunicazione cliente e attribuzione CRM']),
       section('Cosa deve catturare il software', 'Una piattaforma pratica per qualità acqua deve rendere il record operativo utile per audit e follow-up commerciale senza sostituire validazione di laboratorio o giudizio normativo.', ['Accesso per ruoli e audit trail', 'Record strutturati di campione e risultato', 'Template report e storico versioni', 'Dashboard per pipeline, interesse prodotto e domanda ricorrente']),
       section('Perché genera lead B2B', 'Un whitepaper sull’evidenza software attira buyer che già sentono frizione operativa: laboratori in crescita, distributori di prodotti tecnici, team qualità che coordinano fornitori e biotech alla ricerca di una piattaforma SaaS all-in-one.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Richiedi demo SaaS', secondaryCta: 'Esplora risorse', seoTitle: 'Software conformità qualità acqua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper su evidenza software, audit trail, tracciabilità campioni e attribuzione CRM per flussi conformità qualità acqua.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Richiedi demo SaaS', secondaryCta: 'Esplora risorse', seoTitle: 'Software conformità qualità acqua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper su evidenza software, audit trail, tracciabilità campioni e attribuzione CRM per flussi conformità qualità acqua.', whitepaper: whitepaperDeepDive('software', 'it'), faqs: [
       { question: 'Il software può rendere conforme un laboratorio da solo?', answer: 'No. Il software organizza evidenza e disciplina di flusso; il laboratorio ha comunque bisogno di metodi validati, personale formato, procedure qualità e revisione normativa applicabile.' },
       { question: 'Per chi è questo whitepaper?', answer: 'Laboratori, team qualità acqua, distributori e biotech che richiedono un flusso comune tra campioni, prodotti, report, CRM e comunicazione cliente.' }
     ] }),
@@ -850,7 +1199,7 @@ export const MARKETING_PAGES = [
       section('El compliment no és només un resultat', 'Per a laboratoris i equips de qualitat de l’aigua, el compliment depèn de l’evidència: qui va demanar l’anàlisi, d’on ve la mostra, quina ruta metodològica es va seguir, quin producte o kit es va consumir, qui va revisar el resultat i què es va comunicar al client.', ['Metadades de mostra i cadena de responsabilitat', 'Context de mètode, producte i lot', 'Estat de revisió, aprovació i informe', 'Comunicació client i atribució CRM']),
       section('Què ha de capturar el software', 'Una plataforma pràctica de qualitat de l’aigua ha de fer que el registre operatiu sigui útil per a auditories i seguiment comercial sense pretendre substituir la validació de laboratori ni el criteri regulatori.', ['Accés per rols i audit trail', 'Registres estructurats de mostra i resultat', 'Plantilles d’informe i historial de versió', 'Dashboards de pipeline, interès de producte i demanda recurrent']),
       section('Per què genera leads B2B', 'Un whitepaper sobre evidència software atrau compradors que ja senten fricció operativa: laboratoris en creixement, distribuïdors de productes tècnics, equips de qualitat que coordinen proveïdors i empreses biotech que busquen una plataforma SaaS tot en un.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Sol·licitar demo SaaS', secondaryCta: 'Explorar recursos', seoTitle: 'Software de compliment en qualitat de l’aigua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sobre evidència software, audit trail, traçabilitat de mostres i atribució CRM per a fluxos de compliment en qualitat de l’aigua.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Sol·licitar demo SaaS', secondaryCta: 'Explorar recursos', seoTitle: 'Software de compliment en qualitat de l’aigua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sobre evidència software, audit trail, traçabilitat de mostres i atribució CRM per a fluxos de compliment en qualitat de l’aigua.', whitepaper: whitepaperDeepDive('software', 'ca'), faqs: [
       { question: 'El software pot fer que un laboratori sigui compliant per si sol?', answer: 'No. El software organitza evidència i disciplina de flux; el laboratori continua necessitant mètodes validats, personal format, procediments de qualitat i revisió regulatòria aplicable.' },
       { question: 'Per a qui és aquest whitepaper?', answer: 'Laboratoris, equips de qualitat de l’aigua, distribuïdors i empreses biotech que necessiten un flux comú entre mostres, productes, informes, CRM i comunicació client.' }
     ] })
@@ -860,7 +1209,7 @@ export const MARKETING_PAGES = [
       section('The US compliance starting point', 'The EPA Revised Total Coliform Rule uses total coliforms and E. coli to help public water systems evaluate treatment adequacy and distribution-system integrity. For a B2B buyer, the practical question is how to keep monitoring plans, results, assessments, corrective actions and customer communication organized.', ['Sample siting plan and schedule context', 'Total coliform and E. coli monitoring records', 'Assessment and corrective-action evidence', 'Public or customer reporting workflow']),
       section('Where coliphage methods fit', 'Coliphage testing is a related microbiology context, especially for teams evaluating viral indicators or ground-water contamination questions. EPA Method 1602 provides a single agar layer route for male-specific and somatic coliphage enumeration, but it should be positioned separately from RTCR bacterial monitoring obligations.', ['Clear distinction between coliform rule and coliphage method', 'Method readiness and quality-control records', 'Product, host strain and consumable planning', 'Result traceability by sample and batch']),
       section('How AquaVerify turns interest into pipeline', 'AquaVerify can connect US-oriented educational content with product pages, datasheets, demo requests and CRM attribution so qualified visitors arrive in Sales with page, intent, product and campaign context.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Discuss US workflow', secondaryCta: 'Explore resources', seoTitle: 'US Drinking Water Compliance, Coliform Rule and Coliphage Context | AquaVerify', seoDescription: 'Whitepaper on the EPA Revised Total Coliform Rule, EPA Method 1602 context and digital traceability for US water quality teams.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Discuss US workflow', secondaryCta: 'Explore resources', seoTitle: 'US Drinking Water Compliance, Coliform Rule and Coliphage Context | AquaVerify', seoDescription: 'Whitepaper on the EPA Revised Total Coliform Rule, EPA Method 1602 context and digital traceability for US water quality teams.', whitepaper: whitepaperDeepDive('us', 'en'), faqs: [
       { question: 'Is EPA Method 1602 the same as the Revised Total Coliform Rule?', answer: 'No. The RTCR focuses on total coliform and E. coli monitoring for public water systems; Method 1602 is a coliphage method context that may be relevant for different monitoring questions.' },
       { question: 'How should US leads use this resource?', answer: 'Use it to prepare a conversation about monitoring workflow, products, method readiness, evidence records and whether AquaVerify Cloud should support reporting and CRM follow-up.' }
     ] }),
@@ -868,7 +1217,7 @@ export const MARKETING_PAGES = [
       section('El punto de partida en Estados Unidos', 'La Revised Total Coliform Rule de EPA usa coliformes totales y E. coli para ayudar a sistemas públicos de agua a evaluar adecuación de tratamiento e integridad de la red de distribución. Para un comprador B2B, la pregunta práctica es cómo organizar planes de muestreo, resultados, evaluaciones, acciones correctivas y comunicación.', ['Contexto de plan y calendario de puntos de muestreo', 'Registros de coliformes totales y E. coli', 'Evidencia de evaluación y acción correctiva', 'Flujo de informe público o comunicación cliente']),
       section('Dónde encajan los métodos de colífagos', 'El análisis de colífagos es un contexto microbiológico relacionado, especialmente para equipos que evalúan indicadores virales o preguntas de contaminación en agua subterránea. EPA Method 1602 proporciona una ruta de single agar layer para enumeración de colífagos F+ y somáticos, pero debe posicionarse separada de las obligaciones bacterianas de la RTCR.', ['Diferenciar regla de coliformes y método colífagos', 'Preparación metodológica y registros de control de calidad', 'Planificación de producto, cepa huésped y consumibles', 'Trazabilidad de resultado por muestra y lote']),
       section('Cómo AquaVerify convierte interés en pipeline', 'AquaVerify conecta contenido educativo orientado a Estados Unidos con páginas de producto, datasheets, solicitudes de demo y atribución CRM para que los visitantes cualificados lleguen a Sales con contexto de página, intención, producto y campaña.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Hablar de flujo EEUU', secondaryCta: 'Explorar recursos', seoTitle: 'Cumplimiento agua potable EEUU, coliformes y colífagos | AquaVerify', seoDescription: 'Whitepaper sobre EPA Revised Total Coliform Rule, contexto EPA Method 1602 y trazabilidad digital para equipos de calidad del agua en Estados Unidos.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Hablar de flujo EEUU', secondaryCta: 'Explorar recursos', seoTitle: 'Cumplimiento agua potable EEUU, coliformes y colífagos | AquaVerify', seoDescription: 'Whitepaper sobre EPA Revised Total Coliform Rule, contexto EPA Method 1602 y trazabilidad digital para equipos de calidad del agua en Estados Unidos.', whitepaper: whitepaperDeepDive('us', 'es'), faqs: [
       { question: '¿EPA Method 1602 es lo mismo que la Revised Total Coliform Rule?', answer: 'No. La RTCR se centra en monitorización de coliformes totales y E. coli para sistemas públicos de agua; Method 1602 es un contexto metodológico para colífagos que puede ser relevante para otras preguntas de monitorización.' },
       { question: '¿Cómo debería usar este recurso un lead de Estados Unidos?', answer: 'Para preparar una conversación sobre flujo de monitorización, productos, preparación metodológica, registros de evidencia y si AquaVerify Cloud debe apoyar reporting y seguimiento CRM.' }
     ] }),
@@ -876,7 +1225,7 @@ export const MARKETING_PAGES = [
       section('Le point de départ américain', 'La Revised Total Coliform Rule de l’EPA utilise coliformes totaux et E. coli pour aider les systèmes publics d’eau à évaluer l’adéquation du traitement et l’intégrité du réseau de distribution. Pour un acheteur B2B, la question pratique est d’organiser plans de prélèvement, résultats, évaluations, actions correctives et communication.', ['Contexte du plan et calendrier de points de prélèvement', 'Registres coliformes totaux et E. coli', 'Preuve d’évaluation et action corrective', 'Flux de rapport public ou communication client']),
       section('Où s’insèrent les méthodes coliphages', 'L’analyse des coliphages est un contexte microbiologique lié, notamment pour les équipes évaluant des indicateurs viraux ou des questions de contamination d’eau souterraine. EPA Method 1602 fournit une route single agar layer pour le dénombrement des coliphages F+ et somatiques, mais doit être positionnée séparément des obligations bactériennes RTCR.', ['Distinguer règle coliformes et méthode coliphages', 'Préparation méthode et registres qualité', 'Planification produit, souche hôte et consommables', 'Traçabilité du résultat par échantillon et lot']),
       section('Comment AquaVerify transforme l’intérêt en pipeline', 'AquaVerify relie le contenu éducatif orienté États-Unis aux pages produit, datasheets, demandes de démo et attribution CRM afin que les visiteurs qualifiés arrivent aux ventes avec contexte page, intention, produit et campagne.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Discuter flux États-Unis', secondaryCta: 'Explorer les ressources', seoTitle: 'Conformité eau potable États-Unis, coliformes et coliphages | AquaVerify', seoDescription: 'Whitepaper sur EPA Revised Total Coliform Rule, contexte EPA Method 1602 et traçabilité numérique pour équipes qualité eau aux États-Unis.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Discuter flux États-Unis', secondaryCta: 'Explorer les ressources', seoTitle: 'Conformité eau potable États-Unis, coliformes et coliphages | AquaVerify', seoDescription: 'Whitepaper sur EPA Revised Total Coliform Rule, contexte EPA Method 1602 et traçabilité numérique pour équipes qualité eau aux États-Unis.', whitepaper: whitepaperDeepDive('us', 'fr'), faqs: [
       { question: 'EPA Method 1602 est-elle la même chose que la Revised Total Coliform Rule?', answer: 'Non. La RTCR porte sur la surveillance coliformes totaux et E. coli des systèmes publics d’eau; Method 1602 est un contexte méthodologique coliphages utile pour d’autres questions de surveillance.' },
       { question: 'Comment un lead américain doit-il utiliser cette ressource?', answer: 'Pour préparer une discussion sur flux de surveillance, produits, préparation méthode, preuves et éventuel support AquaVerify Cloud pour reporting et suivi CRM.' }
     ] }),
@@ -884,7 +1233,7 @@ export const MARKETING_PAGES = [
       section('Il punto di partenza negli Stati Uniti', 'La Revised Total Coliform Rule dell’EPA usa coliformi totali ed E. coli per aiutare i sistemi idrici pubblici a valutare adeguatezza del trattamento e integrità della rete di distribuzione. Per un buyer B2B, la domanda pratica è come organizzare piani di campionamento, risultati, valutazioni, azioni correttive e comunicazione.', ['Contesto del piano e calendario punti di campionamento', 'Record di coliformi totali ed E. coli', 'Evidenza di valutazione e azione correttiva', 'Flusso di report pubblico o comunicazione cliente']),
       section('Dove si inseriscono i metodi colifagi', 'L’analisi dei colifagi è un contesto microbiologico correlato, soprattutto per team che valutano indicatori virali o domande di contaminazione in acque sotterranee. EPA Method 1602 fornisce un percorso single agar layer per enumerazione di colifagi F+ e somatici, ma va posizionato separatamente dagli obblighi batterici RTCR.', ['Distinzione tra regola coliformi e metodo colifagi', 'Preparazione metodo e record di controllo qualità', 'Pianificazione prodotto, ceppo ospite e consumabili', 'Tracciabilità risultato per campione e lotto']),
       section('Come AquaVerify trasforma interesse in pipeline', 'AquaVerify collega contenuto educativo orientato Stati Uniti con pagine prodotto, datasheet, richieste demo e attribuzione CRM affinché i visitatori qualificati arrivino alle vendite con contesto di pagina, intento, prodotto e campagna.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Discuti flusso USA', secondaryCta: 'Esplora risorse', seoTitle: 'Conformità acqua potabile USA, coliformi e colifagi | AquaVerify', seoDescription: 'Whitepaper su EPA Revised Total Coliform Rule, contesto EPA Method 1602 e tracciabilità digitale per team qualità acqua negli Stati Uniti.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Discuti flusso USA', secondaryCta: 'Esplora risorse', seoTitle: 'Conformità acqua potabile USA, coliformi e colifagi | AquaVerify', seoDescription: 'Whitepaper su EPA Revised Total Coliform Rule, contesto EPA Method 1602 e tracciabilità digitale per team qualità acqua negli Stati Uniti.', whitepaper: whitepaperDeepDive('us', 'it'), faqs: [
       { question: 'EPA Method 1602 è la stessa cosa della Revised Total Coliform Rule?', answer: 'No. La RTCR riguarda il monitoraggio di coliformi totali ed E. coli per sistemi idrici pubblici; Method 1602 è un contesto metodologico per colifagi che può essere rilevante per altre domande di monitoraggio.' },
       { question: 'Come dovrebbe usare questa risorsa un lead statunitense?', answer: 'Per preparare una conversazione su flusso di monitoraggio, prodotti, preparazione metodo, registri di evidenza e se AquaVerify Cloud debba supportare reporting e follow-up CRM.' }
     ] }),
@@ -892,7 +1241,7 @@ export const MARKETING_PAGES = [
       section('El punt de partida als Estats Units', 'La Revised Total Coliform Rule de l’EPA usa coliformes totals i E. coli per ajudar sistemes públics d’aigua a avaluar adequació de tractament i integritat de la xarxa de distribució. Per a un comprador B2B, la pregunta pràctica és com organitzar plans de mostreig, resultats, avaluacions, accions correctives i comunicació.', ['Context de pla i calendari de punts de mostreig', 'Registres de coliformes totals i E. coli', 'Evidència d’avaluació i acció correctiva', 'Flux d’informe públic o comunicació client']),
       section('On encaixen els mètodes de colífags', 'L’anàlisi de colífags és un context microbiològic relacionat, especialment per a equips que avaluen indicadors virals o preguntes de contaminació en aigua subterrània. EPA Method 1602 proporciona una ruta single agar layer per a enumeració de colífags F+ i somàtics, però s’ha de posicionar separada de les obligacions bacterianes de la RTCR.', ['Diferenciar regla de coliformes i mètode colífags', 'Preparació metodològica i registres de control de qualitat', 'Planificació de producte, soca hoste i consumibles', 'Traçabilitat de resultat per mostra i lot']),
       section('Com AquaVerify converteix interès en pipeline', 'AquaVerify connecta contingut educatiu orientat als Estats Units amb pàgines de producte, datasheets, sol·licituds de demo i atribució CRM perquè els visitants qualificats arribin a Sales amb context de pàgina, intenció, producte i campanya.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Parlar de flux EUA', secondaryCta: 'Explorar recursos', seoTitle: 'Compliment aigua potable EUA, coliformes i colífags | AquaVerify', seoDescription: 'Whitepaper sobre EPA Revised Total Coliform Rule, context EPA Method 1602 i traçabilitat digital per a equips de qualitat de l’aigua als Estats Units.', faqs: [
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Parlar de flux EUA', secondaryCta: 'Explorar recursos', seoTitle: 'Compliment aigua potable EUA, coliformes i colífags | AquaVerify', seoDescription: 'Whitepaper sobre EPA Revised Total Coliform Rule, context EPA Method 1602 i traçabilitat digital per a equips de qualitat de l’aigua als Estats Units.', whitepaper: whitepaperDeepDive('us', 'ca'), faqs: [
       { question: 'EPA Method 1602 és el mateix que la Revised Total Coliform Rule?', answer: 'No. La RTCR se centra en monitoratge de coliformes totals i E. coli per a sistemes públics d’aigua; Method 1602 és un context metodològic per a colífags que pot ser rellevant per a altres preguntes de monitoratge.' },
       { question: 'Com hauria d’usar aquest recurs un lead dels Estats Units?', answer: 'Per preparar una conversa sobre flux de monitoratge, productes, preparació metodològica, registres d’evidència i si AquaVerify Cloud ha de donar suport a reporting i seguiment CRM.' }
     ] })
