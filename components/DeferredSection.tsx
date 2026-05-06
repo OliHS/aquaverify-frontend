@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { usePageContent } from '../context/PageContentContext';
 
 interface DeferredSectionProps {
   id: string;
@@ -13,11 +14,16 @@ export const DeferredSection: React.FC<DeferredSectionProps> = ({
   rootMargin = '900px 0px',
   children
 }) => {
+  const { isEditing } = usePageContent();
   const ref = useRef<HTMLDivElement>(null);
   const [shouldRender, setShouldRender] = useState(() => {
     if (typeof window === 'undefined') return false;
     return window.location.hash === `#${id}`;
   });
+
+  useEffect(() => {
+    if (isEditing) setShouldRender(true);
+  }, [isEditing]);
 
   useEffect(() => {
     const renderIfTargeted = () => {

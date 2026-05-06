@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../../utils/supabase';
-import { Save, ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { Save, ArrowLeft, CheckCircle2, ArrowDown } from 'lucide-react';
 import { PublicSiteContent } from '../PublicSite';
 import { PageContentContext } from '../../context/PageContentContext';
 import { LanguageProvider, useLanguage } from '../../context/LanguageContext';
@@ -10,6 +10,7 @@ import { sanitizeCmsContentLinks } from '../../utils/cmsLinks';
 import { scanProductClaimFields } from '../../utils/productClaims.js';
 
 const LEGACY_CONTACT_FORM_HELPER = 'Use the contact form for the fastest response';
+const HOME_BUILDER_SLUGS = new Set(['home', 'home-en', 'home-english', 'home-es', 'home-spanish', 'inicio', 'home-fr', 'home-french', 'accueil', 'home-it', 'home-italian', 'home-ca', 'home-catalan', 'inici']);
 
 export const VisualBuilder: React.FC = () => {
     return (
@@ -275,6 +276,11 @@ const VisualBuilderInner: React.FC = () => {
 
     if (loading) return <div className="p-12 text-center text-slate-500">Loading editor environment...</div>;
     if (!page) return <div className="p-12 text-center text-red-500">Fatal error: Page not found.</div>;
+    const isHomeBuilderPage = HOME_BUILDER_SLUGS.has(String(page.slug || ''));
+
+    const scrollPreviewTo = (sectionId: string) => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
 
     return (
         <div className="flex h-screen overflow-hidden bg-slate-100">
@@ -337,7 +343,7 @@ const VisualBuilderInner: React.FC = () => {
                     </div>
 
                     {/* Home Page Content Blocks */}
-                    {page.slug === 'home' && (
+                    {isHomeBuilderPage && (
                         <>
                             <div className="space-y-4 pt-4 border-t border-slate-200">
                                 <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wider">Hero Section</h2>
@@ -385,7 +391,17 @@ const VisualBuilderInner: React.FC = () => {
                             </div>
 
                             <div className="space-y-4 pt-4 border-t border-slate-200">
-                                <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wider">Products Section</h2>
+                                <div className="flex items-center justify-between gap-3">
+                                    <h2 className="text-sm font-bold text-slate-800 uppercase tracking-wider">Products Section</h2>
+                                    <button
+                                        type="button"
+                                        onClick={() => scrollPreviewTo('products')}
+                                        className="inline-flex items-center rounded-md border border-blue-100 bg-blue-50 px-2.5 py-1.5 text-xs font-bold text-blue-700 transition hover:bg-blue-100"
+                                    >
+                                        <ArrowDown size={13} className="mr-1" />
+                                        Smart Cap
+                                    </button>
+                                </div>
                                 <div>
                                     <label className="block text-xs font-medium text-slate-700 mb-1">Badge</label>
                                     <input
@@ -411,6 +427,16 @@ const VisualBuilderInner: React.FC = () => {
                                         rows={2}
                                         value={getLocalizedValue('products', 'subtitle')}
                                         onChange={e => handleBlockChange('products', 'subtitle', e.target.value, lang)}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-medium text-slate-700 mb-1">Smart Cap image URL</label>
+                                    <input
+                                        type="url"
+                                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                        value={getRawValue('products', 'flagshipImage')}
+                                        onChange={e => handleBlockChange('products', 'flagshipImage', e.target.value)}
+                                        placeholder="Hover the preview image to upload, or paste a public image URL"
                                     />
                                 </div>
                                 <div>
