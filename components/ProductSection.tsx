@@ -35,7 +35,7 @@ const getFamilyIcon = (familyId: string) => {
   }
 };
 
-const SEO_FAMILY_COPY: Record<Language, {
+const PRODUCT_RANGE_COPY: Record<Language, {
   title: string;
   subtitle: string;
   cta: string;
@@ -49,7 +49,7 @@ const SEO_FAMILY_COPY: Record<Language, {
 }> = {
   en: {
     title: 'Core AquaVerify product ranges',
-    subtitle: 'Indexable product pages for buyers comparing technical fit, sample volume, method alignment and digital workflow.',
+    subtitle: 'Product ranges for teams comparing technical fit, sample volume, method alignment and digital workflow.',
     cta: 'Open page',
     items: [
       { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Quantitative kits and tools for water microbiology enumeration workflows.', icon: <Gauge className="h-5 w-5" /> },
@@ -60,7 +60,7 @@ const SEO_FAMILY_COPY: Record<Language, {
   },
   es: {
     title: 'Gamas principales AquaVerify',
-    subtitle: 'Páginas indexables para compradores que comparan encaje técnico, volumen de muestra, método y flujo digital.',
+    subtitle: 'Gamas pensadas para equipos que comparan encaje técnico, volumen de muestra, método y flujo digital.',
     cta: 'Abrir página',
     items: [
       { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Kits y herramientas cuantitativas para flujos de enumeración en microbiología del agua.', icon: <Gauge className="h-5 w-5" /> },
@@ -71,7 +71,7 @@ const SEO_FAMILY_COPY: Record<Language, {
   },
   fr: {
     title: 'Gammes principales AquaVerify',
-    subtitle: 'Pages indexables pour comparer adéquation technique, volume d’échantillon, méthode et flux numérique.',
+    subtitle: 'Gammes pensées pour les équipes qui comparent adéquation technique, volume d’échantillon, méthode et flux numérique.',
     cta: 'Ouvrir la page',
     items: [
       { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Kits et outils quantitatifs pour les flux de dénombrement en microbiologie de l’eau.', icon: <Gauge className="h-5 w-5" /> },
@@ -82,7 +82,7 @@ const SEO_FAMILY_COPY: Record<Language, {
   },
   it: {
     title: 'Gamme principali AquaVerify',
-    subtitle: 'Pagine indicizzabili per confrontare inquadramento tecnico, volume campione, metodo e flusso digitale.',
+    subtitle: 'Gamme pensate per team che confrontano inquadramento tecnico, volume campione, metodo e flusso digitale.',
     cta: 'Apri pagina',
     items: [
       { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Kit e strumenti quantitativi per flussi di enumerazione in microbiologia dell’acqua.', icon: <Gauge className="h-5 w-5" /> },
@@ -93,7 +93,7 @@ const SEO_FAMILY_COPY: Record<Language, {
   },
   ca: {
     title: 'Gammes principals AquaVerify',
-    subtitle: 'Pàgines indexables per comparar encaix tècnic, volum de mostra, mètode i flux digital.',
+    subtitle: 'Gammes pensades per a equips que comparen encaix tècnic, volum de mostra, mètode i flux digital.',
     cta: 'Obrir pàgina',
     items: [
       { id: 'enumera', pageId: 'enumera', title: 'ENUMERA', body: 'Kits i eines quantitatives per a fluxos d’enumeració en microbiologia de l’aigua.', icon: <Gauge className="h-5 w-5" /> },
@@ -114,7 +114,7 @@ export const ProductSection: React.FC = () => {
   const [isEnumeraModalOpen, setIsEnumeraModalOpen] = useState(false);
 
   const { t, lang } = useLanguage();
-  const seoFamilyCopy = SEO_FAMILY_COPY[lang] || SEO_FAMILY_COPY.en;
+  const productRangeCopy = PRODUCT_RANGE_COPY[lang] || PRODUCT_RANGE_COPY.en;
 
   useEffect(() => {
     const fetchCatalog = async () => {
@@ -326,15 +326,15 @@ export const ProductSection: React.FC = () => {
           </div>
         </div>
 
-        <div data-aq-section="product-family-seo-links" className="mb-16">
+        <div data-aq-section="product-family-links" className="mb-16">
           <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-              <h3 className="font-heading text-2xl font-black text-primary">{seoFamilyCopy.title}</h3>
-              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{seoFamilyCopy.subtitle}</p>
+              <h3 className="font-heading text-2xl font-black text-primary">{productRangeCopy.title}</h3>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-600">{productRangeCopy.subtitle}</p>
             </div>
           </div>
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {seoFamilyCopy.items.map((item) => (
+            {productRangeCopy.items.map((item) => (
               <Link
                 key={item.id}
                 to={getMarketingPagePath(item.pageId, lang)}
@@ -346,7 +346,7 @@ export const ProductSection: React.FC = () => {
                 <h4 className="font-heading text-lg font-black text-slate-900">{item.title}</h4>
                 <p className="mt-2 min-h-[4.5rem] text-sm leading-6 text-slate-600">{item.body}</p>
                 <span className="mt-4 inline-flex items-center text-sm font-black text-secondary">
-                  {seoFamilyCopy.cta}
+                  {productRangeCopy.cta}
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </span>
               </Link>

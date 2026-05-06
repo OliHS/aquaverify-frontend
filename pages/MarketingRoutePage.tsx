@@ -51,7 +51,7 @@ const UI_LABELS: Record<Language, {
   en: {
     bridgeEyebrow: 'AquaVerify',
     bridgeTitle: 'Products + platform',
-    bridgeBody: 'AquaVerify connects water microbiology products, OEM distribution and cloud workflows so each lead can move from public site to CRM with clear intent.',
+    bridgeBody: 'AquaVerify connects water microbiology products, OEM distribution and cloud workflows so visitors can move from research to the right product, partner or platform path.',
     products: 'Products',
     platform: 'Platform',
     oem: 'OEM',
@@ -65,7 +65,7 @@ const UI_LABELS: Record<Language, {
   es: {
     bridgeEyebrow: 'AquaVerify',
     bridgeTitle: 'Productos + plataforma',
-    bridgeBody: 'AquaVerify conecta productos de microbiología del agua, distribución OEM y flujos cloud para que cada lead llegue al CRM con intención clara.',
+    bridgeBody: 'AquaVerify conecta productos de microbiología del agua, distribución OEM y flujos cloud para que cada visitante pase de la investigación a la ruta adecuada: producto, partner o plataforma.',
     products: 'Productos',
     platform: 'Plataforma',
     oem: 'OEM',
@@ -79,7 +79,7 @@ const UI_LABELS: Record<Language, {
   fr: {
     bridgeEyebrow: 'AquaVerify',
     bridgeTitle: 'Produits + plateforme',
-    bridgeBody: 'AquaVerify connecte produits de microbiologie de l’eau, distribution OEM et flux cloud afin que chaque lead arrive dans le CRM avec une intention claire.',
+    bridgeBody: 'AquaVerify connecte produits de microbiologie de l’eau, distribution OEM et flux cloud afin que chaque visiteur passe de la recherche au bon parcours: produit, partenaire ou plateforme.',
     products: 'Produits',
     platform: 'Plateforme',
     oem: 'OEM',
@@ -93,7 +93,7 @@ const UI_LABELS: Record<Language, {
   it: {
     bridgeEyebrow: 'AquaVerify',
     bridgeTitle: 'Prodotti + piattaforma',
-    bridgeBody: 'AquaVerify collega prodotti di microbiologia dell’acqua, distribuzione OEM e flussi cloud affinché ogni lead arrivi nel CRM con intento chiaro.',
+    bridgeBody: 'AquaVerify collega prodotti di microbiologia dell’acqua, distribuzione OEM e flussi cloud affinché ogni visitatore passi dalla ricerca al percorso corretto: prodotto, partner o piattaforma.',
     products: 'Prodotti',
     platform: 'Piattaforma',
     oem: 'OEM',
@@ -107,7 +107,7 @@ const UI_LABELS: Record<Language, {
   ca: {
     bridgeEyebrow: 'AquaVerify',
     bridgeTitle: 'Productes + plataforma',
-    bridgeBody: 'AquaVerify connecta productes de microbiologia de l’aigua, distribució OEM i fluxos cloud perquè cada lead arribi al CRM amb intenció clara.',
+    bridgeBody: 'AquaVerify connecta productes de microbiologia de l’aigua, distribució OEM i fluxos cloud perquè cada visitant passi de la recerca a la ruta adequada: producte, partner o plataforma.',
     products: 'Productes',
     platform: 'Plataforma',
     oem: 'OEM',
@@ -136,8 +136,8 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
 }> = {
   en: {
     eyebrow: 'Featured whitepapers',
-    title: 'Regulatory resources for qualified water quality buyers',
-    body: 'Start with the four highest-intent guides: viral indicators, European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
+    title: 'Regulatory resources for water quality teams',
+    body: 'Start with four practical guides for technical decisions: viral indicators, European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
     cta: 'Open whitepaper',
     badges: {
       'coliphages-indicators': 'Viral indicators',
@@ -149,7 +149,7 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   es: {
     eyebrow: 'Whitepapers destacados',
     title: 'Recursos normativos para compradores de calidad del agua',
-    body: 'Empieza por las cuatro guías con mayor intención comercial: indicadores virales, cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
+    body: 'Empieza por cuatro guías prácticas para decisiones técnicas: indicadores virales, cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
     cta: 'Abrir whitepaper',
     badges: {
       'coliphages-indicators': 'Indicadores virales',
@@ -161,7 +161,7 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   fr: {
     eyebrow: 'Whitepapers sélectionnés',
     title: 'Ressources réglementaires pour acheteurs qualité de l’eau',
-    body: 'Commencez par les quatre guides les plus qualifiants: indicateurs viraux, conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
+    body: 'Commencez par quatre guides pratiques pour les décisions techniques: indicateurs viraux, conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
     cta: 'Ouvrir le whitepaper',
     badges: {
       'coliphages-indicators': 'Indicateurs viraux',
@@ -172,8 +172,8 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   },
   it: {
     eyebrow: 'Whitepaper in evidenza',
-    title: 'Risorse normative per buyer qualità acqua',
-    body: 'Parti dalle quattro guide a maggiore intento: indicatori virali, conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
+    title: 'Risorse normative per team qualità acqua',
+    body: 'Parti da quattro guide pratiche per decisioni tecniche: indicatori virali, conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
     cta: 'Apri whitepaper',
     badges: {
       'coliphages-indicators': 'Indicatori virali',
@@ -185,7 +185,7 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
   ca: {
     eyebrow: 'Whitepapers destacats',
     title: 'Recursos normatius per a compradors de qualitat de l’aigua',
-    body: 'Comença per les quatre guies amb més intenció comercial: indicadors virals, compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
+    body: 'Comença per quatre guies pràctiques per a decisions tècniques: indicadors virals, compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
     cta: 'Obrir whitepaper',
     badges: {
       'coliphages-indicators': 'Indicadors virals',

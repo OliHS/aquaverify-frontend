@@ -87,8 +87,8 @@ const FEATURED_WHITEPAPER_IDS = [
 const FEATURED_WHITEPAPER_COPY = {
   en: {
     eyebrow: 'Featured whitepapers',
-    title: 'Regulatory resources for qualified water quality buyers',
-    body: 'Start with four high-intent guides: viral indicators, European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
+    title: 'Regulatory resources for water quality teams',
+    body: 'Start with four practical guides for technical decisions: viral indicators, European drinking water compliance, software evidence for audits and US EPA-oriented monitoring.',
     cta: 'Open whitepaper',
     badges: {
       'coliphages-indicators': 'Viral indicators',
@@ -100,7 +100,7 @@ const FEATURED_WHITEPAPER_COPY = {
   es: {
     eyebrow: 'Whitepapers destacados',
     title: 'Recursos normativos para compradores de calidad del agua',
-    body: 'Empieza por cuatro guías con alta intención comercial: indicadores virales, cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
+    body: 'Empieza por cuatro guías prácticas para decisiones técnicas: indicadores virales, cumplimiento europeo, evidencia software para auditorías y monitorización orientada a EPA en Estados Unidos.',
     cta: 'Abrir whitepaper',
     badges: {
       'coliphages-indicators': 'Indicadores virales',
@@ -112,7 +112,7 @@ const FEATURED_WHITEPAPER_COPY = {
   fr: {
     eyebrow: 'Whitepapers sélectionnés',
     title: 'Ressources réglementaires pour acheteurs qualité de l’eau',
-    body: 'Commencez par quatre guides à forte intention: indicateurs viraux, conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
+    body: 'Commencez par quatre guides pratiques pour les décisions techniques: indicateurs viraux, conformité européenne, preuve logicielle pour audits et suivi orienté EPA aux États-Unis.',
     cta: 'Ouvrir le whitepaper',
     badges: {
       'coliphages-indicators': 'Indicateurs viraux',
@@ -123,8 +123,8 @@ const FEATURED_WHITEPAPER_COPY = {
   },
   it: {
     eyebrow: 'Whitepaper in evidenza',
-    title: 'Risorse normative per buyer qualità acqua',
-    body: 'Parti da quattro guide ad alto intento: indicatori virali, conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
+    title: 'Risorse normative per team qualità acqua',
+    body: 'Parti da quattro guide pratiche per decisioni tecniche: indicatori virali, conformità europea, evidenza software per audit e monitoraggio orientato EPA negli Stati Uniti.',
     cta: 'Apri whitepaper',
     badges: {
       'coliphages-indicators': 'Indicatori virali',
@@ -136,7 +136,7 @@ const FEATURED_WHITEPAPER_COPY = {
   ca: {
     eyebrow: 'Whitepapers destacats',
     title: 'Recursos normatius per a compradors de qualitat de l’aigua',
-    body: 'Comença per quatre guies amb alta intenció comercial: indicadors virals, compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
+    body: 'Comença per quatre guies pràctiques per a decisions tècniques: indicadors virals, compliment europeu, evidència software per a auditories i monitoratge orientat a EPA als Estats Units.',
     cta: 'Obrir whitepaper',
     badges: {
       'coliphages-indicators': 'Indicadors virals',

@@ -57,7 +57,7 @@ const PLATFORM_SCREENSHOT_ASSETS = {
 const PLATFORM_SCREENSHOT_COPY = {
   en: [
     { id: 'dashboard', title: 'Executive dashboard', body: 'Operational KPIs, revenue, margin and live workload in one cockpit.', alt: 'AquaVerify Cloud executive performance dashboard' },
-    { id: 'crm', title: 'CRM pipeline', body: 'Customer, partner and laboratory accounts connected to sales and support activity.', alt: 'AquaVerify CRM company portfolio screen' },
+    { id: 'crm', title: 'Customer accounts', body: 'Customer, partner and laboratory accounts connected to commercial and support activity.', alt: 'AquaVerify CRM company portfolio screen' },
     { id: 'lims', title: 'LIMS workstation', body: 'Sample reception, work distribution, validation and reports in the same workflow.', alt: 'AquaVerify LIMS workstation dashboard' },
     { id: 'work', title: 'Work management', body: 'Projects, boards, documents and tasks for scientific and operational teams.', alt: 'AquaVerify work board and task management screen' },
     { id: 'wms', title: 'Inventory and WMS', body: 'Warehouse, stock movement, traceability and fulfilment controls.', alt: 'AquaVerify WMS warehouse dashboard' },
@@ -65,7 +65,7 @@ const PLATFORM_SCREENSHOT_COPY = {
   ],
   es: [
     { id: 'dashboard', title: 'Dashboard ejecutivo', body: 'KPIs operativos, ingresos, margen y carga viva en un solo cockpit.', alt: 'Dashboard ejecutivo de rendimiento en AquaVerify Cloud' },
-    { id: 'crm', title: 'Pipeline CRM', body: 'Cuentas de clientes, partners y laboratorios conectadas con ventas y soporte.', alt: 'Pantalla de cartera de empresas CRM en AquaVerify' },
+    { id: 'crm', title: 'Cartera de clientes', body: 'Cuentas de clientes, partners y laboratorios conectadas con actividad comercial y soporte.', alt: 'Pantalla de cartera de empresas CRM en AquaVerify' },
     { id: 'lims', title: 'Estación LIMS', body: 'Recepción de muestras, distribución de trabajo, validación e informes en el mismo flujo.', alt: 'Dashboard de estación LIMS en AquaVerify' },
     { id: 'work', title: 'Gestión del trabajo', body: 'Proyectos, tableros, documentos y tareas para equipos científicos y operativos.', alt: 'Tablero de trabajo y tareas en AquaVerify' },
     { id: 'wms', title: 'Inventario y WMS', body: 'Almacén, movimientos de stock, trazabilidad y controles de expedición.', alt: 'Dashboard de almacén WMS en AquaVerify' },
@@ -73,7 +73,7 @@ const PLATFORM_SCREENSHOT_COPY = {
   ],
   fr: [
     { id: 'dashboard', title: 'Dashboard exécutif', body: 'KPIs opérationnels, revenus, marge et charge active dans un seul cockpit.', alt: 'Dashboard exécutif AquaVerify Cloud' },
-    { id: 'crm', title: 'Pipeline CRM', body: 'Comptes clients, partenaires et laboratoires reliés aux ventes et au support.', alt: 'Écran portefeuille CRM AquaVerify' },
+    { id: 'crm', title: 'Portefeuille clients', body: 'Comptes clients, partenaires et laboratoires reliés à l’activité commerciale et au support.', alt: 'Écran portefeuille CRM AquaVerify' },
     { id: 'lims', title: 'Station LIMS', body: 'Réception échantillons, répartition du travail, validation et rapports dans un même flux.', alt: 'Dashboard station LIMS AquaVerify' },
     { id: 'work', title: 'Gestion du travail', body: 'Projets, tableaux, documents et tâches pour équipes scientifiques et opérationnelles.', alt: 'Tableau de travail AquaVerify' },
     { id: 'wms', title: 'Inventaire et WMS', body: 'Entrepôt, mouvements de stock, traçabilité et contrôles d’expédition.', alt: 'Dashboard WMS AquaVerify' },
@@ -81,7 +81,7 @@ const PLATFORM_SCREENSHOT_COPY = {
   ],
   it: [
     { id: 'dashboard', title: 'Dashboard executive', body: 'KPI operativi, ricavi, margine e carico attivo in un unico cockpit.', alt: 'Dashboard executive AquaVerify Cloud' },
-    { id: 'crm', title: 'Pipeline CRM', body: 'Account clienti, partner e laboratori collegati a vendite e supporto.', alt: 'Schermata portfolio CRM AquaVerify' },
+    { id: 'crm', title: 'Portafoglio clienti', body: 'Account clienti, partner e laboratori collegati ad attività commerciale e supporto.', alt: 'Schermata portfolio CRM AquaVerify' },
     { id: 'lims', title: 'Workstation LIMS', body: 'Ricezione campioni, distribuzione lavoro, validazione e report nello stesso flusso.', alt: 'Dashboard workstation LIMS AquaVerify' },
     { id: 'work', title: 'Gestione lavoro', body: 'Progetti, board, documenti e task per team scientifici e operativi.', alt: 'Board di lavoro AquaVerify' },
     { id: 'wms', title: 'Inventario e WMS', body: 'Magazzino, movimenti stock, tracciabilità e controlli di spedizione.', alt: 'Dashboard WMS AquaVerify' },
@@ -89,7 +89,7 @@ const PLATFORM_SCREENSHOT_COPY = {
   ],
   ca: [
     { id: 'dashboard', title: 'Dashboard executiu', body: 'KPIs operatius, ingressos, marge i càrrega activa en un sol cockpit.', alt: 'Dashboard executiu AquaVerify Cloud' },
-    { id: 'crm', title: 'Pipeline CRM', body: 'Comptes de clients, partners i laboratoris connectats amb vendes i suport.', alt: 'Pantalla de cartera CRM AquaVerify' },
+    { id: 'crm', title: 'Cartera de clients', body: 'Comptes de clients, partners i laboratoris connectats amb activitat comercial i suport.', alt: 'Pantalla de cartera CRM AquaVerify' },
     { id: 'lims', title: 'Estació LIMS', body: 'Recepció de mostres, distribució de treball, validació i informes en el mateix flux.', alt: 'Dashboard estació LIMS AquaVerify' },
     { id: 'work', title: 'Gestió del treball', body: 'Projectes, taulers, documents i tasques per a equips científics i operatius.', alt: 'Tauler de treball AquaVerify' },
     { id: 'wms', title: 'Inventari i WMS', body: 'Magatzem, moviments d’estoc, traçabilitat i controls d’expedició.', alt: 'Dashboard WMS AquaVerify' },
@@ -252,7 +252,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Define the monitoring question', body: 'Separate fecal-indicator screening, viral-indicator evidence, treatment validation and customer reporting needs.' },
         { title: 'Select the coliphage route', body: 'Map somatic or F-specific coliphage workflows, sample volume, host strain, controls and acceptance language.' },
         { title: 'Connect products and data', body: 'Link kits, controls, plaque counts, reviewer history and reports inside AquaVerify Cloud.' },
-        { title: 'Turn interest into action', body: 'Route whitepaper visitors to product quote, distributor, OEM or SaaS demo flows with CRM attribution.' }
+        { title: 'Turn interest into action', body: 'Guide readers toward the right product quote, distributor, OEM or SaaS demo path with clear context for the next conversation.' }
       ],
       timelineTitle: 'Regulatory signal timeline',
       timeline: [
@@ -282,7 +282,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Definir la pregunta de monitorización', body: 'Separar cribado fecal, evidencia de indicador viral, validación de tratamiento y reporting a cliente.' },
         { title: 'Seleccionar la ruta colífagos', body: 'Mapear flujos somáticos o F-específicos, volumen, cepa huésped, controles y lenguaje de aceptación.' },
         { title: 'Conectar productos y datos', body: 'Vincular kits, controles, recuentos, revisión e informes dentro de AquaVerify Cloud.' },
-        { title: 'Convertir interés en acción', body: 'Dirigir lectores del whitepaper a cotización, distribuidor, OEM o demo SaaS con atribución CRM.' }
+        { title: 'Convertir interés en acción', body: 'Guiar a los lectores hacia la cotización, distribuidor, OEM o demo SaaS adecuados con contexto claro para la siguiente conversación.' }
       ],
       timelineTitle: 'Línea temporal de señal normativa',
       timeline: [
@@ -312,7 +312,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Définir la question de surveillance', body: 'Distinguer dépistage fécal, preuve d’indicateur viral, validation traitement et reporting client.' },
         { title: 'Choisir la route coliphages', body: 'Cartographier flux somatiques ou F-spécifiques, volume, souche hôte, contrôles et langage d’acceptation.' },
         { title: 'Connecter produits et données', body: 'Relier kits, contrôles, dénombrements, revue et rapports dans AquaVerify Cloud.' },
-        { title: 'Transformer l’intérêt en action', body: 'Orienter les lecteurs vers devis produit, distributeur, OEM ou démo SaaS avec attribution CRM.' }
+        { title: 'Transformer l’intérêt en action', body: 'Orienter les lecteurs vers le bon devis produit, distributeur, OEM ou parcours démo SaaS avec un contexte clair pour l’échange suivant.' }
       ],
       timelineTitle: 'Chronologie du signal réglementaire',
       timeline: [
@@ -342,7 +342,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Definire la domanda di monitoraggio', body: 'Separare screening fecale, evidenza indicatore virale, validazione trattamento e reporting cliente.' },
         { title: 'Selezionare la rotta colifagi', body: 'Mappare flussi somatici o F-specifici, volume, ceppo ospite, controlli e linguaggio di accettazione.' },
         { title: 'Collegare prodotti e dati', body: 'Collegare kit, controlli, conteggi, revisione e report in AquaVerify Cloud.' },
-        { title: 'Trasformare interesse in azione', body: 'Dirigere i lettori verso preventivo, distributore, OEM o demo SaaS con attribuzione CRM.' }
+        { title: 'Trasformare interesse in azione', body: 'Guidare i lettori verso il percorso giusto: preventivo, distributore, OEM o demo SaaS, con contesto chiaro per la conversazione successiva.' }
       ],
       timelineTitle: 'Timeline del segnale normativo',
       timeline: [
@@ -372,7 +372,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Definir la pregunta de monitoratge', body: 'Separar cribratge fecal, evidència d’indicador viral, validació de tractament i reporting a client.' },
         { title: 'Seleccionar la ruta colífags', body: 'Mapar fluxos somàtics o F-específics, volum, soca hoste, controls i llenguatge d’acceptació.' },
         { title: 'Connectar productes i dades', body: 'Vincular kits, controls, recomptes, revisió i informes dins AquaVerify Cloud.' },
-        { title: 'Convertir interès en acció', body: 'Dirigir lectors a pressupost, distribuïdor, OEM o demo SaaS amb atribució CRM.' }
+        { title: 'Convertir interès en acció', body: 'Guiar els lectors cap al pressupost, distribuïdor, OEM o demo SaaS adequats amb context clar per a la conversa següent.' }
       ],
       timelineTitle: 'Línia temporal de senyal normativa',
       timeline: [
@@ -404,7 +404,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Field or lab sample intake', body: 'Capture sample metadata, source, account, requested parameter and responsible operator.' },
         { title: 'LIMS-style execution', body: 'Connect product, method context, controls, reviewer and result state.' },
         { title: 'Automated review signals', body: 'Flag out-of-spec or incomplete records for internal action.' },
-        { title: 'Report and CRM follow-up', body: 'Turn verified results into customer communication and pipeline intelligence.' }
+        { title: 'Report and customer follow-up', body: 'Turn verified results into customer communication, recurring demand signals and better operational decisions.' }
       ],
       sourceLabel: 'ISO/IEC 17025 data integrity context and EPA CROMERR electronic reporting context',
       note: 'Software supports evidence discipline; it does not replace method validation, accreditation review or regulatory approval.'
@@ -427,7 +427,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Entrada de muestra campo/lab', body: 'Capturar metadatos, origen, cuenta, parámetro solicitado y operador responsable.' },
         { title: 'Ejecución tipo LIMS', body: 'Conectar producto, contexto de método, controles, revisor y estado del resultado.' },
         { title: 'Señales automáticas', body: 'Marcar registros incompletos o fuera de especificación para acción interna.' },
-        { title: 'Informe y seguimiento CRM', body: 'Convertir resultados verificados en comunicación cliente e inteligencia comercial.' }
+        { title: 'Informe y seguimiento de cliente', body: 'Convertir resultados verificados en comunicación cliente, señales de demanda recurrente y mejores decisiones operativas.' }
       ],
       sourceLabel: 'Contexto ISO/IEC 17025 de integridad de datos y contexto EPA CROMERR de reporte electrónico',
       note: 'El software apoya la disciplina de evidencia; no sustituye validación de método, revisión de acreditación ni aprobación regulatoria.'
@@ -450,7 +450,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Entrée échantillon terrain/lab', body: 'Capturer métadonnées, origine, compte, paramètre demandé et opérateur responsable.' },
         { title: 'Exécution type LIMS', body: 'Relier produit, contexte méthode, contrôles, relecteur et état du résultat.' },
         { title: 'Signaux automatiques', body: 'Signaler les registres incomplets ou hors spécification pour action interne.' },
-        { title: 'Rapport et suivi CRM', body: 'Transformer résultats vérifiés en communication client et intelligence commerciale.' }
+        { title: 'Rapport et suivi client', body: 'Transformer les résultats vérifiés en communication client, signaux de demande récurrente et meilleures décisions opérationnelles.' }
       ],
       sourceLabel: 'Contexte ISO/IEC 17025 intégrité des données et contexte EPA CROMERR reporting électronique',
       note: 'Le logiciel soutient la discipline de preuve; il ne remplace pas validation méthode, revue d’accréditation ou approbation réglementaire.'
@@ -473,7 +473,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Ingresso campione campo/lab', body: 'Acquisire metadati, origine, account, parametro richiesto e operatore responsabile.' },
         { title: 'Esecuzione tipo LIMS', body: 'Collegare prodotto, contesto metodo, controlli, revisore e stato risultato.' },
         { title: 'Segnali automatici', body: 'Segnalare record incompleti o fuori specifica per azione interna.' },
-        { title: 'Report e follow-up CRM', body: 'Trasformare risultati verificati in comunicazione cliente e intelligence commerciale.' }
+        { title: 'Report e follow-up cliente', body: 'Trasformare risultati verificati in comunicazione cliente, segnali di domanda ricorrente e migliori decisioni operative.' }
       ],
       sourceLabel: 'Contesto ISO/IEC 17025 integrità dati e contesto EPA CROMERR reporting elettronico',
       note: 'Il software supporta la disciplina dell’evidenza; non sostituisce validazione metodo, revisione accreditamento o approvazione normativa.'
@@ -496,7 +496,7 @@ const WHITEPAPER_DEEP_DIVES = {
         { title: 'Entrada de mostra camp/lab', body: 'Capturar metadades, origen, compte, paràmetre sol·licitat i operador responsable.' },
         { title: 'Execució tipus LIMS', body: 'Connectar producte, context de mètode, controls, revisor i estat del resultat.' },
         { title: 'Senyals automàtics', body: 'Marcar registres incomplets o fora d’especificació per a acció interna.' },
-        { title: 'Informe i seguiment CRM', body: 'Convertir resultats verificats en comunicació client i intel·ligència comercial.' }
+        { title: 'Informe i seguiment de client', body: 'Convertir resultats verificats en comunicació client, senyals de demanda recurrent i millors decisions operatives.' }
       ],
       sourceLabel: 'Context ISO/IEC 17025 d’integritat de dades i context EPA CROMERR de report electrònic',
       note: 'El software dona suport a la disciplina d’evidència; no substitueix validació de mètode, revisió d’acreditació ni aprovació regulatòria.'
@@ -509,18 +509,18 @@ const WHITEPAPER_DEEP_DIVES = {
       metrics: [
         { label: 'RTCR focus', value: 'Total coliform + E. coli', body: 'Public water systems monitor according to a sample siting plan and schedule.', tone: 'slate' },
         { label: 'EPA methods', value: '1601 / 1602', body: 'Method context for male-specific and somatic coliphage monitoring and enumeration.', tone: 'cyan' },
-        { label: 'Commercial signal', value: 'Qualified intent', body: 'Visitors researching RTCR and EPA methods are strong product, SaaS or distributor leads.', tone: 'indigo' }
+        { label: 'Buyer need', value: 'Guidance', body: 'Visitors researching RTCR and EPA methods often need product, SaaS or distributor guidance.', tone: 'indigo' }
       ],
       comparisonTitle: 'Bacterial compliance versus viral indicator context',
       comparison: [
         { label: 'RTCR bacterial indicators', title: 'Compliance backbone', body: 'Total coliform and E. coli monitoring support assessment of distribution integrity and fecal contamination signals.', valuePercent: 68, tone: 'slate' },
         { label: 'Coliphage indicator methods', title: 'Additional viral-risk context', body: 'Somatic and F-specific coliphages can support discussion of viral contamination risk and treatment resilience.', valuePercent: 82, tone: 'cyan' }
       ],
-      flowTitle: 'How to structure a US-oriented lead journey',
+      flowTitle: 'How to structure a US-oriented decision path',
       flow: [
         { title: 'Educate', body: 'Clarify RTCR obligations separately from coliphage method opportunities.' },
-        { title: 'Qualify', body: 'Capture utility, laboratory, distributor or quality-team intent from the resource page.' },
-        { title: 'Convert', body: 'Route the lead to products, datasheets, SaaS demo or CRM follow-up.' }
+        { title: 'Match the need', body: 'Understand whether the visitor is a utility, laboratory, distributor or quality team.' },
+        { title: 'Move to next step', body: 'Guide the visitor to products, datasheets, SaaS demo or customer follow-up.' }
       ],
       sourceLabel: 'EPA RTCR, Ground Water Rule and Methods 1601/1602 context',
       note: 'This page does not state that coliphage testing replaces RTCR obligations; it positions coliphages as a related monitoring and method-readiness topic.'
@@ -531,18 +531,18 @@ const WHITEPAPER_DEEP_DIVES = {
       metrics: [
         { label: 'Foco RTCR', value: 'Coliformes + E. coli', body: 'Los sistemas públicos monitorizan según plan y calendario de puntos de muestreo.', tone: 'slate' },
         { label: 'Métodos EPA', value: '1601 / 1602', body: 'Contexto metodológico para monitorización y enumeración de colífagos F+ y somáticos.', tone: 'cyan' },
-        { label: 'Señal comercial', value: 'Intent cualificado', body: 'Visitantes que investigan RTCR y métodos EPA son buenos leads de producto, SaaS o distribución.', tone: 'indigo' }
+        { label: 'Necesidad del comprador', value: 'Orientación', body: 'Quien investiga RTCR y métodos EPA suele necesitar orientación de producto, SaaS o distribución.', tone: 'indigo' }
       ],
       comparisonTitle: 'Cumplimiento bacteriano frente a contexto de indicador viral',
       comparison: [
         { label: 'Indicadores bacterianos RTCR', title: 'Base de cumplimiento', body: 'Coliformes totales y E. coli apoyan la evaluación de integridad de distribución y señales de contaminación fecal.', valuePercent: 68, tone: 'slate' },
         { label: 'Métodos indicadores colífagos', title: 'Contexto adicional de riesgo viral', body: 'Colífagos somáticos y F+ ayudan a discutir riesgo de contaminación viral y resiliencia del tratamiento.', valuePercent: 82, tone: 'cyan' }
       ],
-      flowTitle: 'Cómo estructurar un lead journey orientado a EEUU',
+      flowTitle: 'Cómo estructurar una ruta de decisión orientada a EEUU',
       flow: [
         { title: 'Educar', body: 'Separar claramente obligaciones RTCR de oportunidades metodológicas con colífagos.' },
-        { title: 'Cualificar', body: 'Capturar intención de utility, laboratorio, distribuidor o equipo de calidad desde la página.' },
-        { title: 'Convertir', body: 'Dirigir el lead a productos, datasheets, demo SaaS o seguimiento CRM.' }
+        { title: 'Entender la necesidad', body: 'Identificar si el visitante es una utility, laboratorio, distribuidor o equipo de calidad.' },
+        { title: 'Pasar al siguiente paso', body: 'Guiar al visitante hacia productos, datasheets, demo SaaS o seguimiento de clientes.' }
       ],
       sourceLabel: 'Contexto EPA RTCR, Ground Water Rule y Methods 1601/1602',
       note: 'Esta página no afirma que los colífagos sustituyan obligaciones RTCR; los posiciona como tema relacionado de monitorización y preparación metodológica.'
@@ -553,18 +553,18 @@ const WHITEPAPER_DEEP_DIVES = {
       metrics: [
         { label: 'Focus RTCR', value: 'Coliformes + E. coli', body: 'Les systèmes publics surveillent selon plan et calendrier de points de prélèvement.', tone: 'slate' },
         { label: 'Méthodes EPA', value: '1601 / 1602', body: 'Contexte méthode pour surveillance et dénombrement des coliphages F+ et somatiques.', tone: 'cyan' },
-        { label: 'Signal commercial', value: 'Intent qualifié', body: 'Les visiteurs recherchant RTCR et méthodes EPA sont de bons leads produit, SaaS ou distribution.', tone: 'indigo' }
+        { label: 'Besoin acheteur', value: 'Orientation', body: 'Les visiteurs recherchant RTCR et méthodes EPA ont souvent besoin d’orientation produit, SaaS ou distribution.', tone: 'indigo' }
       ],
       comparisonTitle: 'Conformité bactérienne versus contexte indicateur viral',
       comparison: [
         { label: 'Indicateurs bactériens RTCR', title: 'Base de conformité', body: 'Coliformes totaux et E. coli soutiennent l’évaluation de l’intégrité distribution et des signaux de contamination fécale.', valuePercent: 68, tone: 'slate' },
         { label: 'Méthodes indicateurs coliphages', title: 'Contexte additionnel de risque viral', body: 'Coliphages somatiques et F+ aident à discuter risque viral et résilience du traitement.', valuePercent: 82, tone: 'cyan' }
       ],
-      flowTitle: 'Structurer un parcours lead orienté États-Unis',
+      flowTitle: 'Structurer un parcours de décision orienté États-Unis',
       flow: [
         { title: 'Éduquer', body: 'Distinguer obligations RTCR et opportunités méthode coliphages.' },
-        { title: 'Qualifier', body: 'Capturer intention utility, laboratoire, distributeur ou qualité depuis la page.' },
-        { title: 'Convertir', body: 'Diriger le lead vers produits, datasheets, démo SaaS ou suivi CRM.' }
+        { title: 'Comprendre le besoin', body: 'Identifier si le visiteur est une utility, un laboratoire, un distributeur ou une équipe qualité.' },
+        { title: 'Passer à l’étape suivante', body: 'Orienter le visiteur vers produits, datasheets, démo SaaS ou suivi client.' }
       ],
       sourceLabel: 'Contexte EPA RTCR, Ground Water Rule et Methods 1601/1602',
       note: 'Cette page ne dit pas que les coliphages remplacent la RTCR; elle les positionne comme sujet lié de surveillance et préparation méthode.'
@@ -575,18 +575,18 @@ const WHITEPAPER_DEEP_DIVES = {
       metrics: [
         { label: 'Focus RTCR', value: 'Coliformi + E. coli', body: 'I sistemi pubblici monitorano secondo piano e calendario dei punti di campionamento.', tone: 'slate' },
         { label: 'Metodi EPA', value: '1601 / 1602', body: 'Contesto metodo per monitoraggio ed enumerazione di colifagi F+ e somatici.', tone: 'cyan' },
-        { label: 'Segnale commerciale', value: 'Intento qualificato', body: 'Visitatori che ricercano RTCR e metodi EPA sono buoni lead prodotto, SaaS o distribuzione.', tone: 'indigo' }
+        { label: 'Esigenza buyer', value: 'Orientamento', body: 'Chi ricerca RTCR e metodi EPA spesso richiede orientamento su prodotto, SaaS o distribuzione.', tone: 'indigo' }
       ],
       comparisonTitle: 'Conformità batterica versus contesto indicatore virale',
       comparison: [
         { label: 'Indicatori batterici RTCR', title: 'Base di conformità', body: 'Coliformi totali ed E. coli supportano valutazione integrità distribuzione e segnali di contaminazione fecale.', valuePercent: 68, tone: 'slate' },
         { label: 'Metodi indicatori colifagi', title: 'Contesto aggiuntivo di rischio virale', body: 'Colifagi somatici e F+ aiutano a discutere rischio virale e resilienza del trattamento.', valuePercent: 82, tone: 'cyan' }
       ],
-      flowTitle: 'Come strutturare un lead journey orientato USA',
+      flowTitle: 'Come strutturare un percorso decisionale orientato USA',
       flow: [
         { title: 'Educare', body: 'Separare obblighi RTCR da opportunità metodologiche con colifagi.' },
-        { title: 'Qualificare', body: 'Catturare intento di utility, laboratorio, distributore o team qualità dalla pagina.' },
-        { title: 'Convertire', body: 'Indirizzare il lead a prodotti, datasheet, demo SaaS o follow-up CRM.' }
+        { title: 'Capire l’esigenza', body: 'Identificare se il visitatore è utility, laboratorio, distributore o team qualità.' },
+        { title: 'Passare al prossimo passo', body: 'Guidare il visitatore verso prodotti, datasheet, demo SaaS o follow-up cliente.' }
       ],
       sourceLabel: 'Contesto EPA RTCR, Ground Water Rule e Methods 1601/1602',
       note: 'Questa pagina non afferma che i colifagi sostituiscano obblighi RTCR; li posiziona come tema collegato di monitoraggio e preparazione metodo.'
@@ -597,18 +597,18 @@ const WHITEPAPER_DEEP_DIVES = {
       metrics: [
         { label: 'Focus RTCR', value: 'Coliformes + E. coli', body: 'Els sistemes públics monitoren segons pla i calendari de punts de mostreig.', tone: 'slate' },
         { label: 'Mètodes EPA', value: '1601 / 1602', body: 'Context metodològic per a monitoratge i enumeració de colífags F+ i somàtics.', tone: 'cyan' },
-        { label: 'Senyal comercial', value: 'Intent qualificat', body: 'Visitants que investiguen RTCR i mètodes EPA són bons leads de producte, SaaS o distribució.', tone: 'indigo' }
+        { label: 'Necessitat del comprador', value: 'Orientació', body: 'Els visitants que investiguen RTCR i mètodes EPA sovint necessiten orientació de producte, SaaS o distribució.', tone: 'indigo' }
       ],
       comparisonTitle: 'Compliment bacterià davant context d’indicador viral',
       comparison: [
         { label: 'Indicadors bacterians RTCR', title: 'Base de compliment', body: 'Coliformes totals i E. coli donen suport a l’avaluació d’integritat de distribució i senyals de contaminació fecal.', valuePercent: 68, tone: 'slate' },
         { label: 'Mètodes indicadors colífags', title: 'Context addicional de risc viral', body: 'Colífags somàtics i F+ ajuden a discutir risc viral i resiliència del tractament.', valuePercent: 82, tone: 'cyan' }
       ],
-      flowTitle: 'Com estructurar un lead journey orientat als EUA',
+      flowTitle: 'Com estructurar una ruta de decisió orientada als EUA',
       flow: [
         { title: 'Educar', body: 'Separar obligacions RTCR d’oportunitats metodològiques amb colífags.' },
-        { title: 'Qualificar', body: 'Capturar intenció de utility, laboratori, distribuïdor o equip de qualitat des de la pàgina.' },
-        { title: 'Convertir', body: 'Dirigir el lead a productes, datasheets, demo SaaS o seguiment CRM.' }
+        { title: 'Entendre la necessitat', body: 'Identificar si el visitant és una utility, laboratori, distribuïdor o equip de qualitat.' },
+        { title: 'Passar al següent pas', body: 'Guiar el visitant cap a productes, datasheets, demo SaaS o seguiment de clients.' }
       ],
       sourceLabel: 'Context EPA RTCR, Ground Water Rule i Methods 1601/1602',
       note: 'Aquesta pàgina no afirma que els colífags substitueixin obligacions RTCR; els posiciona com a tema relacionat de monitoratge i preparació metodològica.'
@@ -948,7 +948,7 @@ export const MARKETING_PAGES = [
   page('private-label-kits', 'partners', 'oem', {
     en: locale('/oem/private-label-water-testing-kits', 'Private-label water testing kits for distributors', 'Build a differentiated water microbiology catalog with AquaVerify products, OEM packaging options and connected platform workflows.', [
       section('For distributors that need a defensible catalog', 'AquaVerify helps scientific distributors move beyond generic consumables with kits, controls and platform-enabled workflows.', ['Private-label or AquaVerify-branded supply', 'Water microbiology kits and lab essentials', 'Platform access for traceability and customer reporting', 'Technical onboarding for sales and support teams']),
-      section('A practical OEM path', 'Start with a focused product range, validate demand with target customers and scale packaging, training and digital workflow when volume is clear.', ['Portfolio selection by market need', 'Commercial qualification and pricing model', 'Packaging and documentation alignment', 'CRM attribution from web leads to partner conversations'])
+      section('A practical OEM path', 'Start with a focused product range, validate demand with target customers and scale packaging, training and digital workflow when volume is clear.', ['Portfolio selection by market need', 'Commercial qualification and pricing model', 'Packaging and documentation alignment', 'Qualified web enquiries connected to partner conversations'])
     ], { eyebrow: 'OEM', primaryCta: 'Discuss private-label supply', secondaryCta: 'View distributor program', seoTitle: 'Private Label Water Testing Kits | AquaVerify OEM for Distributors', faqs: [
       { question: 'Can AquaVerify supply private-label water testing kits?', answer: 'AquaVerify can evaluate private-label or AquaVerify-branded supply depending on market, volume, support needs and regulatory constraints.' },
       { question: 'Do OEM products connect to AquaVerify Cloud?', answer: 'OEM and distributor programs can include platform workflows for sample traceability, reporting, CRM and customer portal operations.' },
@@ -956,7 +956,7 @@ export const MARKETING_PAGES = [
     ] }),
     es: locale('/es/oem/kits-analisis-agua-marca-blanca', 'Kits de análisis de agua de marca blanca para distribuidores', 'Crea un catálogo diferenciado de microbiología del agua con productos AquaVerify, opciones OEM de packaging y flujos conectados a plataforma.', [
       section('Para distribuidores que necesitan un catálogo defendible', 'AquaVerify ayuda a distribuidores científicos a ir más allá del consumible genérico con kits, controles y flujos habilitados por plataforma.', ['Suministro de marca blanca o bajo marca AquaVerify', 'Kits de microbiología del agua y lab essentials', 'Acceso a plataforma para trazabilidad y reporting cliente', 'Onboarding técnico para equipos comerciales y soporte']),
-      section('Un camino OEM práctico', 'Empieza con una gama enfocada, valida demanda con clientes objetivo y escala packaging, formación y flujo digital cuando el volumen esté claro.', ['Selección de portfolio por necesidad de mercado', 'Cualificación comercial y modelo de precio', 'Alineación de packaging y documentación', 'Atribución CRM desde leads web a conversaciones partner'])
+      section('Un camino OEM práctico', 'Empieza con una gama enfocada, valida demanda con clientes objetivo y escala packaging, formación y flujo digital cuando el volumen esté claro.', ['Selección de portfolio por necesidad de mercado', 'Cualificación comercial y modelo de precio', 'Alineación de packaging y documentación', 'Solicitudes web cualificadas conectadas con conversaciones partner'])
     ], { eyebrow: 'OEM', primaryCta: 'Hablar de suministro marca blanca', secondaryCta: 'Ver programa distribuidor', seoTitle: 'Kits de análisis de agua marca blanca | OEM AquaVerify', faqs: [
       { question: '¿Puede AquaVerify suministrar kits de agua de marca blanca?', answer: 'AquaVerify puede evaluar suministro de marca blanca o bajo marca AquaVerify según mercado, volumen, soporte necesario y restricciones regulatorias.' },
       { question: '¿Los productos OEM se conectan a AquaVerify Cloud?', answer: 'Los programas OEM y de distribución pueden incluir flujos de plataforma para trazabilidad de muestras, reporting, CRM y portal cliente.' },
@@ -964,7 +964,7 @@ export const MARKETING_PAGES = [
     ] }),
     fr: locale('/fr/oem/kits-analyse-eau-marque-blanche', 'Kits d’analyse de l’eau en marque blanche pour distributeurs', 'Créez un catalogue différencié de microbiologie de l’eau avec produits AquaVerify, options packaging OEM et flux connectés à la plateforme.', [
       section('Pour distributeurs qui veulent un catalogue défendable', 'AquaVerify aide les distributeurs scientifiques à dépasser les consommables génériques avec kits, contrôles et flux activés par plateforme.', ['Fourniture marque blanche ou sous marque AquaVerify', 'Kits de microbiologie de l’eau et lab essentials', 'Accès plateforme pour traçabilité et reporting client', 'Onboarding technique pour équipes commerciales et support']),
-      section('Un parcours OEM pragmatique', 'Commencez par une gamme ciblée, validez la demande avec clients cibles et faites évoluer packaging, formation et flux numérique lorsque le volume est clair.', ['Sélection de portfolio par besoin marché', 'Qualification commerciale et modèle de prix', 'Alignement packaging et documentation', 'Attribution CRM des leads web vers conversations partenaires'])
+      section('Un parcours OEM pragmatique', 'Commencez par une gamme ciblée, validez la demande avec clients cibles et faites évoluer packaging, formation et flux numérique lorsque le volume est clair.', ['Sélection de portfolio par besoin marché', 'Qualification commerciale et modèle de prix', 'Alignement packaging et documentation', 'Demandes web qualifiées reliées aux conversations partenaires'])
     ], { eyebrow: 'OEM', primaryCta: 'Discuter marque blanche', secondaryCta: 'Voir programme distributeur', seoTitle: 'Kits analyse eau marque blanche | OEM AquaVerify', faqs: [
       { question: 'AquaVerify peut-il fournir des kits eau en marque blanche?', answer: 'AquaVerify peut évaluer une fourniture en marque blanche ou sous marque AquaVerify selon marché, volume, support requis et contraintes réglementaires.' },
       { question: 'Les produits OEM se connectent-ils à AquaVerify Cloud?', answer: 'Les programmes OEM et distribution peuvent inclure des flux plateforme pour traçabilité échantillon, reporting, CRM et portail client.' },
@@ -972,7 +972,7 @@ export const MARKETING_PAGES = [
     ] }),
     it: locale('/it/oem/kit-analisi-acqua-marca-privata', 'Kit di analisi dell’acqua private label per distributori', 'Crea un catalogo differenziato di microbiologia dell’acqua con prodotti AquaVerify, opzioni packaging OEM e flussi collegati alla piattaforma.', [
       section('Per distributori che cercano un catalogo difendibile', 'AquaVerify aiuta i distributori scientifici ad andare oltre consumabili generici con kit, controlli e flussi abilitati dalla piattaforma.', ['Fornitura private label o a marchio AquaVerify', 'Kit microbiologia dell’acqua e lab essentials', 'Accesso piattaforma per tracciabilità e reporting cliente', 'Onboarding tecnico per team commerciali e supporto']),
-      section('Un percorso OEM pratico', 'Parti da una gamma focalizzata, valida la domanda con clienti target e scala packaging, formazione e flusso digitale quando il volume è chiaro.', ['Selezione portfolio per bisogno di mercato', 'Qualifica commerciale e modello prezzo', 'Allineamento packaging e documentazione', 'Attribuzione CRM da lead web a conversazioni partner'])
+      section('Un percorso OEM pratico', 'Parti da una gamma focalizzata, valida la domanda con clienti target e scala packaging, formazione e flusso digitale quando il volume è chiaro.', ['Selezione portfolio per bisogno di mercato', 'Qualifica commerciale e modello prezzo', 'Allineamento packaging e documentazione', 'Richieste web qualificate collegate a conversazioni partner'])
     ], { eyebrow: 'OEM', primaryCta: 'Discuti fornitura private label', secondaryCta: 'Vedi programma distributori', seoTitle: 'Kit analisi acqua private label | OEM AquaVerify', faqs: [
       { question: 'AquaVerify può fornire kit acqua private label?', answer: 'AquaVerify può valutare fornitura private label o a marchio AquaVerify in base a mercato, volume, supporto richiesto e vincoli regolatori.' },
       { question: 'I prodotti OEM si collegano ad AquaVerify Cloud?', answer: 'I programmi OEM e distributori possono includere flussi piattaforma per tracciabilità campioni, reporting, CRM e portale clienti.' },
@@ -980,7 +980,7 @@ export const MARKETING_PAGES = [
     ] }),
     ca: locale('/ca/oem/kits-analisi-aigua-marca-blanca', 'Kits d’anàlisi d’aigua de marca blanca per a distribuïdors', 'Crea un catàleg diferenciat de microbiologia de l’aigua amb productes AquaVerify, opcions OEM de packaging i fluxos connectats a plataforma.', [
       section('Per a distribuïdors que necessiten un catàleg defensable', 'AquaVerify ajuda distribuïdors científics a anar més enllà del consumible genèric amb kits, controls i fluxos habilitats per plataforma.', ['Subministrament de marca blanca o sota marca AquaVerify', 'Kits de microbiologia de l’aigua i lab essentials', 'Accés a plataforma per a traçabilitat i reporting client', 'Onboarding tècnic per a equips comercials i suport']),
-      section('Un camí OEM pràctic', 'Comença amb una gamma enfocada, valida demanda amb clients objectiu i escala packaging, formació i flux digital quan el volum estigui clar.', ['Selecció de portfolio per necessitat de mercat', 'Qualificació comercial i model de preu', 'Alineació de packaging i documentació', 'Atribució CRM des de leads web a converses partner'])
+      section('Un camí OEM pràctic', 'Comença amb una gamma enfocada, valida demanda amb clients objectiu i escala packaging, formació i flux digital quan el volum estigui clar.', ['Selecció de portfolio per necessitat de mercat', 'Qualificació comercial i model de preu', 'Alineació de packaging i documentació', 'Sol·licituds web qualificades connectades amb converses partner'])
     ], { eyebrow: 'OEM', primaryCta: 'Parlar de subministrament marca blanca', secondaryCta: 'Veure programa distribuïdor', seoTitle: 'Kits anàlisi aigua marca blanca | OEM AquaVerify', faqs: [
       { question: 'AquaVerify pot subministrar kits d’aigua de marca blanca?', answer: 'AquaVerify pot valorar subministrament de marca blanca o sota marca AquaVerify segons mercat, volum, suport necessari i restriccions regulatòries.' },
       { question: 'Els productes OEM es connecten a AquaVerify Cloud?', answer: 'Els programes OEM i de distribució poden incloure fluxos de plataforma per a traçabilitat de mostres, reporting, CRM i portal client.' },
@@ -1046,7 +1046,7 @@ export const MARKETING_PAGES = [
   page('resources', 'resources', 'quote', {
     en: locale('/resources', 'Water microbiology resources and buyer guides', 'Technical and commercial guides for water microbiology products, digital traceability, OEM distribution and quality workflows.', [
       section('Resources for technical buyers', 'Use this hub to compare qualitative and quantitative workflows, understand coliphage indicators, and prepare product or OEM discussions with a clearer buying brief.', ['Whitepapers on EU and US water rules', 'ISO and EPA-oriented water microbiology workflows', 'Presence/absence and enumeration decision guides', 'Digital traceability for samples, reports and customers']),
-      section('Regulatory whitepapers for qualified demand', 'The resource library now includes practical whitepapers on the EU Drinking Water Directive, EPA-oriented drinking water compliance and the software evidence layer behind sample traceability.', ['EU Directive 2020/2184 and somatic coliphages', 'US Total Coliform Rule and EPA method context', 'Software records for audits, reports and CRM follow-up', 'Product, OEM and SaaS routes connected to each guide']),
+      section('Regulatory whitepapers for technical decisions', 'The resource library now includes practical whitepapers on the EU Drinking Water Directive, EPA-oriented drinking water compliance and the software evidence layer behind sample traceability.', ['EU Directive 2020/2184 and somatic coliphages', 'US Total Coliform Rule and EPA method context', 'Software records for audits, reports and customer follow-up', 'Product, OEM and SaaS routes connected to each guide']),
       section('From reading to action', 'Each guide connects scientific context with AquaVerify products, platform workflows and the next commercial step for laboratories, distributors and quality teams.')
     ], { eyebrow: 'Resources', primaryCta: 'Talk to AquaVerify', secondaryCta: 'View products', seoTitle: 'Water Microbiology Resources | AquaVerify Guides', faqs: [
       { question: 'Who are these resources for?', answer: 'They are written for laboratories, distributors, water quality teams and biotech companies evaluating water microbiology products or connected software workflows.' },
@@ -1054,7 +1054,7 @@ export const MARKETING_PAGES = [
     ] }),
     es: locale('/es/recursos', 'Recursos de microbiología del agua y guías para compradores', 'Guías técnicas y comerciales sobre productos de microbiología del agua, trazabilidad digital, distribución OEM y flujos de calidad.', [
       section('Recursos para compradores técnicos', 'Usa este hub para comparar flujos cualitativos y cuantitativos, entender indicadores colífagos y preparar conversaciones de producto u OEM con un brief de compra más claro.', ['Whitepapers sobre normativa europea y estadounidense', 'Flujos de microbiología del agua orientados a ISO y EPA', 'Guías de decisión presencia/ausencia y enumeración', 'Trazabilidad digital de muestras, informes y clientes']),
-      section('Whitepapers normativos para atraer demanda cualificada', 'La biblioteca de recursos incorpora whitepapers prácticos sobre la Directiva europea de agua potable, cumplimiento orientado a EPA y la capa de evidencia software que sostiene la trazabilidad de muestras.', ['Directiva (UE) 2020/2184 y colífagos somáticos', 'Total Coliform Rule de Estados Unidos y contexto de métodos EPA', 'Registros software para auditorías, informes y seguimiento CRM', 'Rutas de producto, OEM y SaaS conectadas a cada guía']),
+      section('Whitepapers normativos para decisiones técnicas', 'La biblioteca de recursos incorpora whitepapers prácticos sobre la Directiva europea de agua potable, cumplimiento orientado a EPA y la capa de evidencia software que sostiene la trazabilidad de muestras.', ['Directiva (UE) 2020/2184 y colífagos somáticos', 'Total Coliform Rule de Estados Unidos y contexto de métodos EPA', 'Registros software para auditorías, informes y seguimiento de clientes', 'Rutas de producto, OEM y SaaS conectadas a cada guía']),
       section('De la lectura a la acción', 'Cada guía conecta contexto científico con productos AquaVerify, flujos de plataforma y el siguiente paso comercial para laboratorios, distribuidores y equipos de calidad.')
     ], { eyebrow: 'Recursos', primaryCta: 'Hablar con AquaVerify', secondaryCta: 'Ver productos', seoTitle: 'Recursos de microbiología del agua | Guías AquaVerify', faqs: [
       { question: '¿Para quién son estos recursos?', answer: 'Están escritos para laboratorios, distribuidores, equipos de calidad del agua y empresas biotech que evalúan productos de microbiología del agua o flujos digitales conectados.' },
@@ -1062,7 +1062,7 @@ export const MARKETING_PAGES = [
     ] }),
     fr: locale('/fr/ressources', 'Ressources microbiologie de l’eau et guides acheteurs', 'Guides techniques et commerciaux sur les produits de microbiologie de l’eau, la traçabilité numérique, la distribution OEM et les flux qualité.', [
       section('Ressources pour acheteurs techniques', 'Utilisez ce hub pour comparer les flux qualitatifs et quantitatifs, comprendre les indicateurs coliphages et préparer des échanges produit ou OEM avec un brief d’achat plus clair.', ['Whitepapers sur les règles européennes et américaines', 'Flux de microbiologie de l’eau orientés ISO et EPA', 'Guides de décision présence/absence et dénombrement', 'Traçabilité numérique des échantillons, rapports et clients']),
-      section('Whitepapers réglementaires pour générer une demande qualifiée', 'La bibliothèque ajoute des whitepapers pratiques sur la directive européenne eau potable, la conformité orientée EPA et la couche de preuve logicielle derrière la traçabilité des échantillons.', ['Directive (UE) 2020/2184 et coliphages somatiques', 'Total Coliform Rule américaine et contexte des méthodes EPA', 'Enregistrements logiciel pour audits, rapports et suivi CRM', 'Routes produit, OEM et SaaS reliées à chaque guide']),
+      section('Whitepapers réglementaires pour décisions techniques', 'La bibliothèque ajoute des whitepapers pratiques sur la directive européenne eau potable, la conformité orientée EPA et la couche de preuve logicielle derrière la traçabilité des échantillons.', ['Directive (UE) 2020/2184 et coliphages somatiques', 'Total Coliform Rule américaine et contexte des méthodes EPA', 'Enregistrements logiciel pour audits, rapports et suivi client', 'Routes produit, OEM et SaaS reliées à chaque guide']),
       section('De la lecture à l’action', 'Chaque guide relie le contexte scientifique aux produits AquaVerify, aux flux plateforme et à l’étape commerciale suivante pour laboratoires, distributeurs et équipes qualité.')
     ], { eyebrow: 'Ressources', primaryCta: 'Parler à AquaVerify', secondaryCta: 'Voir les produits', seoTitle: 'Ressources microbiologie de l’eau | Guides AquaVerify', faqs: [
       { question: 'À qui s’adressent ces ressources?', answer: 'Elles s’adressent aux laboratoires, distributeurs, équipes qualité eau et entreprises biotech qui évaluent des produits de microbiologie de l’eau ou des flux logiciels connectés.' },
@@ -1070,7 +1070,7 @@ export const MARKETING_PAGES = [
     ] }),
     it: locale('/it/risorse', 'Risorse di microbiologia dell’acqua e guide per buyer', 'Guide tecniche e commerciali su prodotti di microbiologia dell’acqua, tracciabilità digitale, distribuzione OEM e flussi qualità.', [
       section('Risorse per buyer tecnici', 'Usa questo hub per confrontare flussi qualitativi e quantitativi, comprendere gli indicatori colifagi e preparare conversazioni prodotto o OEM con un brief d’acquisto più chiaro.', ['Whitepaper su norme europee e statunitensi', 'Flussi di microbiologia dell’acqua orientati a ISO ed EPA', 'Guide decisionali presenza/assenza ed enumerazione', 'Tracciabilità digitale di campioni, report e clienti']),
-      section('Whitepaper normativi per generare domanda qualificata', 'La libreria aggiunge whitepaper pratici sulla Direttiva europea acqua potabile, sulla conformità orientata EPA e sul livello software di evidenza dietro la tracciabilità dei campioni.', ['Direttiva (UE) 2020/2184 e colifagi somatici', 'Total Coliform Rule statunitense e contesto dei metodi EPA', 'Record software per audit, report e follow-up CRM', 'Percorsi prodotto, OEM e SaaS collegati a ogni guida']),
+      section('Whitepaper normativi per decisioni tecniche', 'La libreria aggiunge whitepaper pratici sulla Direttiva europea acqua potabile, sulla conformità orientata EPA e sul livello software di evidenza dietro la tracciabilità dei campioni.', ['Direttiva (UE) 2020/2184 e colifagi somatici', 'Total Coliform Rule statunitense e contesto dei metodi EPA', 'Record software per audit, report e follow-up cliente', 'Percorsi prodotto, OEM e SaaS collegati a ogni guida']),
       section('Dalla lettura all’azione', 'Ogni guida collega il contesto scientifico ai prodotti AquaVerify, ai flussi piattaforma e al passo commerciale successivo per laboratori, distributori e team qualità.')
     ], { eyebrow: 'Risorse', primaryCta: 'Parla con AquaVerify', secondaryCta: 'Vedi prodotti', seoTitle: 'Risorse di microbiologia dell’acqua | Guide AquaVerify', faqs: [
       { question: 'A chi sono rivolte queste risorse?', answer: 'Sono scritte per laboratori, distributori, team qualità acqua e aziende biotech che valutano prodotti di microbiologia dell’acqua o flussi software collegati.' },
@@ -1078,7 +1078,7 @@ export const MARKETING_PAGES = [
     ] }),
     ca: locale('/ca/recursos', 'Recursos de microbiologia de l’aigua i guies per a compradors', 'Guies tècniques i comercials sobre productes de microbiologia de l’aigua, traçabilitat digital, distribució OEM i fluxos de qualitat.', [
       section('Recursos per a compradors tècnics', 'Fes servir aquest hub per comparar fluxos qualitatius i quantitatius, entendre indicadors colífags i preparar converses de producte o OEM amb un brief de compra més clar.', ['Whitepapers sobre normativa europea i estatunidenca', 'Fluxos de microbiologia de l’aigua orientats a ISO i EPA', 'Guies de decisió presència/absència i enumeració', 'Traçabilitat digital de mostres, informes i clients']),
-      section('Whitepapers normatius per atreure demanda qualificada', 'La biblioteca incorpora whitepapers pràctics sobre la Directiva europea d’aigua potable, compliment orientat a EPA i la capa d’evidència software que sosté la traçabilitat de mostres.', ['Directiva (UE) 2020/2184 i colífags somàtics', 'Total Coliform Rule dels Estats Units i context de mètodes EPA', 'Registres software per a auditories, informes i seguiment CRM', 'Rutes de producte, OEM i SaaS connectades a cada guia']),
+      section('Whitepapers normatius per a decisions tècniques', 'La biblioteca incorpora whitepapers pràctics sobre la Directiva europea d’aigua potable, compliment orientat a EPA i la capa d’evidència software que sosté la traçabilitat de mostres.', ['Directiva (UE) 2020/2184 i colífags somàtics', 'Total Coliform Rule dels Estats Units i context de mètodes EPA', 'Registres software per a auditories, informes i seguiment de clients', 'Rutes de producte, OEM i SaaS connectades a cada guia']),
       section('De la lectura a l’acció', 'Cada guia connecta context científic amb productes AquaVerify, fluxos de plataforma i el següent pas comercial per a laboratoris, distribuïdors i equips de qualitat.')
     ], { eyebrow: 'Recursos', primaryCta: 'Parlar amb AquaVerify', secondaryCta: 'Veure productes', seoTitle: 'Recursos de microbiologia de l’aigua | Guies AquaVerify', faqs: [
       { question: 'Per a qui són aquests recursos?', answer: 'Estan escrits per a laboratoris, distribuïdors, equips de qualitat de l’aigua i empreses biotech que avaluen productes de microbiologia de l’aigua o fluxos digitals connectats.' },
@@ -1132,7 +1132,7 @@ export const MARKETING_PAGES = [
       section('How AquaVerify turns the science into a workflow', 'AquaVerify connects coliphage-focused products with AquaVerify Cloud so laboratories, distributors and quality teams can manage sample context, host strains, plaque counts, review history and customer reports in one traceable workflow.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Ask about coliphage products', secondaryCta: 'Explore resources', seoTitle: 'Why Coliphages Are the Ultimate Viral Indicator | AquaVerify Whitepaper', seoDescription: 'Whitepaper on coliphages as viral indicators, E. coli limitations, somatic versus F-specific coliphages, ISO 10705, EPA methods and LIMS traceability.', whitepaper: whitepaperDeepDive('viralIndicator', 'en'), faqs: [
       { question: 'Do coliphages replace E. coli or enterococci monitoring?', answer: 'No. Coliphages add a viral-indicator layer. Traditional bacterial indicators remain important and must be interpreted within the applicable method, regulation and quality system.' },
-      { question: 'Why are coliphages useful for SEO and qualified leads?', answer: 'Visitors searching for coliphages, viral indicators, ISO 10705 or EPA coliphage methods are usually closer to a technical buying, laboratory, OEM or SaaS workflow conversation.' }
+      { question: 'Why do coliphages attract qualified technical enquiries?', answer: 'Visitors searching for coliphages, viral indicators, ISO 10705 or EPA coliphage methods are usually closer to a technical buying, laboratory, OEM or SaaS workflow conversation.' }
     ] }),
     es: locale('/es/recursos/colifagos-indicadores-calidad-agua', 'Por qué los colífagos son el indicador viral definitivo para calidad del agua', 'Whitepaper sobre por qué los colífagos superan límites de los indicadores bacterianos tradicionales y cómo conectar estos flujos con trazabilidad digital.', [
       section('Resumen ejecutivo', 'Durante más de un siglo, los equipos de agua han confiado en indicadores bacterianos como E. coli y enterococos para evaluar contaminación fecal. Siguen siendo esenciales, pero el riesgo viral transmitido por el agua muestra una vulnerabilidad crítica: las bacterias no siempre son modelos predictivos adecuados para virus entéricos humanos.', ['Los virus entéricos pueden persistir más tiempo en ambientes acuáticos', 'El comportamiento frente a desinfección no es idéntico en bacterias y virus', 'La ausencia de E. coli no demuestra automáticamente ausencia de virus infecciosos', 'Los colífagos aportan una capa práctica de indicador viral para monitorización moderna']),
@@ -1141,7 +1141,7 @@ export const MARKETING_PAGES = [
       section('Cómo AquaVerify convierte la ciencia en flujo operativo', 'AquaVerify conecta productos centrados en colífagos con AquaVerify Cloud para que laboratorios, distribuidores y equipos de calidad gestionen contexto de muestra, cepas huésped, recuentos de placa, revisión e informes en un único flujo trazable.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Preguntar por productos colífagos', secondaryCta: 'Explorar recursos', seoTitle: 'Por qué los colífagos son el indicador viral definitivo | Whitepaper AquaVerify', seoDescription: 'Whitepaper sobre colífagos como indicadores virales, límites de E. coli, colífagos somáticos frente a F-específicos, ISO 10705, métodos EPA y trazabilidad LIMS.', whitepaper: whitepaperDeepDive('viralIndicator', 'es'), faqs: [
       { question: '¿Los colífagos sustituyen la monitorización de E. coli o enterococos?', answer: 'No. Añaden una capa de indicador viral. Los indicadores bacterianos siguen siendo importantes y deben interpretarse según método, regulación y sistema de calidad aplicables.' },
-      { question: '¿Por qué este tema atrae leads cualificados?', answer: 'Quien busca colífagos, indicadores virales, ISO 10705 o métodos EPA de colífagos suele estar cerca de una conversación técnica de compra, laboratorio, OEM o SaaS.' }
+      { question: '¿Por qué este tema atrae consultas técnicas cualificadas?', answer: 'Quien busca colífagos, indicadores virales, ISO 10705 o métodos EPA de colífagos suele estar cerca de una conversación técnica de compra, laboratorio, OEM o SaaS.' }
     ] }),
     fr: locale('/fr/ressources/coliphages-indicateurs-qualite-eau', 'Pourquoi les coliphages sont l’indicateur viral ultime pour la qualité de l’eau', 'Whitepaper sur les coliphages comme indicateurs viraux, les limites des indicateurs bactériens et la traçabilité numérique des flux laboratoire.', [
       section('Résumé exécutif', 'Depuis plus d’un siècle, les équipes eau utilisent E. coli et entérocoques pour évaluer la contamination fécale. Ces indicateurs restent essentiels, mais le risque viral hydrique révèle une limite: les bactéries ne sont pas toujours des modèles prédictifs adaptés aux virus entériques humains.', ['Les virus entériques peuvent persister plus longtemps dans l’eau', 'Le comportement face à la désinfection diffère entre bactéries et virus', 'L’absence d’E. coli ne prouve pas automatiquement l’absence de virus infectieux', 'Les coliphages ajoutent une couche pratique d’indicateur viral']),
@@ -1150,7 +1150,7 @@ export const MARKETING_PAGES = [
       section('Comment AquaVerify transforme la science en flux', 'AquaVerify connecte produits axés coliphages et AquaVerify Cloud afin de gérer contexte échantillon, souches hôtes, dénombrements, revue et rapports dans un flux traçable.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Demander produits coliphages', secondaryCta: 'Explorer les ressources', seoTitle: 'Pourquoi les coliphages sont l’indicateur viral ultime | Whitepaper AquaVerify', seoDescription: 'Whitepaper sur coliphages indicateurs viraux, limites E. coli, coliphages somatiques et F-spécifiques, ISO 10705, méthodes EPA et traçabilité LIMS.', whitepaper: whitepaperDeepDive('viralIndicator', 'fr'), faqs: [
       { question: 'Les coliphages remplacent-ils E. coli ou les entérocoques?', answer: 'Non. Ils ajoutent une couche d’indicateur viral. Les indicateurs bactériens restent importants selon la méthode, la réglementation et le système qualité applicables.' },
-      { question: 'Pourquoi ce sujet attire-t-il des leads qualifiés?', answer: 'Les recherches sur coliphages, indicateurs viraux, ISO 10705 ou méthodes EPA signalent souvent une intention technique proche d’un achat, laboratoire, OEM ou SaaS.' }
+      { question: 'Pourquoi ce sujet attire-t-il des demandes techniques qualifiées?', answer: 'Les recherches sur coliphages, indicateurs viraux, ISO 10705 ou méthodes EPA signalent souvent une intention technique proche d’un achat, laboratoire, OEM ou SaaS.' }
     ] }),
     it: locale('/it/risorse/colifagi-indicatori-qualita-acqua', 'Perché i colifagi sono l’indicatore virale definitivo per la qualità dell’acqua', 'Whitepaper sui colifagi come indicatori virali, i limiti degli indicatori batterici e la tracciabilità digitale dei flussi laboratorio.', [
       section('Sintesi esecutiva', 'Per oltre un secolo i team acqua hanno usato E. coli ed enterococchi per valutare contaminazione fecale. Restano essenziali, ma il rischio virale idrico evidenzia un limite: i batteri non sono sempre modelli predittivi adeguati per virus enterici umani.', ['I virus enterici possono persistere più a lungo in acqua', 'Il comportamento alla disinfezione non è identico per batteri e virus', 'L’assenza di E. coli non prova automaticamente l’assenza di virus infettivi', 'I colifagi aggiungono un livello pratico di indicatore virale']),
@@ -1159,7 +1159,7 @@ export const MARKETING_PAGES = [
       section('Come AquaVerify trasforma la scienza in workflow', 'AquaVerify collega prodotti focalizzati sui colifagi con AquaVerify Cloud per gestire contesto campione, ceppi ospiti, conteggi, revisione e report in un unico flusso tracciabile.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Chiedi prodotti colifagi', secondaryCta: 'Esplora risorse', seoTitle: 'Perché i colifagi sono l’indicatore virale definitivo | Whitepaper AquaVerify', seoDescription: 'Whitepaper su colifagi indicatori virali, limiti di E. coli, colifagi somatici e F-specifici, ISO 10705, metodi EPA e tracciabilità LIMS.', whitepaper: whitepaperDeepDive('viralIndicator', 'it'), faqs: [
       { question: 'I colifagi sostituiscono E. coli o enterococchi?', answer: 'No. Aggiungono un livello di indicatore virale. Gli indicatori batterici restano importanti secondo metodo, normativa e sistema qualità applicabili.' },
-      { question: 'Perché questo tema attira lead qualificati?', answer: 'Ricerche su colifagi, indicatori virali, ISO 10705 o metodi EPA indicano spesso un intento tecnico vicino a acquisto, laboratorio, OEM o SaaS.' }
+      { question: 'Perché questo tema attira richieste tecniche qualificate?', answer: 'Ricerche su colifagi, indicatori virali, ISO 10705 o metodi EPA indicano spesso un intento tecnico vicino a acquisto, laboratorio, OEM o SaaS.' }
     ] }),
     ca: locale('/ca/recursos/colifags-indicadors-qualitat-aigua', 'Per què els colífags són l’indicador viral definitiu per a qualitat de l’aigua', 'Whitepaper sobre colífags com a indicadors virals, límits dels indicadors bacterians i traçabilitat digital dels fluxos de laboratori.', [
       section('Resum executiu', 'Durant més d’un segle, els equips d’aigua han usat E. coli i enterococs per avaluar contaminació fecal. Continuen sent essencials, però el risc viral transmès per l’aigua mostra un límit: els bacteris no sempre són models predictius adequats per a virus entèrics humans.', ['Els virus entèrics poden persistir més temps en aigua', 'El comportament davant desinfecció no és idèntic en bacteris i virus', 'L’absència d’E. coli no prova automàticament absència de virus infecciosos', 'Els colífags afegeixen una capa pràctica d’indicador viral']),
@@ -1168,14 +1168,14 @@ export const MARKETING_PAGES = [
       section('Com AquaVerify transforma la ciència en flux operatiu', 'AquaVerify connecta productes centrats en colífags amb AquaVerify Cloud perquè laboratoris, distribuïdors i equips de qualitat gestionin context de mostra, soques hoste, recomptes, revisió i informes en un únic flux traçable.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Preguntar per productes colífags', secondaryCta: 'Explorar recursos', seoTitle: 'Per què els colífags són l’indicador viral definitiu | Whitepaper AquaVerify', seoDescription: 'Whitepaper sobre colífags com a indicadors virals, límits d’E. coli, colífags somàtics i F-específics, ISO 10705, mètodes EPA i traçabilitat LIMS.', whitepaper: whitepaperDeepDive('viralIndicator', 'ca'), faqs: [
       { question: 'Els colífags substitueixen E. coli o enterococs?', answer: 'No. Afegeixen una capa d’indicador viral. Els indicadors bacterians continuen sent importants segons mètode, regulació i sistema de qualitat aplicables.' },
-      { question: 'Per què aquest tema atrau leads qualificats?', answer: 'Cerques sobre colífags, indicadors virals, ISO 10705 o mètodes EPA solen indicar intenció tècnica propera a compra, laboratori, OEM o SaaS.' }
+      { question: 'Per què aquest tema atrau consultes tècniques qualificades?', answer: 'Cerques sobre colífags, indicadors virals, ISO 10705 o mètodes EPA solen indicar intenció tècnica propera a compra, laboratori, OEM o SaaS.' }
     ] })
   }, { parentId: 'resources' }),
   page('presence-vs-enumeration', 'resources', 'quote', {
     en: locale('/resources/presence-absence-vs-enumeration', 'Presence/absence vs enumeration in water microbiology', 'Understand when qualitative screening and quantitative enumeration workflows fit water microbiology decisions.', [
       section('When presence/absence fits', 'Presence/absence workflows are useful when a team needs a clear qualitative answer for screening, release decisions or escalation.', ['Fast yes/no decision points', 'Operational monitoring where a qualitative answer is enough', 'Field, quality or routine laboratory workflows', 'Clear link to INDICA product families']),
       section('When enumeration fits', 'Enumeration workflows are stronger when decisions depend on concentration, trend, limit comparison or quantitative reporting.', ['Quantitative result records', 'Trend monitoring across sites or batches', 'Laboratory and customer reporting', 'Clear link to ENUMERA and standard kits']),
-      section('Why the platform matters', 'AquaVerify Cloud can connect either workflow to sample context, operators, customer communication and CRM attribution.')
+      section('Why the platform matters', 'AquaVerify Cloud can connect either workflow to sample context, operators, customer communication and follow-up history.')
     ], { eyebrow: 'Guide', primaryCta: 'Discuss the right workflow', secondaryCta: 'View INDICA and ENUMERA', seoTitle: 'Presence/Absence vs Enumeration | Water Microbiology Guide', faqs: [
       { question: 'Is presence/absence less useful than enumeration?', answer: 'No. It answers a different operational question. Presence/absence is useful for screening, while enumeration is useful when the concentration or trend matters.' },
       { question: 'Can one organization use both workflows?', answer: 'Yes. Many teams combine qualitative screening with quantitative confirmation or periodic enumeration depending on the sample type and decision.' }
@@ -1183,7 +1183,7 @@ export const MARKETING_PAGES = [
     es: locale('/es/recursos/presencia-ausencia-vs-enumeracion', 'Presencia/ausencia vs enumeración en microbiología del agua', 'Entiende cuándo encajan los flujos cualitativos y cuantitativos en decisiones de microbiología del agua.', [
       section('Cuándo encaja presencia/ausencia', 'Los flujos de presencia/ausencia son útiles cuando el equipo necesita una respuesta cualitativa clara para cribado, liberación o escalado.', ['Decisiones rápidas sí/no', 'Monitorización operativa donde una respuesta cualitativa es suficiente', 'Flujos de campo, calidad o laboratorio rutinario', 'Conexión clara con la familia INDICA']),
       section('Cuándo encaja enumeración', 'Los flujos de enumeración son más fuertes cuando la decisión depende de concentración, tendencia, comparación con límites o informe cuantitativo.', ['Registros de resultado cuantitativo', 'Seguimiento de tendencias por punto o lote', 'Informes de laboratorio y cliente', 'Conexión clara con ENUMERA y kits estándar']),
-      section('Por qué importa la plataforma', 'AquaVerify Cloud puede conectar ambos flujos con contexto de muestra, operadores, comunicación cliente y atribución CRM.')
+      section('Por qué importa la plataforma', 'AquaVerify Cloud puede conectar ambos flujos con contexto de muestra, operadores, comunicación cliente e historial de seguimiento.')
     ], { eyebrow: 'Guía', primaryCta: 'Hablar del flujo adecuado', secondaryCta: 'Ver INDICA y ENUMERA', seoTitle: 'Presencia/Ausencia vs Enumeración | Guía microbiología del agua', faqs: [
       { question: '¿Presencia/ausencia es menos útil que enumeración?', answer: 'No. Responde a una pregunta operativa diferente. Presencia/ausencia sirve para cribado, mientras que enumeración sirve cuando importan la concentración o la tendencia.' },
       { question: '¿Una organización puede usar ambos flujos?', answer: 'Sí. Muchos equipos combinan cribado cualitativo con confirmación cuantitativa o enumeración periódica según el tipo de muestra y la decisión.' }
@@ -1191,7 +1191,7 @@ export const MARKETING_PAGES = [
     fr: locale('/fr/ressources/presence-absence-vs-denombrement', 'Présence/absence vs dénombrement en microbiologie de l’eau', 'Comprendre quand les flux qualitatifs et quantitatifs conviennent aux décisions de microbiologie de l’eau.', [
       section('Quand la présence/absence convient', 'Les flux présence/absence sont utiles lorsqu’une équipe a besoin d’une réponse qualitative claire pour le dépistage, la libération ou l’escalade.', ['Décisions rapides oui/non', 'Surveillance opérationnelle quand une réponse qualitative suffit', 'Flux terrain, qualité ou laboratoire de routine', 'Lien clair avec la famille INDICA']),
       section('Quand le dénombrement convient', 'Les flux de dénombrement sont plus adaptés quand la décision dépend d’une concentration, d’une tendance, d’une comparaison de limite ou d’un rapport quantitatif.', ['Enregistrements de résultat quantitatif', 'Suivi des tendances par site ou lot', 'Rapports laboratoire et client', 'Lien clair avec ENUMERA et kits standard']),
-      section('Pourquoi la plateforme compte', 'AquaVerify Cloud peut connecter les deux flux au contexte échantillon, aux opérateurs, à la communication client et à l’attribution CRM.')
+      section('Pourquoi la plateforme compte', 'AquaVerify Cloud peut connecter les deux flux au contexte échantillon, aux opérateurs, à la communication client et à l’historique de suivi.')
     ], { eyebrow: 'Guide', primaryCta: 'Discuter du bon flux', secondaryCta: 'Voir INDICA et ENUMERA', seoTitle: 'Présence/absence vs dénombrement | Guide microbiologie eau', faqs: [
       { question: 'La présence/absence est-elle moins utile que le dénombrement?', answer: 'Non. Elle répond à une question opérationnelle différente. La présence/absence sert au dépistage, tandis que le dénombrement sert lorsque la concentration ou la tendance compte.' },
       { question: 'Une organisation peut-elle utiliser les deux flux?', answer: 'Oui. De nombreuses équipes combinent dépistage qualitatif et confirmation quantitative ou dénombrement périodique selon l’échantillon et la décision.' }
@@ -1199,7 +1199,7 @@ export const MARKETING_PAGES = [
     it: locale('/it/risorse/presenza-assenza-vs-enumerazione', 'Presenza/assenza vs enumerazione nella microbiologia dell’acqua', 'Comprendi quando flussi qualitativi e quantitativi sono adatti alle decisioni di microbiologia dell’acqua.', [
       section('Quando serve presenza/assenza', 'I flussi presenza/assenza sono utili quando un team richiede una risposta qualitativa chiara per screening, rilascio o escalation.', ['Decisioni rapide sì/no', 'Monitoraggio operativo quando una risposta qualitativa è sufficiente', 'Flussi sul campo, qualità o laboratorio di routine', 'Collegamento chiaro con la famiglia INDICA']),
       section('Quando serve enumerazione', 'I flussi di enumerazione sono più forti quando la decisione dipende da concentrazione, trend, confronto con limiti o reporting quantitativo.', ['Registri di risultato quantitativo', 'Monitoraggio trend per sito o lotto', 'Report laboratorio e cliente', 'Collegamento chiaro con ENUMERA e kit standard']),
-      section('Perché conta la piattaforma', 'AquaVerify Cloud può collegare entrambi i flussi a contesto campione, operatori, comunicazione cliente e attribuzione CRM.')
+      section('Perché conta la piattaforma', 'AquaVerify Cloud può collegare entrambi i flussi a contesto campione, operatori, comunicazione cliente e storico follow-up.')
     ], { eyebrow: 'Guida', primaryCta: 'Discuti il flusso giusto', secondaryCta: 'Vedi INDICA ed ENUMERA', seoTitle: 'Presenza/assenza vs enumerazione | Guida microbiologia acqua', faqs: [
       { question: 'La presenza/assenza è meno utile dell’enumerazione?', answer: 'No. Risponde a una domanda operativa diversa. La presenza/assenza è utile per lo screening, mentre l’enumerazione serve quando contano concentrazione o trend.' },
       { question: 'Un’organizzazione può usare entrambi i flussi?', answer: 'Sì. Molti team combinano screening qualitativo con conferma quantitativa o enumerazione periodica in base al campione e alla decisione.' }
@@ -1207,7 +1207,7 @@ export const MARKETING_PAGES = [
     ca: locale('/ca/recursos/presencia-absencia-vs-enumeracio', 'Presència/absència vs enumeració en microbiologia de l’aigua', 'Entén quan encaixen els fluxos qualitatius i quantitatius en decisions de microbiologia de l’aigua.', [
       section('Quan encaixa presència/absència', 'Els fluxos de presència/absència són útils quan l’equip necessita una resposta qualitativa clara per a cribratge, alliberament o escalat.', ['Decisions ràpides sí/no', 'Monitoratge operatiu on una resposta qualitativa és suficient', 'Fluxos de camp, qualitat o laboratori rutinari', 'Connexió clara amb la família INDICA']),
       section('Quan encaixa enumeració', 'Els fluxos d’enumeració són més forts quan la decisió depèn de concentració, tendència, comparació amb límits o informe quantitatiu.', ['Registres de resultat quantitatiu', 'Seguiment de tendències per punt o lot', 'Informes de laboratori i client', 'Connexió clara amb ENUMERA i kits estàndard']),
-      section('Per què importa la plataforma', 'AquaVerify Cloud pot connectar tots dos fluxos amb context de mostra, operadors, comunicació client i atribució CRM.')
+      section('Per què importa la plataforma', 'AquaVerify Cloud pot connectar tots dos fluxos amb context de mostra, operadors, comunicació client i historial de seguiment.')
     ], { eyebrow: 'Guia', primaryCta: 'Parlar del flux adequat', secondaryCta: 'Veure INDICA i ENUMERA', seoTitle: 'Presència/absència vs enumeració | Guia microbiologia aigua', faqs: [
       { question: 'Presència/absència és menys útil que enumeració?', answer: 'No. Respon a una pregunta operativa diferent. Presència/absència serveix per a cribratge, mentre que enumeració serveix quan importen la concentració o la tendència.' },
       { question: 'Una organització pot usar tots dos fluxos?', answer: 'Sí. Molts equips combinen cribratge qualitatiu amb confirmació quantitativa o enumeració periòdica segons el tipus de mostra i la decisió.' }
@@ -1217,7 +1217,7 @@ export const MARKETING_PAGES = [
     en: locale('/resources/water-sample-digital-traceability', 'How to digitalize water sample traceability', 'A practical guide to linking samples, operators, products, reports and customer context in water quality workflows.', [
       section('Start with sample context', 'Digital traceability begins before the analysis: customer, site, sampling point, date, operator and requested workflow should be captured consistently.', ['Customer and site record', 'Sampling point and sample metadata', 'Requested parameter and product family', 'Chain of responsibility']),
       section('Connect execution and evidence', 'A useful system links the test workflow to products, operators, results, images, calculations and review steps.', ['Product or kit used', 'Operator and reviewer history', 'Result and report status', 'Evidence attached to the sample']),
-      section('Turn results into CRM intelligence', 'When the public site, CRM and reporting system share attribution, teams can see which pages, campaigns and products generated qualified demand.')
+      section('Turn results into better follow-up', 'When product interest, reports and customer conversations stay connected, teams can understand demand and respond with the right next step.')
     ], { eyebrow: 'Guide', primaryCta: 'Map your traceability workflow', secondaryCta: 'Explore platform', seoTitle: 'Water Sample Digital Traceability Guide | AquaVerify', faqs: [
       { question: 'Is digital traceability only for large laboratories?', answer: 'No. Smaller laboratories and quality teams can also benefit when samples, products, reports and customer communication are connected from the start.' },
       { question: 'Does traceability replace laboratory validation?', answer: 'No. Digital traceability organizes records and workflows; technical method validation remains a separate scientific and quality process.' }
@@ -1225,7 +1225,7 @@ export const MARKETING_PAGES = [
     es: locale('/es/recursos/trazabilidad-digital-muestras-agua', 'Cómo digitalizar la trazabilidad de muestras de agua', 'Guía práctica para conectar muestras, operadores, productos, informes y contexto cliente en flujos de calidad del agua.', [
       section('Empezar por el contexto de muestra', 'La trazabilidad digital empieza antes del análisis: cliente, instalación, punto de muestreo, fecha, operador y flujo solicitado deben capturarse de forma consistente.', ['Registro de cliente e instalación', 'Punto de muestreo y metadatos de muestra', 'Parámetro solicitado y familia de producto', 'Cadena de responsabilidad']),
       section('Conectar ejecución y evidencia', 'Un sistema útil vincula el flujo de análisis con productos, operadores, resultados, imágenes, cálculos y pasos de revisión.', ['Producto o kit utilizado', 'Historial de operador y revisor', 'Estado de resultado e informe', 'Evidencia asociada a la muestra']),
-      section('Convertir resultados en inteligencia CRM', 'Cuando la web pública, el CRM y el reporting comparten atribución, el equipo ve qué páginas, campañas y productos generan demanda cualificada.')
+      section('Convertir resultados en mejor seguimiento', 'Cuando el interés de producto, los informes y las conversaciones con cliente quedan conectados, el equipo entiende la demanda y responde con el siguiente paso adecuado.')
     ], { eyebrow: 'Guía', primaryCta: 'Mapear trazabilidad', secondaryCta: 'Explorar plataforma', seoTitle: 'Guía de trazabilidad digital de muestras de agua | AquaVerify', faqs: [
       { question: '¿La trazabilidad digital es solo para laboratorios grandes?', answer: 'No. Laboratorios pequeños y equipos de calidad también ganan cuando muestras, productos, informes y comunicación cliente están conectados desde el inicio.' },
       { question: '¿La trazabilidad sustituye la validación de laboratorio?', answer: 'No. La trazabilidad digital organiza registros y flujos; la validación técnica del método sigue siendo un proceso científico y de calidad separado.' }
@@ -1233,7 +1233,7 @@ export const MARKETING_PAGES = [
     fr: locale('/fr/ressources/tracabilite-numerique-echantillons-eau', 'Comment numériser la traçabilité des échantillons d’eau', 'Guide pratique pour relier échantillons, opérateurs, produits, rapports et contexte client dans les flux qualité eau.', [
       section('Commencer par le contexte échantillon', 'La traçabilité numérique commence avant l’analyse: client, site, point de prélèvement, date, opérateur et flux demandé doivent être capturés de manière cohérente.', ['Fiche client et site', 'Point de prélèvement et métadonnées échantillon', 'Paramètre demandé et famille produit', 'Chaîne de responsabilité']),
       section('Connecter exécution et preuve', 'Un système utile relie le flux d’analyse aux produits, opérateurs, résultats, images, calculs et étapes de revue.', ['Produit ou kit utilisé', 'Historique opérateur et relecteur', 'Statut du résultat et du rapport', 'Preuve associée à l’échantillon']),
-      section('Transformer les résultats en intelligence CRM', 'Lorsque le site public, le CRM et le reporting partagent l’attribution, les équipes voient quelles pages, campagnes et produits génèrent une demande qualifiée.')
+      section('Transformer les résultats en meilleur suivi', 'Lorsque l’intérêt produit, les rapports et les échanges client restent connectés, les équipes comprennent la demande et répondent avec la bonne étape suivante.')
     ], { eyebrow: 'Guide', primaryCta: 'Cartographier votre traçabilité', secondaryCta: 'Explorer la plateforme', seoTitle: 'Guide traçabilité numérique échantillons eau | AquaVerify', faqs: [
       { question: 'La traçabilité numérique est-elle réservée aux grands laboratoires?', answer: 'Non. Les petits laboratoires et équipes qualité en bénéficient aussi lorsque échantillons, produits, rapports et communication client sont connectés dès le départ.' },
       { question: 'La traçabilité remplace-t-elle la validation laboratoire?', answer: 'Non. La traçabilité numérique organise les enregistrements et flux; la validation technique de méthode reste un processus scientifique et qualité séparé.' }
@@ -1241,7 +1241,7 @@ export const MARKETING_PAGES = [
     it: locale('/it/risorse/tracciabilita-digitale-campioni-acqua', 'Come digitalizzare la tracciabilità dei campioni d’acqua', 'Guida pratica per collegare campioni, operatori, prodotti, report e contesto cliente nei flussi qualità acqua.', [
       section('Partire dal contesto campione', 'La tracciabilità digitale inizia prima dell’analisi: cliente, sito, punto di campionamento, data, operatore e flusso richiesto devono essere acquisiti in modo coerente.', ['Record cliente e sito', 'Punto di campionamento e metadati campione', 'Parametro richiesto e famiglia prodotto', 'Catena di responsabilità']),
       section('Collegare esecuzione ed evidenza', 'Un sistema utile collega il flusso analitico a prodotti, operatori, risultati, immagini, calcoli e passaggi di revisione.', ['Prodotto o kit utilizzato', 'Storico operatore e revisore', 'Stato di risultato e report', 'Evidenza associata al campione']),
-      section('Trasformare i risultati in intelligence CRM', 'Quando sito pubblico, CRM e reporting condividono attribuzione, i team vedono quali pagine, campagne e prodotti generano domanda qualificata.')
+      section('Trasformare i risultati in follow-up migliore', 'Quando interesse prodotto, report e conversazioni cliente restano collegati, i team comprendono la domanda e rispondono con il passo successivo corretto.')
     ], { eyebrow: 'Guida', primaryCta: 'Mappa la tracciabilità', secondaryCta: 'Esplora piattaforma', seoTitle: 'Guida tracciabilità digitale campioni acqua | AquaVerify', faqs: [
       { question: 'La tracciabilità digitale serve solo ai grandi laboratori?', answer: 'No. Anche piccoli laboratori e team qualità beneficiano quando campioni, prodotti, report e comunicazione cliente sono collegati dall’inizio.' },
       { question: 'La tracciabilità sostituisce la validazione di laboratorio?', answer: 'No. La tracciabilità digitale organizza registri e flussi; la validazione tecnica del metodo resta un processo scientifico e qualità separato.' }
@@ -1249,7 +1249,7 @@ export const MARKETING_PAGES = [
     ca: locale('/ca/recursos/tracabilitat-digital-mostres-aigua', 'Com digitalitzar la traçabilitat de mostres d’aigua', 'Guia pràctica per connectar mostres, operadors, productes, informes i context client en fluxos de qualitat de l’aigua.', [
       section('Començar pel context de mostra', 'La traçabilitat digital comença abans de l’anàlisi: client, instal·lació, punt de mostreig, data, operador i flux sol·licitat s’han de capturar de manera consistent.', ['Registre de client i instal·lació', 'Punt de mostreig i metadades de mostra', 'Paràmetre sol·licitat i família de producte', 'Cadena de responsabilitat']),
       section('Connectar execució i evidència', 'Un sistema útil vincula el flux d’anàlisi amb productes, operadors, resultats, imatges, càlculs i passos de revisió.', ['Producte o kit utilitzat', 'Historial d’operador i revisor', 'Estat de resultat i informe', 'Evidència associada a la mostra']),
-      section('Convertir resultats en intel·ligència CRM', 'Quan la web pública, el CRM i el reporting comparteixen atribució, l’equip veu quines pàgines, campanyes i productes generen demanda qualificada.')
+      section('Convertir resultats en millor seguiment', 'Quan l’interès de producte, els informes i les converses amb client queden connectats, l’equip entén la demanda i respon amb el següent pas adequat.')
     ], { eyebrow: 'Guia', primaryCta: 'Mapar traçabilitat', secondaryCta: 'Explorar plataforma', seoTitle: 'Guia de traçabilitat digital de mostres d’aigua | AquaVerify', faqs: [
       { question: 'La traçabilitat digital és només per a laboratoris grans?', answer: 'No. Laboratoris petits i equips de qualitat també guanyen quan mostres, productes, informes i comunicació client estan connectats des de l’inici.' },
       { question: 'La traçabilitat substitueix la validació de laboratori?', answer: 'No. La traçabilitat digital organitza registres i fluxos; la validació tècnica del mètode continua sent un procés científic i de qualitat separat.' }
@@ -1340,43 +1340,43 @@ export const MARKETING_PAGES = [
     ] })
   }, { parentId: 'resources' }),
   page('water-compliance-software-guide', 'resources', 'saas', {
-    en: locale('/resources/water-compliance-software-guide', 'Software evidence layer for water quality compliance', 'Whitepaper on using connected software to organize samples, methods, audit trails, reports and CRM follow-up for water quality teams.', [
-      section('Compliance is not only a result', 'For laboratories and water quality teams, compliance work depends on evidence: who requested the test, where the sample came from, which method route was used, which product or kit was consumed, who reviewed the result and what was communicated to the customer.', ['Sample metadata and chain of responsibility', 'Method, product and batch context', 'Review, approval and report status', 'Customer communication and CRM attribution']),
-      section('What software should capture', 'A practical water quality platform should make the operational record useful for audits and commercial follow-up without pretending to replace laboratory validation or regulatory judgement.', ['Role-based access and audit trail', 'Structured sampling and result records', 'Report templates and version history', 'Dashboards for pipeline, product interest and recurring demand']),
-      section('Why it creates B2B leads', 'A whitepaper about software evidence attracts buyers who already feel operational friction: growing labs, distributors selling technical products, quality teams managing suppliers and biotech companies looking for an all-in-one SaaS platform.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Request SaaS demo', secondaryCta: 'Explore resources', seoTitle: 'Water Compliance Software Guide | AquaVerify Cloud Whitepaper', seoDescription: 'Whitepaper on software evidence, audit trails, sample traceability and CRM attribution for water quality compliance workflows.', whitepaper: whitepaperDeepDive('software', 'en'), faqs: [
+    en: locale('/resources/water-compliance-software-guide', 'Software evidence layer for water quality compliance', 'Whitepaper on using connected software to organize samples, methods, audit trails, reports and customer follow-up for water quality teams.', [
+      section('Compliance is not only a result', 'For laboratories and water quality teams, compliance work depends on evidence: who requested the test, where the sample came from, which method route was used, which product or kit was consumed, who reviewed the result and what was communicated to the customer.', ['Sample metadata and chain of responsibility', 'Method, product and batch context', 'Review, approval and report status', 'Customer communication and follow-up history']),
+      section('What software should capture', 'A practical water quality platform should make the operational record useful for audits and commercial follow-up without pretending to replace laboratory validation or regulatory judgement.', ['Role-based access and audit trail', 'Structured sampling and result records', 'Report templates and version history', 'Dashboards for product interest, workload and recurring demand']),
+      section('Why it attracts serious B2B conversations', 'A whitepaper about software evidence helps teams that already feel operational friction: growing labs, distributors selling technical products, quality teams managing suppliers and biotech companies looking for an all-in-one SaaS platform.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Request SaaS demo', secondaryCta: 'Explore resources', seoTitle: 'Water Compliance Software Guide | AquaVerify Cloud Whitepaper', seoDescription: 'Whitepaper on software evidence, audit trails, sample traceability and customer follow-up for water quality compliance workflows.', whitepaper: whitepaperDeepDive('software', 'en'), faqs: [
       { question: 'Can software make a laboratory compliant by itself?', answer: 'No. Software organizes evidence and workflow discipline; laboratories still need validated methods, trained staff, quality procedures and applicable regulatory review.' },
       { question: 'Who is the best audience for this whitepaper?', answer: 'Laboratories, water quality teams, distributors and biotech companies that need one workflow across samples, products, reports, CRM and customer communication.' }
     ] }),
-    es: locale('/es/recursos/software-cumplimiento-calidad-agua', 'Capa de evidencia software para cumplimiento en calidad del agua', 'Whitepaper sobre cómo usar software conectado para organizar muestras, métodos, auditoría, informes y seguimiento CRM en equipos de calidad del agua.', [
-      section('El cumplimiento no es solo un resultado', 'Para laboratorios y equipos de calidad del agua, el cumplimiento depende de la evidencia: quién pidió el análisis, de dónde viene la muestra, qué ruta metodológica se siguió, qué producto o kit se consumió, quién revisó el resultado y qué se comunicó al cliente.', ['Metadatos de muestra y cadena de responsabilidad', 'Contexto de método, producto y lote', 'Estado de revisión, aprobación e informe', 'Comunicación cliente y atribución CRM']),
-      section('Qué debe capturar el software', 'Una plataforma práctica de calidad del agua debe hacer que el registro operativo sea útil para auditorías y seguimiento comercial sin pretender sustituir la validación de laboratorio ni el criterio regulatorio.', ['Acceso por roles y audit trail', 'Registros estructurados de muestra y resultado', 'Plantillas de informe e historial de versión', 'Dashboards de pipeline, interés de producto y demanda recurrente']),
-      section('Por qué genera leads B2B', 'Un whitepaper sobre evidencia software atrae compradores que ya sienten fricción operativa: laboratorios en crecimiento, distribuidores de productos técnicos, equipos de calidad que coordinan proveedores y empresas biotech que buscan una plataforma SaaS todo en uno.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Solicitar demo SaaS', secondaryCta: 'Explorar recursos', seoTitle: 'Software de cumplimiento en calidad del agua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sobre evidencia software, audit trail, trazabilidad de muestras y atribución CRM para flujos de cumplimiento en calidad del agua.', whitepaper: whitepaperDeepDive('software', 'es'), faqs: [
+    es: locale('/es/recursos/software-cumplimiento-calidad-agua', 'Capa de evidencia software para cumplimiento en calidad del agua', 'Whitepaper sobre cómo usar software conectado para organizar muestras, métodos, auditoría, informes y seguimiento de clientes en equipos de calidad del agua.', [
+      section('El cumplimiento no es solo un resultado', 'Para laboratorios y equipos de calidad del agua, el cumplimiento depende de la evidencia: quién pidió el análisis, de dónde viene la muestra, qué ruta metodológica se siguió, qué producto o kit se consumió, quién revisó el resultado y qué se comunicó al cliente.', ['Metadatos de muestra y cadena de responsabilidad', 'Contexto de método, producto y lote', 'Estado de revisión, aprobación e informe', 'Comunicación cliente e historial de seguimiento']),
+      section('Qué debe capturar el software', 'Una plataforma práctica de calidad del agua debe hacer que el registro operativo sea útil para auditorías y seguimiento comercial sin pretender sustituir la validación de laboratorio ni el criterio regulatorio.', ['Acceso por roles y audit trail', 'Registros estructurados de muestra y resultado', 'Plantillas de informe e historial de versión', 'Paneles de interés de producto, carga de trabajo y demanda recurrente']),
+      section('Por qué atrae conversaciones B2B serias', 'Un whitepaper sobre evidencia software ayuda a equipos que ya sienten fricción operativa: laboratorios en crecimiento, distribuidores de productos técnicos, equipos de calidad que coordinan proveedores y empresas biotech que buscan una plataforma SaaS todo en uno.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Solicitar demo SaaS', secondaryCta: 'Explorar recursos', seoTitle: 'Software de cumplimiento en calidad del agua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sobre evidencia software, audit trail, trazabilidad de muestras y seguimiento de clientes para flujos de cumplimiento en calidad del agua.', whitepaper: whitepaperDeepDive('software', 'es'), faqs: [
       { question: '¿El software puede hacer que un laboratorio sea compliant por sí solo?', answer: 'No. El software organiza evidencia y disciplina de flujo; el laboratorio sigue necesitando métodos validados, personal formado, procedimientos de calidad y revisión regulatoria aplicable.' },
       { question: '¿Para quién es este whitepaper?', answer: 'Laboratorios, equipos de calidad del agua, distribuidores y empresas biotech que necesitan un flujo común entre muestras, productos, informes, CRM y comunicación cliente.' }
     ] }),
-    fr: locale('/fr/ressources/logiciel-conformite-qualite-eau', 'Couche de preuve logicielle pour conformité qualité eau', 'Whitepaper sur l’utilisation d’un logiciel connecté pour organiser échantillons, méthodes, piste d’audit, rapports et suivi CRM en qualité eau.', [
-      section('La conformité n’est pas seulement un résultat', 'Pour laboratoires et équipes qualité eau, la conformité dépend de la preuve: qui a demandé l’analyse, d’où vient l’échantillon, quelle route méthodologique a été suivie, quel produit ou kit a été consommé, qui a revu le résultat et ce qui a été communiqué au client.', ['Métadonnées échantillon et chaîne de responsabilité', 'Contexte méthode, produit et lot', 'Statut de revue, approbation et rapport', 'Communication client et attribution CRM']),
-      section('Ce que le logiciel doit capturer', 'Une plateforme qualité eau pratique doit rendre le registre opérationnel utile aux audits et au suivi commercial sans remplacer la validation laboratoire ni le jugement réglementaire.', ['Accès par rôles et piste d’audit', 'Enregistrements structurés échantillon et résultat', 'Modèles de rapport et historique de version', 'Dashboards pipeline, intérêt produit et demande récurrente']),
-      section('Pourquoi cela génère des leads B2B', 'Un whitepaper sur la preuve logicielle attire les acheteurs qui ressentent déjà une friction opérationnelle: laboratoires en croissance, distributeurs de produits techniques, équipes qualité coordonnant fournisseurs et biotech cherchant une plateforme SaaS tout-en-un.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Demander une démo SaaS', secondaryCta: 'Explorer les ressources', seoTitle: 'Logiciel conformité qualité eau | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sur preuve logicielle, piste d’audit, traçabilité échantillons et attribution CRM pour flux conformité qualité eau.', whitepaper: whitepaperDeepDive('software', 'fr'), faqs: [
+    fr: locale('/fr/ressources/logiciel-conformite-qualite-eau', 'Couche de preuve logicielle pour conformité qualité eau', 'Whitepaper sur l’utilisation d’un logiciel connecté pour organiser échantillons, méthodes, piste d’audit, rapports et suivi client en qualité eau.', [
+      section('La conformité n’est pas seulement un résultat', 'Pour laboratoires et équipes qualité eau, la conformité dépend de la preuve: qui a demandé l’analyse, d’où vient l’échantillon, quelle route méthodologique a été suivie, quel produit ou kit a été consommé, qui a revu le résultat et ce qui a été communiqué au client.', ['Métadonnées échantillon et chaîne de responsabilité', 'Contexte méthode, produit et lot', 'Statut de revue, approbation et rapport', 'Communication client et historique de suivi']),
+      section('Ce que le logiciel doit capturer', 'Une plateforme qualité eau pratique doit rendre le registre opérationnel utile aux audits et au suivi commercial sans remplacer la validation laboratoire ni le jugement réglementaire.', ['Accès par rôles et piste d’audit', 'Enregistrements structurés échantillon et résultat', 'Modèles de rapport et historique de version', 'Tableaux de bord pour intérêt produit, charge de travail et demande récurrente']),
+      section('Pourquoi cela attire des échanges B2B sérieux', 'Un whitepaper sur la preuve logicielle aide les équipes qui ressentent déjà une friction opérationnelle: laboratoires en croissance, distributeurs de produits techniques, équipes qualité coordonnant fournisseurs et biotech cherchant une plateforme SaaS tout-en-un.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Demander une démo SaaS', secondaryCta: 'Explorer les ressources', seoTitle: 'Logiciel conformité qualité eau | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sur preuve logicielle, piste d’audit, traçabilité échantillons et suivi client pour flux conformité qualité eau.', whitepaper: whitepaperDeepDive('software', 'fr'), faqs: [
       { question: 'Le logiciel peut-il rendre un laboratoire conforme à lui seul?', answer: 'Non. Le logiciel organise la preuve et la discipline de flux; le laboratoire a toujours besoin de méthodes validées, personnel formé, procédures qualité et revue réglementaire applicable.' },
       { question: 'À qui s’adresse ce whitepaper?', answer: 'Aux laboratoires, équipes qualité eau, distributeurs et biotech qui ont besoin d’un flux commun entre échantillons, produits, rapports, CRM et communication client.' }
     ] }),
-    it: locale('/it/risorse/software-conformita-qualita-acqua', 'Livello software di evidenza per conformità qualità acqua', 'Whitepaper sull’uso di software collegato per organizzare campioni, metodi, audit trail, report e follow-up CRM nei team qualità acqua.', [
-      section('La conformità non è solo un risultato', 'Per laboratori e team qualità acqua, la conformità dipende dall’evidenza: chi ha richiesto l’analisi, da dove proviene il campione, quale percorso metodologico è stato seguito, quale prodotto o kit è stato consumato, chi ha revisionato il risultato e cosa è stato comunicato al cliente.', ['Metadati campione e catena di responsabilità', 'Contesto metodo, prodotto e lotto', 'Stato di revisione, approvazione e report', 'Comunicazione cliente e attribuzione CRM']),
-      section('Cosa deve catturare il software', 'Una piattaforma pratica per qualità acqua deve rendere il record operativo utile per audit e follow-up commerciale senza sostituire validazione di laboratorio o giudizio normativo.', ['Accesso per ruoli e audit trail', 'Record strutturati di campione e risultato', 'Template report e storico versioni', 'Dashboard per pipeline, interesse prodotto e domanda ricorrente']),
-      section('Perché genera lead B2B', 'Un whitepaper sull’evidenza software attira buyer che già sentono frizione operativa: laboratori in crescita, distributori di prodotti tecnici, team qualità che coordinano fornitori e biotech alla ricerca di una piattaforma SaaS all-in-one.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Richiedi demo SaaS', secondaryCta: 'Esplora risorse', seoTitle: 'Software conformità qualità acqua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper su evidenza software, audit trail, tracciabilità campioni e attribuzione CRM per flussi conformità qualità acqua.', whitepaper: whitepaperDeepDive('software', 'it'), faqs: [
+    it: locale('/it/risorse/software-conformita-qualita-acqua', 'Livello software di evidenza per conformità qualità acqua', 'Whitepaper sull’uso di software collegato per organizzare campioni, metodi, audit trail, report e follow-up cliente nei team qualità acqua.', [
+      section('La conformità non è solo un risultato', 'Per laboratori e team qualità acqua, la conformità dipende dall’evidenza: chi ha richiesto l’analisi, da dove proviene il campione, quale percorso metodologico è stato seguito, quale prodotto o kit è stato consumato, chi ha revisionato il risultato e cosa è stato comunicato al cliente.', ['Metadati campione e catena di responsabilità', 'Contesto metodo, prodotto e lotto', 'Stato di revisione, approvazione e report', 'Comunicazione cliente e storico follow-up']),
+      section('Cosa deve catturare il software', 'Una piattaforma pratica per qualità acqua deve rendere il record operativo utile per audit e follow-up commerciale senza sostituire validazione di laboratorio o giudizio normativo.', ['Accesso per ruoli e audit trail', 'Record strutturati di campione e risultato', 'Template report e storico versioni', 'Dashboard per interesse prodotto, carico di lavoro e domanda ricorrente']),
+      section('Perché attira conversazioni B2B serie', 'Un whitepaper sull’evidenza software aiuta team che già sentono frizione operativa: laboratori in crescita, distributori di prodotti tecnici, team qualità che coordinano fornitori e biotech alla ricerca di una piattaforma SaaS all-in-one.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Richiedi demo SaaS', secondaryCta: 'Esplora risorse', seoTitle: 'Software conformità qualità acqua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper su evidenza software, audit trail, tracciabilità campioni e follow-up cliente per flussi conformità qualità acqua.', whitepaper: whitepaperDeepDive('software', 'it'), faqs: [
       { question: 'Il software può rendere conforme un laboratorio da solo?', answer: 'No. Il software organizza evidenza e disciplina di flusso; il laboratorio ha comunque bisogno di metodi validati, personale formato, procedure qualità e revisione normativa applicabile.' },
       { question: 'Per chi è questo whitepaper?', answer: 'Laboratori, team qualità acqua, distributori e biotech che richiedono un flusso comune tra campioni, prodotti, report, CRM e comunicazione cliente.' }
     ] }),
-    ca: locale('/ca/recursos/software-compliment-qualitat-aigua', 'Capa d’evidència software per a compliment en qualitat de l’aigua', 'Whitepaper sobre com usar software connectat per organitzar mostres, mètodes, auditoria, informes i seguiment CRM en equips de qualitat de l’aigua.', [
-      section('El compliment no és només un resultat', 'Per a laboratoris i equips de qualitat de l’aigua, el compliment depèn de l’evidència: qui va demanar l’anàlisi, d’on ve la mostra, quina ruta metodològica es va seguir, quin producte o kit es va consumir, qui va revisar el resultat i què es va comunicar al client.', ['Metadades de mostra i cadena de responsabilitat', 'Context de mètode, producte i lot', 'Estat de revisió, aprovació i informe', 'Comunicació client i atribució CRM']),
-      section('Què ha de capturar el software', 'Una plataforma pràctica de qualitat de l’aigua ha de fer que el registre operatiu sigui útil per a auditories i seguiment comercial sense pretendre substituir la validació de laboratori ni el criteri regulatori.', ['Accés per rols i audit trail', 'Registres estructurats de mostra i resultat', 'Plantilles d’informe i historial de versió', 'Dashboards de pipeline, interès de producte i demanda recurrent']),
-      section('Per què genera leads B2B', 'Un whitepaper sobre evidència software atrau compradors que ja senten fricció operativa: laboratoris en creixement, distribuïdors de productes tècnics, equips de qualitat que coordinen proveïdors i empreses biotech que busquen una plataforma SaaS tot en un.')
-    ], { eyebrow: 'Whitepaper', primaryCta: 'Sol·licitar demo SaaS', secondaryCta: 'Explorar recursos', seoTitle: 'Software de compliment en qualitat de l’aigua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sobre evidència software, audit trail, traçabilitat de mostres i atribució CRM per a fluxos de compliment en qualitat de l’aigua.', whitepaper: whitepaperDeepDive('software', 'ca'), faqs: [
+    ca: locale('/ca/recursos/software-compliment-qualitat-aigua', 'Capa d’evidència software per a compliment en qualitat de l’aigua', 'Whitepaper sobre com usar software connectat per organitzar mostres, mètodes, auditoria, informes i seguiment de clients en equips de qualitat de l’aigua.', [
+      section('El compliment no és només un resultat', 'Per a laboratoris i equips de qualitat de l’aigua, el compliment depèn de l’evidència: qui va demanar l’anàlisi, d’on ve la mostra, quina ruta metodològica es va seguir, quin producte o kit es va consumir, qui va revisar el resultat i què es va comunicar al client.', ['Metadades de mostra i cadena de responsabilitat', 'Context de mètode, producte i lot', 'Estat de revisió, aprovació i informe', 'Comunicació client i historial de seguiment']),
+      section('Què ha de capturar el software', 'Una plataforma pràctica de qualitat de l’aigua ha de fer que el registre operatiu sigui útil per a auditories i seguiment comercial sense pretendre substituir la validació de laboratori ni el criteri regulatori.', ['Accés per rols i audit trail', 'Registres estructurats de mostra i resultat', 'Plantilles d’informe i historial de versió', 'Panells d’interès de producte, càrrega de treball i demanda recurrent']),
+      section('Per què atrau converses B2B serioses', 'Un whitepaper sobre evidència software ajuda equips que ja senten fricció operativa: laboratoris en creixement, distribuïdors de productes tècnics, equips de qualitat que coordinen proveïdors i empreses biotech que busquen una plataforma SaaS tot en un.')
+    ], { eyebrow: 'Whitepaper', primaryCta: 'Sol·licitar demo SaaS', secondaryCta: 'Explorar recursos', seoTitle: 'Software de compliment en qualitat de l’aigua | Whitepaper AquaVerify Cloud', seoDescription: 'Whitepaper sobre evidència software, audit trail, traçabilitat de mostres i seguiment de clients per a fluxos de compliment en qualitat de l’aigua.', whitepaper: whitepaperDeepDive('software', 'ca'), faqs: [
       { question: 'El software pot fer que un laboratori sigui compliant per si sol?', answer: 'No. El software organitza evidència i disciplina de flux; el laboratori continua necessitant mètodes validats, personal format, procediments de qualitat i revisió regulatòria aplicable.' },
       { question: 'Per a qui és aquest whitepaper?', answer: 'Laboratoris, equips de qualitat de l’aigua, distribuïdors i empreses biotech que necessiten un flux comú entre mostres, productes, informes, CRM i comunicació client.' }
     ] })
@@ -1385,42 +1385,42 @@ export const MARKETING_PAGES = [
     en: locale('/resources/us-drinking-water-compliance-coliform-rule', 'US drinking water compliance: coliform rules and coliphage context', 'Whitepaper for teams mapping US drinking water monitoring, the Revised Total Coliform Rule and EPA-oriented microbiology workflows.', [
       section('The US compliance starting point', 'The EPA Revised Total Coliform Rule uses total coliforms and E. coli to help public water systems evaluate treatment adequacy and distribution-system integrity. For a B2B buyer, the practical question is how to keep monitoring plans, results, assessments, corrective actions and customer communication organized.', ['Sample siting plan and schedule context', 'Total coliform and E. coli monitoring records', 'Assessment and corrective-action evidence', 'Public or customer reporting workflow']),
       section('Where coliphage methods fit', 'Coliphage testing is a related microbiology context, especially for teams evaluating viral indicators or ground-water contamination questions. EPA Method 1602 provides a single agar layer route for male-specific and somatic coliphage enumeration, but it should be positioned separately from RTCR bacterial monitoring obligations.', ['Clear distinction between coliform rule and coliphage method', 'Method readiness and quality-control records', 'Product, host strain and consumable planning', 'Result traceability by sample and batch']),
-      section('How AquaVerify turns interest into pipeline', 'AquaVerify can connect US-oriented educational content with product pages, datasheets, demo requests and CRM attribution so qualified visitors arrive in Sales with page, intent, product and campaign context.')
+      section('How AquaVerify turns interest into a clear next step', 'AquaVerify connects US-oriented educational content with product pages, datasheets and demo requests so visitors can move from research to a structured product, platform or distributor conversation.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Discuss US workflow', secondaryCta: 'Explore resources', seoTitle: 'US Drinking Water Compliance, Coliform Rule and Coliphage Context | AquaVerify', seoDescription: 'Whitepaper on the EPA Revised Total Coliform Rule, EPA Method 1602 context and digital traceability for US water quality teams.', whitepaper: whitepaperDeepDive('us', 'en'), faqs: [
       { question: 'Is EPA Method 1602 the same as the Revised Total Coliform Rule?', answer: 'No. The RTCR focuses on total coliform and E. coli monitoring for public water systems; Method 1602 is a coliphage method context that may be relevant for different monitoring questions.' },
-      { question: 'How should US leads use this resource?', answer: 'Use it to prepare a conversation about monitoring workflow, products, method readiness, evidence records and whether AquaVerify Cloud should support reporting and CRM follow-up.' }
+      { question: 'How should US teams use this resource?', answer: 'Use it to prepare a conversation about monitoring workflow, products, method readiness, evidence records and whether AquaVerify Cloud should support reporting and customer follow-up.' }
     ] }),
     es: locale('/es/recursos/eeuu-cumplimiento-agua-potable-regla-coliformes', 'Cumplimiento de agua potable en Estados Unidos: coliformes y contexto colífagos', 'Whitepaper para equipos que mapean monitorización de agua potable en Estados Unidos, Revised Total Coliform Rule y flujos microbiológicos orientados a EPA.', [
       section('El punto de partida en Estados Unidos', 'La Revised Total Coliform Rule de EPA usa coliformes totales y E. coli para ayudar a sistemas públicos de agua a evaluar adecuación de tratamiento e integridad de la red de distribución. Para un comprador B2B, la pregunta práctica es cómo organizar planes de muestreo, resultados, evaluaciones, acciones correctivas y comunicación.', ['Contexto de plan y calendario de puntos de muestreo', 'Registros de coliformes totales y E. coli', 'Evidencia de evaluación y acción correctiva', 'Flujo de informe público o comunicación cliente']),
       section('Dónde encajan los métodos de colífagos', 'El análisis de colífagos es un contexto microbiológico relacionado, especialmente para equipos que evalúan indicadores virales o preguntas de contaminación en agua subterránea. EPA Method 1602 proporciona una ruta de single agar layer para enumeración de colífagos F+ y somáticos, pero debe posicionarse separada de las obligaciones bacterianas de la RTCR.', ['Diferenciar regla de coliformes y método colífagos', 'Preparación metodológica y registros de control de calidad', 'Planificación de producto, cepa huésped y consumibles', 'Trazabilidad de resultado por muestra y lote']),
-      section('Cómo AquaVerify convierte interés en pipeline', 'AquaVerify conecta contenido educativo orientado a Estados Unidos con páginas de producto, datasheets, solicitudes de demo y atribución CRM para que los visitantes cualificados lleguen a Sales con contexto de página, intención, producto y campaña.')
+      section('Cómo AquaVerify convierte interés en un siguiente paso claro', 'AquaVerify conecta contenido educativo orientado a Estados Unidos con páginas de producto, datasheets y solicitudes de demo para que el visitante pase de la investigación a una conversación estructurada de producto, plataforma o distribución.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Hablar de flujo EEUU', secondaryCta: 'Explorar recursos', seoTitle: 'Cumplimiento agua potable EEUU, coliformes y colífagos | AquaVerify', seoDescription: 'Whitepaper sobre EPA Revised Total Coliform Rule, contexto EPA Method 1602 y trazabilidad digital para equipos de calidad del agua en Estados Unidos.', whitepaper: whitepaperDeepDive('us', 'es'), faqs: [
       { question: '¿EPA Method 1602 es lo mismo que la Revised Total Coliform Rule?', answer: 'No. La RTCR se centra en monitorización de coliformes totales y E. coli para sistemas públicos de agua; Method 1602 es un contexto metodológico para colífagos que puede ser relevante para otras preguntas de monitorización.' },
-      { question: '¿Cómo debería usar este recurso un lead de Estados Unidos?', answer: 'Para preparar una conversación sobre flujo de monitorización, productos, preparación metodológica, registros de evidencia y si AquaVerify Cloud debe apoyar reporting y seguimiento CRM.' }
+      { question: '¿Cómo debería usar este recurso un equipo de Estados Unidos?', answer: 'Para preparar una conversación sobre flujo de monitorización, productos, preparación metodológica, registros de evidencia y si AquaVerify Cloud debe apoyar reporting y seguimiento de clientes.' }
     ] }),
     fr: locale('/fr/ressources/etats-unis-conformite-eau-potable-coliformes', 'Conformité eau potable États-Unis: coliformes et contexte coliphages', 'Whitepaper pour équipes cartographiant la surveillance eau potable aux États-Unis, la Revised Total Coliform Rule et les flux microbiologiques orientés EPA.', [
       section('Le point de départ américain', 'La Revised Total Coliform Rule de l’EPA utilise coliformes totaux et E. coli pour aider les systèmes publics d’eau à évaluer l’adéquation du traitement et l’intégrité du réseau de distribution. Pour un acheteur B2B, la question pratique est d’organiser plans de prélèvement, résultats, évaluations, actions correctives et communication.', ['Contexte du plan et calendrier de points de prélèvement', 'Registres coliformes totaux et E. coli', 'Preuve d’évaluation et action corrective', 'Flux de rapport public ou communication client']),
       section('Où s’insèrent les méthodes coliphages', 'L’analyse des coliphages est un contexte microbiologique lié, notamment pour les équipes évaluant des indicateurs viraux ou des questions de contamination d’eau souterraine. EPA Method 1602 fournit une route single agar layer pour le dénombrement des coliphages F+ et somatiques, mais doit être positionnée séparément des obligations bactériennes RTCR.', ['Distinguer règle coliformes et méthode coliphages', 'Préparation méthode et registres qualité', 'Planification produit, souche hôte et consommables', 'Traçabilité du résultat par échantillon et lot']),
-      section('Comment AquaVerify transforme l’intérêt en pipeline', 'AquaVerify relie le contenu éducatif orienté États-Unis aux pages produit, datasheets, demandes de démo et attribution CRM afin que les visiteurs qualifiés arrivent aux ventes avec contexte page, intention, produit et campagne.')
+      section('Comment AquaVerify transforme l’intérêt en prochaine étape claire', 'AquaVerify relie le contenu éducatif orienté États-Unis aux pages produit, datasheets et demandes de démo afin que le visiteur passe de la recherche à une discussion structurée produit, plateforme ou distribution.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Discuter flux États-Unis', secondaryCta: 'Explorer les ressources', seoTitle: 'Conformité eau potable États-Unis, coliformes et coliphages | AquaVerify', seoDescription: 'Whitepaper sur EPA Revised Total Coliform Rule, contexte EPA Method 1602 et traçabilité numérique pour équipes qualité eau aux États-Unis.', whitepaper: whitepaperDeepDive('us', 'fr'), faqs: [
       { question: 'EPA Method 1602 est-elle la même chose que la Revised Total Coliform Rule?', answer: 'Non. La RTCR porte sur la surveillance coliformes totaux et E. coli des systèmes publics d’eau; Method 1602 est un contexte méthodologique coliphages utile pour d’autres questions de surveillance.' },
-      { question: 'Comment un lead américain doit-il utiliser cette ressource?', answer: 'Pour préparer une discussion sur flux de surveillance, produits, préparation méthode, preuves et éventuel support AquaVerify Cloud pour reporting et suivi CRM.' }
+      { question: 'Comment une équipe américaine doit-elle utiliser cette ressource?', answer: 'Pour préparer une discussion sur flux de surveillance, produits, préparation méthode, preuves et éventuel support AquaVerify Cloud pour reporting et suivi client.' }
     ] }),
     it: locale('/it/risorse/stati-uniti-conformita-acqua-potabile-coliformi', 'Conformità acqua potabile Stati Uniti: coliformi e contesto colifagi', 'Whitepaper per team che mappano monitoraggio acqua potabile negli Stati Uniti, Revised Total Coliform Rule e flussi microbiologici orientati EPA.', [
       section('Il punto di partenza negli Stati Uniti', 'La Revised Total Coliform Rule dell’EPA usa coliformi totali ed E. coli per aiutare i sistemi idrici pubblici a valutare adeguatezza del trattamento e integrità della rete di distribuzione. Per un buyer B2B, la domanda pratica è come organizzare piani di campionamento, risultati, valutazioni, azioni correttive e comunicazione.', ['Contesto del piano e calendario punti di campionamento', 'Record di coliformi totali ed E. coli', 'Evidenza di valutazione e azione correttiva', 'Flusso di report pubblico o comunicazione cliente']),
       section('Dove si inseriscono i metodi colifagi', 'L’analisi dei colifagi è un contesto microbiologico correlato, soprattutto per team che valutano indicatori virali o domande di contaminazione in acque sotterranee. EPA Method 1602 fornisce un percorso single agar layer per enumerazione di colifagi F+ e somatici, ma va posizionato separatamente dagli obblighi batterici RTCR.', ['Distinzione tra regola coliformi e metodo colifagi', 'Preparazione metodo e record di controllo qualità', 'Pianificazione prodotto, ceppo ospite e consumabili', 'Tracciabilità risultato per campione e lotto']),
-      section('Come AquaVerify trasforma interesse in pipeline', 'AquaVerify collega contenuto educativo orientato Stati Uniti con pagine prodotto, datasheet, richieste demo e attribuzione CRM affinché i visitatori qualificati arrivino alle vendite con contesto di pagina, intento, prodotto e campagna.')
+      section('Come AquaVerify trasforma interesse in un prossimo passo chiaro', 'AquaVerify collega contenuto educativo orientato Stati Uniti con pagine prodotto, datasheet e richieste demo affinché il visitatore passi dalla ricerca a una conversazione strutturata su prodotto, piattaforma o distribuzione.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Discuti flusso USA', secondaryCta: 'Esplora risorse', seoTitle: 'Conformità acqua potabile USA, coliformi e colifagi | AquaVerify', seoDescription: 'Whitepaper su EPA Revised Total Coliform Rule, contesto EPA Method 1602 e tracciabilità digitale per team qualità acqua negli Stati Uniti.', whitepaper: whitepaperDeepDive('us', 'it'), faqs: [
       { question: 'EPA Method 1602 è la stessa cosa della Revised Total Coliform Rule?', answer: 'No. La RTCR riguarda il monitoraggio di coliformi totali ed E. coli per sistemi idrici pubblici; Method 1602 è un contesto metodologico per colifagi che può essere rilevante per altre domande di monitoraggio.' },
-      { question: 'Come dovrebbe usare questa risorsa un lead statunitense?', answer: 'Per preparare una conversazione su flusso di monitoraggio, prodotti, preparazione metodo, registri di evidenza e se AquaVerify Cloud debba supportare reporting e follow-up CRM.' }
+      { question: 'Come dovrebbe usare questa risorsa un team statunitense?', answer: 'Per preparare una conversazione su flusso di monitoraggio, prodotti, preparazione metodo, registri di evidenza e se AquaVerify Cloud debba supportare reporting e follow-up cliente.' }
     ] }),
     ca: locale('/ca/recursos/estats-units-compliment-aigua-potable-coliformes', 'Compliment d’aigua potable als Estats Units: coliformes i context colífags', 'Whitepaper per a equips que mapen monitoratge d’aigua potable als Estats Units, Revised Total Coliform Rule i fluxos microbiològics orientats a EPA.', [
       section('El punt de partida als Estats Units', 'La Revised Total Coliform Rule de l’EPA usa coliformes totals i E. coli per ajudar sistemes públics d’aigua a avaluar adequació de tractament i integritat de la xarxa de distribució. Per a un comprador B2B, la pregunta pràctica és com organitzar plans de mostreig, resultats, avaluacions, accions correctives i comunicació.', ['Context de pla i calendari de punts de mostreig', 'Registres de coliformes totals i E. coli', 'Evidència d’avaluació i acció correctiva', 'Flux d’informe públic o comunicació client']),
       section('On encaixen els mètodes de colífags', 'L’anàlisi de colífags és un context microbiològic relacionat, especialment per a equips que avaluen indicadors virals o preguntes de contaminació en aigua subterrània. EPA Method 1602 proporciona una ruta single agar layer per a enumeració de colífags F+ i somàtics, però s’ha de posicionar separada de les obligacions bacterianes de la RTCR.', ['Diferenciar regla de coliformes i mètode colífags', 'Preparació metodològica i registres de control de qualitat', 'Planificació de producte, soca hoste i consumibles', 'Traçabilitat de resultat per mostra i lot']),
-      section('Com AquaVerify converteix interès en pipeline', 'AquaVerify connecta contingut educatiu orientat als Estats Units amb pàgines de producte, datasheets, sol·licituds de demo i atribució CRM perquè els visitants qualificats arribin a Sales amb context de pàgina, intenció, producte i campanya.')
+      section('Com AquaVerify converteix interès en un següent pas clar', 'AquaVerify connecta contingut educatiu orientat als Estats Units amb pàgines de producte, datasheets i sol·licituds de demo perquè el visitant passi de la recerca a una conversa estructurada de producte, plataforma o distribució.')
     ], { eyebrow: 'Whitepaper', primaryCta: 'Parlar de flux EUA', secondaryCta: 'Explorar recursos', seoTitle: 'Compliment aigua potable EUA, coliformes i colífags | AquaVerify', seoDescription: 'Whitepaper sobre EPA Revised Total Coliform Rule, context EPA Method 1602 i traçabilitat digital per a equips de qualitat de l’aigua als Estats Units.', whitepaper: whitepaperDeepDive('us', 'ca'), faqs: [
       { question: 'EPA Method 1602 és el mateix que la Revised Total Coliform Rule?', answer: 'No. La RTCR se centra en monitoratge de coliformes totals i E. coli per a sistemes públics d’aigua; Method 1602 és un context metodològic per a colífags que pot ser rellevant per a altres preguntes de monitoratge.' },
-      { question: 'Com hauria d’usar aquest recurs un lead dels Estats Units?', answer: 'Per preparar una conversa sobre flux de monitoratge, productes, preparació metodològica, registres d’evidència i si AquaVerify Cloud ha de donar suport a reporting i seguiment CRM.' }
+      { question: 'Com hauria d’usar aquest recurs un equip dels Estats Units?', answer: 'Per preparar una conversa sobre flux de monitoratge, productes, preparació metodològica, registres d’evidència i si AquaVerify Cloud ha de donar suport a reporting i seguiment de clients.' }
     ] })
   }, { parentId: 'resources' }),
   page('about', 'company', 'contact', {
@@ -1447,19 +1447,19 @@ export const MARKETING_PAGES = [
   }),
   page('contact', 'company', 'contact', {
     en: locale('/contact', 'Contact AquaVerify', 'Talk to AquaVerify about products, OEM, distribution, SaaS or water quality workflows.', [
-      section('Route your request to the right team', 'Use the contact flow so Sales can qualify your need and link the request to CRM.', ['Product quote', 'OEM or distributor opportunity', 'SaaS demo', 'Technical discussion'])
+      section('Route your request to the right team', 'Use the contact flow so the commercial team can understand your need and respond with the right product, OEM, distributor or SaaS path.', ['Product quote', 'OEM or distributor opportunity', 'SaaS demo', 'Technical discussion'])
     ], { eyebrow: 'Contact', primaryCta: 'Start contact request', secondaryCta: 'Request demo' }),
     es: locale('/es/contacto', 'Contactar con AquaVerify', 'Habla con AquaVerify sobre productos, OEM, distribución, SaaS o flujos de calidad del agua.', [
-      section('Dirige tu solicitud al equipo correcto', 'Usa el flujo de contacto para que Sales pueda cualificar la necesidad y vincular la solicitud al CRM.', ['Cotización de producto', 'Oportunidad OEM o distribuidor', 'Demo SaaS', 'Conversación técnica'])
+      section('Dirige tu solicitud al equipo correcto', 'Usa el flujo de contacto para que el equipo comercial entienda la necesidad y responda con la ruta adecuada: producto, OEM, distribución o SaaS.', ['Cotización de producto', 'Oportunidad OEM o distribuidor', 'Demo SaaS', 'Conversación técnica'])
     ], { eyebrow: 'Contacto', primaryCta: 'Iniciar contacto', secondaryCta: 'Solicitar demo' }),
     fr: locale('/fr/contact', 'Contacter AquaVerify', 'Échangez avec AquaVerify sur les produits, l’OEM, la distribution, le SaaS ou les flux qualité eau.', [
-      section('Diriger la demande vers la bonne équipe', 'Utilisez le flux de contact pour que Sales qualifie le besoin et relie la demande au CRM.', ['Devis produit', 'Opportunité OEM ou distributeur', 'Démo SaaS', 'Discussion technique'])
+      section('Diriger la demande vers la bonne équipe', 'Utilisez le flux de contact afin que l’équipe commerciale comprenne le besoin et réponde avec le bon parcours: produit, OEM, distribution ou SaaS.', ['Devis produit', 'Opportunité OEM ou distributeur', 'Démo SaaS', 'Discussion technique'])
     ], { eyebrow: 'Contact', primaryCta: 'Démarrer la demande', secondaryCta: 'Demander une démo' }),
     it: locale('/it/contatto', 'Contatta AquaVerify', 'Parla con AquaVerify di prodotti, OEM, distribuzione, SaaS o flussi qualità acqua.', [
-      section('Indirizza la richiesta al team giusto', 'Usa il flusso di contatto affinché Sales qualifichi l’esigenza e colleghi la richiesta al CRM.', ['Preventivo prodotto', 'Opportunità OEM o distributore', 'Demo SaaS', 'Discussione tecnica'])
+      section('Indirizza la richiesta al team giusto', 'Usa il flusso di contatto affinché il team commerciale comprenda l’esigenza e risponda con il percorso corretto: prodotto, OEM, distribuzione o SaaS.', ['Preventivo prodotto', 'Opportunità OEM o distributore', 'Demo SaaS', 'Discussione tecnica'])
     ], { eyebrow: 'Contatto', primaryCta: 'Avvia richiesta', secondaryCta: 'Richiedi demo' }),
     ca: locale('/ca/contacte', 'Contactar amb AquaVerify', 'Parla amb AquaVerify sobre productes, OEM, distribució, SaaS o fluxos de qualitat de l’aigua.', [
-      section('Dirigeix la sol·licitud a l’equip correcte', 'Fes servir el flux de contacte perquè Sales pugui qualificar la necessitat i vincular la sol·licitud al CRM.', ['Pressupost de producte', 'Oportunitat OEM o distribuïdor', 'Demo SaaS', 'Conversa tècnica'])
+      section('Dirigeix la sol·licitud a l’equip correcte', 'Fes servir el flux de contacte perquè l’equip comercial entengui la necessitat i respongui amb la ruta adequada: producte, OEM, distribució o SaaS.', ['Pressupost de producte', 'Oportunitat OEM o distribuïdor', 'Demo SaaS', 'Conversa tècnica'])
     ], { eyebrow: 'Contacte', primaryCta: 'Iniciar contacte', secondaryCta: 'Sol·licitar demo' })
   })
 ];
@@ -1683,23 +1683,23 @@ function buildIndustryFaqs(item, lang) {
   const common = {
     en: [
       { question: `Can AquaVerify support ${item.titles.en.toLowerCase()}?`, answer: item.descriptions.en },
-      { question: 'Does the workflow include digital traceability?', answer: 'Yes. AquaVerify Cloud can connect samples, operators, reports, customer context and CRM attribution in one operational workflow.' }
+      { question: 'Does the workflow include digital traceability?', answer: 'Yes. AquaVerify Cloud can connect samples, operators, reports, customer context and follow-up history in one operational workflow.' }
     ],
     es: [
       { question: `¿Puede AquaVerify apoyar ${item.titles.es.toLowerCase()}?`, answer: item.descriptions.es },
-      { question: '¿El flujo incluye trazabilidad digital?', answer: 'Sí. AquaVerify Cloud puede conectar muestras, operadores, informes, contexto de cliente y atribución CRM en un mismo flujo operativo.' }
+      { question: '¿El flujo incluye trazabilidad digital?', answer: 'Sí. AquaVerify Cloud puede conectar muestras, operadores, informes, contexto de cliente e historial de seguimiento en un mismo flujo operativo.' }
     ],
     fr: [
       { question: `AquaVerify peut-il accompagner ${item.titles.fr.toLowerCase()} ?`, answer: item.descriptions.fr },
-      { question: 'Le flux inclut-il la traçabilité numérique ?', answer: 'Oui. AquaVerify Cloud peut connecter échantillons, opérateurs, rapports, contexte client et attribution CRM dans un même flux opérationnel.' }
+      { question: 'Le flux inclut-il la traçabilité numérique ?', answer: 'Oui. AquaVerify Cloud peut connecter échantillons, opérateurs, rapports, contexte client et historique de suivi dans un même flux opérationnel.' }
     ],
     it: [
       { question: `AquaVerify può supportare ${item.titles.it.toLowerCase()}?`, answer: item.descriptions.it },
-      { question: 'Il flusso include tracciabilità digitale?', answer: 'Sì. AquaVerify Cloud può collegare campioni, operatori, report, contesto cliente e attribuzione CRM in un unico flusso operativo.' }
+      { question: 'Il flusso include tracciabilità digitale?', answer: 'Sì. AquaVerify Cloud può collegare campioni, operatori, report, contesto cliente e storico follow-up in un unico flusso operativo.' }
     ],
     ca: [
       { question: `AquaVerify pot donar suport a ${item.titles.ca.toLowerCase()}?`, answer: item.descriptions.ca },
-      { question: 'El flux inclou traçabilitat digital?', answer: 'Sí. AquaVerify Cloud pot connectar mostres, operadors, informes, context de client i atribució CRM en un mateix flux operatiu.' }
+      { question: 'El flux inclou traçabilitat digital?', answer: 'Sí. AquaVerify Cloud pot connectar mostres, operadors, informes, context de client i historial de seguiment en un mateix flux operatiu.' }
     ]
   };
   return common[lang] || common.en;
