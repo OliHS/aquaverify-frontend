@@ -33,7 +33,7 @@ export const PagesList: React.FC = () => {
                     <div>
                         <h2 className="font-semibold text-blue-950">Marketing URLs</h2>
                         <p className="mt-1 text-sm text-blue-800">
-                            Product, industry, resource and multilingual SEO pages now use the same visual builder pattern as the home page.
+                            Product, industry, resource and multilingual pages can be edited directly in a live preview, with text and images managed per language.
                         </p>
                     </div>
                     <Link

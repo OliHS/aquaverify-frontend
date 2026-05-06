@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronRight, Download } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight, Download, Loader2, Upload } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
@@ -494,6 +494,10 @@ type MarketingPageDocumentProps = {
   content: any;
   pageLang: Language;
   showCookieConsent?: boolean;
+  isEditing?: boolean;
+  onTextChange?: (path: string, value: string) => void;
+  onImageChange?: (path: string, value: string) => void;
+  uploadImage?: (file: File) => Promise<string | null>;
 };
 
 export const MarketingPagePreview: React.FC<{
@@ -501,7 +505,20 @@ export const MarketingPagePreview: React.FC<{
   pageLang: Language;
   contentOverride?: Record<string, unknown> | null;
   showCookieConsent?: boolean;
-}> = ({ pageId, pageLang, contentOverride = null, showCookieConsent = false }) => {
+  isEditing?: boolean;
+  onTextChange?: (path: string, value: string) => void;
+  onImageChange?: (path: string, value: string) => void;
+  uploadImage?: (file: File) => Promise<string | null>;
+}> = ({
+  pageId,
+  pageLang,
+  contentOverride = null,
+  showCookieConsent = false,
+  isEditing = false,
+  onTextChange,
+  onImageChange,
+  uploadImage
+}) => {
   const page = (MARKETING_PAGES as any[]).find((item) => item.id === pageId);
   const baseContent = page?.translations?.[pageLang];
 
@@ -516,7 +533,157 @@ export const MarketingPagePreview: React.FC<{
       content={content}
       pageLang={pageLang}
       showCookieConsent={showCookieConsent}
+      isEditing={isEditing}
+      onTextChange={onTextChange}
+      onImageChange={onImageChange}
+      uploadImage={uploadImage}
     />
+  );
+};
+
+type EditableMarketingTextProps = {
+  path: string;
+  value?: string;
+  fallback?: string;
+  as?: React.ElementType;
+  className?: string;
+  isEditing?: boolean;
+  onTextChange?: (path: string, value: string) => void;
+};
+
+const EditableMarketingText: React.FC<EditableMarketingTextProps> = ({
+  path,
+  value,
+  fallback = '',
+  as: Component = 'span',
+  className = '',
+  isEditing = false,
+  onTextChange
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const editRef = useRef<HTMLElement>(null);
+  const currentValue = value !== undefined && value !== null ? String(value) : fallback;
+
+  if (!isEditing || !onTextChange) {
+    return <Component className={className}>{currentValue}</Component>;
+  }
+
+  return (
+    <Component
+      ref={editRef as any}
+      className={`${className} cursor-text transition-all duration-150 ${
+        isHovered && !isFocused ? 'rounded-sm ring-2 ring-blue-400/50 ring-offset-2 ring-offset-white/20' : ''
+      } ${
+        isFocused ? 'relative z-10 rounded-sm bg-white px-1 text-slate-900 outline-none ring-2 ring-blue-500' : ''
+      }`}
+      contentEditable
+      suppressContentEditableWarning
+      onClick={(event: React.MouseEvent<HTMLElement>) => {
+        event.preventDefault();
+        event.stopPropagation();
+      }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={() => setIsFocused(true)}
+      onBlur={(event: React.FocusEvent<HTMLElement>) => {
+        setIsFocused(false);
+        const nextValue = event.currentTarget.textContent || '';
+        if (nextValue !== currentValue) onTextChange(path, nextValue);
+      }}
+      style={{ minWidth: '2ch', minHeight: '1.25em', display: 'inline-block' }}
+    >
+      {currentValue}
+    </Component>
+  );
+};
+
+type EditableMarketingImageProps = {
+  path: string;
+  src: string;
+  alt: string;
+  className?: string;
+  loading?: 'eager' | 'lazy';
+  decoding?: 'async' | 'auto' | 'sync';
+  isEditing?: boolean;
+  onImageChange?: (path: string, value: string) => void;
+  uploadImage?: (file: File) => Promise<string | null>;
+};
+
+const EditableMarketingImage: React.FC<EditableMarketingImageProps> = ({
+  path,
+  src,
+  alt,
+  className = '',
+  loading,
+  decoding,
+  isEditing = false,
+  onImageChange,
+  uploadImage
+}) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const openPicker = (event: React.MouseEvent) => {
+    if (!isEditing || isUploading) return;
+    event.preventDefault();
+    event.stopPropagation();
+    inputRef.current?.click();
+  };
+
+  const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file || !uploadImage || !onImageChange) return;
+
+    setIsUploading(true);
+    try {
+      const publicUrl = await uploadImage(file);
+      if (publicUrl) {
+        onImageChange(path, publicUrl);
+      } else {
+        window.alert('Upload failed. Check that the Supabase "images" bucket is public and available.');
+      }
+    } catch (error) {
+      console.error('Failed to upload marketing image:', error);
+      window.alert('Upload failed. Check that the Supabase "images" bucket is public and available.');
+    } finally {
+      setIsUploading(false);
+      if (inputRef.current) inputRef.current.value = '';
+    }
+  };
+
+  if (!isEditing || !onImageChange || !uploadImage) {
+    return <img src={src} alt={alt} className={className} loading={loading} decoding={decoding} />;
+  }
+
+  return (
+    <div
+      className="group relative h-full w-full"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} transition-opacity duration-200 ${isHovered || isUploading ? 'opacity-50' : 'opacity-100'}`}
+        loading={loading}
+        decoding={decoding}
+      />
+      <button
+        type="button"
+        onClick={openPicker}
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-200 ${
+          isHovered || isUploading ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        <span className="inline-flex items-center gap-2 rounded-lg bg-slate-900/85 px-4 py-2 text-sm font-bold text-white shadow-xl backdrop-blur">
+          {isUploading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Upload className="h-4 w-4" />}
+          {isUploading ? 'Uploading...' : 'Change image'}
+        </span>
+      </button>
+      <input ref={inputRef} type="file" accept="image/*" className="hidden" onChange={handleFileChange} />
+    </div>
   );
 };
 
@@ -524,7 +691,11 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   page,
   content,
   pageLang,
-  showCookieConsent = true
+  showCookieConsent = true,
+  isEditing = false,
+  onTextChange,
+  onImageChange,
+  uploadImage
 }) => {
   const contentMeta = content as MarketingContentMeta;
   const pageMeta = page as MarketingPageMeta;
@@ -549,8 +720,9 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
   const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
   const galleryItems = (contentMeta.gallery || [])
-    .map((item) => ({
+    .map((item, sourceIndex) => ({
       ...item,
+      sourceIndex,
       src: toPublicAssetUrl(item.src)
     }))
     .filter((item) => item.src && item.alt);
@@ -591,27 +763,55 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
                 </nav>
               )}
               <div className="mb-5 inline-flex rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-100">
-                {content.eyebrow || page.category}
+                <EditableMarketingText
+                  path="eyebrow"
+                  value={content.eyebrow}
+                  fallback={page.category}
+                  isEditing={isEditing}
+                  onTextChange={onTextChange}
+                />
               </div>
-              <h1 className="max-w-4xl font-heading text-4xl font-black leading-tight md:text-6xl">
-                {content.title}
-              </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50/85">
-                {content.description}
-              </p>
+              <EditableMarketingText
+                as="h1"
+                path="title"
+                value={content.title}
+                className="max-w-4xl font-heading text-4xl font-black leading-tight md:text-6xl"
+                isEditing={isEditing}
+                onTextChange={onTextChange}
+              />
+              <EditableMarketingText
+                as="p"
+                path="description"
+                value={content.description}
+                className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50/85"
+                isEditing={isEditing}
+                onTextChange={onTextChange}
+              />
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={primaryUrl}
                   className="inline-flex items-center justify-center rounded bg-secondary px-6 py-3 text-sm font-black text-white shadow-lg transition hover:bg-white hover:text-primary"
                 >
-                  {content.primaryCta || 'Contact AquaVerify'}
+                  <EditableMarketingText
+                    path="primaryCta"
+                    value={content.primaryCta}
+                    fallback="Contact AquaVerify"
+                    isEditing={isEditing}
+                    onTextChange={onTextChange}
+                  />
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
                 <Link
                   to={secondaryUrl}
                   className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10"
                 >
-                  {content.secondaryCta || 'Explore AquaVerify'}
+                  <EditableMarketingText
+                    path="secondaryCta"
+                    value={content.secondaryCta}
+                    fallback="Explore AquaVerify"
+                    isEditing={isEditing}
+                    onTextChange={onTextChange}
+                  />
                 </Link>
                 {datasheetUrl && (
                   <a
@@ -622,18 +822,28 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
                     className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10"
                   >
                     <Download className="mr-2 h-4 w-4" />
-                    {contentMeta.datasheetLabel || 'Datasheet'}
+                    <EditableMarketingText
+                      path="datasheetLabel"
+                      value={contentMeta.datasheetLabel}
+                      fallback="Datasheet"
+                      isEditing={isEditing}
+                      onTextChange={onTextChange}
+                    />
                   </a>
                 )}
               </div>
             </div>
             {heroImageUrl && (
               <div className="overflow-hidden rounded-md border border-white/15 bg-white/5">
-                <img
+                <EditableMarketingImage
+                  path="heroImage"
                   src={heroImageUrl}
                   alt={ogFallbackAlt}
                   className="h-full max-h-[420px] w-full object-cover"
                   loading="eager"
+                  isEditing={isEditing}
+                  onImageChange={onImageChange}
+                  uploadImage={uploadImage}
                 />
               </div>
             )}
@@ -664,14 +874,33 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
               <FeaturedWhitepapersBlock lang={pageLang} items={featuredWhitepapers} />
               {content.sections.map((section: any, index: number) => (
                 <article key={`${section.title}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
-                  <h2 className="font-heading text-2xl font-black text-primary">{section.title}</h2>
-                  <p className="mt-3 text-base leading-8 text-slate-600">{section.body}</p>
+                  <EditableMarketingText
+                    as="h2"
+                    path={`sections.${index}.title`}
+                    value={section.title}
+                    className="font-heading text-2xl font-black text-primary"
+                    isEditing={isEditing}
+                    onTextChange={onTextChange}
+                  />
+                  <EditableMarketingText
+                    as="p"
+                    path={`sections.${index}.body`}
+                    value={section.body}
+                    className="mt-3 text-base leading-8 text-slate-600"
+                    isEditing={isEditing}
+                    onTextChange={onTextChange}
+                  />
                   {section.bullets?.length > 0 && (
                     <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-                      {section.bullets.map((bullet: string) => (
-                        <li key={bullet} className="flex gap-3 text-sm font-semibold text-slate-700">
+                      {section.bullets.map((bullet: string, bulletIndex: number) => (
+                        <li key={`${bullet}-${bulletIndex}`} className="flex gap-3 text-sm font-semibold text-slate-700">
                           <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
-                          <span>{bullet}</span>
+                          <EditableMarketingText
+                            path={`sections.${index}.bullets.${bulletIndex}`}
+                            value={bullet}
+                            isEditing={isEditing}
+                            onTextChange={onTextChange}
+                          />
                         </li>
                       ))}
                     </ul>
@@ -688,18 +917,40 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
                     {galleryItems.map((item) => (
                       <figure key={item.src} className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
                         <div className="aspect-[16/10] bg-white">
-                          <img
+                          <EditableMarketingImage
+                            path={`gallery.${item.sourceIndex}.src`}
                             src={item.src}
                             alt={item.alt}
                             loading="lazy"
                             decoding="async"
                             className="h-full w-full object-cover object-top"
+                            isEditing={isEditing}
+                            onImageChange={onImageChange}
+                            uploadImage={uploadImage}
                           />
                         </div>
                         {(item.title || item.body) && (
                           <figcaption className="p-4">
-                            {item.title && <h3 className="font-heading text-base font-black text-slate-900">{item.title}</h3>}
-                            {item.body && <p className="mt-1 text-sm leading-6 text-slate-600">{item.body}</p>}
+                            {item.title && (
+                              <EditableMarketingText
+                                as="h3"
+                                path={`gallery.${item.sourceIndex}.title`}
+                                value={item.title}
+                                className="font-heading text-base font-black text-slate-900"
+                                isEditing={isEditing}
+                                onTextChange={onTextChange}
+                              />
+                            )}
+                            {item.body && (
+                              <EditableMarketingText
+                                as="p"
+                                path={`gallery.${item.sourceIndex}.body`}
+                                value={item.body}
+                                className="mt-1 text-sm leading-6 text-slate-600"
+                                isEditing={isEditing}
+                                onTextChange={onTextChange}
+                              />
+                            )}
                           </figcaption>
                         )}
                       </figure>
@@ -711,10 +962,24 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
                 <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                   <h2 className="font-heading text-2xl font-black text-primary">{labels.faqTitle}</h2>
                   <div className="mt-6 divide-y divide-slate-200">
-                    {contentMeta.faqs.map((faq) => (
-                      <div key={faq.question} className="py-5 first:pt-0 last:pb-0">
-                        <h3 className="font-heading text-lg font-black text-slate-900">{faq.question}</h3>
-                        <p className="mt-2 text-sm leading-7 text-slate-600">{faq.answer}</p>
+                    {contentMeta.faqs.map((faq, index) => (
+                      <div key={`${faq.question}-${index}`} className="py-5 first:pt-0 last:pb-0">
+                        <EditableMarketingText
+                          as="h3"
+                          path={`faqs.${index}.question`}
+                          value={faq.question}
+                          className="font-heading text-lg font-black text-slate-900"
+                          isEditing={isEditing}
+                          onTextChange={onTextChange}
+                        />
+                        <EditableMarketingText
+                          as="p"
+                          path={`faqs.${index}.answer`}
+                          value={faq.answer}
+                          className="mt-2 text-sm leading-7 text-slate-600"
+                          isEditing={isEditing}
+                          onTextChange={onTextChange}
+                        />
                       </div>
                     ))}
                   </div>
@@ -754,7 +1019,13 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
               href={primaryUrl}
               className="inline-flex items-center rounded bg-white px-6 py-3 text-sm font-black text-primary transition hover:bg-secondary hover:text-white"
             >
-              {content.primaryCta || 'Contact AquaVerify'}
+              <EditableMarketingText
+                path="primaryCta"
+                value={content.primaryCta}
+                fallback="Contact AquaVerify"
+                isEditing={isEditing}
+                onTextChange={onTextChange}
+              />
               <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </div>

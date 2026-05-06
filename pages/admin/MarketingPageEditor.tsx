@@ -80,8 +80,41 @@ type EditorForm = {
   gallery: GalleryDraft[];
 };
 
+type EditorStringField =
+  | 'title'
+  | 'description'
+  | 'eyebrow'
+  | 'primaryCta'
+  | 'secondaryCta'
+  | 'heroImage'
+  | 'heroImageAlt'
+  | 'ogImage'
+  | 'datasheetUrl'
+  | 'datasheetLabel'
+  | 'seoTitle'
+  | 'seoDescription';
+
+const EDITOR_STRING_FIELDS = new Set<string>([
+  'title',
+  'description',
+  'eyebrow',
+  'primaryCta',
+  'secondaryCta',
+  'heroImage',
+  'heroImageAlt',
+  'ogImage',
+  'datasheetUrl',
+  'datasheetLabel',
+  'seoTitle',
+  'seoDescription'
+]);
+
 function isMarketingLanguage(value: string | undefined): value is MarketingLanguage {
   return (MARKETING_LANGUAGES as string[]).includes(value || '');
+}
+
+function isEditorStringField(value: string): value is EditorStringField {
+  return EDITOR_STRING_FIELDS.has(value);
 }
 
 function contentToForm(content: MarketingContent): EditorForm {
@@ -282,6 +315,80 @@ export const MarketingPageEditor: React.FC = () => {
       );
       return { ...current, gallery };
     });
+  };
+
+  const handleInlineTextChange = (path: string, value: string) => {
+    if (isEditorStringField(path)) {
+      updateField(path, value);
+      return;
+    }
+
+    const [group, indexRaw, field, childIndexRaw] = path.split('.');
+    const index = Number(indexRaw);
+    if (!Number.isInteger(index) || index < 0) return;
+
+    if (group === 'sections' && (field === 'title' || field === 'body')) {
+      updateSection(index, field, value);
+      return;
+    }
+
+    if (group === 'sections' && field === 'bullets') {
+      const bulletIndex = Number(childIndexRaw);
+      if (!Number.isInteger(bulletIndex) || bulletIndex < 0) return;
+      setForm((current) => {
+        if (!current?.sections[index]) return current;
+        const bullets = current.sections[index].bullets.split('\n');
+        bullets[bulletIndex] = value;
+        const sections = current.sections.map((section, itemIndex) =>
+          itemIndex === index ? { ...section, bullets: bullets.join('\n') } : section
+        );
+        return { ...current, sections };
+      });
+      return;
+    }
+
+    if (group === 'faqs' && (field === 'question' || field === 'answer')) {
+      updateFaq(index, field, value);
+      return;
+    }
+
+    if (group === 'gallery' && (field === 'title' || field === 'body' || field === 'alt')) {
+      updateGallery(index, field, value);
+    }
+  };
+
+  const handleInlineImageChange = (path: string, value: string) => {
+    if (path === 'heroImage' || path === 'ogImage') {
+      updateField(path, value);
+      return;
+    }
+
+    const [group, indexRaw, field] = path.split('.');
+    const index = Number(indexRaw);
+    if (group === 'gallery' && field === 'src' && Number.isInteger(index) && index >= 0) {
+      updateGallery(index, 'src', value);
+    }
+  };
+
+  const uploadImage = async (file: File): Promise<string | null> => {
+    try {
+      const fileExt = file.name.split('.').pop();
+      const fileName = `${Math.random().toString(36).substring(2, 15)}_${Date.now()}.${fileExt}`;
+      const { error: uploadError } = await supabase.storage
+        .from('images')
+        .upload(fileName, file);
+
+      if (uploadError) throw uploadError;
+
+      const { data } = supabase.storage
+        .from('images')
+        .getPublicUrl(fileName);
+
+      return data.publicUrl;
+    } catch (error) {
+      console.error('Error uploading marketing image:', error);
+      return null;
+    }
   };
 
   const addSection = () => {
@@ -665,7 +772,9 @@ export const MarketingPageEditor: React.FC = () => {
           <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
             <div>
               <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-slate-500">Live preview</h2>
-              <p className="mt-1 max-w-lg truncate text-xs font-medium text-slate-400">{defaultContent.path}</p>
+              <p className="mt-1 max-w-lg truncate text-xs font-medium text-slate-400">
+                Click text to edit. Hover images to replace. {defaultContent.path}
+              </p>
             </div>
             <a
               href={defaultContent.path}
@@ -682,6 +791,10 @@ export const MarketingPageEditor: React.FC = () => {
               pageLang={lang}
               contentOverride={previewContent}
               showCookieConsent={false}
+              isEditing
+              onTextChange={handleInlineTextChange}
+              onImageChange={handleInlineImageChange}
+              uploadImage={uploadImage}
             />
           </div>
         </div>
