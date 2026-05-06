@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AlertTriangle, CheckCircle2, ExternalLink, FileEdit, FileText, Filter, Globe, Image, Link2, RotateCw, Search } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, ExternalLink, FileText, Filter, Globe, Image, Link2, RotateCw, Search } from 'lucide-react';
 import { supabase } from '../../utils/supabase';
 import {
   LANGUAGE_NAMES,
@@ -528,10 +528,10 @@ export const MarketingPagesList: React.FC = () => {
                     <div className="flex justify-end gap-2">
                       <Link
                         to={`/admin/marketing-pages/${row.pageId}/${row.language}`}
-                        className="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm hover:bg-slate-50"
+                        className="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700"
                       >
-                        <FileEdit size={15} className="mr-2" />
-                        Edit
+                        <Globe size={15} className="mr-2" />
+                        Visual Builder
                       </Link>
                       <a
                         href={row.path}

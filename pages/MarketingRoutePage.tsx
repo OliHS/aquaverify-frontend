@@ -16,7 +16,8 @@ import {
   getMarketingAlternates,
   getMarketingPagePath,
   getMarketingPageSummary,
-  getRelatedMarketingPages
+  getRelatedMarketingPages,
+  MARKETING_PAGES
 } from '../utils/marketingPages.js';
 
 const secondaryTargetByCategory: Record<string, string> = {
@@ -488,88 +489,44 @@ function buildMarketingBreadcrumbs(page: any, content: MarketingContentMeta, lan
   return crumbs.filter((crumb, index, all) => all.findIndex((item) => item.path === crumb.path) === index);
 }
 
-export const MarketingRoutePage: React.FC = () => {
-  const location = useLocation();
-  const match = findMarketingPageByPath(location.pathname);
-  const { lang, setLang } = useLanguage();
-  const [contentOverride, setContentOverride] = useState<Record<string, unknown> | null>(null);
-  const trackedProductViewRef = useRef('');
-  const matchPageId = match?.page?.id;
-  const matchLang = match?.lang;
+type MarketingPageDocumentProps = {
+  page: any;
+  content: any;
+  pageLang: Language;
+  showCookieConsent?: boolean;
+};
 
-  useEffect(() => {
-    if (match && match.lang !== lang) {
-      setLang(match.lang as Language);
-    }
-  }, [lang, match, setLang]);
+export const MarketingPagePreview: React.FC<{
+  pageId: string;
+  pageLang: Language;
+  contentOverride?: Record<string, unknown> | null;
+  showCookieConsent?: boolean;
+}> = ({ pageId, pageLang, contentOverride = null, showCookieConsent = false }) => {
+  const page = (MARKETING_PAGES as any[]).find((item) => item.id === pageId);
+  const baseContent = page?.translations?.[pageLang];
 
-  useEffect(() => {
-    setContentOverride(null);
-    if (!matchPageId || !matchLang) return;
-
-    const controller = new AbortController();
-    fetchMarketingPageOverride(matchPageId, matchLang, controller.signal)
-      .then(setContentOverride)
-      .catch((error) => {
-        if (error?.name !== 'AbortError') {
-          console.warn('Unable to load marketing CMS override', error);
-        }
-      });
-
-    return () => controller.abort();
-  }, [matchLang, matchPageId]);
-
-  const mergedContent = match ? mergeMarketingContent(match.content, contentOverride) : null;
-
-  useEffect(() => {
-    if (!match || !mergedContent) return;
-    const pageLang = match.lang as Language;
-    const labels = UI_LABELS[pageLang] || UI_LABELS.en;
-    const contentMeta = mergedContent as MarketingContentMeta;
-
-    applyMarketingSeo({
-      lang: pageLang,
-      title: mergedContent.seoTitle || mergedContent.title,
-      description: mergedContent.seoDescription || mergedContent.description,
-      canonicalPath: mergedContent.path,
-      alternates: getMarketingAlternates(match.page),
-      pageType: (match.page as MarketingPageMeta).schemaType || match.page.category,
-      imageUrl: toPublicAssetUrl(contentMeta.ogImage || contentMeta.heroImage),
-      faqs: contentMeta.faqs,
-      breadcrumbs: buildMarketingBreadcrumbs(match.page, contentMeta, pageLang, labels)
-    });
-  }, [match, mergedContent]);
-
-  useEffect(() => {
-    if (!match || !mergedContent || match.page.category !== 'products') return;
-
-    const pageLang = match.lang as Language;
-    const pageMeta = match.page as MarketingPageMeta;
-    const trackingKey = `${match.page.id}:${pageLang}:${mergedContent.path}`;
-    if (trackedProductViewRef.current === trackingKey) return;
-
-    const tracked = trackCorporateEvent('product_view', {
-      lang: pageLang,
-      page: match.page.id,
-      category: match.page.category,
-      product: pageMeta.productName || mergedContent.title,
-      label: mergedContent.title,
-      path: mergedContent.path
-    });
-
-    if (tracked) {
-      trackedProductViewRef.current = trackingKey;
-    }
-  }, [match, mergedContent]);
-
-  if (!match || !mergedContent) {
-    return <Navigate to="/" replace />;
+  if (!page || !baseContent) {
+    return <div className="p-8 text-sm font-semibold text-slate-500">Preview not available.</div>;
   }
 
-  const page = match.page;
-  const content = mergedContent;
+  const content = mergeMarketingContent(baseContent, contentOverride);
+  return (
+    <MarketingPageDocument
+      page={page}
+      content={content}
+      pageLang={pageLang}
+      showCookieConsent={showCookieConsent}
+    />
+  );
+};
+
+const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
+  page,
+  content,
+  pageLang,
+  showCookieConsent = true
+}) => {
   const contentMeta = content as MarketingContentMeta;
-  const pageLang = match.lang as Language;
   const pageMeta = page as MarketingPageMeta;
   const primaryUrl = getPlatformSignupUrl({
     intent: page.primaryIntent,
@@ -804,8 +761,95 @@ export const MarketingRoutePage: React.FC = () => {
         </section>
       </main>
       <Footer />
-      <CookieConsent />
+      {showCookieConsent && <CookieConsent />}
     </div>
+  );
+};
+
+export const MarketingRoutePage: React.FC = () => {
+  const location = useLocation();
+  const match = findMarketingPageByPath(location.pathname);
+  const { lang, setLang } = useLanguage();
+  const [contentOverride, setContentOverride] = useState<Record<string, unknown> | null>(null);
+  const trackedProductViewRef = useRef('');
+  const matchPageId = match?.page?.id;
+  const matchLang = match?.lang;
+
+  useEffect(() => {
+    if (match && match.lang !== lang) {
+      setLang(match.lang as Language);
+    }
+  }, [lang, match, setLang]);
+
+  useEffect(() => {
+    setContentOverride(null);
+    if (!matchPageId || !matchLang) return;
+
+    const controller = new AbortController();
+    fetchMarketingPageOverride(matchPageId, matchLang, controller.signal)
+      .then(setContentOverride)
+      .catch((error) => {
+        if (error?.name !== 'AbortError') {
+          console.warn('Unable to load marketing CMS override', error);
+        }
+      });
+
+    return () => controller.abort();
+  }, [matchLang, matchPageId]);
+
+  const mergedContent = match ? mergeMarketingContent(match.content, contentOverride) : null;
+
+  useEffect(() => {
+    if (!match || !mergedContent) return;
+    const pageLang = match.lang as Language;
+    const labels = UI_LABELS[pageLang] || UI_LABELS.en;
+    const contentMeta = mergedContent as MarketingContentMeta;
+
+    applyMarketingSeo({
+      lang: pageLang,
+      title: mergedContent.seoTitle || mergedContent.title,
+      description: mergedContent.seoDescription || mergedContent.description,
+      canonicalPath: mergedContent.path,
+      alternates: getMarketingAlternates(match.page),
+      pageType: (match.page as MarketingPageMeta).schemaType || match.page.category,
+      imageUrl: toPublicAssetUrl(contentMeta.ogImage || contentMeta.heroImage),
+      faqs: contentMeta.faqs,
+      breadcrumbs: buildMarketingBreadcrumbs(match.page, contentMeta, pageLang, labels)
+    });
+  }, [match, mergedContent]);
+
+  useEffect(() => {
+    if (!match || !mergedContent || match.page.category !== 'products') return;
+
+    const pageLang = match.lang as Language;
+    const pageMeta = match.page as MarketingPageMeta;
+    const trackingKey = `${match.page.id}:${pageLang}:${mergedContent.path}`;
+    if (trackedProductViewRef.current === trackingKey) return;
+
+    const tracked = trackCorporateEvent('product_view', {
+      lang: pageLang,
+      page: match.page.id,
+      category: match.page.category,
+      product: pageMeta.productName || mergedContent.title,
+      label: mergedContent.title,
+      path: mergedContent.path
+    });
+
+    if (tracked) {
+      trackedProductViewRef.current = trackingKey;
+    }
+  }, [match, mergedContent]);
+
+  if (!match || !mergedContent) {
+    return <Navigate to="/" replace />;
+  }
+
+  return (
+    <MarketingPageDocument
+      page={match.page}
+      content={mergedContent}
+      pageLang={match.lang as Language}
+    />
   );
 };
 

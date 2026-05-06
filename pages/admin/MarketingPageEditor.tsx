@@ -13,6 +13,8 @@ import {
   mergeMarketingContent
 } from '../../utils/marketingPageOverrides.js';
 import { scanProductClaimFields } from '../../utils/productClaims.js';
+import { useLanguage } from '../../context/LanguageContext';
+import { MarketingPagePreview } from '../MarketingRoutePage';
 
 type MarketingLanguage = 'en' | 'es' | 'fr' | 'it' | 'ca';
 
@@ -177,6 +179,7 @@ export const MarketingPageEditor: React.FC = () => {
   const { pageId, language } = useParams();
   const navigate = useNavigate();
   const lang = isMarketingLanguage(language) ? language : 'en';
+  const { setLang } = useLanguage();
   const page = useMemo(
     () => (MARKETING_PAGES as MarketingPage[]).find((item) => item.id === pageId),
     [pageId]
@@ -187,6 +190,10 @@ export const MarketingPageEditor: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    setLang(lang);
+  }, [lang, setLang]);
 
   useEffect(() => {
     if (!page || !defaultContent || !pageId) {
@@ -419,8 +426,11 @@ export const MarketingPageEditor: React.FC = () => {
     return <div className="p-12 text-center text-slate-500">Loading marketing editor...</div>;
   }
 
+  const previewContent = formToContent(form, defaultContent.path);
+
   return (
-    <div className="mx-auto max-w-5xl space-y-8 pb-24">
+    <div className="grid gap-6 xl:grid-cols-[minmax(420px,0.92fr)_minmax(0,1.08fr)]">
+      <div className="min-w-0 space-y-8 pb-24">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-start gap-4">
           <button onClick={() => navigate('/admin/marketing-pages')} className="rounded-full p-2 transition-colors hover:bg-slate-200">
@@ -648,6 +658,34 @@ export const MarketingPageEditor: React.FC = () => {
           )}
         </div>
       </div>
+      </div>
+
+      <aside className="min-w-0 xl:sticky xl:top-6 xl:h-[calc(100vh-9rem)]">
+        <div className="flex h-full flex-col overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+          <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+            <div>
+              <h2 className="text-sm font-bold uppercase tracking-[0.12em] text-slate-500">Live preview</h2>
+              <p className="mt-1 max-w-lg truncate text-xs font-medium text-slate-400">{defaultContent.path}</p>
+            </div>
+            <a
+              href={defaultContent.path}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-md border border-slate-200 px-3 py-1.5 text-xs font-bold text-slate-600 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+            >
+              Open public
+            </a>
+          </div>
+          <div className="flex-1 overflow-y-auto bg-white">
+            <MarketingPagePreview
+              pageId={pageId!}
+              pageLang={lang}
+              contentOverride={previewContent}
+              showCookieConsent={false}
+            />
+          </div>
+        </div>
+      </aside>
     </div>
   );
 };
