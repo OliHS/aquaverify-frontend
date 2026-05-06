@@ -276,13 +276,9 @@ function renderWhitepaperDeepDive(whitepaper) {
   ].filter(Boolean).join('\n');
 }
 
-function renderPrerenderShell(meta) {
-  const content = meta.content;
-  const title = content?.title || meta.title || 'AquaVerify';
-  const description = content?.description || meta.description || '';
-
+function renderPrerenderShell() {
   return [
-    '<div data-prerender-shell style="min-height: 100vh; background: #ffffff; color: #0f172a; font-family: Inter, Arial, sans-serif;">',
+    '<div data-prerender-shell aria-hidden="true" style="min-height: 100vh; background: #ffffff; color: #0f172a; font-family: Inter, Arial, sans-serif;">',
     '  <header style="position: fixed; inset: 0 0 auto 0; z-index: 50; background: #ffffff; border-bottom: 1px solid #e2e8f0;">',
     '    <div style="max-width: 1180px; margin: 0 auto; height: 80px; padding: 0 24px; display: flex; align-items: center; justify-content: space-between;">',
     '      <div style="display: flex; align-items: center; gap: 12px;">',
@@ -297,14 +293,26 @@ function renderPrerenderShell(meta) {
     '    </div>',
     '  </header>',
     '  <main style="padding-top: 80px;">',
-    '    <section style="background: #0A4F7D; color: #ffffff; padding: 72px 24px 84px;">',
-    '      <div style="max-width: 1040px; margin: 0 auto;">',
-    '        <div style="width: 132px; height: 12px; border-radius: 999px; background: rgba(255,255,255,.22);"></div>',
-    `        <h1 style="margin: 24px 0 0; max-width: 850px; font-size: clamp(36px, 7vw, 60px); line-height: 1.08; font-weight: 900;">${escapeHtml(title)}</h1>`,
-    description ? `        <p style="margin: 20px 0 0; max-width: 740px; font-size: 18px; line-height: 1.7; color: rgba(236,254,255,.88);">${escapeHtml(description)}</p>` : '',
-    '        <div style="margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap;">',
-    '          <span style="display: block; width: 150px; height: 44px; border-radius: 6px; background: #00AEEF;"></span>',
-    '          <span style="display: block; width: 138px; height: 44px; border-radius: 6px; border: 1px solid rgba(255,255,255,.28);"></span>',
+    '    <section style="min-height: calc(90vh - 80px); display: flex; flex-wrap: wrap; overflow: hidden;">',
+    '      <div style="flex: 1 1 420px; min-height: 560px; background: #0A4F7D; padding: 72px min(8vw, 80px); display: flex; align-items: center;">',
+    '        <div style="width: min(100%, 520px);">',
+    '          <div style="width: 138px; height: 28px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.16);"></div>',
+    '          <div style="margin-top: 32px; width: 100%; height: 58px; border-radius: 8px; background: rgba(255,255,255,.18);"></div>',
+    '          <div style="margin-top: 14px; width: 82%; height: 58px; border-radius: 8px; background: rgba(255,255,255,.16);"></div>',
+    '          <div style="margin-top: 28px; width: 92%; height: 14px; border-radius: 999px; background: rgba(255,255,255,.15);"></div>',
+    '          <div style="margin-top: 12px; width: 74%; height: 14px; border-radius: 999px; background: rgba(255,255,255,.12);"></div>',
+    '          <div style="margin-top: 34px; display: flex; gap: 12px; flex-wrap: wrap;">',
+    '            <span style="display: block; width: 150px; height: 44px; border-radius: 6px; background: #00AEEF;"></span>',
+    '            <span style="display: block; width: 138px; height: 44px; border-radius: 6px; border: 1px solid rgba(255,255,255,.24);"></span>',
+    '          </div>',
+    '        </div>',
+    '      </div>',
+    '      <div style="flex: 1 1 420px; min-height: 560px; background: #F8FAFC; padding: 72px min(8vw, 80px); display: flex; align-items: center; justify-content: center;">',
+    '        <div style="width: min(100%, 520px);">',
+    '          <div style="aspect-ratio: 4 / 3; border-radius: 18px; background: linear-gradient(135deg, #e2e8f0, #f8fafc); border: 1px solid #e2e8f0; box-shadow: inset 0 0 0 1px rgba(255,255,255,.75);"></div>',
+    '          <div style="margin-top: 30px; width: 55%; height: 24px; border-radius: 8px; background: #dbeafe;"></div>',
+    '          <div style="margin-top: 12px; width: 78%; height: 12px; border-radius: 999px; background: #e2e8f0;"></div>',
+    '          <div style="margin-top: 10px; width: 58%; height: 12px; border-radius: 999px; background: #e2e8f0;"></div>',
     '        </div>',
     '      </div>',
     '    </section>',
@@ -322,7 +330,7 @@ function renderStaticRoot(meta) {
   const datasheetUrl = content?.datasheetUrl ? externalOrAbsolute(content.datasheetUrl) : '';
 
   return [
-    renderPrerenderShell(meta),
+    renderPrerenderShell(),
     '<main data-prerender="marketing-seo" style="font-family: Inter, Arial, sans-serif; color: #0f172a; background: #ffffff;">',
     '  <section style="padding: 48px 24px; background: #0A4F7D; color: #ffffff;">',
     '    <div style="max-width: 1040px; margin: 0 auto;">',

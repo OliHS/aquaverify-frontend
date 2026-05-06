@@ -275,7 +275,7 @@ export const ProductSection: React.FC = () => {
                 />
                 <div className="absolute bottom-6 left-6 bg-primary/90 backdrop-blur px-5 py-2 rounded-full shadow-lg border border-white/20">
                   <span className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
-                    <Zap size={14} className="text-secondary" /> Flagship Innovation
+                    <Zap size={14} className="text-secondary" /> {t.products.flagshipBadge}
                   </span>
                 </div>
               </div>
@@ -305,7 +305,7 @@ export const ProductSection: React.FC = () => {
                   </div>
                   <div>
                     <EditableText as="h4" sectionId="products" field="flagshipFeature1Title" fallback={t.products.zeroContam} className="font-bold text-gray-800 text-sm block" />
-                    <EditableText as="p" sectionId="products" field="flagshipFeature1Desc" fallback="Sealed delivery system." className="text-xs text-gray-500 mt-1 block" />
+                    <EditableText as="p" sectionId="products" field="flagshipFeature1Desc" fallback={t.products.flagshipFeature1Desc} className="text-xs text-gray-500 mt-1 block" />
                   </div>
                 </div>
                 <div className="flex items-start">
@@ -314,13 +314,13 @@ export const ProductSection: React.FC = () => {
                   </div>
                   <div>
                     <EditableText as="h4" sectionId="products" field="flagshipFeature2Title" fallback={t.products.noUV} className="font-bold text-gray-800 text-sm block" />
-                    <EditableText as="p" sectionId="products" field="flagshipFeature2Desc" fallback="Visual color metrics." className="text-xs text-gray-500 mt-1 block" />
+                    <EditableText as="p" sectionId="products" field="flagshipFeature2Desc" fallback={t.products.flagshipFeature2Desc} className="text-xs text-gray-500 mt-1 block" />
                   </div>
                 </div>
               </div>
 
               <button onClick={() => setIsEnumeraModalOpen(true)} className="inline-flex bg-primary text-white px-8 py-4 rounded-xl shadow-lg hover:shadow-primary/30 hover:-translate-y-1 transition-all font-bold items-center gap-3 w-fit">
-                <EditableText sectionId="products" field="flagshipDownloadBtn" fallback="View more details" /> <ArrowRight size={18} />
+                <EditableText sectionId="products" field="flagshipDownloadBtn" fallback={t.products.flagshipDetails} /> <ArrowRight size={18} />
               </button>
             </div>
           </div>
@@ -358,7 +358,7 @@ export const ProductSection: React.FC = () => {
         <div id="catalog" className="flex items-center justify-between mb-8">
           <div>
             <h3 className="font-heading font-bold text-2xl text-gray-800">{t.nav.catalog}</h3>
-            <p className="text-gray-500 text-sm mt-1">Explore our 6 distinct product families</p>
+            <p className="text-gray-500 text-sm mt-1">{t.products.catalogSubtitle}</p>
           </div>
           <div className="h-1 flex-grow mx-8 bg-gray-100 rounded-full hidden md:block"></div>
           <button className="text-primary font-semibold text-sm hover:text-secondary transition-colors whitespace-nowrap hidden md:block">

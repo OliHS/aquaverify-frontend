@@ -45,8 +45,8 @@ export const EditableText: React.FC<EditableTextProps> = ({
             rawContent = isLegacyValue(fieldValue) ? fallback : fieldValue;
         } else if (typeof fieldValue === 'object' && fieldValue[lang] !== undefined) { // New i18n object Data
             rawContent = isLegacyValue(fieldValue[lang]) ? fallback : fieldValue[lang];
-        } else if (typeof fieldValue === 'object' && fieldValue['en'] !== undefined) { // Fallback to english if current lang missing
-            rawContent = isLegacyValue(fieldValue['en']) ? fallback : fieldValue['en'];
+        } else if (typeof fieldValue === 'object' && fieldValue['en'] !== undefined) {
+            rawContent = fallback;
         }
     }
 

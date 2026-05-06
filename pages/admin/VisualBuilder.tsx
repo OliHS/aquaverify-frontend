@@ -75,7 +75,12 @@ const VisualBuilderInner: React.FC = () => {
                 title: t.products.title,
                 subtitle: t.products.subtitle,
                 flagshipTitle: t.products.flagship,
-                flagshipDesc: t.products.flagshipDesc
+                flagshipDesc: t.products.flagshipDesc,
+                flagshipFeature1Title: t.products.zeroContam,
+                flagshipFeature1Desc: t.products.flagshipFeature1Desc,
+                flagshipFeature2Title: t.products.noUV,
+                flagshipFeature2Desc: t.products.flagshipFeature2Desc,
+                flagshipDownloadBtn: t.products.flagshipDetails
             },
             saas: {
                 badge: t.saas.badge,
@@ -424,6 +429,53 @@ const VisualBuilderInner: React.FC = () => {
                                         rows={3}
                                         value={getLocalizedValue('products', 'flagshipDesc')}
                                         onChange={e => handleBlockChange('products', 'flagshipDesc', e.target.value, lang)}
+                                    />
+                                </div>
+                                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Feature 1 title</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getLocalizedValue('products', 'flagshipFeature1Title')}
+                                            onChange={e => handleBlockChange('products', 'flagshipFeature1Title', e.target.value, lang)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Feature 1 text</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getLocalizedValue('products', 'flagshipFeature1Desc')}
+                                            onChange={e => handleBlockChange('products', 'flagshipFeature1Desc', e.target.value, lang)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Feature 2 title</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getLocalizedValue('products', 'flagshipFeature2Title')}
+                                            onChange={e => handleBlockChange('products', 'flagshipFeature2Title', e.target.value, lang)}
+                                        />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Feature 2 text</label>
+                                        <input
+                                            type="text"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getLocalizedValue('products', 'flagshipFeature2Desc')}
+                                            onChange={e => handleBlockChange('products', 'flagshipFeature2Desc', e.target.value, lang)}
+                                        />
+                                    </div>
+                                </div>
+                                <div>
+                                    <label className="block text-xs font-medium text-slate-700 mb-1">Details button</label>
+                                    <input
+                                        type="text"
+                                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                        value={getLocalizedValue('products', 'flagshipDownloadBtn')}
+                                        onChange={e => handleBlockChange('products', 'flagshipDownloadBtn', e.target.value, lang)}
                                     />
                                 </div>
                             </div>
