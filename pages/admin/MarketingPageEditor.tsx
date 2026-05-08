@@ -533,7 +533,8 @@ export const MarketingPageEditor: React.FC = () => {
     return <div className="p-12 text-center text-slate-500">Loading marketing editor...</div>;
   }
 
-  const previewContent = formToContent(form, defaultContent.path);
+  const draftContent = formToContent(form, defaultContent.path);
+  const previewContent = mergeMarketingContent(defaultContent, draftContent);
 
   return (
     <div className="grid gap-6 xl:grid-cols-[minmax(420px,0.92fr)_minmax(0,1.08fr)]">
