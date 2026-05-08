@@ -36,7 +36,7 @@ Actualizado: 2026-05-05.
 - El CLI de sync exige clave Supabase de escritura para evitar falsas sincronizaciones.
 - El editor de paginas marketing permite gestionar assets reales por URL: imagen hero, alt text, imagen OpenGraph y enlace/label de datasheet, con validacion basica de URLs publicas.
 - El panel `Marketing URLs` muestra cobertura de assets de producto y existe auditor CLI `npm run cms:assets:audit` para detectar hero/datasheet pendientes.
-- Las paginas publicas de `ENUMERA Coli100` y `ENUMERA Entero100` quedan en wording generico de indicadores bacterianos hasta validar definitivamente el parametro de cada nombre.
+- `ENUMERA Coli100` queda actualizado con contenido especifico E. coli + coliformes totales, lectura cromogenica sin UV e imagen real del producto; `ENUMERA Entero100` sigue en wording generico hasta validar definitivamente su parametro.
 - El CMS de productos detecta wording legacy de claims en catalogo y ofrece una accion admin para limpiarlo en `product_families` y `products`.
 - Pendiente principal: aprobacion final tecnico/legal de la tabla maestra, enriquecer contenido con assets reales y seguir limpiando el pipeline CI/CD de plataforma.
 
@@ -247,7 +247,7 @@ Tareas:
 
 - Validar naming exacto de productos del documento de gama.
 - Resolver la posible confusion en el DOCX:
-  - `ENUMERAColi100` aparece descrito como Enterococci.
+  - `ENUMERAColi100` queda corregido con documentacion adicional recibida el 2026-05-08: E. coli y coliformes totales.
   - `ENUMERAEntero100` aparece descrito como E. coli y coliformes totales.
 - Definir que claims son comerciales y cuales pueden ser regulatorios.
 - Validar si se pueden mencionar ISO/EPA como "according to", "based on", "compatible with" o "for use with".
@@ -265,10 +265,10 @@ Avance implementado:
 - El estado de cobertura aparece en el CMS, diferencia pagina sin bloque de contenido y registro completo, se puede refrescar desde el panel y queda cerrado actualmente en 280/280.
 - Las paginas marketing ya pueden mostrar assets reales opcionales y usar imagenes OpenGraph especificas sin introducir fallbacks genericos.
 - La cobertura de assets reales queda visible en CMS y auditada en deploy sin bloquear release hasta cargar el material aprobado.
-- La proyeccion publica de marketing evita publicar parametros especificos en `ENUMERA Coli100` / `ENUMERA Entero100` mientras el documento de gama siga mostrando naming ambiguo.
+- La proyeccion publica de marketing evita publicar parametros especificos en `ENUMERA Entero100` mientras el documento de gama siga mostrando naming ambiguo; `ENUMERA Coli100` ya tiene documentacion adicional de validacion comercial recibida el 2026-05-08.
 - El Product Manager del CMS muestra aviso de catalogo legacy y permite limpiar el wording sensible con sesion admin.
 - Reescrito copy publico sensible hacia lenguaje de producto, trazabilidad, workflow e informes tecnicos.
-- Se mantienen avisos no bloqueantes para revisar la ambiguedad `ENUMERAColi100` / `ENUMERAEntero100` detectada en el DOCX.
+- Se mantiene aviso no bloqueante para revisar la ambiguedad `ENUMERAEntero100` detectada en el DOCX.
 
 Criterio de cierre:
 

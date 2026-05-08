@@ -202,6 +202,7 @@ type MarketingContentMeta = {
   gallery?: Array<{ src: string; alt: string; title?: string; body?: string }>;
   heroImage?: string;
   heroImageAlt?: string;
+  heroImageFit?: 'cover' | 'contain';
   ogImage?: string;
   datasheetUrl?: string;
   datasheetLabel?: string;
@@ -240,6 +241,7 @@ type WhitepaperTimelineItem = {
 };
 
 type WhitepaperDeepDiveContent = {
+  eyebrow?: string;
   title: string;
   intro: string;
   metrics?: WhitepaperMetric[];
@@ -318,7 +320,7 @@ const WhitepaperDeepDive: React.FC<{ content: WhitepaperDeepDiveContent }> = ({ 
   return (
     <article className="overflow-hidden rounded-2xl border border-cyan-100 bg-gradient-to-br from-cyan-50 via-white to-slate-50 shadow-sm">
       <div className="border-b border-cyan-100/70 p-7">
-        <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">Whitepaper visual brief</div>
+        <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">{content.eyebrow || 'Whitepaper visual brief'}</div>
         <h2 className="mt-3 font-heading text-2xl font-black text-primary md:text-3xl">{content.title}</h2>
         <p className="mt-4 max-w-3xl text-base leading-8 text-slate-600">{content.intro}</p>
       </div>
@@ -717,6 +719,9 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
     : [];
   const breadcrumbs = buildMarketingBreadcrumbs(page, contentMeta, pageLang, labels);
   const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
+  const heroImageClass = contentMeta.heroImageFit === 'contain'
+    ? 'h-full max-h-[420px] w-full bg-white object-contain p-4'
+    : 'h-full max-h-[420px] w-full object-cover';
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
   const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
   const galleryItems = (contentMeta.gallery || [])
@@ -839,7 +844,7 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
                   path="heroImage"
                   src={heroImageUrl}
                   alt={ogFallbackAlt}
-                  className="h-full max-h-[420px] w-full object-cover"
+                  className={heroImageClass}
                   loading="eager"
                   isEditing={isEditing}
                   onImageChange={onImageChange}

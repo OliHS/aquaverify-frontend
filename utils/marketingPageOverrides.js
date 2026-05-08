@@ -1,6 +1,5 @@
 export const MARKETING_OVERRIDE_SECTION_ID = 'marketing_page';
 const PENDING_PARAMETER_VALIDATION_PATHS = [
-  'enumera-coli100',
   'enumera-entero100'
 ];
 

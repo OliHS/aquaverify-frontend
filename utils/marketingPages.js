@@ -29,6 +29,7 @@ function locale(path, title, description, sections, options = {}) {
     secondaryCta: options.secondaryCta,
     heroImage: options.heroImage,
     heroImageAlt: options.heroImageAlt,
+    heroImageFit: options.heroImageFit,
     ogImage: options.ogImage,
     datasheetUrl: options.datasheetUrl,
     datasheetLabel: options.datasheetLabel,
@@ -1963,7 +1964,7 @@ function i18n(value, lang) {
 
 export const PRODUCT_DETAIL_DATA = [
   { id: 'enumera-soma100', parentId: 'enumera', slug: 'enumera-soma100', name: 'ENUMERA Soma100', type: PRODUCT_TYPE.quantitativeKit, subFamily: 'ENUMERA Kits', parameter: COMMON.somaticColiphages, method: 'ENUMERA quantitative workflow', volume: '100 mL', format: 'Kit' },
-  { id: 'enumera-coli100', parentId: 'enumera', slug: 'enumera-coli100', name: 'ENUMERA Coli100', type: PRODUCT_TYPE.quantitativeKit, subFamily: 'ENUMERA Kits', parameter: COMMON.bacterialIndicators, method: 'ENUMERA quantitative workflow', volume: '100 mL', format: 'Kit' },
+  { id: 'enumera-coli100', parentId: 'enumera', slug: 'enumera-coli100', name: 'ENUMERA Coli100', type: PRODUCT_TYPE.quantitativeKit, subFamily: 'ENUMERA Kits', parameter: COMMON.ecoliColiforms, method: 'UV-free chromogenic MPN tray workflow', volume: '100 mL', format: 'Kit' },
   { id: 'enumera-entero100', parentId: 'enumera', slug: 'enumera-entero100', name: 'ENUMERA Entero100', type: PRODUCT_TYPE.quantitativeKit, subFamily: 'ENUMERA Kits', parameter: COMMON.bacterialIndicators, method: 'ENUMERA quantitative workflow', volume: '100 mL', format: 'Kit' },
   { id: 'soma-bottle-100', parentId: 'enumera', slug: 'soma-bottle-100', name: 'Soma Bottle 100', type: PRODUCT_TYPE.refill, subFamily: 'ENUMERA Refill', parameter: COMMON.somaticColiphages, method: 'MCB10 medium refill workflow', volume: '100 mL', format: 'Bottle' },
   { id: 'coli-bottle-100', parentId: 'enumera', slug: 'coli-bottle-100', name: 'Coli Bottle 100', type: PRODUCT_TYPE.refill, subFamily: 'ENUMERA Refill', parameter: COMMON.ecoliColiforms, method: 'Coli medium refill workflow', volume: '100 mL', format: 'Bottle' },
@@ -2102,7 +2103,384 @@ function buildProductFaqs(product, lang) {
   }
 }
 
+const ENUMERA_COLI100_PRODUCT_IMAGE = '/images/products/marketing/enumera-coli100.png';
+
+function enumeraColi100Assets(lang) {
+  return {
+    ...getProductAssetOptions('enumera-coli100', lang, 'ENUMERA Coli 100 chromogenic tray with yellow and green wells'),
+    heroImage: ENUMERA_COLI100_PRODUCT_IMAGE,
+    heroImageAlt: 'ENUMERA Coli 100 tray showing yellow total coliform wells and green E. coli wells',
+    heroImageFit: 'contain',
+    ogImage: ENUMERA_COLI100_PRODUCT_IMAGE,
+    gallery: [
+      {
+        src: ENUMERA_COLI100_PRODUCT_IMAGE,
+        alt: 'ENUMERA Coli 100 multiwell tray with visible chromogenic results',
+        title: {
+          en: 'Visible chromogenic readout',
+          es: 'Lectura cromogénica visible',
+          fr: 'Lecture chromogène visible',
+          it: 'Lettura cromogenica visibile',
+          ca: 'Lectura cromogènica visible'
+        }[lang],
+        body: {
+          en: 'Yellow wells indicate total coliforms. Green or blue-green wells indicate E. coli and are also counted as total coliforms.',
+          es: 'Los pocillos amarillos indican coliformes totales. Los pocillos verdes o azul verdoso indican E. coli y también se cuentan como coliformes totales.',
+          fr: 'Les puits jaunes indiquent les coliformes totaux. Les puits verts ou bleu-vert indiquent E. coli et sont également comptés comme coliformes totaux.',
+          it: 'I pozzetti gialli indicano coliformi totali. I pozzetti verdi o verde-blu indicano E. coli e si contano anche come coliformi totali.',
+          ca: 'Els pous grocs indiquen coliformes totals. Els pous verds o verd blavós indiquen E. coli i també es compten com a coliformes totals.'
+        }[lang]
+      }
+    ]
+  };
+}
+
+function enumeraColi100Whitepaper(lang) {
+  const contentByLang = {
+    en: {
+      eyebrow: 'Product workflow brief',
+      title: 'UV-free E. coli and total coliform workflow',
+      intro: 'ENUMERA Coli 100 combines Smart Cap reagent release, a 100 mL sample workflow, multiwell MPN enumeration and visible chromogenic reading so laboratories can remove UV interpretation from routine E. coli and total coliform analysis.',
+      metrics: [
+        ['Sample', '100 mL', 'Designed around the standard 100 mL water sample routine used by many water microbiology laboratories.', 'cyan'],
+        ['Incubation', '18 h / 35 °C', 'The expected product protocol uses incubation at 35 °C for 18 hours before visual reading.', 'indigo'],
+        ['Readout', 'No UV', 'Results are interpreted under normal laboratory lighting: yellow for total coliforms, green for E. coli.', 'emerald']
+      ],
+      comparisonTitle: 'From fluorescence to visible colour',
+      comparison: [
+        ['Traditional fluorogenic workflow', 'Yellow plus UV fluorescence', 'Requires a UV lamp or cabinet, controlled reading conditions and periodic attention to lamp output.', 58, 'slate'],
+        ['ENUMERA Coli 100 workflow', 'Yellow plus green visible colour', 'Uses a chromogenic reaction that makes E. coli visible as green or blue-green wells under normal light.', 92, 'emerald']
+      ],
+      flowTitle: 'Sample-to-result workflow',
+      flow: [
+        ['Add the sample', 'Introduce the water sample into the analysis bottle following the kit protocol and target volume.'],
+        ['Close the Smart Cap bottle', 'The integrated reagent contacts the sample when the bottle is closed, reducing manual reagent handling.'],
+        ['Mix and fill the tray', 'Distribute the prepared sample across the multiwell tray for MPN enumeration.'],
+        ['Incubate', 'Incubate at 35 °C for 18 hours following the current product datasheet.'],
+        ['Read and count', 'Count yellow plus green wells for total coliforms, and green wells for E. coli, then consult the MPN table.']
+      ],
+      timelineTitle: 'Where it fits',
+      timeline: [
+        ['1', 'Municipal', 'Water utilities', 'Routine E. coli and total coliform control without UV reading hardware.'],
+        ['2', 'Laboratory', 'Environmental labs', 'High-volume sample batches with fewer repetitive reagent-handling steps.'],
+        ['3', 'Industrial', 'Food and beverage', 'Water used as process water, ingredient water, ice, rinsing or hygiene control.'],
+        ['4', 'Operations', 'Treatment plants', 'Clear visual checks to support treatment verification and deviation follow-up.']
+      ],
+      sourceLabel: 'Technical note',
+      note: 'Use the product within the matrices, protocols and validation requirements accepted by each laboratory quality system and jurisdiction.'
+    },
+    es: {
+      eyebrow: 'Resumen visual del producto',
+      title: 'Flujo sin UV para E. coli y coliformes totales',
+      intro: 'ENUMERA Coli 100 combina liberación de reactivo Smart Cap, flujo de muestra de 100 mL, enumeración NMP en tray multipocillo y lectura cromogénica visible para eliminar la interpretación UV de la rutina de E. coli y coliformes totales.',
+      metrics: [
+        ['Muestra', '100 mL', 'Pensado para la rutina de muestra de 100 mL habitual en muchos laboratorios de microbiología del agua.', 'cyan'],
+        ['Incubación', '18 h / 35 °C', 'El protocolo previsto del producto utiliza incubación a 35 °C durante 18 horas antes de la lectura visual.', 'indigo'],
+        ['Lectura', 'Sin UV', 'Los resultados se interpretan bajo luz normal: amarillo para coliformes totales y verde para E. coli.', 'emerald']
+      ],
+      comparisonTitle: 'De fluorescencia a color visible',
+      comparison: [
+        ['Flujo fluorogénico tradicional', 'Amarillo más fluorescencia UV', 'Requiere lámpara o cabina UV, condiciones de lectura controladas y atención periódica al estado de la fuente UV.', 58, 'slate'],
+        ['Flujo ENUMERA Coli 100', 'Amarillo más verde visible', 'Utiliza una reacción cromogénica que hace visible E. coli como pocillos verdes o azul verdoso bajo luz normal.', 92, 'emerald']
+      ],
+      flowTitle: 'Flujo de muestra a resultado',
+      flow: [
+        ['Añadir la muestra', 'Introduce la muestra de agua en el bote de análisis siguiendo el protocolo y el volumen objetivo del kit.'],
+        ['Cerrar el bote Smart Cap', 'El reactivo integrado entra en contacto con la muestra al cerrar el bote, reduciendo la manipulación manual de reactivos.'],
+        ['Mezclar y llenar el tray', 'Distribuye la muestra preparada en el tray multipocillo para la enumeración mediante NMP.'],
+        ['Incubar', 'Incuba a 35 °C durante 18 horas siguiendo la ficha técnica vigente del producto.'],
+        ['Leer y contar', 'Cuenta pocillos amarillos más verdes para coliformes totales, y pocillos verdes para E. coli; después consulta la tabla NMP.']
+      ],
+      timelineTitle: 'Dónde encaja',
+      timeline: [
+        ['1', 'Municipal', 'Empresas de agua', 'Control rutinario de E. coli y coliformes totales sin hardware de lectura UV.'],
+        ['2', 'Laboratorio', 'Laboratorios ambientales', 'Lotes con alto volumen de muestras y menos pasos repetitivos de manipulación de reactivo.'],
+        ['3', 'Industrial', 'Alimentación y bebidas', 'Agua de proceso, agua ingrediente, hielo, enjuagues o control higiénico.'],
+        ['4', 'Operaciones', 'Plantas de tratamiento', 'Comprobaciones visuales claras para verificar tratamiento y seguir desviaciones.']
+      ],
+      sourceLabel: 'Nota técnica',
+      note: 'Utiliza el producto dentro de las matrices, protocolos y requisitos de validación aceptados por el sistema de calidad y la jurisdicción de cada laboratorio.'
+    },
+    fr: {
+      eyebrow: 'Résumé visuel produit',
+      title: 'Flux sans UV pour E. coli et coliformes totaux',
+      intro: 'ENUMERA Coli 100 associe libération de réactif Smart Cap, flux échantillon 100 mL, énumération NPP en plateau multipuits et lecture chromogène visible afin de retirer l’interprétation UV de la routine E. coli et coliformes totaux.',
+      metrics: [
+        ['Échantillon', '100 mL', 'Conçu autour de la routine 100 mL utilisée par de nombreux laboratoires de microbiologie de l’eau.', 'cyan'],
+        ['Incubation', '18 h / 35 °C', 'Le protocole produit prévu utilise une incubation à 35 °C pendant 18 heures avant lecture visuelle.', 'indigo'],
+        ['Lecture', 'Sans UV', 'Les résultats se lisent sous lumière normale: jaune pour coliformes totaux, vert pour E. coli.', 'emerald']
+      ],
+      comparisonTitle: 'De la fluorescence à la couleur visible',
+      comparison: [
+        ['Flux fluorogène traditionnel', 'Jaune plus fluorescence UV', 'Nécessite lampe ou cabine UV, conditions de lecture contrôlées et suivi périodique de la source UV.', 58, 'slate'],
+        ['Flux ENUMERA Coli 100', 'Jaune plus vert visible', 'Utilise une réaction chromogène qui rend E. coli visible en puits verts ou bleu-vert sous lumière normale.', 92, 'emerald']
+      ],
+      flowTitle: 'Flux de l’échantillon au résultat',
+      flow: [
+        ['Ajouter l’échantillon', 'Introduisez l’échantillon d’eau dans le flacon d’analyse selon le protocole et le volume cible du kit.'],
+        ['Fermer le flacon Smart Cap', 'Le réactif intégré entre en contact avec l’échantillon à la fermeture, réduisant la manipulation manuelle de réactifs.'],
+        ['Mélanger et remplir le plateau', 'Répartissez l’échantillon préparé dans le plateau multipuits pour l’énumération NPP.'],
+        ['Incuber', 'Incubez à 35 °C pendant 18 heures selon la fiche technique en vigueur.'],
+        ['Lire et compter', 'Comptez les puits jaunes plus verts pour les coliformes totaux, et les puits verts pour E. coli; consultez ensuite la table NPP.']
+      ],
+      timelineTitle: 'Où il s’intègre',
+      timeline: [
+        ['1', 'Municipal', 'Services d’eau', 'Contrôle routinier E. coli et coliformes totaux sans matériel de lecture UV.'],
+        ['2', 'Laboratoire', 'Laboratoires environnementaux', 'Lots à volume élevé avec moins d’étapes répétitives de manipulation du réactif.'],
+        ['3', 'Industriel', 'Agroalimentaire', 'Eau de procédé, eau ingrédient, glace, rinçages ou contrôle hygiène.'],
+        ['4', 'Opérations', 'Stations de traitement', 'Contrôles visuels clairs pour vérifier le traitement et suivre les écarts.']
+      ],
+      sourceLabel: 'Note technique',
+      note: 'Utilisez le produit dans les matrices, protocoles et exigences de validation acceptés par le système qualité et la juridiction du laboratoire.'
+    },
+    it: {
+      eyebrow: 'Sintesi visiva prodotto',
+      title: 'Workflow senza UV per E. coli e coliformi totali',
+      intro: 'ENUMERA Coli 100 combina rilascio reagente Smart Cap, workflow campione da 100 mL, enumerazione MPN in tray multipietto e lettura cromogenica visibile per eliminare l’interpretazione UV dalla routine E. coli e coliformi totali.',
+      metrics: [
+        ['Campione', '100 mL', 'Pensato per la routine da 100 mL usata in molti laboratori di microbiologia dell’acqua.', 'cyan'],
+        ['Incubazione', '18 h / 35 °C', 'Il protocollo previsto usa incubazione a 35 °C per 18 ore prima della lettura visiva.', 'indigo'],
+        ['Lettura', 'Senza UV', 'I risultati si interpretano con luce normale: giallo per coliformi totali, verde per E. coli.', 'emerald']
+      ],
+      comparisonTitle: 'Dalla fluorescenza al colore visibile',
+      comparison: [
+        ['Workflow fluorogenico tradizionale', 'Giallo più fluorescenza UV', 'Richiede lampada o cabina UV, condizioni di lettura controllate e attenzione periodica alla sorgente UV.', 58, 'slate'],
+        ['Workflow ENUMERA Coli 100', 'Giallo più verde visibile', 'Usa una reazione cromogenica che rende E. coli visibile come pozzetti verdi o verde-blu con luce normale.', 92, 'emerald']
+      ],
+      flowTitle: 'Workflow dal campione al risultato',
+      flow: [
+        ['Aggiungi il campione', 'Inserisci il campione d’acqua nel flacone di analisi seguendo protocollo e volume target del kit.'],
+        ['Chiudi il flacone Smart Cap', 'Il reagente integrato entra in contatto con il campione alla chiusura, riducendo la manipolazione manuale dei reagenti.'],
+        ['Miscela e riempi il tray', 'Distribuisci il campione preparato nel tray multipietto per l’enumerazione MPN.'],
+        ['Incuba', 'Incuba a 35 °C per 18 ore seguendo la scheda tecnica vigente.'],
+        ['Leggi e conta', 'Conta i pozzetti gialli più verdi per i coliformi totali, e i verdi per E. coli; poi consulta la tabella MPN.']
+      ],
+      timelineTitle: 'Dove si inserisce',
+      timeline: [
+        ['1', 'Municipale', 'Utility idriche', 'Controllo routinario di E. coli e coliformi totali senza hardware di lettura UV.'],
+        ['2', 'Laboratorio', 'Laboratori ambientali', 'Lotti ad alto volume con meno passaggi ripetitivi di manipolazione reagente.'],
+        ['3', 'Industriale', 'Food & beverage', 'Acqua di processo, acqua ingrediente, ghiaccio, risciacqui o controllo igienico.'],
+        ['4', 'Operazioni', 'Impianti di trattamento', 'Controlli visivi chiari per verificare il trattamento e seguire deviazioni.']
+      ],
+      sourceLabel: 'Nota tecnica',
+      note: 'Usare il prodotto entro matrici, protocolli e requisiti di validazione accettati dal sistema qualità e dalla giurisdizione del laboratorio.'
+    },
+    ca: {
+      eyebrow: 'Resum visual del producte',
+      title: 'Flux sense UV per a E. coli i coliformes totals',
+      intro: 'ENUMERA Coli 100 combina alliberament de reactiu Smart Cap, flux de mostra de 100 mL, enumeració NMP en tray multipou i lectura cromogènica visible per eliminar la interpretació UV de la rutina d’E. coli i coliformes totals.',
+      metrics: [
+        ['Mostra', '100 mL', 'Pensat per a la rutina de mostra de 100 mL habitual en molts laboratoris de microbiologia de l’aigua.', 'cyan'],
+        ['Incubació', '18 h / 35 °C', 'El protocol previst utilitza incubació a 35 °C durant 18 hores abans de la lectura visual.', 'indigo'],
+        ['Lectura', 'Sense UV', 'Els resultats s’interpreten amb llum normal: groc per a coliformes totals i verd per a E. coli.', 'emerald']
+      ],
+      comparisonTitle: 'De fluorescència a color visible',
+      comparison: [
+        ['Flux fluorogènic tradicional', 'Groc més fluorescència UV', 'Requereix làmpada o cabina UV, condicions de lectura controlades i atenció periòdica a la font UV.', 58, 'slate'],
+        ['Flux ENUMERA Coli 100', 'Groc més verd visible', 'Utilitza una reacció cromogènica que fa visible E. coli com a pous verds o verd blavós amb llum normal.', 92, 'emerald']
+      ],
+      flowTitle: 'Flux de mostra a resultat',
+      flow: [
+        ['Afegir la mostra', 'Introdueix la mostra d’aigua al pot d’anàlisi seguint el protocol i el volum objectiu del kit.'],
+        ['Tancar el pot Smart Cap', 'El reactiu integrat entra en contacte amb la mostra en tancar el pot, reduint la manipulació manual de reactius.'],
+        ['Homogeneïtzar i omplir el tray', 'Distribueix la mostra preparada al tray multipou per a l’enumeració mitjançant NMP.'],
+        ['Incubar', 'Incuba a 35 °C durant 18 hores seguint la fitxa tècnica vigent.'],
+        ['Llegir i comptar', 'Compta pous grocs més verds per a coliformes totals, i pous verds per a E. coli; després consulta la taula NMP.']
+      ],
+      timelineTitle: 'On encaixa',
+      timeline: [
+        ['1', 'Municipal', 'Empreses d’aigua', 'Control rutinari d’E. coli i coliformes totals sense maquinari de lectura UV.'],
+        ['2', 'Laboratori', 'Laboratoris ambientals', 'Lots amb alt volum de mostres i menys passos repetitius de manipulació de reactiu.'],
+        ['3', 'Industrial', 'Alimentació i begudes', 'Aigua de procés, aigua ingredient, gel, esbandides o control higiènic.'],
+        ['4', 'Operacions', 'Plantes de tractament', 'Comprovacions visuals clares per verificar tractament i seguir desviacions.']
+      ],
+      sourceLabel: 'Nota tècnica',
+      note: 'Utilitza el producte dins de les matrius, protocols i requisits de validació acceptats pel sistema de qualitat i la jurisdicció de cada laboratori.'
+    }
+  };
+  const content = contentByLang[lang] || contentByLang.en;
+
+  return {
+    eyebrow: content.eyebrow,
+    title: content.title,
+    intro: content.intro,
+    metrics: content.metrics.map(([label, value, body, tone]) => ({ label, value, body, tone })),
+    comparisonTitle: content.comparisonTitle,
+    comparison: content.comparison.map(([label, title, body, valuePercent, tone]) => ({ label, title, body, valuePercent, tone })),
+    flowTitle: content.flowTitle,
+    flow: content.flow.map(([title, body]) => ({ title, body })),
+    timelineTitle: content.timelineTitle,
+    timeline: content.timeline.map(([year, region, sector, body]) => ({ year, region, sector, body })),
+    sourceLabel: content.sourceLabel,
+    note: content.note
+  };
+}
+
+function buildEnumeraColi100Locale(lang) {
+  const assets = enumeraColi100Assets(lang);
+  const copyByLang = {
+    en: {
+      path: '/products/enumera-coli100',
+      title: 'ENUMERA® Coli 100: E. coli and total coliform counts without UV',
+      description: 'ENUMERA® Coli 100 simplifies water microbiology with Smart Cap reagent release, chromogenic colour reading and multiwell MPN enumeration for Escherichia coli and total coliforms.',
+      cta: 'Request a demonstration',
+      secondary: 'View ENUMERA range',
+      datasheet: 'Request technical datasheet',
+      seoTitle: 'ENUMERA Coli 100 | E. coli and total coliform water testing without UV',
+      seoDescription: 'ENUMERA Coli 100 is an AquaVerify chromogenic kit for E. coli and total coliform enumeration in 100 mL water samples, with visual reading and Smart Cap reagent delivery.',
+      sections: [
+        ['What is ENUMERA® Coli 100?', 'ENUMERA® Coli 100 is a water analysis system for detecting and enumerating E. coli and total coliforms in 100 mL samples. It is designed for laboratories, water operators, food and beverage companies and quality teams that need a practical routine with clear visual interpretation.', ['Chromogenic colour change instead of UV fluorescence', 'Multiwell tray format for MPN enumeration', 'Smart Cap reagent delivery integrated into the bottle closure', 'Built to connect sample context, operator and result in AquaVerify Cloud']],
+        ['How it works', 'The workflow is intentionally simple: add sample, close the Smart Cap bottle, mix, fill the multiwell tray, incubate and read the colours under normal laboratory lighting.', ['Add the water sample to the analysis bottle', 'Close the Smart Cap so the integrated reagent contacts the sample', 'Homogenise and distribute into the multiwell tray', 'Incubate at 35 °C for 18 hours following the current product datasheet', 'Read visible colours and use the MPN table for enumeration']],
+        ['Visible interpretation', 'ENUMERA® Coli 100 replaces weak fluorescence searches with direct colour interpretation. The technician reads the tray under normal lab light and counts the wells according to colour.', ['Clear or no colour change: negative well', 'Yellow well: total coliform positive', 'Green or blue-green well: E. coli positive and also total coliform positive', 'Total coliforms = yellow + green wells; E. coli = green wells']],
+        ['Smart Cap reagent delivery', 'The Smart Cap incorporates the reagent in the bottle closure. The technician no longer needs to open sachets, pour powder manually or manage separate reagent waste for each sample.', ['Fewer repetitive preparation steps', 'Less exposure to loose powder or reagent spills', 'More consistent activation step across technicians', 'Simpler stock and routine handling for high-volume laboratories']],
+        ['Use cases by industry', 'The product is suited to teams that need routine bacterial indicator monitoring with clear results and a workflow that can scale across repeated sample batches.', ['Municipal water utilities: routine E. coli and total coliform control', 'Environmental laboratories: productivity in high-volume sample batches', 'Treatment plants: verification and deviation follow-up', 'Food and beverage: process water, ingredient water, rinsing, ice and hygiene programmes', 'Agricultural, reclaimed and aquaculture water: preventive microbiological monitoring within validated matrices']],
+        ['Quality and regulatory use', 'ENUMERA® Coli 100 should be used within the matrices, protocols and acceptance criteria defined by each laboratory quality system. For regulatory reporting, confirm method acceptance in the applicable jurisdiction and accreditation scope.', ['Designed for 100 mL water microbiology workflows', 'Validation evidence can support matrix, inclusivity, exclusivity, LOD and correlation discussions', 'Use the current product datasheet as the operational reference', 'Somatic coliphages require specific methods and are not detected by this kit']]
+      ],
+      faqs: [
+        ['Does ENUMERA® Coli 100 require UV light?', 'No. Results are read by visible colour under normal laboratory lighting.'],
+        ['What does a green well mean?', 'A green or blue-green well indicates E. coli. For counting purposes, it is also counted as a total coliform positive well.'],
+        ['How are total coliforms counted?', 'Count all yellow and green wells, then consult the corresponding MPN table. E. coli is counted from the green wells.'],
+        ['What incubation time does the workflow use?', 'The expected product protocol is 18 hours at 35 °C. Always follow the current product datasheet.'],
+        ['What does Smart Cap add?', 'The reagent is integrated into the bottle closure and contacts the sample when the bottle is closed, reducing manual reagent addition steps.'],
+        ['Does it detect somatic coliphages?', 'No. ENUMERA® Coli 100 is designed for E. coli and total coliforms. Somatic coliphages require specific methods.'],
+        ['Can it replace another regulatory method?', 'Use depends on the matrices, protocols and validation requirements accepted by each laboratory and jurisdiction. Confirm acceptance before regulatory reporting.']
+      ]
+    },
+    es: {
+      path: '/es/productos/enumera-coli100',
+      title: 'ENUMERA® Coli 100: recuento de E. coli y coliformes totales sin UV',
+      description: 'ENUMERA® Coli 100 simplifica la microbiología del agua con liberación de reactivo Smart Cap, lectura cromogénica por colores y enumeración NMP en tray multipocillo para Escherichia coli y coliformes totales.',
+      cta: 'Pedir una demostración',
+      secondary: 'Ver gama ENUMERA',
+      datasheet: 'Solicitar ficha técnica',
+      seoTitle: 'ENUMERA Coli 100 | E. coli y coliformes totales en agua sin UV',
+      seoDescription: 'ENUMERA Coli 100 es un kit cromogénico AquaVerify para enumerar E. coli y coliformes totales en muestras de agua de 100 mL, con lectura visual y Smart Cap.',
+      sections: [
+        ['¿Qué es ENUMERA® Coli 100?', 'ENUMERA® Coli 100 es un sistema de análisis para detectar y enumerar E. coli y coliformes totales en muestras de agua de 100 mL. Está diseñado para laboratorios, operadores de agua, industrias alimentarias y equipos de calidad que necesitan una rutina práctica con interpretación visual clara.', ['Cambio de color cromogénico en lugar de fluorescencia UV', 'Formato multipocillo para enumeración mediante NMP', 'Dosificación Smart Cap integrada en el cierre del bote', 'Preparado para conectar contexto de muestra, operador y resultado en AquaVerify Cloud']],
+        ['Cómo funciona', 'El flujo es deliberadamente simple: añadir muestra, cerrar el bote Smart Cap, mezclar, llenar el tray multipocillo, incubar y leer los colores bajo luz normal de laboratorio.', ['Añadir la muestra de agua al bote de análisis', 'Cerrar el Smart Cap para que el reactivo integrado contacte con la muestra', 'Homogeneizar y distribuir en el tray multipocillo', 'Incubar a 35 °C durante 18 horas siguiendo la ficha técnica vigente', 'Leer colores visibles y usar la tabla NMP para la enumeración']],
+        ['Interpretación visible', 'ENUMERA® Coli 100 sustituye la búsqueda de fluorescencias débiles por una interpretación directa por color. El técnico lee el tray bajo luz normal y cuenta los pocillos según el color.', ['Transparente o sin cambio de color: pocillo negativo', 'Pocillo amarillo: coliformes totales positivos', 'Pocillo verde o azul verdoso: E. coli positivo y también coliforme total positivo', 'Coliformes totales = pocillos amarillos + verdes; E. coli = pocillos verdes']],
+        ['Smart Cap: reactivo integrado', 'El Smart Cap incorpora el reactivo en el propio cierre del bote. El técnico ya no necesita abrir sobres, verter polvo manualmente ni gestionar residuos de reactivo separados por cada muestra.', ['Menos pasos repetitivos de preparación', 'Menor exposición a polvo suelto o derrames de reactivo', 'Activación más consistente entre técnicos', 'Stock y rutina más simples para laboratorios con alto volumen']],
+        ['Casos de uso por industria', 'El producto encaja en equipos que necesitan control rutinario de indicadores bacterianos con resultados claros y un flujo escalable a lotes repetidos de muestras.', ['Empresas municipales de agua: control rutinario de E. coli y coliformes totales', 'Laboratorios ambientales: productividad en lotes con alto volumen de muestras', 'Plantas de tratamiento: verificación y seguimiento de desviaciones', 'Alimentación y bebidas: agua de proceso, agua ingrediente, enjuagues, hielo y programas higiénicos', 'Agua agrícola, regenerada y acuicultura: seguimiento microbiológico preventivo dentro de matrices validadas']],
+        ['Calidad y uso regulatorio', 'ENUMERA® Coli 100 debe utilizarse dentro de las matrices, protocolos y criterios de aceptación definidos por el sistema de calidad de cada laboratorio. Para reporting regulatorio, confirma la aceptación del método en la jurisdicción y alcance de acreditación aplicables.', ['Diseñado para flujos de microbiología del agua con muestra de 100 mL', 'La evidencia de validación puede apoyar conversaciones sobre matrices, inclusividad, exclusividad, LOD y correlación', 'La ficha técnica vigente debe ser la referencia operativa', 'Los colífagos somáticos requieren métodos específicos y no son detectados por este kit']]
+      ],
+      faqs: [
+        ['¿ENUMERA® Coli 100 necesita luz ultravioleta?', 'No. La lectura se realiza por color visible bajo luz normal de laboratorio.'],
+        ['¿Qué significa un pocillo verde?', 'Un pocillo verde o azul verdoso indica presencia de E. coli. A efectos de recuento, también se contabiliza como coliforme total positivo.'],
+        ['¿Cómo se cuentan los coliformes totales?', 'Se suman todos los pocillos amarillos y verdes. Después se consulta la tabla NMP correspondiente. E. coli se cuenta a partir de los pocillos verdes.'],
+        ['¿Cuál es el tiempo de incubación?', 'El protocolo previsto es 18 horas a 35 °C. Debe seguirse siempre la ficha técnica vigente del producto.'],
+        ['¿Qué aporta el tapón Smart Cap?', 'El reactivo está integrado en el tapón del bote y entra en contacto con la muestra al cerrar, reduciendo pasos de adición manual de reactivo.'],
+        ['¿Detecta colífagos somáticos?', 'No. ENUMERA® Coli 100 está diseñado para E. coli y coliformes totales. Los colífagos somáticos requieren métodos específicos.'],
+        ['¿Sustituye a otros métodos regulatorios?', 'Depende de las matrices, protocolos y requisitos de validación aceptados por cada laboratorio y jurisdicción. Confirma la aceptación antes de reporting regulatorio.']
+      ]
+    },
+    fr: {
+      path: '/fr/produits/enumera-coli100',
+      title: 'ENUMERA® Coli 100: énumération E. coli et coliformes totaux sans UV',
+      description: 'ENUMERA® Coli 100 simplifie la microbiologie de l’eau avec libération de réactif Smart Cap, lecture chromogène par couleurs et énumération NPP en plateau multipuits pour Escherichia coli et coliformes totaux.',
+      cta: 'Demander une démonstration',
+      secondary: 'Voir la gamme ENUMERA',
+      datasheet: 'Demander la fiche technique',
+      seoTitle: 'ENUMERA Coli 100 | E. coli et coliformes totaux dans l’eau sans UV',
+      seoDescription: 'ENUMERA Coli 100 est un kit chromogène AquaVerify pour énumérer E. coli et coliformes totaux dans des échantillons d’eau de 100 mL, avec lecture visible et Smart Cap.',
+      sections: [
+        ['Qu’est-ce qu’ENUMERA® Coli 100 ?', 'ENUMERA® Coli 100 est un système d’analyse pour détecter et énumérer E. coli et les coliformes totaux dans des échantillons d’eau de 100 mL. Il s’adresse aux laboratoires, opérateurs d’eau, industries agroalimentaires et équipes qualité qui recherchent une routine pratique avec lecture visuelle claire.', ['Changement de couleur chromogène au lieu de fluorescence UV', 'Format multipuits pour énumération NPP', 'Dosage Smart Cap intégré dans la fermeture du flacon', 'Prêt à relier contexte échantillon, opérateur et résultat dans AquaVerify Cloud']],
+        ['Fonctionnement', 'Le flux est volontairement simple: ajouter l’échantillon, fermer le flacon Smart Cap, mélanger, remplir le plateau multipuits, incuber et lire les couleurs sous lumière normale de laboratoire.', ['Ajouter l’échantillon d’eau au flacon d’analyse', 'Fermer le Smart Cap pour mettre le réactif intégré en contact avec l’échantillon', 'Homogénéiser et répartir dans le plateau multipuits', 'Incuber à 35 °C pendant 18 heures selon la fiche technique en vigueur', 'Lire les couleurs visibles et utiliser la table NPP pour l’énumération']],
+        ['Interprétation visible', 'ENUMERA® Coli 100 remplace la recherche de fluorescences faibles par une interprétation directe par couleur. Le technicien lit le plateau sous lumière normale et compte les puits selon leur couleur.', ['Transparent ou sans changement de couleur: puits négatif', 'Puits jaune: coliformes totaux positifs', 'Puits vert ou bleu-vert: E. coli positif et également coliforme total positif', 'Coliformes totaux = puits jaunes + verts; E. coli = puits verts']],
+        ['Smart Cap: réactif intégré', 'Le Smart Cap incorpore le réactif dans la fermeture du flacon. Le technicien n’a plus besoin d’ouvrir des sachets, de verser de la poudre manuellement ou de gérer des déchets de réactif séparés pour chaque échantillon.', ['Moins d’étapes répétitives de préparation', 'Moins d’exposition aux poudres libres ou déversements de réactif', 'Activation plus cohérente entre techniciens', 'Stock et routine simplifiés pour laboratoires à haut volume']],
+        ['Cas d’usage par secteur', 'Le produit convient aux équipes qui doivent réaliser un contrôle routinier d’indicateurs bactériens avec résultats clairs et flux extensible à des lots répétés.', ['Services d’eau municipaux: contrôle routinier E. coli et coliformes totaux', 'Laboratoires environnementaux: productivité sur lots à volume élevé', 'Stations de traitement: vérification et suivi des écarts', 'Agroalimentaire: eau de procédé, eau ingrédient, rinçages, glace et programmes hygiène', 'Eaux agricoles, réutilisées et aquaculture: suivi microbiologique préventif dans matrices validées']],
+        ['Qualité et usage réglementaire', 'ENUMERA® Coli 100 doit être utilisé dans les matrices, protocoles et critères d’acceptation définis par le système qualité du laboratoire. Pour reporting réglementaire, confirmez l’acceptation de la méthode dans la juridiction et le périmètre d’accréditation applicables.', ['Conçu pour flux de microbiologie de l’eau avec échantillon 100 mL', 'Les preuves de validation peuvent soutenir les discussions sur matrices, inclusivité, exclusivité, LOD et corrélation', 'La fiche technique en vigueur reste la référence opérationnelle', 'Les coliphages somatiques exigent des méthodes spécifiques et ne sont pas détectés par ce kit']]
+      ],
+      faqs: [
+        ['ENUMERA® Coli 100 nécessite-t-il une lumière UV ?', 'Non. La lecture se fait par couleur visible sous lumière normale de laboratoire.'],
+        ['Que signifie un puits vert ?', 'Un puits vert ou bleu-vert indique E. coli. Pour le comptage, il est aussi compté comme coliforme total positif.'],
+        ['Comment compter les coliformes totaux ?', 'Additionnez tous les puits jaunes et verts, puis consultez la table NPP correspondante. E. coli est compté à partir des puits verts.'],
+        ['Quel est le temps d’incubation ?', 'Le protocole prévu est de 18 heures à 35 °C. Suivez toujours la fiche technique en vigueur.'],
+        ['Qu’apporte le Smart Cap ?', 'Le réactif est intégré dans le bouchon du flacon et entre en contact avec l’échantillon à la fermeture, réduisant les étapes d’ajout manuel.'],
+        ['Détecte-t-il les coliphages somatiques ?', 'Non. ENUMERA® Coli 100 est conçu pour E. coli et coliformes totaux. Les coliphages somatiques nécessitent des méthodes spécifiques.'],
+        ['Remplace-t-il d’autres méthodes réglementaires ?', 'Cela dépend des matrices, protocoles et exigences de validation acceptés par chaque laboratoire et juridiction. Confirmez l’acceptation avant reporting réglementaire.']
+      ]
+    },
+    it: {
+      path: '/it/prodotti/enumera-coli100',
+      title: 'ENUMERA® Coli 100: conteggio E. coli e coliformi totali senza UV',
+      description: 'ENUMERA® Coli 100 semplifica la microbiologia dell’acqua con rilascio reagente Smart Cap, lettura cromogenica a colori ed enumerazione MPN in tray multipietto per Escherichia coli e coliformi totali.',
+      cta: 'Richiedi una demo',
+      secondary: 'Vedi gamma ENUMERA',
+      datasheet: 'Richiedi scheda tecnica',
+      seoTitle: 'ENUMERA Coli 100 | E. coli e coliformi totali in acqua senza UV',
+      seoDescription: 'ENUMERA Coli 100 è un kit cromogenico AquaVerify per enumerare E. coli e coliformi totali in campioni d’acqua da 100 mL, con lettura visiva e Smart Cap.',
+      sections: [
+        ['Che cos’è ENUMERA® Coli 100?', 'ENUMERA® Coli 100 è un sistema di analisi per rilevare ed enumerare E. coli e coliformi totali in campioni d’acqua da 100 mL. È progettato per laboratori, operatori idrici, industrie alimentari e team qualità che necessitano di una routine pratica con interpretazione visiva chiara.', ['Cambio colore cromogenico invece di fluorescenza UV', 'Formato multipietto per enumerazione MPN', 'Dosaggio Smart Cap integrato nella chiusura del flacone', 'Pronto a collegare contesto campione, operatore e risultato in AquaVerify Cloud']],
+        ['Come funziona', 'Il workflow è volutamente semplice: aggiungere il campione, chiudere il flacone Smart Cap, miscelare, riempire il tray multipietto, incubare e leggere i colori con luce normale di laboratorio.', ['Aggiungi il campione d’acqua al flacone di analisi', 'Chiudi lo Smart Cap affinché il reagente integrato contatti il campione', 'Omogeneizza e distribuisci nel tray multipietto', 'Incuba a 35 °C per 18 ore seguendo la scheda tecnica vigente', 'Leggi i colori visibili e usa la tabella MPN per l’enumerazione']],
+        ['Interpretazione visibile', 'ENUMERA® Coli 100 sostituisce la ricerca di fluorescenze deboli con un’interpretazione diretta per colore. Il tecnico legge il tray con luce normale e conta i pozzetti in base al colore.', ['Trasparente o senza cambio colore: pozzetto negativo', 'Pozzetto giallo: coliformi totali positivi', 'Pozzetto verde o verde-blu: E. coli positivo e anche coliforme totale positivo', 'Coliformi totali = pozzetti gialli + verdi; E. coli = pozzetti verdi']],
+        ['Smart Cap: reagente integrato', 'Lo Smart Cap integra il reagente nella chiusura del flacone. Il tecnico non deve più aprire bustine, versare polvere manualmente o gestire rifiuti di reagente separati per ogni campione.', ['Meno passaggi ripetitivi di preparazione', 'Minore esposizione a polveri libere o versamenti di reagente', 'Attivazione più coerente tra tecnici', 'Stock e routine più semplici per laboratori ad alto volume']],
+        ['Casi d’uso per settore', 'Il prodotto si adatta a team che richiedono monitoraggio routinario di indicatori batterici con risultati chiari e workflow scalabile su lotti ripetuti.', ['Utility idriche municipali: controllo routinario E. coli e coliformi totali', 'Laboratori ambientali: produttività in lotti ad alto volume', 'Impianti di trattamento: verifica e follow-up delle deviazioni', 'Food & beverage: acqua di processo, acqua ingrediente, risciacqui, ghiaccio e programmi igienici', 'Acque agricole, rigenerate e acquacoltura: monitoraggio microbiologico preventivo in matrici validate']],
+        ['Qualità e uso regolatorio', 'ENUMERA® Coli 100 deve essere usato entro matrici, protocolli e criteri di accettazione definiti dal sistema qualità di ciascun laboratorio. Per reporting regolatorio, confermare l’accettazione del metodo nella giurisdizione e nello scopo di accreditamento applicabili.', ['Progettato per workflow di microbiologia dell’acqua con campione da 100 mL', 'Le evidenze di validazione possono supportare discussioni su matrici, inclusività, esclusività, LOD e correlazione', 'La scheda tecnica vigente resta il riferimento operativo', 'I colifagi somatici richiedono metodi specifici e non sono rilevati da questo kit']]
+      ],
+      faqs: [
+        ['ENUMERA® Coli 100 richiede luce ultravioletta?', 'No. La lettura avviene per colore visibile con luce normale di laboratorio.'],
+        ['Cosa significa un pozzetto verde?', 'Un pozzetto verde o verde-blu indica E. coli. Ai fini del conteggio, va contato anche come coliforme totale positivo.'],
+        ['Come si contano i coliformi totali?', 'Si sommano tutti i pozzetti gialli e verdi, poi si consulta la tabella MPN corrispondente. E. coli si conta dai pozzetti verdi.'],
+        ['Qual è il tempo di incubazione?', 'Il protocollo previsto è 18 ore a 35 °C. Seguire sempre la scheda tecnica vigente.'],
+        ['Cosa aggiunge lo Smart Cap?', 'Il reagente è integrato nel tappo del flacone ed entra in contatto con il campione alla chiusura, riducendo i passaggi di aggiunta manuale.'],
+        ['Rileva colifagi somatici?', 'No. ENUMERA® Coli 100 è progettato per E. coli e coliformi totali. I colifagi somatici richiedono metodi specifici.'],
+        ['Sostituisce altri metodi regolatori?', 'Dipende da matrici, protocolli e requisiti di validazione accettati da ciascun laboratorio e giurisdizione. Confermare l’accettazione prima del reporting regolatorio.']
+      ]
+    },
+    ca: {
+      path: '/ca/productes/enumera-coli100',
+      title: 'ENUMERA® Coli 100: recompte d’E. coli i coliformes totals sense UV',
+      description: 'ENUMERA® Coli 100 simplifica la microbiologia de l’aigua amb alliberament de reactiu Smart Cap, lectura cromogènica per colors i enumeració NMP en tray multipou per a Escherichia coli i coliformes totals.',
+      cta: 'Demanar una demostració',
+      secondary: 'Veure gamma ENUMERA',
+      datasheet: 'Sol·licitar fitxa tècnica',
+      seoTitle: 'ENUMERA Coli 100 | E. coli i coliformes totals en aigua sense UV',
+      seoDescription: 'ENUMERA Coli 100 és un kit cromogènic AquaVerify per enumerar E. coli i coliformes totals en mostres d’aigua de 100 mL, amb lectura visual i Smart Cap.',
+      sections: [
+        ['Què és ENUMERA® Coli 100?', 'ENUMERA® Coli 100 és un sistema d’anàlisi per detectar i enumerar E. coli i coliformes totals en mostres d’aigua de 100 mL. Està dissenyat per a laboratoris, operadors d’aigua, indústries alimentàries i equips de qualitat que necessiten una rutina pràctica amb interpretació visual clara.', ['Canvi de color cromogènic en lloc de fluorescència UV', 'Format multipou per a enumeració mitjançant NMP', 'Dosificació Smart Cap integrada al tancament del pot', 'Preparat per connectar context de mostra, operador i resultat a AquaVerify Cloud']],
+        ['Com funciona', 'El flux és deliberadament simple: afegir mostra, tancar el pot Smart Cap, barrejar, omplir el tray multipou, incubar i llegir els colors amb llum normal de laboratori.', ['Afegir la mostra d’aigua al pot d’anàlisi', 'Tancar l’Smart Cap perquè el reactiu integrat contacti amb la mostra', 'Homogeneïtzar i distribuir al tray multipou', 'Incubar a 35 °C durant 18 hores seguint la fitxa tècnica vigent', 'Llegir colors visibles i usar la taula NMP per a l’enumeració']],
+        ['Interpretació visible', 'ENUMERA® Coli 100 substitueix la recerca de fluorescències febles per una interpretació directa per color. El tècnic llegeix el tray amb llum normal i compta els pous segons el color.', ['Transparent o sense canvi de color: pou negatiu', 'Pou groc: coliformes totals positius', 'Pou verd o verd blavós: E. coli positiu i també coliforme total positiu', 'Coliformes totals = pous grocs + verds; E. coli = pous verds']],
+        ['Smart Cap: reactiu integrat', 'L’Smart Cap incorpora el reactiu al tancament del pot. El tècnic ja no necessita obrir sobres, abocar pols manualment ni gestionar residus de reactiu separats per cada mostra.', ['Menys passos repetitius de preparació', 'Menor exposició a pols solta o vessaments de reactiu', 'Activació més consistent entre tècnics', 'Estoc i rutina més simples per a laboratoris amb alt volum']],
+        ['Casos d’ús per indústria', 'El producte encaixa en equips que necessiten control rutinari d’indicadors bacterians amb resultats clars i un flux escalable a lots repetits de mostres.', ['Empreses municipals d’aigua: control rutinari d’E. coli i coliformes totals', 'Laboratoris ambientals: productivitat en lots amb alt volum de mostres', 'Plantes de tractament: verificació i seguiment de desviacions', 'Alimentació i begudes: aigua de procés, aigua ingredient, esbandides, gel i programes higiènics', 'Aigua agrícola, regenerada i aqüicultura: seguiment microbiològic preventiu dins de matrius validades']],
+        ['Qualitat i ús regulatori', 'ENUMERA® Coli 100 s’ha d’utilitzar dins de les matrius, protocols i criteris d’acceptació definits pel sistema de qualitat de cada laboratori. Per a reporting regulatori, confirma l’acceptació del mètode a la jurisdicció i abast d’acreditació aplicables.', ['Dissenyat per a fluxos de microbiologia de l’aigua amb mostra de 100 mL', 'L’evidència de validació pot donar suport a converses sobre matrius, inclusivitat, exclusivitat, LOD i correlació', 'La fitxa tècnica vigent ha de ser la referència operativa', 'Els colífags somàtics requereixen mètodes específics i no són detectats per aquest kit']]
+      ],
+      faqs: [
+        ['ENUMERA® Coli 100 necessita llum ultraviolada?', 'No. La lectura es fa per color visible amb llum normal de laboratori.'],
+        ['Què significa un pou verd?', 'Un pou verd o verd blavós indica presència d’E. coli. A efectes de recompte, també es comptabilitza com a coliforme total positiu.'],
+        ['Com es compten els coliformes totals?', 'Se sumen tots els pous grocs i verds. Després es consulta la taula NMP corresponent. E. coli es compta a partir dels pous verds.'],
+        ['Quin és el temps d’incubació?', 'El protocol previst és 18 hores a 35 °C. Cal seguir sempre la fitxa tècnica vigent del producte.'],
+        ['Què aporta el tap Smart Cap?', 'El reactiu està integrat al tap del pot i entra en contacte amb la mostra en tancar, reduint passos d’addició manual de reactiu.'],
+        ['Detecta colífags somàtics?', 'No. ENUMERA® Coli 100 està dissenyat per a E. coli i coliformes totals. Els colífags somàtics requereixen mètodes específics.'],
+        ['Substitueix altres mètodes regulatoris?', 'Depèn de les matrius, protocols i requisits de validació acceptats per cada laboratori i jurisdicció. Confirma l’acceptació abans del reporting regulatori.']
+      ]
+    }
+  };
+  const copy = copyByLang[lang] || copyByLang.en;
+
+  return locale(
+    copy.path,
+    copy.title,
+    copy.description,
+    copy.sections.map(([title, body, bullets]) => section(title, body, bullets)),
+    {
+      eyebrow: 'ENUMERA',
+      primaryCta: copy.cta,
+      secondaryCta: copy.secondary,
+      datasheetLabel: copy.datasheet,
+      seoTitle: copy.seoTitle,
+      seoDescription: copy.seoDescription,
+      faqs: copy.faqs.map(([question, answer]) => ({ question, answer })),
+      whitepaper: enumeraColi100Whitepaper(lang),
+      ...assets
+    }
+  );
+}
+
 function buildProductLocale(product, lang) {
+  if (product.id === 'enumera-coli100') {
+    return buildEnumeraColi100Locale(lang);
+  }
+
   const labels = PRODUCT_UI[lang];
   const family = i18n(FAMILY_LABELS[product.parentId], lang);
   const productType = i18n(product.type, lang);

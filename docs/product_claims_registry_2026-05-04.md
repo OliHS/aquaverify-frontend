@@ -23,10 +23,10 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 
 ## Puntos a Validar
 
-- `ENUMERAColi100` aparece en el documento de gama como "Enterocci in 100 mL of water".
+- `ENUMERA Coli 100` queda confirmado con documentacion comercial adicional recibida el 2026-05-08 como producto para E. coli y coliformes totales en 100 mL, con lectura cromogenica visible sin UV.
 - `ENUMERAEntero100` aparece en el documento de gama como "Escherichia coli and total coliforms in 100 mL of water".
-- Antes de cerrar naming publico definitivo, confirmar si los nombres o las descripciones estan invertidos.
-- Mientras no se valide, las paginas publicas de `ENUMERA Coli100` y `ENUMERA Entero100` usan wording generico de indicadores bacterianos y no publican el parametro especifico.
+- Antes de cerrar naming publico definitivo de `ENUMERA Entero100`, confirmar si nombre o descripcion siguen invertidos.
+- Mientras no se valide `ENUMERA Entero100`, su pagina publica usa wording generico de indicadores bacterianos y no publica el parametro especifico.
 - Confirmar si se puede usar `Smart Cap`, `Smart Cap System` y cualquier claim de propiedad intelectual.
 
 ## Tabla Maestra Inicial
@@ -34,7 +34,7 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 | Familia | Subfamilia | Producto | Descripcion fuente | Wording publico seguro | Estado |
 | --- | --- | --- | --- | --- | --- |
 | ENUMERA | ENUMERA KITS | ENUMERA Soma100 | Enumeration of somatic coliphages in 100 mL water | Quantitative kit for somatic coliphage enumeration workflows in 100 mL water samples. | Revisar evidencia |
-| ENUMERA | ENUMERA KITS | ENUMERA Coli100 | Enumeration of Enterocci in 100 mL water | Quantitative kit for bacterial indicator enumeration workflows. Parameter mapping pending validation. | Naming/descripcion pendiente |
+| ENUMERA | ENUMERA KITS | ENUMERA Coli100 | Enumeration of E. coli and total coliforms in 100 mL water with visible chromogenic reading | Quantitative kit for E. coli and total coliform enumeration workflows in 100 mL water samples, with Smart Cap reagent delivery and no UV reading step. | Revisar evidencia |
 | ENUMERA | ENUMERA KITS | ENUMERA Entero100 | Enumeration of E. coli and total coliforms in 100 mL water | Quantitative kit for bacterial indicator enumeration workflows. Parameter mapping pending validation. | Naming/descripcion pendiente |
 | ENUMERA | ENUMERA REFILL | Soma Bottle 100 | Bottle with MCB10 Medium | Refill bottle for ENUMERA Soma workflows. | Revisar evidencia |
 | ENUMERA | ENUMERA REFILL | Coli Bottle 100 | Bottle with Coli Medium | Refill bottle for ENUMERA bacterial indicator workflows. | Revisar evidencia |
@@ -77,7 +77,7 @@ Objetivo: mantener una tabla maestra de producto y claims para que la web corpor
 
 - Public copy de la web ajustado a wording seguro el 2026-05-04.
 - CMS auditado contra contenido vivo en Supabase; bloques editables de home limpiados el 2026-05-04.
-- Paginas marketing de `ENUMERA Coli100` y `ENUMERA Entero100` protegidas con proyeccion publica generica hasta validacion de parametro/naming.
+- Pagina marketing de `ENUMERA Coli100` actualizada el 2026-05-08 con contenido especifico para E. coli y coliformes totales; `ENUMERA Entero100` sigue protegida con proyeccion publica generica hasta validacion de parametro/naming.
 - Product Manager preparado para corregir las filas legacy del catalogo desde sesion admin.
 - Pendiente operativo: corregir en admin autenticado los registros legacy de catalogo `Certified Standards`, `AquaVerify Academy` y `services.use_cases`.
 - Falta aprobacion tecnico/legal final de naming, claims y referencias ISO/EPA.

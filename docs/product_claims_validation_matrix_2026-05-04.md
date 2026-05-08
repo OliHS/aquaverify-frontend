@@ -7,10 +7,10 @@ Objetivo: convertir la tabla maestra provisional en una cola de aprobacion tecni
 ## Resumen
 
 - Asset/specification review required: 7
-- Evidence review required: 7
+- Evidence review required: 8
 - Handling/storage evidence required: 5
 - Method wording approval required: 6
-- Naming/parameter approval required: 2
+- Naming/parameter approval required: 1
 - Technical datasheet evidence required: 4
 
 ## Matriz
@@ -18,7 +18,7 @@ Objetivo: convertir la tabla maestra provisional en una cola de aprobacion tecni
 | ID | Familia | Subfamilia | Producto | Parametro publico | Metodo / flujo | Volumen | Formato | Estado | Siguiente accion | Wording publico seguro |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | enumera-soma100 | ENUMERA | ENUMERA Kits | ENUMERA Soma100 | somatic coliphages | ENUMERA quantitative workflow | 100 mL | Kit | Evidence review required | Attach evidence pack or approved datasheet before strengthening public wording. | ENUMERA Soma100 is presented publicly as an AquaVerify quantitative kit for somatic coliphages in water microbiology workflows. |
-| enumera-coli100 | ENUMERA | ENUMERA Kits | ENUMERA Coli100 | bacterial indicator workflows pending final parameter validation | ENUMERA quantitative workflow | 100 mL | Kit | Naming/parameter approval required | Confirm whether name and source description are inverted before publishing specific microorganism claims. | ENUMERA Coli100 is presented publicly as an AquaVerify quantitative kit for bacterial indicator workflows pending final parameter validation in water microbiology workflows. |
+| enumera-coli100 | ENUMERA | ENUMERA Kits | ENUMERA Coli100 | Escherichia coli and total coliforms | UV-free chromogenic MPN tray workflow | 100 mL | Kit | Evidence review required | Attach evidence pack or approved datasheet before strengthening public wording. | ENUMERA Coli100 is presented publicly as an AquaVerify quantitative kit for Escherichia coli and total coliforms in water microbiology workflows. |
 | enumera-entero100 | ENUMERA | ENUMERA Kits | ENUMERA Entero100 | bacterial indicator workflows pending final parameter validation | ENUMERA quantitative workflow | 100 mL | Kit | Naming/parameter approval required | Confirm whether name and source description are inverted before publishing specific microorganism claims. | ENUMERA Entero100 is presented publicly as an AquaVerify quantitative kit for bacterial indicator workflows pending final parameter validation in water microbiology workflows. |
 | soma-bottle-100 | ENUMERA | ENUMERA Refill | Soma Bottle 100 | somatic coliphages | MCB10 medium refill workflow | 100 mL | Bottle | Evidence review required | Attach evidence pack or approved datasheet before strengthening public wording. | Soma Bottle 100 is presented publicly as an AquaVerify refill for somatic coliphages in water microbiology workflows. |
 | coli-bottle-100 | ENUMERA | ENUMERA Refill | Coli Bottle 100 | Escherichia coli and total coliforms | Coli medium refill workflow | 100 mL | Bottle | Evidence review required | Attach evidence pack or approved datasheet before strengthening public wording. | Coli Bottle 100 is presented publicly as an AquaVerify refill for Escherichia coli and total coliforms in water microbiology workflows. |

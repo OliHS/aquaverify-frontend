@@ -14,7 +14,7 @@ const FAMILY_LABELS = {
   'lab-essentials': 'Lab Essentials'
 };
 
-const AMBIGUOUS_PRODUCT_IDS = new Set(['enumera-coli100', 'enumera-entero100']);
+const AMBIGUOUS_PRODUCT_IDS = new Set(['enumera-entero100']);
 
 function text(value) {
   if (typeof value === 'string') return value;

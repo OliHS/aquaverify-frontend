@@ -29,8 +29,8 @@ export const BLOCKED_PRODUCT_CLAIM_RULES = [
 export const REVIEW_PRODUCT_CLAIM_RULES = [
   {
     name: 'enumera_coli100_mapping_review',
-    pattern: /ENUMERA\s*Coli100[\s\S]{0,160}(E\.?\s*coli|enterococc|enterocci)/i,
-    guidance: 'Review Coli100 parameter mapping against the approved product master.'
+    pattern: /ENUMERA\s*Coli\s*100[\s\S]{0,160}(enterococc|enterocci)/i,
+    guidance: 'Review Coli100 copy if it is mapped to enterococci instead of E. coli and total coliforms.'
   },
   {
     name: 'enumera_entero100_mapping_review',

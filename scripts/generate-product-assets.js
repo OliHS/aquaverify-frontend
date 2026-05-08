@@ -215,7 +215,7 @@ function datasheetHtml(page, lang) {
   const style = familyStyle(page);
   const title = content.seoTitle || content.title;
   const sections = content.sections || [];
-  const heroImage = getProductHeroImagePath(page.id);
+  const heroImage = content.heroImage || getProductHeroImagePath(page.id);
   const productPageUrl = absoluteProductPath(content);
   const quoteUrl = `https://app.aquaverify.com/signup?source=corporate&intent=quote&page=${encodeURIComponent(page.id)}&lang=${encodeURIComponent(lang)}`;
 
