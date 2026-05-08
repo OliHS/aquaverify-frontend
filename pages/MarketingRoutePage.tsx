@@ -36,13 +36,7 @@ type MarketingPageMeta = {
 };
 
 const UI_LABELS: Record<Language, {
-  bridgeEyebrow: string;
-  bridgeTitle: string;
-  bridgeBody: string;
   products: string;
-  platform: string;
-  oem: string;
-  distributors: string;
   relatedPages: string;
   nextStep: string;
   talkToAquaVerify: string;
@@ -50,13 +44,7 @@ const UI_LABELS: Record<Language, {
   screenshotsTitle: string;
 }> = {
   en: {
-    bridgeEyebrow: 'AquaVerify',
-    bridgeTitle: 'Products + platform',
-    bridgeBody: 'AquaVerify connects water microbiology products, OEM distribution and cloud workflows so visitors can move from research to the right product, partner or platform path.',
     products: 'Products',
-    platform: 'Platform',
-    oem: 'OEM',
-    distributors: 'Distributors',
     relatedPages: 'Related pages',
     nextStep: 'Next step',
     talkToAquaVerify: 'Talk to AquaVerify',
@@ -64,13 +52,7 @@ const UI_LABELS: Record<Language, {
     screenshotsTitle: 'Product screens'
   },
   es: {
-    bridgeEyebrow: 'AquaVerify',
-    bridgeTitle: 'Productos + plataforma',
-    bridgeBody: 'AquaVerify conecta productos de microbiología del agua, distribución OEM y flujos cloud para que cada visitante pase de la investigación a la ruta adecuada: producto, partner o plataforma.',
     products: 'Productos',
-    platform: 'Plataforma',
-    oem: 'OEM',
-    distributors: 'Distribuidores',
     relatedPages: 'Páginas relacionadas',
     nextStep: 'Siguiente paso',
     talkToAquaVerify: 'Hablar con AquaVerify',
@@ -78,13 +60,7 @@ const UI_LABELS: Record<Language, {
     screenshotsTitle: 'Pantallas reales'
   },
   fr: {
-    bridgeEyebrow: 'AquaVerify',
-    bridgeTitle: 'Produits + plateforme',
-    bridgeBody: 'AquaVerify connecte produits de microbiologie de l’eau, distribution OEM et flux cloud afin que chaque visiteur passe de la recherche au bon parcours: produit, partenaire ou plateforme.',
     products: 'Produits',
-    platform: 'Plateforme',
-    oem: 'OEM',
-    distributors: 'Distributeurs',
     relatedPages: 'Pages associées',
     nextStep: 'Étape suivante',
     talkToAquaVerify: 'Parler à AquaVerify',
@@ -92,13 +68,7 @@ const UI_LABELS: Record<Language, {
     screenshotsTitle: 'Écrans produit'
   },
   it: {
-    bridgeEyebrow: 'AquaVerify',
-    bridgeTitle: 'Prodotti + piattaforma',
-    bridgeBody: 'AquaVerify collega prodotti di microbiologia dell’acqua, distribuzione OEM e flussi cloud affinché ogni visitatore passi dalla ricerca al percorso corretto: prodotto, partner o piattaforma.',
     products: 'Prodotti',
-    platform: 'Piattaforma',
-    oem: 'OEM',
-    distributors: 'Distributori',
     relatedPages: 'Pagine correlate',
     nextStep: 'Passo successivo',
     talkToAquaVerify: 'Parla con AquaVerify',
@@ -106,13 +76,7 @@ const UI_LABELS: Record<Language, {
     screenshotsTitle: 'Schermate prodotto'
   },
   ca: {
-    bridgeEyebrow: 'AquaVerify',
-    bridgeTitle: 'Productes + plataforma',
-    bridgeBody: 'AquaVerify connecta productes de microbiologia de l’aigua, distribució OEM i fluxos cloud perquè cada visitant passi de la recerca a la ruta adequada: producte, partner o plataforma.',
     products: 'Productes',
-    platform: 'Plataforma',
-    oem: 'OEM',
-    distributors: 'Distribuïdors',
     relatedPages: 'Pàgines relacionades',
     nextStep: 'Següent pas',
     talkToAquaVerify: 'Parlar amb AquaVerify',
@@ -711,7 +675,6 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   const secondaryUrl = getMarketingPagePath(secondaryId, pageLang);
   const relatedPages = getRelatedMarketingPages(page.id, pageLang);
   const labels = UI_LABELS[pageLang] || UI_LABELS.en;
-  const showBridgeAside = page.category !== 'resources';
   const featuredWhitepapers = page.id === 'resources'
     ? FEATURED_WHITEPAPER_IDS
       .map((id) => getMarketingPageSummary(id, pageLang))
@@ -720,8 +683,11 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   const breadcrumbs = buildMarketingBreadcrumbs(page, contentMeta, pageLang, labels);
   const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
   const heroImageClass = contentMeta.heroImageFit === 'contain'
-    ? 'h-full max-h-[420px] w-full bg-white object-contain p-4'
+    ? 'h-full max-h-[420px] w-full object-contain'
     : 'h-full max-h-[420px] w-full object-cover';
+  const heroImageFrameClass = contentMeta.heroImageFit === 'contain'
+    ? 'overflow-visible'
+    : 'overflow-hidden rounded-md border border-white/15 bg-white/5';
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
   const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
   const galleryItems = (contentMeta.gallery || [])
@@ -839,7 +805,7 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
               </div>
             </div>
             {heroImageUrl && (
-              <div className="overflow-hidden rounded-md border border-white/15 bg-white/5">
+              <div className={heroImageFrameClass}>
                 <EditableMarketingImage
                   path="heroImage"
                   src={heroImageUrl}
@@ -856,26 +822,8 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
         </section>
 
         <section className="bg-white py-16 md:py-20">
-          <div className={`container mx-auto grid gap-8 px-6 ${showBridgeAside ? 'lg:grid-cols-[0.8fr_1.2fr]' : ''}`}>
-            {showBridgeAside && (
-              <aside className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
-                <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">{labels.bridgeEyebrow}</div>
-                <h2 className="mt-3 font-heading text-2xl font-black text-primary">
-                  {labels.bridgeTitle}
-                </h2>
-                <p className="mt-3 text-sm leading-6 text-slate-600">
-                  {labels.bridgeBody}
-                </p>
-                <div className="mt-6 grid gap-2 text-sm font-bold text-slate-700">
-                  <Link className="hover:text-primary" to={getMarketingPagePath('products', pageLang)}>{labels.products}</Link>
-                  <Link className="hover:text-primary" to={getMarketingPagePath('platform', pageLang)}>{labels.platform}</Link>
-                  <Link className="hover:text-primary" to={getMarketingPagePath('oem', pageLang)}>{labels.oem}</Link>
-                  <Link className="hover:text-primary" to={getMarketingPagePath('distributors', pageLang)}>{labels.distributors}</Link>
-                </div>
-              </aside>
-            )}
-
-            <div className={`space-y-8 ${showBridgeAside ? '' : 'mx-auto w-full max-w-5xl'}`}>
+          <div className="container mx-auto max-w-5xl px-6">
+            <div className="space-y-8">
               <FeaturedWhitepapersBlock lang={pageLang} items={featuredWhitepapers} />
               {content.sections.map((section: any, index: number) => (
                 <article key={`${section.title}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">

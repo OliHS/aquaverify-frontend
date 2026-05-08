@@ -337,7 +337,7 @@ function renderStaticRoot(meta) {
     '      <p style="margin: 0 0 12px; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;">AquaVerify</p>',
     `      <h1 style="margin: 0; max-width: 860px; font-size: 42px; line-height: 1.08;">${escapeHtml(title)}</h1>`,
     `      <p style="margin: 20px 0 0; max-width: 760px; font-size: 18px; line-height: 1.7;">${escapeHtml(description)}</p>`,
-    heroImage ? `      <img src="${escapeHtml(heroImage)}" alt="${escapeHtml(content?.heroImageAlt || title)}" style="display: block; max-width: 560px; width: 100%; margin-top: 28px; border: 1px solid rgba(255,255,255,.22); background: #ffffff;" />` : '',
+    heroImage ? `      <img src="${escapeHtml(heroImage)}" alt="${escapeHtml(content?.heroImageAlt || title)}" style="display: block; max-width: 560px; width: 100%; max-height: 460px; object-fit: contain; margin-top: 28px;" />` : '',
     '      <p style="margin: 28px 0 0;">',
     `        <a href="${escapeHtml(canonicalUrl)}" style="color: #ffffff; font-weight: 800;">${escapeHtml(title)}</a>`,
     datasheetUrl ? `        <a href="${escapeHtml(datasheetUrl)}" style="color: #ffffff; font-weight: 800; margin-left: 18px;">${escapeHtml(content?.datasheetLabel || 'Datasheet')}</a>` : '',
