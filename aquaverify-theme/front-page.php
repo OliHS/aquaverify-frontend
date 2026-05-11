@@ -63,7 +63,7 @@ get_header(); ?>
                 <div class="lg:w-1/2 bg-surface px-8 lg:px-20 py-20 flex flex-col justify-center relative">
                     <div class="relative z-10 w-full max-w-xl mx-auto">
                         <div class="relative w-full aspect-[4/3] min-h-[300px]">
-                            <img src="https://tmttuszlxgrpzovmntoa.supabase.co/storage/v1/object/public/images/koysa1xep3m_1772472595932.png" alt="AquaVerify LIMS dashboard" class="absolute inset-0 w-full h-full object-contain object-center block" />
+                            <video class="absolute inset-0 w-full h-full object-contain object-center block" src="/videos/enumera-tray-video.mp4" autoplay muted loop playsinline aria-label="ENUMERA tray color reading workflow"></video>
                         </div>
 
                         <div class="mt-8 text-right lg:text-left">

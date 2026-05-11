@@ -366,6 +366,17 @@ const VisualBuilderInner: React.FC = () => {
                                         onChange={e => handleBlockChange('hero', 'desc', e.target.value, lang)}
                                     />
                                 </div>
+                                <div>
+                                    <label className="block text-xs font-medium text-slate-700 mb-1">Hero video URL</label>
+                                    <input
+                                        type="text"
+                                        className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                        value={getRawValue('hero', 'video')}
+                                        onChange={e => handleBlockChange('hero', 'video', e.target.value)}
+                                        placeholder="/videos/enumera-tray-video.mp4"
+                                    />
+                                    <p className="mt-1 text-[11px] leading-4 text-slate-400">MP4 en autoplay, sin sonido y en bucle. Dejar vacío usa el video por defecto.</p>
+                                </div>
                             </div>
 
                             <div className="space-y-4 pt-4 border-t border-slate-200">

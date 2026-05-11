@@ -2,10 +2,10 @@ import React from 'react';
 import { ArrowRight, Activity } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { usePageContent } from '../context/PageContentContext';
-import { EditableImage } from './admin/EditableImage';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
-import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
+
+const HERO_TRAY_VIDEO = '/videos/enumera-tray-video.mp4';
 
 export const Hero: React.FC = () => {
   const { t } = useLanguage();
@@ -16,6 +16,9 @@ export const Hero: React.FC = () => {
   const heroSubtitleHtml = heroBlock.subtitle || t.hero.subtitle;
   const heroDescHtml = heroBlock.desc || 'AquaVerify bridges the gap between physical water analysis and digital truth. From our advanced biotech consumable kits to our immutable cloud platform, we deliver the world\'s most reliable decentralized water quality data.';
   const heroBtnText = heroBlock.btn_text || t.hero.explore || 'Explore Solutions';
+  const heroVideoSrc = typeof heroBlock.video === 'string' && heroBlock.video.trim()
+    ? heroBlock.video.trim()
+    : HERO_TRAY_VIDEO;
 
   return (
     <section className="relative pt-24 min-h-[90vh] flex flex-col lg:flex-row overflow-hidden">
@@ -77,12 +80,15 @@ export const Hero: React.FC = () => {
       >
         <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col h-full justify-center">
           <div className="relative w-full aspect-[4/3] min-h-[300px]">
-            <EditableImage
-              sectionId="hero"
-              field="image"
-              fallbackSrc={IMAGE_FALLBACKS.heroLimsDashboard}
-              alt="AquaVerify LIMS dashboard"
-              className="absolute inset-0 w-full h-full object-contain object-center block"
+            <video
+              className="absolute inset-0 h-full w-full object-contain object-center"
+              src={heroVideoSrc}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-label="ENUMERA tray color reading workflow"
             />
           </div>
 

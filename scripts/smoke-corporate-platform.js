@@ -386,8 +386,8 @@ async function run() {
   await check('corporate bundle does not use random image fallbacks', async () => {
     assert(!mainAssetText.includes('picsum.photos'), 'Random image fallback host is still present in corporate bundle');
     assert(
-      mainAssetText.includes('koysa1xep3m_1772472595932.png'),
-      'Stable AquaVerify LIMS dashboard fallback is missing from corporate bundle'
+      mainAssetText.includes('/videos/enumera-tray-video.mp4'),
+      'Stable ENUMERA tray hero video fallback is missing from corporate bundle'
     );
   });
 
@@ -399,12 +399,20 @@ async function run() {
     assert(saasSectionText.includes('saas-biotech'), 'Home platform teaser does not resolve the SaaS landing route id');
     assert(saasSectionText.includes('saasLims'), 'Home platform teaser does not reference the local LIMS screenshot key');
     assert(saasSectionText.includes('saasCrm'), 'Home platform teaser does not reference the local CRM screenshot key');
+    const imageFallbackAssetMatch =
+      mainAssetText.match(/assets\/imageFallbacks-[^"',)]+\.js/) ||
+      saasSectionText.match(/(?:assets\/)?imageFallbacks-[^"',)]+\.js/);
+    assert(imageFallbackAssetMatch, 'Image fallback asset reference missing from corporate bundle');
+    const imageFallbackAssetPath = imageFallbackAssetMatch[0].startsWith('assets/')
+      ? imageFallbackAssetMatch[0]
+      : `assets/${imageFallbackAssetMatch[0]}`;
+    const { text: imageFallbackText } = await getText(`${CORPORATE_SITE_URL}/${imageFallbackAssetPath}`);
     assert(
-      mainAssetText.includes('/images/platform/saas/aquaverify-lims-dashboard.jpg'),
+      imageFallbackText.includes('/images/platform/saas/aquaverify-lims-dashboard.jpg'),
       'Local LIMS screenshot path is missing from the corporate bundle'
     );
     assert(
-      mainAssetText.includes('/images/platform/saas/aquaverify-crm-customer-360.jpg'),
+      imageFallbackText.includes('/images/platform/saas/aquaverify-crm-customer-360.jpg'),
       'Local CRM screenshot path is missing from the corporate bundle'
     );
   });
