@@ -273,7 +273,7 @@ export const ProductSection: React.FC = () => {
                   alt="AquaVerify Smart Cap technology"
                   className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105 block"
                 />
-                <div className="absolute bottom-6 left-6 bg-primary/90 backdrop-blur px-5 py-2 rounded-full shadow-lg border border-white/20">
+                <div className="absolute right-6 top-6 bg-primary/90 backdrop-blur px-5 py-2 rounded-full shadow-lg border border-white/20">
                   <span className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
                     <Zap size={14} className="text-secondary" /> {t.products.flagshipBadge}
                   </span>
