@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, Navigate, useLocation } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronRight, Download, Loader2, Upload } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Download, Loader2, Upload } from 'lucide-react';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
@@ -653,6 +653,124 @@ const EditableMarketingImage: React.FC<EditableMarketingImageProps> = ({
   );
 };
 
+type HeroCarouselItem = {
+  src: string;
+  alt: string;
+  title?: string;
+  body?: string;
+  sourceIndex: number;
+};
+
+const HeroScreenshotCarousel: React.FC<{
+  items: HeroCarouselItem[];
+  isEditing?: boolean;
+  onImageChange?: (path: string, value: string) => void;
+  uploadImage?: (file: File) => Promise<string | null>;
+}> = ({
+  items,
+  isEditing = false,
+  onImageChange,
+  uploadImage
+}) => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const safeItems = items.filter((item) => item.src && item.alt);
+  const activeItem = safeItems[activeIndex] || safeItems[0];
+
+  useEffect(() => {
+    if (activeIndex >= safeItems.length) {
+      setActiveIndex(0);
+    }
+  }, [activeIndex, safeItems.length]);
+
+  useEffect(() => {
+    if (isEditing || safeItems.length < 2) return undefined;
+    const timer = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % safeItems.length);
+    }, 4200);
+    return () => window.clearInterval(timer);
+  }, [isEditing, safeItems.length]);
+
+  if (!activeItem) return null;
+
+  const goToPrevious = () => {
+    setActiveIndex((current) => (current - 1 + safeItems.length) % safeItems.length);
+  };
+
+  const goToNext = () => {
+    setActiveIndex((current) => (current + 1) % safeItems.length);
+  };
+
+  return (
+    <div className="overflow-hidden rounded-2xl border border-white/15 bg-white/10 p-2 shadow-2xl">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-xl bg-slate-950/20">
+        {safeItems.map((item, index) => (
+          <div
+            key={`${item.src}-${item.sourceIndex}`}
+            className={`absolute inset-0 transition-opacity duration-700 ${index === activeIndex ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
+            aria-hidden={index !== activeIndex}
+          >
+            <EditableMarketingImage
+              path={`gallery.${item.sourceIndex}.src`}
+              src={item.src}
+              alt={item.alt}
+              loading={index === 0 ? 'eager' : 'lazy'}
+              decoding="async"
+              className="h-full w-full bg-white object-contain object-top"
+              isEditing={isEditing}
+              onImageChange={onImageChange}
+              uploadImage={uploadImage}
+            />
+          </div>
+        ))}
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/90 via-primary/55 to-transparent px-5 pb-4 pt-14">
+          <div className="min-h-[3rem]">
+            {activeItem.title && (
+              <p className="text-sm font-black text-white">{activeItem.title}</p>
+            )}
+            {activeItem.body && (
+              <p className="mt-1 line-clamp-2 text-xs font-semibold leading-5 text-cyan-50/85">{activeItem.body}</p>
+            )}
+          </div>
+        </div>
+
+        {safeItems.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={goToPrevious}
+              className="absolute left-3 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-primary/75 text-white shadow-lg backdrop-blur transition hover:bg-secondary"
+              aria-label="Previous platform screen"
+            >
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <button
+              type="button"
+              onClick={goToNext}
+              className="absolute right-3 top-1/2 inline-flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-primary/75 text-white shadow-lg backdrop-blur transition hover:bg-secondary"
+              aria-label="Next platform screen"
+            >
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <div className="absolute right-4 top-4 flex gap-1.5">
+              {safeItems.map((item, index) => (
+                <button
+                  key={`${item.src}-dot`}
+                  type="button"
+                  onClick={() => setActiveIndex(index)}
+                  className={`h-2.5 rounded-full transition-all ${index === activeIndex ? 'w-7 bg-secondary' : 'w-2.5 bg-white/70 hover:bg-white'}`}
+                  aria-label={`Go to platform screen ${index + 1}`}
+                  aria-current={index === activeIndex ? 'true' : undefined}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
 const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   page,
   content,
@@ -697,6 +815,7 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
       src: toPublicAssetUrl(item.src)
     }))
     .filter((item) => item.src && item.alt);
+  const shouldUseHeroCarousel = page.id === 'platform' && galleryItems.length > 1;
   const handleDatasheetClick = () => {
     trackCorporateEvent('datasheet_click', {
       lang: pageLang,
@@ -804,7 +923,14 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
                 )}
               </div>
             </div>
-            {heroImageUrl && (
+            {shouldUseHeroCarousel ? (
+              <HeroScreenshotCarousel
+                items={galleryItems}
+                isEditing={isEditing}
+                onImageChange={onImageChange}
+                uploadImage={uploadImage}
+              />
+            ) : heroImageUrl && (
               <div className={heroImageFrameClass}>
                 <EditableMarketingImage
                   path="heroImage"

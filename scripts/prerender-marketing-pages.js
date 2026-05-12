@@ -276,6 +276,43 @@ function renderWhitepaperDeepDive(whitepaper) {
   ].filter(Boolean).join('\n');
 }
 
+function renderHeroVisual(meta, content, title) {
+  const heroImage = content?.heroImage ? absoluteAsset(content.heroImage) : '';
+  const platformGallery = meta?.page?.id === 'platform' && Array.isArray(content?.gallery)
+    ? content.gallery
+      .filter((item) => item?.src && item?.alt)
+      .slice(0, 5)
+      .map((item) => ({
+        ...item,
+        src: absoluteAsset(item.src)
+      }))
+    : [];
+
+  if (platformGallery.length > 1) {
+    const [featured, ...thumbs] = platformGallery;
+    return [
+      '      <div data-prerender-platform-carousel style="margin-top: 28px; max-width: 620px; border: 1px solid rgba(255,255,255,.18); border-radius: 22px; background: rgba(255,255,255,.1); padding: 10px;">',
+      '        <div style="position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 16px; background: #ffffff;">',
+      `          <img src="${escapeHtml(featured.src)}" alt="${escapeHtml(featured.alt || title)}" style="display: block; width: 100%; height: 100%; object-fit: contain; object-position: top center;" />`,
+      '          <div style="position: absolute; inset: auto 0 0 0; padding: 44px 18px 16px; background: linear-gradient(to top, rgba(10,79,125,.92), rgba(10,79,125,.52), rgba(10,79,125,0));">',
+      featured.title ? `            <p style="margin: 0; font-weight: 800; color: #ffffff;">${escapeHtml(featured.title)}</p>` : '',
+      featured.body ? `            <p style="margin: 4px 0 0; font-size: 13px; line-height: 1.5; color: rgba(236,254,255,.88);">${escapeHtml(featured.body)}</p>` : '',
+      '          </div>',
+      '        </div>',
+      thumbs.length ? [
+        '        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin-top: 8px;">',
+        ...thumbs.map((item) => `          <img src="${escapeHtml(item.src)}" alt="${escapeHtml(item.alt || title)}" style="display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top center; border-radius: 10px; background: #ffffff;" />`),
+        '        </div>'
+      ].join('\n') : '',
+      '      </div>'
+    ].filter(Boolean).join('\n');
+  }
+
+  return heroImage
+    ? `      <img src="${escapeHtml(heroImage)}" alt="${escapeHtml(content?.heroImageAlt || title)}" style="display: block; max-width: 560px; width: 100%; max-height: 460px; object-fit: contain; margin-top: 28px;" />`
+    : '';
+}
+
 function renderPrerenderShell() {
   return [
     '<div data-prerender-shell aria-hidden="true" style="min-height: 100vh; background: #ffffff; color: #0f172a; font-family: Inter, Arial, sans-serif;">',
@@ -326,7 +363,6 @@ function renderStaticRoot(meta) {
   const title = content?.title || meta.title;
   const description = content?.description || meta.description;
   const canonicalUrl = absolute(meta.canonicalPath || content?.path || '/');
-  const heroImage = content?.heroImage ? absoluteAsset(content.heroImage) : '';
   const datasheetUrl = content?.datasheetUrl ? externalOrAbsolute(content.datasheetUrl) : '';
 
   return [
@@ -337,7 +373,7 @@ function renderStaticRoot(meta) {
     '      <p style="margin: 0 0 12px; font-size: 12px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase;">AquaVerify</p>',
     `      <h1 style="margin: 0; max-width: 860px; font-size: 42px; line-height: 1.08;">${escapeHtml(title)}</h1>`,
     `      <p style="margin: 20px 0 0; max-width: 760px; font-size: 18px; line-height: 1.7;">${escapeHtml(description)}</p>`,
-    heroImage ? `      <img src="${escapeHtml(heroImage)}" alt="${escapeHtml(content?.heroImageAlt || title)}" style="display: block; max-width: 560px; width: 100%; max-height: 460px; object-fit: contain; margin-top: 28px;" />` : '',
+    renderHeroVisual(meta, content, title),
     '      <p style="margin: 28px 0 0;">',
     `        <a href="${escapeHtml(canonicalUrl)}" style="color: #ffffff; font-weight: 800;">${escapeHtml(title)}</a>`,
     datasheetUrl ? `        <a href="${escapeHtml(datasheetUrl)}" style="color: #ffffff; font-weight: 800; margin-left: 18px;">${escapeHtml(content?.datasheetLabel || 'Datasheet')}</a>` : '',
