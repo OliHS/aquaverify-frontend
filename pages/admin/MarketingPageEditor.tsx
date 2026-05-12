@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AlertTriangle, ArrowLeft, CheckCircle2, Plus, Save, Trash2 } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, CheckCircle2, Image as ImageIcon, Loader2, Plus, Save, Trash2, Upload } from 'lucide-react';
 import { supabase } from '../../utils/supabase';
 import {
   LANGUAGE_NAMES,
@@ -223,6 +223,7 @@ export const MarketingPageEditor: React.FC = () => {
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [error, setError] = useState('');
+  const [uploadingAsset, setUploadingAsset] = useState<string | null>(null);
 
   useEffect(() => {
     setLang(lang);
@@ -389,6 +390,102 @@ export const MarketingPageEditor: React.FC = () => {
       console.error('Error uploading marketing image:', error);
       return null;
     }
+  };
+
+  const uploadAssetUrl = async (
+    assetKey: string,
+    file: File | undefined,
+    onUploaded: (publicUrl: string) => void
+  ) => {
+    if (!file) return;
+
+    setUploadingAsset(assetKey);
+    setError('');
+
+    try {
+      const publicUrl = await uploadImage(file);
+      if (!publicUrl) {
+        setError('Image upload failed. Check that the Supabase "images" bucket is public and available.');
+        return;
+      }
+      onUploaded(publicUrl);
+    } catch (err: any) {
+      setError(err.message || 'Image upload failed.');
+    } finally {
+      setUploadingAsset(null);
+    }
+  };
+
+  const renderAssetUrlField = ({
+    label,
+    value,
+    placeholder,
+    assetKey,
+    previewAlt,
+    onChange,
+    onUploaded
+  }: {
+    label: string;
+    value: string;
+    placeholder?: string;
+    assetKey: string;
+    previewAlt: string;
+    onChange: (value: string) => void;
+    onUploaded: (value: string) => void;
+  }) => {
+    const isUploading = uploadingAsset === assetKey;
+    const trimmedValue = value.trim();
+    const previewSrc = trimmedValue && isSafePublicUrl(trimmedValue) ? trimmedValue : '';
+
+    return (
+      <div className="block md:col-span-2">
+        <span className="mb-1 block text-sm font-medium text-slate-700">{label}</span>
+        <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto]">
+          <input
+            value={value}
+            onChange={(event) => onChange(event.target.value)}
+            placeholder={placeholder}
+            className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
+          />
+          <label className={`inline-flex cursor-pointer items-center justify-center rounded-md border px-4 py-2 text-sm font-bold shadow-sm transition ${
+            isUploading
+              ? 'border-blue-200 bg-blue-50 text-blue-700'
+              : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
+          }`}>
+            {isUploading ? <Loader2 size={16} className="mr-2 animate-spin" /> : <Upload size={16} className="mr-2" />}
+            {isUploading ? 'Uploading...' : 'Upload image'}
+            <input
+              type="file"
+              accept="image/*"
+              className="hidden"
+              disabled={isUploading}
+              onChange={(event) => {
+                const input = event.currentTarget;
+                void uploadAssetUrl(assetKey, input.files?.[0], onUploaded).finally(() => {
+                  input.value = '';
+                });
+              }}
+            />
+          </label>
+        </div>
+        {previewSrc && (
+          <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
+            <div className="flex items-center gap-3 p-3">
+              <div className="flex h-20 w-28 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white">
+                <img src={previewSrc} alt={previewAlt} className="h-full w-full object-cover" />
+              </div>
+              <div className="min-w-0">
+                <div className="flex items-center text-xs font-black uppercase tracking-[0.12em] text-slate-400">
+                  <ImageIcon size={14} className="mr-1.5" />
+                  Current image
+                </div>
+                <div className="mt-1 truncate text-xs font-semibold text-slate-500" title={previewSrc}>{previewSrc}</div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
   };
 
   const addSection = () => {
@@ -630,18 +727,28 @@ export const MarketingPageEditor: React.FC = () => {
       <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
         <h2 className="mb-4 text-xl font-semibold text-slate-800">Assets and datasheet</h2>
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="block md:col-span-2">
-            <span className="mb-1 block text-sm font-medium text-slate-700">Hero image URL</span>
-            <input value={form.heroImage} onChange={(event) => updateField('heroImage', event.target.value)} placeholder="/images/product-photo.webp" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
-          </label>
+          {renderAssetUrlField({
+            label: 'Hero image URL',
+            value: form.heroImage,
+            placeholder: '/images/product-photo.webp',
+            assetKey: 'heroImage',
+            previewAlt: form.heroImageAlt || form.title || 'Hero image',
+            onChange: (value) => updateField('heroImage', value),
+            onUploaded: (value) => updateField('heroImage', value)
+          })}
           <label className="block md:col-span-2">
             <span className="mb-1 block text-sm font-medium text-slate-700">Hero image alt text</span>
             <input value={form.heroImageAlt} onChange={(event) => updateField('heroImageAlt', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
           </label>
-          <label className="block md:col-span-2">
-            <span className="mb-1 block text-sm font-medium text-slate-700">OpenGraph image URL</span>
-            <input value={form.ogImage} onChange={(event) => updateField('ogImage', event.target.value)} placeholder="/images/og-product.webp" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
-          </label>
+          {renderAssetUrlField({
+            label: 'OpenGraph image URL',
+            value: form.ogImage,
+            placeholder: '/images/og-product.webp',
+            assetKey: 'ogImage',
+            previewAlt: form.title || 'OpenGraph image',
+            onChange: (value) => updateField('ogImage', value),
+            onUploaded: (value) => updateField('ogImage', value)
+          })}
           <label className="block">
             <span className="mb-1 block text-sm font-medium text-slate-700">Datasheet URL</span>
             <input value={form.datasheetUrl} onChange={(event) => updateField('datasheetUrl', event.target.value)} placeholder="/datasheets/enumera.pdf" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
@@ -671,10 +778,15 @@ export const MarketingPageEditor: React.FC = () => {
                 </button>
               </div>
               <div className="grid gap-4 md:grid-cols-2">
-                <label className="block md:col-span-2">
-                  <span className="mb-1 block text-sm font-medium text-slate-700">Image URL</span>
-                  <input value={item.src} onChange={(event) => updateGallery(index, 'src', event.target.value)} placeholder="/images/platform/saas/dashboard.jpg" className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
-                </label>
+                {renderAssetUrlField({
+                  label: 'Image URL',
+                  value: item.src,
+                  placeholder: '/images/platform/saas/dashboard.jpg',
+                  assetKey: `gallery.${index}.src`,
+                  previewAlt: item.alt || item.title || `Gallery image ${index + 1}`,
+                  onChange: (value) => updateGallery(index, 'src', value),
+                  onUploaded: (value) => updateGallery(index, 'src', value)
+                })}
                 <label className="block md:col-span-2">
                   <span className="mb-1 block text-sm font-medium text-slate-700">Alt text</span>
                   <input value={item.alt} onChange={(event) => updateGallery(index, 'alt', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
