@@ -41,7 +41,6 @@ const COPY: Record<Language, any> = {
   en: {
     nav: ['Challenge', 'Flow', 'Sectors', 'Technology', 'Process', 'FAQ'],
     breadcrumb: ['Industries', 'Water quality control'],
-    trust: ['Somatic coliphages', 'ISO 10705-2', 'EPA 1602', 'EU 2020/2184', 'HACCP', 'LIMS & digital reporting'],
     valueBullets: [
       'Microbiological indicators such as somatic coliphages, E. coli, enterococci and other parameters according to the control programme.',
       'Ready-to-use kits and media for workflows designed around references such as ISO 10705-2 and EPA Method 1602.',
@@ -159,7 +158,6 @@ const COPY: Record<Language, any> = {
   es: {
     nav: ['Problema', 'Flujo', 'Sectores', 'Tecnología', 'Proceso', 'FAQ'],
     breadcrumb: ['Industrias', 'Control de calidad del agua'],
-    trust: ['Colífagos somáticos', 'ISO 10705-2', 'EPA 1602', 'RD 3/2023', 'APPCC / HACCP', 'LIMS & reporting digital'],
     valueBullets: [
       'Indicadores microbiológicos como colífagos somáticos, E. coli, enterococos y otros parámetros según el programa de control.',
       'Kits y medios listos para usar en flujos diseñados alrededor de referencias como ISO 10705-2 y EPA Method 1602.',
@@ -262,7 +260,6 @@ COPY.fr = {
   ...COPY.en,
   nav: ['Problème', 'Flux', 'Secteurs', 'Technologie', 'Processus', 'FAQ'],
   breadcrumb: ['Industries', 'Contrôle qualité de l’eau'],
-  trust: ['Coliphages somatiques', 'ISO 10705-2', 'EPA 1602', 'UE 2020/2184', 'HACCP', 'LIMS & reporting numérique'],
   valueBullets: [
     'Indicateurs microbiologiques comme les coliphages somatiques, E. coli, entérocoques et autres paramètres selon le programme de contrôle.',
     'Kits et milieux prêts à l’emploi pour des workflows conçus autour de références comme ISO 10705-2 et EPA Method 1602.',
@@ -362,7 +359,6 @@ COPY.it = {
   ...COPY.en,
   nav: ['Problema', 'Flusso', 'Settori', 'Tecnologia', 'Processo', 'FAQ'],
   breadcrumb: ['Settori', 'Controllo qualità acqua'],
-  trust: ['Colifagi somatici', 'ISO 10705-2', 'EPA 1602', 'UE 2020/2184', 'HACCP', 'LIMS e reporting digitale'],
   valueBullets: [
     'Indicatori microbiologici come colifagi somatici, E. coli, enterococchi e altri parametri secondo il programma di controllo.',
     'Kit e terreni pronti all’uso per workflow progettati intorno a riferimenti come ISO 10705-2 ed EPA Method 1602.',
@@ -462,7 +458,6 @@ COPY.ca = {
   ...COPY.es,
   nav: ['Problema', 'Flux', 'Sectors', 'Tecnologia', 'Procés', 'FAQ'],
   breadcrumb: ['Sectors', 'Control de qualitat de l’aigua'],
-  trust: ['Colífags somàtics', 'ISO 10705-2', 'EPA 1602', 'UE 2020/2184', 'APPCC / HACCP', 'LIMS i reporting digital'],
   valueBullets: [
     'Indicadors microbiològics com colífags somàtics, E. coli, enterococs i altres paràmetres segons el programa de control.',
     'Kits i medis llestos per utilitzar en fluxos dissenyats al voltant de referències com ISO 10705-2 i EPA Method 1602.',
@@ -648,11 +643,6 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
                 <a href="#sectores" className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-black text-slate-800 shadow-sm transition hover:border-cyan-200 hover:text-cyan-700">
                   {content.secondaryCta}
                 </a>
-              </div>
-              <div className="mt-5 flex flex-wrap gap-2">
-                {copy.trust.map((item: string, index: number) => (
-                  <span key={item} className={`rounded-full border px-3 py-2 text-xs font-black ${index === 0 ? 'border-cyan-100 bg-cyan-50 text-cyan-800' : 'border-slate-200 bg-white text-slate-600'}`}>{item}</span>
-                ))}
               </div>
             </div>
 

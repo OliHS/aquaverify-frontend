@@ -884,23 +884,23 @@ const DEFAULT_FAQS = {
   industries: {
     en: [
       { question: 'Can AquaVerify support both laboratories and water quality teams?', answer: 'Yes. The offer is designed for laboratories, distributors and organizations that need product workflows plus digital traceability around water quality work.' },
-      { question: 'Can the solution be adapted by sector?', answer: 'AquaVerify can map sector-specific sample flow, reporting requirements, buyer profile and the right route to products, partners or SaaS.' }
+      { question: 'Can the solution be adapted by sector?', answer: 'AquaVerify can map sector-specific sample flow, reporting requirements and the right route to products, partners or SaaS.' }
     ],
     es: [
       { question: '¿AquaVerify puede dar soporte a laboratorios y equipos de calidad del agua?', answer: 'Sí. La oferta está pensada para laboratorios, distribuidores y organizaciones que necesitan flujos de producto con trazabilidad digital en calidad del agua.' },
-      { question: '¿La solución se puede adaptar por sector?', answer: 'AquaVerify puede mapear flujo de muestras, necesidades de reporting, perfil comprador y ruta adecuada hacia productos, partners o SaaS.' }
+      { question: '¿La solución se puede adaptar por sector?', answer: 'AquaVerify puede mapear flujo de muestras, necesidades de reporting y la ruta adecuada hacia productos, partners o SaaS.' }
     ],
     fr: [
       { question: 'AquaVerify peut-il accompagner laboratoires et équipes qualité eau?', answer: 'Oui. L’offre s’adresse aux laboratoires, distributeurs et organisations qui ont besoin de flux produit avec traçabilité numérique autour de la qualité de l’eau.' },
-      { question: 'La solution peut-elle être adaptée par secteur?', answer: 'AquaVerify peut cartographier flux échantillons, besoins de reporting, profil acheteur et route adaptée vers produits, partenaires ou SaaS.' }
+      { question: 'La solution peut-elle être adaptée par secteur?', answer: 'AquaVerify peut cartographier flux échantillons, besoins de reporting et route adaptée vers produits, partenaires ou SaaS.' }
     ],
     it: [
       { question: 'AquaVerify può supportare laboratori e team qualità dell’acqua?', answer: 'Sì. L’offerta è pensata per laboratori, distributori e organizzazioni che richiedono flussi prodotto con tracciabilità digitale per la qualità dell’acqua.' },
-      { question: 'La soluzione può essere adattata per settore?', answer: 'AquaVerify può mappare flusso campioni, esigenze di reporting, profilo acquirente e percorso adatto verso prodotti, partner o SaaS.' }
+      { question: 'La soluzione può essere adattata per settore?', answer: 'AquaVerify può mappare flusso campioni, esigenze di reporting e percorso adatto verso prodotti, partner o SaaS.' }
     ],
     ca: [
       { question: 'AquaVerify pot donar suport a laboratoris i equips de qualitat de l’aigua?', answer: 'Sí. L’oferta està pensada per a laboratoris, distribuïdors i organitzacions que necessiten fluxos de producte amb traçabilitat digital en qualitat de l’aigua.' },
-      { question: 'La solució es pot adaptar per sector?', answer: 'AquaVerify pot mapar flux de mostres, necessitats de reporting, perfil comprador i ruta adequada cap a productes, partners o SaaS.' }
+      { question: 'La solució es pot adaptar per sector?', answer: 'AquaVerify pot mapar flux de mostres, necessitats de reporting i ruta adequada cap a productes, partners o SaaS.' }
     ]
   },
   resources: {

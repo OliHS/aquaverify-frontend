@@ -1,9 +1,9 @@
 const ASSET_BASE = '/images/industries/water-quality-control';
 
 const INFOGRAPHICS = {
-  sampleToReport: `${ASSET_BASE}/sample-to-report.png`,
+  sampleToReport: `${ASSET_BASE}/sample-to-report-clean.png`,
   sectorRiskSolution: `${ASSET_BASE}/sector-risk-solution.png`,
-  maturity: `${ASSET_BASE}/water-control-maturity.png`
+  maturity: `${ASSET_BASE}/water-control-maturity-clean.png`
 };
 
 function section(title, body, bullets = []) {

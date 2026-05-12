@@ -26,7 +26,7 @@ const COPY: Record<Language, {
   en: {
     eyebrow: 'Choose your path',
     title: 'AquaVerify for every water quality workflow',
-    subtitle: 'Start from your buyer profile and move directly to product, partner or platform information.',
+    subtitle: 'Choose the route that best matches your water quality workflow and move directly to product, partner or platform information.',
     cards: [
       { id: 'labs', pageId: 'water-testing-labs', intent: 'quote', title: 'Water testing laboratories', body: 'Kits, controls, reporting and traceability for public and private labs.', pageCta: 'View lab workflow', platformCta: 'Request quote' },
       { id: 'distributors', pageId: 'distributors', intent: 'distributor', title: 'Scientific distributors', body: 'A differentiated catalog for recurrent water microbiology demand.', pageCta: 'Distributor program', platformCta: 'Become a partner' },
@@ -37,7 +37,7 @@ const COPY: Record<Language, {
   es: {
     eyebrow: 'Elige tu ruta',
     title: 'AquaVerify para cada flujo de calidad del agua',
-    subtitle: 'Empieza desde tu perfil de comprador y llega directamente a producto, partner o plataforma.',
+    subtitle: 'Elige la ruta que mejor encaja con tu flujo de calidad del agua y llega directamente a producto, partner o plataforma.',
     cards: [
       { id: 'labs', pageId: 'water-testing-labs', intent: 'quote', title: 'Laboratorios de análisis de agua', body: 'Kits, controles, reporting y trazabilidad para laboratorios públicos y privados.', pageCta: 'Ver flujo de laboratorio', platformCta: 'Solicitar cotización' },
       { id: 'distributors', pageId: 'distributors', intent: 'distributor', title: 'Distribuidores científicos', body: 'Un catálogo diferenciado para demanda recurrente en microbiología del agua.', pageCta: 'Programa distribuidor', platformCta: 'Ser partner' },
@@ -48,7 +48,7 @@ const COPY: Record<Language, {
   fr: {
     eyebrow: 'Choisissez votre parcours',
     title: 'AquaVerify pour chaque flux qualité de l’eau',
-    subtitle: 'Partez de votre profil acheteur et accédez directement aux produits, partenaires ou à la plateforme.',
+    subtitle: 'Choisissez le parcours adapté à votre flux qualité de l’eau et accédez directement aux produits, partenaires ou à la plateforme.',
     cards: [
       { id: 'labs', pageId: 'water-testing-labs', intent: 'quote', title: 'Laboratoires d’analyse de l’eau', body: 'Kits, contrôles, rapports et traçabilité pour laboratoires publics et privés.', pageCta: 'Voir le flux laboratoire', platformCta: 'Demander un devis' },
       { id: 'distributors', pageId: 'distributors', intent: 'distributor', title: 'Distributeurs scientifiques', body: 'Un catalogue différencié pour la demande récurrente en microbiologie de l’eau.', pageCta: 'Programme distributeur', platformCta: 'Devenir partenaire' },
@@ -59,7 +59,7 @@ const COPY: Record<Language, {
   it: {
     eyebrow: 'Scegli il percorso',
     title: 'AquaVerify per ogni flusso di qualità dell’acqua',
-    subtitle: 'Parti dal tuo profilo d’acquisto e arriva subito a prodotti, partner o piattaforma.',
+    subtitle: 'Scegli il percorso più adatto al tuo flusso di qualità dell’acqua e arriva subito a prodotti, partner o piattaforma.',
     cards: [
       { id: 'labs', pageId: 'water-testing-labs', intent: 'quote', title: 'Laboratori di analisi dell’acqua', body: 'Kit, controlli, report e tracciabilità per laboratori pubblici e privati.', pageCta: 'Vedi workflow lab', platformCta: 'Richiedi preventivo' },
       { id: 'distributors', pageId: 'distributors', intent: 'distributor', title: 'Distributori scientifici', body: 'Un catalogo differenziato per domanda ricorrente in microbiologia dell’acqua.', pageCta: 'Programma distributori', platformCta: 'Diventa partner' },
@@ -70,7 +70,7 @@ const COPY: Record<Language, {
   ca: {
     eyebrow: 'Tria la teva ruta',
     title: 'AquaVerify per a cada flux de qualitat de l’aigua',
-    subtitle: 'Comença pel teu perfil de comprador i arriba directament a producte, partner o plataforma.',
+    subtitle: 'Tria la ruta que millor encaixa amb el teu flux de qualitat de l’aigua i arriba directament a producte, partner o plataforma.',
     cards: [
       { id: 'labs', pageId: 'water-testing-labs', intent: 'quote', title: 'Laboratoris d’anàlisi d’aigua', body: 'Kits, controls, reporting i traçabilitat per a laboratoris públics i privats.', pageCta: 'Veure flux de laboratori', platformCta: 'Sol·licitar pressupost' },
       { id: 'distributors', pageId: 'distributors', intent: 'distributor', title: 'Distribuïdors científics', body: 'Un catàleg diferenciat per demanda recurrent en microbiologia de l’aigua.', pageCta: 'Programa distribuïdor', platformCta: 'Ser partner' },
