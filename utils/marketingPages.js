@@ -30,6 +30,7 @@ function locale(path, title, description, sections, options = {}) {
     heroImage: options.heroImage,
     heroImageAlt: options.heroImageAlt,
     heroImageFit: options.heroImageFit,
+    heroVideo: options.heroVideo,
     ogImage: options.ogImage,
     datasheetUrl: options.datasheetUrl,
     datasheetLabel: options.datasheetLabel,
@@ -91,6 +92,8 @@ const ENUMERA_GALLERY_ITEMS = {
 function enumeraGallery(lang) {
   return ENUMERA_GALLERY_ITEMS[lang] || ENUMERA_GALLERY_ITEMS.en;
 }
+
+const ENUMERA_HERO_VIDEO = '/videos/enumera-tray-video.mp4';
 
 const PLATFORM_SCREENSHOT_ASSETS = {
   dashboard: '/images/platform/saas/aquaverify-cloud-dashboard.jpg',
@@ -985,23 +988,23 @@ export const MARKETING_PAGES = [
     en: locale('/products/enumera', 'ENUMERA quantitative water microbiology kits', 'ENUMERA is the AquaVerify family for enumeration workflows in water microbiology.', [
       section('Built for counting, not guessing', 'ENUMERA is designed for quantitative workflows where laboratories need clear, repeatable and traceable results.', ['ENUMERA Soma100 for somatic coliphage workflows', 'ENUMERA Coli100 for bacterial indicator workflows', 'ENUMERA Entero100 for bacterial indicator workflows', 'Refills and tools for repeatable operation']),
       section('Connected to AquaVerify Cloud', 'Results, operators, sample context and reporting can be linked to the digital platform.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Request ENUMERA quote', secondaryCta: 'View all products', ...getProductAssetOptions('enumera', 'en', 'AquaVerify ENUMERA quantitative kit family'), gallery: enumeraGallery('en') }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Request ENUMERA quote', secondaryCta: 'View all products', ...getProductAssetOptions('enumera', 'en', 'AquaVerify ENUMERA quantitative kit family'), heroVideo: ENUMERA_HERO_VIDEO, gallery: enumeraGallery('en') }),
     es: locale('/es/productos/enumera', 'Kits cuantitativos ENUMERA para microbiología del agua', 'ENUMERA es la familia AquaVerify para flujos de enumeración en microbiología del agua.', [
       section('Diseñada para contar, no para adivinar', 'ENUMERA está pensada para flujos cuantitativos donde el laboratorio necesita resultados claros, repetibles y trazables.', ['ENUMERA Soma100 para flujos de colífagos somáticos', 'ENUMERA Coli100 para indicadores bacterianos', 'ENUMERA Entero100 para indicadores bacterianos', 'Refills y herramientas para operación repetible']),
       section('Conectada a AquaVerify Cloud', 'Resultados, operadores, contexto de muestra e informes pueden vincularse a la plataforma digital.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Solicitar cotización ENUMERA', secondaryCta: 'Ver productos', ...getProductAssetOptions('enumera', 'es', 'Familia de kits cuantitativos AquaVerify ENUMERA'), gallery: enumeraGallery('es') }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Solicitar cotización ENUMERA', secondaryCta: 'Ver productos', ...getProductAssetOptions('enumera', 'es', 'Familia de kits cuantitativos AquaVerify ENUMERA'), heroVideo: ENUMERA_HERO_VIDEO, gallery: enumeraGallery('es') }),
     fr: locale('/fr/produits/enumera', 'Kits quantitatifs ENUMERA pour la microbiologie de l’eau', 'ENUMERA est la famille AquaVerify dédiée aux flux de dénombrement en microbiologie de l’eau.', [
       section('Conçu pour compter, pas pour deviner', 'ENUMERA répond aux flux quantitatifs où le laboratoire a besoin de résultats clairs, reproductibles et traçables.', ['ENUMERA Soma100 pour les coliphages somatiques', 'ENUMERA Coli100 pour les indicateurs bactériens', 'ENUMERA Entero100 pour les indicateurs bactériens', 'Recharges et outils pour une opération répétable']),
       section('Connecté à AquaVerify Cloud', 'Résultats, opérateurs, contexte d’échantillon et rapports peuvent être reliés à la plateforme numérique.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Demander un devis ENUMERA', secondaryCta: 'Voir les produits', ...getProductAssetOptions('enumera', 'fr', 'Famille de kits quantitatifs AquaVerify ENUMERA'), gallery: enumeraGallery('fr') }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Demander un devis ENUMERA', secondaryCta: 'Voir les produits', ...getProductAssetOptions('enumera', 'fr', 'Famille de kits quantitatifs AquaVerify ENUMERA'), heroVideo: ENUMERA_HERO_VIDEO, gallery: enumeraGallery('fr') }),
     it: locale('/it/prodotti/enumera', 'Kit quantitativi ENUMERA per microbiologia dell’acqua', 'ENUMERA è la famiglia AquaVerify per flussi di enumerazione nella microbiologia dell’acqua.', [
       section('Creato per contare, non per indovinare', 'ENUMERA è pensato per flussi quantitativi in cui il laboratorio richiede risultati chiari, ripetibili e tracciabili.', ['ENUMERA Soma100 per colifagi somatici', 'ENUMERA Coli100 per indicatori batterici', 'ENUMERA Entero100 per indicatori batterici', 'Refill e strumenti per operazioni ripetibili']),
       section('Collegato ad AquaVerify Cloud', 'Risultati, operatori, contesto del campione e report possono essere collegati alla piattaforma digitale.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Richiedi preventivo ENUMERA', secondaryCta: 'Vedi prodotti', ...getProductAssetOptions('enumera', 'it', 'Famiglia kit quantitativi AquaVerify ENUMERA'), gallery: enumeraGallery('it') }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Richiedi preventivo ENUMERA', secondaryCta: 'Vedi prodotti', ...getProductAssetOptions('enumera', 'it', 'Famiglia kit quantitativi AquaVerify ENUMERA'), heroVideo: ENUMERA_HERO_VIDEO, gallery: enumeraGallery('it') }),
     ca: locale('/ca/productes/enumera', 'Kits quantitatius ENUMERA per a microbiologia de l’aigua', 'ENUMERA és la família AquaVerify per a fluxos d’enumeració en microbiologia de l’aigua.', [
       section('Dissenyada per comptar, no per endevinar', 'ENUMERA està pensada per a fluxos quantitatius on el laboratori necessita resultats clars, repetibles i traçables.', ['ENUMERA Soma100 per a colífags somàtics', 'ENUMERA Coli100 per a indicadors bacterians', 'ENUMERA Entero100 per a indicadors bacterians', 'Refills i eines per a operació repetible']),
       section('Connectada a AquaVerify Cloud', 'Resultats, operadors, context de mostra i informes es poden vincular a la plataforma digital.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Sol·licitar pressupost ENUMERA', secondaryCta: 'Veure productes', ...getProductAssetOptions('enumera', 'ca', 'Familia de kits quantitatius AquaVerify ENUMERA'), gallery: enumeraGallery('ca') })
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Sol·licitar pressupost ENUMERA', secondaryCta: 'Veure productes', ...getProductAssetOptions('enumera', 'ca', 'Familia de kits quantitatius AquaVerify ENUMERA'), heroVideo: ENUMERA_HERO_VIDEO, gallery: enumeraGallery('ca') })
   }),
   page('indica', 'products', 'quote', {
     en: locale('/products/indica', 'INDICA presence/absence water testing kits', 'INDICA is designed for fast qualitative water microbiology workflows where the answer must be clear: present or absent.', [

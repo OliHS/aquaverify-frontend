@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { AlertTriangle, ArrowLeft, CheckCircle2, Image as ImageIcon, Loader2, Plus, Save, Trash2, Upload } from 'lucide-react';
+import { AlertTriangle, ArrowLeft, CheckCircle2, Image as ImageIcon, Loader2, Plus, Save, Trash2, Upload, Video } from 'lucide-react';
 import { supabase } from '../../utils/supabase';
 import {
   LANGUAGE_NAMES,
@@ -45,6 +45,7 @@ type MarketingContent = {
   secondaryCta?: string;
   heroImage?: string;
   heroImageAlt?: string;
+  heroVideo?: string;
   ogImage?: string;
   datasheetUrl?: string;
   datasheetLabel?: string;
@@ -70,6 +71,7 @@ type EditorForm = {
   secondaryCta: string;
   heroImage: string;
   heroImageAlt: string;
+  heroVideo: string;
   ogImage: string;
   datasheetUrl: string;
   datasheetLabel: string;
@@ -88,6 +90,7 @@ type EditorStringField =
   | 'secondaryCta'
   | 'heroImage'
   | 'heroImageAlt'
+  | 'heroVideo'
   | 'ogImage'
   | 'datasheetUrl'
   | 'datasheetLabel'
@@ -102,6 +105,7 @@ const EDITOR_STRING_FIELDS = new Set<string>([
   'secondaryCta',
   'heroImage',
   'heroImageAlt',
+  'heroVideo',
   'ogImage',
   'datasheetUrl',
   'datasheetLabel',
@@ -126,6 +130,7 @@ function contentToForm(content: MarketingContent): EditorForm {
     secondaryCta: content.secondaryCta || '',
     heroImage: content.heroImage || '',
     heroImageAlt: content.heroImageAlt || '',
+    heroVideo: content.heroVideo || '',
     ogImage: content.ogImage || '',
     datasheetUrl: content.datasheetUrl || '',
     datasheetLabel: content.datasheetLabel || '',
@@ -159,6 +164,7 @@ function formToContent(form: EditorForm, path: string) {
     secondaryCta: form.secondaryCta.trim(),
     heroImage: form.heroImage.trim(),
     heroImageAlt: form.heroImageAlt.trim(),
+    heroVideo: form.heroVideo.trim(),
     ogImage: form.ogImage.trim(),
     datasheetUrl: form.datasheetUrl.trim(),
     datasheetLabel: form.datasheetLabel.trim(),
@@ -395,7 +401,8 @@ export const MarketingPageEditor: React.FC = () => {
   const uploadAssetUrl = async (
     assetKey: string,
     file: File | undefined,
-    onUploaded: (publicUrl: string) => void
+    onUploaded: (publicUrl: string) => void,
+    assetType: 'image' | 'video' = 'image'
   ) => {
     if (!file) return;
 
@@ -405,12 +412,12 @@ export const MarketingPageEditor: React.FC = () => {
     try {
       const publicUrl = await uploadImage(file);
       if (!publicUrl) {
-        setError('Image upload failed. Check that the Supabase "images" bucket is public and available.');
+        setError(`${assetType === 'video' ? 'Video' : 'Image'} upload failed. Check that the Supabase "images" bucket is public and available.`);
         return;
       }
       onUploaded(publicUrl);
     } catch (err: any) {
-      setError(err.message || 'Image upload failed.');
+      setError(err.message || `${assetType === 'video' ? 'Video' : 'Image'} upload failed.`);
     } finally {
       setUploadingAsset(null);
     }
@@ -423,7 +430,8 @@ export const MarketingPageEditor: React.FC = () => {
     assetKey,
     previewAlt,
     onChange,
-    onUploaded
+    onUploaded,
+    assetType = 'image'
   }: {
     label: string;
     value: string;
@@ -432,10 +440,12 @@ export const MarketingPageEditor: React.FC = () => {
     previewAlt: string;
     onChange: (value: string) => void;
     onUploaded: (value: string) => void;
+    assetType?: 'image' | 'video';
   }) => {
     const isUploading = uploadingAsset === assetKey;
     const trimmedValue = value.trim();
     const previewSrc = trimmedValue && isSafePublicUrl(trimmedValue) ? trimmedValue : '';
+    const isVideo = assetType === 'video' || /\.(mp4|webm|mov)(?:$|\?)/i.test(trimmedValue);
 
     return (
       <div className="block md:col-span-2">
@@ -453,15 +463,15 @@ export const MarketingPageEditor: React.FC = () => {
               : 'border-slate-300 bg-white text-slate-700 hover:bg-slate-50'
           }`}>
             {isUploading ? <Loader2 size={16} className="mr-2 animate-spin" /> : <Upload size={16} className="mr-2" />}
-            {isUploading ? 'Uploading...' : 'Upload image'}
+            {isUploading ? 'Uploading...' : `Upload ${assetType}`}
             <input
               type="file"
-              accept="image/*"
+              accept={assetType === 'video' ? 'video/mp4,video/webm,video/quicktime' : 'image/*'}
               className="hidden"
               disabled={isUploading}
               onChange={(event) => {
                 const input = event.currentTarget;
-                void uploadAssetUrl(assetKey, input.files?.[0], onUploaded).finally(() => {
+                void uploadAssetUrl(assetKey, input.files?.[0], onUploaded, assetType).finally(() => {
                   input.value = '';
                 });
               }}
@@ -472,12 +482,16 @@ export const MarketingPageEditor: React.FC = () => {
           <div className="mt-3 overflow-hidden rounded-lg border border-slate-200 bg-slate-50">
             <div className="flex items-center gap-3 p-3">
               <div className="flex h-20 w-28 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white">
-                <img src={previewSrc} alt={previewAlt} className="h-full w-full object-cover" />
+                {isVideo ? (
+                  <video src={previewSrc} className="h-full w-full object-cover" muted playsInline preload="metadata" aria-label={previewAlt} />
+                ) : (
+                  <img src={previewSrc} alt={previewAlt} className="h-full w-full object-cover" />
+                )}
               </div>
               <div className="min-w-0">
                 <div className="flex items-center text-xs font-black uppercase tracking-[0.12em] text-slate-400">
-                  <ImageIcon size={14} className="mr-1.5" />
-                  Current image
+                  {isVideo ? <Video size={14} className="mr-1.5" /> : <ImageIcon size={14} className="mr-1.5" />}
+                  Current {isVideo ? 'video' : 'image'}
                 </div>
                 <div className="mt-1 truncate text-xs font-semibold text-slate-500" title={previewSrc}>{previewSrc}</div>
               </div>
@@ -544,6 +558,7 @@ export const MarketingPageEditor: React.FC = () => {
     const blockedClaims = scanProductClaimFields(content, { root: 'marketing_page', includeReviews: false }).findings;
     const urlFields: Array<[string, string | undefined]> = [
       ['heroImage', content.heroImage],
+      ['heroVideo', content.heroVideo],
       ['ogImage', content.ogImage],
       ['datasheetUrl', content.datasheetUrl],
       ...content.gallery.map((item, index) => [`gallery.${index}.src`, item.src] as [string, string | undefined])
@@ -735,6 +750,16 @@ export const MarketingPageEditor: React.FC = () => {
             previewAlt: form.heroImageAlt || form.title || 'Hero image',
             onChange: (value) => updateField('heroImage', value),
             onUploaded: (value) => updateField('heroImage', value)
+          })}
+          {renderAssetUrlField({
+            label: 'Hero video URL',
+            value: form.heroVideo,
+            placeholder: '/videos/enumera-tray-video.mp4',
+            assetKey: 'heroVideo',
+            previewAlt: form.heroImageAlt || form.title || 'Hero video',
+            assetType: 'video',
+            onChange: (value) => updateField('heroVideo', value),
+            onUploaded: (value) => updateField('heroVideo', value)
           })}
           <label className="block md:col-span-2">
             <span className="mb-1 block text-sm font-medium text-slate-700">Hero image alt text</span>

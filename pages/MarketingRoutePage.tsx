@@ -167,6 +167,7 @@ type MarketingContentMeta = {
   heroImage?: string;
   heroImageAlt?: string;
   heroImageFit?: 'cover' | 'contain';
+  heroVideo?: string;
   ogImage?: string;
   datasheetUrl?: string;
   datasheetLabel?: string;
@@ -800,12 +801,15 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
     : [];
   const breadcrumbs = buildMarketingBreadcrumbs(page, contentMeta, pageLang, labels);
   const heroImageUrl = toPublicAssetUrl(contentMeta.heroImage);
+  const heroVideoUrl = toPublicAssetUrl(contentMeta.heroVideo);
   const heroImageClass = contentMeta.heroImageFit === 'contain'
     ? 'h-full max-h-[420px] w-full object-contain'
     : 'h-full max-h-[420px] w-full object-cover';
+  const heroVideoClass = 'h-full max-h-[420px] w-full object-contain';
   const heroImageFrameClass = contentMeta.heroImageFit === 'contain'
     ? 'overflow-visible'
     : 'overflow-hidden rounded-md border border-white/15 bg-white/5';
+  const hasHeroMedia = Boolean(heroVideoUrl || heroImageUrl);
   const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
   const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
   const galleryItems = (contentMeta.gallery || [])
@@ -833,7 +837,7 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
       <Header />
       <main className="flex-grow pt-20">
         <section className="bg-primary text-white">
-          <div className={`container mx-auto grid gap-10 px-6 py-20 md:py-24 ${heroImageUrl ? 'lg:grid-cols-[1fr_0.82fr] lg:items-center' : ''}`}>
+          <div className={`container mx-auto grid gap-10 px-6 py-20 md:py-24 ${hasHeroMedia ? 'lg:grid-cols-[1fr_0.82fr] lg:items-center' : ''}`}>
             <div className="max-w-4xl">
               {breadcrumbs.length > 1 && (
                 <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-1 text-xs font-bold text-cyan-100/80">
@@ -930,6 +934,20 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
                 onImageChange={onImageChange}
                 uploadImage={uploadImage}
               />
+            ) : heroVideoUrl ? (
+              <div className="overflow-visible">
+                <video
+                  className={heroVideoClass}
+                  src={heroVideoUrl}
+                  poster={heroImageUrl || undefined}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="auto"
+                  aria-label={ogFallbackAlt}
+                />
+              </div>
             ) : heroImageUrl && (
               <div className={heroImageFrameClass}>
                 <EditableMarketingImage

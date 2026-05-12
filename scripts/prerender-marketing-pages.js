@@ -278,6 +278,7 @@ function renderWhitepaperDeepDive(whitepaper) {
 
 function renderHeroVisual(meta, content, title) {
   const heroImage = content?.heroImage ? absoluteAsset(content.heroImage) : '';
+  const heroVideo = content?.heroVideo ? absoluteAsset(content.heroVideo) : '';
   const platformGallery = meta?.page?.id === 'platform' && Array.isArray(content?.gallery)
     ? content.gallery
       .filter((item) => item?.src && item?.alt)
@@ -306,6 +307,10 @@ function renderHeroVisual(meta, content, title) {
       ].join('\n') : '',
       '      </div>'
     ].filter(Boolean).join('\n');
+  }
+
+  if (heroVideo) {
+    return `      <video src="${escapeHtml(heroVideo)}"${heroImage ? ` poster="${escapeHtml(heroImage)}"` : ''} aria-label="${escapeHtml(content?.heroImageAlt || title)}" autoplay muted loop playsinline preload="auto" style="display: block; max-width: 560px; width: 100%; max-height: 460px; object-fit: contain; margin-top: 28px;"></video>`;
   }
 
   return heroImage
