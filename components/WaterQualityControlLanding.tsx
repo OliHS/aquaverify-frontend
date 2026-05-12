@@ -17,7 +17,27 @@ type MarketingContent = {
   heroImage?: string;
   heroImageAlt?: string;
   gallery?: Array<{ src: string; alt: string; title?: string; body?: string }>;
+  visuals?: {
+    sampleFlow?: HtmlVisualBlock;
+    maturity?: HtmlVisualBlock;
+  };
   faqs?: Array<{ question: string; answer: string }>;
+};
+
+type HtmlVisualItem = {
+  title?: string;
+  body?: string;
+  label?: string;
+};
+
+type HtmlVisualBlock = {
+  eyebrow?: string;
+  title?: string;
+  body?: string;
+  items?: HtmlVisualItem[];
+  calloutTitle?: string;
+  calloutBody?: string;
+  cta?: string;
 };
 
 type Props = {
@@ -553,17 +573,12 @@ COPY.ca = {
   }
 };
 
-function getAsset(path?: string) {
-  if (!path) return '';
-  return path.startsWith('http') ? path : path;
-}
-
 export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang, showCookieConsent = true }) => {
   const copy = COPY[pageLang] || COPY.en;
   const [activeSector, setActiveSector] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
-  const heroImage = getAsset(content.heroImage || content.gallery?.[0]?.src);
-  const gallery = content.gallery || [];
+  const sampleFlowVisual = content.visuals?.sampleFlow;
+  const maturityVisual = content.visuals?.maturity;
   const diagnosisHref = useMemo(() => getPlatformSignupUrl({
     intent: 'contact',
     page: 'water-quality-control',
@@ -707,7 +722,15 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
           </div>
         </section>
 
-        <InfographicSection id="infografia-flujo" eyebrow={copy.infographic.flowEyebrow} title={copy.infographic.flowTitle} body={copy.infographic.flowBody} item={gallery[0]} fallback={heroImage} />
+        <SampleFlowSection
+          id="infografia-flujo"
+          visual={sampleFlowVisual}
+          fallback={{
+            eyebrow: copy.infographic.flowEyebrow,
+            title: copy.infographic.flowTitle,
+            body: copy.infographic.flowBody
+          }}
+        />
 
         <section id="sectores" className="bg-white py-16 md:py-20">
           <div className="container mx-auto px-6">
@@ -728,8 +751,6 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
             </div>
           </div>
         </section>
-
-        <InfographicSection id="infografia-matriz" eyebrow={copy.infographic.matrixEyebrow} title={copy.infographic.matrixTitle} body={copy.infographic.matrixBody} item={gallery[1]} />
 
         <section id="tecnologia" className="bg-white py-16 md:py-20">
           <div className="container mx-auto px-6">
@@ -777,7 +798,15 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
           </div>
         </section>
 
-        <InfographicSection id="madurez" eyebrow={copy.infographic.maturityEyebrow} title={copy.infographic.maturityTitle} body={copy.infographic.maturityBody} item={gallery[2]} />
+        <MaturitySection
+          id="madurez"
+          visual={maturityVisual}
+          fallback={{
+            eyebrow: copy.infographic.maturityEyebrow,
+            title: copy.infographic.maturityTitle,
+            body: copy.infographic.maturityBody
+          }}
+        />
 
         <section id="regulacion" className="bg-white py-16 md:py-20">
           <div className="container mx-auto grid gap-6 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,.72fr)]">
@@ -881,20 +910,66 @@ const SectionHead: React.FC<{ eyebrow: string; title: string; body?: string; cen
   </div>
 );
 
-const InfographicSection: React.FC<{ id: string; eyebrow: string; title: string; body: string; item?: { src: string; alt: string; title?: string; body?: string }; fallback?: string }> = ({ id, eyebrow, title, body, item, fallback }) => {
-  const src = item?.src || fallback;
-  if (!src) return null;
+const SampleFlowSection: React.FC<{ id: string; visual?: HtmlVisualBlock; fallback: { eyebrow: string; title: string; body: string } }> = ({ id, visual, fallback }) => {
+  const steps = (visual?.items || []).filter((item) => item.title || item.body);
+  if (steps.length === 0) return null;
   return (
     <section id={id} className="bg-slate-50 py-16 md:py-20">
       <div className="container mx-auto px-6">
-        <SectionHead eyebrow={eyebrow} title={title} body={body} center />
-        <figure className="mx-auto mt-8 max-w-6xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-xl">
-          <img src={src} alt={item?.alt || title} loading="lazy" className="w-full object-contain" />
-          <figcaption className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 px-5 py-4 text-sm font-semibold text-slate-500">
-            <span className="font-black text-slate-800">{item?.title || title}</span>
-            <span>{item?.body || body}</span>
-          </figcaption>
-        </figure>
+        <SectionHead eyebrow={visual?.eyebrow || fallback.eyebrow} title={visual?.title || fallback.title} body={visual?.body || fallback.body} center />
+        <div className="mx-auto mt-8 max-w-6xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl md:p-7">
+          <div className="grid gap-4 md:grid-cols-5">
+            {steps.map((step, index) => (
+              <article key={`${step.title}-${index}`} className={`relative rounded-2xl border p-5 shadow-sm ${index === steps.length - 1 ? 'border-emerald-200 bg-emerald-50' : 'border-cyan-100 bg-cyan-50/35'}`}>
+                <div className={`mb-5 flex h-11 w-11 items-center justify-center rounded-full text-base font-black text-white ${index === steps.length - 1 ? 'bg-emerald-700' : 'bg-cyan-600'}`}>{index + 1}</div>
+                <h3 className="font-heading text-lg font-black text-slate-950">{step.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">{step.body}</p>
+                {index < steps.length - 1 && (
+                  <span className="pointer-events-none absolute -right-3 top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-cyan-700 shadow-md md:flex">
+                    <ArrowRight className="h-5 w-5" />
+                  </span>
+                )}
+              </article>
+            ))}
+          </div>
+          {(visual?.calloutTitle || visual?.calloutBody) && (
+            <div className="mt-6 rounded-2xl border border-amber-100 bg-amber-50 p-5">
+              {visual.calloutTitle && <h3 className="font-heading text-xl font-black text-amber-950">{visual.calloutTitle}</h3>}
+              {visual.calloutBody && <p className="mt-2 text-sm font-bold leading-6 text-amber-900">{visual.calloutBody}</p>}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const MaturitySection: React.FC<{ id: string; visual?: HtmlVisualBlock; fallback: { eyebrow: string; title: string; body: string } }> = ({ id, visual, fallback }) => {
+  const stages = (visual?.items || []).filter((item) => item.title || item.body || item.label);
+  if (stages.length === 0) return null;
+  return (
+    <section id={id} className="bg-slate-50 py-16 md:py-20">
+      <div className="container mx-auto px-6">
+        <SectionHead eyebrow={visual?.eyebrow || fallback.eyebrow} title={visual?.title || fallback.title} body={visual?.body || fallback.body} center />
+        <div className="mx-auto mt-8 max-w-6xl rounded-3xl border border-slate-200 bg-white p-5 shadow-xl md:p-7">
+          <div className="grid gap-4 lg:grid-cols-4">
+            {stages.map((stage, index) => (
+              <article key={`${stage.title}-${index}`} className={`rounded-2xl border p-5 ${index === stages.length - 1 ? 'border-emerald-200 bg-emerald-50' : index >= 2 ? 'border-teal-200 bg-teal-50/40' : 'border-slate-200 bg-white'}`}>
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <h3 className="font-heading text-xl font-black text-slate-950">{stage.title}</h3>
+                  <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-black text-white ${index === 0 ? 'bg-slate-400' : index === 1 ? 'bg-cyan-600' : index === 2 ? 'bg-teal-700' : 'bg-emerald-600'}`}>{index + 1}</span>
+                </div>
+                <p className="text-sm font-semibold leading-6 text-slate-600">{stage.body}</p>
+                {stage.label && (
+                  <div className={`mt-5 rounded-2xl px-4 py-3 text-center text-sm font-black ${index === 0 ? 'bg-slate-100 text-slate-600' : index === 1 ? 'bg-cyan-50 text-cyan-800' : 'bg-emerald-100 text-emerald-800'}`}>{stage.label}</div>
+                )}
+              </article>
+            ))}
+          </div>
+          {visual?.cta && (
+            <div className="mt-6 rounded-full border border-cyan-100 bg-cyan-50 px-5 py-4 text-center text-sm font-black text-cyan-800 md:text-base">{visual.cta}</div>
+          )}
+        </div>
       </div>
     </section>
   );

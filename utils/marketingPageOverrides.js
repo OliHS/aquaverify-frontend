@@ -136,6 +136,51 @@ function normalizeGallery(value) {
   return gallery.length > 0 ? gallery : null;
 }
 
+function normalizeVisualItems(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => ({
+      title: cleanText(item?.title),
+      body: cleanText(item?.body),
+      label: cleanText(item?.label)
+    }))
+    .filter((item) => item.title || item.body || item.label);
+}
+
+function normalizeVisualBlock(value, mode) {
+  if (!value || typeof value !== 'object') return null;
+  const items = normalizeVisualItems(value.items);
+  const block = {
+    eyebrow: cleanText(value.eyebrow),
+    title: cleanText(value.title),
+    body: cleanText(value.body),
+    items,
+    calloutTitle: cleanText(value.calloutTitle),
+    calloutBody: cleanText(value.calloutBody),
+    cta: cleanText(value.cta)
+  };
+  const hasContent = block.eyebrow || block.title || block.body || items.length > 0
+    || (mode === 'sampleFlow' && (block.calloutTitle || block.calloutBody))
+    || (mode === 'maturity' && block.cta);
+  if (!hasContent) return null;
+  return Object.fromEntries(
+    Object.entries(block).filter(([, item]) => {
+      if (Array.isArray(item)) return item.length > 0;
+      return item !== '';
+    })
+  );
+}
+
+function normalizeVisuals(value) {
+  if (!value || typeof value !== 'object') return null;
+  const visuals = {
+    sampleFlow: normalizeVisualBlock(value.sampleFlow, 'sampleFlow'),
+    maturity: normalizeVisualBlock(value.maturity, 'maturity')
+  };
+  const cleaned = Object.fromEntries(Object.entries(visuals).filter(([, item]) => item));
+  return Object.keys(cleaned).length > 0 ? cleaned : null;
+}
+
 export function normalizeMarketingOverride(value) {
   if (!value || typeof value !== 'object') return null;
 
@@ -156,7 +201,8 @@ export function normalizeMarketingOverride(value) {
     seoDescription: cleanText(value.seoDescription),
     sections: normalizeSections(value.sections),
     faqs: normalizeFaqs(value.faqs),
-    gallery: normalizeGallery(value.gallery)
+    gallery: normalizeGallery(value.gallery),
+    visuals: normalizeVisuals(value.visuals)
   };
 
   return Object.fromEntries(
@@ -202,6 +248,7 @@ export function mergeMarketingContent(baseContent, overrideContent) {
       primaryCta: override.primaryCta || baseContent.primaryCta,
       secondaryCta: override.secondaryCta || baseContent.secondaryCta,
       gallery: override.gallery || baseContent.gallery || [],
+      visuals: override.visuals || baseContent.visuals,
       path: baseContent.path
     };
   }
@@ -218,6 +265,7 @@ export function mergeMarketingContent(baseContent, overrideContent) {
       primaryCta: override.primaryCta || baseContent.primaryCta,
       secondaryCta: override.secondaryCta || baseContent.secondaryCta,
       gallery: override.gallery || baseContent.gallery || [],
+      visuals: override.visuals || baseContent.visuals,
       path: baseContent.path
     };
   }
@@ -228,6 +276,7 @@ export function mergeMarketingContent(baseContent, overrideContent) {
     path: baseContent.path,
     sections: override.sections || baseContent.sections,
     faqs: override.faqs || baseContent.faqs || [],
-    gallery: override.gallery || baseContent.gallery || []
+    gallery: override.gallery || baseContent.gallery || [],
+    visuals: override.visuals || baseContent.visuals
   };
 }

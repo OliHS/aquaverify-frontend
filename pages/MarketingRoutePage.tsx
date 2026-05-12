@@ -165,6 +165,7 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
 type MarketingContentMeta = {
   faqs?: Array<{ question: string; answer: string }>;
   gallery?: Array<{ src: string; alt: string; title?: string; body?: string; fit?: 'cover' | 'contain' }>;
+  visuals?: Record<string, unknown>;
   heroImage?: string;
   heroImageAlt?: string;
   heroImageFit?: 'cover' | 'contain';
@@ -843,7 +844,7 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
     });
   };
 
-  if (page.id === 'water-quality-control' && !isEditing) {
+  if (page.id === 'water-quality-control') {
     return (
       <WaterQualityControlLanding
         content={content}

@@ -277,6 +277,7 @@ function renderWhitepaperDeepDive(whitepaper) {
 }
 
 function renderHeroVisual(meta, content, title) {
+  if (meta?.page?.id === 'water-quality-control') return '';
   const heroImage = content?.heroImage ? absoluteAsset(content.heroImage) : '';
   const heroVideo = content?.heroVideo ? absoluteAsset(content.heroVideo) : '';
   const platformGallery = meta?.page?.id === 'platform' && Array.isArray(content?.gallery)
@@ -316,6 +317,30 @@ function renderHeroVisual(meta, content, title) {
   return heroImage
     ? `      <img src="${escapeHtml(heroImage)}" alt="${escapeHtml(content?.heroImageAlt || title)}" style="display: block; max-width: 560px; width: 100%; max-height: 460px; object-fit: contain; margin-top: 28px;" />`
     : '';
+}
+
+function renderVisualBlocks(content) {
+  const visuals = content?.visuals || {};
+  const blocks = [visuals.sampleFlow, visuals.maturity].filter(Boolean);
+  if (!blocks.length) return '';
+
+  return blocks.map((block) => {
+    const items = Array.isArray(block.items) ? block.items : [];
+    return [
+      '        <section>',
+      block.eyebrow ? `          <p><strong>${escapeHtml(block.eyebrow)}</strong></p>` : '',
+      block.title ? `          <h2>${escapeHtml(block.title)}</h2>` : '',
+      block.body ? `          <p>${escapeHtml(block.body)}</p>` : '',
+      items.length ? [
+        '          <ol>',
+        ...items.map((item) => `            <li><strong>${escapeHtml(item.title || '')}</strong>${item.body ? ` ${escapeHtml(item.body)}` : ''}${item.label ? ` · ${escapeHtml(item.label)}` : ''}</li>`),
+        '          </ol>'
+      ].join('\n') : '',
+      block.calloutTitle || block.calloutBody ? `          <p><strong>${escapeHtml(block.calloutTitle || '')}</strong>${block.calloutBody ? ` ${escapeHtml(block.calloutBody)}` : ''}</p>` : '',
+      block.cta ? `          <p><strong>${escapeHtml(block.cta)}</strong></p>` : '',
+      '        </section>'
+    ].filter(Boolean).join('\n');
+  }).join('\n');
 }
 
 function renderPrerenderShell() {
@@ -390,6 +415,7 @@ function renderStaticRoot(meta) {
       '    <div style="max-width: 1040px; margin: 0 auto;">',
       renderFeaturedWhitepapers(meta.page, meta.lang),
       renderSectionList(content.sections || []),
+      renderVisualBlocks(content),
       renderWhitepaperDeepDive(content.whitepaper),
       renderFaqs(content.faqs || []),
       '    </div>',

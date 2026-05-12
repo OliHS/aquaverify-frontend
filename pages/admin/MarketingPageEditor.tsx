@@ -37,6 +37,22 @@ type GalleryDraft = {
   fit: 'cover' | 'contain';
 };
 
+type HtmlVisualItemDraft = {
+  title: string;
+  body: string;
+  label: string;
+};
+
+type HtmlVisualBlockDraft = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  items: string;
+  calloutTitle: string;
+  calloutBody: string;
+  cta: string;
+};
+
 type MarketingContent = {
   path: string;
   title: string;
@@ -55,6 +71,23 @@ type MarketingContent = {
   sections?: Array<{ title: string; body: string; bullets?: string[] }>;
   faqs?: Array<{ question: string; answer: string }>;
   gallery?: Array<{ src: string; alt: string; title?: string; body?: string; fit?: 'cover' | 'contain' }>;
+  visuals?: {
+    sampleFlow?: {
+      eyebrow?: string;
+      title?: string;
+      body?: string;
+      items?: HtmlVisualItemDraft[];
+      calloutTitle?: string;
+      calloutBody?: string;
+    };
+    maturity?: {
+      eyebrow?: string;
+      title?: string;
+      body?: string;
+      items?: HtmlVisualItemDraft[];
+      cta?: string;
+    };
+  };
 };
 
 type MarketingPage = {
@@ -81,6 +114,8 @@ type EditorForm = {
   sections: SectionDraft[];
   faqs: FaqDraft[];
   gallery: GalleryDraft[];
+  sampleFlowVisual: HtmlVisualBlockDraft;
+  maturityVisual: HtmlVisualBlockDraft;
 };
 
 type EditorStringField =
@@ -122,6 +157,25 @@ function isEditorStringField(value: string): value is EditorStringField {
   return EDITOR_STRING_FIELDS.has(value);
 }
 
+function visualItemsToText(items?: HtmlVisualItemDraft[]) {
+  return (items || [])
+    .map((item) => [item.title || '', item.body || '', item.label || ''].join(' | ').replace(/\s+\|\s+$/g, '').trim())
+    .filter(Boolean)
+    .join('\n');
+}
+
+function textToVisualItems(value: string) {
+  return value
+    .split('\n')
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [title = '', body = '', label = ''] = line.split('|').map((part) => part.trim());
+      return { title, body, label };
+    })
+    .filter((item) => item.title || item.body || item.label);
+}
+
 function contentToForm(content: MarketingContent): EditorForm {
   return {
     title: content.title || '',
@@ -152,11 +206,60 @@ function contentToForm(content: MarketingContent): EditorForm {
       title: item.title || '',
       body: item.body || '',
       fit: item.fit === 'contain' ? 'contain' : 'cover'
-    }))
+    })),
+    sampleFlowVisual: {
+      eyebrow: content.visuals?.sampleFlow?.eyebrow || '',
+      title: content.visuals?.sampleFlow?.title || '',
+      body: content.visuals?.sampleFlow?.body || '',
+      items: visualItemsToText(content.visuals?.sampleFlow?.items),
+      calloutTitle: content.visuals?.sampleFlow?.calloutTitle || '',
+      calloutBody: content.visuals?.sampleFlow?.calloutBody || '',
+      cta: ''
+    },
+    maturityVisual: {
+      eyebrow: content.visuals?.maturity?.eyebrow || '',
+      title: content.visuals?.maturity?.title || '',
+      body: content.visuals?.maturity?.body || '',
+      items: visualItemsToText(content.visuals?.maturity?.items),
+      calloutTitle: '',
+      calloutBody: '',
+      cta: content.visuals?.maturity?.cta || ''
+    }
   };
 }
 
 function formToContent(form: EditorForm, path: string) {
+  const sampleFlowItems = textToVisualItems(form.sampleFlowVisual.items);
+  const maturityItems = textToVisualItems(form.maturityVisual.items);
+  const hasSampleFlowVisual = form.sampleFlowVisual.eyebrow.trim()
+    || form.sampleFlowVisual.title.trim()
+    || form.sampleFlowVisual.body.trim()
+    || sampleFlowItems.length > 0
+    || form.sampleFlowVisual.calloutTitle.trim()
+    || form.sampleFlowVisual.calloutBody.trim();
+  const hasMaturityVisual = form.maturityVisual.eyebrow.trim()
+    || form.maturityVisual.title.trim()
+    || form.maturityVisual.body.trim()
+    || maturityItems.length > 0
+    || form.maturityVisual.cta.trim();
+  const visuals = {
+    ...(hasSampleFlowVisual ? { sampleFlow: {
+      eyebrow: form.sampleFlowVisual.eyebrow.trim(),
+      title: form.sampleFlowVisual.title.trim(),
+      body: form.sampleFlowVisual.body.trim(),
+      items: sampleFlowItems,
+      calloutTitle: form.sampleFlowVisual.calloutTitle.trim(),
+      calloutBody: form.sampleFlowVisual.calloutBody.trim()
+    } } : {}),
+    ...(hasMaturityVisual ? { maturity: {
+      eyebrow: form.maturityVisual.eyebrow.trim(),
+      title: form.maturityVisual.title.trim(),
+      body: form.maturityVisual.body.trim(),
+      items: maturityItems,
+      cta: form.maturityVisual.cta.trim()
+    } } : {})
+  };
+  const hasVisuals = Object.keys(visuals).length > 0;
   return {
     path,
     title: form.title.trim(),
@@ -196,7 +299,8 @@ function formToContent(form: EditorForm, path: string) {
         body: item.body.trim(),
         fit: item.fit === 'contain' ? 'contain' : 'cover'
       }))
-      .filter((item) => item.src && item.alt)
+      .filter((item) => item.src && item.alt),
+    ...(hasVisuals ? { visuals } : {})
   };
 }
 
@@ -325,6 +429,16 @@ export const MarketingPageEditor: React.FC = () => {
       );
       return { ...current, gallery };
     });
+  };
+
+  const updateVisualField = (block: 'sampleFlowVisual' | 'maturityVisual', field: keyof HtmlVisualBlockDraft, value: string) => {
+    setForm((current) => current ? {
+      ...current,
+      [block]: {
+        ...current[block],
+        [field]: value
+      }
+    } : current);
   };
 
   const handleInlineTextChange = (path: string, value: string) => {
@@ -650,6 +764,11 @@ export const MarketingPageEditor: React.FC = () => {
 
   const draftContent = formToContent(form, defaultContent.path);
   const previewContent = mergeMarketingContent(defaultContent, draftContent);
+  const showHtmlVisualEditor = Boolean(pageId === 'water-quality-control'
+    || form.sampleFlowVisual.title
+    || form.sampleFlowVisual.items
+    || form.maturityVisual.title
+    || form.maturityVisual.items);
 
   return (
     <div className="grid gap-6 xl:grid-cols-[minmax(420px,0.92fr)_minmax(0,1.08fr)]">
@@ -787,6 +906,74 @@ export const MarketingPageEditor: React.FC = () => {
           </label>
         </div>
       </div>
+
+      {showHtmlVisualEditor && (
+        <div className="rounded-xl border border-cyan-100 bg-white p-6 shadow-sm">
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold text-slate-800">HTML visual blocks</h2>
+            <p className="mt-1 text-sm text-slate-500">
+              Editable text for the water quality control visual sections. Use one item per line: Title | Body | Label.
+            </p>
+          </div>
+          <div className="grid gap-6">
+            <div className="rounded-lg border border-slate-200 p-4">
+              <h3 className="mb-3 text-sm font-black uppercase tracking-[0.12em] text-cyan-700">Sample-to-report flow</h3>
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Eyebrow</span>
+                  <input value={form.sampleFlowVisual.eyebrow} onChange={(event) => updateVisualField('sampleFlowVisual', 'eyebrow', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Title</span>
+                  <input value={form.sampleFlowVisual.title} onChange={(event) => updateVisualField('sampleFlowVisual', 'title', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block md:col-span-2">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Intro body</span>
+                  <textarea rows={2} value={form.sampleFlowVisual.body} onChange={(event) => updateVisualField('sampleFlowVisual', 'body', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block md:col-span-2">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Steps</span>
+                  <textarea rows={6} value={form.sampleFlowVisual.items} onChange={(event) => updateVisualField('sampleFlowVisual', 'items', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 font-mono text-xs focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Callout title</span>
+                  <input value={form.sampleFlowVisual.calloutTitle} onChange={(event) => updateVisualField('sampleFlowVisual', 'calloutTitle', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Callout body</span>
+                  <textarea rows={2} value={form.sampleFlowVisual.calloutBody} onChange={(event) => updateVisualField('sampleFlowVisual', 'calloutBody', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+              </div>
+            </div>
+
+            <div className="rounded-lg border border-slate-200 p-4">
+              <h3 className="mb-3 text-sm font-black uppercase tracking-[0.12em] text-cyan-700">Maturity roadmap</h3>
+              <div className="grid gap-4 md:grid-cols-2">
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Eyebrow</span>
+                  <input value={form.maturityVisual.eyebrow} onChange={(event) => updateVisualField('maturityVisual', 'eyebrow', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Title</span>
+                  <input value={form.maturityVisual.title} onChange={(event) => updateVisualField('maturityVisual', 'title', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block md:col-span-2">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Intro body</span>
+                  <textarea rows={2} value={form.maturityVisual.body} onChange={(event) => updateVisualField('maturityVisual', 'body', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block md:col-span-2">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Stages</span>
+                  <textarea rows={5} value={form.maturityVisual.items} onChange={(event) => updateVisualField('maturityVisual', 'items', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 font-mono text-xs focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block md:col-span-2">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">CTA line</span>
+                  <input value={form.maturityVisual.cta} onChange={(event) => updateVisualField('maturityVisual', 'cta', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
         <div className="mb-4 flex items-center justify-between">

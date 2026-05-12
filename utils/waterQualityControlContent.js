@@ -2,7 +2,6 @@ const ASSET_BASE = '/images/industries/water-quality-control';
 
 const INFOGRAPHICS = {
   sampleToReport: `${ASSET_BASE}/sample-to-report-clean.png`,
-  sectorRiskSolution: `${ASSET_BASE}/sector-risk-solution.png`,
   maturity: `${ASSET_BASE}/water-control-maturity-clean.png`
 };
 
@@ -10,30 +9,11 @@ function section(title, body, bullets = []) {
   return { title, body, bullets };
 }
 
-function gallery(items) {
-  return [
-    {
-      src: INFOGRAPHICS.sampleToReport,
-      alt: items.sampleToReport.alt,
-      title: items.sampleToReport.title,
-      body: items.sampleToReport.body,
-      fit: 'contain'
-    },
-    {
-      src: INFOGRAPHICS.sectorRiskSolution,
-      alt: items.sectorRiskSolution.alt,
-      title: items.sectorRiskSolution.title,
-      body: items.sectorRiskSolution.body,
-      fit: 'contain'
-    },
-    {
-      src: INFOGRAPHICS.maturity,
-      alt: items.maturity.alt,
-      title: items.maturity.title,
-      body: items.maturity.body,
-      fit: 'contain'
-    }
-  ];
+function visualBlocks({ sampleFlow, maturity }) {
+  return {
+    sampleFlow,
+    maturity
+  };
 }
 
 const shared = {
@@ -64,10 +44,33 @@ export const WATER_QUALITY_CONTROL_PAGE = {
       section('What your AquaVerify programme can include', 'The configuration depends on water type, matrix, sample volume, risk level, internal laboratory capacity and reporting needs.', ['Products and media for water microbiology workflows', 'Sampling app and Cloud record for operator, location and result context', 'LIMS, CoA and reporting templates', 'GIS, trend analysis and escalation rules for multi-site operations']),
       section('Is your water control programme audit-ready?', 'In a short technical diagnosis we review your sector, water type, current method, sample volume, accreditation needs and reporting friction. The output is a recommended route: products, laboratory workflow, SaaS, reporting or a combination.', ['Map the current workflow', 'Identify gaps in traceability and decision speed', 'Select product and method routes', 'Define the most useful digital layer'])
     ],
-    gallery: gallery({
-      sampleToReport: { alt: 'Infographic showing AquaVerify flow from sampling plan to audit-ready report', title: 'From sample to auditable decision', body: 'Plan, sample, test, validate, report and act in one connected quality workflow.' },
-      sectorRiskSolution: { alt: 'Sector risk solution matrix for water quality control programmes', title: 'Sector, risk and solution matrix', body: 'Translate each sector risk into the right microbiology and reporting route.' },
-      maturity: { alt: 'Water control maturity roadmap from reactive to predictive operation', title: 'Water control maturity roadmap', body: 'Move from reactive checks to controlled, traceable and insight-led water quality management.' }
+    visuals: visualBlocks({
+      sampleFlow: {
+        eyebrow: 'Visual workflow',
+        title: 'From sample to auditable decision',
+        body: 'Plan, sample, test, validate, report and act in one connected water-quality workflow.',
+        items: [
+          { title: 'Plan', body: 'Control points, frequency, matrix and microbiological risk.' },
+          { title: 'Sample', body: 'Operator, date, location, lot and chain of custody.' },
+          { title: 'Analysis', body: 'Kit, laboratory or hybrid workflow with method context.' },
+          { title: 'Validation', body: 'Reading, review, status and evidence ready for audit.' },
+          { title: 'Action', body: 'Report, alert, decision and follow-up plan.' }
+        ],
+        calloutTitle: 'Connected evidence',
+        calloutBody: 'You do not manage isolated results: you manage traceability, decisions and audit evidence.'
+      },
+      maturity: {
+        eyebrow: 'Maturity roadmap',
+        title: 'Water control maturity roadmap',
+        body: 'Move from reactive checks to controlled, traceable and insight-led water quality management.',
+        items: [
+          { title: 'Reactive', body: 'Action starts when a deviation or audit appears.', label: 'Scattered evidence' },
+          { title: 'Controlled', body: 'Frequency, points and methods are defined for each water type.', label: 'Defined programme' },
+          { title: 'Traceable', body: 'Sample, lot, user, reading and report remain connected.', label: 'Auditable history' },
+          { title: 'Predictive', body: 'Trends, alerts and decisions happen before risk escalates.', label: 'Alerts and trends' }
+        ],
+        cta: 'Evaluate your water-control maturity in 15 minutes'
+      }
     }),
     faqs: [
       { question: 'What companies can use AquaVerify?', answer: 'Utilities, food and beverage manufacturers, treatment plants, environmental laboratories, agricultural operations, aquaculture, seafood processors and any organisation that needs microbiological water control and traceable reporting.' },
@@ -99,10 +102,33 @@ export const WATER_QUALITY_CONTROL_PAGE = {
       section('Qué puede incluir tu programa AquaVerify', 'La configuración depende del tipo de agua, matriz, volumen de muestras, riesgo, capacidad interna de laboratorio y reporting requerido.', ['Productos y medios para microbiología del agua', 'App de muestreo y registro Cloud de operador, ubicación y resultado', 'LIMS, CoA y plantillas de reporting', 'GIS, análisis de tendencias y reglas de escalado para operaciones multi-site']),
       section('¿Tu programa de control del agua es audit-ready?', 'En un diagnóstico técnico breve revisamos sector, tipo de agua, método actual, volumen de muestras, necesidad de acreditación y fricciones de reporting. El resultado es una ruta recomendada: productos, flujo de laboratorio, SaaS, reporting o combinación.', ['Mapear el flujo actual', 'Identificar huecos de trazabilidad y velocidad de decisión', 'Seleccionar rutas de producto y método', 'Definir la capa digital más útil'])
     ],
-    gallery: gallery({
-      sampleToReport: { alt: 'Infografía del flujo AquaVerify desde plan de muestreo hasta informe audit-ready', title: 'De muestra a decisión auditable', body: 'Planifica, muestrea, analiza, valida, informa y actúa en un flujo de calidad conectado.' },
-      sectorRiskSolution: { alt: 'Matriz sector riesgo solución para programas de control de calidad del agua', title: 'Matriz sector, riesgo y solución', body: 'Convierte el riesgo de cada sector en la ruta microbiológica y de reporting adecuada.' },
-      maturity: { alt: 'Roadmap de madurez del control hídrico desde reactivo hasta predictivo', title: 'Roadmap de madurez del control hídrico', body: 'Pasa de controles reactivos a una gestión controlada, trazable y basada en datos.' }
+    visuals: visualBlocks({
+      sampleFlow: {
+        eyebrow: 'Flujo visual',
+        title: 'De muestra a decisión auditable',
+        body: 'Planifica, muestrea, analiza, valida, informa y actúa en un flujo conectado de calidad del agua.',
+        items: [
+          { title: 'Plan', body: 'Puntos de control, frecuencia, matriz y riesgo microbiológico.' },
+          { title: 'Muestra', body: 'Operador, fecha, ubicación, lote y cadena de custodia.' },
+          { title: 'Análisis', body: 'Kit, laboratorio o flujo híbrido con contexto de método.' },
+          { title: 'Validación', body: 'Lectura, revisión, estado y evidencia lista para auditoría.' },
+          { title: 'Acción', body: 'Informe, alerta, decisión y plan de seguimiento.' }
+        ],
+        calloutTitle: 'Evidencia conectada',
+        calloutBody: 'No gestionas resultados aislados: gestionas trazabilidad, decisiones y evidencia para auditorías.'
+      },
+      maturity: {
+        eyebrow: 'Roadmap de madurez',
+        title: 'Roadmap de madurez del control hídrico',
+        body: 'Pasa de controles reactivos a una gestión controlada, trazable y basada en datos.',
+        items: [
+          { title: 'Reactivo', body: 'Se actúa cuando aparece una desviación o una auditoría.', label: 'Evidencia dispersa' },
+          { title: 'Controlado', body: 'Frecuencia, puntos y métodos definidos para cada tipo de agua.', label: 'Programa definido' },
+          { title: 'Trazable', body: 'Muestra, lote, usuario, lectura e informe quedan conectados.', label: 'Histórico auditable' },
+          { title: 'Predictivo', body: 'Tendencias, alertas y decisiones antes de que el riesgo escale.', label: 'Alertas y tendencias' }
+        ],
+        cta: 'Evalúa tu nivel de madurez del control hídrico en 15 minutos'
+      }
     }),
     faqs: [
       { question: '¿Qué tipo de empresas pueden usar AquaVerify?', answer: 'Utilities, industrias alimentarias, plantas de tratamiento, laboratorios ambientales, explotaciones agrícolas, acuicultura, seafood y organizaciones que necesitan control microbiológico y trazabilidad del agua.' },
@@ -134,10 +160,33 @@ export const WATER_QUALITY_CONTROL_PAGE = {
       section('Ce que votre programme AquaVerify peut inclure', 'La configuration dépend du type d’eau, de la matrice, du volume d’échantillons, du niveau de risque, de la capacité laboratoire interne et du reporting attendu.', ['Produits et milieux pour microbiologie de l’eau', 'App de prélèvement et enregistrement Cloud opérateur, site et résultat', 'LIMS, CoA et modèles de reporting', 'GIS, tendances et règles d’escalade pour opérations multi-sites']),
       section('Votre programme de contrôle eau est-il audit-ready?', 'Lors d’un diagnostic technique court, nous analysons secteur, type d’eau, méthode actuelle, volume d’échantillons, besoin d’accréditation et friction de reporting. Le résultat est une route recommandée: produits, workflow laboratoire, SaaS, reporting ou combinaison.', ['Cartographier le flux actuel', 'Identifier les écarts de traçabilité et vitesse décisionnelle', 'Sélectionner routes produit et méthode', 'Définir la couche numérique la plus utile'])
     ],
-    gallery: gallery({
-      sampleToReport: { alt: 'Infographie du flux AquaVerify du plan de prélèvement au rapport audit-ready', title: 'De l’échantillon à la décision auditable', body: 'Planifier, prélever, analyser, valider, rapporter et agir dans un flux qualité connecté.' },
-      sectorRiskSolution: { alt: 'Matrice secteur risque solution pour programmes de contrôle qualité de l’eau', title: 'Matrice secteur, risque et solution', body: 'Transformer le risque sectoriel en bonne route microbiologique et reporting.' },
-      maturity: { alt: 'Roadmap de maturité du contrôle de l’eau du réactif au prédictif', title: 'Roadmap de maturité contrôle eau', body: 'Passer de contrôles réactifs à une gestion contrôlée, traçable et pilotée par la donnée.' }
+    visuals: visualBlocks({
+      sampleFlow: {
+        eyebrow: 'Flux visuel',
+        title: 'De l’échantillon à la décision auditable',
+        body: 'Planifier, prélever, analyser, valider, rapporter et agir dans un flux qualité eau connecté.',
+        items: [
+          { title: 'Plan', body: 'Points de contrôle, fréquence, matrice et risque microbiologique.' },
+          { title: 'Échantillon', body: 'Opérateur, date, site, lot et chaîne de traçabilité.' },
+          { title: 'Analyse', body: 'Kit, laboratoire ou flux hybride avec contexte méthode.' },
+          { title: 'Validation', body: 'Lecture, revue, statut et preuve prête pour audit.' },
+          { title: 'Action', body: 'Rapport, alerte, décision et plan de suivi.' }
+        ],
+        calloutTitle: 'Preuve connectée',
+        calloutBody: 'Vous ne gérez pas des résultats isolés: vous gérez traçabilité, décisions et preuve pour audits.'
+      },
+      maturity: {
+        eyebrow: 'Roadmap de maturité',
+        title: 'Roadmap de maturité du contrôle de l’eau',
+        body: 'Passer de contrôles réactifs à une gestion contrôlée, traçable et pilotée par la donnée.',
+        items: [
+          { title: 'Réactif', body: 'L’action commence lorsqu’un écart ou un audit apparaît.', label: 'Preuve dispersée' },
+          { title: 'Maîtrisé', body: 'Fréquence, points et méthodes sont définis par type d’eau.', label: 'Programme défini' },
+          { title: 'Traçable', body: 'Échantillon, lot, utilisateur, lecture et rapport restent connectés.', label: 'Historique auditable' },
+          { title: 'Prédictif', body: 'Tendances, alertes et décisions avant l’escalade du risque.', label: 'Alertes et tendances' }
+        ],
+        cta: 'Évaluez votre maturité de contrôle eau en 15 minutes'
+      }
     }),
     faqs: [
       { question: 'Quelles entreprises peuvent utiliser AquaVerify?', answer: 'Utilities, industries agroalimentaires, usines de traitement, laboratoires environnementaux, agriculture, aquaculture, seafood et organisations ayant besoin de contrôle microbiologique et de traçabilité de l’eau.' },
@@ -169,10 +218,33 @@ export const WATER_QUALITY_CONTROL_PAGE = {
       section('Cosa può includere il tuo programma AquaVerify', 'La configurazione dipende da tipo d’acqua, matrice, volume campioni, rischio, capacità interna di laboratorio e reporting richiesto.', ['Prodotti e terreni per microbiologia dell’acqua', 'App campionamento e record Cloud per operatore, ubicazione e risultato', 'LIMS, CoA e template di reporting', 'GIS, analisi trend e regole escalation per operazioni multi-site']),
       section('Il tuo programma controllo acqua è audit-ready?', 'In una breve diagnosi tecnica rivediamo settore, tipo d’acqua, metodo attuale, volume campioni, necessità di accreditamento e frizioni di reporting. Il risultato è una rotta consigliata: prodotti, workflow laboratorio, SaaS, reporting o combinazione.', ['Mappare il workflow attuale', 'Identificare gap di tracciabilità e velocità decisionale', 'Selezionare rotte prodotto e metodo', 'Definire il layer digitale più utile'])
     ],
-    gallery: gallery({
-      sampleToReport: { alt: 'Infografica AquaVerify dal piano di campionamento al report audit-ready', title: 'Dal campione alla decisione auditabile', body: 'Pianifica, campiona, analizza, valida, riporta e agisci in un workflow qualità connesso.' },
-      sectorRiskSolution: { alt: 'Matrice settore rischio soluzione per programmi di controllo qualità acqua', title: 'Matrice settore, rischio e soluzione', body: 'Trasforma il rischio settoriale nella rotta microbiologica e di reporting corretta.' },
-      maturity: { alt: 'Roadmap maturità controllo idrico da reattivo a predittivo', title: 'Roadmap maturità controllo idrico', body: 'Passa da controlli reattivi a gestione controllata, tracciabile e guidata dai dati.' }
+    visuals: visualBlocks({
+      sampleFlow: {
+        eyebrow: 'Flusso visuale',
+        title: 'Dal campione alla decisione auditabile',
+        body: 'Pianifica, campiona, analizza, valida, riporta e agisci in un workflow connesso di qualità acqua.',
+        items: [
+          { title: 'Piano', body: 'Punti di controllo, frequenza, matrice e rischio microbiologico.' },
+          { title: 'Campione', body: 'Operatore, data, ubicazione, lotto e catena di custodia.' },
+          { title: 'Analisi', body: 'Kit, laboratorio o flusso ibrido con contesto metodo.' },
+          { title: 'Validazione', body: 'Lettura, revisione, stato ed evidenza pronta per audit.' },
+          { title: 'Azione', body: 'Report, alert, decisione e piano di follow-up.' }
+        ],
+        calloutTitle: 'Evidenza collegata',
+        calloutBody: 'Non gestisci risultati isolati: gestisci tracciabilità, decisioni ed evidenza per audit.'
+      },
+      maturity: {
+        eyebrow: 'Roadmap maturità',
+        title: 'Roadmap maturità controllo acqua',
+        body: 'Passa da controlli reattivi a gestione controllata, tracciabile e guidata dai dati.',
+        items: [
+          { title: 'Reattivo', body: 'Si interviene quando compare una deviazione o un audit.', label: 'Evidenza dispersa' },
+          { title: 'Controllato', body: 'Frequenza, punti e metodi definiti per ogni tipo d’acqua.', label: 'Programma definito' },
+          { title: 'Tracciabile', body: 'Campione, lotto, utente, lettura e report restano collegati.', label: 'Storico auditabile' },
+          { title: 'Predittivo', body: 'Trend, alert e decisioni prima che il rischio aumenti.', label: 'Alert e trend' }
+        ],
+        cta: 'Valuta la maturità del controllo acqua in 15 minuti'
+      }
     }),
     faqs: [
       { question: 'Che aziende possono usare AquaVerify?', answer: 'Utility, industrie alimentari, impianti di trattamento, laboratori ambientali, agricoltura, acquacoltura, seafood e organizzazioni che richiedono controllo microbiologico e tracciabilità dell’acqua.' },
@@ -204,10 +276,33 @@ export const WATER_QUALITY_CONTROL_PAGE = {
       section('Què pot incloure el teu programa AquaVerify', 'La configuració depèn del tipus d’aigua, matriu, volum de mostres, risc, capacitat interna de laboratori i reporting requerit.', ['Productes i medis per a microbiologia de l’aigua', 'App de mostreig i registre Cloud d’operador, ubicació i resultat', 'LIMS, CoA i plantilles de reporting', 'GIS, anàlisi de tendències i regles d’escalat per a operacions multi-site']),
       section('El teu programa de control de l’aigua és audit-ready?', 'En un diagnòstic tècnic breu revisem sector, tipus d’aigua, mètode actual, volum de mostres, necessitat d’acreditació i friccions de reporting. El resultat és una ruta recomanada: productes, flux de laboratori, SaaS, reporting o combinació.', ['Mapar el flux actual', 'Identificar buits de traçabilitat i velocitat de decisió', 'Seleccionar rutes de producte i mètode', 'Definir la capa digital més útil'])
     ],
-    gallery: gallery({
-      sampleToReport: { alt: 'Infografia del flux AquaVerify del pla de mostreig fins a informe audit-ready', title: 'De mostra a decisió auditable', body: 'Planifica, mostreja, analitza, valida, informa i actua en un flux de qualitat connectat.' },
-      sectorRiskSolution: { alt: 'Matriu sector risc solució per a programes de control de qualitat de l’aigua', title: 'Matriu sector, risc i solució', body: 'Converteix el risc de cada sector en la ruta microbiològica i de reporting adequada.' },
-      maturity: { alt: 'Roadmap de maduresa del control hídric des de reactiu fins a predictiu', title: 'Roadmap de maduresa del control hídric', body: 'Passa de controls reactius a una gestió controlada, traçable i basada en dades.' }
+    visuals: visualBlocks({
+      sampleFlow: {
+        eyebrow: 'Flux visual',
+        title: 'De mostra a decisió auditable',
+        body: 'Planifica, mostreja, analitza, valida, informa i actua en un flux connectat de qualitat de l’aigua.',
+        items: [
+          { title: 'Pla', body: 'Punts de control, freqüència, matriu i risc microbiològic.' },
+          { title: 'Mostra', body: 'Operador, data, ubicació, lot i cadena de custòdia.' },
+          { title: 'Anàlisi', body: 'Kit, laboratori o flux híbrid amb context de mètode.' },
+          { title: 'Validació', body: 'Lectura, revisió, estat i evidència preparada per auditoria.' },
+          { title: 'Acció', body: 'Informe, alerta, decisió i pla de seguiment.' }
+        ],
+        calloutTitle: 'Evidència connectada',
+        calloutBody: 'No gestiones resultats aïllats: gestiones traçabilitat, decisions i evidència per a auditories.'
+      },
+      maturity: {
+        eyebrow: 'Roadmap de maduresa',
+        title: 'Roadmap de maduresa del control hídric',
+        body: 'Passa de controls reactius a una gestió controlada, traçable i basada en dades.',
+        items: [
+          { title: 'Reactiu', body: 'S’actua quan apareix una desviació o una auditoria.', label: 'Evidència dispersa' },
+          { title: 'Controlat', body: 'Freqüència, punts i mètodes definits per a cada tipus d’aigua.', label: 'Programa definit' },
+          { title: 'Traçable', body: 'Mostra, lot, usuari, lectura i informe queden connectats.', label: 'Històric auditable' },
+          { title: 'Predictiu', body: 'Tendències, alertes i decisions abans que el risc escali.', label: 'Alertes i tendències' }
+        ],
+        cta: 'Avalua el nivell de maduresa del control hídric en 15 minuts'
+      }
     }),
     faqs: [
       { question: 'Quin tipus d’empreses poden usar AquaVerify?', answer: 'Utilities, indústries alimentàries, plantes de tractament, laboratoris ambientals, explotacions agrícoles, aqüicultura, seafood i organitzacions que necessiten control microbiològic i traçabilitat de l’aigua.' },
