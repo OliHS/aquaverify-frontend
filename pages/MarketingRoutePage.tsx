@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Download, Loader2,
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
+import { WaterQualityControlLanding } from '../components/WaterQualityControlLanding';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
@@ -841,6 +842,16 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
       path: content.path
     });
   };
+
+  if (page.id === 'water-quality-control' && !isEditing) {
+    return (
+      <WaterQualityControlLanding
+        content={content}
+        pageLang={pageLang}
+        showCookieConsent={showCookieConsent}
+      />
+    );
+  }
 
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
