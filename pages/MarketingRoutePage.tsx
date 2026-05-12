@@ -163,7 +163,7 @@ const FEATURED_WHITEPAPER_COPY: Record<Language, {
 
 type MarketingContentMeta = {
   faqs?: Array<{ question: string; answer: string }>;
-  gallery?: Array<{ src: string; alt: string; title?: string; body?: string }>;
+  gallery?: Array<{ src: string; alt: string; title?: string; body?: string; fit?: 'cover' | 'contain' }>;
   heroImage?: string;
   heroImageAlt?: string;
   heroImageFit?: 'cover' | 'contain';
@@ -659,6 +659,7 @@ type HeroCarouselItem = {
   alt: string;
   title?: string;
   body?: string;
+  fit?: 'cover' | 'contain';
   sourceIndex: number;
 };
 
@@ -820,6 +821,15 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
     }))
     .filter((item) => item.src && item.alt);
   const shouldUseHeroCarousel = page.id === 'platform' && galleryItems.length > 1;
+  const galleryTitle = page.id === 'water-quality-control'
+    ? ({
+      en: 'Infographics and workflows',
+      es: 'Infografías y flujos',
+      fr: 'Infographies et flux',
+      it: 'Infografiche e workflow',
+      ca: 'Infografies i fluxos'
+    } as Record<Language, string>)[pageLang] || labels.screenshotsTitle
+    : labels.screenshotsTitle;
   const handleDatasheetClick = () => {
     trackCorporateEvent('datasheet_click', {
       lang: pageLang,
@@ -1009,7 +1019,7 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
               )}
               {galleryItems.length > 0 && (
                 <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
-                  <h2 className="font-heading text-2xl font-black text-primary">{labels.screenshotsTitle}</h2>
+                  <h2 className="font-heading text-2xl font-black text-primary">{galleryTitle}</h2>
                   <div className="mt-6 grid gap-5 md:grid-cols-2">
                     {galleryItems.map((item) => (
                       <figure key={item.src} className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50">
@@ -1020,7 +1030,7 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
                             alt={item.alt}
                             loading="lazy"
                             decoding="async"
-                            className="h-full w-full object-cover object-top"
+                            className={`h-full w-full ${item.fit === 'contain' ? 'object-contain' : 'object-cover object-top'}`}
                             isEditing={isEditing}
                             onImageChange={onImageChange}
                             uploadImage={uploadImage}

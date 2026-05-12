@@ -34,6 +34,7 @@ type GalleryDraft = {
   alt: string;
   title: string;
   body: string;
+  fit: 'cover' | 'contain';
 };
 
 type MarketingContent = {
@@ -53,7 +54,7 @@ type MarketingContent = {
   seoDescription?: string;
   sections?: Array<{ title: string; body: string; bullets?: string[] }>;
   faqs?: Array<{ question: string; answer: string }>;
-  gallery?: Array<{ src: string; alt: string; title?: string; body?: string }>;
+  gallery?: Array<{ src: string; alt: string; title?: string; body?: string; fit?: 'cover' | 'contain' }>;
 };
 
 type MarketingPage = {
@@ -149,7 +150,8 @@ function contentToForm(content: MarketingContent): EditorForm {
       src: item.src || '',
       alt: item.alt || '',
       title: item.title || '',
-      body: item.body || ''
+      body: item.body || '',
+      fit: item.fit === 'contain' ? 'contain' : 'cover'
     }))
   };
 }
@@ -191,7 +193,8 @@ function formToContent(form: EditorForm, path: string) {
         src: item.src.trim(),
         alt: item.alt.trim(),
         title: item.title.trim(),
-        body: item.body.trim()
+        body: item.body.trim(),
+        fit: item.fit === 'contain' ? 'contain' : 'cover'
       }))
       .filter((item) => item.src && item.alt)
   };
@@ -533,7 +536,7 @@ export const MarketingPageEditor: React.FC = () => {
   const addGalleryItem = () => {
     setForm((current) => current ? {
       ...current,
-      gallery: [...current.gallery, { src: '', alt: '', title: '', body: '' }]
+      gallery: [...current.gallery, { src: '', alt: '', title: '', body: '', fit: 'cover' }]
     } : current);
   };
 
@@ -823,6 +826,13 @@ export const MarketingPageEditor: React.FC = () => {
                 <label className="block">
                   <span className="mb-1 block text-sm font-medium text-slate-700">Caption</span>
                   <textarea rows={2} value={item.body} onChange={(event) => updateGallery(index, 'body', event.target.value)} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500" />
+                </label>
+                <label className="block">
+                  <span className="mb-1 block text-sm font-medium text-slate-700">Image fit</span>
+                  <select value={item.fit} onChange={(event) => updateGallery(index, 'fit', event.target.value as GalleryDraft['fit'])} className="w-full rounded-md border border-slate-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500">
+                    <option value="cover">Cover</option>
+                    <option value="contain">Contain</option>
+                  </select>
                 </label>
               </div>
             </div>

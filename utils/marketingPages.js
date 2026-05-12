@@ -1,4 +1,5 @@
 import { getProductAssetOptions } from './productAssets.js';
+import { WATER_QUALITY_CONTROL_PAGE } from './waterQualityControlContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -1265,21 +1266,7 @@ export const MARKETING_PAGES = [
     ], { eyebrow: 'Laboratoris', primaryCta: 'Parlar amb especialista', secondaryCta: 'Veure productes' })
   }),
   page('water-quality-control', 'industries', 'contact', {
-    en: locale('/industries/water-quality-control', 'Water quality control for companies and facilities', 'AquaVerify helps companies monitor water quality with products, laboratory partners and digital reporting workflows.', [
-      section('For operational quality teams', 'Use AquaVerify to structure water testing requests, reports and recurring monitoring.', ['Food and beverage water quality', 'Facilities and building risk control', 'Industrial process water', 'Supplier and lab coordination'])
-    ], { eyebrow: 'Water quality control', primaryCta: 'Ask for solution fit', secondaryCta: 'Find products' }),
-    es: locale('/es/industrias/control-calidad-agua', 'Control de calidad del agua para empresas e instalaciones', 'AquaVerify ayuda a empresas a monitorizar calidad del agua con productos, partners de laboratorio y reporting digital.', [
-      section('Para equipos de calidad operativa', 'Usa AquaVerify para estructurar solicitudes de análisis, informes y monitorización recurrente.', ['Calidad del agua en food & beverage', 'Control de riesgo en instalaciones', 'Agua de proceso industrial', 'Coordinación con proveedores y laboratorios'])
-    ], { eyebrow: 'Control de calidad del agua', primaryCta: 'Pedir recomendación', secondaryCta: 'Ver productos' }),
-    fr: locale('/fr/industries/controle-qualite-eau', 'Contrôle qualité de l’eau pour entreprises et sites', 'AquaVerify aide les entreprises à suivre la qualité de l’eau avec produits, partenaires laboratoire et rapports numériques.', [
-      section('Pour les équipes qualité opérationnelle', 'Utilisez AquaVerify pour structurer demandes d’analyse, rapports et surveillance récurrente.', ['Qualité eau food & beverage', 'Contrôle risque bâtiments', 'Eau de process industriel', 'Coordination fournisseurs et laboratoires'])
-    ], { eyebrow: 'Contrôle qualité eau', primaryCta: 'Demander une recommandation', secondaryCta: 'Voir les produits' }),
-    it: locale('/it/settori/controllo-qualita-acqua', 'Controllo qualità dell’acqua per aziende e strutture', 'AquaVerify aiuta le aziende a monitorare la qualità dell’acqua con prodotti, partner di laboratorio e reporting digitale.', [
-      section('Per team qualità operativa', 'Usa AquaVerify per strutturare richieste analisi, report e monitoraggio ricorrente.', ['Qualità acqua food & beverage', 'Controllo rischio strutture', 'Acqua di processo industriale', 'Coordinamento fornitori e laboratori'])
-    ], { eyebrow: 'Controllo qualità acqua', primaryCta: 'Chiedi raccomandazione', secondaryCta: 'Vedi prodotti' }),
-    ca: locale('/ca/sectors/control-qualitat-aigua', 'Control de qualitat de l’aigua per a empreses i instal·lacions', 'AquaVerify ajuda empreses a monitorar qualitat de l’aigua amb productes, partners de laboratori i reporting digital.', [
-      section('Per a equips de qualitat operativa', 'Fes servir AquaVerify per estructurar sol·licituds d’anàlisi, informes i monitoratge recurrent.', ['Qualitat de l’aigua en food & beverage', 'Control de risc en instal·lacions', 'Aigua de procés industrial', 'Coordinació amb proveïdors i laboratoris'])
-    ], { eyebrow: 'Control de qualitat de l’aigua', primaryCta: 'Demanar recomanació', secondaryCta: 'Veure productes' })
+    ...WATER_QUALITY_CONTROL_PAGE
   }),
   page('resources', 'resources', 'quote', {
     en: locale('/resources', 'Water microbiology resources and buyer guides', 'Technical and commercial guides for water microbiology products, digital traceability, OEM distribution and quality workflows.', [

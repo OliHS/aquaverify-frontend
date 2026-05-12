@@ -129,7 +129,8 @@ function normalizeGallery(value) {
       src: cleanText(item?.src),
       alt: cleanText(item?.alt),
       title: cleanText(item?.title),
-      body: cleanText(item?.body)
+      body: cleanText(item?.body),
+      fit: ['cover', 'contain'].includes(item?.fit) ? item.fit : null
     }))
     .filter((item) => item.src && item.alt);
   return gallery.length > 0 ? gallery : null;
