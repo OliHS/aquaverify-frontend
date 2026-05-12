@@ -60,6 +60,7 @@ const PLATFORM_SCREENSHOT_COPY = {
     { id: 'dashboard', title: 'Executive dashboard', body: 'Operational KPIs, revenue, margin and live workload in one cockpit.', alt: 'AquaVerify Cloud executive performance dashboard' },
     { id: 'crm', title: 'Customer accounts', body: 'Customer, partner and laboratory accounts connected to commercial and support activity.', alt: 'AquaVerify CRM company portfolio screen' },
     { id: 'lims', title: 'LIMS workstation', body: 'Sample reception, work distribution, validation and reports in the same workflow.', alt: 'AquaVerify LIMS workstation dashboard' },
+    { id: 'portal', title: 'Customer portal', body: 'Customers can request work, follow samples, download reports and keep support context in one place.', alt: 'AquaVerify customer portal screen' },
     { id: 'work', title: 'Work management', body: 'Projects, boards, documents and tasks for scientific and operational teams.', alt: 'AquaVerify work board and task management screen' },
     { id: 'wms', title: 'Inventory and WMS', body: 'Warehouse, stock movement, traceability and fulfilment controls.', alt: 'AquaVerify WMS warehouse dashboard' },
     { id: 'finance', title: 'Finance and treasury', body: 'Billing, cash, expenses and reporting tied to the operational record.', alt: 'AquaVerify finance and treasury dashboard' }
@@ -68,6 +69,7 @@ const PLATFORM_SCREENSHOT_COPY = {
     { id: 'dashboard', title: 'Dashboard ejecutivo', body: 'KPIs operativos, ingresos, margen y carga viva en un solo cockpit.', alt: 'Dashboard ejecutivo de rendimiento en AquaVerify Cloud' },
     { id: 'crm', title: 'Cartera de clientes', body: 'Cuentas de clientes, partners y laboratorios conectadas con actividad comercial y soporte.', alt: 'Pantalla de cartera de empresas CRM en AquaVerify' },
     { id: 'lims', title: 'Estación LIMS', body: 'Recepción de muestras, distribución de trabajo, validación e informes en el mismo flujo.', alt: 'Dashboard de estación LIMS en AquaVerify' },
+    { id: 'portal', title: 'Portal cliente', body: 'Los clientes pueden solicitar trabajo, seguir muestras, descargar informes y conservar el contexto de soporte en un solo lugar.', alt: 'Pantalla del portal cliente AquaVerify' },
     { id: 'work', title: 'Gestión del trabajo', body: 'Proyectos, tableros, documentos y tareas para equipos científicos y operativos.', alt: 'Tablero de trabajo y tareas en AquaVerify' },
     { id: 'wms', title: 'Inventario y WMS', body: 'Almacén, movimientos de stock, trazabilidad y controles de expedición.', alt: 'Dashboard de almacén WMS en AquaVerify' },
     { id: 'finance', title: 'Finanzas y tesorería', body: 'Facturación, caja, gastos y reporting conectados al registro operativo.', alt: 'Dashboard de finanzas y tesorería en AquaVerify' }
@@ -76,6 +78,7 @@ const PLATFORM_SCREENSHOT_COPY = {
     { id: 'dashboard', title: 'Dashboard exécutif', body: 'KPIs opérationnels, revenus, marge et charge active dans un seul cockpit.', alt: 'Dashboard exécutif AquaVerify Cloud' },
     { id: 'crm', title: 'Portefeuille clients', body: 'Comptes clients, partenaires et laboratoires reliés à l’activité commerciale et au support.', alt: 'Écran portefeuille CRM AquaVerify' },
     { id: 'lims', title: 'Station LIMS', body: 'Réception échantillons, répartition du travail, validation et rapports dans un même flux.', alt: 'Dashboard station LIMS AquaVerify' },
+    { id: 'portal', title: 'Portail client', body: 'Les clients peuvent demander du travail, suivre les échantillons, télécharger les rapports et conserver le contexte support au même endroit.', alt: 'Écran portail client AquaVerify' },
     { id: 'work', title: 'Gestion du travail', body: 'Projets, tableaux, documents et tâches pour équipes scientifiques et opérationnelles.', alt: 'Tableau de travail AquaVerify' },
     { id: 'wms', title: 'Inventaire et WMS', body: 'Entrepôt, mouvements de stock, traçabilité et contrôles d’expédition.', alt: 'Dashboard WMS AquaVerify' },
     { id: 'finance', title: 'Finance et trésorerie', body: 'Facturation, trésorerie, dépenses et reporting liés au registre opérationnel.', alt: 'Dashboard finance AquaVerify' }
@@ -84,6 +87,7 @@ const PLATFORM_SCREENSHOT_COPY = {
     { id: 'dashboard', title: 'Dashboard executive', body: 'KPI operativi, ricavi, margine e carico attivo in un unico cockpit.', alt: 'Dashboard executive AquaVerify Cloud' },
     { id: 'crm', title: 'Portafoglio clienti', body: 'Account clienti, partner e laboratori collegati ad attività commerciale e supporto.', alt: 'Schermata portfolio CRM AquaVerify' },
     { id: 'lims', title: 'Workstation LIMS', body: 'Ricezione campioni, distribuzione lavoro, validazione e report nello stesso flusso.', alt: 'Dashboard workstation LIMS AquaVerify' },
+    { id: 'portal', title: 'Portale clienti', body: 'I clienti possono richiedere lavoro, seguire i campioni, scaricare report e mantenere il contesto supporto in un unico luogo.', alt: 'Schermata portale clienti AquaVerify' },
     { id: 'work', title: 'Gestione lavoro', body: 'Progetti, board, documenti e task per team scientifici e operativi.', alt: 'Board di lavoro AquaVerify' },
     { id: 'wms', title: 'Inventario e WMS', body: 'Magazzino, movimenti stock, tracciabilità e controlli di spedizione.', alt: 'Dashboard WMS AquaVerify' },
     { id: 'finance', title: 'Finanza e tesoreria', body: 'Fatturazione, cassa, spese e reporting collegati al record operativo.', alt: 'Dashboard finanza AquaVerify' }
@@ -92,6 +96,7 @@ const PLATFORM_SCREENSHOT_COPY = {
     { id: 'dashboard', title: 'Dashboard executiu', body: 'KPIs operatius, ingressos, marge i càrrega activa en un sol cockpit.', alt: 'Dashboard executiu AquaVerify Cloud' },
     { id: 'crm', title: 'Cartera de clients', body: 'Comptes de clients, partners i laboratoris connectats amb activitat comercial i suport.', alt: 'Pantalla de cartera CRM AquaVerify' },
     { id: 'lims', title: 'Estació LIMS', body: 'Recepció de mostres, distribució de treball, validació i informes en el mateix flux.', alt: 'Dashboard estació LIMS AquaVerify' },
+    { id: 'portal', title: 'Portal client', body: 'Els clients poden sol·licitar treball, seguir mostres, descarregar informes i conservar el context de suport en un sol lloc.', alt: 'Pantalla del portal client AquaVerify' },
     { id: 'work', title: 'Gestió del treball', body: 'Projectes, taulers, documents i tasques per a equips científics i operatius.', alt: 'Tauler de treball AquaVerify' },
     { id: 'wms', title: 'Inventari i WMS', body: 'Magatzem, moviments d’estoc, traçabilitat i controls d’expedició.', alt: 'Dashboard WMS AquaVerify' },
     { id: 'finance', title: 'Finances i tresoreria', body: 'Facturació, caixa, despeses i reporting connectats al registre operatiu.', alt: 'Dashboard finances AquaVerify' }
@@ -119,6 +124,143 @@ function platformVisualOptions(lang, {
     ogImage: PLATFORM_SCREENSHOT_ASSETS[hero],
     gallery: platformScreenshotGallery(lang, galleryIds)
   };
+}
+
+const PLATFORM_DEEP_DIVES = {
+  en: {
+    eyebrow: 'Platform visual brief',
+    title: 'One connected operating system for water quality work',
+    intro: 'AquaVerify Cloud is designed as a complete business and laboratory platform: CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventory, WMS, logistics, finance, customer portal, dashboards and AquaAI share the same operational record instead of living in separate tools.',
+    metrics: [
+      { label: 'Validated flows', value: '11 E2E', body: 'Signup, onboarding, CRM, portal, LIMS, support, sales, logistics, finance, WMS and executive surfaces were validated as connected flows.', tone: 'cyan' },
+      { label: 'Functional surface', value: '126 screens', body: 'Authenticated legacy surface audit covered visible screens, forms, links, buttons and critical routes across the platform.', tone: 'indigo' },
+      { label: 'Operating languages', value: '5 languages', body: 'Spanish, English, French, Italian and Catalan are part of the platform experience for internal teams, partners and customers.', tone: 'emerald' }
+    ],
+    comparisonTitle: 'Fragmented tools versus AquaVerify Cloud',
+    comparison: [
+      { label: 'Fragmented stack', title: 'CRM, spreadsheets, email, lab records and finance separated', body: 'Teams lose context between quotation, sample reception, work execution, report delivery, stock, invoicing and customer follow-up.', valuePercent: 38, tone: 'slate' },
+      { label: 'AquaVerify Cloud', title: 'One traceable operational backbone', body: 'Every customer, sample, task, result, shipment, invoice, support ticket and report can stay linked to the same business record.', valuePercent: 92, tone: 'cyan' }
+    ],
+    flowTitle: 'From request to report, stock, invoice and customer portal',
+    flow: [
+      { title: 'Capture the opportunity', body: 'Corporate website, signup, CRM account, contact, consent, source URL and commercial intent enter the platform with context.' },
+      { title: 'Qualify and quote', body: 'CRM and Sales turn the opportunity into a quote, product order, SaaS demo or partner conversation.' },
+      { title: 'Run laboratory work', body: 'LIMS receives samples, controls sampling points, work sheets, result capture, validation, ELN protocols and COA/report outputs.' },
+      { title: 'Coordinate operations', body: 'Work boards, tasks, AquaChat, AquaMail, support tickets and alerts keep teams aligned around the customer and sample record.' },
+      { title: 'Execute supply chain', body: 'Inventory, WMS, production, procurement and logistics connect stock availability, picking, shipments and delivery evidence.' },
+      { title: 'Close the loop', body: 'Finance, treasury, dashboards, customer portal and AquaAI turn execution into billing, evidence, reporting and next-best actions.' }
+    ],
+    sourceLabel: 'Based on AquaVerify Cloud manuals and production E2E validation',
+    note: 'The platform can support AquaVerify product workflows and can also be positioned as SaaS for biotech, laboratory and operational teams that need an integrated system.'
+  },
+  es: {
+    eyebrow: 'Brief visual de plataforma',
+    title: 'Un sistema operativo conectado para la calidad del agua',
+    intro: 'AquaVerify Cloud está diseñada como una plataforma completa de negocio y laboratorio: CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventario, WMS, logística, finanzas, portal cliente, dashboards y AquaAI comparten el mismo registro operativo en lugar de vivir en herramientas separadas.',
+    metrics: [
+      { label: 'Flujos validados', value: '11 E2E', body: 'Signup, onboarding, CRM, portal, LIMS, soporte, ventas, logística, finanzas, WMS y superficies ejecutivas validadas como flujos conectados.', tone: 'cyan' },
+      { label: 'Superficie funcional', value: '126 pantallas', body: 'Auditoría autenticada de pantallas, formularios, enlaces, botones y rutas críticas visibles en la plataforma.', tone: 'indigo' },
+      { label: 'Idiomas operativos', value: '5 idiomas', body: 'Español, inglés, francés, italiano y catalán forman parte de la experiencia para equipos internos, partners y clientes.', tone: 'emerald' }
+    ],
+    comparisonTitle: 'Herramientas fragmentadas frente a AquaVerify Cloud',
+    comparison: [
+      { label: 'Stack fragmentado', title: 'CRM, hojas de cálculo, email, laboratorio y finanzas separados', body: 'El contexto se pierde entre cotización, recepción de muestra, ejecución, informe, stock, facturación y seguimiento del cliente.', valuePercent: 38, tone: 'slate' },
+      { label: 'AquaVerify Cloud', title: 'Una columna vertebral operativa trazable', body: 'Cada cliente, muestra, tarea, resultado, envío, factura, ticket e informe puede quedar vinculado al mismo registro de negocio.', valuePercent: 92, tone: 'cyan' }
+    ],
+    flowTitle: 'De la solicitud al informe, stock, factura y portal cliente',
+    flow: [
+      { title: 'Captar la oportunidad', body: 'Web corporativa, signup, empresa CRM, contacto, consentimiento, URL de origen e intención comercial entran con contexto.' },
+      { title: 'Cualificar y cotizar', body: 'CRM y Sales transforman la oportunidad en presupuesto, pedido de producto, demo SaaS o conversación con partner.' },
+      { title: 'Ejecutar el trabajo de laboratorio', body: 'LIMS gestiona muestras, puntos de muestreo, hojas de trabajo, captura de resultados, validación, protocolos ELN y COA/informes.' },
+      { title: 'Coordinar operaciones', body: 'Work, tareas, AquaChat, AquaMail, soporte y alertas mantienen a los equipos alineados alrededor del cliente y la muestra.' },
+      { title: 'Ejecutar la cadena supply', body: 'Inventario, WMS, producción, compras y logística conectan disponibilidad, picking, expediciones y evidencia de entrega.' },
+      { title: 'Cerrar el ciclo', body: 'Finanzas, tesorería, dashboards, portal cliente y AquaAI convierten la ejecución en facturación, evidencia, reporting y siguientes acciones.' }
+    ],
+    sourceLabel: 'Basado en manuales AquaVerify Cloud y validación E2E en producción',
+    note: 'La plataforma soporta flujos con productos AquaVerify y también puede ofrecerse como SaaS para biotech, laboratorios y equipos operativos que necesitan un sistema integrado.'
+  },
+  fr: {
+    eyebrow: 'Brief visuel plateforme',
+    title: 'Un système opérationnel connecté pour la qualité de l’eau',
+    intro: 'AquaVerify Cloud est pensée comme une plateforme complète métier et laboratoire: CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventaire, WMS, logistique, finance, portail client, dashboards et AquaAI partagent le même registre opérationnel au lieu de vivre dans des outils séparés.',
+    metrics: [
+      { label: 'Flux validés', value: '11 E2E', body: 'Signup, onboarding, CRM, portail, LIMS, support, ventes, logistique, finance, WMS et surfaces exécutives validés comme flux connectés.', tone: 'cyan' },
+      { label: 'Surface fonctionnelle', value: '126 écrans', body: 'Audit authentifié des écrans visibles, formulaires, liens, boutons et routes critiques de la plateforme.', tone: 'indigo' },
+      { label: 'Langues opérationnelles', value: '5 langues', body: 'Espagnol, anglais, français, italien et catalan font partie de l’expérience pour équipes internes, partenaires et clients.', tone: 'emerald' }
+    ],
+    comparisonTitle: 'Outils fragmentés versus AquaVerify Cloud',
+    comparison: [
+      { label: 'Stack fragmentée', title: 'CRM, tableurs, email, laboratoire et finance séparés', body: 'Le contexte se perd entre devis, réception échantillon, exécution, rapport, stock, facturation et suivi client.', valuePercent: 38, tone: 'slate' },
+      { label: 'AquaVerify Cloud', title: 'Une colonne vertébrale opérationnelle traçable', body: 'Chaque client, échantillon, tâche, résultat, expédition, facture, ticket et rapport peut rester lié au même registre métier.', valuePercent: 92, tone: 'cyan' }
+    ],
+    flowTitle: 'De la demande au rapport, stock, facture et portail client',
+    flow: [
+      { title: 'Capturer l’opportunité', body: 'Site corporate, signup, compte CRM, contact, consentement, URL source et intention commerciale arrivent avec contexte.' },
+      { title: 'Qualifier et chiffrer', body: 'CRM et Sales transforment l’opportunité en devis, commande produit, démo SaaS ou échange partenaire.' },
+      { title: 'Exécuter le travail laboratoire', body: 'LIMS gère échantillons, points de prélèvement, feuilles de travail, résultats, validation, protocoles ELN et COA/rapports.' },
+      { title: 'Coordonner les opérations', body: 'Work, tâches, AquaChat, AquaMail, support et alertes alignent les équipes autour du client et de l’échantillon.' },
+      { title: 'Exécuter la supply chain', body: 'Inventaire, WMS, production, achats et logistique relient disponibilité, picking, expéditions et preuve de livraison.' },
+      { title: 'Boucler le cycle', body: 'Finance, trésorerie, dashboards, portail client et AquaAI transforment l’exécution en facturation, preuve, reporting et actions suivantes.' }
+    ],
+    sourceLabel: 'Basé sur les manuels AquaVerify Cloud et la validation E2E en production',
+    note: 'La plateforme supporte les flux produits AquaVerify et peut aussi être proposée en SaaS pour biotech, laboratoires et équipes opérationnelles ayant besoin d’un système intégré.'
+  },
+  it: {
+    eyebrow: 'Brief visuale piattaforma',
+    title: 'Un sistema operativo connesso per la qualità dell’acqua',
+    intro: 'AquaVerify Cloud è progettata come piattaforma completa business e laboratorio: CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventario, WMS, logistica, finanza, portale clienti, dashboard e AquaAI condividono lo stesso record operativo invece di vivere in strumenti separati.',
+    metrics: [
+      { label: 'Flussi validati', value: '11 E2E', body: 'Signup, onboarding, CRM, portale, LIMS, supporto, vendite, logistica, finanza, WMS e superfici executive validate come flussi connessi.', tone: 'cyan' },
+      { label: 'Superficie funzionale', value: '126 schermate', body: 'Audit autenticato di schermate visibili, form, link, pulsanti e rotte critiche della piattaforma.', tone: 'indigo' },
+      { label: 'Lingue operative', value: '5 lingue', body: 'Spagnolo, inglese, francese, italiano e catalano fanno parte dell’esperienza per team interni, partner e clienti.', tone: 'emerald' }
+    ],
+    comparisonTitle: 'Strumenti frammentati rispetto ad AquaVerify Cloud',
+    comparison: [
+      { label: 'Stack frammentato', title: 'CRM, fogli, email, laboratorio e finanza separati', body: 'Il contesto si perde tra preventivo, ricezione campione, esecuzione, report, stock, fatturazione e follow-up cliente.', valuePercent: 38, tone: 'slate' },
+      { label: 'AquaVerify Cloud', title: 'Una dorsale operativa tracciabile', body: 'Ogni cliente, campione, task, risultato, spedizione, fattura, ticket e report può restare collegato allo stesso record business.', valuePercent: 92, tone: 'cyan' }
+    ],
+    flowTitle: 'Dalla richiesta al report, stock, fattura e portale clienti',
+    flow: [
+      { title: 'Catturare l’opportunità', body: 'Sito corporate, signup, account CRM, contatto, consenso, URL sorgente e intento commerciale entrano con contesto.' },
+      { title: 'Qualificare e quotare', body: 'CRM e Sales trasformano l’opportunità in preventivo, ordine prodotto, demo SaaS o conversazione partner.' },
+      { title: 'Eseguire il lavoro di laboratorio', body: 'LIMS gestisce campioni, punti di campionamento, worksheet, risultati, validazione, protocolli ELN e COA/report.' },
+      { title: 'Coordinare le operations', body: 'Work, task, AquaChat, AquaMail, supporto e alert tengono i team allineati intorno a cliente e campione.' },
+      { title: 'Eseguire la supply chain', body: 'Inventario, WMS, produzione, acquisti e logistica collegano disponibilità, picking, spedizioni ed evidenza di consegna.' },
+      { title: 'Chiudere il ciclo', body: 'Finanza, tesoreria, dashboard, portale clienti e AquaAI trasformano l’esecuzione in fatturazione, evidenza, reporting e prossime azioni.' }
+    ],
+    sourceLabel: 'Basato sui manuali AquaVerify Cloud e sulla validazione E2E in produzione',
+    note: 'La piattaforma supporta workflow con prodotti AquaVerify e può anche essere proposta come SaaS per biotech, laboratori e team operativi che richiedono un sistema integrato.'
+  },
+  ca: {
+    eyebrow: 'Brief visual de plataforma',
+    title: 'Un sistema operatiu connectat per a la qualitat de l’aigua',
+    intro: 'AquaVerify Cloud està dissenyada com una plataforma completa de negoci i laboratori: CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventari, WMS, logística, finances, portal client, dashboards i AquaAI comparteixen el mateix registre operatiu en lloc de viure en eines separades.',
+    metrics: [
+      { label: 'Fluxos validats', value: '11 E2E', body: 'Signup, onboarding, CRM, portal, LIMS, suport, vendes, logística, finances, WMS i superfícies executives validades com a fluxos connectats.', tone: 'cyan' },
+      { label: 'Superfície funcional', value: '126 pantalles', body: 'Auditoria autenticada de pantalles visibles, formularis, enllaços, botons i rutes crítiques de la plataforma.', tone: 'indigo' },
+      { label: 'Idiomes operatius', value: '5 idiomes', body: 'Castellà, anglès, francès, italià i català formen part de l’experiència per a equips interns, partners i clients.', tone: 'emerald' }
+    ],
+    comparisonTitle: 'Eines fragmentades davant AquaVerify Cloud',
+    comparison: [
+      { label: 'Stack fragmentat', title: 'CRM, fulls de càlcul, email, laboratori i finances separats', body: 'El context es perd entre pressupost, recepció de mostra, execució, informe, estoc, facturació i seguiment del client.', valuePercent: 38, tone: 'slate' },
+      { label: 'AquaVerify Cloud', title: 'Una columna vertebral operativa traçable', body: 'Cada client, mostra, tasca, resultat, enviament, factura, tiquet i informe pot quedar vinculat al mateix registre de negoci.', valuePercent: 92, tone: 'cyan' }
+    ],
+    flowTitle: 'De la sol·licitud a l’informe, estoc, factura i portal client',
+    flow: [
+      { title: 'Captar l’oportunitat', body: 'Web corporativa, signup, empresa CRM, contacte, consentiment, URL d’origen i intenció comercial entren amb context.' },
+      { title: 'Qualificar i pressupostar', body: 'CRM i Sales transformen l’oportunitat en pressupost, comanda de producte, demo SaaS o conversa amb partner.' },
+      { title: 'Executar el treball de laboratori', body: 'LIMS gestiona mostres, punts de mostreig, fulls de treball, resultats, validació, protocols ELN i COA/informes.' },
+      { title: 'Coordinar operacions', body: 'Work, tasques, AquaChat, AquaMail, suport i alertes mantenen els equips alineats al voltant del client i la mostra.' },
+      { title: 'Executar la cadena supply', body: 'Inventari, WMS, producció, compres i logística connecten disponibilitat, picking, expedicions i evidència de lliurament.' },
+      { title: 'Tancar el cicle', body: 'Finances, tresoreria, dashboards, portal client i AquaAI converteixen l’execució en facturació, evidència, reporting i següents accions.' }
+    ],
+    sourceLabel: 'Basat en manuals AquaVerify Cloud i validació E2E en producció',
+    note: 'La plataforma suporta fluxos amb productes AquaVerify i també es pot oferir com a SaaS per a biotech, laboratoris i equips operatius que necessiten un sistema integrat.'
+  }
+};
+
+function platformDeepDive(lang) {
+  return PLATFORM_DEEP_DIVES[lang] || PLATFORM_DEEP_DIVES.en;
 }
 
 const WHITEPAPER_DEEP_DIVES = {
@@ -881,26 +1023,71 @@ export const MARKETING_PAGES = [
     ], { eyebrow: 'Lab Essentials', primaryCta: 'Sol·licitar pressupost', secondaryCta: 'Veure productes', ...getProductAssetOptions('lab-essentials', 'ca', 'Familia de productes AquaVerify Lab Essentials') })
   }),
   page('platform', 'platform', 'demo', {
-    en: locale('/platform', 'AquaVerify Cloud for traceable water analysis workflows', 'Connect samples, products, operators, reports and customer workflows in one digital platform.', [
-      section('From product use to digital record', 'AquaVerify Cloud turns laboratory and field activity into structured, traceable operational data.', ['Sample traceability', 'Digital reports', 'CRM and customer portal', 'Inventory and work management']),
-      section('Built around real operations', 'The platform supports laboratories, distributors and companies that need quality workflows beyond spreadsheets.')
-    ], { eyebrow: 'Platform', primaryCta: 'Request platform demo', secondaryCta: 'See SaaS option', ...platformVisualOptions('en', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) }),
-    es: locale('/es/plataforma', 'AquaVerify Cloud para flujos trazables de análisis de agua', 'Conecta muestras, productos, operadores, informes y flujos de cliente en una sola plataforma digital.', [
-      section('Del uso del producto al registro digital', 'AquaVerify Cloud convierte actividad de laboratorio y campo en datos operativos estructurados y trazables.', ['Trazabilidad de muestras', 'Informes digitales', 'CRM y portal cliente', 'Inventario y gestión del trabajo']),
-      section('Construida alrededor de la operación real', 'La plataforma da soporte a laboratorios, distribuidores y empresas que necesitan flujos de calidad más allá de hojas de cálculo.')
-    ], { eyebrow: 'Plataforma', primaryCta: 'Solicitar demo plataforma', secondaryCta: 'Ver opción SaaS', ...platformVisualOptions('es', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) }),
-    fr: locale('/fr/plateforme', 'AquaVerify Cloud pour des flux d’analyse de l’eau traçables', 'Connectez échantillons, produits, opérateurs, rapports et flux client dans une seule plateforme numérique.', [
-      section('De l’utilisation du produit au registre numérique', 'AquaVerify Cloud transforme l’activité laboratoire et terrain en données opérationnelles structurées et traçables.', ['Traçabilité des échantillons', 'Rapports numériques', 'CRM et portail client', 'Inventaire et gestion du travail']),
-      section('Construite autour des opérations réelles', 'La plateforme soutient laboratoires, distributeurs et entreprises qui ont besoin de flux qualité au-delà des tableurs.')
-    ], { eyebrow: 'Plateforme', primaryCta: 'Demander une démo', secondaryCta: 'Voir l’option SaaS', ...platformVisualOptions('fr', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) }),
-    it: locale('/it/piattaforma', 'AquaVerify Cloud per flussi tracciabili di analisi dell’acqua', 'Collega campioni, prodotti, operatori, report e flussi cliente in un’unica piattaforma digitale.', [
-      section('Dall’uso del prodotto al record digitale', 'AquaVerify Cloud trasforma attività di laboratorio e campo in dati operativi strutturati e tracciabili.', ['Tracciabilità dei campioni', 'Report digitali', 'CRM e portale cliente', 'Inventario e gestione lavoro']),
-      section('Costruita sulle operazioni reali', 'La piattaforma supporta laboratori, distributori e aziende che richiedono flussi qualità oltre i fogli di calcolo.')
-    ], { eyebrow: 'Piattaforma', primaryCta: 'Richiedi demo piattaforma', secondaryCta: 'Vedi opzione SaaS', ...platformVisualOptions('it', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) }),
-    ca: locale('/ca/plataforma', 'AquaVerify Cloud per a fluxos traçables d’anàlisi d’aigua', 'Connecta mostres, productes, operadors, informes i fluxos de client en una sola plataforma digital.', [
-      section('De l’ús del producte al registre digital', 'AquaVerify Cloud converteix activitat de laboratori i camp en dades operatives estructurades i traçables.', ['Traçabilitat de mostres', 'Informes digitals', 'CRM i portal client', 'Inventari i gestió del treball']),
-      section('Construïda al voltant de l’operació real', 'La plataforma dona suport a laboratoris, distribuïdors i empreses que necessiten fluxos de qualitat més enllà dels fulls de càlcul.')
-    ], { eyebrow: 'Plataforma', primaryCta: 'Sol·licitar demo plataforma', secondaryCta: 'Veure opció SaaS', ...platformVisualOptions('ca', { hero: 'lims', galleryIds: ['lims', 'crm', 'dashboard', 'work', 'wms', 'finance'] }) })
+    en: locale('/platform', 'AquaVerify Cloud: complete platform for laboratory, commercial and operational workflows', 'AquaVerify Cloud connects CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventory, WMS, logistics, finance, customer portal, dashboards and AquaAI in one traceable platform.', [
+      section('A complete platform, not another isolated module', 'AquaVerify Cloud is built for organizations where water analysis, product supply, customer communication and business execution must move together. The same platform can support AquaVerify product workflows, laboratory operations, distributor activity and SaaS deployments for biotech or quality teams.', ['CRM, Sales and customer 360 records', 'LIMS, ELN, validation studies and reports', 'Work boards, tasks, AquaMail, AquaChat and meetings', 'Inventory, WMS, logistics, finance and executive dashboards']),
+      section('LIMS and ELN: from sample reception to validated report', 'The laboratory layer manages sampling points, sample reception, work sheets, result capture, technical review, COA/report generation, protocols, ELN notebooks and validation studies. It is designed so each analytical result keeps its context: client, site, operator, method, worksheet, reviewer and report output.', ['Sampling points and sample hub', 'Worksheet execution and technical validation', 'ELN protocols, experiments and QA approvals', 'Customer portal publication and report history']),
+      section('CRM, Sales and Portal: the commercial cycle stays connected', 'The platform connects the buyer journey from signup and CRM qualification to quotations, product orders, support tickets, portal requests and customer follow-up. Teams can see who the customer is, what they requested, which products or analyses matter, and what operational work is already in motion.', ['Corporate web source and intent context', 'Company 360 with contacts, activity and documents', 'Quotations, orders and customer portal visibility', 'Support tickets and account history']),
+      section('Work, communication and AquaAI: execution without losing context', 'Projects, boards, tasks, calendar, documents, AquaMail, AquaChat and meetings are part of the same operational environment. Messages can become tasks, emails can become tickets, documents stay attached to the right customer or project, and AquaAI helps users understand flows, modules and next actions.', ['Task boards and personal workdesk', 'Shared mailboxes and customer threads', 'Chat, meetings and document editor', 'AquaAI guidance connected to platform manuals']),
+      section('Inventory, WMS, logistics and finance: operational truth reaches the back office', 'When a quotation becomes a confirmed order, the platform can connect demand, stock availability, picking, shipment, invoicing, treasury and accounting. The goal is to avoid a gap between commercial promise, laboratory execution, physical product movement and financial reality.', ['Demand, reservations and stock pressure', 'Warehouse movements, picking and delivery evidence', 'Invoices, expenses, cash and accounting records', 'Executive dashboard for margin, workload and risk']),
+      section('Governance, roles and multi-tenant control', 'AquaVerify Cloud is prepared for internal teams, distributors, laboratories, customers and SaaS tenants with role-based access, language preferences, onboarding, legal consent, document templates and audit-oriented status history. Each user sees the modules and actions that match their role.', ['Multi-tenant model for HQ, distributors, labs and customers', 'Role-aware navigation and permissions', 'Spanish, English, French, Italian and Catalan interfaces', 'Audit trail, legal consent and status visibility'])
+    ], { eyebrow: 'Platform', primaryCta: 'Request platform demo', secondaryCta: 'See SaaS option', seoTitle: 'AquaVerify Cloud Platform | LIMS, CRM, Work, WMS, Finance and AquaAI', seoDescription: 'Explore AquaVerify Cloud: a complete platform for water analysis workflows, CRM, LIMS, ELN, Work, inventory, WMS, finance, customer portal and AquaAI.', whitepaper: platformDeepDive('en'), faqs: [
+      { question: 'Is AquaVerify Cloud only a LIMS?', answer: 'No. LIMS and ELN are core parts of the platform, but AquaVerify Cloud also connects CRM, Sales, Work, AquaMail, AquaChat, inventory, WMS, logistics, finance, customer portal, dashboards and AquaAI.' },
+      { question: 'Who is the platform for?', answer: 'It is designed for laboratories, distributors, AquaVerify product operations, water quality teams and biotech companies that need a complete SaaS-style operating platform.' },
+      { question: 'Can customers use a portal?', answer: 'Yes. The customer portal can expose requests, samples, reports, support conversations and commercial documents depending on the tenant configuration and permissions.' },
+      { question: 'How does AquaAI fit into the platform?', answer: 'AquaAI uses platform manuals and operational context to explain modules, guide users through workflows and suggest the next action inside AquaVerify Cloud.' }
+    ], ...platformVisualOptions('en', { hero: 'dashboard', galleryIds: ['dashboard', 'lims', 'crm', 'portal', 'work', 'wms', 'finance'] }) }),
+    es: locale('/es/plataforma', 'AquaVerify Cloud: plataforma completa para laboratorio, negocio y operaciones', 'AquaVerify Cloud conecta CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventario, WMS, logística, finanzas, portal cliente, dashboards y AquaAI en una sola plataforma trazable.', [
+      section('Una plataforma completa, no otro módulo aislado', 'AquaVerify Cloud está construida para organizaciones donde análisis de agua, suministro de producto, comunicación con clientes y ejecución del negocio deben avanzar juntos. La misma plataforma puede soportar flujos con productos AquaVerify, operación de laboratorio, actividad de distribuidores y despliegues SaaS para biotech o equipos de calidad.', ['CRM, Sales y ficha 360 de cliente', 'LIMS, ELN, estudios de validación e informes', 'Work, tareas, AquaMail, AquaChat y reuniones', 'Inventario, WMS, logística, finanzas y dashboards ejecutivos']),
+      section('LIMS y ELN: de la recepción de muestra al informe validado', 'La capa de laboratorio gestiona puntos de muestreo, recepción de muestras, hojas de trabajo, captura de resultados, revisión técnica, generación de COA/informes, protocolos, cuadernos ELN y estudios de validación. Está pensada para que cada resultado mantenga su contexto: cliente, ubicación, operador, método, hoja, revisor e informe.', ['Puntos de muestreo y ficha de muestra', 'Ejecución de hojas y validación técnica', 'Protocolos ELN, experimentos y aprobaciones QA', 'Publicación en portal cliente e historial de informes']),
+      section('CRM, Sales y Portal: el ciclo comercial queda conectado', 'La plataforma conecta el recorrido comprador desde signup y cualificación CRM hasta presupuestos, pedidos de producto, tickets de soporte, solicitudes de portal y seguimiento del cliente. El equipo puede ver quién es el cliente, qué pidió, qué productos o análisis importan y qué trabajo operativo está en marcha.', ['Origen web e intención comercial', 'Empresa 360 con contactos, actividad y documentos', 'Presupuestos, pedidos y visibilidad en portal', 'Soporte e historial de cuenta']),
+      section('Work, comunicación y AquaAI: ejecución sin perder contexto', 'Proyectos, tableros, tareas, calendario, documentos, AquaMail, AquaChat y reuniones viven en el mismo entorno operativo. Los mensajes pueden convertirse en tareas, los emails en tickets, los documentos quedan asociados al cliente o proyecto correcto y AquaAI ayuda a entender flujos, módulos y siguientes acciones.', ['Tableros y bandeja personal de tareas', 'Buzones compartidos e hilos de cliente', 'Chat, reuniones y editor documental', 'AquaAI conectado a manuales de plataforma']),
+      section('Inventario, WMS, logística y finanzas: la verdad operativa llega al back office', 'Cuando un presupuesto se convierte en pedido confirmado, la plataforma puede conectar demanda, disponibilidad de stock, picking, envío, facturación, tesorería y contabilidad. El objetivo es evitar el hueco entre promesa comercial, ejecución de laboratorio, movimiento físico de producto y realidad financiera.', ['Demanda, reservas y presión de stock', 'Movimientos de almacén, picking y evidencia de entrega', 'Facturas, gastos, caja y asientos contables', 'Dashboard ejecutivo de margen, carga y riesgo']),
+      section('Gobernanza, roles y control multi-tenant', 'AquaVerify Cloud está preparada para equipos internos, distribuidores, laboratorios, clientes y tenants SaaS con accesos por rol, preferencias de idioma, onboarding, consentimiento legal, plantillas documentales e historial de estados orientado a auditoría. Cada usuario ve los módulos y acciones que le corresponden.', ['Modelo multi-tenant para HQ, distribuidores, labs y clientes', 'Navegación y permisos según rol', 'Interfaces en español, inglés, francés, italiano y catalán', 'Audit trail, consentimiento legal y visibilidad de estados'])
+    ], { eyebrow: 'Plataforma', primaryCta: 'Solicitar demo plataforma', secondaryCta: 'Ver opción SaaS', seoTitle: 'AquaVerify Cloud Platform | LIMS, CRM, Work, WMS, Finanzas y AquaAI', seoDescription: 'Explora AquaVerify Cloud: plataforma completa para análisis de agua, CRM, LIMS, ELN, Work, inventario, WMS, finanzas, portal cliente y AquaAI.', whitepaper: platformDeepDive('es'), faqs: [
+      { question: '¿AquaVerify Cloud es solo un LIMS?', answer: 'No. LIMS y ELN son partes centrales, pero AquaVerify Cloud también conecta CRM, Sales, Work, AquaMail, AquaChat, inventario, WMS, logística, finanzas, portal cliente, dashboards y AquaAI.' },
+      { question: '¿Para quién está pensada la plataforma?', answer: 'Para laboratorios, distribuidores, operaciones de producto AquaVerify, equipos de calidad del agua y empresas biotech que necesitan una plataforma operativa completa tipo SaaS.' },
+      { question: '¿Los clientes pueden usar un portal?', answer: 'Sí. El portal cliente puede mostrar solicitudes, muestras, informes, conversaciones de soporte y documentos comerciales según la configuración del tenant y permisos.' },
+      { question: '¿Cómo encaja AquaAI en la plataforma?', answer: 'AquaAI utiliza manuales de plataforma y contexto operativo para explicar módulos, guiar al usuario por los flujos y sugerir la siguiente acción dentro de AquaVerify Cloud.' }
+    ], ...platformVisualOptions('es', { hero: 'dashboard', galleryIds: ['dashboard', 'lims', 'crm', 'portal', 'work', 'wms', 'finance'] }) }),
+    fr: locale('/fr/plateforme', 'AquaVerify Cloud: plateforme complète pour laboratoire, business et opérations', 'AquaVerify Cloud connecte CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventaire, WMS, logistique, finance, portail client, dashboards et AquaAI dans une seule plateforme traçable.', [
+      section('Une plateforme complète, pas un module isolé de plus', 'AquaVerify Cloud est construite pour les organisations où analyse de l’eau, fourniture produit, communication client et exécution métier doivent avancer ensemble. La même plateforme peut supporter les flux produits AquaVerify, l’opération laboratoire, l’activité distributeur et les déploiements SaaS pour biotech ou équipes qualité.', ['CRM, Sales et fiche client 360', 'LIMS, ELN, études de validation et rapports', 'Work, tâches, AquaMail, AquaChat et réunions', 'Inventaire, WMS, logistique, finance et dashboards exécutifs']),
+      section('LIMS et ELN: de la réception échantillon au rapport validé', 'La couche laboratoire gère points de prélèvement, réception échantillons, feuilles de travail, capture résultats, revue technique, génération COA/rapports, protocoles, cahiers ELN et études de validation. Chaque résultat garde son contexte: client, site, opérateur, méthode, feuille, réviseur et sortie rapport.', ['Points de prélèvement et fiche échantillon', 'Exécution feuilles et validation technique', 'Protocoles ELN, expériences et approbations QA', 'Publication portail client et historique rapports']),
+      section('CRM, Sales et Portail: le cycle commercial reste connecté', 'La plateforme relie le parcours acheteur depuis signup et qualification CRM jusqu’aux devis, commandes produit, tickets support, demandes portail et suivi client. Les équipes voient qui est le client, ce qu’il demande, quels produits ou analyses comptent et quel travail opérationnel est en cours.', ['Source web et intention commerciale', 'Entreprise 360 avec contacts, activité et documents', 'Devis, commandes et visibilité portail', 'Support et historique de compte']),
+      section('Work, communication et AquaAI: exécuter sans perdre le contexte', 'Projets, tableaux, tâches, calendrier, documents, AquaMail, AquaChat et réunions font partie du même environnement opérationnel. Les messages peuvent devenir tâches, les emails tickets, les documents restent attachés au bon client ou projet et AquaAI aide à comprendre flux, modules et actions suivantes.', ['Tableaux de tâches et workdesk personnel', 'Boîtes partagées et fils client', 'Chat, réunions et éditeur documentaire', 'AquaAI connecté aux manuels plateforme']),
+      section('Inventaire, WMS, logistique et finance: la vérité opérationnelle arrive au back office', 'Lorsqu’un devis devient commande confirmée, la plateforme peut relier demande, disponibilité stock, picking, expédition, facturation, trésorerie et comptabilité. L’objectif est d’éviter l’écart entre promesse commerciale, exécution laboratoire, mouvement physique produit et réalité financière.', ['Demande, réservations et pression stock', 'Mouvements entrepôt, picking et preuve livraison', 'Factures, dépenses, cash et écritures comptables', 'Dashboard exécutif marge, charge et risque']),
+      section('Gouvernance, rôles et contrôle multi-tenant', 'AquaVerify Cloud est prête pour équipes internes, distributeurs, laboratoires, clients et tenants SaaS avec accès par rôle, préférences de langue, onboarding, consentement légal, modèles documentaires et historique de statuts orienté audit. Chaque utilisateur voit les modules et actions adaptés à son rôle.', ['Modèle multi-tenant pour HQ, distributeurs, labs et clients', 'Navigation et permissions selon rôle', 'Interfaces en espagnol, anglais, français, italien et catalan', 'Audit trail, consentement légal et visibilité statuts'])
+    ], { eyebrow: 'Plateforme', primaryCta: 'Demander une démo', secondaryCta: 'Voir l’option SaaS', seoTitle: 'AquaVerify Cloud Platform | LIMS, CRM, Work, WMS, Finance et AquaAI', seoDescription: 'Découvrez AquaVerify Cloud: plateforme complète pour analyse de l’eau, CRM, LIMS, ELN, Work, inventaire, WMS, finance, portail client et AquaAI.', whitepaper: platformDeepDive('fr'), faqs: [
+      { question: 'AquaVerify Cloud est-il seulement un LIMS?', answer: 'Non. LIMS et ELN sont centraux, mais AquaVerify Cloud connecte aussi CRM, Sales, Work, AquaMail, AquaChat, inventaire, WMS, logistique, finance, portail client, dashboards et AquaAI.' },
+      { question: 'À qui s’adresse la plateforme?', answer: 'Aux laboratoires, distributeurs, opérations produit AquaVerify, équipes qualité eau et entreprises biotech ayant besoin d’une plateforme opérationnelle complète de type SaaS.' },
+      { question: 'Les clients peuvent-ils utiliser un portail?', answer: 'Oui. Le portail client peut exposer demandes, échantillons, rapports, conversations support et documents commerciaux selon la configuration du tenant et les permissions.' },
+      { question: 'Comment AquaAI s’intègre-t-il?', answer: 'AquaAI utilise les manuels plateforme et le contexte opérationnel pour expliquer les modules, guider les utilisateurs dans les flux et suggérer la prochaine action.' }
+    ], ...platformVisualOptions('fr', { hero: 'dashboard', galleryIds: ['dashboard', 'lims', 'crm', 'portal', 'work', 'wms', 'finance'] }) }),
+    it: locale('/it/piattaforma', 'AquaVerify Cloud: piattaforma completa per laboratorio, business e operations', 'AquaVerify Cloud collega CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventario, WMS, logistica, finanza, portale clienti, dashboard e AquaAI in un’unica piattaforma tracciabile.', [
+      section('Una piattaforma completa, non un altro modulo isolato', 'AquaVerify Cloud è costruita per organizzazioni in cui analisi dell’acqua, fornitura prodotto, comunicazione cliente ed esecuzione business devono avanzare insieme. La stessa piattaforma può supportare workflow con prodotti AquaVerify, operazioni di laboratorio, attività distributori e deployment SaaS per biotech o team qualità.', ['CRM, Sales e scheda cliente 360', 'LIMS, ELN, studi di validazione e report', 'Work, task, AquaMail, AquaChat e meeting', 'Inventario, WMS, logistica, finanza e dashboard executive']),
+      section('LIMS ed ELN: dalla ricezione campione al report validato', 'Il layer laboratorio gestisce punti di campionamento, ricezione campioni, worksheet, acquisizione risultati, review tecnica, generazione COA/report, protocolli, notebook ELN e studi di validazione. Ogni risultato mantiene contesto: cliente, sito, operatore, metodo, worksheet, reviewer e output report.', ['Punti di campionamento e sample hub', 'Esecuzione worksheet e validazione tecnica', 'Protocolli ELN, esperimenti e approvazioni QA', 'Pubblicazione portale clienti e storico report']),
+      section('CRM, Sales e Portale: il ciclo commerciale resta connesso', 'La piattaforma collega il buyer journey da signup e qualificazione CRM a preventivi, ordini prodotto, ticket supporto, richieste portale e follow-up cliente. I team vedono chi è il cliente, cosa ha richiesto, quali prodotti o analisi contano e quale lavoro operativo è in corso.', ['Sorgente web e intento commerciale', 'Azienda 360 con contatti, attività e documenti', 'Preventivi, ordini e visibilità portale', 'Supporto e storico account']),
+      section('Work, comunicazione e AquaAI: esecuzione senza perdere contesto', 'Progetti, board, task, calendario, documenti, AquaMail, AquaChat e meeting vivono nello stesso ambiente operativo. I messaggi possono diventare task, le email ticket, i documenti restano collegati al cliente o progetto corretto e AquaAI aiuta a capire flussi, moduli e prossime azioni.', ['Board task e workdesk personale', 'Mailbox condivise e thread cliente', 'Chat, meeting ed editor documentale', 'AquaAI collegato ai manuali piattaforma']),
+      section('Inventario, WMS, logistica e finanza: la verità operativa arriva al back office', 'Quando un preventivo diventa ordine confermato, la piattaforma può collegare domanda, disponibilità stock, picking, spedizione, fatturazione, tesoreria e contabilità. L’obiettivo è evitare il gap tra promessa commerciale, esecuzione laboratorio, movimento fisico prodotto e realtà finanziaria.', ['Domanda, riserve e pressione stock', 'Movimenti magazzino, picking ed evidenza consegna', 'Fatture, spese, cassa e scritture contabili', 'Dashboard executive per margine, carico e rischio']),
+      section('Governance, ruoli e controllo multi-tenant', 'AquaVerify Cloud è pronta per team interni, distributori, laboratori, clienti e tenant SaaS con accessi per ruolo, preferenze lingua, onboarding, consenso legale, template documentali e storico stati orientato audit. Ogni utente vede moduli e azioni coerenti con il proprio ruolo.', ['Modello multi-tenant per HQ, distributori, lab e clienti', 'Navigazione e permessi per ruolo', 'Interfacce in spagnolo, inglese, francese, italiano e catalano', 'Audit trail, consenso legale e visibilità stati'])
+    ], { eyebrow: 'Piattaforma', primaryCta: 'Richiedi demo piattaforma', secondaryCta: 'Vedi opzione SaaS', seoTitle: 'AquaVerify Cloud Platform | LIMS, CRM, Work, WMS, Finanza e AquaAI', seoDescription: 'Scopri AquaVerify Cloud: piattaforma completa per analisi acqua, CRM, LIMS, ELN, Work, inventario, WMS, finanza, portale clienti e AquaAI.', whitepaper: platformDeepDive('it'), faqs: [
+      { question: 'AquaVerify Cloud è solo un LIMS?', answer: 'No. LIMS ed ELN sono parti centrali, ma AquaVerify Cloud collega anche CRM, Sales, Work, AquaMail, AquaChat, inventario, WMS, logistica, finanza, portale clienti, dashboard e AquaAI.' },
+      { question: 'Per chi è pensata la piattaforma?', answer: 'Per laboratori, distributori, operations prodotto AquaVerify, team qualità acqua e aziende biotech che richiedono una piattaforma operativa completa in stile SaaS.' },
+      { question: 'I clienti possono usare un portale?', answer: 'Sì. Il portale clienti può mostrare richieste, campioni, report, conversazioni supporto e documenti commerciali in base a configurazione tenant e permessi.' },
+      { question: 'Come si inserisce AquaAI?', answer: 'AquaAI usa manuali piattaforma e contesto operativo per spiegare moduli, guidare gli utenti nei workflow e suggerire l’azione successiva.' }
+    ], ...platformVisualOptions('it', { hero: 'dashboard', galleryIds: ['dashboard', 'lims', 'crm', 'portal', 'work', 'wms', 'finance'] }) }),
+    ca: locale('/ca/plataforma', 'AquaVerify Cloud: plataforma completa per a laboratori, negoci i operacions', 'AquaVerify Cloud connecta CRM, LIMS, ELN, Work, AquaMail, AquaChat, inventari, WMS, logística, finances, portal client, dashboards i AquaAI en una sola plataforma traçable.', [
+      section('Una plataforma completa, no un altre mòdul aïllat', 'AquaVerify Cloud està construïda per a organitzacions on anàlisi d’aigua, subministrament de producte, comunicació amb clients i execució del negoci han d’avançar junts. La mateixa plataforma pot suportar fluxos amb productes AquaVerify, operació de laboratori, activitat de distribuïdors i desplegaments SaaS per a biotech o equips de qualitat.', ['CRM, Sales i fitxa 360 de client', 'LIMS, ELN, estudis de validació i informes', 'Work, tasques, AquaMail, AquaChat i reunions', 'Inventari, WMS, logística, finances i dashboards executius']),
+      section('LIMS i ELN: de la recepció de mostra a l’informe validat', 'La capa de laboratori gestiona punts de mostreig, recepció de mostres, fulls de treball, captura de resultats, revisió tècnica, generació de COA/informes, protocols, quaderns ELN i estudis de validació. Està pensada perquè cada resultat mantingui el seu context: client, ubicació, operador, mètode, full, revisor i informe.', ['Punts de mostreig i fitxa de mostra', 'Execució de fulls i validació tècnica', 'Protocols ELN, experiments i aprovacions QA', 'Publicació en portal client i historial d’informes']),
+      section('CRM, Sales i Portal: el cicle comercial queda connectat', 'La plataforma connecta el recorregut comprador des de signup i qualificació CRM fins a pressupostos, comandes de producte, tiquets de suport, sol·licituds de portal i seguiment del client. L’equip pot veure qui és el client, què ha demanat, quins productes o anàlisis importen i quin treball operatiu està en marxa.', ['Origen web i intenció comercial', 'Empresa 360 amb contactes, activitat i documents', 'Pressupostos, comandes i visibilitat al portal', 'Suport i historial de compte']),
+      section('Work, comunicació i AquaAI: execució sense perdre context', 'Projectes, taulers, tasques, calendari, documents, AquaMail, AquaChat i reunions viuen en el mateix entorn operatiu. Els missatges poden convertir-se en tasques, els emails en tiquets, els documents queden associats al client o projecte correcte i AquaAI ajuda a entendre fluxos, mòduls i següents accions.', ['Taulers i safata personal de tasques', 'Bústies compartides i fils de client', 'Chat, reunions i editor documental', 'AquaAI connectat a manuals de plataforma']),
+      section('Inventari, WMS, logística i finances: la veritat operativa arriba al back office', 'Quan un pressupost es converteix en comanda confirmada, la plataforma pot connectar demanda, disponibilitat d’estoc, picking, enviament, facturació, tresoreria i comptabilitat. L’objectiu és evitar el buit entre promesa comercial, execució de laboratori, moviment físic de producte i realitat financera.', ['Demanda, reserves i pressió d’estoc', 'Moviments de magatzem, picking i evidència de lliurament', 'Factures, despeses, caixa i assentaments comptables', 'Dashboard executiu de marge, càrrega i risc']),
+      section('Governança, rols i control multi-tenant', 'AquaVerify Cloud està preparada per a equips interns, distribuïdors, laboratoris, clients i tenants SaaS amb accessos per rol, preferències d’idioma, onboarding, consentiment legal, plantilles documentals i historial d’estats orientat a auditoria. Cada usuari veu els mòduls i accions que li corresponen.', ['Model multi-tenant per a HQ, distribuïdors, labs i clients', 'Navegació i permisos segons rol', 'Interfícies en castellà, anglès, francès, italià i català', 'Audit trail, consentiment legal i visibilitat d’estats'])
+    ], { eyebrow: 'Plataforma', primaryCta: 'Sol·licitar demo plataforma', secondaryCta: 'Veure opció SaaS', seoTitle: 'AquaVerify Cloud Platform | LIMS, CRM, Work, WMS, Finances i AquaAI', seoDescription: 'Explora AquaVerify Cloud: plataforma completa per a anàlisi d’aigua, CRM, LIMS, ELN, Work, inventari, WMS, finances, portal client i AquaAI.', whitepaper: platformDeepDive('ca'), faqs: [
+      { question: 'AquaVerify Cloud és només un LIMS?', answer: 'No. LIMS i ELN són parts centrals, però AquaVerify Cloud també connecta CRM, Sales, Work, AquaMail, AquaChat, inventari, WMS, logística, finances, portal client, dashboards i AquaAI.' },
+      { question: 'Per a qui està pensada la plataforma?', answer: 'Per a laboratoris, distribuïdors, operacions de producte AquaVerify, equips de qualitat de l’aigua i empreses biotech que necessiten una plataforma operativa completa tipus SaaS.' },
+      { question: 'Els clients poden usar un portal?', answer: 'Sí. El portal client pot mostrar sol·licituds, mostres, informes, converses de suport i documents comercials segons la configuració del tenant i permisos.' },
+      { question: 'Com encaixa AquaAI?', answer: 'AquaAI utilitza manuals de plataforma i context operatiu per explicar mòduls, guiar l’usuari pels fluxos i suggerir la següent acció dins AquaVerify Cloud.' }
+    ], ...platformVisualOptions('ca', { hero: 'dashboard', galleryIds: ['dashboard', 'lims', 'crm', 'portal', 'work', 'wms', 'finance'] }) })
   }),
   page('saas-biotech', 'platform', 'saas', {
     en: locale('/saas/biotech-lims-platform', 'All-in-one SaaS platform for biotech and laboratory operations', 'AquaVerify Cloud is also available as SaaS for biotech companies that need CRM, LIMS, work, inventory, reporting and customer portals.', [
