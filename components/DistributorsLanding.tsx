@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { Suspense, useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ArrowRight,
@@ -28,6 +28,12 @@ import type { Language } from '../utils/translations';
 import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
+import { supabase } from '../utils/supabase';
+import type { DistributorPartner } from './DistributorsGlobe';
+
+const DistributorsGlobe = React.lazy(() =>
+  import('./DistributorsGlobe').then((module) => ({ default: module.DistributorsGlobe }))
+);
 
 type Card = {
   title: string;
@@ -119,6 +125,95 @@ const sectorIcons = [FlaskConical, ShieldCheck, Landmark, Factory, Waves, Buildi
 const buyerIcons = [PackageCheck, ShieldCheck, ClipboardCheck, Sparkles, CheckCircle2, Network];
 const programIcons = [PackageCheck, ClipboardCheck, ShieldCheck, Network, Handshake, Sparkles];
 
+const FALLBACK_PARTNERS: DistributorPartner[] = [
+  { id: '1', name: 'AquaTech Solutions NY', location: 'New York, USA', country: 'United States', type: 'exclusive', address: '1200 Broadway, Suite 400, NY 10001', email: 'sales.ny@aquatech.com', phone: '+1 212 555 0199', x: 29.5, y: 34, lat: 40.71, lng: -74.00 },
+  { id: '2', name: 'EuroLab Supplies', location: 'London, UK', country: 'United Kingdom', type: 'exclusive', address: '15 Baker Street, London W1U 8AE', email: 'info@eurolab.co.uk', phone: '+44 20 7946 0958', x: 49.5, y: 26, lat: 51.50, lng: -0.12 },
+  { id: '3', name: 'Nippon Biotech', location: 'Tokyo, Japan', country: 'Japan', type: 'reseller', address: 'Shinjuku City, Tokyo 160-0022', email: 'contact@nipponbio.jp', phone: '+81 3 1234 5678', x: 86, y: 36, lat: 35.68, lng: 139.65 },
+  { id: '4', name: 'BioSur Ltda', location: 'Sao Paulo, Brazil', country: 'Brazil', type: 'service', address: 'Av. Paulista, 1578, Sao Paulo', email: 'suporte@biosur.com.br', phone: '+55 11 98765 4321', x: 34, y: 72, lat: -23.55, lng: -46.63 },
+  { id: '5', name: 'Oceanic Science', location: 'Sydney, Australia', country: 'Australia', type: 'reseller', address: '200 George St, Sydney NSW 2000', email: 'sales@oceanic.com.au', phone: '+61 2 9876 5432', x: 91, y: 78, lat: -33.86, lng: 151.20 },
+  { id: '6', name: 'Berlin Diagnostics', location: 'Berlin, Germany', country: 'Germany', type: 'service', address: 'Alexanderplatz 1, 10178 Berlin', email: 'service@berlindm.de', phone: '+49 30 1234567', x: 53, y: 25, lat: 52.52, lng: 13.40 }
+];
+
+const COUNTRY_ALIASES: Record<string, string> = {
+  alemania: 'Germany',
+  allemagne: 'Germany',
+  alemanya: 'Germany',
+  argentina: 'Argentina',
+  australia: 'Australia',
+  australie: 'Australia',
+  austràlia: 'Australia',
+  brasil: 'Brazil',
+  brasile: 'Brazil',
+  brésil: 'Brazil',
+  canada: 'Canada',
+  canadà: 'Canada',
+  chile: 'Chile',
+  chili: 'Chile',
+  cile: 'Chile',
+  colombia: 'Colombia',
+  colombie: 'Colombia',
+  colòmbia: 'Colombia',
+  espagne: 'Spain',
+  espanya: 'Spain',
+  españa: 'Spain',
+  estadosunidos: 'United States',
+  estatsunits: 'United States',
+  etatsunis: 'United States',
+  france: 'France',
+  francia: 'France',
+  frança: 'France',
+  germania: 'Germany',
+  germany: 'Germany',
+  italia: 'Italy',
+  italie: 'Italy',
+  italy: 'Italy',
+  itàlia: 'Italy',
+  japan: 'Japan',
+  japó: 'Japan',
+  mexico: 'Mexico',
+  mexique: 'Mexico',
+  messico: 'Mexico',
+  mèxic: 'Mexico',
+  marocco: 'Morocco',
+  maroc: 'Morocco',
+  marroc: 'Morocco',
+  marruecos: 'Morocco',
+  peru: 'Peru',
+  perú: 'Peru',
+  pérou: 'Peru',
+  perù: 'Peru',
+  regneunit: 'United Kingdom',
+  regnounito: 'United Kingdom',
+  reinounido: 'United Kingdom',
+  royaumeuni: 'United Kingdom',
+  spain: 'Spain',
+  spagna: 'Spain',
+  statiunit: 'United States',
+  statiuniti: 'United States',
+  sudafrica: 'South Africa',
+  sudafrique: 'South Africa',
+  sudàfrica: 'South Africa',
+  sudáfrica: 'South Africa',
+  unitedkingdom: 'United Kingdom',
+  unitedstates: 'United States'
+};
+
+const MAP_UI: Record<Language, { load: string; nodes: string; countries: string; support: string; exclusive: string; reseller: string; open: string }> = {
+  en: { load: 'Load interactive globe', nodes: 'nodes', countries: '140+ countries', support: 'Local support', exclusive: 'Exclusive', reseller: 'Reseller', open: 'Open for new distributor' },
+  es: { load: 'Cargar globo interactivo', nodes: 'nodos', countries: '140+ países', support: 'Soporte local', exclusive: 'Exclusivo', reseller: 'Reseller', open: 'Abierto a nuevo distribuidor' },
+  fr: { load: 'Charger le globe interactif', nodes: 'nœuds', countries: '140+ pays', support: 'Support local', exclusive: 'Exclusif', reseller: 'Reseller', open: 'Ouvert à nouveau distributeur' },
+  it: { load: 'Carica globo interattivo', nodes: 'nodi', countries: '140+ paesi', support: 'Supporto locale', exclusive: 'Esclusivo', reseller: 'Reseller', open: 'Aperto a nuovo distributore' },
+  ca: { load: 'Carregar globus interactiu', nodes: 'nodes', countries: '140+ països', support: 'Suport local', exclusive: 'Exclusiu', reseller: 'Reseller', open: 'Obert a nou distribuïdor' }
+};
+
+function countryKey(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]/gi, '')
+    .toLowerCase();
+}
+
 function scrollToForm(id: string) {
   if (typeof document === 'undefined') return;
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -206,7 +301,11 @@ function TextAreaField({ id, name, label, required = false }: { id: string; name
 export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCookieConsent = true }) => {
   const [countryQuery, setCountryQuery] = useState('');
   const [selectedCountry, setSelectedCountry] = useState('');
+  const [isGlobeEnabled, setIsGlobeEnabled] = useState(false);
+  const [selectedPartner, setSelectedPartner] = useState<DistributorPartner | null>(null);
+  const [partners, setPartners] = useState<DistributorPartner[]>(FALLBACK_PARTNERS);
   const countries = content.countries || [];
+  const mapLabels = MAP_UI[pageLang] || MAP_UI.en;
   const filteredCountries = useMemo(() => {
     const query = countryQuery.trim().toLowerCase();
     return query
@@ -231,6 +330,28 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
     profile: 'partner'
   }, pageLang);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchPartners = async () => {
+      try {
+        const { data, error } = await supabase.from('distributors').select('*');
+        if (!isMounted) return;
+        if (!error && Array.isArray(data) && data.length > 0) {
+          setPartners(data.map((partner: any) => ({ ...partner, x: partner.x || 0, y: partner.y || 0 })));
+        }
+      } catch (error) {
+        console.warn('Unable to load distributor partners', error);
+      }
+    };
+
+    fetchPartners();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const handleCtaClick = (label: string, targetUrl: string, intent: string) => {
     trackCorporateEvent('platform_link_click', {
       lang: pageLang,
@@ -246,11 +367,30 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
   const handleCountrySelect = (country: string) => {
     setSelectedCountry(country);
     setCountryQuery(country);
+    const normalizedCountry = COUNTRY_ALIASES[countryKey(country)] || country;
+    const matchingPartner = partners.find((partner) => countryKey(partner.country) === countryKey(normalizedCountry));
+    setSelectedPartner(matchingPartner || null);
     trackCorporateEvent('distributor_country_search', {
       lang: pageLang,
       page: 'distributors',
       category: 'partners',
-      country
+      country,
+      partner: matchingPartner?.id
+    });
+  };
+
+  const handlePartnerSelect = (partner: DistributorPartner) => {
+    setSelectedPartner(partner);
+    setSelectedCountry(partner.country);
+    setCountryQuery(partner.country);
+    trackCorporateEvent('distributor_partner_select', {
+      lang: pageLang,
+      page: 'distributors',
+      category: 'partners',
+      country: partner.country,
+      distributor: partner.id,
+      distributorName: partner.name,
+      partner_type: partner.type
     });
   };
 
@@ -413,27 +553,63 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
             </div>
 
             <div className="grid overflow-hidden rounded-lg border border-slate-200 bg-white shadow-xl lg:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)]">
-              <div className="relative min-h-[520px] overflow-hidden bg-slate-950 p-8 text-white">
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_22%,rgba(17,191,211,0.20),transparent_28%),radial-gradient(circle_at_82%_28%,rgba(139,92,246,0.18),transparent_30%),linear-gradient(135deg,#071521,#050b14)]" />
-                <div className="relative z-10 flex min-h-[460px] flex-col items-center justify-center text-center">
-                  <div className="relative mb-8 h-72 w-72 rounded-full border border-cyan-200/20 bg-cyan-300/5 shadow-[inset_0_0_60px_rgba(34,211,238,0.10),0_30px_80px_rgba(0,0,0,0.35)]">
-                    <div className="absolute inset-10 rounded-full border border-cyan-200/20" />
-                    <div className="absolute inset-20 rounded-full border border-cyan-200/10" />
-                    <div className="absolute left-[28%] top-[34%] h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_0_8px_rgba(34,211,238,0.12)]" />
-                    <div className="absolute left-[46%] top-[24%] h-3 w-3 rounded-full bg-violet-400 shadow-[0_0_0_8px_rgba(167,139,250,0.12)]" />
-                    <div className="absolute left-[65%] top-[43%] h-3 w-3 rounded-full bg-emerald-400 shadow-[0_0_0_8px_rgba(52,211,153,0.12)]" />
-                    <div className="absolute left-[36%] top-[62%] h-3 w-3 rounded-full bg-sky-400 shadow-[0_0_0_8px_rgba(56,189,248,0.12)]" />
-                    <div className="absolute left-[73%] top-[65%] h-3 w-3 rounded-full bg-amber-400 shadow-[0_0_0_8px_rgba(251,191,36,0.12)]" />
-                    <Globe2 className="absolute left-1/2 top-1/2 h-20 w-20 -translate-x-1/2 -translate-y-1/2 text-cyan-100/80" />
+              <div className="relative min-h-[520px] overflow-hidden bg-[#071521] text-white">
+                <div className="absolute inset-0 bg-[#071521]" />
+                {isGlobeEnabled ? (
+                  <div className="relative z-10 h-[520px] cursor-move">
+                    <Suspense
+                      fallback={
+                        <div className="flex h-full w-full items-center justify-center">
+                          <div className="h-20 w-20 animate-pulse rounded-full border border-cyan-300/30 bg-cyan-400/10 shadow-[0_0_80px_rgba(34,211,238,0.18)]" />
+                        </div>
+                      }
+                    >
+                      <DistributorsGlobe
+                        partners={partners}
+                        selectedPartner={selectedPartner}
+                        onSelectPartner={handlePartnerSelect}
+                      />
+                    </Suspense>
                   </div>
-                  <h3 className="font-heading text-3xl font-black md:text-4xl">{content.mapTitle}</h3>
-                  <p className="mt-4 max-w-md text-sm font-semibold leading-6 text-cyan-50/75">{content.mapBody}</p>
-                  <div className="mt-6 flex flex-wrap justify-center gap-2">
-                    {(content.mapTags || []).map((tag) => (
-                      <span key={tag} className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.12em] text-cyan-50">
-                        {tag}
-                      </span>
-                    ))}
+                ) : (
+                  <div className="relative z-10 flex min-h-[520px] flex-col items-center justify-center px-8 text-center">
+                    <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full border border-cyan-300/25 bg-cyan-400/10 shadow-lg">
+                      <Globe2 className="h-10 w-10 text-cyan-200" />
+                    </div>
+                    <h3 className="font-heading text-3xl font-black md:text-4xl">{content.mapTitle}</h3>
+                    <p className="mt-4 max-w-md text-sm font-semibold leading-6 text-cyan-50/75">{content.mapBody}</p>
+                    <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-xs font-bold uppercase tracking-wide text-cyan-100/80">
+                      <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1">{partners.length} {mapLabels.nodes}</span>
+                      <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1">{mapLabels.countries}</span>
+                      <span className="rounded-full border border-white/10 bg-white/10 px-3 py-1">{mapLabels.support}</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsGlobeEnabled(true);
+                        trackCorporateEvent('distributor_globe_load', {
+                          lang: pageLang,
+                          page: 'distributors',
+                          category: 'partners',
+                          partners: partners.length
+                        });
+                      }}
+                      className="mt-8 inline-flex items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-black text-white shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+                    >
+                      <Globe2 className="h-4 w-4" />
+                      {mapLabels.load}
+                    </button>
+                  </div>
+                )}
+                <div className="absolute bottom-6 left-6 right-6 z-20 hidden flex-wrap items-center gap-3 rounded-full bg-white/80 px-3 py-1.5 text-xs font-mono font-semibold text-slate-600 shadow-sm backdrop-blur md:right-auto md:flex md:gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-purple-500" /> {mapLabels.exclusive}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-blue-500" /> {mapLabels.reseller}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="h-2 w-2 rounded-full bg-green-500" /> {mapLabels.open}
                   </div>
                 </div>
               </div>
