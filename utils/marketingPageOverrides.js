@@ -122,6 +122,15 @@ function normalizeFaqs(value) {
   return faqs.length > 0 ? faqs : null;
 }
 
+function normalizeCta(value) {
+  if (!value || typeof value !== 'object') return null;
+  const cta = {
+    title: cleanText(value.title),
+    body: cleanText(value.body)
+  };
+  return cta.title || cta.body ? cta : null;
+}
+
 function normalizeGallery(value) {
   if (!Array.isArray(value)) return null;
   const gallery = value
@@ -201,6 +210,7 @@ export function normalizeMarketingOverride(value) {
     seoDescription: cleanText(value.seoDescription),
     sections: normalizeSections(value.sections),
     faqs: normalizeFaqs(value.faqs),
+    cta: normalizeCta(value.cta),
     gallery: normalizeGallery(value.gallery),
     visuals: normalizeVisuals(value.visuals)
   };

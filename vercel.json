@@ -86,6 +86,26 @@
             "source": "/ca/industries/aigua-agricultura",
             "destination": "/ca/sectors/aigua-agricultura",
             "permanent": true
+        },
+        {
+            "source": "/industrias/industria-farmaceutica-cosmetica",
+            "destination": "/es/industrias/industria-farmaceutica-cosmetica",
+            "permanent": true
+        },
+        {
+            "source": "/en/industries/pharmaceutical-cosmetics-water-quality",
+            "destination": "/industries/pharmaceutical-cosmetics-water-quality",
+            "permanent": true
+        },
+        {
+            "source": "/it/industrie/qualita-acqua-industria-farmaceutica-cosmetica",
+            "destination": "/it/settori/qualita-acqua-industria-farmaceutica-cosmetica",
+            "permanent": true
+        },
+        {
+            "source": "/ca/industries/qualitat-aigua-industria-farmaceutica-cosmetica",
+            "destination": "/ca/sectors/qualitat-aigua-industria-farmaceutica-cosmetica",
+            "permanent": true
         }
     ],
     "rewrites": [

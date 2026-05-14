@@ -4,6 +4,7 @@ import { FOOD_BEVERAGE_WATER_PAGE } from './foodBeverageWaterContent.js';
 import { INDUSTRIAL_PROCESS_WATER_PAGE } from './industrialProcessWaterContent.js';
 import { FACILITY_WATER_RISK_PAGE } from './facilityWaterRiskContent.js';
 import { AGRICULTURE_WATER_PAGE } from './agricultureWaterContent.js';
+import { PHARMA_COSMETICS_WATER_PAGE } from './pharmaCosmeticsWaterContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -2081,6 +2082,44 @@ const INDUSTRY_PAGE_DATA = [
     }
   },
   {
+    id: 'pharma-cosmetics-water',
+    paths: {
+      en: '/industries/pharmaceutical-cosmetics-water-quality',
+      es: '/es/industrias/industria-farmaceutica-cosmetica',
+      fr: '/fr/industries/qualite-eau-industrie-pharmaceutique-cosmetique',
+      it: '/it/settori/qualita-acqua-industria-farmaceutica-cosmetica',
+      ca: '/ca/sectors/qualitat-aigua-industria-farmaceutica-cosmetica'
+    },
+    titles: {
+      en: 'Pharmaceutical and cosmetics water quality control',
+      es: 'Control del agua para industria farmacéutica y cosmética',
+      fr: 'Contrôle de l’eau pour industrie pharmaceutique et cosmétique',
+      it: 'Controllo acqua per industria farmaceutica e cosmetica',
+      ca: 'Control de l’aigua per a indústria farmacèutica i cosmètica'
+    },
+    descriptions: {
+      en: 'Connect points of use, samples, methods, CoA, trends, deviations and batch-ready evidence for pharmaceutical and cosmetics manufacturing.',
+      es: 'Conecta puntos de uso, muestras, métodos, CoA, tendencias, desviaciones y evidencia por lote para fabricación farmacéutica y cosmética.',
+      fr: 'Reliez points d’utilisation, échantillons, méthodes, CoA, tendances, déviations et preuves par lot pour fabrication pharmaceutique et cosmétique.',
+      it: 'Collega punti d’uso, campioni, metodi, CoA, trend, deviazioni ed evidenze per lotto per produzione farmaceutica e cosmetica.',
+      ca: 'Connecta punts d’ús, mostres, mètodes, CoA, tendències, desviacions i evidència per lot per a fabricació farmacèutica i cosmètica.'
+    },
+    sections: {
+      en: [section('Water control for regulated manufacturing', 'AquaVerify connects water systems, sampling points, batches, products and QA/QC review in one traceable workflow.')],
+      es: [section('Control del agua para fabricación regulada', 'AquaVerify conecta sistemas de agua, puntos de muestreo, lotes, productos y revisión QA/QC en un flujo trazable.')],
+      fr: [section('Contrôle de l’eau pour fabrication réglementée', 'AquaVerify relie systèmes d’eau, points de prélèvement, lots, produits et revue QA/QC dans un flux traçable.')],
+      it: [section('Controllo acqua per produzione regolata', 'AquaVerify collega sistemi acqua, punti di campionamento, lotti, prodotti e revisione QA/QC in un flusso tracciabile.')],
+      ca: [section('Control de l’aigua per a fabricació regulada', 'AquaVerify connecta sistemes d’aigua, punts de mostreig, lots, productes i revisió QA/QC en un flux traçable.')]
+    },
+    ctas: {
+      en: ['Request water-control assessment', 'View quality workflow'],
+      es: ['Solicitar diagnóstico de agua', 'Ver flujo de calidad'],
+      fr: ['Demander un diagnostic eau', 'Voir le flux qualité'],
+      it: ['Richiedi diagnosi acqua', 'Vedi flusso qualità'],
+      ca: ['Sol·licitar diagnòstic d’aigua', 'Veure flux de qualitat']
+    }
+  },
+  {
     id: 'facility-water-risk',
     paths: {
       en: '/industries/facility-water-risk-management',
@@ -2199,6 +2238,16 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, AGRICULTURE_WATER_PAGE[lang]])),
+        { parentId: 'water-quality-control' }
+      );
+    }
+
+    if (item.id === 'pharma-cosmetics-water') {
+      return page(
+        'pharma-cosmetics-water',
+        'industries',
+        'contact',
+        Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, PHARMA_COSMETICS_WATER_PAGE[lang]])),
         { parentId: 'water-quality-control' }
       );
     }

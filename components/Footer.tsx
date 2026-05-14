@@ -23,6 +23,8 @@ const FOOTER_COPY: Record<Language, {
   municipal: string;
   foodBeverage: string;
   industrial: string;
+  agriculture: string;
+  pharmaCosmetics: string;
   facilities: string;
   resources: string;
   presenceEnumeration: string;
@@ -42,6 +44,8 @@ const FOOTER_COPY: Record<Language, {
     municipal: 'Municipal water',
     foodBeverage: 'Food & beverage',
     industrial: 'Industrial process water',
+    agriculture: 'Agriculture',
+    pharmaCosmetics: 'Pharma & cosmetics',
     facilities: 'Facilities',
     resources: 'Resources',
     presenceEnumeration: 'Presence vs enumeration',
@@ -61,6 +65,8 @@ const FOOTER_COPY: Record<Language, {
     municipal: 'Agua municipal',
     foodBeverage: 'Alimentación y bebidas',
     industrial: 'Agua de proceso industrial',
+    agriculture: 'Agricultura',
+    pharmaCosmetics: 'Farma y cosmética',
     facilities: 'Instalaciones',
     resources: 'Recursos',
     presenceEnumeration: 'Presencia vs enumeración',
@@ -80,6 +86,8 @@ const FOOTER_COPY: Record<Language, {
     municipal: 'Eau municipale',
     foodBeverage: 'Agroalimentaire',
     industrial: 'Eau de process',
+    agriculture: 'Agriculture',
+    pharmaCosmetics: 'Pharma & cosmétique',
     facilities: 'Bâtiments',
     resources: 'Ressources',
     presenceEnumeration: 'Présence vs dénombrement',
@@ -99,6 +107,8 @@ const FOOTER_COPY: Record<Language, {
     municipal: 'Acqua municipale',
     foodBeverage: 'Food & beverage',
     industrial: 'Acqua di processo',
+    agriculture: 'Agricoltura',
+    pharmaCosmetics: 'Farmaceutica e cosmetica',
     facilities: 'Strutture',
     resources: 'Risorse',
     presenceEnumeration: 'Presenza vs enumerazione',
@@ -118,6 +128,8 @@ const FOOTER_COPY: Record<Language, {
     municipal: 'Aigua municipal',
     foodBeverage: 'Alimentació i begudes',
     industrial: 'Aigua de procés',
+    agriculture: 'Agricultura',
+    pharmaCosmetics: 'Farmacèutica i cosmètica',
     facilities: 'Instal·lacions',
     resources: 'Recursos',
     presenceEnumeration: 'Presència vs enumeració',
@@ -150,6 +162,8 @@ export const Footer: React.FC = () => {
   const municipalUrl = getMarketingPagePath('municipal-water-testing', lang);
   const foodBeverageUrl = getMarketingPagePath('food-beverage-water-quality', lang);
   const industrialUrl = getMarketingPagePath('industrial-process-water', lang);
+  const agricultureUrl = getMarketingPagePath('agriculture-water', lang);
+  const pharmaCosmeticsUrl = getMarketingPagePath('pharma-cosmetics-water', lang);
   const facilitiesUrl = getMarketingPagePath('facility-water-risk', lang);
   const aboutUrl = getMarketingPagePath('about', lang);
   const resourcesUrl = getMarketingPagePath('resources', lang);
@@ -251,6 +265,8 @@ export const Footer: React.FC = () => {
               <li><a href={municipalUrl} className="hover:text-secondary">{copy.municipal}</a></li>
               <li><a href={foodBeverageUrl} className="hover:text-secondary">{copy.foodBeverage}</a></li>
               <li><a href={industrialUrl} className="hover:text-secondary">{copy.industrial}</a></li>
+              <li><a href={agricultureUrl} className="hover:text-secondary">{copy.agriculture}</a></li>
+              <li><a href={pharmaCosmeticsUrl} className="hover:text-secondary">{copy.pharmaCosmetics}</a></li>
               <li><a href={facilitiesUrl} className="hover:text-secondary">{copy.facilities}</a></li>
               <li><a href={distributorsUrl} className="hover:text-secondary">{t.nav.distributors}</a></li>
               <li><a href={resourcesUrl} className="hover:text-secondary">{copy.resources}</a></li>
