@@ -15,6 +15,7 @@ import { PharmaCosmeticsWaterLanding } from '../components/PharmaCosmeticsWaterL
 import { HospitalityTourismWaterLanding } from '../components/HospitalityTourismWaterLanding';
 import { IndustriesHubLanding } from '../components/IndustriesHubLanding';
 import { DistributorsLanding } from '../components/DistributorsLanding';
+import { OEMKitsLanding } from '../components/OEMKitsLanding';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
@@ -877,6 +878,16 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   if (page.id === 'distributors') {
     return (
       <DistributorsLanding
+        content={content}
+        pageLang={pageLang}
+        showCookieConsent={showCookieConsent}
+      />
+    );
+  }
+
+  if (page.id === 'oem') {
+    return (
+      <OEMKitsLanding
         content={content}
         pageLang={pageLang}
         showCookieConsent={showCookieConsent}

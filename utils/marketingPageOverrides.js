@@ -242,6 +242,17 @@ function isLegacyColiphageIndicatorOverride(baseContent, override) {
     && /indicator|indicador|indicateur|indicatore/i.test(firstSection);
 }
 
+function isLegacyOemOverride(baseContent, override) {
+  const basePath = String(baseContent?.path || '');
+  const sections = Array.isArray(override?.sections) ? override.sections : [];
+  const title = String(override?.title || '');
+
+  return /oem.*(water-testing|kits|analisi|analyse|analisis|aigua|agua|eau|acqua)/i.test(basePath)
+    && sections.length <= 2
+    && /OEM/i.test(title)
+    && /distributor|distribuidor|distributeur|distributori|distribuïdor/i.test(title);
+}
+
 export function mergeMarketingContent(baseContent, overrideContent) {
   const override = normalizeMarketingOverride(overrideContent);
   if (!override) return baseContent;
@@ -257,6 +268,21 @@ export function mergeMarketingContent(baseContent, overrideContent) {
       datasheetLabel: override.datasheetLabel || baseContent.datasheetLabel,
       primaryCta: override.primaryCta || baseContent.primaryCta,
       secondaryCta: override.secondaryCta || baseContent.secondaryCta,
+      gallery: override.gallery || baseContent.gallery || [],
+      visuals: override.visuals || baseContent.visuals,
+      path: baseContent.path
+    };
+  }
+
+  if (isLegacyOemOverride(baseContent, override)) {
+    return {
+      ...baseContent,
+      heroImage: override.heroImage || baseContent.heroImage,
+      heroImageAlt: override.heroImageAlt || baseContent.heroImageAlt,
+      heroVideo: override.heroVideo || baseContent.heroVideo,
+      ogImage: override.ogImage || baseContent.ogImage,
+      datasheetUrl: override.datasheetUrl || baseContent.datasheetUrl,
+      datasheetLabel: override.datasheetLabel || baseContent.datasheetLabel,
       gallery: override.gallery || baseContent.gallery || [],
       visuals: override.visuals || baseContent.visuals,
       path: baseContent.path

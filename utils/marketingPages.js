@@ -8,6 +8,7 @@ import { PHARMA_COSMETICS_WATER_PAGE } from './pharmaCosmeticsWaterContent.js';
 import { HOSPITALITY_TOURISM_WATER_PAGE } from './hospitalityTourismWaterContent.js';
 import { INDUSTRIES_HUB_PAGE } from './industriesHubContent.js';
 import { DISTRIBUTORS_PAGE } from './distributorsPageContent.js';
+import { OEM_KITS_PAGE } from './oemKitsContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -1174,28 +1175,7 @@ export const MARKETING_PAGES = [
       section('Per a equips que necessiten control', 'Dissenyada per a organitzacions biotech i laboratoris en creixement que necessiten execució, traçabilitat i visibilitat comercial.')
     ], { eyebrow: 'SaaS', primaryCta: 'Sol·licitar demo SaaS', secondaryCta: 'Explorar plataforma', ...platformVisualOptions('ca', { hero: 'dashboard', galleryIds: ['dashboard', 'crm', 'lims', 'work', 'wms', 'finance'] }) })
   }),
-  page('oem', 'partners', 'oem', {
-    en: locale('/oem-water-testing-kits', 'OEM and distributor program for water testing kits', 'Bring AquaVerify water microbiology products and digital workflows to your market under AquaVerify or white-label models.', [
-      section('Two commercial models', 'Distributors can sell AquaVerify-branded products or develop OEM/private-label programs with platform support.', ['AquaVerify branded distribution', 'OEM and white-label packaging', 'Digital platform for customer workflows', 'Technical onboarding and training']),
-      section('Recurring value beyond the box', 'Consumables, support and software access create a stronger relationship than a one-off product sale.')
-    ], { eyebrow: 'OEM & Distributors', primaryCta: 'Become a partner', secondaryCta: 'Request OEM call' }),
-    es: locale('/es/oem-kits-analisis-agua', 'Programa OEM y distribuidores para kits de análisis de agua', 'Lleva productos AquaVerify de microbiología del agua y flujos digitales a tu mercado bajo marca AquaVerify o marca blanca.', [
-      section('Dos modelos comerciales', 'Los distribuidores pueden vender productos AquaVerify o desarrollar programas OEM/marca blanca con soporte de plataforma.', ['Distribución bajo marca AquaVerify', 'Packaging OEM y marca blanca', 'Plataforma digital para flujos de cliente', 'Onboarding técnico y formación']),
-      section('Valor recurrente más allá de la caja', 'Consumibles, soporte y acceso software crean una relación más fuerte que una venta puntual.')
-    ], { eyebrow: 'OEM y distribuidores', primaryCta: 'Convertirse en partner', secondaryCta: 'Solicitar llamada OEM' }),
-    fr: locale('/fr/oem-kits-analyse-eau', 'Programme OEM et distributeurs pour kits d’analyse de l’eau', 'Apportez les produits AquaVerify de microbiologie de l’eau et les flux numériques à votre marché sous marque AquaVerify ou marque blanche.', [
-      section('Deux modèles commerciaux', 'Les distributeurs peuvent vendre des produits AquaVerify ou développer des programmes OEM/marque blanche avec support plateforme.', ['Distribution sous marque AquaVerify', 'Packaging OEM et marque blanche', 'Plateforme numérique pour les flux client', 'Onboarding technique et formation']),
-      section('Valeur récurrente au-delà de la boîte', 'Consommables, support et accès logiciel créent une relation plus forte qu’une vente ponctuelle.')
-    ], { eyebrow: 'OEM et distributeurs', primaryCta: 'Devenir partenaire', secondaryCta: 'Demander un appel OEM' }),
-    it: locale('/it/oem-kit-analisi-acqua', 'Programma OEM e distributori per kit di analisi dell’acqua', 'Porta i prodotti AquaVerify di microbiologia dell’acqua e i flussi digitali nel tuo mercato con brand AquaVerify o private label.', [
-      section('Due modelli commerciali', 'I distributori possono vendere prodotti AquaVerify o sviluppare programmi OEM/private label con supporto piattaforma.', ['Distribuzione con brand AquaVerify', 'Packaging OEM e private label', 'Piattaforma digitale per flussi cliente', 'Onboarding tecnico e formazione']),
-      section('Valore ricorrente oltre la scatola', 'Consumabili, supporto e accesso software creano una relazione più forte di una vendita singola.')
-    ], { eyebrow: 'OEM e distributori', primaryCta: 'Diventa partner', secondaryCta: 'Richiedi call OEM' }),
-    ca: locale('/ca/oem-kits-analisi-aigua', 'Programa OEM i distribuïdors per a kits d’anàlisi d’aigua', 'Porta productes AquaVerify de microbiologia de l’aigua i fluxos digitals al teu mercat sota marca AquaVerify o marca blanca.', [
-      section('Dos models comercials', 'Els distribuïdors poden vendre productes AquaVerify o desenvolupar programes OEM/marca blanca amb suport de plataforma.', ['Distribució sota marca AquaVerify', 'Packaging OEM i marca blanca', 'Plataforma digital per a fluxos de client', 'Onboarding tècnic i formació']),
-      section('Valor recurrent més enllà de la caixa', 'Consumibles, suport i accés software creen una relació més forta que una venda puntual.')
-    ], { eyebrow: 'OEM i distribuïdors', primaryCta: 'Convertir-se en partner', secondaryCta: 'Sol·licitar trucada OEM' })
-  }),
+  page('oem', 'partners', 'oem', OEM_KITS_PAGE),
   page('private-label-kits', 'partners', 'oem', {
     en: locale('/oem/private-label-water-testing-kits', 'Private-label water testing kits for distributors', 'Build a differentiated water microbiology catalog with AquaVerify products, OEM packaging options and connected platform workflows.', [
       section('For distributors that need a defensible catalog', 'AquaVerify helps scientific distributors move beyond generic consumables with kits, controls and platform-enabled workflows.', ['Private-label or AquaVerify-branded supply', 'Water microbiology kits and lab essentials', 'Platform access for traceability and customer reporting', 'Technical onboarding for sales and support teams']),
