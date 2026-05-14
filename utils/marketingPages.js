@@ -2106,38 +2106,41 @@ function buildIndustryFaqs(item, lang) {
 }
 
 function buildIndustryPages() {
-  return INDUSTRY_PAGE_DATA.filter((item) => item.id !== 'food-beverage-water-quality').map((item) => page(
-    item.id,
-    'industries',
-    'contact',
-    Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, locale(
-      item.paths[lang],
-      item.titles[lang],
-      item.descriptions[lang],
-      item.sections[lang],
-      {
-        eyebrow: item.eyebrows?.[lang] || 'Industry',
-        primaryCta: item.ctas[lang][0],
-        secondaryCta: item.ctas[lang][1],
-        seoTitle: `${item.titles[lang]} | AquaVerify`,
-        seoDescription: item.descriptions[lang],
-        faqs: item.faqs?.[lang] || buildIndustryFaqs(item, lang)
-      }
-    )])),
-    { parentId: 'water-quality-control' }
-  ));
+  return INDUSTRY_PAGE_DATA.map((item) => {
+    if (item.id === 'food-beverage-water-quality') {
+      return page(
+        'food-beverage-water-quality',
+        'industries',
+        'contact',
+        Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, FOOD_BEVERAGE_WATER_PAGE[lang]])),
+        { parentId: 'water-quality-control' }
+      );
+    }
+
+    return page(
+      item.id,
+      'industries',
+      'contact',
+      Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, locale(
+        item.paths[lang],
+        item.titles[lang],
+        item.descriptions[lang],
+        item.sections[lang],
+        {
+          eyebrow: item.eyebrows?.[lang] || 'Industry',
+          primaryCta: item.ctas[lang][0],
+          secondaryCta: item.ctas[lang][1],
+          seoTitle: `${item.titles[lang]} | AquaVerify`,
+          seoDescription: item.descriptions[lang],
+          faqs: item.faqs?.[lang] || buildIndustryFaqs(item, lang)
+        }
+      )])),
+      { parentId: 'water-quality-control' }
+    );
+  });
 }
 
-MARKETING_PAGES.push(
-  ...buildIndustryPages(),
-  page(
-    'food-beverage-water-quality',
-    'industries',
-    'contact',
-    Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, FOOD_BEVERAGE_WATER_PAGE[lang]])),
-    { parentId: 'water-quality-control' }
-  )
-);
+MARKETING_PAGES.push(...buildIndustryPages());
 
 const PRODUCT_LANGUAGE_BASE = {
   en: '/products',
