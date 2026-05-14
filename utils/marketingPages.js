@@ -3,6 +3,7 @@ import { WATER_QUALITY_CONTROL_PAGE } from './waterQualityControlContent.js';
 import { FOOD_BEVERAGE_WATER_PAGE } from './foodBeverageWaterContent.js';
 import { INDUSTRIAL_PROCESS_WATER_PAGE } from './industrialProcessWaterContent.js';
 import { FACILITY_WATER_RISK_PAGE } from './facilityWaterRiskContent.js';
+import { AGRICULTURE_WATER_PAGE } from './agricultureWaterContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -2027,6 +2028,59 @@ const INDUSTRY_PAGE_DATA = [
     }
   },
   {
+    id: 'agriculture-water',
+    paths: {
+      en: '/industries/agriculture-water-management',
+      es: '/es/industrias/agricultura',
+      fr: '/fr/industries/eau-agriculture',
+      it: '/it/settori/acqua-agricoltura',
+      ca: '/ca/sectors/aigua-agricultura'
+    },
+    titles: {
+      en: 'Agricultural water control for irrigation and traceability',
+      es: 'Control del agua agrícola para riego y trazabilidad',
+      fr: 'Contrôle de l’eau agricole pour irrigation et traçabilité',
+      it: 'Controllo dell’acqua agricola per irrigazione e tracciabilità',
+      ca: 'Control de l’aigua agrícola per a reg i traçabilitat'
+    },
+    descriptions: {
+      en: 'Coordinate agricultural water sampling, microbiological results, reclaimed water evidence and plot-level reporting for farms, greenhouses and cooperatives.',
+      es: 'Coordina muestreo de agua agrícola, resultados microbiológicos, evidencias de agua regenerada y reporting por parcela para explotaciones, invernaderos y cooperativas.',
+      fr: 'Coordonnez prélèvements d’eau agricole, résultats microbiologiques, preuves d’eau réutilisée et reporting par parcelle pour exploitations, serres et coopératives.',
+      it: 'Coordina campionamento dell’acqua agricola, risultati microbiologici, evidenze acqua riutilizzata e reporting per parcella per aziende, serre e cooperative.',
+      ca: 'Coordina mostreig d’aigua agrícola, resultats microbiològics, evidències d’aigua regenerada i reporting per parcel·la per a explotacions, hivernacles i cooperatives.'
+    },
+    sections: {
+      en: [
+        section('For farms, greenhouses and cooperatives', 'Agricultural teams need a traceable way to connect water sources, sampling points, plots, crops, results and actions.', ['Irrigation and reclaimed water control', 'Georeferenced sampling points', 'Laboratory and field coordination', 'Campaign history by plot']),
+        section('From source to decision', 'AquaVerify Cloud keeps water quality evidence connected to source, plot, crop, campaign and report.')
+      ],
+      es: [
+        section('Para explotaciones, invernaderos y cooperativas', 'Los equipos agrícolas necesitan conectar fuentes de agua, puntos de muestreo, parcelas, cultivos, resultados y acciones de forma trazable.', ['Control de riego y agua regenerada', 'Puntos de muestreo georreferenciados', 'Coordinación campo-laboratorio', 'Histórico por parcela y campaña']),
+        section('De la fuente a la decisión', 'AquaVerify Cloud mantiene la evidencia de calidad del agua conectada con fuente, parcela, cultivo, campaña e informe.')
+      ],
+      fr: [
+        section('Pour exploitations, serres et coopératives', 'Les équipes agricoles doivent relier sources d’eau, points de prélèvement, parcelles, cultures, résultats et actions de façon traçable.', ['Contrôle irrigation et eau réutilisée', 'Points de prélèvement géoréférencés', 'Coordination terrain-laboratoire', 'Historique par parcelle et campagne']),
+        section('De la source à la décision', 'AquaVerify Cloud garde les preuves qualité eau reliées à source, parcelle, culture, campagne et rapport.')
+      ],
+      it: [
+        section('Per aziende agricole, serre e cooperative', 'I team agricoli devono collegare fonti acqua, punti di campionamento, parcelle, colture, risultati e azioni in modo tracciabile.', ['Controllo irrigazione e acqua riutilizzata', 'Punti di campionamento georeferenziati', 'Coordinamento campo-laboratorio', 'Storico per parcella e campagna']),
+        section('Dalla fonte alla decisione', 'AquaVerify Cloud mantiene l’evidenza qualità acqua collegata a fonte, parcella, coltura, campagna e report.')
+      ],
+      ca: [
+        section('Per a explotacions, hivernacles i cooperatives', 'Els equips agrícoles necessiten connectar fonts d’aigua, punts de mostreig, parcel·les, cultius, resultats i accions de forma traçable.', ['Control de reg i aigua regenerada', 'Punts de mostreig georeferenciats', 'Coordinació camp-laboratori', 'Històric per parcel·la i campanya']),
+        section('De la font a la decisió', 'AquaVerify Cloud manté l’evidència de qualitat de l’aigua connectada amb font, parcel·la, cultiu, campanya i informe.')
+      ]
+    },
+    ctas: {
+      en: ['Request agriculture water fit', 'View workflow'],
+      es: ['Pedir encaje agrícola', 'Ver flujo'],
+      fr: ['Demander cadrage agricole', 'Voir flux'],
+      it: ['Chiedi inquadramento agricolo', 'Vedi flusso'],
+      ca: ['Demanar encaix agrícola', 'Veure flux']
+    }
+  },
+  {
     id: 'facility-water-risk',
     paths: {
       en: '/industries/facility-water-risk-management',
@@ -2135,6 +2189,16 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, FACILITY_WATER_RISK_PAGE[lang]])),
+        { parentId: 'water-quality-control' }
+      );
+    }
+
+    if (item.id === 'agriculture-water') {
+      return page(
+        'agriculture-water',
+        'industries',
+        'contact',
+        Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, AGRICULTURE_WATER_PAGE[lang]])),
         { parentId: 'water-quality-control' }
       );
     }

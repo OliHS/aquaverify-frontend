@@ -66,6 +66,26 @@
             ],
             "destination": "https://aquaverify.com/:path*",
             "permanent": true
+        },
+        {
+            "source": "/industrias/agricultura",
+            "destination": "/es/industrias/agricultura",
+            "permanent": true
+        },
+        {
+            "source": "/en/industries/agriculture-water-management",
+            "destination": "/industries/agriculture-water-management",
+            "permanent": true
+        },
+        {
+            "source": "/it/industrie/acqua-agricoltura",
+            "destination": "/it/settori/acqua-agricoltura",
+            "permanent": true
+        },
+        {
+            "source": "/ca/industries/aigua-agricultura",
+            "destination": "/ca/sectors/aigua-agricultura",
+            "permanent": true
         }
     ],
     "rewrites": [

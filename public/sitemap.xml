@@ -1694,6 +1694,66 @@
     <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sectors/aigua-proces-industrial" />
   </url>
   <url>
+    <loc>https://aquaverify.com/industries/agriculture-water-management</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/industrias/agricultura" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/industries/eau-agriculture" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/settori/acqua-agricoltura" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sectors/aigua-agricultura" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/industrias/agricultura</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/industrias/agricultura" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/industries/eau-agriculture" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/settori/acqua-agricoltura" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sectors/aigua-agricultura" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/industries/eau-agriculture</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/industrias/agricultura" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/industries/eau-agriculture" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/settori/acqua-agricoltura" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sectors/aigua-agricultura" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/settori/acqua-agricoltura</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/industrias/agricultura" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/industries/eau-agriculture" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/settori/acqua-agricoltura" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sectors/aigua-agricultura" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/sectors/aigua-agricultura</loc>
+    <lastmod>2026-05-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/industries/agriculture-water-management" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/industrias/agricultura" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/industries/eau-agriculture" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/settori/acqua-agricoltura" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sectors/aigua-agricultura" />
+  </url>
+  <url>
     <loc>https://aquaverify.com/industries/facility-water-risk-management</loc>
     <lastmod>2026-05-04</lastmod>
     <changefreq>weekly</changefreq>
