@@ -78,6 +78,11 @@
             "permanent": true
         },
         {
+            "source": "/en/distributors",
+            "destination": "/distributors",
+            "permanent": true
+        },
+        {
             "source": "/it/industrie",
             "destination": "/it/settori",
             "permanent": true

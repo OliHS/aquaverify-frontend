@@ -7,6 +7,7 @@ import { AGRICULTURE_WATER_PAGE } from './agricultureWaterContent.js';
 import { PHARMA_COSMETICS_WATER_PAGE } from './pharmaCosmeticsWaterContent.js';
 import { HOSPITALITY_TOURISM_WATER_PAGE } from './hospitalityTourismWaterContent.js';
 import { INDUSTRIES_HUB_PAGE } from './industriesHubContent.js';
+import { DISTRIBUTORS_PAGE } from './distributorsPageContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -1237,28 +1238,10 @@ export const MARKETING_PAGES = [
       { question: 'Per a qui està dissenyat aquest programa?', answer: 'Està dissenyat per a distribuïdors científics, proveïdors de laboratori i partners B2B que volen un portfolio diferenciat de microbiologia de l’aigua.' }
     ] })
   }, { parentId: 'oem' }),
-  page('distributors', 'partners', 'distributor', {
-    en: locale('/distributors', 'AquaVerify distributors and local partners', 'Find or become an AquaVerify partner for local supply, support, training and OEM opportunities.', [
-      section('Local access, global standard', 'AquaVerify works with partners who can support laboratories and water quality teams locally.', ['Distribution opportunities', 'Local technical support', 'Training and onboarding', 'OEM and white-label options']),
-      section('No partner in your country?', 'AquaVerify can evaluate direct supply, new distributor opportunities or OEM collaboration.')
-    ], { eyebrow: 'Distributors', primaryCta: 'Become a distributor', secondaryCta: 'Request local contact' }),
-    es: locale('/es/distribuidores', 'Distribuidores y partners locales AquaVerify', 'Encuentra o conviértete en partner AquaVerify para suministro local, soporte, formación y oportunidades OEM.', [
-      section('Acceso local, estándar global', 'AquaVerify trabaja con partners capaces de dar soporte local a laboratorios y equipos de calidad del agua.', ['Oportunidades de distribución', 'Soporte técnico local', 'Formación y onboarding', 'Opciones OEM y marca blanca']),
-      section('¿No hay partner en tu país?', 'AquaVerify puede evaluar suministro directo, nuevos distribuidores u oportunidades OEM.')
-    ], { eyebrow: 'Distribuidores', primaryCta: 'Ser distribuidor', secondaryCta: 'Pedir contacto local' }),
-    fr: locale('/fr/distributeurs', 'Distributeurs et partenaires locaux AquaVerify', 'Trouvez ou devenez partenaire AquaVerify pour l’approvisionnement local, le support, la formation et les opportunités OEM.', [
-      section('Accès local, standard global', 'AquaVerify travaille avec des partenaires capables de soutenir localement laboratoires et équipes qualité eau.', ['Opportunités de distribution', 'Support technique local', 'Formation et onboarding', 'Options OEM et marque blanche']),
-      section('Pas de partenaire dans votre pays?', 'AquaVerify peut évaluer l’approvisionnement direct, de nouveaux distributeurs ou une collaboration OEM.')
-    ], { eyebrow: 'Distributeurs', primaryCta: 'Devenir distributeur', secondaryCta: 'Demander un contact local' }),
-    it: locale('/it/distributori', 'Distributori e partner locali AquaVerify', 'Trova o diventa partner AquaVerify per fornitura locale, supporto, formazione e opportunità OEM.', [
-      section('Accesso locale, standard globale', 'AquaVerify lavora con partner capaci di supportare localmente laboratori e team qualità acqua.', ['Opportunità di distribuzione', 'Supporto tecnico locale', 'Formazione e onboarding', 'Opzioni OEM e private label']),
-      section('Nessun partner nel tuo paese?', 'AquaVerify può valutare fornitura diretta, nuovi distributori o collaborazione OEM.')
-    ], { eyebrow: 'Distributori', primaryCta: 'Diventa distributore', secondaryCta: 'Richiedi contatto locale' }),
-    ca: locale('/ca/distribuidors', 'Distribuïdors i partners locals AquaVerify', 'Troba o converteix-te en partner AquaVerify per a subministrament local, suport, formació i oportunitats OEM.', [
-      section('Accés local, estàndard global', 'AquaVerify treballa amb partners capaços de donar suport local a laboratoris i equips de qualitat de l’aigua.', ['Oportunitats de distribució', 'Suport tècnic local', 'Formació i onboarding', 'Opcions OEM i marca blanca']),
-      section('No hi ha partner al teu país?', 'AquaVerify pot avaluar subministrament directe, nous distribuïdors o oportunitats OEM.')
-    ], { eyebrow: 'Distribuïdors', primaryCta: 'Ser distribuïdor', secondaryCta: 'Demanar contacte local' })
-  }),
+  page('distributors', 'partners', 'distributor', Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [
+    lang,
+    DISTRIBUTORS_PAGE[lang]
+  ]))),
   page('water-testing-labs', 'industries', 'quote', {
     en: locale('/industries/water-testing-laboratories', 'Water testing laboratories: more capacity, traceability and confidence in every report', 'AquaVerify connects water microbiology kits, somatic coliphage control, sample-to-report digital workflows, CoA reporting and customer portal for laboratories that need reliable results without extra administrative load.', [
       section('The challenge for water testing laboratories', 'Water testing laboratories are receiving more samples, more matrices and more documentation requirements. Pressure appears when volume grows, TAT becomes tighter and every result must be defendable for customers, audits and technical managers.', ['More sample volume with the same team: organize intake, bench work, review and delivery without adding manual coordination.', 'Evidence spread across bench, quality and report: keep sample, method, batch, user, reading and validation connected.', 'Customers ask for more visibility: provide clear status, history and deliverables without endless operational emails.', 'Chain of custody and CoA reporting: make each result easier to review, explain and retrieve.']),

@@ -243,6 +243,91 @@ function renderIndustriesHubSectors(page, content, lang) {
   ].join('\n');
 }
 
+function renderDistributorsDetails(page, content, lang) {
+  if (page?.id !== 'distributors') return '';
+  const paths = [content?.buyerPath, content?.partnerPath].filter(Boolean);
+  const buyerCards = Array.isArray(content?.buyerCards) ? content.buyerCards : [];
+  const partnerModels = Array.isArray(content?.partnerModels) ? content.partnerModels : [];
+  const sectors = Array.isArray(content?.sectors) ? content.sectors : [];
+  const programCards = Array.isArray(content?.programCards) ? content.programCards : [];
+  const pageUrl = absolute(content?.path || getMarketingPagePath('distributors', lang));
+
+  return [
+    '      <section>',
+    `        <h2>${escapeHtml(content.pathsTitle || content.title)}</h2>`,
+    content.pathsBody ? `        <p>${escapeHtml(content.pathsBody)}</p>` : '',
+    paths.length ? [
+      '        <ul>',
+      ...paths.map((item) => [
+        '          <li>',
+        `            <h3>${escapeHtml(item.title)}</h3>`,
+        `            <p>${escapeHtml(item.body)}</p>`,
+        Array.isArray(item.bullets) && item.bullets.length ? [
+          '            <ul>',
+          ...item.bullets.map((bullet) => `              <li>${escapeHtml(bullet)}</li>`),
+          '            </ul>'
+        ].join('\n') : '',
+        item.cta ? `            <p><a href="${escapeHtml(`${pageUrl}#${item === content.buyerPath ? 'buscar-distribuidor' : 'ser-distribuidor'}`)}">${escapeHtml(item.cta)}</a></p>` : '',
+        '          </li>'
+      ].filter(Boolean).join('\n')),
+      '        </ul>'
+    ].join('\n') : '',
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(content.authorizedTitle || '')}</h2>`,
+    content.authorizedBody ? `        <p>${escapeHtml(content.authorizedBody)}</p>` : '',
+    content.searchBody ? `        <p>${escapeHtml(content.searchBody)}</p>` : '',
+    '      </section>',
+    buyerCards.length ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.buyerTitle || '')}</h2>`,
+      content.buyerBody ? `        <p>${escapeHtml(content.buyerBody)}</p>` : '',
+      '        <ul>',
+      ...buyerCards.map((item) => `          <li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.body)}</li>`),
+      '        </ul>',
+      '      </section>'
+    ].join('\n') : '',
+    partnerModels.length ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.partnerTitle || '')}</h2>`,
+      content.partnerBody ? `        <p>${escapeHtml(content.partnerBody)}</p>` : '',
+      '        <ul>',
+      ...partnerModels.map((item) => `          <li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.body)}</li>`),
+      '        </ul>',
+      '      </section>'
+    ].join('\n') : '',
+    programCards.length ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.programTitle || '')}</h2>`,
+      content.programBody ? `        <p>${escapeHtml(content.programBody)}</p>` : '',
+      '        <ul>',
+      ...programCards.map((item) => `          <li><strong>${escapeHtml(item.title)}:</strong> ${escapeHtml(item.body)}</li>`),
+      '        </ul>',
+      '      </section>'
+    ].join('\n') : '',
+    sectors.length ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.sectorsTitle || '')}</h2>`,
+      content.sectorsBody ? `        <p>${escapeHtml(content.sectorsBody)}</p>` : '',
+      '        <ul>',
+      ...sectors.map((sector) => [
+        '          <li>',
+        `            <h3><a href="${escapeHtml(absolute(getMarketingPagePath(sector.routeId, lang)))}">${escapeHtml(sector.title)}</a></h3>`,
+        `            <p>${escapeHtml(sector.body)}</p>`,
+        '          </li>'
+      ].join('\n')),
+      '        </ul>',
+      '      </section>'
+    ].join('\n') : '',
+    '      <section>',
+    `        <h2>${escapeHtml(content.formsTitle || '')}</h2>`,
+    content.formsBody ? `        <p>${escapeHtml(content.formsBody)}</p>` : '',
+    `        <p><a href="${escapeHtml(`${pageUrl}#buscar-distribuidor`)}">${escapeHtml(content.forms?.buyer?.title || content.primaryCta || '')}</a></p>`,
+    `        <p><a href="${escapeHtml(`${pageUrl}#ser-distribuidor`)}">${escapeHtml(content.forms?.partner?.title || content.secondaryCta || '')}</a></p>`,
+    '      </section>'
+  ].filter(Boolean).join('\n');
+}
+
 function renderFaqs(faqs = []) {
   if (!faqs.length) return '';
 
@@ -438,7 +523,8 @@ function renderStaticRoot(meta) {
       '    <div style="max-width: 1040px; margin: 0 auto;">',
       renderFeaturedWhitepapers(meta.page, meta.lang),
       renderIndustriesHubSectors(meta.page, content, meta.lang),
-      renderSectionList(content.sections || []),
+      renderDistributorsDetails(meta.page, content, meta.lang),
+      meta.page?.id === 'distributors' ? '' : renderSectionList(content.sections || []),
       renderVisualBlocks(content),
       renderWhitepaperDeepDive(content.whitepaper),
       renderFaqs(content.faqs || []),
