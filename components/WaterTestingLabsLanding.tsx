@@ -6,7 +6,6 @@ import {
   ClipboardCheck,
   FileCheck2,
   FlaskConical,
-  Gauge,
   Layers3,
   ShieldCheck
 } from 'lucide-react';
@@ -114,9 +113,20 @@ const references = [
   ['Real Decreto 3/2023', 'Marco español de criterios técnicos y sanitarios para agua de consumo, suministro y control de calidad.', 'https://www.boe.es/buscar/act.php?id=BOE-A-2023-628']
 ];
 
+const labFormSectors = [
+  'Laboratorio ambiental',
+  'Laboratorio público',
+  'Utility / municipal',
+  'Food & beverage',
+  'Tratamiento de agua',
+  'Agricultura',
+  'Seafood / acuicultura',
+  'Otro'
+];
+
 const fallbackFaqs = [
   ['¿AquaVerify sustituye a un laboratorio acreditado?', 'No. AquaVerify actúa como capa de producto, trazabilidad, flujo digital, reporting y portal cliente. Cuando un ensayo se emite bajo acreditación, debe integrarse en el alcance, los métodos, las validaciones y los procedimientos aprobados por el propio laboratorio.'],
-  ['¿Para que tipo de laboratorios está pensado?', 'Está pensado para laboratorios ambientales, laboratorios públicos, laboratorios de utilities, laboratorios que sirven a industria alimentaria, equipos internos de control de agua y organizaciones que quieren ampliar servicios microbiologicos con mayor trazabilidad.'],
+  ['¿Para qué tipo de laboratorios está pensado?', 'Está pensado para laboratorios ambientales, laboratorios públicos, laboratorios de utilities, laboratorios que sirven a industria alimentaria, equipos internos de control de agua y organizaciones que quieren ampliar servicios microbiológicos con mayor trazabilidad.'],
   ['¿Qué aporta frente a un LIMS genérico?', 'Aporta un enfoque específico en microbiología del agua: matrices, puntos de muestreo, colífagos somáticos, kits, lotes, evidencias de lectura, informes CoA, histórico por cliente y comunicación B2B desde el mismo flujo de trabajo.'],
   ['¿Puede ayudar a reducir el TAT o tiempo de respuesta?', 'Sí, al estandarizar pasos, reducir transcripción manual, ordenar la revisión técnica y facilitar la emisión del informe. El impacto real depende del volumen de muestras, los métodos aplicados, el equipo disponible y el flujo actual del laboratorio.'],
   ['¿Qué productos encajan con colífagos somáticos?', 'ENUMERA Soma 100 mL, PLAQUE Soma 1 mL, PLAQUE Soma 100 mL, INDICA Soma 100 mL, medios MSA/MSB y AquaVerify Cloud & App cubren escenarios de presencia/ausencia, enumeración, placa, reporting y trazabilidad digital según la matriz y el protocolo del laboratorio.'],
@@ -145,6 +155,47 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
     profile: 'labs'
   }, pageLang);
   const faqs = (content.faqs?.length ? content.faqs.map((item) => [item.question, item.answer]) : fallbackFaqs) as string[][];
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get('name') || '').trim();
+    const company = String(form.get('company') || '').trim();
+    const email = String(form.get('email') || '').trim();
+    const sector = String(form.get('sector') || '').trim();
+    const country = String(form.get('country') || '').trim();
+    const waterType = String(form.get('water_type') || '').trim();
+    const sampleVolume = String(form.get('sample_volume') || '').trim();
+    const currentMethod = String(form.get('current_method') || '').trim();
+    const mainNeed = String(form.get('main_need') || '').trim();
+
+    trackCorporateEvent('water_testing_lab_diagnosis_submit', {
+      lang: pageLang,
+      page: 'water-testing-labs',
+      category: 'industries',
+      intent: 'quote',
+      profile: sector || 'labs',
+      country,
+      product: waterType,
+      module: 'lab-diagnosis'
+    });
+
+    window.location.href = getPlatformSignupUrl({
+      intent: 'quote',
+      page: 'water-testing-labs',
+      category: 'industries',
+      profile: sector || 'labs',
+      product: waterType,
+      module: 'lab-diagnosis',
+      country,
+      water_type: waterType,
+      sample_volume: sampleVolume,
+      current_method: currentMethod,
+      main_need: mainNeed,
+      prefill_name: name,
+      prefill_email: email,
+      prefill_company: company
+    }, pageLang);
+  };
 
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
@@ -493,42 +544,47 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
           </div>
         </section>
 
-        <section id="diagnostico" className="bg-primary py-16 text-white md:py-20">
-          <div className="container mx-auto grid gap-8 px-6 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-center">
-            <div>
-              <h2 className="font-heading text-3xl font-black leading-tight md:text-5xl">
+        <section id="diagnostico" className="bg-slate-50 py-16 pb-24 md:py-20">
+          <div className="container mx-auto px-6">
+            <div className="mx-auto max-w-4xl text-center">
+              <span className="inline-flex rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-cyan-700">Diagnóstico técnico</span>
+              <h2 className="mt-4 font-heading text-3xl font-black leading-tight text-slate-950 md:text-5xl">
                 Convierte tu flujo de muestras de agua en un servicio más rápido, trazable y escalable.
               </h2>
-              <p className="mt-5 max-w-3xl text-base leading-8 text-cyan-50/85">
-                Solicita un diagnóstico técnico para revisar matrices, volumen mensual, métodos, TAT objetivo, trazabilidad actual y necesidades de reporting para clientes.
+              <p className="mt-5 text-base leading-8 text-slate-600 md:text-lg">
+                Comparte el tipo de laboratorio, matrices, volumen y método actual. La solicitud continúa en AquaVerify Cloud para que el equipo comercial la reciba con origen, sector y contexto técnico.
               </p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href={signupUrl}
-                  onClick={() => trackSignup('Solicitar diagnóstico técnico final', signupUrl)}
-                  className="inline-flex items-center justify-center rounded bg-white px-6 py-3 text-sm font-black text-primary transition hover:bg-secondary hover:text-white"
-                >
-                  Solicitar diagnóstico técnico
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-                <a href="#productos" className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10">
-                  Ver productos y módulos
-                </a>
-              </div>
             </div>
-            <ul className="space-y-3 rounded-3xl border border-white/15 bg-white/10 p-6 text-sm font-semibold leading-6 text-cyan-50/90">
-              {[
-                'Tipo de laboratorio y clientes principales.',
-                'Matrices analizadas y volumen mensual de muestras.',
-                'Métodos actuales, equipos y requisitos de calidad.',
-                'Tiempo de respuesta objetivo y formato de informe.'
-              ].map((item) => (
-                <li key={item} className="flex gap-3">
-                  <Gauge className="mt-0.5 h-4 w-4 shrink-0 text-secondary" />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-8">
+              <div className="grid gap-4 md:grid-cols-2">
+                <FormField label="Nombre" name="name" placeholder="Nombre y apellidos" required />
+                <FormField label="Empresa" name="company" placeholder="Organización" required />
+                <FormField label="Email profesional" name="email" type="email" placeholder="nombre@empresa.com" required />
+                <label className="grid gap-2 text-sm font-black text-slate-800">
+                  Sector
+                  <select name="sector" className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100">
+                    {labFormSectors.map((sector) => <option key={sector}>{sector}</option>)}
+                  </select>
+                </label>
+                <FormField label="País" name="country" placeholder="España, Francia, Estados Unidos..." />
+                <FormField label="Tipo de agua" name="water_type" placeholder="Consumo, proceso, riego, regenerada..." />
+                <FormField label="Muestras al mes" name="sample_volume" placeholder="50, 200, 1000+" />
+                <FormField label="Método actual" name="current_method" placeholder="Kit actual, laboratorio, Excel, LIMS..." />
+                <label className="grid gap-2 text-sm font-black text-slate-800 md:col-span-2">
+                  Necesidad principal
+                  <textarea name="main_need" placeholder="Auditoría, colífagos, TAT, trazabilidad digital..." className="min-h-28 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" />
+                </label>
+                <div className="md:col-span-2">
+                  <button type="submit" className="inline-flex w-full items-center justify-center rounded-full bg-cyan-600 px-6 py-4 text-sm font-black text-white shadow-lg transition hover:bg-cyan-700 md:w-auto">
+                    Continuar en AquaVerify Cloud
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </button>
+                  <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">
+                    La solicitud continúa en AquaVerify Cloud para que el equipo comercial la reciba con origen, sector y contexto del laboratorio.
+                  </p>
+                </div>
+              </div>
+            </form>
           </div>
         </section>
       </main>
@@ -537,3 +593,10 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
     </div>
   );
 };
+
+const FormField: React.FC<{ label: string; name: string; type?: string; placeholder?: string; required?: boolean }> = ({ label, name, type = 'text', placeholder, required = false }) => (
+  <label className="grid gap-2 text-sm font-black text-slate-800">
+    {label}
+    <input name={name} type={type} placeholder={placeholder} required={required} className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" />
+  </label>
+);
