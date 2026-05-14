@@ -1,5 +1,6 @@
 import { getProductAssetOptions } from './productAssets.js';
 import { WATER_QUALITY_CONTROL_PAGE } from './waterQualityControlContent.js';
+import { FOOD_BEVERAGE_WATER_PAGE } from './foodBeverageWaterContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -2105,7 +2106,7 @@ function buildIndustryFaqs(item, lang) {
 }
 
 function buildIndustryPages() {
-  return INDUSTRY_PAGE_DATA.map((item) => page(
+  return INDUSTRY_PAGE_DATA.filter((item) => item.id !== 'food-beverage-water-quality').map((item) => page(
     item.id,
     'industries',
     'contact',
@@ -2127,7 +2128,16 @@ function buildIndustryPages() {
   ));
 }
 
-MARKETING_PAGES.push(...buildIndustryPages());
+MARKETING_PAGES.push(
+  ...buildIndustryPages(),
+  page(
+    'food-beverage-water-quality',
+    'industries',
+    'contact',
+    Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, FOOD_BEVERAGE_WATER_PAGE[lang]])),
+    { parentId: 'water-quality-control' }
+  )
+);
 
 const PRODUCT_LANGUAGE_BASE = {
   en: '/products',
