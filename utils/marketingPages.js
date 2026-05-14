@@ -6,6 +6,7 @@ import { FACILITY_WATER_RISK_PAGE } from './facilityWaterRiskContent.js';
 import { AGRICULTURE_WATER_PAGE } from './agricultureWaterContent.js';
 import { PHARMA_COSMETICS_WATER_PAGE } from './pharmaCosmeticsWaterContent.js';
 import { HOSPITALITY_TOURISM_WATER_PAGE } from './hospitalityTourismWaterContent.js';
+import { INDUSTRIES_HUB_PAGE } from './industriesHubContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -969,6 +970,10 @@ function page(id, category, primaryIntent, translations, meta = {}) {
 }
 
 export const MARKETING_PAGES = [
+  page('industries-hub', 'industries', 'contact', Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [
+    lang,
+    INDUSTRIES_HUB_PAGE[lang]
+  ]))),
   page('products', 'products', 'quote', {
     en: locale('/products', 'Water microbiology products connected to digital traceability', 'Explore AquaVerify kits, lab essentials and connected workflows for water quality analysis.', [
       section('A portfolio built for technical buyers', 'AquaVerify combines quantitative kits, presence/absence tests, ISO/EPA-oriented workflows and laboratory essentials in one product ecosystem.', ['ENUMERA for enumeration workflows', 'INDICA for rapid presence/absence screening', 'Standard kits for ISO and EPA workflows', 'Lab Essentials for daily microbiology operations']),

@@ -73,6 +73,21 @@
             "permanent": true
         },
         {
+            "source": "/en/industries",
+            "destination": "/industries",
+            "permanent": true
+        },
+        {
+            "source": "/it/industrie",
+            "destination": "/it/settori",
+            "permanent": true
+        },
+        {
+            "source": "/ca/industries",
+            "destination": "/ca/sectors",
+            "permanent": true
+        },
+        {
             "source": "/en/industries/agriculture-water-management",
             "destination": "/industries/agriculture-water-management",
             "permanent": true

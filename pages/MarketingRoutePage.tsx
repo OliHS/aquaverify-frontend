@@ -13,6 +13,7 @@ import { FacilityWaterRiskLanding } from '../components/FacilityWaterRiskLanding
 import { AgricultureWaterLanding } from '../components/AgricultureWaterLanding';
 import { PharmaCosmeticsWaterLanding } from '../components/PharmaCosmeticsWaterLanding';
 import { HospitalityTourismWaterLanding } from '../components/HospitalityTourismWaterLanding';
+import { IndustriesHubLanding } from '../components/IndustriesHubLanding';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
@@ -855,6 +856,16 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   if (page.id === 'water-quality-control') {
     return (
       <WaterQualityControlLanding
+        content={content}
+        pageLang={pageLang}
+        showCookieConsent={showCookieConsent}
+      />
+    );
+  }
+
+  if (page.id === 'industries-hub') {
+    return (
+      <IndustriesHubLanding
         content={content}
         pageLang={pageLang}
         showCookieConsent={showCookieConsent}

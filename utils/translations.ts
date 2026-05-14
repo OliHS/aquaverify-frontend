@@ -4,7 +4,7 @@ export type Language = 'en' | 'es' | 'fr' | 'it' | 'ca';
 export const translations = {
   en: {
     nav: {
-      solutions: "Solutions",
+      solutions: "Sectors",
       products: "Products",
       platform: "Platform",
       resources: "Resources",
@@ -140,7 +140,7 @@ export const translations = {
     },
     footer: {
       tagline: "Biotech verifiable. Data traceable. The new standard in water safety assurance.",
-      solutions: "Solutions",
+      solutions: "Sectors",
       company: "Company",
       contact: "Contact",
       contactHelper: "Use the Contact link or email us for the fastest routing.",
@@ -153,7 +153,7 @@ export const translations = {
   },
   es: {
     nav: {
-      solutions: "Soluciones",
+      solutions: "Sectores",
       products: "Productos",
       platform: "Plataforma",
       resources: "Recursos",
@@ -289,7 +289,7 @@ export const translations = {
     },
     footer: {
       tagline: "Biotecnología verificable. Datos trazables. El nuevo estándar en garantía de seguridad hídrica.",
-      solutions: "Soluciones",
+      solutions: "Sectores",
       company: "Empresa",
       contact: "Contacto",
       contactHelper: "Usa el enlace Contacto o escríbenos por email para una respuesta más ágil.",
@@ -302,7 +302,7 @@ export const translations = {
   },
   fr: {
     nav: {
-      solutions: "Solutions",
+      solutions: "Secteurs",
       products: "Produits",
       platform: "Plateforme",
       resources: "Ressources",
@@ -438,7 +438,7 @@ export const translations = {
     },
     footer: {
       tagline: "Biotech vérifiable. Données traçables. La nouvelle norme en assurance sécurité de l'eau.",
-      solutions: "Solutions",
+      solutions: "Secteurs",
       company: "Entreprise",
       contact: "Contact",
       contactHelper: "Utilisez le lien Contact ou écrivez-nous par email pour un traitement plus rapide.",
@@ -451,7 +451,7 @@ export const translations = {
   },
   it: {
     nav: {
-      solutions: "Soluzioni",
+      solutions: "Settori",
       products: "Prodotti",
       platform: "Piattaforma",
       resources: "Risorse",
@@ -587,7 +587,7 @@ export const translations = {
     },
     footer: {
       tagline: "Biotech verificabile. Dati tracciabili. Il nuovo standard nella garanzia di sicurezza idrica.",
-      solutions: "Soluzioni",
+      solutions: "Settori",
       company: "Azienda",
       contact: "Contatti",
       contactHelper: "Usa il link Contatti o scrivici via email per un instradamento più rapido.",
@@ -604,7 +604,7 @@ const caTranslation: typeof translations.en = {
   ...translations.es,
   nav: {
     ...translations.es.nav,
-    solutions: 'Solucions',
+    solutions: 'Sectors',
     products: 'Productes',
     platform: 'Plataforma',
     resources: 'Recursos',
@@ -695,7 +695,7 @@ const caTranslation: typeof translations.en = {
   },
   footer: {
     tagline: 'Biotech verificable. Dades traçables. El nou estàndard en seguretat de l’aigua.',
-    solutions: 'Solucions',
+    solutions: 'Sectors',
     company: 'Empresa',
     contact: 'Contacte',
     contactHelper: 'Fes servir l’enllaç Contacte o escriu-nos per email per a una resposta més àgil.',

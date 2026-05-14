@@ -59,6 +59,7 @@ export const MARKETING_ROUTE_PATHS = {
   oem: { en: '/oem-water-testing-kits', es: '/es/oem-kits-analisis-agua', fr: '/fr/oem-kits-analyse-eau', it: '/it/oem-kit-analisi-acqua', ca: '/ca/oem-kits-analisi-aigua' },
   'private-label-kits': { en: '/oem/private-label-water-testing-kits', es: '/es/oem/kits-analisis-agua-marca-blanca', fr: '/fr/oem/kits-analyse-eau-marque-blanche', it: '/it/oem/kit-analisi-acqua-marca-privata', ca: '/ca/oem/kits-analisi-aigua-marca-blanca' },
   distributors: { en: '/distributors', es: '/es/distribuidores', fr: '/fr/distributeurs', it: '/it/distributori', ca: '/ca/distribuidors' },
+  'industries-hub': { en: '/industries', es: '/es/industrias', fr: '/fr/industries', it: '/it/settori', ca: '/ca/sectors' },
   'water-testing-labs': { en: '/industries/water-testing-laboratories', es: '/es/industrias/laboratorios-analisis-agua', fr: '/fr/industries/laboratoires-analyse-eau', it: '/it/settori/laboratori-analisi-acqua', ca: '/ca/sectors/laboratoris-analisi-aigua' },
   'water-quality-control': { en: '/industries/water-quality-control', es: '/es/industrias/control-calidad-agua', fr: '/fr/industries/controle-qualite-eau', it: '/it/settori/controllo-qualita-acqua', ca: '/ca/sectors/control-qualitat-aigua' },
   resources: { en: '/resources', es: '/es/recursos', fr: '/fr/ressources', it: '/it/risorse', ca: '/ca/recursos' },

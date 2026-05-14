@@ -20,6 +20,7 @@ const logoSrc = '/images/logo-mark-160.png';
 
 const NAV_ROUTE_GROUPS: Record<string, string[]> = {
   solutions: [
+    'industries-hub',
     'water-quality-control',
     'water-testing-labs',
     'municipal-water-testing',
@@ -70,7 +71,7 @@ export const Header: React.FC = () => {
     return '';
   })();
   const navHrefs = {
-    solutions: getMarketingPagePath('water-quality-control', lang),
+    solutions: getMarketingPagePath('industries-hub', lang),
     products: getMarketingPagePath('products', lang),
     platform: getMarketingPagePath('platform', lang),
     resources: getMarketingPagePath('resources', lang),
