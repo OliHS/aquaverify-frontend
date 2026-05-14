@@ -5,6 +5,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
 import { WaterQualityControlLanding } from '../components/WaterQualityControlLanding';
+import { WaterTestingLabsLanding } from '../components/WaterTestingLabsLanding';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
@@ -847,6 +848,16 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   if (page.id === 'water-quality-control') {
     return (
       <WaterQualityControlLanding
+        content={content}
+        pageLang={pageLang}
+        showCookieConsent={showCookieConsent}
+      />
+    );
+  }
+
+  if (page.id === 'water-testing-labs' && pageLang === 'es') {
+    return (
+      <WaterTestingLabsLanding
         content={content}
         pageLang={pageLang}
         showCookieConsent={showCookieConsent}
