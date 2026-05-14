@@ -220,6 +220,29 @@ function renderFeaturedWhitepapers(page, lang) {
   ].join('\n');
 }
 
+function renderIndustriesHubSectors(page, content, lang) {
+  if (page?.id !== 'industries-hub' || !Array.isArray(content?.sectors) || !content.sectors.length) return '';
+
+  return [
+    '      <section>',
+    `        <h2>${escapeHtml(content.sections?.[1]?.title || content.title)}</h2>`,
+    content.sections?.[1]?.body ? `        <p>${escapeHtml(content.sections[1].body)}</p>` : '',
+    '        <ul>',
+    ...content.sectors.map((sector) => {
+      const href = absolute(getMarketingPagePath(sector.routeId, lang));
+      return [
+        '          <li>',
+        `            <h3><a href="${escapeHtml(href)}">${escapeHtml(sector.title)}</a></h3>`,
+        `            <p>${escapeHtml(sector.body)}</p>`,
+        sector.focus ? `            <p><strong>${escapeHtml(content.focusLabel || 'Focus')}:</strong> ${escapeHtml(sector.focus)}</p>` : '',
+        '          </li>'
+      ].filter(Boolean).join('\n');
+    }),
+    '        </ul>',
+    '      </section>'
+  ].join('\n');
+}
+
 function renderFaqs(faqs = []) {
   if (!faqs.length) return '';
 
@@ -414,6 +437,7 @@ function renderStaticRoot(meta) {
       '  <section style="padding: 42px 24px;">',
       '    <div style="max-width: 1040px; margin: 0 auto;">',
       renderFeaturedWhitepapers(meta.page, meta.lang),
+      renderIndustriesHubSectors(meta.page, content, meta.lang),
       renderSectionList(content.sections || []),
       renderVisualBlocks(content),
       renderWhitepaperDeepDive(content.whitepaper),
