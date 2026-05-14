@@ -855,7 +855,7 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
     );
   }
 
-  if (page.id === 'water-testing-labs' && pageLang === 'es') {
+  if (page.id === 'water-testing-labs') {
     return (
       <WaterTestingLabsLanding
         content={content}
