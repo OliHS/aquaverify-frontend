@@ -25,6 +25,7 @@ const FOOTER_COPY: Record<Language, {
   industrial: string;
   agriculture: string;
   pharmaCosmetics: string;
+  hospitalityTourism: string;
   facilities: string;
   resources: string;
   presenceEnumeration: string;
@@ -46,6 +47,7 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Industrial process water',
     agriculture: 'Agriculture',
     pharmaCosmetics: 'Pharma & cosmetics',
+    hospitalityTourism: 'Hospitality & leisure',
     facilities: 'Facilities',
     resources: 'Resources',
     presenceEnumeration: 'Presence vs enumeration',
@@ -67,6 +69,7 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Agua de proceso industrial',
     agriculture: 'Agricultura',
     pharmaCosmetics: 'Farma y cosmética',
+    hospitalityTourism: 'Hostelería y ocio',
     facilities: 'Instalaciones',
     resources: 'Recursos',
     presenceEnumeration: 'Presencia vs enumeración',
@@ -88,6 +91,7 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Eau de process',
     agriculture: 'Agriculture',
     pharmaCosmetics: 'Pharma & cosmétique',
+    hospitalityTourism: 'Hôtellerie & loisirs',
     facilities: 'Bâtiments',
     resources: 'Ressources',
     presenceEnumeration: 'Présence vs dénombrement',
@@ -109,6 +113,7 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Acqua di processo',
     agriculture: 'Agricoltura',
     pharmaCosmetics: 'Farmaceutica e cosmetica',
+    hospitalityTourism: 'Ospitalità e leisure',
     facilities: 'Strutture',
     resources: 'Risorse',
     presenceEnumeration: 'Presenza vs enumerazione',
@@ -130,6 +135,7 @@ const FOOTER_COPY: Record<Language, {
     industrial: 'Aigua de procés',
     agriculture: 'Agricultura',
     pharmaCosmetics: 'Farmacèutica i cosmètica',
+    hospitalityTourism: 'Hostaleria i oci',
     facilities: 'Instal·lacions',
     resources: 'Recursos',
     presenceEnumeration: 'Presència vs enumeració',
@@ -164,6 +170,7 @@ export const Footer: React.FC = () => {
   const industrialUrl = getMarketingPagePath('industrial-process-water', lang);
   const agricultureUrl = getMarketingPagePath('agriculture-water', lang);
   const pharmaCosmeticsUrl = getMarketingPagePath('pharma-cosmetics-water', lang);
+  const hospitalityTourismUrl = getMarketingPagePath('hospitality-tourism-water', lang);
   const facilitiesUrl = getMarketingPagePath('facility-water-risk', lang);
   const aboutUrl = getMarketingPagePath('about', lang);
   const resourcesUrl = getMarketingPagePath('resources', lang);
@@ -267,6 +274,7 @@ export const Footer: React.FC = () => {
               <li><a href={industrialUrl} className="hover:text-secondary">{copy.industrial}</a></li>
               <li><a href={agricultureUrl} className="hover:text-secondary">{copy.agriculture}</a></li>
               <li><a href={pharmaCosmeticsUrl} className="hover:text-secondary">{copy.pharmaCosmetics}</a></li>
+              <li><a href={hospitalityTourismUrl} className="hover:text-secondary">{copy.hospitalityTourism}</a></li>
               <li><a href={facilitiesUrl} className="hover:text-secondary">{copy.facilities}</a></li>
               <li><a href={distributorsUrl} className="hover:text-secondary">{t.nav.distributors}</a></li>
               <li><a href={resourcesUrl} className="hover:text-secondary">{copy.resources}</a></li>

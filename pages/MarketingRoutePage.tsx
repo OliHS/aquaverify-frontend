@@ -12,6 +12,7 @@ import { IndustrialProcessWaterLanding } from '../components/IndustrialProcessWa
 import { FacilityWaterRiskLanding } from '../components/FacilityWaterRiskLanding';
 import { AgricultureWaterLanding } from '../components/AgricultureWaterLanding';
 import { PharmaCosmeticsWaterLanding } from '../components/PharmaCosmeticsWaterLanding';
+import { HospitalityTourismWaterLanding } from '../components/HospitalityTourismWaterLanding';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
@@ -924,6 +925,16 @@ const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
   if (page.id === 'pharma-cosmetics-water') {
     return (
       <PharmaCosmeticsWaterLanding
+        content={content}
+        pageLang={pageLang}
+        showCookieConsent={showCookieConsent}
+      />
+    );
+  }
+
+  if (page.id === 'hospitality-tourism-water') {
+    return (
+      <HospitalityTourismWaterLanding
         content={content}
         pageLang={pageLang}
         showCookieConsent={showCookieConsent}

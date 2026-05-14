@@ -5,6 +5,7 @@ import { INDUSTRIAL_PROCESS_WATER_PAGE } from './industrialProcessWaterContent.j
 import { FACILITY_WATER_RISK_PAGE } from './facilityWaterRiskContent.js';
 import { AGRICULTURE_WATER_PAGE } from './agricultureWaterContent.js';
 import { PHARMA_COSMETICS_WATER_PAGE } from './pharmaCosmeticsWaterContent.js';
+import { HOSPITALITY_TOURISM_WATER_PAGE } from './hospitalityTourismWaterContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -2120,6 +2121,44 @@ const INDUSTRY_PAGE_DATA = [
     }
   },
   {
+    id: 'hospitality-tourism-water',
+    paths: {
+      en: '/industries/hospitality-tourism-leisure-water-quality',
+      es: '/es/industrias/hosteleria-turismo-ocio',
+      fr: '/fr/industries/eau-hotellerie-tourisme-loisirs',
+      it: '/it/settori/acqua-ospitalita-turismo-tempo-libero',
+      ca: '/ca/sectors/aigua-hostaleria-turisme-oci'
+    },
+    titles: {
+      en: 'Hospitality, tourism and leisure water management',
+      es: 'Gestión del agua para hostelería, turismo y ocio',
+      fr: 'Gestion de l’eau pour hôtellerie, tourisme et loisirs',
+      it: 'Gestione dell’acqua per ospitalità, turismo e tempo libero',
+      ca: 'Gestió de l’aigua per a hostaleria, turisme i oci'
+    },
+    descriptions: {
+      en: 'Connect assets, sampling plans, laboratories, incidents, corrective actions and evidence for hotels, resorts, spas, pools, restaurants and leisure venues.',
+      es: 'Conecta activos, planes de muestreo, laboratorio, incidencias, acciones correctoras y evidencias para hoteles, resorts, spas, piscinas, restauración y ocio.',
+      fr: 'Reliez actifs, plans de prélèvement, laboratoires, incidents, actions correctives et preuves pour hôtels, resorts, spas, piscines, restauration et loisirs.',
+      it: 'Collega asset, piani di campionamento, laboratori, incidenti, azioni correttive ed evidenze per hotel, resort, spa, piscine, ristorazione e leisure.',
+      ca: 'Connecta actius, plans de mostreig, laboratoris, incidències, accions correctores i evidències per a hotels, resorts, spas, piscines, restauració i oci.'
+    },
+    sections: {
+      en: [section('Water management for hospitality and leisure', 'AquaVerify connects facilities, assets, sampling points, suppliers and corrective actions in one traceable workflow.')],
+      es: [section('Gestión del agua para hostelería y ocio', 'AquaVerify conecta instalaciones, activos, puntos de muestreo, proveedores y acciones correctoras en un flujo trazable.')],
+      fr: [section('Gestion de l’eau pour hôtellerie et loisirs', 'AquaVerify relie installations, actifs, points de prélèvement, prestataires et actions correctives dans un flux traçable.')],
+      it: [section('Gestione acqua per ospitalità e leisure', 'AquaVerify collega strutture, asset, punti di campionamento, fornitori e azioni correttive in un flusso tracciabile.')],
+      ca: [section('Gestió de l’aigua per a hostaleria i oci', 'AquaVerify connecta instal·lacions, actius, punts de mostreig, proveïdors i accions correctores en un flux traçable.')]
+    },
+    ctas: {
+      en: ['Request water programme assessment', 'View operational workflow'],
+      es: ['Solicitar diagnóstico de agua', 'Ver flujo operativo'],
+      fr: ['Demander un diagnostic eau', 'Voir le flux opérationnel'],
+      it: ['Richiedi diagnosi acqua', 'Vedi flusso operativo'],
+      ca: ['Sol·licitar diagnòstic d’aigua', 'Veure flux operatiu']
+    }
+  },
+  {
     id: 'facility-water-risk',
     paths: {
       en: '/industries/facility-water-risk-management',
@@ -2248,6 +2287,16 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, PHARMA_COSMETICS_WATER_PAGE[lang]])),
+        { parentId: 'water-quality-control' }
+      );
+    }
+
+    if (item.id === 'hospitality-tourism-water') {
+      return page(
+        'hospitality-tourism-water',
+        'industries',
+        'contact',
+        Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, HOSPITALITY_TOURISM_WATER_PAGE[lang]])),
         { parentId: 'water-quality-control' }
       );
     }

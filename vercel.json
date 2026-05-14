@@ -106,6 +106,26 @@
             "source": "/ca/industries/qualitat-aigua-industria-farmaceutica-cosmetica",
             "destination": "/ca/sectors/qualitat-aigua-industria-farmaceutica-cosmetica",
             "permanent": true
+        },
+        {
+            "source": "/industrias/hosteleria-turismo-ocio",
+            "destination": "/es/industrias/hosteleria-turismo-ocio",
+            "permanent": true
+        },
+        {
+            "source": "/en/industries/hospitality-tourism-leisure-water-quality",
+            "destination": "/industries/hospitality-tourism-leisure-water-quality",
+            "permanent": true
+        },
+        {
+            "source": "/it/industrie/acqua-ospitalita-turismo-tempo-libero",
+            "destination": "/it/settori/acqua-ospitalita-turismo-tempo-libero",
+            "permanent": true
+        },
+        {
+            "source": "/ca/industries/aigua-hostaleria-turisme-oci",
+            "destination": "/ca/sectors/aigua-hostaleria-turisme-oci",
+            "permanent": true
         }
     ],
     "rewrites": [

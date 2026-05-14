@@ -27,6 +27,7 @@ const NAV_ROUTE_GROUPS: Record<string, string[]> = {
     'industrial-process-water',
     'agriculture-water',
     'pharma-cosmetics-water',
+    'hospitality-tourism-water',
     'facility-water-risk'
   ],
   products: ['products', 'enumera', 'indica', 'standard-kits', 'lab-essentials'],

@@ -78,6 +78,7 @@ export const MARKETING_ROUTE_PATHS = {
   'industrial-process-water': { en: '/industries/industrial-process-water', es: '/es/industrias/agua-proceso-industrial', fr: '/fr/industries/eau-process-industriel', it: '/it/settori/acqua-processo-industriale', ca: '/ca/sectors/aigua-proces-industrial' },
   'agriculture-water': { en: '/industries/agriculture-water-management', es: '/es/industrias/agricultura', fr: '/fr/industries/eau-agriculture', it: '/it/settori/acqua-agricoltura', ca: '/ca/sectors/aigua-agricultura' },
   'pharma-cosmetics-water': { en: '/industries/pharmaceutical-cosmetics-water-quality', es: '/es/industrias/industria-farmaceutica-cosmetica', fr: '/fr/industries/qualite-eau-industrie-pharmaceutique-cosmetique', it: '/it/settori/qualita-acqua-industria-farmaceutica-cosmetica', ca: '/ca/sectors/qualitat-aigua-industria-farmaceutica-cosmetica' },
+  'hospitality-tourism-water': { en: '/industries/hospitality-tourism-leisure-water-quality', es: '/es/industrias/hosteleria-turismo-ocio', fr: '/fr/industries/eau-hotellerie-tourisme-loisirs', it: '/it/settori/acqua-ospitalita-turismo-tempo-libero', ca: '/ca/sectors/aigua-hostaleria-turisme-oci' },
   'facility-water-risk': { en: '/industries/facility-water-risk-management', es: '/es/industrias/gestion-riesgo-agua-instalaciones', fr: '/fr/industries/gestion-risque-eau-batiments', it: '/it/settori/gestione-rischio-acqua-strutture', ca: '/ca/sectors/gestio-risc-aigua-installacions' },
   ...Object.fromEntries(PRODUCT_DETAIL_SLUGS.map((slug) => [slug, productPaths(slug)]))
 };
