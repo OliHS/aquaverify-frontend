@@ -2,6 +2,7 @@ import { getProductAssetOptions } from './productAssets.js';
 import { WATER_QUALITY_CONTROL_PAGE } from './waterQualityControlContent.js';
 import { FOOD_BEVERAGE_WATER_PAGE } from './foodBeverageWaterContent.js';
 import { INDUSTRIAL_PROCESS_WATER_PAGE } from './industrialProcessWaterContent.js';
+import { FACILITY_WATER_RISK_PAGE } from './facilityWaterRiskContent.js';
 
 export const MARKETING_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -2124,6 +2125,16 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, INDUSTRIAL_PROCESS_WATER_PAGE[lang]])),
+        { parentId: 'water-quality-control' }
+      );
+    }
+
+    if (item.id === 'facility-water-risk') {
+      return page(
+        'facility-water-risk',
+        'industries',
+        'contact',
+        Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, FACILITY_WATER_RISK_PAGE[lang]])),
         { parentId: 'water-quality-control' }
       );
     }
