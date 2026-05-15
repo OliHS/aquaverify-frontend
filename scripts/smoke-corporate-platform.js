@@ -269,7 +269,7 @@ async function run() {
       'Main hashed asset is not served with immutable cache'
     );
     assert(text.includes('app.aquaverify.com'), 'Platform host missing from corporate bundle');
-    assert(text.includes('aqCookieManageButton'), 'Cookie manage button marker missing from bundle');
+    assert(!text.includes('aqCookieManageButton'), 'Floating cookie manage button is still present in bundle');
     assert(text.includes('corporate-preferences'), 'Corporate cookie sync endpoint missing from bundle');
     assert(text.includes('corporate-policy'), 'Corporate cookie policy endpoint missing from bundle');
     assert(text.includes('corporate-events'), 'Corporate analytics endpoint missing from bundle');
