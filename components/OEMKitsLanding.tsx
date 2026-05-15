@@ -13,8 +13,7 @@ import {
   PackageCheck,
   ShieldCheck,
   Sparkles,
-  Tags,
-  UserPlus
+  Tags
 } from 'lucide-react';
 import { Header } from './Header';
 import { Footer } from './Footer';
@@ -94,7 +93,7 @@ type OEMContent = {
   formsBody?: string;
   forms?: {
     oem: { title: string; body: string; submit: string };
-    partner: { title: string; body: string; submit: string };
+    partner?: { title: string; body: string; submit: string };
   };
   formLabels?: Record<string, string>;
   modelOptions?: string[];
@@ -155,16 +154,15 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
     scrollToId(target);
   };
 
-  const handleSubmit = (type: 'oem' | 'partner', event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const fields = collectFields(event.currentTarget);
-    const intent = type === 'oem' ? 'oem' : 'distributor';
 
-    trackCorporateEvent(type === 'oem' ? 'oem_form_submit' : 'distributor_partner_submit', {
+    trackCorporateEvent('oem_form_submit', {
       lang: pageLang,
       page: 'oem',
       category: 'partners',
-      intent,
+      intent: 'oem',
       country: fields.country,
       model: fields.model,
       sector: fields.sector,
@@ -172,11 +170,11 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
     });
 
     window.location.href = getPlatformSignupUrl({
-      intent,
+      intent: 'oem',
       page: 'oem',
       category: 'partners',
-      profile: type,
-      module: type === 'oem' ? 'private-label-program' : 'commercial-partner-program',
+      profile: 'oem',
+      module: 'private-label-program',
       ...fields,
       prefill_name: fields.name,
       prefill_email: fields.email,
@@ -500,14 +498,8 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
         <section id="solicitud" className="py-16 md:py-20">
           <div className="container mx-auto px-6">
             <SectionHeading eyebrow={content.formsEyebrow} title={content.formsTitle} body={content.formsBody} centered />
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="mx-auto mt-10 max-w-3xl">
               <OEMForm
-                type="oem"
-                content={content}
-                onSubmit={handleSubmit}
-              />
-              <OEMForm
-                type="partner"
                 content={content}
                 onSubmit={handleSubmit}
               />
@@ -603,41 +595,30 @@ function ChecklistCard({ title, items }: { title?: string; items: string[] }) {
   );
 }
 
-function OEMForm({ type, content, onSubmit }: {
-  type: 'oem' | 'partner';
+function OEMForm({ content, onSubmit }: {
   content: OEMContent;
-  onSubmit: (type: 'oem' | 'partner', event: React.FormEvent<HTMLFormElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }) {
-  const form = content.forms?.[type];
+  const form = content.forms?.oem;
   const labels = content.formLabels || {};
-  const Icon = type === 'oem' ? PackageCheck : UserPlus;
 
   if (!form) return null;
 
   return (
     <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-xl">
       <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50 text-primary">
-        <Icon className="h-5 w-5" />
+        <PackageCheck className="h-5 w-5" />
       </div>
       <h3 className="font-heading text-2xl font-black text-slate-950">{form.title}</h3>
       <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">{form.body}</p>
-      <form className="mt-6 grid gap-4" onSubmit={(event) => onSubmit(type, event)}>
-        <input type="hidden" name="request_type" value={type === 'oem' ? 'oem-private-label' : 'commercial-partner'} />
+      <form className="mt-6 grid gap-4" onSubmit={onSubmit}>
+        <input type="hidden" name="request_type" value="oem-private-label" />
         <Field label={labels.name} name="name" autoComplete="name" />
         <Field label={labels.email} name="email" type="email" autoComplete="email" />
         <SelectField label={labels.country} name="country" options={content.countries || []} />
-        {type === 'oem' ? (
-          <>
-            <Field label={labels.companyType} name="company_type" />
-            <SelectField label={labels.model} name="model" options={content.modelOptions || []} />
-            <TextAreaField label={labels.volume} name="volume" />
-          </>
-        ) : (
-          <>
-            <SelectField label={labels.sector} name="sector" options={content.sectorOptions || []} />
-            <TextAreaField label={labels.message} name="message" />
-          </>
-        )}
+        <Field label={labels.companyType} name="company_type" />
+        <SelectField label={labels.model} name="model" options={content.modelOptions || []} />
+        <TextAreaField label={labels.volume} name="volume" />
         <button
           type="submit"
           className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-black text-white shadow-lg transition hover:bg-secondary"
