@@ -334,16 +334,6 @@ export const CookieConsent: React.FC = () => {
         </div>
       )}
 
-      <button
-        type="button"
-        id="aqCookieManageButton"
-        onClick={() => setIsPanelOpen(true)}
-        className="fixed left-4 bottom-4 z-[90] items-center gap-2 rounded-full border border-slate-200 bg-white/95 px-4 py-3 text-xs font-black text-slate-700 shadow-xl backdrop-blur hover:bg-slate-50 transition inline-flex"
-      >
-        <span>🍪</span>
-        <span>{labels.manage}</span>
-      </button>
-
       {isPanelOpen && (
         <div className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/45 px-4 py-6 backdrop-blur-sm sm:items-center">
           <div className="w-full max-w-lg rounded-2xl bg-white shadow-2xl">
