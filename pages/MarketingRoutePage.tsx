@@ -8,6 +8,7 @@ const PartnersMarketingRoute = lazy(() => import('./marketing-routes/PartnersMar
 const CompanyMarketingRoute = lazy(() => import('./marketing-routes/CompanyMarketingRoute'));
 const IndustriesMarketingRoute = lazy(() => import('./marketing-routes/IndustriesMarketingRoute'));
 const ResourcesMarketingRoute = lazy(() => import('./marketing-routes/ResourcesMarketingRoute'));
+const GlossaryMarketingRoute = lazy(() => import('./marketing-routes/GlossaryMarketingRoute'));
 const LegacyMarketingRoute = lazy(() => import('./marketing-routes/LegacyMarketingRoute'));
 
 const MarketingRouteFallback: React.FC = () => (
@@ -36,6 +37,8 @@ export const MarketingRoutePage: React.FC = () => {
         <IndustriesMarketingRoute route={route} />
       ) : route.family === 'resources' ? (
         <ResourcesMarketingRoute route={route} />
+      ) : route.family === 'glossary' ? (
+        <GlossaryMarketingRoute route={route} />
       ) : (
         <LegacyMarketingRoute route={route} />
       )}
