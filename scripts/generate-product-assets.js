@@ -11,6 +11,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, '..');
 const imageDir = path.join(repoRoot, 'public', 'images', 'products', 'marketing');
 const datasheetDir = path.join(repoRoot, 'public', 'datasheets', 'products');
+const args = new Set(process.argv.slice(2));
+const datasheetsOnly = args.has('--datasheets-only');
 
 const FAMILY_STYLES = {
   products: { name: 'Product Ecosystem', primary: '#075985', secondary: '#0f766e', soft: '#ecfeff' },
@@ -214,6 +216,7 @@ function datasheetHtml(page, lang) {
   const content = page.translations[lang] || page.translations.en;
   const style = familyStyle(page);
   const title = content.seoTitle || content.title;
+  const description = content.seoDescription || content.description || `${title} AquaVerify product datasheet.`;
   const sections = content.sections || [];
   const heroImage = content.heroImage || getProductHeroImagePath(page.id);
   const productPageUrl = absoluteProductPath(content);
@@ -224,6 +227,9 @@ function datasheetHtml(page, lang) {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, follow, max-image-preview:large" />
+  <meta name="description" content="${escapeHtml(description)}" />
+  <link rel="canonical" href="${escapeHtml(productPageUrl)}" />
   <title>${escapeHtml(title)} | AquaVerify</title>
   <style>
     :root { --primary: ${style.primary}; --secondary: ${style.secondary}; --soft: ${style.soft}; }
@@ -297,9 +303,11 @@ function run() {
   const written = [];
 
   for (const page of products) {
-    const imagePath = path.join(repoRoot, 'public', getProductHeroImagePath(page.id));
-    fs.writeFileSync(imagePath, generateHeroSvg(page), 'utf8');
-    written.push(path.relative(repoRoot, imagePath));
+    if (!datasheetsOnly) {
+      const imagePath = path.join(repoRoot, 'public', getProductHeroImagePath(page.id));
+      fs.writeFileSync(imagePath, generateHeroSvg(page), 'utf8');
+      written.push(path.relative(repoRoot, imagePath));
+    }
 
     for (const lang of MARKETING_LANGUAGES) {
       const datasheetPath = path.join(repoRoot, 'public', getProductDatasheetPath(page.id, lang));
@@ -310,8 +318,9 @@ function run() {
 
   console.log(JSON.stringify({
     ok: true,
+    mode: datasheetsOnly ? 'datasheets-only' : 'all-product-assets',
     productPages: products.length,
-    heroImages: products.length,
+    heroImages: datasheetsOnly ? 0 : products.length,
     datasheets: products.length * MARKETING_LANGUAGES.length,
     outputFiles: written.length,
     sample: written.slice(0, 12)

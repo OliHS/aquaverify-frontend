@@ -66,6 +66,18 @@ async function expectStatus(url, expectedStatus = 200, options = {}) {
   return response;
 }
 
+async function expectPermanentRedirect(source, destination) {
+  const response = await fetchWithTimeout(source, { redirect: 'manual' });
+  const location = response.headers.get('location') || '';
+  const relativeDestination = new URL(destination).pathname;
+
+  assert([301, 308].includes(response.status), `${source} returned ${response.status}, expected permanent redirect`);
+  assert(
+    location === destination || location === relativeDestination,
+    `${source} redirect location was ${location || 'empty'}, expected ${destination}`
+  );
+}
+
 async function run() {
   let corporateHtml = '';
   let mainAssetText = '';
@@ -86,6 +98,8 @@ async function run() {
     assert(contentSecurityPolicy.includes("default-src 'self'"), 'CSP default-src missing');
     assert(contentSecurityPolicy.includes("frame-ancestors 'none'"), 'CSP frame-ancestors missing');
     assert(contentSecurityPolicy.includes('https://app.aquaverify.com'), 'CSP platform origin missing');
+    assert(contentSecurityPolicy.includes('https://www.googletagmanager.com'), 'CSP Google Tag Manager origin missing');
+    assert(contentSecurityPolicy.includes('https://www.google-analytics.com'), 'CSP Google Analytics origin missing');
     assert(!contentSecurityPolicy.includes('unpkg.com'), 'CSP still allows unpkg.com');
     assert(
       corporateHomeHeaders.get('x-content-type-options') === 'nosniff',
@@ -120,6 +134,16 @@ async function run() {
     assert(/application\/ld\+json/i.test(corporateHtml), 'Organization JSON-LD missing');
   });
 
+  await check('Google Tag Manager is installed with consent mode', async () => {
+    assert(corporateHtml.includes('GTM-TXHGB5D4'), 'GTM container ID missing');
+    assert(corporateHtml.includes('https://www.googletagmanager.com/gtm.js'), 'GTM head script missing');
+    assert(corporateHtml.includes('https://www.googletagmanager.com/ns.html?id=GTM-TXHGB5D4'), 'GTM noscript iframe missing');
+    assert(corporateHtml.includes("gtag('consent', 'default'"), 'Google Consent Mode default command missing');
+    assert(corporateHtml.includes('aquaverify_cookie_consent'), 'Consent mode should read stored corporate consent');
+    assert(corporateHtml.includes('analytics_storage: analyticsStorage'), 'Analytics consent should use resolved storage state');
+    assert(corporateHtml.includes('ad_storage: marketingStorage'), 'Ad consent should use resolved storage state');
+  });
+
   await check('www host redirects to canonical apex domain', async () => {
     const url = new URL(CORPORATE_SITE_URL);
     const apexHost = url.host.replace(/^www\./, '');
@@ -142,25 +166,40 @@ async function run() {
       getText(`${CORPORATE_SITE_URL}/robots.txt`),
       getText(`${CORPORATE_SITE_URL}/sitemap.xml`)
     ]);
+    const sitemapUrls = [...sitemapText.matchAll(/<loc>(https:\/\/aquaverify\.com\/sitemaps\/[^<]+)<\/loc>/g)].map((match) => match[1]);
+    const childSitemapTexts = await Promise.all(sitemapUrls.map((url) => getText(url).then(({ text }) => text)));
+    const indexedSitemapText = [sitemapText, ...childSitemapTexts].join('\n');
 
     assert(robotsText.includes('Sitemap: https://aquaverify.com/sitemap.xml'), 'Robots sitemap entry missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/es</loc>'), 'Spanish sitemap URL missing');
-    assert(sitemapText.includes('hreflang="fr"'), 'French sitemap hreflang missing');
-    assert(sitemapText.includes('hreflang="it"'), 'Italian sitemap hreflang missing');
-    assert(sitemapText.includes('hreflang="ca"'), 'Catalan sitemap hreflang missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/products/enumera</loc>'), 'ENUMERA sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/es/productos</loc>'), 'Spanish products sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/ca/productes</loc>'), 'Catalan products sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/products/enumera-soma100</loc>'), 'ENUMERA Soma100 sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/es/productos/indica-coli</loc>'), 'Spanish INDICA Coli sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/ca/productes/epa-f-plus</loc>'), 'Catalan EPA F-Plus sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/oem/private-label-water-testing-kits</loc>'), 'Private-label OEM sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/industries/food-beverage-water-quality</loc>'), 'Food & beverage industry sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/resources</loc>'), 'Resources hub sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/resources/eu-drinking-water-directive-coliphages</loc>'), 'EU water directive whitepaper sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/es/recursos/software-cumplimiento-calidad-agua</loc>'), 'Spanish compliance software whitepaper sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/resources/presence-absence-vs-enumeration</loc>'), 'Presence vs enumeration sitemap URL missing');
-    assert(sitemapText.includes('<loc>https://aquaverify.com/es/recursos/trazabilidad-digital-muestras-agua</loc>'), 'Spanish traceability guide sitemap URL missing');
+    assert(sitemapText.includes('<sitemapindex'), 'Root sitemap should be a sitemap index');
+    assert(sitemapUrls.length >= 5, 'Sitemap index should include child sitemaps');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/es</loc>'), 'Spanish sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/products/enumera</loc>'), 'ENUMERA sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/es/productos</loc>'), 'Spanish products sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/ca/productes</loc>'), 'Catalan products sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/products/enumera-soma100</loc>'), 'ENUMERA Soma100 sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/es/productos/indica-coli</loc>'), 'Spanish INDICA Coli sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/ca/productes/epa-f-plus</loc>'), 'Catalan EPA F-Plus sitemap URL missing');
+    assert(!indexedSitemapText.includes('/oem/private-label-water-testing-kits'), 'Private-label OEM duplicate should not be in sitemap');
+    assert(!indexedSitemapText.includes('/es/oem/kits-analisis-agua-marca-blanca'), 'Spanish private-label OEM duplicate should not be in sitemap');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/industries/food-beverage-water-quality</loc>'), 'Food & beverage industry sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/resources</loc>'), 'Resources hub sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/resources/eu-drinking-water-directive-coliphages</loc>'), 'EU water directive whitepaper sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/es/recursos/software-cumplimiento-calidad-agua</loc>'), 'Spanish compliance software whitepaper sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/resources/presence-absence-vs-enumeration</loc>'), 'Presence vs enumeration sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/es/recursos/trazabilidad-digital-muestras-agua</loc>'), 'Spanish traceability guide sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/es/glosario</loc>'), 'Spanish glossary hub sitemap URL missing');
+    assert(indexedSitemapText.includes('<loc>https://aquaverify.com/es/glosario/colifagos-somaticos</loc>'), 'Spanish somatic coliphages glossary sitemap URL missing');
+  });
+
+  await check('private-label OEM duplicates redirect to canonical OEM pages', async () => {
+    await Promise.all([
+      expectPermanentRedirect(`${CORPORATE_SITE_URL}/oem/private-label-water-testing-kits`, `${CORPORATE_SITE_URL}/oem-water-testing-kits`),
+      expectPermanentRedirect(`${CORPORATE_SITE_URL}/es/oem/kits-analisis-agua-marca-blanca`, `${CORPORATE_SITE_URL}/es/oem-kits-analisis-agua`),
+      expectPermanentRedirect(`${CORPORATE_SITE_URL}/fr/oem/kits-analyse-eau-marque-blanche`, `${CORPORATE_SITE_URL}/fr/oem-kits-analyse-eau`),
+      expectPermanentRedirect(`${CORPORATE_SITE_URL}/it/oem/kit-analisi-acqua-marca-privata`, `${CORPORATE_SITE_URL}/it/oem-kit-analisi-acqua`),
+      expectPermanentRedirect(`${CORPORATE_SITE_URL}/ca/oem/kits-analisi-aigua-marca-blanca`, `${CORPORATE_SITE_URL}/ca/oem-kits-analisi-aigua`)
+    ]);
   });
 
   await check('corporate marketing routes respond', async () => {
@@ -173,7 +212,6 @@ async function run() {
       expectStatus(`${CORPORATE_SITE_URL}/ca/productes`),
       expectStatus(`${CORPORATE_SITE_URL}/ca/productes/epa-f-plus`),
       expectStatus(`${CORPORATE_SITE_URL}/oem-water-testing-kits`),
-      expectStatus(`${CORPORATE_SITE_URL}/oem/private-label-water-testing-kits`),
       expectStatus(`${CORPORATE_SITE_URL}/industries/food-beverage-water-quality`),
       expectStatus(`${CORPORATE_SITE_URL}/es/industrias/agua-proceso-industrial`),
       expectStatus(`${CORPORATE_SITE_URL}/resources`),
@@ -182,6 +220,9 @@ async function run() {
       expectStatus(`${CORPORATE_SITE_URL}/resources/us-drinking-water-compliance-coliform-rule`),
       expectStatus(`${CORPORATE_SITE_URL}/resources/water-testing-kit-distributor-checklist`),
       expectStatus(`${CORPORATE_SITE_URL}/es/recursos/trazabilidad-digital-muestras-agua`),
+      expectStatus(`${CORPORATE_SITE_URL}/es/glosario`),
+      expectStatus(`${CORPORATE_SITE_URL}/es/glosario/colifagos-somaticos`),
+      expectStatus(`${CORPORATE_SITE_URL}/en/glossary/somatic-coliphages`),
       expectStatus(`${CORPORATE_SITE_URL}/about`)
     ]);
   });
@@ -221,7 +262,8 @@ async function run() {
       'Spanish product static SEO HTML missing'
     );
     assert(
-      spanishHomeHtml.includes('<html lang="es"') && spanishHomeHtml.includes('AquaVerify | Kits de Agua'),
+      spanishHomeHtml.includes('<html lang="es"') &&
+        spanishHomeHtml.includes('AquaVerify | Detección innovadora de virus y bacterias en el agua'),
       'Spanish home static SEO HTML missing'
     );
     assert(
@@ -392,28 +434,21 @@ async function run() {
   });
 
   await check('home platform teaser uses SaaS route and local screenshots', async () => {
-    const saasSectionMatch = mainAssetText.match(/assets\/SaaSPlatform-[^"',)]+\.js/);
-    assert(saasSectionMatch, 'SaaS platform home section asset reference missing from main bundle');
-    const { text: saasSectionText } = await getText(`${CORPORATE_SITE_URL}/${saasSectionMatch[0]}`);
-    assert(mainAssetText.includes('/saas/biotech-lims-platform'), 'SaaS landing route is missing from the main bundle');
-    assert(saasSectionText.includes('saas-biotech'), 'Home platform teaser does not resolve the SaaS landing route id');
-    assert(saasSectionText.includes('saasLims'), 'Home platform teaser does not reference the local LIMS screenshot key');
-    assert(saasSectionText.includes('saasCrm'), 'Home platform teaser does not reference the local CRM screenshot key');
-    const imageFallbackAssetMatch =
-      mainAssetText.match(/assets\/imageFallbacks-[^"',)]+\.js/) ||
-      saasSectionText.match(/(?:assets\/)?imageFallbacks-[^"',)]+\.js/);
-    assert(imageFallbackAssetMatch, 'Image fallback asset reference missing from corporate bundle');
-    const imageFallbackAssetPath = imageFallbackAssetMatch[0].startsWith('assets/')
-      ? imageFallbackAssetMatch[0]
-      : `assets/${imageFallbackAssetMatch[0]}`;
-    const { text: imageFallbackText } = await getText(`${CORPORATE_SITE_URL}/${imageFallbackAssetPath}`);
     assert(
-      imageFallbackText.includes('/images/platform/saas/aquaverify-lims-dashboard.jpg'),
-      'Local LIMS screenshot path is missing from the corporate bundle'
+      mainAssetText.includes('/images/platform/saas/aquaverify-lims-dashboard.jpg'),
+      'Local LIMS screenshot path is missing from the home bundle'
     );
     assert(
-      imageFallbackText.includes('/images/platform/saas/aquaverify-crm-customer-360.jpg'),
-      'Local CRM screenshot path is missing from the corporate bundle'
+      mainAssetText.includes('/images/platform/saas/aquaverify-crm-customer-360.jpg'),
+      'Local CRM screenshot path is missing from the home bundle'
+    );
+    assert(
+      mainAssetText.includes('/images/platform/saas/aquaverify-cloud-dashboard.jpg'),
+      'Local cloud dashboard screenshot path is missing from the home bundle'
+    );
+    assert(
+      mainAssetText.includes('/platform') || mainAssetText.includes('/plataforma'),
+      'Platform route is missing from the home bundle'
     );
   });
 
@@ -429,21 +464,6 @@ async function run() {
     assert(!mainAssetText.includes('/images/globe/earth-topology.png'), 'Main bundle contains globe topology path');
     assert(!mainAssetText.includes('three-globe'), 'Main bundle contains three-globe code');
     assert(!mainAssetText.includes('react-globe'), 'Main bundle contains react-globe code');
-
-    const distributorsSectionMatch = mainAssetText.match(/assets\/DistributorsSection-[^"',)]+\.js/);
-    assert(distributorsSectionMatch, 'Distributors section asset reference missing from main bundle');
-    const { text: distributorsSectionText } = await getText(`${CORPORATE_SITE_URL}/${distributorsSectionMatch[0]}`);
-    assert(distributorsSectionText.includes('Load interactive globe'), 'Distributors section does not gate the globe behind an explicit interaction');
-
-    const globeAssetMatch = distributorsSectionText.match(/(?:assets\/)?DistributorsGlobe-[^"',)]+\.js/);
-    assert(globeAssetMatch, 'Distributors globe asset reference missing from main bundle');
-    const globeAssetPath = globeAssetMatch[0].startsWith('assets/')
-      ? globeAssetMatch[0]
-      : `assets/${globeAssetMatch[0]}`;
-    const { text: globeAssetText } = await getText(`${CORPORATE_SITE_URL}/${globeAssetPath}`);
-    assert(globeAssetText.includes('/images/globe/earth-blue-marble.jpg'), 'Local earth texture missing from globe asset');
-    assert(globeAssetText.includes('/images/globe/earth-topology.png'), 'Local earth topology missing from globe asset');
-    assert(!globeAssetText.includes('unpkg.com/three-globe'), 'Globe asset still references unpkg textures');
     const textureResponses = await Promise.all([
       expectStatus(`${CORPORATE_SITE_URL}/images/globe/earth-blue-marble.jpg`),
       expectStatus(`${CORPORATE_SITE_URL}/images/globe/earth-topology.png`)

@@ -3,6 +3,21 @@ import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../context/LanguageContext';
 import { isPlatformUrl, trackCorporateEvent } from '../utils/corporateAnalytics';
 
+function scheduleAnalyticsTask(callback: () => void) {
+  const win = window as typeof window & {
+    requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+    cancelIdleCallback?: (handle: number) => void;
+  };
+
+  if (typeof win.requestIdleCallback === 'function') {
+    const idleId = win.requestIdleCallback(callback, { timeout: 2500 });
+    return () => win.cancelIdleCallback?.(idleId);
+  }
+
+  const timeoutId = window.setTimeout(callback, 900);
+  return () => window.clearTimeout(timeoutId);
+}
+
 function getTextLabel(element: Element) {
   return (element.textContent || '')
     .replace(/\s+/g, ' ')
@@ -55,12 +70,12 @@ export const CorporateAnalytics: React.FC = () => {
   const { lang } = useLanguage();
 
   useEffect(() => {
-    trackCorporateEvent('page_view', {
+    return scheduleAnalyticsTask(() => trackCorporateEvent('page_view', {
       lang,
       path: location.pathname,
       hash: location.hash,
       title: document.title
-    });
+    }));
   }, [lang, location.hash, location.pathname]);
 
   useEffect(() => {

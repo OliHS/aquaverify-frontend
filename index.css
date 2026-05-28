@@ -1,3 +1,148 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .aq-deferred-section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 960px;
+  }
+
+  .aq-page-hero {
+    @apply relative overflow-hidden bg-white;
+    background-image:
+      radial-gradient(circle at 90% 8%, rgba(34, 211, 238, 0.24), transparent 26%),
+      radial-gradient(circle at 10% 16%, rgba(10, 79, 125, 0.10), transparent 30%),
+      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+  }
+
+  .aq-hero-eyebrow {
+    @apply inline-flex w-fit rounded-full border border-cyan-100 bg-cyan-50 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary;
+  }
+
+  .aq-gradient-title {
+    @apply text-transparent;
+    background-image: linear-gradient(90deg, #0A4F7D 0%, #00AEEF 52%, #10b981 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+
+  .aq-hero-copy {
+    @apply text-slate-700;
+  }
+
+  .aq-page-hero aside {
+    @apply border-slate-200 bg-white text-slate-900 shadow-2xl;
+  }
+
+  .aq-page-hero aside h2 {
+    @apply text-primary;
+  }
+
+  .aq-page-hero aside h3,
+  .aq-page-hero aside strong {
+    @apply text-slate-950;
+  }
+
+  .aq-page-hero aside [class*="border-white/"] {
+    @apply border-slate-200;
+  }
+
+  .aq-page-hero aside [class*="bg-white/10"],
+  .aq-page-hero aside [class*="bg-white/15"] {
+    @apply bg-slate-50;
+  }
+
+  .aq-page-hero aside [class*="text-cyan-50"],
+  .aq-page-hero aside [class*="text-cyan-100"] {
+    @apply text-slate-600;
+  }
+
+  .aq-cta-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-secondary px-5 py-3 text-sm font-black text-white shadow-lg shadow-cyan-500/20 transition hover:bg-primary focus:outline-none focus:ring-4 focus:ring-cyan-100;
+  }
+
+  .aq-cta-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-5 py-3 text-sm font-black text-primary transition hover:border-cyan-200 hover:bg-cyan-50 focus:outline-none focus:ring-4 focus:ring-cyan-100;
+  }
+
+  .aq-cta-on-dark-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-white/25 bg-white/10 px-5 py-3 text-sm font-black text-white transition hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-cyan-100/30;
+  }
+
+  .aqv-rich-html {
+    @apply text-slate-600;
+  }
+
+  .aqv-rich-html h3 {
+    @apply mb-3 font-heading text-xl font-black text-slate-950;
+  }
+
+  .aqv-rich-html p {
+    @apply max-w-4xl text-base leading-8 text-slate-600;
+  }
+
+  .aqv-rich-html a {
+    @apply font-black text-primary no-underline transition hover:text-secondary;
+  }
+
+  .aqv-rich-html .aqv-diagram {
+    @apply grid gap-3 rounded-[1.75rem] border border-cyan-100 bg-cyan-50/70 p-5 sm:grid-cols-2 lg:grid-cols-4;
+  }
+
+  .aqv-rich-html .aqv-step {
+    @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-sm;
+  }
+
+  .aqv-rich-html .aqv-step span {
+    @apply mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-secondary text-sm font-black text-white;
+  }
+
+  .aqv-rich-html .aqv-step strong {
+    @apply block font-heading text-base font-black text-primary;
+  }
+
+  .aqv-rich-html .aqv-card-grid {
+    @apply grid gap-4 md:grid-cols-2;
+  }
+
+  .aqv-rich-html .aqv-card {
+    @apply block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-lg;
+  }
+
+  .aqv-rich-html .aqv-card strong {
+    @apply block font-heading text-lg font-black text-slate-950;
+  }
+
+  .aqv-rich-html .aqv-card span {
+    @apply mt-2 block text-sm font-semibold leading-6 text-slate-600;
+  }
+
+  .aqv-rich-html .aqv-cta {
+    @apply rounded-[1.75rem] border border-cyan-100 bg-gradient-to-br from-white via-cyan-50 to-emerald-50 p-6 shadow-sm;
+  }
+
+  .aqv-rich-html .aqv-actions {
+    @apply mt-5 flex flex-wrap gap-3;
+  }
+
+  .aqv-rich-html .aqv-btn {
+    @apply inline-flex items-center justify-center rounded-full px-5 py-3 text-sm font-black no-underline transition;
+  }
+
+  .aqv-rich-html .aqv-btn-primary {
+    @apply bg-secondary text-white shadow-lg shadow-cyan-500/20 hover:bg-primary;
+  }
+
+  .aqv-rich-html .aqv-btn-ghost {
+    @apply border border-slate-200 bg-white text-primary hover:border-cyan-200 hover:bg-cyan-50;
+  }
+
+  .aqv-rich-html details {
+    @apply rounded-2xl border border-slate-200 bg-white p-4;
+  }
+
+  .aqv-rich-html summary {
+    @apply cursor-pointer font-heading text-base font-black text-slate-950;
+  }
+}

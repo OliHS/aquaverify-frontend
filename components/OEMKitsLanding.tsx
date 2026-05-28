@@ -186,24 +186,24 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
       <Header />
       <main className="flex-grow pt-20">
-        <section className="relative overflow-hidden bg-[linear-gradient(135deg,#062b42_0%,#075477_48%,#0d849d_100%)] text-white">
+        <section className="aq-page-hero">
           <div className="container relative z-10 mx-auto grid gap-10 px-6 py-16 md:py-24 lg:grid-cols-[minmax(0,1.06fr)_minmax(330px,0.82fr)] lg:items-center">
             <div className="max-w-5xl">
-              <span className="inline-flex items-center rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-cyan-50">
+              <span className="aq-hero-eyebrow">
                 <span className="mr-2 h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_0_6px_rgba(103,232,249,0.16)]" />
                 {content.eyebrow}
               </span>
-              <h1 className="mt-6 max-w-5xl font-heading text-4xl font-black leading-[0.98] tracking-tight md:text-6xl">
+              <h1 className="aq-gradient-title mt-6 max-w-5xl font-heading text-4xl font-black leading-[0.98] tracking-tight md:text-6xl">
                 {content.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50/85">
+              <p className="aq-hero-copy mt-6 max-w-3xl text-lg leading-8">
                 {content.description}
               </p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <button
                   type="button"
                   onClick={() => handleHeroCta(content.primaryCta || '', 'solicitud', 'oem_primary_cta_click')}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-primary shadow-lg transition hover:bg-secondary hover:text-white"
+                  className="aq-cta-primary"
                 >
                   {content.primaryCta}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -211,7 +211,7 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
                 <button
                   type="button"
                   onClick={() => handleHeroCta(content.secondaryCta || '', 'modelos', 'oem_secondary_cta_click')}
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10"
+                  className="aq-cta-secondary"
                 >
                   {content.secondaryCta}
                 </button>
@@ -400,7 +400,7 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
                   <button
                     type="button"
                     onClick={() => handleHeroCta(content.selectorCta || '', 'solicitud', 'oem_selector_cta_click')}
-                    className="inline-flex items-center justify-center rounded-full bg-white px-5 py-3 text-sm font-black text-primary transition hover:bg-secondary hover:text-white"
+                    className="aq-cta-primary"
                   >
                     {content.selectorCta}
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -529,7 +529,7 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
               <button
                 type="button"
                 onClick={() => handleHeroCta(content.cta?.primary || '', 'solicitud', 'oem_final_primary_cta_click')}
-                className="inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-sm font-black text-primary transition hover:bg-secondary hover:text-white"
+                className="aq-cta-primary"
               >
                 {content.cta?.primary}
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -621,7 +621,7 @@ function OEMForm({ content, onSubmit }: {
         <TextAreaField label={labels.volume} name="volume" />
         <button
           type="submit"
-          className="mt-2 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-black text-white shadow-lg transition hover:bg-secondary"
+          className="aq-cta-primary mt-2"
         >
           {form.submit}
           <ArrowRight className="ml-2 h-4 w-4" />

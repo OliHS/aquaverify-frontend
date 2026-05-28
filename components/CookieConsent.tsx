@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { getPlatformCorporateCookiePolicyUrl, getPlatformCorporateCookiePreferencesUrl, getPlatformLegalUrl } from '../utils/platformLinks';
 import { COOKIE_POLICY_VERSION } from '../utils/legalPolicy';
-import { trackCorporateEvent } from '../utils/corporateAnalytics';
+import { trackCorporateEvent, updateGoogleConsentMode } from '../utils/corporateAnalytics';
 
 interface CookieConsentState {
   status: 'accepted' | 'custom';
@@ -246,6 +246,7 @@ export const CookieConsent: React.FC = () => {
 
       if (storedConsent && storedConsent.version === livePolicy.version) {
         setConsent(storedConsent);
+        updateGoogleConsentMode(storedConsent);
         setDraft({
           analytics: storedConsent.analytics,
           marketing: storedConsent.marketing
@@ -282,6 +283,7 @@ export const CookieConsent: React.FC = () => {
     };
 
     persistConsent(nextConsent, policy.maxAgeDays);
+    updateGoogleConsentMode(nextConsent, { sendPageView: analytics });
     syncConsentWithPlatform(nextConsent, lang);
     setConsent(nextConsent);
     setDraft({ analytics, marketing });

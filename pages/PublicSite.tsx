@@ -1,27 +1,14 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Header } from '../components/Header';
-import { Hero } from '../components/Hero';
-import { ValueProps } from '../components/ValueProps';
-import { Footer } from '../components/Footer';
 import { CookieConsent } from '../components/CookieConsent';
-import { DeferredSection } from '../components/DeferredSection';
-import { AudiencePathways } from '../components/AudiencePathways';
-import { FinalDecisionCta } from '../components/FinalDecisionCta';
+import { HomeEcosystemLanding } from '../components/HomeEcosystemLanding';
 import { PageContentProvider, usePageContent } from '../context/PageContentContext';
 import { useLanguage } from '../context/LanguageContext';
 import type { Language } from '../utils/translations';
 import { applyPublicSeo, getRouteLanguage } from '../utils/seo';
 import { useLocation } from 'react-router-dom';
 
-const ProductSection = React.lazy(() => import('../components/ProductSection').then(module => ({ default: module.ProductSection })));
-const SaaSPlatform = React.lazy(() => import('../components/SaaSPlatform').then(module => ({ default: module.SaaSPlatform })));
-const DistributorsSection = React.lazy(() => import('../components/DistributorsSection').then(module => ({ default: module.DistributorsSection })));
-const OEMSection = React.lazy(() => import('../components/OEMSection').then(module => ({ default: module.OEMSection })));
-const Sectors = React.lazy(() => import('../components/Sectors').then(module => ({ default: module.Sectors })));
-
-const SectionFallback: React.FC<{ className?: string }> = ({ className = 'min-h-[560px] bg-white' }) => (
-    <section className={className} aria-hidden="true" />
-);
+const Footer = React.lazy(() => import('../components/Footer').then((module) => ({ default: module.Footer })));
 
 const HOME_PAGE_SLUGS: Record<Language, string[]> = {
     en: ['home', 'home-en', 'home-english'],
@@ -31,10 +18,40 @@ const HOME_PAGE_SLUGS: Record<Language, string[]> = {
     ca: ['home-ca', 'home-catalan', 'inici', 'home-es', 'home'],
 };
 
+function useIdleMount(delay = 1200) {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        if (mounted) return;
+        const win = window as typeof window & {
+            requestIdleCallback?: (callback: IdleRequestCallback, options?: IdleRequestOptions) => number;
+            cancelIdleCallback?: (handle: number) => void;
+        };
+
+        let timeoutId: number | undefined;
+        let idleId: number | undefined;
+
+        const mount = () => setMounted(true);
+        if (typeof win.requestIdleCallback === 'function') {
+            idleId = win.requestIdleCallback(mount, { timeout: delay });
+        } else {
+            timeoutId = window.setTimeout(mount, delay);
+        }
+
+        return () => {
+            if (idleId && typeof win.cancelIdleCallback === 'function') win.cancelIdleCallback(idleId);
+            if (timeoutId) window.clearTimeout(timeoutId);
+        };
+    }, [delay, mounted]);
+
+    return mounted;
+}
+
 export const PublicSiteContent: React.FC = () => {
     const { pageMeta } = usePageContent();
     const { lang } = useLanguage();
     const location = useLocation();
+    const mountDeferredChrome = useIdleMount();
 
     useEffect(() => {
         applyPublicSeo({ lang, pageMeta, pathname: location.pathname });
@@ -44,37 +61,13 @@ export const PublicSiteContent: React.FC = () => {
         <div className="flex flex-col min-h-screen font-sans">
             <Header />
             <main className="flex-grow">
-                <Hero />
-                <Suspense fallback={<SectionFallback className="min-h-[720px] bg-surface" />}>
-                    <DeferredSection id="products" minHeightClassName="min-h-[720px] bg-surface">
-                        <ProductSection />
-                    </DeferredSection>
-                </Suspense>
-                <AudiencePathways />
-                <ValueProps />
-                <Suspense fallback={<SectionFallback className="min-h-[620px] bg-white" />}>
-                    <DeferredSection id="platform" minHeightClassName="min-h-[620px] bg-white">
-                        <SaaSPlatform />
-                    </DeferredSection>
-                </Suspense>
-                <Suspense fallback={<SectionFallback className="min-h-[820px] bg-white" />}>
-                    <DeferredSection id="distributors" minHeightClassName="min-h-[820px] bg-white">
-                        <DistributorsSection />
-                    </DeferredSection>
-                </Suspense>
-                <Suspense fallback={<SectionFallback className="min-h-[620px] bg-surface" />}>
-                    <DeferredSection id="oem" minHeightClassName="min-h-[620px] bg-surface">
-                        <OEMSection />
-                    </DeferredSection>
-                </Suspense>
-                <Suspense fallback={<SectionFallback className="min-h-[620px] bg-white" />}>
-                    <DeferredSection id="sectors" minHeightClassName="min-h-[620px] bg-white">
-                        <Sectors />
-                    </DeferredSection>
-                </Suspense>
-                <FinalDecisionCta />
+                <HomeEcosystemLanding />
             </main>
-            <Footer />
+            {mountDeferredChrome && (
+                <Suspense fallback={null}>
+                    <Footer />
+                </Suspense>
+            )}
             <CookieConsent />
         </div>
     );

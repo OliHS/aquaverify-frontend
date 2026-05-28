@@ -14,7 +14,7 @@ import {
 } from '../../utils/marketingPageOverrides.js';
 import { scanProductClaimFields } from '../../utils/productClaims.js';
 import { useLanguage } from '../../context/LanguageContext';
-import { MarketingPagePreview } from '../MarketingRoutePage';
+import { MarketingPagePreview } from '../../components/marketing/MarketingPagePreview';
 
 type MarketingLanguage = 'en' | 'es' | 'fr' | 'it' | 'ca';
 

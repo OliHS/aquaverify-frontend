@@ -1,6 +1,24 @@
 {
     "headers": [
         {
+            "source": "/admin",
+            "headers": [
+                {
+                    "key": "X-Robots-Tag",
+                    "value": "noindex, nofollow"
+                }
+            ]
+        },
+        {
+            "source": "/admin/(.*)",
+            "headers": [
+                {
+                    "key": "X-Robots-Tag",
+                    "value": "noindex, nofollow"
+                }
+            ]
+        },
+        {
             "source": "/assets/(.*)",
             "headers": [
                 {
@@ -19,11 +37,29 @@
             ]
         },
         {
+            "source": "/images/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        },
+        {
+            "source": "/videos/(.*)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "public, max-age=31536000, immutable"
+                }
+            ]
+        },
+        {
             "source": "/(.*)",
             "headers": [
                 {
                     "key": "Content-Security-Policy",
-                    "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://aquaverify.com https://tmttuszlxgrpzovmntoa.supabase.co; connect-src 'self' https://app.aquaverify.com https://tmttuszlxgrpzovmntoa.supabase.co wss://tmttuszlxgrpzovmntoa.supabase.co; frame-src 'none'; form-action 'self' https://app.aquaverify.com; upgrade-insecure-requests"
+                    "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https://aquaverify.com https://tmttuszlxgrpzovmntoa.supabase.co https://www.googletagmanager.com https://www.google-analytics.com https://stats.g.doubleclick.net; connect-src 'self' https://app.aquaverify.com https://tmttuszlxgrpzovmntoa.supabase.co wss://tmttuszlxgrpzovmntoa.supabase.co https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net; frame-src https://www.googletagmanager.com; form-action 'self' https://app.aquaverify.com; upgrade-insecure-requests"
                 },
                 {
                     "key": "X-Content-Type-Options",
@@ -65,6 +101,31 @@
                 }
             ],
             "destination": "https://aquaverify.com/:path*",
+            "permanent": true
+        },
+        {
+            "source": "/oem/private-label-water-testing-kits",
+            "destination": "/oem-water-testing-kits",
+            "permanent": true
+        },
+        {
+            "source": "/es/oem/kits-analisis-agua-marca-blanca",
+            "destination": "/es/oem-kits-analisis-agua",
+            "permanent": true
+        },
+        {
+            "source": "/fr/oem/kits-analyse-eau-marque-blanche",
+            "destination": "/fr/oem-kits-analyse-eau",
+            "permanent": true
+        },
+        {
+            "source": "/it/oem/kit-analisi-acqua-marca-privata",
+            "destination": "/it/oem-kit-analisi-acqua",
+            "permanent": true
+        },
+        {
+            "source": "/ca/oem/kits-analisi-aigua-marca-blanca",
+            "destination": "/ca/oem-kits-analisi-aigua",
             "permanent": true
         },
         {

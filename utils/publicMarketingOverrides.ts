@@ -2,7 +2,7 @@ import {
   getMarketingOverrideSlug,
   MARKETING_OVERRIDE_SECTION_ID,
   normalizeMarketingOverride
-} from './marketingPageOverrides.js';
+} from './marketingOverrideNormalize.js';
 
 type SupabasePage = {
   id: string;

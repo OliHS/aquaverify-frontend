@@ -381,25 +381,25 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
       <Header />
       <main className="flex-grow pt-20">
-        <section className="relative overflow-hidden bg-slate-950 text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(0,174,239,0.28),transparent_34%),linear-gradient(135deg,rgba(0,68,130,0.98),rgba(15,23,42,1))]" />
+        <section className="aq-page-hero">
+          <div className="absolute inset-0 bg-transparent" />
           <div className="container relative z-10 mx-auto grid gap-10 px-6 py-16 md:py-24 lg:grid-cols-[minmax(0,1fr)_26rem] lg:items-center">
             <div className="max-w-4xl">
-              <div className="inline-flex rounded-full border border-cyan-200/25 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-100">
+              <div className="aq-hero-eyebrow">
                 {content.eyebrow || copy.sectionEyebrows[0]}
               </div>
-              <h1 className="mt-6 font-heading text-4xl font-black leading-tight md:text-6xl">{content.title}</h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50/85">{content.description}</p>
+              <h1 className="aq-gradient-title mt-6 font-heading text-4xl font-black leading-tight md:text-6xl">{content.title}</h1>
+              <p className="aq-hero-copy mt-6 max-w-3xl text-lg leading-8">{content.description}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a
                   href={signupUrl}
                   onClick={() => trackSignup(content.primaryCta || copy.formSubmit, signupUrl)}
-                  className="inline-flex items-center justify-center rounded bg-secondary px-6 py-3 text-sm font-black text-white shadow-lg transition hover:bg-white hover:text-primary"
+                  className="aq-cta-primary"
                 >
                   {content.primaryCta || copy.formSubmit}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
-                <a href="#flujo" className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10">
+                <a href="#flujo" className="aq-cta-secondary">
                   {content.secondaryCta || sections[2].title}
                 </a>
               </div>
@@ -576,7 +576,7 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
                   <textarea name="main_need" placeholder={copy.formPlaceholders[7]} className="min-h-28 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" />
                 </label>
                 <div className="md:col-span-2">
-                  <button type="submit" className="inline-flex w-full items-center justify-center rounded-full bg-cyan-600 px-6 py-4 text-sm font-black text-white shadow-lg transition hover:bg-cyan-700 md:w-auto">
+                  <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
                     {copy.formSubmit}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </button>

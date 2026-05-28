@@ -39,6 +39,14 @@ export const REVIEW_PRODUCT_CLAIM_RULES = [
   }
 ];
 
+export const ALLOWED_PRODUCT_CLAIM_CONTEXTS = [
+  {
+    name: 'coa_certificate_of_analysis',
+    pattern: /\b(?:CoA\s*\/\s*)?(?:Certificate of Analysis|Certificado de an[aá]lisis|Certificat d[’']analyse|Certificato di analisi|Certificat d[’']an[aà]lisi)\b|\bcoa-(?:certificate-of-analysis|certificado-de-analisis|certificat-danalyse|certificato-di-analisi|certificat-danalisi)\b/i,
+    reason: 'CoA names a Certificate of Analysis document or its glossary slug, not a regulatory certification claim for a product or method.'
+  }
+];
+
 const NON_COPY_KEYS = /(?:^|_|\b)(id|url|link|href|image|images|icon|path|slug|src|email|phone|lat|lng)(?:$|_|\b)/i;
 
 const SAFE_TEXT_REPLACEMENTS = [
@@ -59,12 +67,33 @@ const SAFE_TEXT_REPLACEMENTS = [
   [/\bcertificati\b/gi, 'tecnici']
 ];
 
+function isAllowedProductClaimMatch(content, index) {
+  const start = Math.max(0, index - 40);
+  const end = Math.min(content.length, index + 120);
+  const context = content.slice(start, end);
+  return ALLOWED_PRODUCT_CLAIM_CONTEXTS.some((allowed) => allowed.pattern.test(context));
+}
+
+function findRuleMatches(content, rule) {
+  const flags = rule.pattern.flags.includes('g') ? rule.pattern.flags : `${rule.pattern.flags}g`;
+  const pattern = new RegExp(rule.pattern.source, flags);
+  const matches = [];
+  let match;
+
+  while ((match = pattern.exec(content)) !== null) {
+    if (!isAllowedProductClaimMatch(content, match.index)) {
+      matches.push({ rule, index: match.index, match: match[0] });
+    }
+
+    if (pattern.lastIndex === match.index) pattern.lastIndex += 1;
+  }
+
+  return matches;
+}
+
 export function scanProductClaimText(text, { includeReviews = true } = {}) {
   const content = String(text || '');
-  const findings = BLOCKED_PRODUCT_CLAIM_RULES.flatMap((rule) => {
-    const match = rule.pattern.exec(content);
-    return match ? [{ rule, index: match.index, match: match[0] }] : [];
-  });
+  const findings = BLOCKED_PRODUCT_CLAIM_RULES.flatMap((rule) => findRuleMatches(content, rule));
 
   const reviews = includeReviews ? REVIEW_PRODUCT_CLAIM_RULES.flatMap((rule) => {
     const match = rule.pattern.exec(content);

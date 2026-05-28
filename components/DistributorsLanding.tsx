@@ -432,15 +432,15 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
       <Header />
       <main className="flex-grow pt-20">
-        <section className="relative overflow-hidden bg-slate-950 text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_8%,rgba(17,191,211,0.35),transparent_28%),radial-gradient(circle_at_88%_18%,rgba(139,92,246,0.20),transparent_28%),linear-gradient(135deg,#062b42_0%,#075477_48%,#0d849d_100%)]" />
+        <section className="aq-page-hero">
+          <div className="absolute inset-0 bg-transparent" />
           <div className="container relative z-10 mx-auto grid gap-10 px-6 py-16 md:py-24 lg:grid-cols-[minmax(0,1fr)_28rem] lg:items-center">
             <div className="max-w-4xl">
-              <div className="inline-flex rounded-full border border-cyan-200/25 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-100">
+              <div className="aq-hero-eyebrow">
                 {content.eyebrow}
               </div>
-              <h1 className="mt-6 font-heading text-4xl font-black leading-tight md:text-6xl">{content.title}</h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50/85">{content.description}</p>
+              <h1 className="aq-gradient-title mt-6 font-heading text-4xl font-black leading-tight md:text-6xl">{content.title}</h1>
+              <p className="aq-hero-copy mt-6 max-w-3xl text-lg leading-8">{content.description}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <button
                   type="button"
@@ -448,7 +448,7 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                     handleCtaClick(content.primaryCta || '', buyerUrl, 'find_distributor');
                     scrollToForm(buyerFormId);
                   }}
-                  className="inline-flex items-center justify-center rounded bg-white px-6 py-3 text-sm font-black text-primary shadow-lg transition hover:bg-secondary hover:text-white"
+                  className="aq-cta-primary"
                 >
                   {content.primaryCta}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -459,7 +459,7 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                     handleCtaClick(content.secondaryCta || '', partnerUrl, 'distributor');
                     scrollToForm(partnerFormId);
                   }}
-                  className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10"
+                  className="aq-cta-secondary"
                 >
                   {content.secondaryCta}
                 </button>
@@ -532,7 +532,7 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                         handleCtaClick(item!.cta, targetUrl, intent);
                         scrollToForm(formId);
                       }}
-                      className="mt-6 inline-flex items-center rounded bg-primary px-5 py-3 text-sm font-black text-white shadow-lg transition hover:bg-secondary"
+                      className="aq-cta-primary mt-6"
                     >
                       {item!.cta}
                       <ArrowRight className="ml-2 h-4 w-4" />
@@ -594,7 +594,7 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                           partners: partners.length
                         });
                       }}
-                      className="mt-8 inline-flex items-center gap-2 rounded-full bg-cyan-500 px-6 py-3 text-sm font-black text-white shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-200"
+                      className="aq-cta-primary mt-8 gap-2 focus:outline-none focus:ring-2 focus:ring-cyan-200"
                     >
                       <Globe2 className="h-4 w-4" />
                       {mapLabels.load}
@@ -651,7 +651,7 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                     <h4 className="font-heading text-lg font-black text-slate-950">{selectedCountry ? content.searchResultTitle : content.searchEmptyTitle}</h4>
                     <p className="mt-2 text-sm font-semibold leading-6 text-slate-500">{selectedCountry ? content.searchResultBody : content.searchEmptyBody}</p>
                     <div className="mt-4 grid gap-2">
-                      <button type="button" onClick={() => scrollToForm(buyerFormId)} className="rounded bg-primary px-4 py-3 text-sm font-black text-white transition hover:bg-secondary">
+                      <button type="button" onClick={() => scrollToForm(buyerFormId)} className="aq-cta-primary px-4">
                         {content.primaryCta}
                       </button>
                       <button type="button" onClick={() => scrollToForm(partnerFormId)} className="rounded border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-700 transition hover:border-cyan-200 hover:text-primary">
@@ -816,7 +816,7 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                     <SelectField id="find-sector" name="sector" label={content.forms.buyer.fields.sector} options={content.sectorOptions || []} />
                     <TextAreaField id="find-message" name="message" label={content.forms.buyer.fields.message} />
                     <div className="md:col-span-2">
-                      <button type="submit" className="inline-flex w-full items-center justify-center rounded bg-primary px-6 py-4 text-sm font-black text-white shadow-lg transition hover:bg-secondary md:w-auto">
+                      <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
                         {content.forms.buyer.submit}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </button>
@@ -836,7 +836,7 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                     <TextInput id="partner-company-type" name="company_type" label={content.forms.partner.fields.companyType} />
                     <TextAreaField id="partner-portfolio" name="portfolio" label={content.forms.partner.fields.portfolio} />
                     <div className="md:col-span-2">
-                      <button type="submit" className="inline-flex w-full items-center justify-center rounded bg-primary px-6 py-4 text-sm font-black text-white shadow-lg transition hover:bg-secondary md:w-auto">
+                      <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
                         {content.forms.partner.submit}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </button>
@@ -871,11 +871,11 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
               <h2 className="mx-auto max-w-4xl font-heading text-3xl font-black leading-tight md:text-5xl">{content.cta.title}</h2>
               <p className="mx-auto mt-4 max-w-3xl text-base leading-8 text-cyan-50/75">{content.cta.body}</p>
               <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-                <button type="button" onClick={() => scrollToForm(buyerFormId)} className="inline-flex items-center justify-center rounded bg-white px-6 py-3 text-sm font-black text-primary shadow-lg transition hover:bg-secondary hover:text-white">
+                <button type="button" onClick={() => scrollToForm(buyerFormId)} className="aq-cta-primary">
                   {content.cta.primary || content.primaryCta}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </button>
-                <button type="button" onClick={() => scrollToForm(partnerFormId)} className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10">
+                <button type="button" onClick={() => scrollToForm(partnerFormId)} className="aq-cta-secondary">
                   {content.cta.secondary || content.secondaryCta}
                 </button>
               </div>

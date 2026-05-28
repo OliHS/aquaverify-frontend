@@ -1,159 +1,179 @@
 import React from 'react';
-import { Linkedin, Twitter, Facebook } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
-import { usePageContent } from '../context/PageContentContext';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
-import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformLegalUrl, getPlatformSignupUrl } from '../utils/platformLinks';
+import { LEGACY_PLATFORM_LOGIN_URLS, LEGACY_PLATFORM_SIGNUP_URLS, getPlatformLegalUrl, getPlatformLoginUrl, getPlatformSignupUrl } from '../utils/platformLinks';
 import { OPEN_COOKIE_PREFERENCES_EVENT } from './CookieConsent';
 import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import type { Language } from '../utils/translations';
 
-const logoSrc = '/images/logo-mark-160.png';
-const LEGACY_CONTACT_FORM_HELPER = 'Use the contact form for the fastest response';
-
 const FOOTER_COPY: Record<Language, {
+  tagline: string;
+  productsTitle: string;
+  allProducts: string;
   enumera: string;
   indica: string;
   standardKits: string;
   labEssentials: string;
-  privateLabel: string;
+  cloud: string;
+  industriesTitle: string;
+  industriesHub: string;
   labs: string;
-  quality: string;
   municipal: string;
   foodBeverage: string;
   industrial: string;
-  agriculture: string;
-  pharmaCosmetics: string;
-  hospitalityTourism: string;
-  facilities: string;
-  resources: string;
-  presenceEnumeration: string;
-  traceabilityGuide: string;
-  distributorChecklist: string;
-  epa: string;
-  indicators: string;
+  partnersTitle: string;
+  distributors: string;
+  oem: string;
+  signIn: string;
+  signUp: string;
+  actionTitle: string;
+  quote: string;
+  recommendation: string;
+  findDistributor: string;
+  glossary: string;
 }> = {
   en: {
-    enumera: 'ENUMERA kits',
-    indica: 'INDICA kits',
+    tagline: 'Innovative products for detecting viruses and bacteria in water, connected with AquaVerify Cloud, authorized distributors and OEM programs.',
+    productsTitle: 'Products',
+    allProducts: 'All products',
+    enumera: 'ENUMERA',
+    indica: 'INDICA',
     standardKits: 'ISO/EPA kits',
     labEssentials: 'Lab Essentials',
-    privateLabel: 'Private-label kits',
-    labs: 'Water testing labs',
-    quality: 'Quality teams',
-    municipal: 'Municipal water',
+    cloud: 'AquaVerify Cloud',
+    industriesTitle: 'Industries',
+    industriesHub: 'View industries',
+    labs: 'Laboratories',
+    municipal: 'Municipal',
     foodBeverage: 'Food & beverage',
-    industrial: 'Industrial process water',
-    agriculture: 'Agriculture',
-    pharmaCosmetics: 'Pharma & cosmetics',
-    hospitalityTourism: 'Hospitality & leisure',
-    facilities: 'Facilities',
-    resources: 'Resources',
-    presenceEnumeration: 'Presence vs enumeration',
-    traceabilityGuide: 'Sample traceability',
-    distributorChecklist: 'Distributor checklist',
-    epa: 'EPA workflows',
-    indicators: 'Coliphage indicators'
+    industrial: 'Industrial process',
+    partnersTitle: 'Partners',
+    distributors: 'Distributors',
+    oem: 'OEM and private label',
+    signIn: 'Sign in',
+    signUp: 'Sign up',
+    actionTitle: 'Action',
+    quote: 'Request quote',
+    recommendation: 'Request technical recommendation',
+    findDistributor: 'Find a distributor',
+    glossary: 'Technical glossary'
   },
   es: {
-    enumera: 'Kits ENUMERA',
-    indica: 'Kits INDICA',
+    tagline: 'Productos innovadores para la detección de virus y bacterias en el agua, conectados con AquaVerify Cloud, distribuidores autorizados y programas OEM.',
+    productsTitle: 'Productos',
+    allProducts: 'Todos los productos',
+    enumera: 'ENUMERA',
+    indica: 'INDICA',
     standardKits: 'Kits ISO/EPA',
     labEssentials: 'Lab Essentials',
-    privateLabel: 'Kits marca blanca',
-    labs: 'Laboratorios de agua',
-    quality: 'Equipos de calidad',
-    municipal: 'Agua municipal',
+    cloud: 'AquaVerify Cloud',
+    industriesTitle: 'Industrias',
+    industriesHub: 'Ver industrias',
+    labs: 'Laboratorios',
+    municipal: 'Municipal',
     foodBeverage: 'Alimentación y bebidas',
-    industrial: 'Agua de proceso industrial',
-    agriculture: 'Agricultura',
-    pharmaCosmetics: 'Farma y cosmética',
-    hospitalityTourism: 'Hostelería y ocio',
-    facilities: 'Instalaciones',
-    resources: 'Recursos',
-    presenceEnumeration: 'Presencia vs enumeración',
-    traceabilityGuide: 'Trazabilidad de muestras',
-    distributorChecklist: 'Checklist distribuidores',
-    epa: 'Flujos EPA',
-    indicators: 'Indicadores colífagos'
+    industrial: 'Proceso industrial',
+    partnersTitle: 'Partners',
+    distributors: 'Distribuidores',
+    oem: 'OEM y marca blanca',
+    signIn: 'Sign in',
+    signUp: 'Sign up',
+    actionTitle: 'Acción',
+    quote: 'Solicitar cotización',
+    recommendation: 'Solicitar recomendación técnica',
+    findDistributor: 'Encontrar distribuidor',
+    glossary: 'Glosario técnico'
   },
   fr: {
-    enumera: 'Kits ENUMERA',
-    indica: 'Kits INDICA',
+    tagline: 'Produits innovants pour la détection de virus et bactéries dans l’eau, connectés à AquaVerify Cloud, distributeurs autorisés et programmes OEM.',
+    productsTitle: 'Produits',
+    allProducts: 'Tous les produits',
+    enumera: 'ENUMERA',
+    indica: 'INDICA',
     standardKits: 'Kits ISO/EPA',
     labEssentials: 'Lab Essentials',
-    privateLabel: 'Kits marque blanche',
-    labs: 'Laboratoires eau',
-    quality: 'Équipes qualité',
-    municipal: 'Eau municipale',
+    cloud: 'AquaVerify Cloud',
+    industriesTitle: 'Industries',
+    industriesHub: 'Voir les industries',
+    labs: 'Laboratoires',
+    municipal: 'Municipal',
     foodBeverage: 'Agroalimentaire',
-    industrial: 'Eau de process',
-    agriculture: 'Agriculture',
-    pharmaCosmetics: 'Pharma & cosmétique',
-    hospitalityTourism: 'Hôtellerie & loisirs',
-    facilities: 'Bâtiments',
-    resources: 'Ressources',
-    presenceEnumeration: 'Présence vs dénombrement',
-    traceabilityGuide: 'Traçabilité échantillons',
-    distributorChecklist: 'Checklist distributeurs',
-    epa: 'Flux EPA',
-    indicators: 'Indicateurs coliphages'
+    industrial: 'Process industriel',
+    partnersTitle: 'Partenaires',
+    distributors: 'Distributeurs',
+    oem: 'OEM et marque blanche',
+    signIn: 'Sign in',
+    signUp: 'Sign up',
+    actionTitle: 'Action',
+    quote: 'Demander un devis',
+    recommendation: 'Demander une recommandation technique',
+    findDistributor: 'Trouver un distributeur',
+    glossary: 'Glossaire technique'
   },
   it: {
-    enumera: 'Kit ENUMERA',
-    indica: 'Kit INDICA',
+    tagline: 'Prodotti innovativi per la rilevazione di virus e batteri nell’acqua, connessi ad AquaVerify Cloud, distributori autorizzati e programmi OEM.',
+    productsTitle: 'Prodotti',
+    allProducts: 'Tutti i prodotti',
+    enumera: 'ENUMERA',
+    indica: 'INDICA',
     standardKits: 'Kit ISO/EPA',
     labEssentials: 'Lab Essentials',
-    privateLabel: 'Kit private label',
-    labs: 'Laboratori acqua',
-    quality: 'Team qualità',
-    municipal: 'Acqua municipale',
+    cloud: 'AquaVerify Cloud',
+    industriesTitle: 'Settori',
+    industriesHub: 'Vedi settori',
+    labs: 'Laboratori',
+    municipal: 'Municipale',
     foodBeverage: 'Food & beverage',
-    industrial: 'Acqua di processo',
-    agriculture: 'Agricoltura',
-    pharmaCosmetics: 'Farmaceutica e cosmetica',
-    hospitalityTourism: 'Ospitalità e leisure',
-    facilities: 'Strutture',
-    resources: 'Risorse',
-    presenceEnumeration: 'Presenza vs enumerazione',
-    traceabilityGuide: 'Tracciabilità campioni',
-    distributorChecklist: 'Checklist distributori',
-    epa: 'Flussi EPA',
-    indicators: 'Indicatori colifagi'
+    industrial: 'Processo industriale',
+    partnersTitle: 'Partner',
+    distributors: 'Distributori',
+    oem: 'OEM e private label',
+    signIn: 'Sign in',
+    signUp: 'Sign up',
+    actionTitle: 'Azione',
+    quote: 'Richiedi preventivo',
+    recommendation: 'Richiedi raccomandazione tecnica',
+    findDistributor: 'Trova distributore',
+    glossary: 'Glossario tecnico'
   },
   ca: {
-    enumera: 'Kits ENUMERA',
-    indica: 'Kits INDICA',
+    tagline: 'Productes innovadors per a la detecció de virus i bacteris a l’aigua, connectats amb AquaVerify Cloud, distribuïdors autoritzats i programes OEM.',
+    productsTitle: 'Productes',
+    allProducts: 'Tots els productes',
+    enumera: 'ENUMERA',
+    indica: 'INDICA',
     standardKits: 'Kits ISO/EPA',
     labEssentials: 'Lab Essentials',
-    privateLabel: 'Kits marca blanca',
-    labs: 'Laboratoris d’aigua',
-    quality: 'Equips de qualitat',
-    municipal: 'Aigua municipal',
+    cloud: 'AquaVerify Cloud',
+    industriesTitle: 'Sectors',
+    industriesHub: 'Veure sectors',
+    labs: 'Laboratoris',
+    municipal: 'Municipal',
     foodBeverage: 'Alimentació i begudes',
-    industrial: 'Aigua de procés',
-    agriculture: 'Agricultura',
-    pharmaCosmetics: 'Farmacèutica i cosmètica',
-    hospitalityTourism: 'Hostaleria i oci',
-    facilities: 'Instal·lacions',
-    resources: 'Recursos',
-    presenceEnumeration: 'Presència vs enumeració',
-    traceabilityGuide: 'Traçabilitat de mostres',
-    distributorChecklist: 'Checklist distribuïdors',
-    epa: 'Fluxos EPA',
-    indicators: 'Indicadors colífags'
+    industrial: 'Procés industrial',
+    partnersTitle: 'Partners',
+    distributors: 'Distribuïdors',
+    oem: 'OEM i marca blanca',
+    signIn: 'Sign in',
+    signUp: 'Sign up',
+    actionTitle: 'Acció',
+    quote: 'Sol·licitar pressupost',
+    recommendation: 'Sol·licitar recomanació tècnica',
+    findDistributor: 'Trobar distribuïdor',
+    glossary: 'Glossari tècnic'
   }
 };
 
 export const Footer: React.FC = () => {
   const { t, lang } = useLanguage();
-  const { blocks, isEditing } = usePageContent();
   const copy = FOOTER_COPY[lang] || FOOTER_COPY.en;
   const privacyUrl = getPlatformLegalUrl('privacy', lang);
   const termsUrl = getPlatformLegalUrl('terms', lang);
-  const contactUrl = getPlatformSignupUrl({ intent: 'contact' }, lang);
-  const careersUrl = getPlatformSignupUrl({ intent: 'careers' }, lang);
+  const loginUrl = getPlatformLoginUrl(lang);
+  const signupUrl = getPlatformSignupUrl({ intent: 'signup', page: 'footer' }, lang);
+  const quoteUrl = getPlatformSignupUrl({ intent: 'quote', page: 'footer' }, lang);
+  const recommendationUrl = getPlatformSignupUrl({ intent: 'product_recommendation', page: 'footer' }, lang);
   const productsUrl = getMarketingPagePath('products', lang);
   const enumeraUrl = getMarketingPagePath('enumera', lang);
   const indicaUrl = getMarketingPagePath('indica', lang);
@@ -161,173 +181,91 @@ export const Footer: React.FC = () => {
   const labEssentialsUrl = getMarketingPagePath('lab-essentials', lang);
   const platformUrl = getMarketingPagePath('platform', lang);
   const oemUrl = getMarketingPagePath('oem', lang);
-  const privateLabelUrl = getMarketingPagePath('private-label-kits', lang);
   const distributorsUrl = getMarketingPagePath('distributors', lang);
+  const industriesUrl = getMarketingPagePath('industries-hub', lang);
   const labsUrl = getMarketingPagePath('water-testing-labs', lang);
-  const qualityUrl = getMarketingPagePath('water-quality-control', lang);
   const municipalUrl = getMarketingPagePath('municipal-water-testing', lang);
   const foodBeverageUrl = getMarketingPagePath('food-beverage-water-quality', lang);
   const industrialUrl = getMarketingPagePath('industrial-process-water', lang);
-  const agricultureUrl = getMarketingPagePath('agriculture-water', lang);
-  const pharmaCosmeticsUrl = getMarketingPagePath('pharma-cosmetics-water', lang);
-  const hospitalityTourismUrl = getMarketingPagePath('hospitality-tourism-water', lang);
-  const facilitiesUrl = getMarketingPagePath('facility-water-risk', lang);
-  const aboutUrl = getMarketingPagePath('about', lang);
-  const resourcesUrl = getMarketingPagePath('resources', lang);
-  const isoResourceUrl = getMarketingPagePath('iso-10705-2', lang);
-  const epaResourceUrl = getMarketingPagePath('epa-1602', lang);
-  const indicatorResourceUrl = getMarketingPagePath('coliphages-indicators', lang);
-  const presenceEnumerationUrl = getMarketingPagePath('presence-vs-enumeration', lang);
-  const traceabilityGuideUrl = getMarketingPagePath('sample-traceability', lang);
-  const distributorChecklistUrl = getMarketingPagePath('distributor-checklist', lang);
-  const footerBlock = blocks.footer || {};
-  const hasConfiguredHref = (field: string) => {
-    const value = footerBlock[field];
-    return typeof value === 'string' && value.trim() !== '' && value.trim() !== '#';
-  };
-  const showLinkedin = isEditing || hasConfiguredHref('url_linkedin');
-  const showTwitter = isEditing || hasConfiguredHref('url_twitter');
-  const showFacebook = isEditing || hasConfiguredHref('url_facebook');
-  const showSocialLinks = showLinkedin || showTwitter || showFacebook;
-
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    const href = e.currentTarget.getAttribute('href');
-    if (href && !href.startsWith('#')) return;
-
-    e.preventDefault();
-    const element = document.getElementById(id);
-
-    if (element) {
-      const headerOffset = 85;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const glossaryUrl = getMarketingPagePath('glossary', lang);
 
   const openCookiePreferences = () => {
     window.dispatchEvent(new Event(OPEN_COOKIE_PREFERENCES_EVENT));
   };
 
+  const linkClass = 'transition-colors hover:text-secondary';
+
   return (
     <footer className="bg-gray-900 text-white pt-16 pb-8 border-t border-gray-800">
       <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-12 mb-12">
-
-          {/* Brand */}
-          <div className="col-span-1 md:col-span-1">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[1.25fr_repeat(4,minmax(0,1fr))] mb-12">
+          <div>
             <div className="flex items-center space-x-2 mb-4">
-              <div className="relative w-8 h-8 flex items-center justify-center bg-white rounded-full">
-                <img
-                  src={logoSrc}
-                  alt=""
-                  width={25}
-                  height={32}
-                  className="h-7 w-auto object-contain"
-                />
-              </div>
-              <span className="font-heading font-bold text-xl tracking-tight">AquaVerify</span>
+              <span className="font-heading font-bold text-xl tracking-tight">
+                Aqua<span className="text-secondary">Verify</span>
+              </span>
             </div>
-            <EditableText
-              as="p"
-              sectionId="footer"
-              field="tagline"
-              fallback={t.footer.tagline}
-              className="text-gray-400 text-sm leading-relaxed mb-6 block"
-            />
-            {showSocialLinks && (
-              <div className="flex space-x-4">
-                {showLinkedin && <EditableLinkWrapper sectionId="footer" field="url_linkedin" fallback="#"><a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-gray-400 hover:text-white transition-colors"><Linkedin size={20} /></a></EditableLinkWrapper>}
-                {showTwitter && <EditableLinkWrapper sectionId="footer" field="url_twitter" fallback="#"><a href="#" target="_blank" rel="noopener noreferrer" aria-label="X" className="text-gray-400 hover:text-white transition-colors"><Twitter size={20} /></a></EditableLinkWrapper>}
-                {showFacebook && <EditableLinkWrapper sectionId="footer" field="url_facebook" fallback="#"><a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-gray-400 hover:text-white transition-colors"><Facebook size={20} /></a></EditableLinkWrapper>}
-              </div>
-            )}
+            <p className="max-w-sm text-sm leading-6 text-gray-400">{copy.tagline}</p>
           </div>
 
-          {/* Links */}
           <div>
-            <EditableText as="h4" sectionId="footer" field="solutionsTitle" fallback={t.footer.solutions} className="font-bold text-lg mb-4 block" />
+            <h4 className="font-bold text-lg mb-4">{copy.productsTitle}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><EditableLinkWrapper sectionId="footer" field="url_testingKits" fallback={productsUrl} legacyFallbacks={['#']}><a href={productsUrl} onClick={(e) => handleSmoothScroll(e, 'products')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_testingKits" fallback="Testing Kits" /></a></EditableLinkWrapper></li>
-              <li><a href={enumeraUrl} className="hover:text-secondary">{copy.enumera}</a></li>
-              <li><a href={indicaUrl} className="hover:text-secondary">{copy.indica}</a></li>
-              <li><a href={standardKitsUrl} className="hover:text-secondary">{copy.standardKits}</a></li>
-              <li><a href={labEssentialsUrl} className="hover:text-secondary">{copy.labEssentials}</a></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_lims" fallback={platformUrl} legacyFallbacks={['#']}><a href={platformUrl} onClick={(e) => handleSmoothScroll(e, 'platform')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_lims" fallback="LIMS Software" /></a></EditableLinkWrapper></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_oemProgram" fallback={oemUrl} legacyFallbacks={['#']}><a href={oemUrl} onClick={(e) => handleSmoothScroll(e, 'oem')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_oemProgram" fallback="OEM Program" /></a></EditableLinkWrapper></li>
-              <li><a href={privateLabelUrl} className="hover:text-secondary">{copy.privateLabel}</a></li>
+              <li><a href={productsUrl} className={linkClass}>{copy.allProducts}</a></li>
+              <li><a href={enumeraUrl} className={linkClass}>{copy.enumera}</a></li>
+              <li><a href={indicaUrl} className={linkClass}>{copy.indica}</a></li>
+              <li><a href={standardKitsUrl} className={linkClass}>{copy.standardKits}</a></li>
+              <li><a href={labEssentialsUrl} className={linkClass}>{copy.labEssentials}</a></li>
+              <li><a href={platformUrl} className={linkClass}>{copy.cloud}</a></li>
             </ul>
           </div>
 
           <div>
-            <EditableText as="h4" sectionId="footer" field="companyTitle" fallback={t.footer.company} className="font-bold text-lg mb-4 block" />
+            <h4 className="font-bold text-lg mb-4">{copy.industriesTitle}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><EditableLinkWrapper sectionId="footer" field="url_aboutUs" fallback={aboutUrl} legacyFallbacks={['#']}><a href={aboutUrl} onClick={(e) => handleSmoothScroll(e, 'solutions')} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_aboutUs" fallback="About Us" /></a></EditableLinkWrapper></li>
-              <li><a href={labsUrl} className="hover:text-secondary">{copy.labs}</a></li>
-              <li><a href={qualityUrl} className="hover:text-secondary">{copy.quality}</a></li>
-              <li><a href={municipalUrl} className="hover:text-secondary">{copy.municipal}</a></li>
-              <li><a href={foodBeverageUrl} className="hover:text-secondary">{copy.foodBeverage}</a></li>
-              <li><a href={industrialUrl} className="hover:text-secondary">{copy.industrial}</a></li>
-              <li><a href={agricultureUrl} className="hover:text-secondary">{copy.agriculture}</a></li>
-              <li><a href={pharmaCosmeticsUrl} className="hover:text-secondary">{copy.pharmaCosmetics}</a></li>
-              <li><a href={hospitalityTourismUrl} className="hover:text-secondary">{copy.hospitalityTourism}</a></li>
-              <li><a href={facilitiesUrl} className="hover:text-secondary">{copy.facilities}</a></li>
-              <li><a href={distributorsUrl} className="hover:text-secondary">{t.nav.distributors}</a></li>
-              <li><a href={resourcesUrl} className="hover:text-secondary">{copy.resources}</a></li>
-              <li>
-                <EditableLinkWrapper sectionId="footer" field="url_scientificValidation" fallback={isoResourceUrl} legacyFallbacks={['#']}>
-                  <a
-                    href={isoResourceUrl}
-                    onClick={(e) => handleSmoothScroll(e, 'products')}
-                    className="hover:text-secondary"
-                  >
-                    <EditableText as="span" sectionId="footer" field="link_scientificValidation" fallback="Scientific Validation" />
-                  </a>
-                </EditableLinkWrapper>
-              </li>
-              <li><a href={epaResourceUrl} className="hover:text-secondary">{copy.epa}</a></li>
-              <li><a href={indicatorResourceUrl} className="hover:text-secondary">{copy.indicators}</a></li>
-              <li><a href={presenceEnumerationUrl} className="hover:text-secondary">{copy.presenceEnumeration}</a></li>
-              <li><a href={traceabilityGuideUrl} className="hover:text-secondary">{copy.traceabilityGuide}</a></li>
-              <li><a href={distributorChecklistUrl} className="hover:text-secondary">{copy.distributorChecklist}</a></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_careers" fallback={careersUrl} legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}><a href={careersUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_careers" fallback="Careers" /></a></EditableLinkWrapper></li>
-              <li><EditableLinkWrapper sectionId="footer" field="url_contact" fallback={contactUrl} legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}><a href={contactUrl} className="hover:text-secondary"><EditableText as="span" sectionId="footer" field="link_contact" fallback={t.footer.contact} /></a></EditableLinkWrapper></li>
+              <li><a href={industriesUrl} className={linkClass}>{copy.industriesHub}</a></li>
+              <li><a href={labsUrl} className={linkClass}>{copy.labs}</a></li>
+              <li><a href={municipalUrl} className={linkClass}>{copy.municipal}</a></li>
+              <li><a href={foodBeverageUrl} className={linkClass}>{copy.foodBeverage}</a></li>
+              <li><a href={industrialUrl} className={linkClass}>{copy.industrial}</a></li>
             </ul>
           </div>
 
-          {/* Contact */}
           <div>
-            <EditableText as="h4" sectionId="footer" field="contactHeader" fallback={t.footer.contact} className="font-bold text-lg mb-4 block" />
+            <h4 className="font-bold text-lg mb-4">{copy.partnersTitle}</h4>
             <ul className="space-y-2 text-sm text-gray-400">
-              <li><EditableText as="span" sectionId="footer" field="address1" fallback="Corporate enquiries" className="block" /></li>
-              <li><EditableText as="span" sectionId="footer" field="address2" fallback="Sales, distributors and OEM partnerships" className="block" /></li>
-              <li className="pt-2"><EditableText as="span" sectionId="footer" field="email" fallback="info@aquaverify.com" className="block" /></li>
+              <li><a href={distributorsUrl} className={linkClass}>{copy.distributors}</a></li>
+              <li><a href={oemUrl} className={linkClass}>{copy.oem}</a></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_login" fallback={loginUrl} legacyFallbacks={LEGACY_PLATFORM_LOGIN_URLS}><a href={loginUrl} className={linkClass}>{copy.signIn}</a></EditableLinkWrapper></li>
+              <li><EditableLinkWrapper sectionId="footer" field="url_signup" fallback={signupUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}><a href={signupUrl} className={linkClass}>{copy.signUp}</a></EditableLinkWrapper></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-lg mb-4">{copy.actionTitle}</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <EditableText
-                  as="span"
-                  sectionId="footer"
-                  field="phone"
-                  fallback={t.footer.contactHelper}
-                  legacyFallbacks={[LEGACY_CONTACT_FORM_HELPER]}
-                  className="block"
-                />
-              </li>
-              <li className="pt-1">
                 <EditableLinkWrapper
                   sectionId="footer"
-                  field="url_contact"
-                  fallback={contactUrl}
+                  field="url_quote"
+                  fallback={quoteUrl}
                   legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}
                 >
-                  <a href={contactUrl} className="font-bold text-secondary transition-colors hover:text-white">
-                    <EditableText as="span" sectionId="footer" field="link_contactRequest" fallback={t.footer.contactRequest} />
-                  </a>
+                  <a href={quoteUrl} className="font-bold text-secondary transition-colors hover:text-white">{copy.quote}</a>
                 </EditableLinkWrapper>
               </li>
+              <li>
+                <EditableLinkWrapper
+                  sectionId="footer"
+                  field="url_recommendation"
+                  fallback={recommendationUrl}
+                  legacyFallbacks={['#', ...LEGACY_PLATFORM_SIGNUP_URLS]}
+                >
+                  <a href={recommendationUrl} className={linkClass}>{copy.recommendation}</a>
+                </EditableLinkWrapper>
+              </li>
+              <li><a href={distributorsUrl} className={linkClass}>{copy.findDistributor}</a></li>
+              <li><a href={glossaryUrl} className={linkClass}>{copy.glossary}</a></li>
             </ul>
           </div>
         </div>
