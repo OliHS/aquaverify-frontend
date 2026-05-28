@@ -147,7 +147,7 @@ export const translations = {
       contact: "Contact",
       contactHelper: "Use the Contact link or email us for the fastest routing.",
       contactRequest: "Start contact request",
-      rights: "AquaVerify Inc. All rights reserved.",
+      rights: "AquaVerify. All rights reserved.",
       privacy: "Privacy Policy",
       terms: "Terms of Service",
       cookie: "Cookie Settings"
@@ -298,7 +298,7 @@ export const translations = {
       contact: "Contacto",
       contactHelper: "Usa el enlace Contacto o escríbenos por email para una respuesta más ágil.",
       contactRequest: "Iniciar solicitud",
-      rights: "AquaVerify Inc. Todos los derechos reservados.",
+      rights: "AquaVerify. Todos los derechos reservados.",
       privacy: "Política de Privacidad",
       terms: "Términos de Servicio",
       cookie: "Configurar cookies"
@@ -449,7 +449,7 @@ export const translations = {
       contact: "Contact",
       contactHelper: "Utilisez le lien Contact ou écrivez-nous par email pour un traitement plus rapide.",
       contactRequest: "Démarrer la demande",
-      rights: "AquaVerify Inc. Tous droits réservés.",
+      rights: "AquaVerify. Tous droits réservés.",
       privacy: "Politique de Confidentialité",
       terms: "Conditions d'Utilisation",
       cookie: "Parametres cookies"
@@ -600,7 +600,7 @@ export const translations = {
       contact: "Contatti",
       contactHelper: "Usa il link Contatti o scrivici via email per un instradamento più rapido.",
       contactRequest: "Avvia richiesta",
-      rights: "AquaVerify Inc. Tutti i diritti riservati.",
+      rights: "AquaVerify. Tutti i diritti riservati.",
       privacy: "Privacy Policy",
       terms: "Termini di Servizio",
       cookie: "Impostazioni cookie"
@@ -710,7 +710,7 @@ const caTranslation: typeof translations.en = {
     contact: 'Contacte',
     contactHelper: 'Fes servir l’enllaç Contacte o escriu-nos per email per a una resposta més àgil.',
     contactRequest: 'Iniciar sol·licitud',
-    rights: 'AquaVerify Inc. Tots els drets reservats.',
+    rights: 'AquaVerify. Tots els drets reservats.',
     privacy: 'Política de privacitat',
     terms: 'Condicions del servei',
     cookie: 'Configuració de cookies'

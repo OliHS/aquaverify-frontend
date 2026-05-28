@@ -55,7 +55,7 @@ CREATE POLICY "Allow authenticated full access to distributors" ON distributors 
 
 -- Insert initial page entry for home
 INSERT INTO pages (slug, title, seo_title, seo_description) 
-VALUES ('home', 'AquaVerify', 'AquaVerify - Advanced Water Verification', 'Ensuring water quality and safety worldwide.')
+VALUES ('home', 'AquaVerify', 'AquaVerify | Innovative Detection of Viruses and Bacteria in Water', 'AquaVerify develops, manufactures and distributes innovative products for detecting viruses and bacteria in water, connected with AquaVerify Cloud, technical reporting, distributors and OEM programs.')
 ON CONFLICT (slug) DO NOTHING;
 
 -- Create product_families table
