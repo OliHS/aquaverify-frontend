@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">INDICA Control 100 AquaVerify visual</title>
+  <desc id="desc">INDICA Control 100 is an AquaVerify lab essential for positive controls and biological materials in water microbiology workflows.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f8fafc"/>
+      <stop offset="55%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="22" stdDeviation="28" flood-color="#0f172a" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <circle cx="1320" cy="180" r="260" fill="#0e7490" opacity="0.09"/>
+  <circle cx="1300" cy="780" r="320" fill="#334155" opacity="0.08"/>
+  <g transform="translate(100 100)">
+    <rect width="1400" height="800" rx="46" fill="rgba(255,255,255,0.76)" stroke="rgba(15,23,42,0.08)" filter="url(#shadow)"/>
+    <rect x="0" y="0" width="1400" height="18" rx="9" fill="#334155"/>
+    <text x="70" y="105" fill="#0e7490" font-size="26" font-weight="800" letter-spacing="5" font-family="Inter, Arial, sans-serif">AQUAVERIFY</text>
+    <text x="70" y="160" fill="#334155" font-size="30" font-weight="900" font-family="Inter, Arial, sans-serif">Lab Essentials</text>
+    <text x="70" y="250" fill="#0f172a" font-size="76" font-weight="900" font-family="Inter, Arial, sans-serif">INDICA Control 100</text>
+    <text x="72" y="510" fill="#475569" font-size="28" font-weight="600" font-family="Inter, Arial, sans-serif">INDICA Control 100 is an AquaVerify lab essential for</text><text x="72" y="547.8" fill="#475569" font-size="28" font-weight="600" font-family="Inter, Arial, sans-serif">positive controls and biological materials in water</text><text x="72" y="585.6" fill="#475569" font-size="28" font-weight="600" font-family="Inter, Arial, sans-serif">microbiology workflows.</text>
+    <g transform="translate(70 650)">
+      <g transform="translate(0 0)"><rect width="520" height="36" rx="18" fill="#f8fafc" stroke="#0e7490" stroke-opacity="0.28"/><circle cx="22" cy="18" r="7" fill="#0e7490"/><text x="46" y="24" fill="#334155" font-size="20" font-weight="700" font-family="Inter, Arial, sans-serif">Family: Lab Essentials</text></g><g transform="translate(0 52)"><rect width="520" height="36" rx="18" fill="#f8fafc" stroke="#0e7490" stroke-opacity="0.28"/><circle cx="22" cy="18" r="7" fill="#0e7490"/><text x="46" y="24" fill="#334155" font-size="20" font-weight="700" font-family="Inter, Arial, sans-serif">Sub-family: Biological Materials</text></g><g transform="translate(0 104)"><rect width="520" height="36" rx="18" fill="#f8fafc" stroke="#0e7490" stroke-opacity="0.28"/><circle cx="22" cy="18" r="7" fill="#0e7490"/><text x="46" y="24" fill="#334155" font-size="20" font-weight="700" font-family="Inter, Arial, sans-serif">Format: -70ºC vial</text></g>
+    </g>
+    <g>
+      <g transform="translate(1030 350)"><path d="M115 18h120v52l120 255c22 48-13 103-66 103H62c-53 0-88-55-66-103L115 70V18Z" fill="rgba(255,255,255,0.84)" stroke="#334155" stroke-width="8"/><path d="M78 286h232" stroke="#0e7490" stroke-width="10" stroke-linecap="round"/><circle cx="126" cy="328" r="12" fill="#0e7490"/><circle cx="205" cy="352" r="9" fill="#334155"/></g><circle cx="1110" cy="685" r="125" fill="rgba(255,255,255,0.78)" stroke="#334155" stroke-width="8"/><circle cx="1110" cy="685" r="82" fill="#f8fafc" stroke="#0e7490" stroke-width="4"/><circle cx="1080" cy="660" r="10" fill="#0e7490"/><circle cx="1148" cy="704" r="8" fill="#334155"/><circle cx="1105" cy="735" r="6" fill="#0e7490"/>
+    </g>
+  </g>
+</svg>

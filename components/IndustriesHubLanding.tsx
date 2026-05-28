@@ -139,24 +139,24 @@ export const IndustriesHubLanding: React.FC<Props> = ({ content, pageLang, showC
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
       <Header />
       <main className="flex-grow pt-20">
-        <section className="relative overflow-hidden bg-primary text-white">
+        <section className="aq-page-hero">
           <div className="container mx-auto grid gap-10 px-6 py-16 md:py-20 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.85fr)] lg:items-center">
             <div>
               {content.eyebrow && (
-                <p className="mb-5 inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-black uppercase text-cyan-50">
+                <p className="aq-hero-eyebrow mb-5">
                   {content.eyebrow}
                 </p>
               )}
-              <h1 className="max-w-5xl font-heading text-4xl font-black leading-tight md:text-6xl">
+              <h1 className="aq-gradient-title max-w-5xl font-heading text-4xl font-black leading-tight md:text-6xl">
                 {content.title}
               </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50/85">
+              <p className="aq-hero-copy mt-6 max-w-3xl text-lg leading-8">
                 {content.description}
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href={primaryUrl}
-                  className="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-sm font-black text-primary shadow-lg transition hover:bg-cyan-50"
+                  className="aq-cta-primary"
                 >
                   {content.primaryCta || 'View sectors'}
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
@@ -164,23 +164,23 @@ export const IndustriesHubLanding: React.FC<Props> = ({ content, pageLang, showC
                 <a
                   href={guidanceUrl}
                   onClick={handleGuidanceClick}
-                  className="inline-flex items-center justify-center rounded-lg border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10"
+                  className="aq-cta-secondary"
                 >
                   {content.secondaryCta || 'Request guidance'}
                 </a>
               </div>
             </div>
 
-            <aside className="rounded-lg border border-white/15 bg-white/10 p-5 shadow-2xl backdrop-blur" aria-label={content.heroPanelTitle}>
-              <h2 className="text-lg font-black text-white">{content.heroPanelTitle}</h2>
+            <aside className="rounded-[1.75rem] border border-slate-200 bg-white p-5 shadow-2xl" aria-label={content.heroPanelTitle}>
+              <h2 className="font-heading text-xl font-black leading-tight text-primary">{content.heroPanelTitle}</h2>
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 {cycle.map((item) => (
-                  <div key={item.code} className="rounded-lg border border-white/15 bg-white/10 p-4">
-                    <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-white text-xs font-black text-primary">
+                  <div key={item.code} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                    <div className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-xl bg-primary text-xs font-black text-white">
                       {item.code}
                     </div>
-                    <h3 className="text-sm font-black text-white">{item.title}</h3>
-                    <p className="mt-1 text-xs font-semibold leading-5 text-cyan-50/75">{item.body}</p>
+                    <h3 className="text-sm font-black text-slate-950">{item.title}</h3>
+                    <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">{item.body}</p>
                   </div>
                 ))}
               </div>
@@ -188,9 +188,9 @@ export const IndustriesHubLanding: React.FC<Props> = ({ content, pageLang, showC
                 {metrics.map((item, index) => {
                   const { lead, body } = splitLead(item);
                   return (
-                    <div key={`${item}-${index}`} className="rounded-lg border border-white/15 bg-white/10 p-3">
-                      <strong className="block text-lg font-black text-white">{lead || item.split(' ')[0]}</strong>
-                      <span className="mt-1 block text-xs font-semibold leading-4 text-cyan-50/70">{body || item.replace(item.split(' ')[0], '').trim()}</span>
+                    <div key={`${item}-${index}`} className="rounded-2xl border border-cyan-100 bg-cyan-50/70 p-3">
+                      <strong className="block text-lg font-black text-primary">{lead || item.split(' ')[0]}</strong>
+                      <span className="mt-1 block text-xs font-semibold leading-4 text-slate-600">{body || item.replace(item.split(' ')[0], '').trim()}</span>
                     </div>
                   );
                 })}
@@ -358,21 +358,44 @@ export const IndustriesHubLanding: React.FC<Props> = ({ content, pageLang, showC
                 <h2 className="mt-3 font-heading text-3xl font-black leading-tight text-primary md:text-4xl">
                   {content.matrixTitle}
                 </h2>
-                <div className="mt-6 overflow-x-auto rounded-lg border border-slate-200 bg-white shadow-sm">
-                  <div className="min-w-[760px]">
-                    <div className="grid grid-cols-[0.85fr_1fr_1.1fr] bg-primary text-xs font-black uppercase text-white">
-                      <div className="p-3">{content.matrixSector}</div>
-                      <div className="border-l border-white/15 p-3">{content.matrixChallenge}</div>
-                      <div className="border-l border-white/15 p-3">{content.matrixConnection}</div>
-                    </div>
-                    {sectors.map((sector) => (
-                      <div key={`${sector.routeId}-matrix`} className="grid grid-cols-[0.85fr_1fr_1.1fr] border-t border-slate-100 text-sm">
-                        <div className="p-3 font-black text-slate-900">{sector.title}</div>
-                        <div className="border-l border-slate-100 p-3 font-semibold leading-6 text-slate-600">{sector.focus}</div>
-                        <div className="border-l border-slate-100 p-3 font-semibold leading-6 text-slate-600">{sector.body}</div>
+                <div className="mt-6 grid gap-3 lg:hidden">
+                  {sectors.map((sector) => (
+                    <article key={`${sector.routeId}-matrix-mobile`} className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+                      <div className="flex items-start justify-between gap-3">
+                        <div>
+                          <p className="text-[11px] font-black uppercase tracking-[0.12em] text-cyan-700">{content.matrixSector}</p>
+                          <h3 className="mt-1 font-heading text-lg font-black leading-tight text-slate-950">{sector.title}</h3>
+                        </div>
+                        <span className="inline-flex h-9 min-w-9 items-center justify-center rounded-xl bg-primary px-2 text-xs font-black text-white">
+                          {sector.code}
+                        </span>
                       </div>
-                    ))}
+                      <div className="mt-4 grid gap-3">
+                        <div className="rounded-2xl bg-slate-50 p-3">
+                          <p className="text-[11px] font-black uppercase tracking-[0.12em] text-slate-500">{content.matrixChallenge}</p>
+                          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">{sector.focus}</p>
+                        </div>
+                        <div className="rounded-2xl bg-cyan-50/70 p-3">
+                          <p className="text-[11px] font-black uppercase tracking-[0.12em] text-cyan-700">{content.matrixConnection}</p>
+                          <p className="mt-1 text-sm font-semibold leading-6 text-slate-700">{sector.body}</p>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+                <div className="mt-6 hidden overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm lg:block">
+                  <div className="grid grid-cols-[0.85fr_1fr_1.1fr] bg-primary text-xs font-black uppercase text-white">
+                    <div className="p-3">{content.matrixSector}</div>
+                    <div className="border-l border-white/15 p-3">{content.matrixChallenge}</div>
+                    <div className="border-l border-white/15 p-3">{content.matrixConnection}</div>
                   </div>
+                  {sectors.map((sector) => (
+                    <div key={`${sector.routeId}-matrix`} className="grid grid-cols-[0.85fr_1fr_1.1fr] border-t border-slate-100 text-sm">
+                      <div className="p-3 font-black text-slate-900">{sector.title}</div>
+                      <div className="border-l border-slate-100 p-3 font-semibold leading-6 text-slate-600">{sector.focus}</div>
+                      <div className="border-l border-slate-100 p-3 font-semibold leading-6 text-slate-600">{sector.body}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -411,7 +434,7 @@ export const IndustriesHubLanding: React.FC<Props> = ({ content, pageLang, showC
             <a
               href={guidanceUrl}
               onClick={handleGuidanceClick}
-              className="mt-8 inline-flex items-center justify-center rounded-lg bg-white px-7 py-4 text-sm font-black text-primary shadow-lg transition hover:bg-cyan-50"
+              className="aq-cta-inverted mt-8 px-7 py-4"
             >
               {content.cta?.button || content.secondaryCta}
               <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />

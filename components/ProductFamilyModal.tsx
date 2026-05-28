@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { X, Settings2, BookOpen, CheckCircle2, Box, Info, ArrowRight, Maximize2, Search, ArrowLeftRight, CheckSquare, Square, Trash2, ArrowLeft, AlertCircle, MousePointerClick } from 'lucide-react';
 import { ProductFamily, ProductItem } from '../types';
 import { Lightbox } from './Lightbox';
@@ -10,12 +11,21 @@ import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
 import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { LEGACY_PLATFORM_SIGNUP_URLS, getPlatformSignupUrl } from '../utils/platformLinks';
+import { getProductFamilyPagePath } from '../utils/productPageLinks';
 
 interface ProductFamilyModalProps {
   family: ProductFamily;
   onClose: () => void;
   onOpenProductDetail: (product: ProductItem) => void;
 }
+
+const FAMILY_PAGE_LABELS = {
+  en: 'Open permanent product page',
+  es: 'Abrir página permanente',
+  fr: 'Ouvrir la page permanente',
+  it: 'Apri pagina permanente',
+  ca: 'Obrir pàgina permanent'
+};
 
 export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, onClose, onOpenProductDetail }) => {
   const [selectedProduct, setSelectedProduct] = useState<ProductItem | null>(null);
@@ -38,6 +48,8 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
     family: family.id,
     product: selectedProduct?.id || selectedProduct?.name
   }, lang);
+  const familyPagePath = getProductFamilyPagePath(family.id, family.title, lang);
+  const familyPageLabel = FAMILY_PAGE_LABELS[lang] || FAMILY_PAGE_LABELS.en;
 
   // Filter products based on search query
   const filteredProducts = family.items.filter(item =>
@@ -255,6 +267,14 @@ export const ProductFamilyModal: React.FC<ProductFamilyModalProps> = ({ family, 
                     <p className="text-lg text-gray-600 mb-8 leading-relaxed border-l-4 border-secondary pl-4">
                       {family.description}
                     </p>
+                    <Link
+                      to={familyPagePath}
+                      onClick={onClose}
+                      className="mb-8 inline-flex w-full items-center justify-center rounded-lg border border-primary/15 bg-blue-50 px-4 py-3 text-sm font-black text-primary transition hover:border-primary hover:bg-white"
+                    >
+                      {familyPageLabel}
+                      <ArrowRight size={16} className="ml-2" />
+                    </Link>
 
                     <h4 className="font-bold text-gray-900 mb-4 flex items-center justify-between">
                       <span className="flex items-center">

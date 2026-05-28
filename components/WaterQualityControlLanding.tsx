@@ -641,7 +641,7 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
                 <span className="h-2 w-2 rounded-full bg-cyan-500 shadow-[0_0_0_4px_rgba(6,182,212,.14)]" />
                 {content.eyebrow}
               </span>
-              <h1 className="mt-5 max-w-4xl font-heading text-4xl font-black leading-tight text-slate-950 md:text-6xl">{content.title}</h1>
+              <h1 className="aq-gradient-title mt-5 max-w-4xl font-heading text-4xl font-black leading-tight md:text-6xl">{content.title}</h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-600">{content.description}</p>
               <ul className="mt-7 grid gap-3 md:grid-cols-2">
                 {copy.valueBullets.map((item: string) => (
@@ -652,10 +652,10 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
                 ))}
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
-                <a href="#diagnostico" className="inline-flex items-center justify-center rounded-full bg-cyan-600 px-6 py-3 text-sm font-black text-white shadow-lg transition hover:bg-cyan-700">
+                <a href="#diagnostico" className="aq-cta-primary">
                   {content.primaryCta}<ArrowRight className="ml-2 h-4 w-4" />
                 </a>
-                <a href="#sectores" className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3 text-sm font-black text-slate-800 shadow-sm transition hover:border-cyan-200 hover:text-cyan-700">
+                <a href="#sectores" className="aq-cta-secondary">
                   {content.secondaryCta}
                 </a>
               </div>
@@ -881,7 +881,7 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
                   <textarea name="main_need" placeholder={copy.form.placeholders[7]} className="min-h-28 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" />
                 </label>
                 <div className="md:col-span-2">
-                  <button type="submit" className="inline-flex w-full items-center justify-center rounded-full bg-cyan-600 px-6 py-4 text-sm font-black text-white shadow-lg transition hover:bg-cyan-700 md:w-auto">
+                  <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
                     {copy.form.submit}<ArrowRight className="ml-2 h-4 w-4" />
                   </button>
                   <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">{copy.form.privacy}</p>
@@ -893,7 +893,7 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
       </main>
       <div className="fixed bottom-5 left-1/2 z-40 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-slate-200 bg-white/90 p-2 shadow-2xl backdrop-blur md:flex">
         <span className="pl-3 text-xs font-black text-slate-500">{copy.form.sticky}</span>
-        <a href="#diagnostico" className="rounded-full bg-cyan-600 px-4 py-2 text-xs font-black text-white shadow-sm">{content.primaryCta}</a>
+        <a href="#diagnostico" className="aq-cta-primary px-4 py-2 text-xs">{content.primaryCta}</a>
         <a href="#sectores" className="rounded-full border border-slate-200 px-4 py-2 text-xs font-black text-slate-700">{copy.nav[2]}</a>
       </div>
       <Footer />

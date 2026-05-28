@@ -1,4 +1,16 @@
-export const MARKETING_OVERRIDE_SECTION_ID = 'marketing_page';
+import {
+  MARKETING_OVERRIDE_SECTION_ID,
+  getMarketingOverrideSlug,
+  normalizeMarketingOverride
+} from './marketingOverrideNormalize.js';
+import { mergeMarketingContent } from './marketingContentMerge.js';
+
+export {
+  MARKETING_OVERRIDE_SECTION_ID,
+  getMarketingOverrideSlug,
+  normalizeMarketingOverride,
+  mergeMarketingContent
+};
 const PENDING_PARAMETER_VALIDATION_PATHS = [
   'enumera-entero100'
 ];
@@ -65,7 +77,7 @@ const PUBLIC_COPY_REPLACEMENTS = [
   ['Per preparar una conversa sobre flux de monitoratge, productes, preparació metodològica, registres d’evidència i si AquaVerify Cloud ha de donar suport a reporting i seguiment CRM.', 'Per preparar una conversa sobre flux de monitoratge, productes, preparació metodològica, registres d’evidència i si AquaVerify Cloud ha de donar suport a reporting i seguiment de clients.']
 ];
 
-export function getMarketingOverrideSlug(pageId, lang) {
+function getMarketingOverrideSlugLegacy(pageId, lang) {
   return `marketing-${pageId}-${lang}`;
 }
 
@@ -190,7 +202,7 @@ function normalizeVisuals(value) {
   return Object.keys(cleaned).length > 0 ? cleaned : null;
 }
 
-export function normalizeMarketingOverride(value) {
+function normalizeMarketingOverrideLegacy(value) {
   if (!value || typeof value !== 'object') return null;
 
   const override = {
@@ -253,9 +265,24 @@ function isLegacyOemOverride(baseContent, override) {
     && /distributor|distribuidor|distributeur|distributori|distribuïdor/i.test(title);
 }
 
-export function mergeMarketingContent(baseContent, overrideContent) {
+function legacyMergeMarketingContent(baseContent, overrideContent) {
   const override = normalizeMarketingOverride(overrideContent);
   if (!override) return baseContent;
+
+  if (baseContent?.markdownWhitepaper) {
+    return {
+      ...baseContent,
+      heroImage: override.heroImage || baseContent.heroImage,
+      heroImageAlt: override.heroImageAlt || baseContent.heroImageAlt,
+      heroVideo: override.heroVideo || baseContent.heroVideo,
+      ogImage: override.ogImage || baseContent.ogImage,
+      datasheetUrl: override.datasheetUrl || baseContent.datasheetUrl,
+      datasheetLabel: override.datasheetLabel || baseContent.datasheetLabel,
+      gallery: override.gallery || baseContent.gallery || [],
+      visuals: override.visuals || baseContent.visuals,
+      path: baseContent.path
+    };
+  }
 
   if (isLegacyColiphageIndicatorOverride(baseContent, override)) {
     return {

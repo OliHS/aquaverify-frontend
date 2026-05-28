@@ -287,21 +287,21 @@ export const AgricultureWaterLanding: React.FC<Props> = ({ content, pageLang, sh
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
       <Header />
       <main className="flex-grow pt-20">
-        <section className="relative overflow-hidden bg-slate-950 text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_10%,rgba(20,191,209,0.34),transparent_30%),radial-gradient(circle_at_88%_18%,rgba(16,185,129,0.22),transparent_28%),linear-gradient(135deg,#07334d_0%,#084d6d_48%,#0d7895_100%)]" />
+        <section className="aq-page-hero">
+          <div className="absolute inset-0 bg-transparent" />
           <div className="container relative z-10 mx-auto grid gap-10 px-6 py-16 md:py-24 lg:grid-cols-[minmax(0,1fr)_27rem] lg:items-center">
             <div className="max-w-4xl">
-              <div className="inline-flex rounded-full border border-cyan-200/25 bg-white/10 px-3 py-1 text-xs font-black uppercase tracking-[0.18em] text-cyan-100">
+              <div className="aq-hero-eyebrow">
                 {content.eyebrow || copy.sectionEyebrows[0]}
               </div>
-              <h1 className="mt-6 font-heading text-4xl font-black leading-tight md:text-6xl">{content.title}</h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-cyan-50/85">{content.description}</p>
+              <h1 className="aq-gradient-title mt-6 font-heading text-4xl font-black leading-tight md:text-6xl">{content.title}</h1>
+              <p className="aq-hero-copy mt-6 max-w-3xl text-lg leading-8">{content.description}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a href={signupUrl} onClick={() => handleCtaClick(content.primaryCta || copy.formSubmit)} className="inline-flex items-center justify-center rounded bg-white px-6 py-3 text-sm font-black text-primary shadow-lg transition hover:bg-secondary hover:text-white">
+                <a href={signupUrl} onClick={() => handleCtaClick(content.primaryCta || copy.formSubmit)} className="aq-cta-primary">
                   {content.primaryCta || copy.formSubmit}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
-                <a href="#flujo" className="inline-flex items-center justify-center rounded border border-white/25 px-6 py-3 text-sm font-black text-white transition hover:bg-white/10">
+                <a href="#flujo" className="aq-cta-secondary">
                   {content.secondaryCta || sections[1].title}
                 </a>
               </div>
@@ -517,7 +517,7 @@ export const AgricultureWaterLanding: React.FC<Props> = ({ content, pageLang, sh
                   <textarea name="main_need" placeholder={copy.formPlaceholders[8]} className="min-h-28 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" />
                 </label>
                 <div className="md:col-span-2">
-                  <button type="submit" className="inline-flex w-full items-center justify-center rounded-full bg-cyan-600 px-6 py-4 text-sm font-black text-white shadow-lg transition hover:bg-cyan-700 md:w-auto">
+                  <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
                     {copy.formSubmit}
                     <ArrowRight className="ml-2 h-4 w-4" />
                   </button>

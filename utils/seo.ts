@@ -1,4 +1,6 @@
 import type { Language } from './translations';
+import { HOME_FAQS, getHomeIndustryItems, getHomeProductItems } from './homeContent';
+import { getMarketingPagePath } from './marketingRoutes';
 
 export const CORPORATE_SITE_URL = 'https://aquaverify.com';
 export const SUPPORTED_SEO_LANGUAGES: Language[] = ['en', 'es', 'fr', 'it', 'ca'];
@@ -13,24 +15,24 @@ const SEO_LOCALES: Record<Language, string> = {
 
 const DEFAULT_SEO: Record<Language, { title: string; description: string }> = {
   en: {
-    title: 'AquaVerify | Water Testing, LIMS Traceability & Technical Reporting',
-    description: 'AquaVerify combines water microbiology products, digital LIMS traceability, technical reporting, distributor support and OEM partnerships.'
+    title: 'AquaVerify | Innovative Detection of Viruses and Bacteria in Water',
+    description: 'AquaVerify develops, manufactures and distributes innovative products for detecting viruses and bacteria in water, connected with AquaVerify Cloud, technical reporting, distributors and OEM programs.'
   },
   es: {
-    title: 'AquaVerify | Kits de Agua, Trazabilidad LIMS y Reporting Técnico',
-    description: 'AquaVerify combina productos de microbiología del agua, trazabilidad digital LIMS, reporting técnico, distribuidores y programas OEM.'
+    title: 'AquaVerify | Detección innovadora de virus y bacterias en el agua',
+    description: 'AquaVerify desarrolla, fabrica y distribuye productos innovadores para la detección de virus y bacterias en el agua, conectados con AquaVerify Cloud, reporting técnico, distribuidores y programas OEM.'
   },
   fr: {
-    title: 'AquaVerify | Tests Eau, Traçabilité LIMS et Reporting Technique',
-    description: 'AquaVerify réunit produits de microbiologie de l’eau, traçabilité numérique LIMS, reporting technique, distributeurs et partenariats OEM.'
+    title: 'AquaVerify | Détection innovante des virus et bactéries dans l’eau',
+    description: 'AquaVerify développe, fabrique et distribue des produits innovants pour détecter virus et bactéries dans l’eau, connectés à AquaVerify Cloud, reporting technique, distributeurs et programmes OEM.'
   },
   it: {
-    title: 'AquaVerify | Test Acqua, Tracciabilità LIMS e Reporting Tecnico',
-    description: 'AquaVerify unisce prodotti di microbiologia dell’acqua, tracciabilità digitale LIMS, reporting tecnico, distributori e partnership OEM.'
+    title: 'AquaVerify | Rilevazione innovativa di virus e batteri nell’acqua',
+    description: 'AquaVerify sviluppa, produce e distribuisce prodotti innovativi per rilevare virus e batteri nell’acqua, collegati ad AquaVerify Cloud, reporting tecnico, distributori e programmi OEM.'
   },
   ca: {
-    title: 'AquaVerify | Kits d’Aigua, Traçabilitat LIMS i Reporting Tècnic',
-    description: 'AquaVerify combina productes de microbiologia de l’aigua, traçabilitat digital LIMS, reporting tècnic, distribuïdors i programes OEM.'
+    title: 'AquaVerify | Detecció innovadora de virus i bacteris a l’aigua',
+    description: 'AquaVerify desenvolupa, fabrica i distribueix productes innovadors per detectar virus i bacteris a l’aigua, connectats amb AquaVerify Cloud, reporting tècnic, distribuïdors i programes OEM.'
   }
 };
 
@@ -45,6 +47,101 @@ export function getRouteLanguage(pathname: string): Language | null {
 
 export function getLanguagePath(lang: Language): string {
   return `/${lang}`;
+}
+
+function isHomePath(pathname: string) {
+  const normalized = pathname.split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
+  return normalized === '/' || SUPPORTED_SEO_LANGUAGES.some((language) => normalized === getLanguagePath(language));
+}
+
+function itemListElement(items: Array<{ name: string; path: string }>) {
+  return items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    url: getAbsoluteUrl(item.path)
+  }));
+}
+
+function removeHomeJsonLd() {
+  removeJsonLd('home-graph');
+}
+
+function homeFaqEntities(lang: Language) {
+  return (HOME_FAQS[lang] || HOME_FAQS.en).map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer
+    }
+  }));
+}
+
+function homeJsonLdGraph(lang: Language, canonicalUrl: string, title: string, description: string) {
+  const organizationId = `${CORPORATE_SITE_URL}/#organization`;
+  const websiteId = `${CORPORATE_SITE_URL}/#website`;
+  const webpageId = `${canonicalUrl}#webpage`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': organizationId,
+        name: 'AquaVerify',
+        url: CORPORATE_SITE_URL,
+        logo: `${CORPORATE_SITE_URL}/images/logo-mark-160.png`,
+        description
+      },
+      {
+        '@type': 'WebSite',
+        '@id': websiteId,
+        name: 'AquaVerify',
+        url: CORPORATE_SITE_URL,
+        inLanguage: lang,
+        description,
+        publisher: { '@id': organizationId },
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: `${getAbsoluteUrl(getMarketingPagePath('resources', lang))}?search={search_term_string}`,
+          'query-input': 'required name=search_term_string'
+        }
+      },
+      {
+        '@type': 'WebPage',
+        '@id': webpageId,
+        name: title,
+        description,
+        url: canonicalUrl,
+        inLanguage: lang,
+        isPartOf: { '@id': websiteId },
+        about: { '@id': organizationId },
+        publisher: { '@id': organizationId }
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${canonicalUrl}#products`,
+        name: `${title} - products`,
+        itemListElement: itemListElement(getHomeProductItems(lang))
+      },
+      {
+        '@type': 'ItemList',
+        '@id': `${canonicalUrl}#industries`,
+        name: `${title} - industries`,
+        itemListElement: itemListElement(getHomeIndustryItems(lang))
+      },
+      {
+        '@type': 'FAQPage',
+        '@id': `${canonicalUrl}#faq`,
+        mainEntity: homeFaqEntities(lang)
+      }
+    ]
+  };
+}
+
+function upsertHomeJsonLd(lang: Language, canonicalUrl: string, title: string, description: string) {
+  upsertJsonLd('home-graph', homeJsonLdGraph(lang, canonicalUrl, title, description));
 }
 
 function getCanonicalUrl(lang: Language, pathname: string): string {
@@ -117,6 +214,12 @@ export function applyPublicSeo({
       href: `${CORPORATE_SITE_URL}${getLanguagePath(language)}`
     });
   });
+
+  if (isHomePath(pathname)) {
+    upsertHomeJsonLd(lang, canonicalUrl, title, description);
+  } else {
+    removeHomeJsonLd();
+  }
 }
 
 function getAbsoluteUrl(path: string) {
@@ -145,6 +248,19 @@ function removeJsonLd(id: string) {
   document.head.querySelector<HTMLScriptElement>(`script[type="application/ld+json"][data-id="${id}"]`)?.remove();
 }
 
+function getMarketingSchemaType(pageType?: string) {
+  if (pageType === 'Product') return 'Product';
+  if (pageType === 'TechArticle') return 'TechArticle';
+  if (pageType === 'DefinedTerm') return 'DefinedTerm';
+  if (pageType === 'DefinedTermSet') return 'DefinedTermSet';
+  if (pageType === 'resourcesHub') return 'CollectionPage';
+  if (pageType === 'products' || pageType === 'industries') return 'CollectionPage';
+  if (pageType === 'platform') return 'SoftwareApplication';
+  if (pageType === 'partners') return 'Service';
+  if (pageType === 'resources') return 'Article';
+  return 'WebPage';
+}
+
 export function applyMarketingSeo({
   lang,
   title,
@@ -168,6 +284,7 @@ export function applyMarketingSeo({
 }) {
   const canonicalUrl = getAbsoluteUrl(canonicalPath);
   const socialImageUrl = getAbsoluteAssetUrl(imageUrl);
+  const schemaType = getMarketingSchemaType(pageType);
 
   document.documentElement.lang = lang;
   document.title = title;
@@ -204,12 +321,12 @@ export function applyMarketingSeo({
 
   upsertJsonLd('marketing-page', {
     '@context': 'https://schema.org',
-    '@type': pageType === 'Product' ? 'Product' : pageType === 'resources' ? 'Article' : 'WebPage',
+    '@type': schemaType,
     name: title,
     description,
     url: canonicalUrl,
     image: socialImageUrl,
-    ...(pageType === 'Product' ? {
+    ...(schemaType === 'Product' ? {
       brand: {
         '@type': 'Brand',
         name: 'AquaVerify'

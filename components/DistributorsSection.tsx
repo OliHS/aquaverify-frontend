@@ -296,13 +296,11 @@ export const DistributorsSection: React.FC = () => {
                   </button>
                 </div>
 
-                {/* Search Button (CTA) */}
                 <button
                   onClick={() => handleCountrySelect(searchQuery)}
                   className="absolute right-0 top-0 h-full w-12 flex items-center justify-center opacity-0 pointer-events-none"
                   aria-label="Search"
                 >
-                  {/* Hidden but functionality integrated into dropdown selection for better UX */}
                 </button>
 
                 <AnimatePresence>

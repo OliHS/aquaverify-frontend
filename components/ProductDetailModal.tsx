@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { X, CheckCircle2, FileText, Zap, ChevronRight, ChevronLeft, Box, Maximize2 } from 'lucide-react';
 import { ProductItem } from '../types';
 import { Lightbox } from './Lightbox';
 import { useLanguage } from '../context/LanguageContext';
 import { IMAGE_FALLBACKS } from '../utils/imageFallbacks';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
+import { getProductFamilyPagePath, getProductPagePath } from '../utils/productPageLinks';
 
 interface ProductDetailModalProps {
   product: ProductItem;
@@ -13,6 +15,59 @@ interface ProductDetailModalProps {
   familyTitle: string;
   onClose: () => void;
 }
+
+const DETAIL_LABELS = {
+  en: {
+    permanent: 'Open product page',
+    quoteTitle: 'Ready to order?',
+    quoteBody: 'Get a custom quote including volume discounts.',
+    quote: 'Request Quote',
+    official: 'Official Product',
+    description: 'Description',
+    specs: 'Technical Specifications',
+    applications: 'Applications'
+  },
+  es: {
+    permanent: 'Abrir página del producto',
+    quoteTitle: '¿Listo para pedir?',
+    quoteBody: 'Solicita una cotización adaptada a volumen y contexto.',
+    quote: 'Solicitar cotización',
+    official: 'Producto oficial',
+    description: 'Descripción',
+    specs: 'Especificaciones técnicas',
+    applications: 'Aplicaciones'
+  },
+  fr: {
+    permanent: 'Ouvrir la page produit',
+    quoteTitle: 'Prêt à commander?',
+    quoteBody: 'Demandez un devis adapté au volume et au contexte.',
+    quote: 'Demander un devis',
+    official: 'Produit officiel',
+    description: 'Description',
+    specs: 'Spécifications techniques',
+    applications: 'Applications'
+  },
+  it: {
+    permanent: 'Apri pagina prodotto',
+    quoteTitle: 'Pronto per ordinare?',
+    quoteBody: 'Richiedi un preventivo adattato a volume e contesto.',
+    quote: 'Richiedi preventivo',
+    official: 'Prodotto ufficiale',
+    description: 'Descrizione',
+    specs: 'Specifiche tecniche',
+    applications: 'Applicazioni'
+  },
+  ca: {
+    permanent: 'Obrir pàgina del producte',
+    quoteTitle: 'A punt per demanar?',
+    quoteBody: 'Sol·licita un pressupost adaptat a volum i context.',
+    quote: 'Sol·licitar pressupost',
+    official: 'Producte oficial',
+    description: 'Descripció',
+    specs: 'Especificacions tècniques',
+    applications: 'Aplicacions'
+  }
+};
 
 export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product, familyId, familyTitle, onClose }) => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -23,6 +78,8 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
     family: familyId,
     product: product.id || product.name
   }, lang);
+  const labels = DETAIL_LABELS[lang] || DETAIL_LABELS.en;
+  const productPagePath = getProductPagePath(product, lang) || getProductFamilyPagePath(familyId, familyTitle, lang);
 
   // Normalize images
   const images = (product.images && product.images.length > 0) 
@@ -123,7 +180,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                     )}
 
                     <div className="absolute bottom-4 left-4 text-white pointer-events-none">
-                      <span className="bg-secondary/90 px-2 py-1 rounded text-xs font-bold shadow-sm">Official Product</span>
+                      <span className="bg-secondary/90 px-2 py-1 rounded text-xs font-bold shadow-sm">{labels.official}</span>
                     </div>
                   </div>
 
@@ -147,7 +204,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                   <div className="mt-6">
                     <h4 className="font-bold text-gray-900 mb-3 flex items-center">
                       <FileText size={18} className="mr-2 text-primary" />
-                      Description
+                      {labels.description}
                     </h4>
                     <p className="text-gray-600 leading-relaxed mb-6">
                       {product.description || product.detail || "Technical product information for laboratory water microbiology workflows. Final method suitability should be validated for each use case and market."}
@@ -161,7 +218,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                     <div className="mb-8">
                       <h4 className="font-bold text-gray-900 mb-4 flex items-center">
                         <Zap size={18} className="mr-2 text-primary" />
-                        Technical Specifications
+                        {labels.specs}
                       </h4>
                       <div className="bg-surface rounded-lg p-4 border border-gray-100">
                         <table className="w-full text-sm">
@@ -179,7 +236,7 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
                   )}
 
                   <div>
-                    <h4 className="font-bold text-gray-900 mb-4">Applications</h4>
+                    <h4 className="font-bold text-gray-900 mb-4">{labels.applications}</h4>
                     <ul className="space-y-3">
                         {(product.specificUseCases || ["General Laboratory Analysis", "Quality Control", "Research & Development"]).map((useCase, idx) => (
                           <li key={idx} className="flex items-start text-sm text-gray-700">
@@ -195,12 +252,22 @@ export const ProductDetailModal: React.FC<ProductDetailModalProps> = ({ product,
             {/* Footer CTA */}
             <div className="bg-blue-50 border border-blue-100 rounded-xl p-6 flex flex-col md:flex-row items-center justify-between gap-4">
               <div>
-                <h4 className="font-bold text-primary">Ready to order?</h4>
-                <p className="text-sm text-blue-800">Get a custom quote including volume discounts.</p>
+                <h4 className="font-bold text-primary">{labels.quoteTitle}</h4>
+                <p className="text-sm text-blue-800">{labels.quoteBody}</p>
               </div>
-              <a href={quoteUrl} className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-bold shadow-lg transition-all flex items-center">
-                Request Quote <ChevronRight size={18} className="ml-2" />
-              </a>
+              <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+                <Link
+                  to={productPagePath}
+                  onClick={onClose}
+                  className="inline-flex items-center justify-center rounded-lg border border-primary/15 bg-white px-6 py-3 text-sm font-bold text-primary transition hover:border-primary"
+                >
+                  {labels.permanent}
+                  <ChevronRight size={18} className="ml-2" />
+                </Link>
+                <a href={quoteUrl} className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-3 text-sm font-bold text-white shadow-lg transition-all hover:bg-primary/90">
+                  {labels.quote} <ChevronRight size={18} className="ml-2" />
+                </a>
+              </div>
             </div>
           </div>
         </motion.div>

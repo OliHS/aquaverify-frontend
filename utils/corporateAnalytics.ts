@@ -102,6 +102,72 @@ function pushDataLayerEvent(eventName: string, payload: AnalyticsPayload) {
   }
 }
 
+function sendConsentPageView() {
+  if (typeof window === 'undefined') return;
+  const win = window as typeof window & {
+    dataLayer?: Array<Record<string, unknown>>;
+    gtag?: (...args: unknown[]) => void;
+  };
+
+  const payload = {
+    page_title: document.title,
+    page_location: window.location.href,
+    page_path: window.location.pathname
+  };
+
+  win.dataLayer = win.dataLayer || [];
+  win.dataLayer.push({
+    event: 'aquaverify_page_view_after_consent',
+    ...payload
+  });
+
+  if (typeof win.gtag === 'function') {
+    win.gtag('event', 'page_view', payload);
+  }
+}
+
+export function updateGoogleConsentMode(
+  consent: { analytics: boolean; marketing: boolean },
+  options: { sendPageView?: boolean } = {}
+) {
+  if (typeof window === 'undefined') return;
+
+  const win = window as typeof window & {
+    dataLayer?: Array<unknown>;
+    gtag?: (...args: unknown[]) => void;
+  };
+
+  win.dataLayer = win.dataLayer || [];
+  const analyticsStorage = consent.analytics ? 'granted' : 'denied';
+  const marketingStorage = consent.marketing ? 'granted' : 'denied';
+
+  if (typeof win.gtag === 'function') {
+    win.gtag('consent', 'update', {
+      analytics_storage: analyticsStorage,
+      ad_storage: marketingStorage,
+      ad_user_data: marketingStorage,
+      ad_personalization: marketingStorage
+    });
+  } else {
+    win.dataLayer.push(['consent', 'update', {
+      analytics_storage: analyticsStorage,
+      ad_storage: marketingStorage,
+      ad_user_data: marketingStorage,
+      ad_personalization: marketingStorage
+    }]);
+  }
+
+  win.dataLayer.push({
+    event: 'aquaverify_consent_update',
+    analytics_storage: analyticsStorage,
+    ad_storage: marketingStorage
+  });
+
+  if (consent.analytics && options.sendPageView) {
+    window.setTimeout(sendConsentPageView, 0);
+  }
+}
+
 export function hasAnalyticsConsent() {
   return Boolean(readConsent()?.analytics);
 }

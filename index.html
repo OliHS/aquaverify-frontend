@@ -23,6 +23,67 @@
   <meta name="application-name" content="AquaVerify" />
   <meta name="apple-mobile-web-app-title" content="AquaVerify" />
   <meta name="theme-color" content="#00AEEF" />
+  <!-- Google Consent Mode + Google Tag Manager -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    (function () {
+      var analyticsStorage = 'denied';
+      var marketingStorage = 'denied';
+
+      try {
+        var rawConsent = window.localStorage && window.localStorage.getItem('aquaverify_cookie_consent');
+        if (!rawConsent) {
+          var cookieMatch = document.cookie.match(/(?:^|; )aquaverify_cookie_consent=([^;]+)/);
+          rawConsent = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
+        }
+
+        if (rawConsent) {
+          var consent = JSON.parse(rawConsent);
+          analyticsStorage = consent && consent.analytics ? 'granted' : 'denied';
+          marketingStorage = consent && consent.marketing ? 'granted' : 'denied';
+        }
+      } catch (error) {
+        analyticsStorage = 'denied';
+        marketingStorage = 'denied';
+      }
+
+      gtag('consent', 'default', {
+        ad_storage: marketingStorage,
+        analytics_storage: analyticsStorage,
+        ad_user_data: marketingStorage,
+        ad_personalization: marketingStorage,
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+    })();
+  </script>
+  <script>
+    (function (w, d, s, l, i) {
+      function loadGtm() {
+        if (w.__aquaverifyGtmLoaded) return;
+        w.__aquaverifyGtmLoaded = true;
+        w[l] = w[l] || [];
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      }
+
+      if ('requestIdleCallback' in w) {
+        w.requestIdleCallback(loadGtm, { timeout: 2500 });
+      } else {
+        w.addEventListener('load', function () {
+          w.setTimeout(loadGtm, 900);
+        }, { once: true });
+      }
+    })(window, document, 'script', 'dataLayer', 'GTM-TXHGB5D4');
+  </script>
+  <!-- End Google Tag Manager -->
   <script>
     document.documentElement.classList.remove('no-js');
     document.documentElement.classList.add('js');
@@ -64,12 +125,17 @@
   <!-- Google Fonts: Montserrat (Headers) & Inter (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="image" href="/images/home/enumera-tray-video-poster.jpg" fetchpriority="high">
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap"
     rel="stylesheet">
 </head>
 
 <body class="bg-white text-text antialiased">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXHGB5D4" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

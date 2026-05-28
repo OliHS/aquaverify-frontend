@@ -14,7 +14,8 @@ const DistributorsManager = React.lazy(() => import('./pages/admin/DistributorsM
 const ProductManager = React.lazy(() => import('./pages/admin/ProductManager').then(module => ({ default: module.ProductManager })));
 const MarketingPagesList = React.lazy(() => import('./pages/admin/MarketingPagesList').then(module => ({ default: module.MarketingPagesList })));
 const MarketingPageEditor = React.lazy(() => import('./pages/admin/MarketingPageEditor').then(module => ({ default: module.MarketingPageEditor })));
-const MarketingRoutePage = React.lazy(() => import('./pages/MarketingRoutePage').then(module => ({ default: module.MarketingRoutePage })));
+const loadMarketingRoutePage = () => import('./pages/MarketingRoutePage').then(module => ({ default: module.MarketingRoutePage }));
+const MarketingRoutePage = React.lazy(loadMarketingRoutePage);
 
 const RouteFallback: React.FC = () => (
   <div className="min-h-screen bg-white" aria-hidden="true">
@@ -73,11 +74,33 @@ const ScrollToTopOnRouteChange: React.FC = () => {
   return null;
 };
 
+const AdminRobotsMeta: React.FC = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    if (!pathname.startsWith('/admin')) return;
+
+    const selector = 'meta[name="robots"]';
+    let meta = document.head.querySelector<HTMLMetaElement>(selector);
+
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'robots');
+      document.head.appendChild(meta);
+    }
+
+    meta.setAttribute('content', 'noindex, nofollow');
+  }, [pathname]);
+
+  return null;
+};
+
 const App: React.FC = () => {
   return (
     <LanguageProvider>
       <BrowserRouter>
         <ScrollToTopOnRouteChange />
+        <AdminRobotsMeta />
         <CorporateAnalytics />
         <Suspense fallback={<RouteFallback />}>
           <Routes>
