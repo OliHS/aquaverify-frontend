@@ -65,10 +65,9 @@
           <div>
             <h4 class="font-bold text-lg mb-4"><?php esc_html_e( 'Contact', 'aquaverify' ); ?></h4>
             <ul class="space-y-2 text-sm text-gray-400">
-              <li><?php esc_html_e( '123 Science Park Drive', 'aquaverify' ); ?></li>
-              <li><?php esc_html_e( 'Innovation District, CA 90210', 'aquaverify' ); ?></li>
-              <li class="pt-2">info@aquaverify.com</li>
-              <li>+1 (555) 123-4567</li>
+              <li><?php esc_html_e( 'European Union / Barcelona, Spain', 'aquaverify' ); ?></li>
+              <li class="pt-2">hola@aquaverify.com</li>
+              <li><?php esc_html_e( 'Contact via form', 'aquaverify' ); ?></li>
             </ul>
           </div>
         </div>

@@ -539,12 +539,12 @@ get_header(); ?>
                 }
 
                 const partners = [
-                    { id: '1', name: "AquaTech Solutions NY", location: "New York, USA", country: "United States", type: 'exclusive', address: "1200 Broadway, NY 10001", email: "sales.ny@aquatech.com", phone: "+1 212 555 0199", lat: 40.71, lng: -74.00, size: 1 },
-                    { id: '2', name: "EuroLab Supplies", location: "London, UK", country: "United Kingdom", type: 'exclusive', address: "15 Baker Street, London W1U 8AE", email: "info@eurolab.co.uk", phone: "+44 20 7946 0958", lat: 51.50, lng: -0.12, size: 1 },
-                    { id: '3', name: "Nippon Biotech", location: "Tokyo, Japan", country: "Japan", type: 'reseller', address: "Shinjuku City, Tokyo 160-0022", email: "contact@nipponbio.jp", phone: "+81 3 1234 5678", lat: 35.68, lng: 139.65, size: 0.5 },
-                    { id: '4', name: "BioSur Ltda", location: "Sao Paulo, Brazil", country: "Brazil", type: 'service', address: "Av. Paulista, 1578, Sao Paulo", email: "suporte@biosur.com.br", phone: "+55 11 98765 4321", lat: -23.55, lng: -46.63, size: 0.5 },
-                    { id: '5', name: "Oceanic Science", location: "Sydney, Australia", country: "Australia", type: 'reseller', address: "200 George St, Sydney NSW 2000", email: "sales@oceanic.com.au", phone: "+61 2 9876 5432", lat: -33.86, lng: 151.20, size: 0.5 },
-                    { id: '6', name: "Berlin Diagnostics", location: "Berlin, Germany", country: "Germany", type: 'service', address: "Alexanderplatz 1, 10178 Berlin", email: "service@berlindm.de", phone: "+49 30 1234567", lat: 52.52, lng: 13.40, size: 0.5 },
+                    { id: 'eu-open', name: "Open Territory: European Union", location: "Barcelona, Spain / European Union", country: "European Union", type: 'open', address: "Contact via form", email: "hola@aquaverify.com", phone: "", lat: 41.38, lng: 2.17, size: 1 },
+                    { id: 'na-open', name: "Open Territory: North America", location: "North America", country: "North America", type: 'open', address: "Contact via form", email: "hola@aquaverify.com", phone: "", lat: 40.71, lng: -74.00, size: 0.5 },
+                    { id: 'latam-open', name: "Open Territory: Latin America", location: "Latin America", country: "Latin America", type: 'open', address: "Contact via form", email: "hola@aquaverify.com", phone: "", lat: -23.55, lng: -46.63, size: 0.5 },
+                    { id: 'uk-open', name: "Open Territory: United Kingdom & Ireland", location: "United Kingdom & Ireland", country: "United Kingdom & Ireland", type: 'open', address: "Contact via form", email: "hola@aquaverify.com", phone: "", lat: 51.50, lng: -0.12, size: 0.5 },
+                    { id: 'apac-open', name: "Open Territory: Asia Pacific", location: "Asia Pacific", country: "Asia Pacific", type: 'open', address: "Contact via form", email: "hola@aquaverify.com", phone: "", lat: 35.68, lng: 139.65, size: 0.5 },
+                    { id: 'mea-open', name: "Open Territory: Middle East & Africa", location: "Middle East & Africa", country: "Middle East & Africa", type: 'open', address: "Contact via form", email: "hola@aquaverify.com", phone: "", lat: 25.20, lng: 55.27, size: 0.5 },
                 ];
 
                 function renderPartnerList(filteredPartners) {
