@@ -31,7 +31,7 @@ type ProductsMarketingRouteProps = {
 };
 
 function getProductContent(page: any, lang: Language) {
-  return page?.content?.[lang] || page?.content?.en || null;
+  return page?.translations?.[lang] || page?.content?.[lang] || page?.translations?.en || page?.content?.en || null;
 }
 
 function getProductAlternates(page: any) {

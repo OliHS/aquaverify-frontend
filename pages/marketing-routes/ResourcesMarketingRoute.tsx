@@ -6,9 +6,12 @@ import { applyMarketingSeo } from '../../utils/seo';
 import { fetchMarketingPageOverride } from '../../utils/publicMarketingOverrides';
 import { mergeMarketingContent } from '../../utils/marketingContentMerge.js';
 import { findMarketingRouteByPath } from '../../utils/marketingRoutes.js';
-import { INDUSTRY_MARKETING_PAGES } from '../../utils/marketing-pages/industryPages.js';
+import { RESOURCE_MARKETING_PAGES } from '../../utils/marketing-pages/resourcePages.js';
 import { MARKETING_LANGUAGES } from '../../utils/marketing-pages/shared.js';
-import { IndustryMarketingPageDocument } from '../../components/marketing/IndustryMarketingPageDocument';
+import {
+  ResourceMarketingPageDocument,
+  toPublicAssetUrl
+} from '../../components/marketing/ResourceMarketingPageDocument';
 
 type LightweightRoute = {
   pageId: string;
@@ -18,7 +21,7 @@ type LightweightRoute = {
   path?: string;
 };
 
-type IndustriesMarketingRouteProps = {
+type ResourcesMarketingRouteProps = {
   route?: LightweightRoute | null;
 };
 
@@ -40,13 +43,6 @@ type MarketingPageMeta = {
   schemaType?: string;
 };
 
-function toPublicAssetUrl(value: string | undefined) {
-  const trimmed = value?.trim();
-  if (!trimmed) return '';
-  if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  return trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
-}
-
 function getPageContent(page: any, lang: Language) {
   return page?.translations?.[lang] || page?.content?.[lang] || page?.translations?.en || page?.content?.en || null;
 }
@@ -65,7 +61,7 @@ function getHomePath(lang: Language) {
 
 function getPageSummary(pageId: string | undefined, lang: Language) {
   if (!pageId) return null;
-  const page = INDUSTRY_MARKETING_PAGES.find((item: any) => item.id === pageId);
+  const page = RESOURCE_MARKETING_PAGES.find((item: any) => item.id === pageId);
   const content = getPageContent(page, lang);
   if (!page || !content) return null;
   return {
@@ -82,14 +78,14 @@ function getRelatedPages(page: any, lang: Language) {
 
   if (pageMeta.parentId) {
     relatedIds.add(pageMeta.parentId);
-    INDUSTRY_MARKETING_PAGES
+    RESOURCE_MARKETING_PAGES
       .filter((item: any) => item.id !== page.id && item.parentId === pageMeta.parentId)
       .slice(0, 3)
       .forEach((item: any) => relatedIds.add(item.id));
   }
 
   if (relatedIds.size < 4) {
-    INDUSTRY_MARKETING_PAGES
+    RESOURCE_MARKETING_PAGES
       .filter((item: any) => item.id !== page.id && item.category === page.category && !relatedIds.has(item.id))
       .slice(0, 4 - relatedIds.size)
       .forEach((item: any) => relatedIds.add(item.id));
@@ -118,12 +114,12 @@ function buildBreadcrumbs(page: any, content: MarketingContentMeta, lang: Langua
   return crumbs.filter((crumb, index, all) => all.findIndex((item) => item.path === crumb.path) === index);
 }
 
-export const IndustriesMarketingRoute: React.FC<IndustriesMarketingRouteProps> = ({ route }) => {
+export const ResourcesMarketingRoute: React.FC<ResourcesMarketingRouteProps> = ({ route }) => {
   const location = useLocation();
   const routeMatch = route || findMarketingRouteByPath(location.pathname);
   const pageLang = (routeMatch?.lang || routeMatch?.language || 'en') as Language;
-  const page = routeMatch?.family === 'industries'
-    ? INDUSTRY_MARKETING_PAGES.find((item: any) => item.id === routeMatch.pageId)
+  const page = routeMatch?.family === 'resources'
+    ? RESOURCE_MARKETING_PAGES.find((item: any) => item.id === routeMatch.pageId)
     : null;
   const baseContent = page ? getPageContent(page, pageLang) : null;
   const { lang, setLang } = useLanguage();
@@ -175,13 +171,17 @@ export const IndustriesMarketingRoute: React.FC<IndustriesMarketingRouteProps> =
     return <Navigate to="/" replace />;
   }
 
+  const contentMeta = mergedContent as MarketingContentMeta;
+
   return (
-    <IndustryMarketingPageDocument
+    <ResourceMarketingPageDocument
       page={page}
       content={mergedContent}
       pageLang={pageLang}
+      breadcrumbs={buildBreadcrumbs(page, contentMeta, pageLang)}
+      relatedPages={getRelatedPages(page, pageLang)}
     />
   );
 };
 
-export default IndustriesMarketingRoute;
+export default ResourcesMarketingRoute;
