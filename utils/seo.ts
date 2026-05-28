@@ -179,8 +179,9 @@ export function applyPublicSeo({
   pathname: string;
 }) {
   const defaults = DEFAULT_SEO[lang] || DEFAULT_SEO.en;
-  const title = pageMeta?.seo_title || pageMeta?.title || defaults.title;
-  const description = pageMeta?.seo_description || defaults.description;
+  const isHome = isHomePath(pathname);
+  const title = isHome ? defaults.title : pageMeta?.seo_title || pageMeta?.title || defaults.title;
+  const description = isHome ? defaults.description : pageMeta?.seo_description || defaults.description;
   const canonicalUrl = getCanonicalUrl(lang, pathname);
   const imageUrl = `${CORPORATE_SITE_URL}/android-chrome-512x512.png`;
 
@@ -215,7 +216,7 @@ export function applyPublicSeo({
     });
   });
 
-  if (isHomePath(pathname)) {
+  if (isHome) {
     upsertHomeJsonLd(lang, canonicalUrl, title, description);
   } else {
     removeHomeJsonLd();
