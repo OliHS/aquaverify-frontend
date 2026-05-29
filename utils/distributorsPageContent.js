@@ -756,7 +756,7 @@ const RAW_PAGES = {
     pathsBody: 'Comenceu pel recorregut que millor descriu el vostre objectiu. Ambdues vies connecten amb l’equip AquaVerify adequat.',
     buyerPath: {
       title: 'Necessito comprar o implementar AquaVerify',
-      body: 'Trobeu la ruta local més adequada per adquirir productes, coordinar formació, validar disponibilitat i rebre suport tècnic al vostre país.',
+      body: 'Trobeu la ruta local més adequada per adquirir productes, coordinar formació, confirmar disponibilitat i rebre suport tècnic al vostre país.',
       bullets: ['Seleccioneu país i sector', 'Indiqueu producte, volum o cas d’ús', 'Rebeu resposta del partner o d’AquaVerify'],
       cta: 'Sol·licitar contacte local'
     },
