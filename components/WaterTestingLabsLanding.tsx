@@ -169,7 +169,7 @@ const LAB_UI: Record<Language, LabUiCopy> = {
     tableHeaders: ['Besoin', 'Contexte habituel', 'Produit ou flux', 'Livrable'],
     referencesEyebrow: 'Références techniques',
     referencesTitle: 'Un langage technique solide pour les laboratoires avec systèmes qualité exigeants.',
-    referencesBody: 'AquaVerify aide à structurer les enregistrements, la traçabilité et les rapports; l’accréditation, le périmètre et la validité de méthode dépendent des procédures approuvées par chaque laboratoire.',
+    referencesBody: 'AquaVerify aide à structurer les enregistrements, la traçabilité et les rapports; l’accréditation, le périmètre et la validité de méthode dépendent des procédures documentées par chaque laboratoire.',
     references: [
       ['ISO/IEC 17025', 'Cadre international pour démontrer compétence, impartialité et fonctionnement cohérent des laboratoires d’essais et d’étalonnage.', 'https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html'],
       ['ISO 10705-2', 'Norme de qualité de l’eau pour la détection et le dénombrement des bactériophages; partie 2: coliphages somatiques.', 'https://www.iso.org/standard/20127.html'],
@@ -187,7 +187,7 @@ const LAB_UI: Record<Language, LabUiCopy> = {
     formSubmit: 'Continuer dans AquaVerify Cloud',
     formPrivacy: 'La demande continue dans AquaVerify Cloud afin que l’équipe commerciale la reçoive avec origine, secteur et contexte laboratoire.',
     fallbackFaqs: [
-      ['AquaVerify remplace-t-il un laboratoire accrédité?', 'Non. AquaVerify agit comme couche produit, traçabilité, flux numérique, reporting et portail client. Les essais accrédités doivent rester dans le périmètre, les méthodes, les validations et les procédures approuvés du laboratoire.']
+      ['AquaVerify remplace-t-il un laboratoire accrédité?', 'Non. AquaVerify agit comme couche produit, traçabilité, flux numérique, reporting et portail client. Les essais accrédités doivent rester dans le périmètre, les méthodes, les validations et les procédures documentées du laboratoire.']
     ]
   },
   it: {
@@ -243,7 +243,7 @@ const LAB_UI: Record<Language, LabUiCopy> = {
     tableHeaders: ['Necessitat', 'Context habitual', 'Producte o flux', 'Entregable'],
     referencesEyebrow: 'Referències tècniques',
     referencesTitle: 'Llenguatge tècnic sòlid per a laboratoris amb sistemes de qualitat exigents.',
-    referencesBody: 'AquaVerify ajuda a estructurar registres, traçabilitat i informes; l’acreditació, l’abast i la validesa del mètode depenen dels procediments aprovats per cada laboratori.',
+    referencesBody: 'AquaVerify ajuda a estructurar registres, traçabilitat i informes; l’acreditació, l’abast i la validesa del mètode depenen dels procediments documentats per cada laboratori.',
     references: [
       ['ISO/IEC 17025', 'Marc internacional per demostrar competència, imparcialitat i operació consistent en laboratoris d’assaig i calibratge.', 'https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html'],
       ['ISO 10705-2', 'Norma de qualitat de l’aigua per detecció i enumeració de bacteriòfags; part 2: colífags somàtics.', 'https://www.iso.org/standard/20127.html'],
@@ -261,7 +261,7 @@ const LAB_UI: Record<Language, LabUiCopy> = {
     formSubmit: 'Continuar a AquaVerify Cloud',
     formPrivacy: 'La sol·licitud continua a AquaVerify Cloud perquè l’equip comercial la rebi amb origen, sector i context del laboratori.',
     fallbackFaqs: [
-      ['AquaVerify substitueix un laboratori acreditat?', 'No. AquaVerify actua com a capa de producte, traçabilitat, flux digital, reporting i portal client. Els assaigs acreditats s’han d’integrar en l’abast, mètodes, validacions i procediments aprovats pel laboratori.']
+      ['AquaVerify substitueix un laboratori acreditat?', 'No. AquaVerify actua com a capa de producte, traçabilitat, flux digital, reporting i portal client. Els assaigs acreditats s’han d’integrar en l’abast, mètodes, validacions i procediments documentats pel laboratori.']
     ]
   }
 };
