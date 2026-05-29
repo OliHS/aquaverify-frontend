@@ -45,6 +45,17 @@ type PathCard = Card & {
   cta: string;
 };
 
+type DirectAnswerContent = {
+  title: string;
+  body: string;
+};
+
+type TechnicalTableContent = {
+  title?: string;
+  columns: string[];
+  rows: string[][];
+};
+
 type DistributorForm = {
   title: string;
   body: string;
@@ -57,6 +68,7 @@ type DistributorContent = {
   title: string;
   description: string;
   eyebrow?: string;
+  directAnswer?: DirectAnswerContent;
   primaryCta?: string;
   secondaryCta?: string;
   heroPanelTitle?: string;
@@ -113,6 +125,7 @@ type DistributorContent = {
   countries?: string[];
   sectorOptions?: string[];
   faqs?: Array<{ question: string; answer: string }>;
+  technicalTable?: TechnicalTableContent;
 };
 
 type Props = {
@@ -124,6 +137,59 @@ type Props = {
 const sectorIcons = [FlaskConical, ShieldCheck, Landmark, Factory, Waves, Building2, Leaf, PackageCheck, Hotel];
 const buyerIcons = [PackageCheck, ShieldCheck, ClipboardCheck, Sparkles, CheckCircle2, Network];
 const programIcons = [PackageCheck, ClipboardCheck, ShieldCheck, Network, Handshake, Sparkles];
+
+const AnswerLayer: React.FC<{
+  directAnswer?: DirectAnswerContent;
+  technicalTable?: TechnicalTableContent;
+}> = ({ directAnswer, technicalTable }) => {
+  if (!directAnswer && !technicalTable) return null;
+
+  return (
+    <section className="py-16 md:py-20">
+      <div className="container mx-auto px-6">
+        <article className="rounded-lg border border-slate-200 bg-white p-7 shadow-sm">
+          {directAnswer && (
+            <>
+              <h2 className="font-heading text-2xl font-black text-primary">{directAnswer.title}</h2>
+              <p className="mt-3 text-base leading-8 text-slate-600">{directAnswer.body}</p>
+            </>
+          )}
+          {technicalTable && technicalTable.columns.length > 0 && technicalTable.rows.length > 0 && (
+            <div className={directAnswer ? 'mt-7' : ''}>
+              {technicalTable.title && (
+                <h3 className="font-heading text-xl font-black text-slate-900">{technicalTable.title}</h3>
+              )}
+              <div className="mt-4 overflow-x-auto rounded-lg border border-slate-200">
+                <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
+                  <thead className="bg-slate-50">
+                    <tr>
+                      {technicalTable.columns.map((column) => (
+                        <th key={column} scope="col" className="px-4 py-3 font-black text-primary">
+                          {column}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 bg-white">
+                    {technicalTable.rows.map((row, rowIndex) => (
+                      <tr key={`${row.join('-')}-${rowIndex}`}>
+                        {technicalTable.columns.map((column, columnIndex) => (
+                          <td key={`${column}-${columnIndex}`} className="px-4 py-4 font-semibold leading-6 text-slate-600">
+                            {row[columnIndex] || ''}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </article>
+      </div>
+    </section>
+  );
+};
 
 const FALLBACK_PARTNERS: DistributorPartner[] = [
   { id: 'eu-open', name: 'Open Territory: European Union', location: 'Barcelona, Spain / European Union', country: 'European Union', type: 'open', address: 'Contact via form', email: 'hola@aquaverify.com', phone: '', x: 51, y: 31, lat: 41.38, lng: 2.17 },
@@ -498,6 +564,11 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
             ))}
           </div>
         </section>
+
+        <AnswerLayer
+          directAnswer={content.directAnswer}
+          technicalTable={content.technicalTable}
+        />
 
         <section className="py-16 md:py-20">
           <div className="container mx-auto px-6">

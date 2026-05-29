@@ -24,6 +24,25 @@ function card(title, body) {
   return { title, body };
 }
 
+function answerSectionsFrom(page) {
+  return [
+    page.directAnswer
+      ? {
+          kind: 'directAnswer',
+          title: page.directAnswer.title,
+          body: page.directAnswer.body
+        }
+      : null,
+    page.technicalTable
+      ? {
+          kind: 'technicalTable',
+          title: page.technicalTable.title,
+          table: page.technicalTable
+        }
+      : null
+  ].filter(Boolean);
+}
+
 function addCommonFields(lang, page) {
   const sectors = page.sectors.map((sector, index) => ({
     ...sector,
@@ -37,6 +56,7 @@ function addCommonFields(lang, page) {
     sectorOptions: sectors.map((sector) => sector.title),
     sectors,
     sections: [
+      ...answerSectionsFrom(page),
       {
         title: page.pathsTitle,
         body: page.pathsBody,
@@ -235,6 +255,10 @@ const RAW_PAGES = {
     secondaryCta: 'Solicitar evaluación de partner',
     seoTitle: 'Distribuidores AquaVerify | Red global, soporte local y partners autorizados',
     seoDescription: 'Encuentre un distribuidor autorizado AquaVerify o solicite convertirse en partner para productos de microbiología del agua, trazabilidad digital, informes técnicos y oportunidades OEM.',
+    directAnswer: {
+      title: '¿Qué puede vender un distribuidor AquaVerify?',
+      body: 'Un distribuidor AquaVerify puede ofrecer productos de análisis microbiológico del agua, familias como ENUMERA, INDICA, kits técnicos, Lab Essentials y, cuando encaja, acceso o soporte relacionado con AquaVerify Cloud. El modelo depende del país, cartera, capacidad técnica, inventario, soporte local y acuerdo comercial. La distribución no equivale automáticamente a OEM ni marca blanca.'
+    },
     heroPanelTitle: 'Dos recorridos, una misma red',
     metrics: ['Ruta de suministro local', 'Evaluación técnica de partner', 'Portfolio producto + plataforma'],
     cycle: [
@@ -253,14 +277,14 @@ const RAW_PAGES = {
     pathsBody: 'Empieza por el recorrido que mejor describe tu objetivo. Ambos flujos llegan al equipo adecuado para acelerar la respuesta.',
     buyerPath: {
       title: 'Necesito comprar o implementar AquaVerify',
-      body: 'Encuentre la ruta local más adecuada para adquirir productos, coordinar formación, validar disponibilidad y recibir soporte técnico en su país.',
+      body: 'Encuentre la ruta local más adecuada para adquirir productos, coordinar formación, revisar disponibilidad y recibir soporte técnico en su país.',
       bullets: ['Seleccione país y sector', 'Indique producto, volumen o caso de uso', 'Reciba respuesta del partner o de AquaVerify'],
       cta: 'Solicitar contacto local'
     },
     partnerPath: {
       title: 'Quiero distribuir AquaVerify',
       body: 'Solicite evaluación como distribuidor, reseller técnico, partner regional, integrador u opción OEM/marca blanca.',
-      bullets: ['Indique territorio y cobertura', 'Explique cartera, clientes y capacidades técnicas', 'AquaVerify evalúa encaje, exclusividad y plan de activación'],
+      bullets: ['Indique territorio y cobertura', 'Explique cartera, clientes y capacidades técnicas', 'AquaVerify evalúa encaje territorial, soporte y plan de activación'],
       cta: 'Solicitar evaluación de partner'
     },
     authorizedEyebrow: 'Distribuidores autorizados',
@@ -358,13 +382,23 @@ const RAW_PAGES = {
       primary: 'Solicitar contacto local',
       secondary: 'Solicitar evaluación de partner'
     },
+    technicalTable: {
+      title: 'Alcance típico de un distribuidor autorizado',
+      columns: ['Aspecto', 'Distribuidor autorizado'],
+      rows: [
+        ['Cartera', 'Productos de análisis microbiológico del agua, familias AquaVerify, consumibles y recursos comerciales según acuerdo.'],
+        ['Cliente final', 'Laboratorios, utilities, industria, instalaciones, equipos de calidad y compradores técnicos en su mercado.'],
+        ['Responsabilidad', 'Gestión comercial, soporte local, coordinación de disponibilidad y comunicación técnica dentro del alcance acordado.'],
+        ['Conexión Cloud', 'Puede ofrecer o apoyar AquaVerify Cloud cuando el cliente necesita trazabilidad documental, reporting, CoA o portal cliente.'],
+        ['Límite prudente', 'La distribución no equivale automáticamente a OEM, marca blanca, cobertura regional universal ni soporte local en todos los casos.']
+      ]
+    },
     faqs: [
-      { question: '¿Cómo encuentro un distribuidor autorizado AquaVerify?', answer: 'Seleccione su país o envíe una solicitud con país, sector y necesidad. AquaVerify dirigirá la consulta al distribuidor autorizado, reseller regional o equipo interno más adecuado.' },
-      { question: '¿Qué ocurre si no hay distribuidor activo en mi país?', answer: 'AquaVerify puede evaluar suministro directo, soporte regional o una nueva oportunidad de distribución en ese territorio.' },
-      { question: '¿Qué empresas pueden convertirse en distribuidoras?', answer: 'Laboratorios, empresas de tratamiento de agua, distribuidores científicos, integradores, consultoras técnicas, proveedores de calidad, utilities partners y compañías con canal B2B especializado.' },
-      { question: '¿Los distribuidores pueden trabajar con OEM o marca blanca?', answer: 'Sí, AquaVerify puede evaluar modelos OEM, marca blanca o co-branding según territorio, volumen, cartera de clientes, soporte técnico y restricciones de mercado.' },
-      { question: '¿La oferta para partners incluye la plataforma digital?', answer: 'Los programas de partner pueden incluir flujos de plataforma para trazabilidad, reporting, comunicación con cliente y seguimiento comercial según el alcance acordado.' },
-      { question: '¿Cómo se mantiene la calidad técnica en la red?', answer: 'AquaVerify prioriza partners con capacidad de formación, documentación, soporte y comunicación técnica. Los casos complejos pueden escalarse al equipo AquaVerify.' }
+      { question: '¿Cómo encuentro un distribuidor AquaVerify en mi región?', answer: 'Seleccione país o envíe una solicitud con sector, producto y necesidad. AquaVerify puede dirigir la consulta al partner, reseller regional o equipo interno más adecuado según disponibilidad, cartera y contexto del mercado.' },
+      { question: '¿Qué soporte recibe un distribuidor AquaVerify?', answer: 'El soporte puede incluir material comercial, documentación técnica, formación, orientación de producto, recursos sectoriales y escalado de casos complejos. El alcance depende del acuerdo comercial, territorio, cartera y capacidad técnica del partner.' },
+      { question: '¿Un distribuidor puede ofrecer AquaVerify Cloud?', answer: 'Sí, cuando encaja con el cliente y el acuerdo, un distribuidor puede presentar o apoyar AquaVerify Cloud para trazabilidad documental, reporting, CoA, portal cliente o seguimiento comercial.' },
+      { question: '¿Cuál es la diferencia entre distribuidor y partner OEM?', answer: 'Un distribuidor vende o apoya productos AquaVerify bajo la marca AquaVerify. Un partner OEM o de marca blanca explora una integración con identidad propia, packaging o documentación adaptada, siempre según acuerdo y responsabilidades definidas.' },
+      { question: '¿Qué perfil necesita un nuevo distribuidor?', answer: 'Suelen encajar empresas con canal B2B científico o técnico, acceso a laboratorios o industrias, capacidad de soporte, seguimiento comercial y comunicación clara sobre microbiología del agua.' }
     ]
   },
   fr: {
