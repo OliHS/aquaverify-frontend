@@ -224,6 +224,10 @@ export const OEM_KITS_PAGE = {
     secondaryCta: 'View commercial models',
     seoTitle: 'OEM water testing kits | Private label, co-branding and distribution | AquaVerify',
     seoDescription: 'AquaVerify OEM program for microbiological water testing kits, private label, co-branding, distribution, consumables, digital traceability and technical support.',
+    directAnswer: {
+      title: 'What does the AquaVerify OEM and private-label program offer?',
+      body: 'The AquaVerify OEM program lets specialized partners explore distribution, co-branding or private-label models for water testing kits, with support for product, packaging, documentation and, when relevant, a digital layer with AquaVerify Cloud. Scope depends on country, portfolio, volume, technical requirements, regulatory responsibilities and the commercial agreement between the parties.'
+    },
     heroPanelTitle: 'From product to partner program',
     heroNodes: [card('Kits', 'Water microbiology'), card('Brand', 'AquaVerify, co-branding or OEM'), card('Software', 'Traceability, reports and CoA'), card('Support', 'Onboarding and scale-up')],
     heroMetrics: [card('3 routes', 'Distribution, co-branding and OEM'), card('9 sectors', 'Priority B2B applications'), card('140+', 'Potential markets supported')],
@@ -306,15 +310,23 @@ export const OEM_KITS_PAGE = {
     modelOptions: ['AquaVerify distribution', 'Co-branding', 'Private label / OEM', 'OEM + digital platform', 'Not sure yet'],
     sectorOptions: ['Water analysis laboratories', 'Water quality control', 'Municipal water analysis', 'Food and beverage', 'Industrial process water', 'Facility water risk', 'Agriculture', 'Pharmaceutical and cosmetics', 'Hospitality, tourism and leisure'],
     countries: COMMON_COUNTRIES.en,
+    technicalTable: {
+      title: 'Commercial models and prudent scope',
+      columns: ['Model', 'Visible brand', 'Best fit', 'Possible support', 'Prudent note'],
+      rows: [
+        ['Distribution', 'AquaVerify', 'Scientific distributors, laboratories, water treatment companies and B2B channels with technical capability.', 'Catalog, commercial material, training and technical coordination depending on agreement.', 'Does not imply OEM or private label by default; scope depends on territory and agreement.'],
+        ['Co-branding', 'AquaVerify + partner', 'Partners with local brand, existing portfolio or sector presence seeking a shared proposal.', 'Messaging, documentation, packaging or campaigns depending on configuration.', 'The parties should define brand use, responsibilities and public claims.'],
+        ['OEM/private label', 'Partner brand', 'Manufacturers, integrators or distributors with portfolio, volume and operational support.', 'Product, packaging, documentation, training and digital layer when relevant.', 'Regulatory acceptance depends on country, matrix, method, documentation and responsibilities.']
+      ]
+    },
     faqEyebrow: 'Frequently asked questions',
     faqTitle: 'Common questions about OEM and private label',
     faqs: [
-      { question: 'What is the difference between distribution, co-branding and OEM?', answer: 'Distribution keeps the AquaVerify brand, co-branding combines AquaVerify with the partner brand, and OEM allows evaluation of integration under the partner own brand with adapted packaging and documentation.' },
-      { question: 'Can the program include software and reporting?', answer: 'Yes. Depending on the agreed scope, the program can include AquaVerify Cloud, App, sample traceability, reading support, technical reports and structured analysis reports.' },
-      { question: 'Can packaging be adapted to my brand?', answer: 'Yes. Packaging, documentation and language adaptation are evaluated according to volume, territory, local requirements and brand model.' },
-      { question: 'Which sectors can be addressed with an OEM program?', answer: 'The program can focus on laboratories, utilities, food and beverage, industry, facilities, agriculture, pharmaceuticals, cosmetics, hospitality, tourism and leisure.' },
-      { question: 'Does AquaVerify cover regulatory acceptance in each country?', answer: 'Regulatory acceptance depends on the applicable method, matrix, country, competent authority, documentation and partner responsibilities.' },
-      { question: 'How does the process start?', answer: 'The first step is to share country, portfolio, target customers, technical capability, desired model and estimated volume. That information defines the evaluation route.' }
+      { question: 'What is the difference between distribution, co-branding and OEM?', answer: 'Distribution keeps the AquaVerify brand, co-branding combines AquaVerify with the partner brand, and OEM/private label explores integration under the partner identity. Each model requires clear responsibilities, documentation, support, territory and commercial scope.' },
+      { question: 'Can a partner sell kits under its own brand?', answer: 'It can be evaluated within an OEM or private-label model depending on country, portfolio, volume, technical capability, packaging, documentation and agreement. Availability should not be assumed for every market or configuration.' },
+      { question: 'Can AquaVerify Cloud be part of an OEM proposal?', answer: 'Yes, it can be part of the proposal when the workflow needs documentary traceability, reporting, CoA, customer portal or commercial follow-up. The digital scope depends on modules, users, integrations and agreement between the parties.' },
+      { question: 'Does the OEM program include regulatory acceptance?', answer: 'No. The program can provide product, documentation, training, packaging and technical support depending on agreement, while regulatory acceptance depends on method, matrix, country, competent authority, documentation and partner responsibilities.' },
+      { question: 'What type of partner is a good fit for OEM?', answer: 'Good fits are often scientific distributors, manufacturers, integrators, laboratories or water treatment companies with B2B portfolio, technical capability, operational support and a clear proposal for water microbiology.' }
     ],
     cta: { title: 'Turn your channel into a recurring water microbiology solution', body: 'AquaVerify helps you move from selling individual products to offering a complete proposition: kits, consumables, traceability, reporting, technical support and sector portfolio.', primary: 'Request OEM program', secondary: 'View commercial models' }
   }),
@@ -442,6 +454,10 @@ export const OEM_KITS_PAGE = {
     secondaryCta: 'Voir les modeles commerciaux',
     seoTitle: 'Kits OEM d analyse de l eau | Marque blanche, co-branding et distribution | AquaVerify',
     seoDescription: 'Programme OEM AquaVerify pour kits microbiologiques d analyse de l eau, marque blanche, co-branding, distribution, consommables, tracabilite digitale et support technique.',
+    directAnswer: {
+      title: 'Que propose le programme OEM et marque blanche d’AquaVerify ?',
+      body: 'Le programme OEM d’AquaVerify permet à des partenaires spécialisés d’explorer des modèles de distribution, co-branding ou marque blanche pour kits d’analyse de l’eau, avec support produit, packaging, documentation et, lorsque pertinent, une couche digitale avec AquaVerify Cloud. Le périmètre dépend du pays, du portefeuille, du volume, des exigences techniques, des responsabilités réglementaires et de l’accord commercial.'
+    },
     heroPanelTitle: 'Du produit au programme partenaire',
     heroNodes: [card('Kits', 'Microbiologie de l eau'), card('Marque', 'AquaVerify, co-branding ou OEM'), card('Logiciel', 'Tracabilite, rapports et CoA'), card('Support', 'Onboarding et montee en charge')],
     heroMetrics: [card('3 routes', 'Distribution, co-branding et OEM'), card('9 secteurs', 'Applications B2B prioritaires'), card('140+', 'Marches potentiels accompagnes')],
@@ -512,15 +528,23 @@ export const OEM_KITS_PAGE = {
     modelOptions: ['Distribution AquaVerify', 'Co-branding', 'Marque blanche / OEM', 'OEM + plateforme digitale', 'Pas encore sur'],
     sectorOptions: ['Laboratoires d analyse de l eau', 'Controle qualite de l eau', 'Analyse de l eau municipale', 'Food & beverage', 'Eau de process industriel', 'Risque eau dans les installations', 'Agriculture', 'Pharmaceutique et cosmetique', 'Hotellerie, tourisme et loisirs'],
     countries: COMMON_COUNTRIES.fr,
+    technicalTable: {
+      title: 'Modèles commerciaux et périmètre prudent',
+      columns: ['Modèle', 'Marque visible', 'Pour qui', 'Support possible', 'Note prudente'],
+      rows: [
+        ['Distribution', 'AquaVerify', 'Distributeurs scientifiques, laboratoires, entreprises de traitement de l’eau et canaux B2B avec capacité technique.', 'Catalogue, matériel commercial, formation et coordination technique selon accord.', 'N’implique pas OEM ni marque blanche par défaut; le périmètre dépend du territoire et de l’accord.'],
+        ['Co-branding', 'AquaVerify + partenaire', 'Partenaires avec marque locale, portefeuille existant ou présence sectorielle cherchant une proposition partagée.', 'Messages, documentation, packaging ou campagnes selon configuration.', 'Les parties doivent définir usage de marque, responsabilités et claims publics.'],
+        ['OEM/marque blanche', 'Marque du partenaire', 'Fabricants, intégrateurs ou distributeurs avec portefeuille, volume et support opérationnel.', 'Produit, packaging, documentation, formation et couche digitale lorsque pertinent.', 'L’acceptation réglementaire dépend du pays, de la matrice, de la méthode, de la documentation et des responsabilités.']
+      ]
+    },
     faqEyebrow: 'Questions frequentes',
     faqTitle: 'Questions frequentes sur OEM et marque blanche',
     faqs: [
-      { question: 'Quelle difference entre distribution, co-branding et OEM ?', answer: 'La distribution garde la marque AquaVerify, le co-branding associe AquaVerify a la marque partenaire et l OEM permet d evaluer une integration sous marque propre avec packaging et documentation adaptes.' },
-      { question: 'Le programme peut-il inclure logiciel et reporting ?', answer: 'Oui. Selon le perimetre convenu, le programme peut inclure AquaVerify Cloud, App, tracabilite echantillon, aide a la lecture, rapports techniques et rapports d analyse structures.' },
-      { question: 'Le packaging peut-il etre adapte a ma marque ?', answer: 'Oui. Packaging, documentation et adaptation linguistique sont evalues selon volume, territoire, exigences locales et modele de marque.' },
-      { question: 'Quels secteurs peuvent etre travailles avec un programme OEM ?', answer: 'Le programme peut viser laboratoires, utilities, food & beverage, industrie, installations, agriculture, pharmaceutique, cosmetique, hotellerie, tourisme et loisirs.' },
-      { question: 'AquaVerify couvre-t-il automatiquement la conformite reglementaire dans chaque pays ?', answer: 'Aucune conformite automatique ne doit etre supposee. Exigences reglementaires, claims, validation, etiquetage et import doivent etre verifies par territoire, matrice et usage prevu.' },
-      { question: 'Comment demarre le processus ?', answer: 'La premiere etape consiste a partager pays, portefeuille, clients cibles, capacite technique, modele souhaite et volume estime. Ces informations definissent la route d evaluation.' }
+      { question: 'Quelle est la différence entre distribution, co-branding et OEM ?', answer: 'La distribution garde la marque AquaVerify, le co-branding associe AquaVerify à la marque partenaire et l’OEM/marque blanche explore une intégration sous identité partenaire. Chaque modèle demande de définir responsabilités, documentation, support, territoire et périmètre commercial.' },
+      { question: 'Un partenaire peut-il vendre des kits sous sa propre marque ?', answer: 'Cela peut être évalué dans un modèle OEM ou marque blanche selon pays, portefeuille, volume, capacité technique, packaging, documentation et accord commercial. La disponibilité ne doit pas être supposée pour chaque marché ou configuration.' },
+      { question: 'AquaVerify Cloud peut-il faire partie d’une proposition OEM ?', answer: 'Oui, lorsque le flux nécessite traçabilité documentaire, reporting, CoA, portail client ou suivi commercial. Le périmètre digital dépend des modules, utilisateurs, intégrations et accord entre les parties.' },
+      { question: 'Le programme OEM inclut-il l’acceptation réglementaire ?', answer: 'Non. Le programme peut apporter produit, documentation, formation, packaging et support technique selon accord, tandis que l’acceptation réglementaire dépend de la méthode, de la matrice, du pays, de l’autorité compétente, de la documentation et des responsabilités du partenaire.' },
+      { question: 'Quel type de partenaire correspond le mieux à l’OEM ?', answer: 'Les profils adaptés sont souvent distributeurs scientifiques, fabricants, intégrateurs, laboratoires ou entreprises de traitement avec portefeuille B2B, capacité technique, support opérationnel et proposition claire pour la microbiologie de l’eau.' }
     ],
     cta: { title: 'Transformez votre canal en solution recurrente de microbiologie de l eau', body: 'AquaVerify vous aide a passer de produits isoles a une proposition complete : kits, consommables, tracabilite, reporting, support technique et portefeuille sectoriel.', primary: 'Demander le programme OEM', secondary: 'Voir les modeles commerciaux' }
   }),
@@ -533,6 +557,10 @@ export const OEM_KITS_PAGE = {
     secondaryCta: 'Vedi modelli commerciali',
     seoTitle: 'Kit OEM per analisi dell acqua | Private label, co-branding e distribuzione | AquaVerify',
     seoDescription: 'Programma OEM AquaVerify per kit microbiologici di analisi dell acqua, private label, co-branding, distribuzione, consumabili, tracciabilita digitale e supporto tecnico.',
+    directAnswer: {
+      title: 'Cosa offre il programma OEM e private label di AquaVerify?',
+      body: 'Il programma OEM di AquaVerify permette a partner specializzati di esplorare modelli di distribuzione, co-branding o private label per kit di analisi dell’acqua, con supporto su prodotto, packaging, documentazione e, quando rilevante, un layer digitale con AquaVerify Cloud. L’ambito dipende da paese, portfolio, volume, requisiti tecnici, responsabilità regolatorie e accordo commerciale.'
+    },
     heroPanelTitle: 'Dal prodotto al programma partner',
     heroNodes: [card('Kit', 'Microbiologia dell acqua'), card('Brand', 'AquaVerify, co-branding o OEM'), card('Software', 'Tracciabilita, report e CoA'), card('Supporto', 'Onboarding e scalabilita')],
     heroMetrics: [card('3 percorsi', 'Distribuzione, co-branding e OEM'), card('9 settori', 'Applicazioni B2B prioritarie'), card('140+', 'Mercati potenziali supportati')],
@@ -603,15 +631,23 @@ export const OEM_KITS_PAGE = {
     modelOptions: ['Distribuzione AquaVerify', 'Co-branding', 'Private label / OEM', 'OEM + piattaforma digitale', 'Non sono sicuro'],
     sectorOptions: ['Laboratori analisi acqua', 'Controllo qualita acqua', 'Analisi acqua municipale', 'Food & beverage', 'Acqua di processo industriale', 'Rischio acqua in strutture', 'Agricoltura', 'Farmaceutica e cosmetica', 'Hospitality, turismo e leisure'],
     countries: COMMON_COUNTRIES.it,
+    technicalTable: {
+      title: 'Modelli commerciali e ambito prudente',
+      columns: ['Modello', 'Brand visibile', 'Per chi è adatto', 'Supporto possibile', 'Nota prudente'],
+      rows: [
+        ['Distribuzione', 'AquaVerify', 'Distributori scientifici, laboratori, aziende di trattamento acqua e canali B2B con capacità tecnica.', 'Catalogo, materiale commerciale, formazione e coordinamento tecnico secondo accordo.', 'Non implica OEM o private label di default; l’ambito dipende da territorio e accordo.'],
+        ['Co-branding', 'AquaVerify + partner', 'Partner con brand locale, portfolio esistente o presenza settoriale che cercano una proposta condivisa.', 'Messaggi, documentazione, packaging o campagne secondo configurazione.', 'Le parti devono definire uso del brand, responsabilità e claim pubblici.'],
+        ['OEM/private label', 'Brand del partner', 'Produttori, integratori o distributori con portfolio, volume e supporto operativo.', 'Prodotto, packaging, documentazione, formazione e layer digitale quando rilevante.', 'L’accettazione regolatoria dipende da paese, matrice, metodo, documentazione e responsabilità.']
+      ]
+    },
     faqEyebrow: 'Domande frequenti',
     faqTitle: 'Domande frequenti su OEM e private label',
     faqs: [
-      { question: 'Qual e la differenza tra distribuzione, co-branding e OEM?', answer: 'La distribuzione mantiene il brand AquaVerify, il co-branding combina AquaVerify con il brand partner e l OEM permette di valutare integrazione sotto marchio proprio con packaging e documentazione adattati.' },
-      { question: 'Il programma puo includere software e reporting?', answer: 'Si. Secondo perimetro concordato, il programma puo includere AquaVerify Cloud, App, tracciabilita campione, supporto lettura, report tecnici e report di analisi strutturati.' },
-      { question: 'Il packaging puo essere adattato al mio brand?', answer: 'Si. Packaging, documentazione e lingue sono valutati secondo volume, territorio, requisiti locali e modello brand.' },
-      { question: 'Quali settori si possono lavorare con un programma OEM?', answer: 'Il programma puo focalizzarsi su laboratori, utility, food & beverage, industria, facility, agricoltura, farmaceutica, cosmetica, hospitality, turismo e leisure.' },
-      { question: 'AquaVerify copre automaticamente la conformita regolatoria in ogni paese?', answer: 'Non si deve assumere conformita automatica. Requisiti regolatori, claim, validazione, etichettatura e import devono essere verificati per territorio, matrice e uso previsto.' },
-      { question: 'Come inizia il processo?', answer: 'Il primo passo e condividere paese, portfolio, clienti target, capacita tecnica, modello desiderato e volume stimato. Queste informazioni definiscono il percorso di valutazione.' }
+      { question: 'Qual è la differenza tra distribuzione, co-branding e OEM?', answer: 'La distribuzione mantiene il brand AquaVerify, il co-branding combina AquaVerify con il brand del partner e OEM/private label esplora un’integrazione sotto identità del partner. Ogni modello richiede responsabilità, documentazione, supporto, territorio e ambito commerciale definiti.' },
+      { question: 'Un partner può vendere kit con il proprio brand?', answer: 'Può essere valutato in un modello OEM o private label secondo paese, portfolio, volume, capacità tecnica, packaging, documentazione e accordo commerciale. La disponibilità non va assunta per ogni mercato o configurazione.' },
+      { question: 'AquaVerify Cloud può far parte di una proposta OEM?', answer: 'Sì, può far parte della proposta quando il flusso richiede tracciabilità documentale, reporting, CoA, portale clienti o follow-up commerciale. L’ambito digitale dipende da moduli, utenti, integrazioni e accordo tra le parti.' },
+      { question: 'Il programma OEM include accettazione regolatoria?', answer: 'No. Il programma può fornire prodotto, documentazione, formazione, packaging e supporto tecnico secondo accordo, mentre l’accettazione regolatoria dipende da metodo, matrice, paese, autorità competente, documentazione e responsabilità del partner.' },
+      { question: 'Che tipo di partner è adatto all’OEM?', answer: 'Spesso sono adatti distributori scientifici, produttori, integratori, laboratori o aziende di trattamento acqua con portfolio B2B, capacità tecnica, supporto operativo e una proposta chiara per microbiologia dell’acqua.' }
     ],
     cta: { title: 'Trasformate il vostro canale in una soluzione ricorrente di microbiologia dell acqua', body: 'AquaVerify aiuta a passare da prodotti singoli a una proposta completa: kit, consumabili, tracciabilita, reporting, supporto tecnico e portfolio settoriale.', primary: 'Richiedi programma OEM', secondary: 'Vedi modelli commerciali' }
   }),
@@ -624,6 +660,10 @@ export const OEM_KITS_PAGE = {
     secondaryCta: 'Veure models comercials',
     seoTitle: 'Kits OEM d analisi d aigua | Marca blanca, co-branding i distribucio | AquaVerify',
     seoDescription: 'Programa OEM AquaVerify per a kits microbiologics d analisi d aigua, marca blanca, co-branding, distribucio, consumibles, tracabilitat digital i suport tecnic.',
+    directAnswer: {
+      title: 'Què ofereix el programa OEM i marca blanca d’AquaVerify?',
+      body: 'El programa OEM d’AquaVerify permet a partners especialitzats explorar models de distribució, co-branding o marca blanca per a kits d’anàlisi d’aigua, amb suport en producte, packaging, documentació i, quan pertoqui, una capa digital amb AquaVerify Cloud. L’abast depèn del país, cartera, volum, requisits tècnics, responsabilitats reguladores i acord comercial.'
+    },
     heroPanelTitle: 'De producte a programa de partner',
     heroNodes: [card('Kits', 'Microbiologia de l aigua'), card('Marca', 'AquaVerify, co-branding o OEM'), card('Software', 'Tracabilitat, informes i CoA'), card('Suport', 'Onboarding i escalat')],
     heroMetrics: [card('3 rutes', 'Distribucio, co-branding i OEM'), card('9 sectors', 'Aplicacions B2B prioritaries'), card('140+', 'Mercats potencials atesos')],
@@ -694,15 +734,23 @@ export const OEM_KITS_PAGE = {
     modelOptions: ['Distribucio AquaVerify', 'Co-branding', 'Marca blanca / OEM', 'OEM + plataforma digital', 'No ho tinc clar'],
     sectorOptions: ['Laboratoris d analisi d aigua', 'Control de qualitat de l aigua', 'Analisi d aigua municipal', 'Alimentacio i begudes', 'Aigua de proces industrial', 'Risc d aigua en installacions', 'Agricultura', 'Farmaceutica i cosmetica', 'Hostaleria, turisme i oci'],
     countries: COMMON_COUNTRIES.ca,
+    technicalTable: {
+      title: 'Models comercials i abast prudent',
+      columns: ['Model', 'Marca visible', 'Per a qui encaixa', 'Suport possible', 'Nota prudent'],
+      rows: [
+        ['Distribució', 'AquaVerify', 'Distribuïdors científics, laboratoris, empreses de tractament d’aigua i canals B2B amb capacitat tècnica.', 'Catàleg, material comercial, formació i coordinació tècnica segons acord.', 'No implica OEM ni marca blanca per defecte; l’abast depèn del territori i de l’acord.'],
+        ['Co-branding', 'AquaVerify + partner', 'Partners amb marca local, cartera existent o presència sectorial que busquen una proposta compartida.', 'Missatges, documentació, packaging o campanyes segons configuració.', 'Les parts han de definir ús de marca, responsabilitats i claims públics.'],
+        ['OEM/marca blanca', 'Marca del partner', 'Fabricants, integradors o distribuïdors amb cartera, volum i suport operatiu.', 'Producte, packaging, documentació, formació i capa digital quan pertoqui.', 'L’acceptació reguladora depèn del país, matriu, mètode, documentació i responsabilitats.']
+      ]
+    },
     faqEyebrow: 'Preguntes frequents',
     faqTitle: 'Dubtes comuns sobre OEM i marca blanca',
     faqs: [
-      { question: 'Quina diferencia hi ha entre distribucio, co-branding i OEM?', answer: 'La distribucio mante la marca AquaVerify, el co-branding combina AquaVerify amb la marca del partner i l OEM permet avaluar una integracio sota marca propia amb packaging i documentacio adaptats.' },
-      { question: 'El programa pot incloure software i reporting?', answer: 'Si. Segons l abast acordat, el programa pot incloure AquaVerify Cloud, App, tracabilitat de mostra, suport de lectura, informes tecnics i informes d analisi estructurats.' },
-      { question: 'Es pot adaptar el packaging a la meva marca?', answer: 'Si. L adaptacio de packaging, documentacio i idiomes s avalua segons volum, territori, requisits locals i model de marca.' },
-      { question: 'Quins sectors es poden treballar amb un programa OEM?', answer: 'El programa pot enfocar-se a laboratoris, utilities, alimentacio i begudes, industria, installacions, agricultura, farmaceutica, cosmetica, hostaleria, turisme i oci.' },
-      { question: 'AquaVerify cobreix automaticament el compliment regulador a cada pais?', answer: 'No s ha d assumir compliment automatic. Requisits normatius, claims, validacions, etiquetatge i importacio s han de revisar per territori, matriu i us previst.' },
-      { question: 'Com comenca el proces?', answer: 'El primer pas es compartir pais, cartera, clients objectiu, capacitat tecnica, model desitjat i volum estimat. Amb aquesta informacio es defineix una ruta d avaluacio.' }
+      { question: 'Quina diferència hi ha entre distribució, co-branding i OEM?', answer: 'La distribució manté la marca AquaVerify, el co-branding combina AquaVerify amb la marca del partner i OEM/marca blanca explora una integració sota identitat del partner. Cada model exigeix definir responsabilitats, documentació, suport, territori i abast comercial.' },
+      { question: 'Un partner pot vendre kits amb la seva pròpia marca?', answer: 'Es pot avaluar dins un model OEM o marca blanca segons país, cartera, volum, capacitat tècnica, packaging, documentació i acord comercial. La disponibilitat no s’ha d’assumir per a cada mercat o configuració.' },
+      { question: 'AquaVerify Cloud pot formar part d’una proposta OEM?', answer: 'Sí, pot formar part de la proposta quan el flux necessita traçabilitat documental, reporting, CoA, portal client o seguiment comercial. L’abast digital depèn de mòduls, usuaris, integracions i acord entre les parts.' },
+      { question: 'El programa OEM inclou acceptació reguladora?', answer: 'No. El programa pot aportar producte, documentació, formació, packaging i suport tècnic segons acord, mentre que l’acceptació reguladora depèn del mètode, matriu, país, autoritat competent, documentació i responsabilitats del partner.' },
+      { question: 'Quin tipus de partner encaixa millor amb OEM?', answer: 'Sovint hi encaixen distribuïdors científics, fabricants, integradors, laboratoris o empreses de tractament d’aigua amb cartera B2B, capacitat tècnica, suport operatiu i una proposta clara per a microbiologia de l’aigua.' }
     ],
     cta: { title: 'Convertiu el vostre canal en una solucio recurrent de microbiologia de l aigua', body: 'AquaVerify ajuda a passar de vendre productes solts a oferir una proposta completa: kits, consumibles, tracabilitat, reporting, suport tecnic i cartera sectorial.', primary: 'Sollicitar programa OEM', secondary: 'Veure models comercials' }
   })
