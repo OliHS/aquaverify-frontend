@@ -267,11 +267,51 @@ const TABLE_HEADERS: Record<Language, string[]> = {
   ca: ['Família', 'Tipus', 'Ús principal', 'Client ideal', 'Acció']
 };
 
+type TechnicalTableContent = {
+  columns?: string[];
+  rows?: string[][];
+};
+
 function publicAsset(src?: string) {
   const value = String(src || '').trim();
   if (!value) return '';
   return /^https?:\/\//i.test(value) || value.startsWith('/') ? value : `/${value}`;
 }
+
+const TechnicalTable: React.FC<{ table: TechnicalTableContent }> = ({ table }) => {
+  const columns = Array.isArray(table.columns) ? table.columns : [];
+  const rows = Array.isArray(table.rows) ? table.rows : [];
+  if (!columns.length || !rows.length) return null;
+
+  return (
+    <div className="mt-6 overflow-hidden rounded-xl border border-slate-200 bg-white">
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
+          <thead className="bg-slate-50">
+            <tr>
+              {columns.map((column) => (
+                <th key={column} scope="col" className="px-4 py-3 font-black text-primary">
+                  {column}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100">
+            {rows.map((row, rowIndex) => (
+              <tr key={`${row.join('-')}-${rowIndex}`}>
+                {columns.map((column, columnIndex) => (
+                  <td key={`${column}-${rowIndex}`} className="px-4 py-3 font-semibold leading-6 text-slate-600">
+                    {row[columnIndex] || ''}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
 
 export const ProductHubLanding: React.FC<ProductHubLandingProps> = ({
   content,
@@ -285,6 +325,10 @@ export const ProductHubLanding: React.FC<ProductHubLandingProps> = ({
   const quoteUrl = getPlatformSignupUrl({ intent: 'product_recommendation', page: 'products' }, pageLang);
   const distributorUrl = getMarketingPagePath('distributors', pageLang);
   const tableHeaders = TABLE_HEADERS[pageLang] || TABLE_HEADERS.en;
+  const answerSections = Array.isArray(content.sections)
+    ? content.sections.filter((section: any) => section?.kind === 'directAnswer' || section?.kind === 'technicalTable')
+    : [];
+  const visibleFaqs = Array.isArray(content.faqs) && content.faqs.length > 0 ? content.faqs : copy.faqs;
 
   const trackClick = (event: string, payload: Record<string, string>) => {
     trackCorporateEvent(event, {
@@ -352,6 +396,24 @@ export const ProductHubLanding: React.FC<ProductHubLandingProps> = ({
             </div>
           </div>
         </section>
+
+        {answerSections.length > 0 && (
+          <section className="bg-white py-16 md:py-20">
+            <div className="container mx-auto max-w-5xl px-6">
+              <div className="space-y-8">
+                {answerSections.map((section: any, index: number) => (
+                  <article key={`${section.title}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+                    <h2 className="font-heading text-2xl font-black text-primary">{section.title}</h2>
+                    {section.body && (
+                      <p className="mt-3 text-base leading-8 text-slate-600">{section.body}</p>
+                    )}
+                    {section.table && <TechnicalTable table={section.table} />}
+                  </article>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         <section className="bg-white py-16 md:py-20">
           <div className="container mx-auto px-6">
@@ -489,7 +551,7 @@ export const ProductHubLanding: React.FC<ProductHubLandingProps> = ({
           <div className="container mx-auto max-w-4xl px-6">
             <h2 className="font-heading text-3xl font-black text-primary">{copy.faqTitle}</h2>
             <div className="mt-6 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white px-6 shadow-sm">
-              {copy.faqs.map((faq) => (
+              {visibleFaqs.map((faq: { question: string; answer: string }) => (
                 <div key={faq.question} className="py-6">
                   <h3 className="flex gap-3 font-heading text-lg font-black text-slate-950">
                     <CheckCircle2 className="mt-1 h-4 w-4 shrink-0 text-secondary" />

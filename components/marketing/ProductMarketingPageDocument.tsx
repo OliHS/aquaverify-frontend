@@ -56,6 +56,11 @@ type ProductMarketingPageDocumentProps = {
   showCookieConsent?: boolean;
 };
 
+type TechnicalTableContent = {
+  columns?: string[];
+  rows?: string[][];
+};
+
 export const UI_LABELS: Record<Language, {
   products: string;
   relatedPages: string;
@@ -352,23 +357,77 @@ const WhitepaperDeepDive: React.FC<{ content: WhitepaperDeepDiveContent }> = ({ 
   );
 };
 
+const TechnicalTable: React.FC<{ table: TechnicalTableContent }> = ({ table }) => {
+  const columns = Array.isArray(table.columns) ? table.columns : [];
+  const rows = Array.isArray(table.rows) ? table.rows : [];
+  if (!columns.length || !rows.length) return null;
+
+  return (
+    <div className="mt-6 overflow-hidden rounded-xl border border-slate-200">
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
+          <thead className="bg-slate-50">
+            <tr>
+              {columns.map((column) => (
+                <th key={column} scope="col" className="px-4 py-3 font-black text-primary">
+                  {column}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-slate-100 bg-white">
+            {rows.map((row, rowIndex) => (
+              <tr key={`${row.join('-')}-${rowIndex}`}>
+                {columns.map((column, columnIndex) => (
+                  <td key={`${column}-${rowIndex}`} className="px-4 py-3 font-semibold leading-6 text-slate-600">
+                    {row[columnIndex] || ''}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+function withBaseAnswerLayer(page: any, content: any, pageLang: Language) {
+  const baseContent = page?.translations?.[pageLang] || page?.content?.[pageLang];
+  const baseSections = Array.isArray(baseContent?.sections) ? baseContent.sections : [];
+  const answerSections = baseSections.filter((section: any) => section?.kind === 'directAnswer' || section?.kind === 'technicalTable');
+  if (!answerSections.length) return content;
+
+  const currentSections = Array.isArray(content?.sections) ? content.sections : [];
+  const nonAnswerSections = currentSections.filter((section: any) => section?.kind !== 'directAnswer' && section?.kind !== 'technicalTable');
+
+  return {
+    ...content,
+    sections: [...answerSections, ...nonAnswerSections],
+    faqs: Array.isArray(baseContent?.faqs) && baseContent.faqs.length > 0 ? baseContent.faqs : content.faqs
+  };
+}
+
 export const ProductMarketingPageDocument: React.FC<ProductMarketingPageDocumentProps> = ({
   page,
   content,
   pageLang,
   showCookieConsent = true
 }) => {
+  const presentationContent = withBaseAnswerLayer(page, content, pageLang);
+
   if (page.id === 'products') {
     return (
       <ProductHubLanding
-        content={content}
+        content={presentationContent}
         pageLang={pageLang}
         showCookieConsent={showCookieConsent}
       />
     );
   }
 
-  const contentMeta = content as MarketingContentMeta;
+  const renderedContent = presentationContent;
+  const contentMeta = renderedContent as MarketingContentMeta;
   const pageMeta = page as MarketingPageMeta;
   const labels = UI_LABELS[pageLang] || UI_LABELS.en;
   const primaryUrl = getPlatformSignupUrl({
@@ -391,7 +450,7 @@ export const ProductMarketingPageDocument: React.FC<ProductMarketingPageDocument
     ? 'overflow-visible'
     : 'overflow-hidden rounded-md border border-white/15 bg-white/5';
   const hasHeroMedia = Boolean(heroVideoUrl || heroImageUrl);
-  const ogFallbackAlt = contentMeta.heroImageAlt || content.title;
+  const ogFallbackAlt = contentMeta.heroImageAlt || renderedContent.title;
   const datasheetUrl = toPublicAssetUrl(contentMeta.datasheetUrl);
   const galleryItems = (contentMeta.gallery || [])
     .map((item, sourceIndex) => ({
@@ -406,10 +465,10 @@ export const ProductMarketingPageDocument: React.FC<ProductMarketingPageDocument
       lang: pageLang,
       page: page.id,
       category: page.category,
-      product: pageMeta.productName || content.title,
+      product: pageMeta.productName || renderedContent.title,
       label: contentMeta.datasheetLabel || 'Datasheet',
       target_url: datasheetUrl,
-      path: content.path
+      path: renderedContent.path
     });
   };
 
@@ -437,16 +496,16 @@ export const ProductMarketingPageDocument: React.FC<ProductMarketingPageDocument
                   })}
                 </nav>
               )}
-              <div className="aq-hero-eyebrow mb-5">{content.eyebrow || page.category}</div>
-              <h1 className="aq-gradient-title max-w-4xl font-heading text-4xl font-black leading-tight md:text-6xl">{content.title}</h1>
-              <p className="aq-hero-copy mt-6 max-w-3xl text-lg leading-8">{content.description}</p>
+              <div className="aq-hero-eyebrow mb-5">{renderedContent.eyebrow || page.category}</div>
+              <h1 className="aq-gradient-title max-w-4xl font-heading text-4xl font-black leading-tight md:text-6xl">{renderedContent.title}</h1>
+              <p className="aq-hero-copy mt-6 max-w-3xl text-lg leading-8">{renderedContent.description}</p>
               <div className="mt-9 flex flex-col gap-3 sm:flex-row">
                 <a href={primaryUrl} className="aq-cta-primary">
-                  {content.primaryCta || 'Contact AquaVerify'}
+                  {renderedContent.primaryCta || 'Contact AquaVerify'}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </a>
                 <Link to={secondaryUrl} className="aq-cta-secondary">
-                  {content.secondaryCta || 'Explore AquaVerify'}
+                  {renderedContent.secondaryCta || 'Explore AquaVerify'}
                 </Link>
                 {datasheetUrl && (
                   <a
@@ -493,10 +552,12 @@ export const ProductMarketingPageDocument: React.FC<ProductMarketingPageDocument
         <section className="bg-white py-16 md:py-20">
           <div className="container mx-auto max-w-5xl px-6">
             <div className="space-y-8">
-              {(content.sections || []).map((section: any, index: number) => (
+              {(renderedContent.sections || []).map((section: any, index: number) => (
                 <article key={`${section.title}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                   <h2 className="font-heading text-2xl font-black text-primary">{section.title}</h2>
-                  <p className="mt-3 text-base leading-8 text-slate-600">{section.body}</p>
+                  {section.body && (
+                    <p className="mt-3 text-base leading-8 text-slate-600">{section.body}</p>
+                  )}
                   {section.bullets?.length > 0 && (
                     <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                       {section.bullets.map((bullet: string, bulletIndex: number) => (
@@ -507,6 +568,7 @@ export const ProductMarketingPageDocument: React.FC<ProductMarketingPageDocument
                       ))}
                     </ul>
                   )}
+                  {section.table && <TechnicalTable table={section.table} />}
                 </article>
               ))}
 
@@ -588,7 +650,7 @@ export const ProductMarketingPageDocument: React.FC<ProductMarketingPageDocument
               href={primaryUrl}
               className="inline-flex items-center rounded bg-white px-6 py-3 text-sm font-black text-primary transition hover:bg-secondary hover:text-white"
             >
-              {content.primaryCta || 'Contact AquaVerify'}
+              {renderedContent.primaryCta || 'Contact AquaVerify'}
               <ArrowRight className="ml-2 h-4 w-4" />
             </a>
           </div>

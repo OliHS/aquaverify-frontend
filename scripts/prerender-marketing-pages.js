@@ -281,6 +281,29 @@ const MARKDOWN_WHITEPAPER_HTML_STYLES = `
 .aqv-action-links{display:flex;flex-wrap:wrap;gap:12px;border:1px solid #cffafe;background:rgba(236,254,255,.75);border-radius:18px;padding:16px}.aqv-action-links a{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:12px 18px;font-size:14px;font-weight:900;text-decoration:none}.aqv-action-primary{background:#00AEEF;color:#fff!important;box-shadow:0 12px 26px rgba(0,174,239,.18)}.aqv-action-secondary{border:1px solid #e2e8f0;background:#fff;color:#0A4F7D!important}.aqv-rich-html{color:#475569}.aqv-rich-html h3{font-size:1.1rem;font-weight:900;color:#0A4F7D;margin:0 0 .75rem}.aqv-rich-html p{font-size:.95rem;line-height:1.65;color:#475569}.aqv-rich-html a{font-weight:900;color:#0A4F7D;text-decoration:none}.aqv-rich-html .aqv-diagram{border:1px solid #dbeafe;background:#ecfeff;border-radius:24px;padding:18px}.aqv-rich-html .aqv-flow,.aqv-rich-html .aqv-matrix,.aqv-rich-html .aqv-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}.aqv-rich-html .step,.aqv-rich-html .cell,.aqv-rich-html .aqv-card{border:1px solid #e2e8f0;background:#fff;border-radius:16px;padding:14px}.aqv-rich-html .step .n{display:inline-flex;width:24px;height:24px;align-items:center;justify-content:center;border-radius:999px;background:#00AEEF;color:#fff;font-weight:900}.aqv-rich-html .aqv-actions{display:flex;flex-wrap:wrap;gap:10px}.aqv-rich-html .aqv-btn{display:inline-flex;border-radius:999px;padding:11px 14px;font-size:13px;font-weight:900;text-decoration:none;border:1px solid #e2e8f0}.aqv-rich-html .aqv-btn-primary{background:#00AEEF;color:#fff;border-color:#00AEEF}.aqv-rich-html .aqv-faq details{border:1px solid #e2e8f0;border-radius:16px;background:#fff;padding:14px;margin-top:10px}.aqv-rich-html .aqv-faq summary{cursor:pointer;font-weight:900;color:#0f172a}
 `;
 
+function renderTechnicalTable(table) {
+  const columns = Array.isArray(table?.columns) ? table.columns : [];
+  const rows = Array.isArray(table?.rows) ? table.rows : [];
+  if (!columns.length || !rows.length) return '';
+
+  return [
+    '        <table>',
+    '          <thead>',
+    '            <tr>',
+    ...columns.map((column) => `              <th>${escapeHtml(column)}</th>`),
+    '            </tr>',
+    '          </thead>',
+    '          <tbody>',
+    ...rows.map((row) => [
+      '            <tr>',
+      ...columns.map((_column, index) => `              <td>${escapeHtml(row?.[index] || '')}</td>`),
+      '            </tr>'
+    ].join('\n')),
+    '          </tbody>',
+    '        </table>'
+  ].join('\n');
+}
+
 function externalOrAbsolute(pathOrUrl) {
   const value = String(pathOrUrl || '').trim();
   if (!value) return '';
@@ -295,15 +318,32 @@ function renderSectionList(sections = []) {
     return [
       '      <section>',
       `        <h2>${escapeHtml(section.title)}</h2>`,
-      `        <p>${escapeHtml(section.body)}</p>`,
+      section.body ? `        <p>${escapeHtml(section.body)}</p>` : '',
       bullets.length ? [
         '        <ul>',
         ...bullets.map((bullet) => `          <li>${escapeHtml(bullet)}</li>`),
         '        </ul>'
       ].join('\n') : '',
+      section.table ? renderTechnicalTable(section.table) : '',
       '      </section>'
     ].filter(Boolean).join('\n');
   }).join('\n');
+}
+
+function withBaseAnswerLayer(page, lang, content) {
+  const baseContent = page?.translations?.[lang];
+  const baseSections = Array.isArray(baseContent?.sections) ? baseContent.sections : [];
+  const answerSections = baseSections.filter((section) => section?.kind === 'directAnswer' || section?.kind === 'technicalTable');
+  if (!answerSections.length) return content;
+
+  const currentSections = Array.isArray(content?.sections) ? content.sections : [];
+  const nonAnswerSections = currentSections.filter((section) => section?.kind !== 'directAnswer' && section?.kind !== 'technicalTable');
+
+  return {
+    ...content,
+    sections: [...answerSections, ...nonAnswerSections],
+    faqs: Array.isArray(baseContent?.faqs) && baseContent.faqs.length > 0 ? baseContent.faqs : content.faqs
+  };
 }
 
 function renderFeaturedWhitepapers(page, lang) {
@@ -1367,9 +1407,13 @@ for (const page of MARKETING_PAGES) {
   };
 
   for (const lang of MARKETING_LANGUAGES) {
-    const content = mergeMarketingContent(
-      page.translations[lang],
-      marketingOverrides.get(getMarketingOverrideSlug(page.id, lang))
+    const content = withBaseAnswerLayer(
+      page,
+      lang,
+      mergeMarketingContent(
+        page.translations[lang],
+        marketingOverrides.get(getMarketingOverrideSlug(page.id, lang))
+      )
     );
     if (!content?.path) continue;
     const resourcesSeo = page.id === 'resources' ? getResourcesHubSeo(lang) : null;
