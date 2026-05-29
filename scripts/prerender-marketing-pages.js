@@ -541,6 +541,18 @@ function renderDistributorsDetails(page, content, lang) {
   const pageUrl = absolute(content?.path || getMarketingPagePath('distributors', lang));
 
   return [
+    content.directAnswer ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.directAnswer.title)}</h2>`,
+      content.directAnswer.body ? `        <p>${escapeHtml(content.directAnswer.body)}</p>` : '',
+      '      </section>'
+    ].join('\n') : '',
+    content.technicalTable ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.technicalTable.title || '')}</h2>`,
+      renderTechnicalTable(content.technicalTable),
+      '      </section>'
+    ].join('\n') : '',
     '      <section>',
     `        <h2>${escapeHtml(content.pathsTitle || content.title)}</h2>`,
     content.pathsBody ? `        <p>${escapeHtml(content.pathsBody)}</p>` : '',

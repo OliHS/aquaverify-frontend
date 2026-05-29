@@ -18,6 +18,7 @@ export type MarketingPageMeta = {
 };
 
 export type MarketingContentMeta = {
+  directAnswer?: DirectAnswerContent;
   faqs?: Array<{ question: string; answer: string }>;
   gallery?: Array<{ src: string; alt: string; title?: string; body?: string; fit?: 'cover' | 'contain' }>;
   heroImage?: string;
@@ -27,9 +28,21 @@ export type MarketingContentMeta = {
   ogImage?: string;
   datasheetUrl?: string;
   datasheetLabel?: string;
+  technicalTable?: TechnicalTableContent;
   whitepaper?: WhitepaperDeepDiveContent;
   path: string;
   title: string;
+};
+
+type DirectAnswerContent = {
+  title: string;
+  body: string;
+};
+
+type TechnicalTableContent = {
+  title?: string;
+  columns: string[];
+  rows: string[][];
 };
 
 type WhitepaperTone = 'cyan' | 'emerald' | 'indigo' | 'rose' | 'slate';
@@ -287,6 +300,55 @@ const WhitepaperDeepDive: React.FC<{ content: WhitepaperDeepDiveContent }> = ({ 
   );
 };
 
+const AnswerLayer: React.FC<{
+  directAnswer?: DirectAnswerContent;
+  technicalTable?: TechnicalTableContent;
+}> = ({ directAnswer, technicalTable }) => {
+  if (!directAnswer && !technicalTable) return null;
+
+  return (
+    <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+      {directAnswer && (
+        <>
+          <h2 className="font-heading text-2xl font-black text-primary">{directAnswer.title}</h2>
+          <p className="mt-3 text-base leading-8 text-slate-600">{directAnswer.body}</p>
+        </>
+      )}
+      {technicalTable && technicalTable.columns.length > 0 && technicalTable.rows.length > 0 && (
+        <div className={directAnswer ? 'mt-7' : ''}>
+          {technicalTable.title && (
+            <h3 className="font-heading text-xl font-black text-slate-900">{technicalTable.title}</h3>
+          )}
+          <div className="mt-4 overflow-x-auto rounded-xl border border-slate-200">
+            <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
+              <thead className="bg-slate-50">
+                <tr>
+                  {technicalTable.columns.map((column) => (
+                    <th key={column} scope="col" className="px-4 py-3 font-black text-primary">
+                      {column}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 bg-white">
+                {technicalTable.rows.map((row, rowIndex) => (
+                  <tr key={`${row.join('-')}-${rowIndex}`}>
+                    {technicalTable.columns.map((column, columnIndex) => (
+                      <td key={`${column}-${columnIndex}`} className="px-4 py-4 font-semibold leading-6 text-slate-600">
+                        {row[columnIndex] || ''}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </article>
+  );
+};
+
 const HeroScreenshotCarousel: React.FC<{ items: HeroCarouselItem[] }> = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const safeItems = items.filter((item) => item.src && item.alt);
@@ -439,6 +501,9 @@ export const CommercialMarketingPageDocument: React.FC<CommercialMarketingPageDo
       src: toPublicAssetUrl(item.src)
     }))
     .filter((item) => item.src && item.alt);
+  const visibleSections = (content.sections || []).filter(
+    (section: any) => section?.kind !== 'directAnswer' && section?.kind !== 'technicalTable'
+  );
   const shouldUseHeroCarousel = page.id === 'platform' && galleryItems.length > 1;
 
   const handleDatasheetClick = () => {
@@ -535,7 +600,12 @@ export const CommercialMarketingPageDocument: React.FC<CommercialMarketingPageDo
         <section className="bg-white py-16 md:py-20">
           <div className="container mx-auto max-w-5xl px-6">
             <div className="space-y-8">
-              {(content.sections || []).map((section: any, index: number) => (
+              <AnswerLayer
+                directAnswer={contentMeta.directAnswer}
+                technicalTable={contentMeta.technicalTable}
+              />
+
+              {visibleSections.map((section: any, index: number) => (
                 <article key={`${section.title}-${index}`} className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
                   <h2 className="font-heading text-2xl font-black text-primary">{section.title}</h2>
                   <p className="mt-3 text-base leading-8 text-slate-600">{section.body}</p>
