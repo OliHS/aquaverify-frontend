@@ -50,6 +50,185 @@ function enumeraGallery(lang) {
 
 const ENUMERA_HERO_VIDEO = '/videos/enumera-tray-video.mp4';
 
+const ES_PRODUCT_ANSWER_LAYER = {
+  products: {
+    directAnswer: {
+      title: '¿Qué productos ofrece AquaVerify para microbiología del agua?',
+      body: 'AquaVerify ofrece familias de productos para microbiología del agua: ENUMERA para flujos de enumeración, INDICA para presencia/ausencia y screening, kits ISO/EPA para flujos técnicos alineables con métodos de referencia, Lab Essentials para soporte operativo y AquaVerify Cloud para trazabilidad, informes CoA y evidencia digital. La elección depende del organismo objetivo, matriz, método, país, alcance del laboratorio y uso previsto del resultado.'
+    },
+    faqs: [
+      {
+        question: '¿Cuándo usar ENUMERA frente a INDICA?',
+        answer: 'ENUMERA encaja cuando se necesita un resultado cuantitativo o comparable para interpretar carga microbiológica, comparar puntos de muestreo o documentar tendencias. INDICA encaja mejor cuando se necesita screening de presencia/ausencia, control rutinario o una primera decisión operacional. La selección final depende del organismo, matriz, método y uso previsto del resultado.'
+      },
+      {
+        question: '¿Qué producto usar para enumerar colífagos somáticos?',
+        answer: 'Para flujos de enumeración de colífagos somáticos, la familia ENUMERA es la referencia comercial dentro de AquaVerify. Cuando el trabajo está vinculado a métodos normalizados o requisitos de autoridad competente, el laboratorio debe revisar matriz, documentación técnica, controles, alcance y uso previsto antes de emplear el resultado para decisiones reguladas.'
+      },
+      {
+        question: '¿AquaVerify vende kits, software o ambos?',
+        answer: 'AquaVerify combina productos de análisis microbiológico del agua con AquaVerify Cloud. Los productos ayudan a ejecutar el flujo analítico y la plataforma ayuda a registrar muestras, lotes, operadores, resultados, evidencias, CoA y documentación. Pueden usarse de forma conjunta o por fases según la operación del cliente.'
+      },
+      {
+        question: '¿Qué familia conviene para control rutinario en campo o planta?',
+        answer: 'Para control rutinario, screening o decisiones de presencia/ausencia, INDICA suele ser el punto de partida. Para seguimiento cuantitativo, comparación entre puntos o evidencia más detallada, ENUMERA puede ser más adecuado. En ambos casos conviene revisar el uso según matriz, método y procedimiento interno.'
+      },
+      {
+        question: '¿Los productos AquaVerify garantizan cumplimiento regulatorio?',
+        answer: 'No deben presentarse como cumplimiento automático. AquaVerify puede ayudar a flujos alineables con métodos, documentación y trazabilidad, pero el cumplimiento depende del país, autoridad competente, matriz, método, controles, laboratorio y alcance concreto del uso.'
+      }
+    ],
+    technicalTable: {
+      title: 'Comparativa técnica de familias AquaVerify',
+      columns: ['Familia', 'Tipo de resultado', 'Uso típico', 'Usuario recomendado', 'Conexión Cloud', 'Nota prudente'],
+      rows: [
+        ['ENUMERA', 'Cuantitativo o semicuantitativo', 'Enumeración microbiológica', 'Laboratorios, utilities y quality control', 'Registro de muestra, resultado, evidencia y CoA', 'Revisar matriz, organismo y método aplicable'],
+        ['INDICA', 'Presencia/ausencia', 'Screening y control rutinario', 'Campo, planta y laboratorio interno', 'Registro de decisión, lote y trazabilidad', 'No sustituye automáticamente métodos regulados'],
+        ['Kits ISO/EPA', 'Flujo técnico', 'Métodos regulados o de referencia', 'Laboratorios avanzados', 'Evidencia documental y audit trail', 'Requiere revisión según alcance y método'],
+        ['Lab Essentials', 'Soporte operativo', 'Medios, reactivos y controles', 'Laboratorios de microbiología', 'Inventario, lote y documentación', 'Depende del SOP interno'],
+        ['AquaVerify Cloud', 'Digital', 'LIMS, CoA, trazabilidad y portal', 'Labs, empresas y distribuidores', 'Capa digital principal', 'Configuración según proceso']
+      ]
+    }
+  },
+  enumera: {
+    directAnswer: {
+      title: '¿Qué es ENUMERA y cuándo se usa en microbiología del agua?',
+      body: 'ENUMERA es la familia AquaVerify orientada a flujos de enumeración microbiológica del agua, pensada para laboratorios, utilities y equipos de calidad que necesitan interpretar resultados cuantitativos o comparables entre muestras. Puede conectarse con AquaVerify Cloud para documentar muestra, lote, operador, lectura, resultado e informe. Su uso debe evaluarse según organismo objetivo, matriz, método, país y alcance del laboratorio.'
+    },
+    faqs: [
+      {
+        question: '¿Cuándo usar ENUMERA frente a INDICA?',
+        answer: 'ENUMERA se recomienda cuando el usuario necesita enumeración, comparación entre puntos, seguimiento de tendencias o evidencia cuantitativa. INDICA encaja mejor para screening de presencia/ausencia o controles rutinarios. La elección depende del objetivo analítico, matriz, organismo, método y uso previsto del resultado.'
+      },
+      {
+        question: '¿ENUMERA sirve para colífagos somáticos?',
+        answer: 'ENUMERA puede posicionarse para flujos de enumeración de colífagos somáticos cuando el producto concreto, la matriz y el método documentado lo soportan. En entornos regulados, el laboratorio debe confirmar alineación metodológica, controles, alcance y requisitos de la autoridad competente.'
+      },
+      {
+        question: '¿Cómo se documenta un resultado ENUMERA en AquaVerify Cloud?',
+        answer: 'AquaVerify Cloud puede ayudar a registrar muestra, lote, operador, método, lectura, resultado, revisión, evidencias y CoA. Esta capa digital mejora trazabilidad y auditabilidad, pero no sustituye por sí sola la revisión técnica del método ni el sistema de calidad del laboratorio.'
+      },
+      {
+        question: '¿ENUMERA sustituye automáticamente un método ISO o EPA?',
+        answer: 'No. ENUMERA debe describirse como producto o flujo que puede apoyar determinados procedimientos, no como sustitución automática de un método ISO/EPA. La equivalencia o aceptación depende del método, matriz, país, autoridad competente y alcance del laboratorio.'
+      }
+    ],
+    technicalTable: {
+      title: 'Resumen técnico de ENUMERA',
+      columns: ['Campo', 'Propuesta ENUMERA'],
+      rows: [
+        ['Organismo objetivo', 'Depende del producto: bacterias, indicadores o colífagos según gama documentada'],
+        ['Tipo de resultado', 'Cuantitativo o semicuantitativo según flujo'],
+        ['Flujo de lectura', 'Preparación, incubación/lectura según producto, interpretación y documentación'],
+        ['Matriz típica', 'Agua potable, proceso, instalación o matriz revisada por el laboratorio'],
+        ['Usuario recomendado', 'Laboratorio de agua, utility, calidad industrial, laboratorio interno'],
+        ['Conexión Cloud', 'Muestra, lote, operador, lectura, resultado, evidencia y CoA'],
+        ['Referencias técnicas relacionadas', 'ISO/EPA solo cuando el producto y método documentado lo justifiquen'],
+        ['Nota prudente', 'Evaluar según matriz, método, país, alcance y autoridad competente']
+      ]
+    }
+  },
+  indica: {
+    directAnswer: {
+      title: '¿Qué es INDICA y cuándo conviene usar presencia/ausencia?',
+      body: 'INDICA es la familia AquaVerify orientada a flujos de presencia/ausencia y screening microbiológico del agua. Está pensada para controles rutinarios, campo, planta o laboratorios que necesitan una decisión inicial clara antes de escalar a enumeración, confirmación o investigación adicional. Puede conectarse con AquaVerify Cloud para documentar muestra, lote, resultado y acción tomada.'
+    },
+    faqs: [
+      {
+        question: '¿INDICA da un resultado cuantitativo?',
+        answer: 'INDICA debe posicionarse como flujo de presencia/ausencia o screening, no como enumeración cuantitativa. Si el usuario necesita comparar cargas, tendencias o concentraciones, ENUMERA suele ser más adecuado. La decisión final depende del organismo objetivo, matriz y uso previsto.'
+      },
+      {
+        question: '¿Cuándo conviene usar INDICA en campo o planta?',
+        answer: 'INDICA puede ser útil cuando el equipo necesita una decisión operativa sobre presencia/ausencia, control rutinario o priorización de muestras. El resultado debe interpretarse dentro del procedimiento interno y, si aplica, complementarse con métodos confirmatorios o de enumeración.'
+      },
+      {
+        question: '¿INDICA se puede documentar con AquaVerify Cloud?',
+        answer: 'Sí. AquaVerify Cloud puede registrar muestra, punto, lote, operador, lectura, resultado, evidencia y acción asociada. Esto ayuda a mantener trazabilidad y reporting, especialmente cuando el screening forma parte de un programa de control más amplio.'
+      },
+      {
+        question: '¿INDICA reemplaza un análisis de laboratorio acreditado?',
+        answer: 'No debe presentarse como reemplazo automático. INDICA puede ayudar en screening o control rutinario, pero el uso para decisiones regulatorias depende del método, matriz, país, autoridad competente, laboratorio y alcance aplicable.'
+      },
+      {
+        question: '¿Cuándo escalar de INDICA a ENUMERA?',
+        answer: 'Conviene escalar cuando el screening indica presencia, cuando se necesita dimensionar la carga microbiológica, cuando hay investigación de causa raíz o cuando el plan de control exige evidencia cuantitativa.'
+      }
+    ],
+    technicalTable: {
+      title: 'Resumen técnico de INDICA',
+      columns: ['Campo', 'Propuesta INDICA'],
+      rows: [
+        ['Tipo de resultado', 'Presencia/ausencia'],
+        ['Uso recomendado', 'Screening, control rutinario y priorización'],
+        ['Usuario recomendado', 'Campo, planta, laboratorio interno y control de calidad'],
+        ['Conexión Cloud', 'Registro de muestra, lote, lectura, evidencia y acción'],
+        ['Escalado habitual', 'ENUMERA, método confirmatorio o laboratorio externo'],
+        ['Nota prudente', 'No afirmar equivalencia regulatoria sin revisión técnica y documental']
+      ]
+    }
+  },
+  standardKits: {
+    directAnswer: {
+      title: '¿Qué son los kits ISO/EPA de AquaVerify?',
+      body: 'Los kits ISO/EPA de AquaVerify agrupan flujos técnicos pensados para laboratorios que trabajan con métodos normalizados, referencias documentales o requisitos de control microbiológico del agua. Pueden ayudar a organizar preparación, lectura, trazabilidad y evidencia digital con AquaVerify Cloud. No implican por sí solos aceptación regulatoria ni cumplimiento automático: el uso depende de matriz, método, documentación, país, autoridad competente y alcance del laboratorio.'
+    },
+    faqs: [
+      {
+        question: '¿Un kit ISO/EPA se acepta automáticamente para cumplimiento regulatorio?',
+        answer: 'No. La referencia a ISO/EPA debe entenderse como alineación técnica o soporte de flujo cuando la documentación del producto lo justifique. La aceptación regulatoria depende de la autoridad competente, el método exacto, la matriz, los controles, el laboratorio y su alcance.'
+      },
+      {
+        question: '¿Cómo ayuda AquaVerify Cloud en flujos ISO/EPA?',
+        answer: 'AquaVerify Cloud puede ayudar a documentar muestra, lote, operador, método, resultado, evidencias, revisión y CoA. Esto facilita trazabilidad y auditoría documental, pero no sustituye los requisitos del sistema de calidad ni la revisión técnica del método.'
+      },
+      {
+        question: '¿Qué relación tienen estos kits con ISO 10705-2 o EPA 1601/1602?',
+        answer: 'Las referencias a ISO 10705-2, EPA 1601 o EPA 1602 deben usarse solo cuando el producto y la documentación técnica aplicable lo soporten. Para contenido público, conviene hablar de flujos alineables o relacionados con métodos de referencia, no de equivalencia automática.'
+      },
+      {
+        question: '¿Qué necesita revisar un laboratorio antes de usar estos kits?',
+        answer: 'Debe revisar organismo objetivo, matriz, procedimiento, controles, documentación técnica, requisitos de acreditación, autoridad competente y uso previsto. También conviene definir cómo se registran evidencias, lotes y revisiones.'
+      },
+      {
+        question: '¿Pueden estos kits formar parte de un programa municipal o industrial?',
+        answer: 'Pueden ayudar en programas de control cuando encajan con el plan de muestreo, el método y el alcance técnico. La decisión debe documentarse y revisarse dentro del marco aplicable al país, sector y laboratorio.'
+      }
+    ],
+    technicalTable: {
+      title: 'Resumen técnico de kits ISO/EPA',
+      columns: ['Campo', 'Propuesta Kits ISO/EPA'],
+      rows: [
+        ['Tipo de flujo', 'Técnico, documentado y alineable con métodos de referencia'],
+        ['Usuario recomendado', 'Laboratorios avanzados, utilities y control regulado'],
+        ['Documentación clave', 'Método, matriz, lote, controles, resultado y CoA'],
+        ['Conexión Cloud', 'Audit trail, CoA, revisión y trazabilidad documental'],
+        ['Referencias relacionadas', 'ISO 10705-2, EPA 1601/1602 solo si aplica al producto concreto'],
+        ['Nota prudente', 'No afirmar aceptación regulatoria ni cumplimiento automático']
+      ]
+    }
+  }
+};
+
+function esAnswerSections(key) {
+  const layer = ES_PRODUCT_ANSWER_LAYER[key];
+  return [
+    {
+      kind: 'directAnswer',
+      title: layer.directAnswer.title,
+      body: layer.directAnswer.body,
+      bullets: []
+    },
+    {
+      kind: 'technicalTable',
+      title: layer.technicalTable.title,
+      body: '',
+      bullets: [],
+      table: layer.technicalTable
+    }
+  ];
+}
+
 export const PRODUCT_FAMILY_MARKETING_PAGES = [
   page('products', 'products', 'quote', {
     en: locale('/products', 'AquaVerify products for water microbiology and result traceability', 'Kits, presence/absence tests, ISO/EPA-oriented workflows, lab essentials and AquaVerify Cloud to turn each water sample into a documented, reviewable and actionable result.', [
@@ -57,9 +236,10 @@ export const PRODUCT_FAMILY_MARKETING_PAGES = [
       section('Products connected to sectors and digital workflow', 'AquaVerify can connect product, sample, batch, operator, reading, review and report so laboratories, companies and distributors work with less ambiguity.', ['Laboratories: ENUMERA, ISO/EPA kits, Lab Essentials and AquaVerify Cloud', 'Quality teams: ENUMERA, INDICA and AquaVerify Cloud', 'Municipal water: ENUMERA, INDICA, ISO/EPA kits and reporting', 'Food, process water and facilities: screening, verification and traceability'])
     ], { eyebrow: 'Products', primaryCta: 'Request product recommendation', secondaryCta: 'Compare families', seoTitle: 'AquaVerify Water Microbiology Products | ENUMERA, INDICA, ISO/EPA Kits and Cloud', seoDescription: 'Compare AquaVerify water microbiology products: ENUMERA, INDICA, ISO/EPA-oriented kits, Lab Essentials and AquaVerify Cloud for traceable sample-to-report workflows.', ...getProductAssetOptions('products', 'en', 'AquaVerify water microbiology product ecosystem') }),
     es: locale('/es/productos', 'Productos AquaVerify para microbiología del agua y trazabilidad de resultados', 'Kits cuantitativos, pruebas de presencia/ausencia, flujos orientados a ISO/EPA, medios de laboratorio y AquaVerify Cloud para convertir cada muestra de agua en un resultado documentado, revisable y accionable.', [
+      ...esAnswerSections('products'),
       section('Elegir por necesidad técnica', 'Empieza por la pregunta que necesita responder tu equipo y llega directamente a la familia de producto adecuada.', ['Necesito contar o enumerar microorganismos: ENUMERA', 'Necesito una respuesta clara presencia/ausencia: INDICA', 'Necesito flujos técnicos orientados a ISO/EPA: kits ISO/EPA', 'Necesito medios, controles y materiales diarios: Lab Essentials', 'Necesito trazabilidad, CoA y portal cliente: AquaVerify Cloud']),
       section('Productos conectados a sectores y flujo digital', 'AquaVerify puede conectar producto, muestra, lote, operador, lectura, revisión e informe para que laboratorios, empresas y distribuidores trabajen con menos ambigüedad.', ['Laboratorios: ENUMERA, kits ISO/EPA, Lab Essentials y AquaVerify Cloud', 'Equipos de calidad: ENUMERA, INDICA y AquaVerify Cloud', 'Agua municipal: ENUMERA, INDICA, kits ISO/EPA y reporting', 'Alimentación, proceso e instalaciones: cribado, verificación y trazabilidad'])
-    ], { eyebrow: 'Productos', primaryCta: 'Solicitar recomendación técnica', secondaryCta: 'Comparar familias', seoTitle: 'Productos AquaVerify para microbiología del agua | ENUMERA, INDICA, ISO/EPA y Cloud', seoDescription: 'Compara productos AquaVerify para microbiología del agua: ENUMERA, INDICA, kits orientados a ISO/EPA, Lab Essentials y AquaVerify Cloud para trazabilidad de muestra a informe.', ...getProductAssetOptions('products', 'es', 'Ecosistema de productos AquaVerify para microbiologia del agua') }),
+    ], { eyebrow: 'Productos', primaryCta: 'Solicitar recomendación técnica', secondaryCta: 'Comparar familias', seoTitle: 'Productos AquaVerify para microbiología del agua | ENUMERA, INDICA, ISO/EPA y Cloud', seoDescription: 'Compara productos AquaVerify para microbiología del agua: ENUMERA, INDICA, kits orientados a ISO/EPA, Lab Essentials y AquaVerify Cloud para trazabilidad de muestra a informe.', ...getProductAssetOptions('products', 'es', 'Ecosistema de productos AquaVerify para microbiologia del agua'), faqs: ES_PRODUCT_ANSWER_LAYER.products.faqs }),
     fr: locale('/fr/produits', 'Produits AquaVerify pour la microbiologie de l’eau et la traçabilité des résultats', 'Kits quantitatifs, tests présence/absence, flux orientés ISO/EPA, essentiels de laboratoire et AquaVerify Cloud pour transformer chaque échantillon d’eau en résultat documenté, révisable et exploitable.', [
       section('Choisir selon le besoin technique', 'Commencez par la question à laquelle votre équipe doit répondre et accédez directement à la bonne gamme.', ['Besoin de compter ou dénombrer des micro-organismes: ENUMERA', 'Besoin d’une réponse présence/absence claire: INDICA', 'Besoin de flux techniques orientés ISO/EPA: kits ISO/EPA', 'Besoin de milieux, contrôles et matériaux quotidiens: Lab Essentials', 'Besoin de traçabilité, CoA et portail client: AquaVerify Cloud']),
       section('Produits connectés aux secteurs et au flux numérique', 'AquaVerify peut relier produit, échantillon, lot, opérateur, lecture, revue et rapport afin que laboratoires, entreprises et distributeurs travaillent avec moins d’ambiguïté.', ['Laboratoires: ENUMERA, kits ISO/EPA, Lab Essentials et AquaVerify Cloud', 'Équipes qualité: ENUMERA, INDICA et AquaVerify Cloud', 'Eau municipale: ENUMERA, INDICA, kits ISO/EPA et reporting', 'Agroalimentaire, process et bâtiments: dépistage, vérification et traçabilité'])
@@ -79,9 +259,10 @@ export const PRODUCT_FAMILY_MARKETING_PAGES = [
       section('Connected to AquaVerify Cloud', 'Results, operators, sample context and reporting can be linked to the digital platform.')
     ], { eyebrow: 'ENUMERA', primaryCta: 'Request ENUMERA quote', secondaryCta: 'View all products', ...getProductAssetOptions('enumera', 'en', 'AquaVerify ENUMERA quantitative kit family'), heroVideo: ENUMERA_HERO_VIDEO, gallery: enumeraGallery('en') }),
     es: locale('/es/productos/enumera', 'Kits cuantitativos ENUMERA para microbiología del agua', 'ENUMERA es la familia AquaVerify para flujos de enumeración en microbiología del agua.', [
+      ...esAnswerSections('enumera'),
       section('Diseñada para contar, no para adivinar', 'ENUMERA está pensada para flujos cuantitativos donde el laboratorio necesita resultados claros, repetibles y trazables.', ['ENUMERA Soma100 para flujos de colífagos somáticos', 'ENUMERA Coli100 para indicadores bacterianos', 'ENUMERA Entero100 para indicadores bacterianos', 'Refills y herramientas para operación repetible']),
       section('Conectada a AquaVerify Cloud', 'Resultados, operadores, contexto de muestra e informes pueden vincularse a la plataforma digital.')
-    ], { eyebrow: 'ENUMERA', primaryCta: 'Solicitar cotización ENUMERA', secondaryCta: 'Ver productos', ...getProductAssetOptions('enumera', 'es', 'Familia de kits cuantitativos AquaVerify ENUMERA'), heroVideo: ENUMERA_HERO_VIDEO, gallery: enumeraGallery('es') }),
+    ], { eyebrow: 'ENUMERA', primaryCta: 'Solicitar cotización ENUMERA', secondaryCta: 'Ver productos', ...getProductAssetOptions('enumera', 'es', 'Familia de kits cuantitativos AquaVerify ENUMERA'), heroVideo: ENUMERA_HERO_VIDEO, gallery: enumeraGallery('es'), faqs: ES_PRODUCT_ANSWER_LAYER.enumera.faqs }),
     fr: locale('/fr/produits/enumera', 'Kits quantitatifs ENUMERA pour la microbiologie de l’eau', 'ENUMERA est la famille AquaVerify dédiée aux flux de dénombrement en microbiologie de l’eau.', [
       section('Conçu pour compter, pas pour deviner', 'ENUMERA répond aux flux quantitatifs où le laboratoire a besoin de résultats clairs, reproductibles et traçables.', ['ENUMERA Soma100 pour les coliphages somatiques', 'ENUMERA Coli100 pour les indicateurs bactériens', 'ENUMERA Entero100 pour les indicateurs bactériens', 'Recharges et outils pour une opération répétable']),
       section('Connecté à AquaVerify Cloud', 'Résultats, opérateurs, contexte d’échantillon et rapports peuvent être reliés à la plateforme numérique.')
@@ -101,9 +282,10 @@ export const PRODUCT_FAMILY_MARKETING_PAGES = [
       section('From test to traceable record', 'INDICA workflows can feed AquaVerify Cloud so each result is linked to sample, site, operator and report.')
     ], { eyebrow: 'INDICA', primaryCta: 'Request INDICA quote', secondaryCta: 'Explore platform', ...getProductAssetOptions('indica', 'en', 'AquaVerify INDICA presence absence kit family') }),
     es: locale('/es/productos/indica', 'Kits INDICA de presencia/ausencia para análisis de agua', 'INDICA está diseñada para flujos cualitativos rápidos en microbiología del agua donde la respuesta debe ser clara: presente o ausente.', [
+      ...esAnswerSections('indica'),
       section('Cribado claro y operativo', 'INDICA ayuda a tomar decisiones rápidas en laboratorios, equipos de campo y control de calidad.', ['Presencia/ausencia de colífagos somáticos', 'Presencia/ausencia de E. coli', 'Presencia/ausencia de enterococos', 'Herramientas de comparación colorimétrica']),
       section('Del test al registro trazable', 'Los flujos INDICA pueden alimentar AquaVerify Cloud para vincular resultado, muestra, punto, operador e informe.')
-    ], { eyebrow: 'INDICA', primaryCta: 'Solicitar cotización INDICA', secondaryCta: 'Explorar plataforma', ...getProductAssetOptions('indica', 'es', 'Familia de kits presencia ausencia AquaVerify INDICA') }),
+    ], { eyebrow: 'INDICA', primaryCta: 'Solicitar cotización INDICA', secondaryCta: 'Explorar plataforma', ...getProductAssetOptions('indica', 'es', 'Familia de kits presencia ausencia AquaVerify INDICA'), faqs: ES_PRODUCT_ANSWER_LAYER.indica.faqs }),
     fr: locale('/fr/produits/indica', 'Kits INDICA présence/absence pour l’analyse de l’eau', 'INDICA est conçu pour les flux qualitatifs rapides en microbiologie de l’eau où la réponse doit être claire: présent ou absent.', [
       section('Des flux de dépistage clairs', 'INDICA aide les laboratoires, équipes terrain et équipes qualité à décider rapidement.', ['Présence/absence de coliphages somatiques', 'Présence/absence d’E. coli', 'Présence/absence d’entérocoques', 'Outils de comparaison colorimétrique']),
       section('Du test au registre traçable', 'Les flux INDICA peuvent alimenter AquaVerify Cloud afin de relier résultat, échantillon, site, opérateur et rapport.')
@@ -123,9 +305,10 @@ export const PRODUCT_FAMILY_MARKETING_PAGES = [
       section('Keep the method, improve the workflow', 'AquaVerify helps laboratories connect technical methods with digital sample and report traceability.')
     ], { eyebrow: 'Standard Kits', primaryCta: 'Request standard kit quote', secondaryCta: 'Read ISO guide', ...getProductAssetOptions('standard-kits', 'en', 'AquaVerify standard ISO and EPA kit family') }),
     es: locale('/es/productos/kits-iso-epa', 'Kits estándar ISO y EPA para análisis de colífagos', 'Los kits estándar AquaVerify apoyan a laboratorios que trabajan con flujos ISO 10705-2 y EPA para colífagos.', [
+      ...esAnswerSections('standardKits'),
       section('Para flujos de microbiología regulada', 'La gama estándar está pensada para equipos que necesitan alineación metodológica, repetibilidad y confianza técnica.', ['Kits de colífagos somáticos para flujos ISO 10705-2', 'Flujos de colífagos somáticos orientados a EPA', 'Flujos de colífagos F-específicos', 'Soporte para validación y formación']),
       section('Mantener el método, mejorar el flujo', 'AquaVerify ayuda a conectar métodos técnicos con trazabilidad digital de muestra e informe.')
-    ], { eyebrow: 'Kits estándar', primaryCta: 'Solicitar cotización', secondaryCta: 'Leer guía ISO', ...getProductAssetOptions('standard-kits', 'es', 'Familia de kits estandar ISO y EPA AquaVerify') }),
+    ], { eyebrow: 'Kits estándar', primaryCta: 'Solicitar cotización', secondaryCta: 'Leer guía ISO', ...getProductAssetOptions('standard-kits', 'es', 'Familia de kits estandar ISO y EPA AquaVerify'), faqs: ES_PRODUCT_ANSWER_LAYER.standardKits.faqs }),
     fr: locale('/fr/produits/kits-iso-epa', 'Kits standard ISO et EPA pour l’analyse des coliphages', 'Les kits standard AquaVerify accompagnent les laboratoires travaillant avec les flux ISO 10705-2 et EPA pour les coliphages.', [
       section('Pour les flux de microbiologie réglementée', 'La gamme standard est pensée pour les équipes qui recherchent alignement méthodologique, répétabilité et confiance technique.', ['Kits coliphages somatiques pour flux ISO 10705-2', 'Flux coliphages somatiques orientés EPA', 'Flux coliphages F-spécifiques', 'Support de validation et formation']),
       section('Garder la méthode, améliorer le flux', 'AquaVerify aide à connecter les méthodes techniques avec la traçabilité numérique des échantillons et rapports.')
