@@ -95,7 +95,7 @@ const LAB_UI: Record<Language, LabUiCopy> = {
     tableHeaders: ['Need', 'Usual context', 'Product or workflow', 'Deliverable'],
     referencesEyebrow: 'Technical references',
     referencesTitle: 'Solid technical language for laboratories with demanding quality systems.',
-    referencesBody: 'AquaVerify helps structure records, traceability and reports; accreditation, scope and method validity depend on each laboratory’s approved procedures.',
+    referencesBody: 'AquaVerify helps structure records, traceability and reports; accreditation, scope and method validity depend on each laboratory’s documented procedures.',
     references: [
       ['ISO/IEC 17025', 'International framework for testing and calibration laboratory competence, impartiality and consistent operation.', 'https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html'],
       ['ISO 10705-2', 'Water quality standard for detection and enumeration of bacteriophages; part 2 covers somatic coliphages.', 'https://www.iso.org/standard/20127.html'],
@@ -113,7 +113,7 @@ const LAB_UI: Record<Language, LabUiCopy> = {
     formSubmit: 'Continue in AquaVerify Cloud',
     formPrivacy: 'The request continues in AquaVerify Cloud so the commercial team receives it with source, sector and laboratory context.',
     fallbackFaqs: [
-      ['Does AquaVerify replace an accredited laboratory?', 'No. AquaVerify acts as a product, traceability, digital workflow, reporting and customer-portal layer. Accredited testing must remain within the laboratory’s approved scope, methods, validations and procedures.']
+      ['Does AquaVerify replace an accredited laboratory?', 'No. AquaVerify acts as a product, traceability, digital workflow, reporting and customer-portal layer. Accredited testing must remain within the laboratory’s documented scope, methods, validations and procedures.']
     ]
   },
   es: {
@@ -132,7 +132,7 @@ const LAB_UI: Record<Language, LabUiCopy> = {
     tableHeaders: ['Necesidad', 'Contexto habitual', 'Producto o flujo', 'Entregable'],
     referencesEyebrow: 'Referencias técnicas',
     referencesTitle: 'Lenguaje técnico sólido para laboratorios con sistemas de calidad exigentes.',
-    referencesBody: 'AquaVerify ayuda a estructurar registros, trazabilidad e informes; la acreditación, el alcance y la validez del método dependen de los procedimientos aprobados por cada laboratorio.',
+    referencesBody: 'AquaVerify ayuda a estructurar registros, trazabilidad e informes; la acreditación, el alcance y la validez del método dependen de los procedimientos documentados por cada laboratorio.',
     references: [
       ['ISO/IEC 17025', 'Marco internacional para demostrar competencia, imparcialidad y operación consistente en laboratorios de ensayo y calibración.', 'https://www.iso.org/ISO-IEC-17025-testing-and-calibration-laboratories.html'],
       ['ISO 10705-2', 'Norma de calidad del agua para detección y enumeración de bacteriófagos; parte 2: colífagos somáticos.', 'https://www.iso.org/standard/20127.html'],
@@ -150,7 +150,7 @@ const LAB_UI: Record<Language, LabUiCopy> = {
     formSubmit: 'Continuar en AquaVerify Cloud',
     formPrivacy: 'La solicitud continúa en AquaVerify Cloud para que el equipo comercial la reciba con origen, sector y contexto del laboratorio.',
     fallbackFaqs: [
-      ['¿AquaVerify sustituye a un laboratorio acreditado?', 'No. AquaVerify actúa como capa de producto, trazabilidad, flujo digital, reporting y portal cliente. Cuando un ensayo se emite bajo acreditación, debe integrarse en el alcance, los métodos, las validaciones y los procedimientos aprobados por el propio laboratorio.']
+      ['¿AquaVerify puede integrarse en un laboratorio que ya tiene LIMS?', 'Sí. AquaVerify Cloud puede complementar flujos existentes y conectar muestra, lote, operador, método, resultado, revisión, CoA y portal cliente. La integración o convivencia con un LIMS depende de requisitos, datos históricos, usuarios, validación interna, configuración y alcance operativo del laboratorio.']
     ]
   },
   fr: {
