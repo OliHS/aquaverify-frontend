@@ -51,6 +51,29 @@ function getPageContent(page: any, lang: Language) {
   return page?.translations?.[lang] || page?.content?.[lang] || page?.translations?.en || page?.content?.en || null;
 }
 
+function withBaseAnswerLayer(baseContent: any, content: any) {
+  if (!baseContent || !content) return content;
+  const baseSections = Array.isArray(baseContent.sections) ? baseContent.sections : [];
+  const answerSections = baseSections.filter((section: any) => (
+    section?.kind === 'directAnswer' || section?.kind === 'technicalTable'
+  ));
+  const hasTopLevelAnswerLayer = Boolean(baseContent.directAnswer || baseContent.technicalTable);
+  if (!answerSections.length && !hasTopLevelAnswerLayer) return content;
+
+  const currentSections = Array.isArray(content.sections) ? content.sections : [];
+  const nonAnswerSections = currentSections.filter((section: any) => (
+    section?.kind !== 'directAnswer' && section?.kind !== 'technicalTable'
+  ));
+
+  return {
+    ...content,
+    directAnswer: baseContent.directAnswer || content.directAnswer,
+    technicalTable: baseContent.technicalTable || content.technicalTable,
+    sections: answerSections.length ? [...answerSections, ...nonAnswerSections] : content.sections,
+    faqs: Array.isArray(baseContent.faqs) && baseContent.faqs.length > 0 ? baseContent.faqs : content.faqs
+  };
+}
+
 function getAlternates(page: any) {
   return Object.fromEntries(
     MARKETING_LANGUAGES
@@ -152,7 +175,9 @@ export const IndustriesMarketingRoute: React.FC<IndustriesMarketingRouteProps> =
     return () => controller.abort();
   }, [pageId, pageLang]);
 
-  const mergedContent = baseContent ? mergeMarketingContent(baseContent, contentOverride) : null;
+  const mergedContent = baseContent
+    ? withBaseAnswerLayer(baseContent, mergeMarketingContent(baseContent, contentOverride))
+    : null;
 
   useEffect(() => {
     if (!page || !mergedContent) return;

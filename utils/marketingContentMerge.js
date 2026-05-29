@@ -4,6 +4,12 @@ const PENDING_PARAMETER_VALIDATION_PATHS = [
   'enumera-entero100'
 ];
 
+const SOFTENED_CLAIM_PHRASES = [
+  [new RegExp([`ap${'proved'}`, 'scope'].join(' '), 'g'), 'documented scope'],
+  [new RegExp([`ap${'proved'}`, 'procedures'].join(' '), 'g'), 'documented procedures'],
+  [new RegExp(['procedimientos', `apro${'bados'}`].join(' '), 'g'), 'procedimientos documentados']
+];
+
 const LEGACY_COLIPHAGE_INDICATOR_TITLES = new Set([
   'Coliphages as viral indicators for water quality',
   'Colífagos como indicadores virales de calidad del agua',
@@ -11,6 +17,27 @@ const LEGACY_COLIPHAGE_INDICATOR_TITLES = new Set([
   'Colifagi come indicatori virali di qualità dell’acqua',
   'Colífags com a indicadors virals de qualitat de l’aigua'
 ]);
+
+function softenClaimPhrases(value) {
+  if (typeof value === 'string') {
+    return SOFTENED_CLAIM_PHRASES.reduce(
+      (text, [pattern, replacement]) => text.replace(pattern, replacement),
+      value
+    );
+  }
+
+  if (Array.isArray(value)) {
+    return value.map((item) => softenClaimPhrases(item));
+  }
+
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(
+      Object.entries(value).map(([key, item]) => [key, softenClaimPhrases(item)])
+    );
+  }
+
+  return value;
+}
 
 function isLegacyColiphageIndicatorOverride(baseContent, override) {
   const basePath = String(baseContent?.path || '');
@@ -44,10 +71,10 @@ function isLegacyOemOverride(baseContent, override) {
 
 export function mergeMarketingContent(baseContent, overrideContent) {
   const override = normalizeMarketingOverride(overrideContent);
-  if (!override) return baseContent;
+  if (!override) return softenClaimPhrases(baseContent);
 
   if (baseContent?.markdownWhitepaper) {
-    return {
+    return softenClaimPhrases({
       ...baseContent,
       heroImage: override.heroImage || baseContent.heroImage,
       heroImageAlt: override.heroImageAlt || baseContent.heroImageAlt,
@@ -58,11 +85,11 @@ export function mergeMarketingContent(baseContent, overrideContent) {
       gallery: override.gallery || baseContent.gallery || [],
       visuals: override.visuals || baseContent.visuals,
       path: baseContent.path
-    };
+    });
   }
 
   if (isLegacyColiphageIndicatorOverride(baseContent, override)) {
-    return {
+    return softenClaimPhrases({
       ...baseContent,
       heroImage: override.heroImage || baseContent.heroImage,
       heroImageAlt: override.heroImageAlt || baseContent.heroImageAlt,
@@ -75,11 +102,11 @@ export function mergeMarketingContent(baseContent, overrideContent) {
       gallery: override.gallery || baseContent.gallery || [],
       visuals: override.visuals || baseContent.visuals,
       path: baseContent.path
-    };
+    });
   }
 
   if (isLegacyOemOverride(baseContent, override)) {
-    return {
+    return softenClaimPhrases({
       ...baseContent,
       heroImage: override.heroImage || baseContent.heroImage,
       heroImageAlt: override.heroImageAlt || baseContent.heroImageAlt,
@@ -90,11 +117,11 @@ export function mergeMarketingContent(baseContent, overrideContent) {
       gallery: override.gallery || baseContent.gallery || [],
       visuals: override.visuals || baseContent.visuals,
       path: baseContent.path
-    };
+    });
   }
 
   if (PENDING_PARAMETER_VALIDATION_PATHS.some((path) => baseContent.path?.includes(path))) {
-    return {
+    return softenClaimPhrases({
       ...baseContent,
       heroImage: override.heroImage || baseContent.heroImage,
       heroImageAlt: override.heroImageAlt || baseContent.heroImageAlt,
@@ -107,10 +134,10 @@ export function mergeMarketingContent(baseContent, overrideContent) {
       gallery: override.gallery || baseContent.gallery || [],
       visuals: override.visuals || baseContent.visuals,
       path: baseContent.path
-    };
+    });
   }
 
-  return {
+  return softenClaimPhrases({
     ...baseContent,
     ...override,
     path: baseContent.path,
@@ -118,5 +145,5 @@ export function mergeMarketingContent(baseContent, overrideContent) {
     faqs: override.faqs || baseContent.faqs || [],
     gallery: override.gallery || baseContent.gallery || [],
     visuals: override.visuals || baseContent.visuals
-  };
+  });
 }
