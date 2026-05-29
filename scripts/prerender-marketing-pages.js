@@ -330,18 +330,45 @@ function renderSectionList(sections = []) {
   }).join('\n');
 }
 
+function renderAnswerLayer(page, content) {
+  if (!content || page?.id === 'distributors') return '';
+  const sections = Array.isArray(content.sections) ? content.sections : [];
+  const hasAnswerSections = sections.some((section) => (
+    section?.kind === 'directAnswer' || section?.kind === 'technicalTable'
+  ));
+  if (hasAnswerSections || (!content.directAnswer && !content.technicalTable)) return '';
+
+  return [
+    content.directAnswer ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.directAnswer.title)}</h2>`,
+      content.directAnswer.body ? `        <p>${escapeHtml(content.directAnswer.body)}</p>` : '',
+      '      </section>'
+    ].join('\n') : '',
+    content.technicalTable ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.technicalTable.title || '')}</h2>`,
+      renderTechnicalTable(content.technicalTable),
+      '      </section>'
+    ].join('\n') : ''
+  ].filter(Boolean).join('\n');
+}
+
 function withBaseAnswerLayer(page, lang, content) {
   const baseContent = page?.translations?.[lang];
   const baseSections = Array.isArray(baseContent?.sections) ? baseContent.sections : [];
   const answerSections = baseSections.filter((section) => section?.kind === 'directAnswer' || section?.kind === 'technicalTable');
-  if (!answerSections.length) return content;
+  const hasTopLevelAnswerLayer = Boolean(baseContent?.directAnswer || baseContent?.technicalTable);
+  if (!answerSections.length && !hasTopLevelAnswerLayer) return content;
 
   const currentSections = Array.isArray(content?.sections) ? content.sections : [];
   const nonAnswerSections = currentSections.filter((section) => section?.kind !== 'directAnswer' && section?.kind !== 'technicalTable');
 
   return {
     ...content,
-    sections: [...answerSections, ...nonAnswerSections],
+    directAnswer: baseContent?.directAnswer || content.directAnswer,
+    technicalTable: baseContent?.technicalTable || content.technicalTable,
+    sections: answerSections.length ? [...answerSections, ...nonAnswerSections] : content.sections,
     faqs: Array.isArray(baseContent?.faqs) && baseContent.faqs.length > 0 ? baseContent.faqs : content.faqs
   };
 }
@@ -913,6 +940,7 @@ function renderStaticRoot(meta) {
         : [
           renderFeaturedWhitepapers(meta.page, meta.lang),
           renderIndustriesHubSectors(meta.page, content, meta.lang),
+          renderAnswerLayer(meta.page, content),
           renderDistributorsDetails(meta.page, content, meta.lang),
           meta.page?.id === 'distributors' ? '' : renderSectionList(content.sections || []),
           renderVisualBlocks(content),

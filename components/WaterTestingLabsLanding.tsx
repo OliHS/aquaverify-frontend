@@ -22,15 +22,28 @@ type MarketingSection = {
   bullets?: string[];
 };
 
+type DirectAnswerContent = {
+  title: string;
+  body: string;
+};
+
+type TechnicalTableContent = {
+  title?: string;
+  columns: string[];
+  rows: string[][];
+};
+
 type MarketingContent = {
   path: string;
   title: string;
   description: string;
+  directAnswer?: DirectAnswerContent;
   eyebrow?: string;
   primaryCta?: string;
   secondaryCta?: string;
   sections?: MarketingSection[];
   faqs?: Array<{ question: string; answer: string }>;
+  technicalTable?: TechnicalTableContent;
 };
 
 type Props = {
@@ -302,6 +315,57 @@ const CardGrid: React.FC<{ items: string[]; iconOffset?: number; cols?: string }
   </div>
 );
 
+const AnswerLayer: React.FC<{
+  directAnswer?: DirectAnswerContent;
+  technicalTable?: TechnicalTableContent;
+}> = ({ directAnswer, technicalTable }) => {
+  if (!directAnswer && !technicalTable) return null;
+
+  return (
+    <section className="bg-white py-12 md:py-16">
+      <div className="container mx-auto px-6">
+        <div className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+          {directAnswer && (
+            <div>
+              <h2 className="font-heading text-2xl font-black text-primary">{directAnswer.title}</h2>
+              <p className="mt-3 text-base leading-8 text-slate-600">{directAnswer.body}</p>
+            </div>
+          )}
+          {technicalTable && technicalTable.columns.length > 0 && technicalTable.rows.length > 0 && (
+            <div className={directAnswer ? 'mt-7' : ''}>
+              {technicalTable.title && (
+                <h3 className="font-heading text-xl font-black text-slate-900">{technicalTable.title}</h3>
+              )}
+              <div className="mt-4 overflow-x-auto rounded-2xl border border-slate-200">
+                <table className="min-w-full divide-y divide-slate-200 text-left text-sm">
+                  <thead className="bg-slate-50 text-xs font-black uppercase tracking-[0.12em] text-slate-500">
+                    <tr>
+                      {technicalTable.columns.map((column) => (
+                        <th key={column} scope="col" className="px-4 py-3">{column}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 bg-white">
+                    {technicalTable.rows.map((row, rowIndex) => (
+                      <tr key={`${row.join('-')}-${rowIndex}`}>
+                        {technicalTable.columns.map((column, columnIndex) => (
+                          <td key={`${column}-${rowIndex}`} className="px-4 py-4 align-top leading-6 text-slate-600">
+                            {row[columnIndex] || ''}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, showCookieConsent = true }) => {
   const copy = LAB_UI[pageLang] || LAB_UI.en;
   const sections = [
@@ -426,6 +490,8 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
             </aside>
           </div>
         </section>
+
+        <AnswerLayer directAnswer={content.directAnswer} technicalTable={content.technicalTable} />
 
         <section id="reto" className="bg-slate-50 py-16 md:py-20">
           <div className="container mx-auto px-6">

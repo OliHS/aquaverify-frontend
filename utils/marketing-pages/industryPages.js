@@ -8,6 +8,14 @@ import { HOSPITALITY_TOURISM_WATER_PAGE } from '../hospitalityTourismWaterConten
 import { INDUSTRIES_HUB_PAGE } from '../industriesHubContent.js';
 import { MARKETING_LANGUAGES, locale, page, section } from './shared.js';
 
+function withAnswerLayer(content, directAnswer, technicalTable) {
+  return {
+    ...content,
+    ...(directAnswer ? { directAnswer } : {}),
+    ...(technicalTable ? { technicalTable } : {})
+  };
+}
+
 export const INDUSTRY_ENTRY_MARKETING_PAGES = [
   page('industries-hub', 'industries', 'contact', Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [
     lang,
@@ -33,7 +41,7 @@ export const INDUSTRY_ENTRY_MARKETING_PAGES = [
       { question: 'Can it integrate with existing processes?', answer: 'Yes. Adoption can start as an internal sample-to-report workflow and evolve toward integration with LIMS, CRM, reporting, customer portal or multi-site processes when the laboratory needs it.' },
       { question: 'How does a project start?', answer: 'The first step is a technical workflow diagnosis: matrices, monthly volume, methods, accreditation requirements, target TAT, existing software, friction points and customer-reporting needs.' }
     ] }),
-    es: locale('/es/industrias/laboratorios-analisis-agua', 'Laboratorios de análisis de agua: más capacidad, trazabilidad y confianza en cada informe', 'AquaVerify conecta kits de microbiología, control de colífagos somáticos, flujos digitales de muestra a informe, reporting CoA y portal cliente para laboratorios que necesitan entregar resultados fiables sin añadir carga administrativa.', [
+    es: withAnswerLayer(locale('/es/industrias/laboratorios-analisis-agua', 'Laboratorios de análisis de agua: más capacidad, trazabilidad y confianza en cada informe', 'AquaVerify conecta kits de microbiología, control de colífagos somáticos, flujos digitales de muestra a informe, reporting CoA y portal cliente para laboratorios que necesitan entregar resultados fiables sin añadir carga administrativa.', [
       section('El reto del laboratorio de agua', 'Los laboratorios de análisis de agua reciben más muestras, más matrices y más exigencias documentales. La presión aparece cuando el volumen crece, el TAT se estrecha y cada dato debe ser defendible ante clientes, auditorías y responsables técnicos.', ['Más volumen con el mismo equipo', 'Evidencia dispersa entre banco, calidad e informe', 'Clientes que piden más visibilidad', 'Cadena de custodia y reporting CoA']),
       section('Un flujo conectado para microbiología del agua', 'AquaVerify une producto, ejecución, datos y entrega al cliente en un sistema práctico para laboratorios que quieren estandarizar operaciones, ampliar servicios y reducir fricción en la emisión de resultados.', ['Dirección de laboratorio: capacidad, TAT y nuevas líneas de servicio', 'Calidad: registros por usuario, lote, método, muestra y revisión', 'Microbiología: kits, medios listos para usar y pasos guiados', 'Cliente B2B: estado, informes, histórico y comunicación clara']),
       section('De la muestra al informe CoA', 'Cada etapa del análisis puede quedar conectada con la siguiente para que el laboratorio trabaje con menos fricción y con evidencias listas para revisión técnica.', ['Solicitud y alta', 'Recepción y custodia', 'Preparación y ensayo', 'Lectura y evidencia', 'Revisión técnica', 'Informe y portal']),
@@ -43,15 +51,25 @@ export const INDUSTRY_ENTRY_MARKETING_PAGES = [
       section('Clientes con alta exigencia de control hídrico', 'La solución permite al laboratorio responder con más claridad a clientes que necesitan resultados trazables, repetibles y fáciles de interpretar.', ['Utilities y administración', 'Industria alimentaria y bebidas', 'Tratamiento y reutilización', 'Agricultura, acuicultura y seafood']),
       section('Trazabilidad compartida entre muestra, ensayo e informe', 'Cuando muestra, ensayo e informe comparten trazabilidad, el laboratorio reduce ambigüedad, organiza mejor la revisión técnica y entrega información más consistente a sus clientes.', ['Cadena de custodia digital', 'Evidencias de ejecución', 'Reporting CoA', 'Portal cliente', 'Adopción modular'])
     ], { eyebrow: 'Laboratorios públicos y privados de análisis de agua', primaryCta: 'Solicitar diagnóstico técnico', secondaryCta: 'Ver flujo muestra a informe', seoTitle: 'Laboratorios de análisis de agua | AquaVerify', seoDescription: 'Soluciones para laboratorios de análisis de agua: kits microbiológicos, colífagos somáticos, trazabilidad digital, reporting CoA y portal cliente.', faqs: [
-      { question: '¿AquaVerify sustituye a un laboratorio acreditado?', answer: 'No. AquaVerify actúa como capa de producto, trazabilidad, flujo digital, reporting y portal cliente. Cuando un ensayo se emite bajo acreditación, debe integrarse en el alcance, los métodos, las validaciones y los procedimientos aprobados por el propio laboratorio.' },
-      { question: '¿Para qué tipo de laboratorios está pensado?', answer: 'Está pensado para laboratorios ambientales, laboratorios públicos, laboratorios de utilities, laboratorios que sirven a industria alimentaria, equipos internos de control de agua y organizaciones que quieren ampliar servicios microbiológicos con mayor trazabilidad.' },
-      { question: '¿Qué aporta frente a un LIMS genérico?', answer: 'Aporta un enfoque específico en microbiología del agua: matrices, puntos de muestreo, colífagos somáticos, kits, lotes, evidencias de lectura, informes CoA, histórico por cliente y comunicación B2B desde el mismo flujo de trabajo.' },
-      { question: '¿Puede ayudar a reducir el TAT o tiempo de respuesta?', answer: 'Sí, al estandarizar pasos, reducir transcripción manual, ordenar la revisión técnica y facilitar la emisión del informe. El impacto real depende del volumen de muestras, los métodos aplicados, el equipo disponible y el flujo actual del laboratorio.' },
-      { question: '¿Qué productos encajan con colífagos somáticos?', answer: 'ENUMERA Soma 100 mL, PLAQUE Soma 1 mL, PLAQUE Soma 100 mL, INDICA Soma 100 mL, medios MSA/MSB y AquaVerify Cloud & App cubren escenarios de presencia/ausencia, enumeración, placa, reporting y trazabilidad digital según la matriz y el protocolo del laboratorio.' },
-      { question: '¿Sirve para clientes B2B con varias ubicaciones?', answer: 'Sí. El portal cliente permite organizar muestras, ubicaciones, históricos, entregables y comunicación por cuenta, instalación o punto de muestreo para reducir correos operativos y acelerar la entrega de información.' },
-      { question: '¿Se puede integrar con procesos existentes?', answer: 'Sí. La adopción puede empezar como flujo interno de muestra a informe y evolucionar hacia integración con LIMS, CRM, reporting, portal cliente o procesos multi-sede cuando el laboratorio lo necesite.' },
-      { question: '¿Cómo se inicia un proyecto?', answer: 'El primer paso es un diagnóstico técnico del flujo actual: matrices, volumen mensual, métodos, requisitos de acreditación, TAT objetivo, software existente, puntos de fricción y necesidades de reporting para clientes.' }
-    ] }),
+      { question: '¿AquaVerify puede integrarse en un laboratorio que ya tiene LIMS?', answer: 'Sí. AquaVerify Cloud puede complementar flujos existentes y conectar muestra, lote, operador, método, resultado, revisión, CoA y portal cliente. La integración o convivencia con un LIMS depende de requisitos, datos históricos, usuarios, validación interna, configuración y alcance operativo del laboratorio.' },
+      { question: '¿Qué productos son relevantes para colífagos somáticos en laboratorio?', answer: 'Según el flujo y el producto concreto, AquaVerify puede aportar familias como ENUMERA, INDICA, PLAQUE y medios Lab Essentials para programas donde los colífagos somáticos formen parte del enfoque microbiológico. El encaje debe revisarse según matriz, método, volumen, alcance y procedimiento interno.' },
+      { question: '¿Cómo documentar cadena de custodia, lote y resultado?', answer: 'AquaVerify Cloud puede ayudar a registrar solicitud, recepción, punto de muestreo, cadena de custodia, lote, operador, método, lectura, revisión técnica, resultado e informe CoA. La profundidad documental depende de la configuración, el flujo de trabajo y el sistema de calidad del laboratorio.' },
+      { question: '¿AquaVerify acorta por sí solo el tiempo de respuesta del laboratorio?', answer: 'No debe asumirse por defecto. Puede ayudar a reducir fricción administrativa, transcripción manual y tiempos de revisión documental, pero el impacto real depende del volumen de muestras, método, matriz, personal, validación interna, integraciones y flujo operativo actual.' },
+      { question: '¿Cómo encaja AquaVerify con ISO/IEC 17025?', answer: 'AquaVerify puede apoyar trazabilidad, registros, revisión, evidencias e informes dentro de un sistema de calidad. No cubre por sí solo la acreditación ni amplía el alcance del laboratorio; cada uso debe alinearse con métodos, validaciones, procedimientos y alcance acreditado cuando aplique.' }
+    ] }), {
+      title: '¿Cómo ayuda AquaVerify a un laboratorio de análisis de agua?',
+      body: 'AquaVerify puede ayudar a laboratorios de análisis de agua a combinar productos de microbiología, flujos de screening o enumeración, soporte operativo y trazabilidad digital con AquaVerify Cloud. La propuesta puede documentar muestra, lote, método, operador, resultado, revisión y CoA. En laboratorios acreditados, cada uso debe alinearse con método, matriz, validación y alcance del laboratorio.'
+    }, {
+      title: 'Necesidad del laboratorio y capa AquaVerify relacionada',
+      columns: ['Necesidad del laboratorio', 'Producto o capa relacionada', 'Evidencia que puede documentarse', 'Nota prudente'],
+      rows: [
+        ['Screening', 'INDICA', 'Muestra, lote, resultado y acción', 'Depende del método y procedimiento interno'],
+        ['Enumeración', 'ENUMERA', 'Lectura, resultado, revisión y CoA', 'Depende de organismo, matriz y método'],
+        ['Métodos de referencia', 'Kits ISO/EPA', 'Método, controles y evidencia', 'No implica aceptación automática'],
+        ['Operación diaria', 'Lab Essentials', 'Inventario, lote y SOP', 'Depende del sistema interno'],
+        ['Reporting', 'AquaVerify Cloud', 'Audit trail, CoA y portal', 'Configurar según proceso']
+      ]
+    }),
     fr: locale('/fr/industries/laboratoires-analyse-eau', 'Laboratoires d’analyse de l’eau : plus de capacité, de traçabilité et de confiance dans chaque rapport', 'AquaVerify relie kits de microbiologie de l’eau, contrôle des coliphages somatiques, flux numériques échantillon-rapport, reporting CoA et portail client pour les laboratoires qui doivent livrer des résultats fiables sans charge administrative supplémentaire.', [
       section('Le défi des laboratoires d’analyse de l’eau', 'Les laboratoires d’analyse de l’eau reçoivent davantage d’échantillons, de matrices et d’exigences documentaires. La pression augmente lorsque le volume progresse, que les délais se resserrent et que chaque résultat doit être défendable auprès des clients, auditeurs et responsables techniques.', ['Plus de volume avec la même équipe : organiser réception, paillasse, revue et livraison sans coordination manuelle supplémentaire.', 'Des preuves dispersées entre paillasse, qualité et rapport : relier échantillon, méthode, lot, utilisateur, lecture et validation.', 'Des clients qui demandent plus de visibilité : offrir statut, historique et livrables clairs sans multiplier les emails opérationnels.', 'Chaîne de traçabilité et reporting CoA : rendre chaque résultat plus facile à revoir, expliquer et retrouver.']),
       section('Un flux connecté pour la microbiologie de l’eau', 'AquaVerify relie produit, exécution, données et livraison client dans un système pratique pour les laboratoires qui veulent standardiser les opérations, développer leurs services et réduire les frictions lors de l’émission des résultats.', ['Direction de laboratoire : capacité, délai de rendu et nouvelles lignes de service.', 'Qualité : enregistrements par utilisateur, lot, méthode, échantillon et revue technique.', 'Microbiologie : kits, milieux prêts à l’emploi et étapes guidées.', 'Client B2B : statut, rapports, historique et communication plus claire.']),
@@ -210,6 +228,25 @@ const INDUSTRY_PAGE_DATA = [
       it: ['Richiedi diagnosi municipale', 'Vedi come funziona'],
       ca: ['Sol·licitar diagnòstic municipal', 'Veure com funciona']
     },
+    directAnswers: {
+      es: {
+        title: '¿Cómo ayuda AquaVerify a una operadora municipal de agua?',
+        body: 'AquaVerify puede ayudar a operadoras municipales y equipos de calidad del agua a combinar productos de microbiología, trazabilidad digital, reporting y evidencia documental para programas de control. Puede apoyar la documentación de muestras, puntos, lotes, métodos, resultados, incidencias y CoA. El uso regulatorio depende del país, plan de muestreo, método, laboratorio, matriz y autoridad competente.'
+      }
+    },
+    technicalTables: {
+      es: {
+        title: 'Necesidad municipal y capa AquaVerify relacionada',
+        columns: ['Necesidad municipal', 'Capa AquaVerify', 'Evidencia o acción', 'Nota prudente'],
+        rows: [
+          ['Puntos de control', 'AquaVerify Cloud', 'Punto, red, activo y estado', 'Configurar según plan'],
+          ['Screening', 'INDICA', 'Presencia/ausencia y acción', 'No sustituye confirmación si se requiere'],
+          ['Enumeración', 'ENUMERA', 'Resultado comparable y revisión', 'Depende de método y matriz'],
+          ['Indicadores virales', 'Kits/ENUMERA según producto', 'Evidencia técnica y CoA', 'Revisar normativa aplicable'],
+          ['Reporting', 'Cloud y CoA', 'Informe, incidencia y decisión', 'Depende de autoridad competente']
+        ]
+      }
+    },
     faqs: {
       en: [
         { question: 'Does AquaVerify replace the laboratory or health authority?', answer: 'No. AquaVerify acts as a product, digital workflow, traceability and reporting layer. Tests, validations, accreditations and regulatory decisions must be managed according to the laboratory, operator and competent authority.' },
@@ -222,14 +259,11 @@ const INDUSTRY_PAGE_DATA = [
         { question: 'Can it integrate with existing systems?', answer: 'Yes. It can start as a standalone workflow and evolve towards integration with LIMS, internal reporting, CRM, GIS or stakeholder portals depending on the operator’s digital infrastructure.' }
       ],
       es: [
-        { question: '¿AquaVerify sustituye al laboratorio o a la autoridad sanitaria?', answer: 'No. AquaVerify actúa como capa de producto, flujo digital, trazabilidad y reporting. Los ensayos, validaciones, acreditaciones y decisiones regulatorias deben gestionarse según el laboratorio, el operador y la autoridad competente.' },
-        { question: '¿Sirve para municipios pequeños?', answer: 'Sí. Un municipio pequeño puede empezar con un flujo simple de puntos, muestras, resultados e informes. El sistema puede escalar después a más puntos, laboratorios, usuarios o módulos de análisis.' },
-        { question: '¿Puede trabajar con un laboratorio público o externo?', answer: 'Sí. El flujo puede configurarse para laboratorio propio, laboratorio público, partner externo o esquema mixto, manteniendo el vínculo entre muestra, punto de muestreo, resultado e informe.' },
-        { question: '¿Qué aporta en colífagos somáticos?', answer: 'Aporta productos, medios y trazabilidad digital para organizar programas donde los colífagos somáticos forman parte del enfoque microbiológico de control o verificación.' },
-        { question: '¿Incluye mapas o seguimiento por punto?', answer: 'Sí. Puede organizar puntos de muestreo por ubicación, zona, tipo de matriz, criticidad y estado, facilitando seguimiento histórico y priorización de desviaciones.' },
-        { question: '¿Ayuda con el cumplimiento normativo?', answer: 'Ayuda a documentar procesos, resultados y acciones, pero el cumplimiento depende del programa, el método, el laboratorio, el operador y la normativa aplicable.' },
-        { question: '¿Cómo se inicia el proyecto?', answer: 'El primer paso es revisar la red, las fuentes, los puntos críticos, el volumen de muestras, el laboratorio implicado, el método actual, el reporting requerido y las principales incidencias o fricciones.' },
-        { question: '¿Se puede integrar con sistemas existentes?', answer: 'Sí. Puede arrancar como flujo independiente y evolucionar hacia integración con LIMS, reporting interno, CRM, GIS o portal de stakeholders según la infraestructura digital del operador.' }
+        { question: '¿AquaVerify sirve para planes de muestreo municipal?', answer: 'Puede formar parte de un flujo de planificación, toma de muestra, laboratorio, revisión e informe para programas municipales de agua. El encaje depende del plan de muestreo, puntos de control, matriz, frecuencia, laboratorio, método y requisitos de la autoridad competente.' },
+        { question: '¿Cómo ayuda AquaVerify con colífagos somáticos en agua potable?', answer: 'AquaVerify puede aportar productos, medios y trazabilidad digital para flujos donde los colífagos somáticos se utilicen como indicador microbiológico o viral según el programa. La aplicación concreta debe revisarse según normativa, método, matriz, país, laboratorio y alcance.' },
+        { question: '¿Puede AquaVerify Cloud conectar campo, laboratorio e informe?', answer: 'Sí. AquaVerify Cloud puede conectar punto de muestreo, operador, fecha, lote, método, lectura, revisión, incidencia, CoA e histórico. La configuración debe adaptarse al modelo operativo: laboratorio propio, público, externo o mixto.' },
+        { question: '¿Cómo encaja AquaVerify con RD 3/2023 o Directiva UE 2020/2184?', answer: 'AquaVerify puede ayudar a documentar procesos, resultados, evidencias y acciones, pero el cumplimiento depende del plan de control, método aplicado, laboratorio, matriz, país, autoridad competente y responsabilidades del operador.' },
+        { question: '¿Puede usarse en municipios pequeños o servicios externalizados?', answer: 'Sí, puede configurarse para municipios pequeños, operadores externos o modelos mixtos, empezando por puntos, muestras, resultados e informes. El alcance debe definirse según recursos disponibles, laboratorio implicado, volumen de muestras, responsabilidades y necesidades de reporting.' }
       ],
       fr: [
         { question: 'AquaVerify remplace-t-il le laboratoire ou l’autorité sanitaire ?', answer: 'Non. AquaVerify agit comme couche de produit, flux numérique, traçabilité et reporting. Les essais, validations, accréditations et décisions réglementaires doivent être gérés selon le laboratoire, l’opérateur et l’autorité compétente.' },
@@ -645,7 +679,7 @@ function buildIndustryPages() {
       item.id,
       'industries',
       'contact',
-      Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, locale(
+      Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, withAnswerLayer(locale(
         item.paths[lang],
         item.titles[lang],
         item.descriptions[lang],
@@ -658,7 +692,7 @@ function buildIndustryPages() {
           seoDescription: item.descriptions[lang],
           faqs: item.faqs?.[lang] || buildIndustryFaqs(item, lang)
         }
-      )])),
+      ), item.directAnswers?.[lang], item.technicalTables?.[lang])])),
       { parentId: 'water-quality-control' }
     );
   });
