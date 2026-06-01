@@ -75,7 +75,7 @@ const ES_PRODUCT_ANSWER_LAYER = {
       },
       {
         question: '¿Cómo deben usarse los productos AquaVerify en contextos regulados?',
-        answer: 'No deben presentarse como cumplimiento automático. AquaVerify puede ayudar a flujos alineables con métodos, documentación y trazabilidad, pero el cumplimiento depende del país, autoridad competente, matriz, método, controles, laboratorio y alcance concreto del uso.'
+        answer: 'No deben presentarse como garantía de aceptación regulatoria por sí mismos. AquaVerify puede ayudar a flujos alineables con métodos, documentación y trazabilidad, pero el cumplimiento depende del país, autoridad competente, matriz, método, controles, laboratorio y alcance concreto del uso.'
       }
     ],
     technicalTable: {
@@ -171,7 +171,7 @@ const ES_PRODUCT_ANSWER_LAYER = {
   standardKits: {
     directAnswer: {
       title: '¿Qué son los kits ISO/EPA de AquaVerify?',
-      body: 'Los kits ISO/EPA de AquaVerify agrupan flujos técnicos pensados para laboratorios que trabajan con métodos normalizados, referencias documentales o requisitos de control microbiológico del agua. Pueden ayudar a organizar preparación, lectura, trazabilidad y evidencia digital con AquaVerify Cloud. No implican por sí solos aceptación regulatoria ni cumplimiento automático: el uso depende de matriz, método, documentación, país, autoridad competente y alcance del laboratorio.'
+      body: 'Los kits ISO/EPA de AquaVerify agrupan flujos técnicos pensados para laboratorios que trabajan con métodos normalizados, referencias documentales o requisitos de control microbiológico del agua. Pueden ayudar a organizar preparación, lectura, trazabilidad y evidencia digital con AquaVerify Cloud. No implican por sí solos aceptación regulatoria ni resultado conforme: el uso depende de matriz, método, documentación, país, autoridad competente y alcance del laboratorio.'
     },
     faqs: [
       {
@@ -204,7 +204,7 @@ const ES_PRODUCT_ANSWER_LAYER = {
         ['Documentación clave', 'Método, matriz, lote, controles, resultado y CoA'],
         ['Conexión Cloud', 'Audit trail, CoA, revisión y trazabilidad documental'],
         ['Referencias relacionadas', 'ISO 10705-2, EPA 1601/1602 solo si aplica al producto concreto'],
-        ['Nota prudente', 'No afirmar aceptación regulatoria ni cumplimiento automático']
+        ['Nota prudente', 'No afirmar aceptación regulatoria ni resultado conforme por sí solo']
       ]
     }
   }
