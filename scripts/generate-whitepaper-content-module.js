@@ -17,7 +17,8 @@ const PAGE_IDS = [
   'legionella-facility-water-risk-guide',
   'iso-19458-water-microbiological-sampling',
   'excel-to-lims-water-analysis',
-  'oem-white-label-water-testing-kits'
+  'oem-white-label-water-testing-kits',
+  'aquacoli-enumera-coli100-validation'
 ];
 
 const NEW_WHITEPAPER_FILE_MAP = {
@@ -83,6 +84,13 @@ const NEW_WHITEPAPER_FILE_MAP = {
     fr: 'oem-marque-blanche-kits-analyse-eau',
     it: 'oem-white-label-kit-analisi-acqua',
     ca: 'oem-marca-blanca-kits-analisi-aigua'
+  },
+  'aquacoli-enumera-coli100-validation': {
+    en: 'aquacoli-enumera-coli100-iso-9308-2-validation',
+    es: 'validacion-aquacoli-enumera-coli100-iso-9308-2',
+    fr: 'validation-aquacoli-enumera-coli100-iso-9308-2',
+    it: 'validazione-aquacoli-enumera-coli100-iso-9308-2',
+    ca: 'validacio-aquacoli-enumera-coli100-iso-9308-2'
   }
 };
 

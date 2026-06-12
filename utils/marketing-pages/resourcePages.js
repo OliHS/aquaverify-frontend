@@ -943,6 +943,13 @@ const PRIORITY_WHITEPAPER_PATHS = {
     fr: '/fr/ressources/oem-marque-blanche-kits-analyse-eau',
     it: '/it/risorse/oem-white-label-kit-analisi-acqua',
     ca: '/ca/recursos/oem-marca-blanca-kits-analisi-aigua'
+  },
+  'aquacoli-enumera-coli100-validation': {
+    en: '/resources/aquacoli-enumera-coli100-iso-9308-2-validation',
+    es: '/es/recursos/validacion-aquacoli-enumera-coli100-iso-9308-2',
+    fr: '/fr/ressources/validation-aquacoli-enumera-coli100-iso-9308-2',
+    it: '/it/risorse/validazione-aquacoli-enumera-coli100-iso-9308-2',
+    ca: '/ca/recursos/validacio-aquacoli-enumera-coli100-iso-9308-2'
   }
 };
 

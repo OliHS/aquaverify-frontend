@@ -6,6 +6,7 @@ export const RESOURCE_HUB_WHITEPAPER_IDS = [
   'water-compliance-software-guide',
   'us-drinking-water-compliance-coliform-rule',
   'aquaverify-product-selection-guide',
+  'aquacoli-enumera-coli100-validation',
   'rd-3-2023-somatic-coliphages-guide',
   'iso-17025-water-laboratories-guide',
   'water-safety-plans-traceable-control',
@@ -355,6 +356,19 @@ export const RESOURCE_HUB_CONTENT = {
         tags: ['OEM', 'White label', 'Co-branding', 'Distribution'],
         categories: ['partner', 'product', 'software'],
         search: 'OEM white label water testing kits distributors partners co-branding packaging documentation training software territory'
+      },
+      {
+        id: 'aquacoli-enumera-coli100-validation',
+        label: 'Technical paper',
+        title: 'AquaColi / ENUMERA Coli100 validation against ISO 9308-2',
+        body: 'Technical paper on a chromogenic MPN method for E. coli and total coliforms in 100 mL water samples, validated across drinking water, surface water, wastewater, reclaimed water and seawater.',
+        audience: 'Water labs, utilities, QA/QC, distributors',
+        region: 'Global / EU',
+        level: 'Validation',
+        reading: '12 min',
+        tags: ['ENUMERA Coli100', 'AquaColi', 'ISO 9308-2', 'MPN'],
+        categories: ['product', 'methods', 'compliance', 'sector'],
+        search: 'AquaColi ENUMERA Coli100 E coli total coliforms ISO 9308-2 MPN chromogenic validation 100 mL water samples'
       }
     ],
     checklists: [
@@ -633,6 +647,19 @@ export const RESOURCE_HUB_CONTENT = {
         tags: ['OEM', 'Marca blanca', 'Co-branding', 'Distribución'],
         categories: ['partner', 'product', 'software'],
         search: 'OEM marca blanca kits analisis agua distribuidores partners co-branding packaging documentacion formacion software territorio'
+      },
+      {
+        id: 'aquacoli-enumera-coli100-validation',
+        label: 'Paper técnico',
+        title: 'Validación AquaColi / ENUMERA Coli100 frente a ISO 9308-2',
+        body: 'Paper técnico sobre un método cromogénico MPN para E. coli y coliformes totales en 100 mL de agua, validado en agua potable, superficial, residual, regenerada y marina.',
+        audience: 'Laboratorios de agua, utilities, QA/QC, distribuidores',
+        region: 'Global / UE',
+        level: 'Validación',
+        reading: '12 min',
+        tags: ['ENUMERA Coli100', 'AquaColi', 'ISO 9308-2', 'MPN'],
+        categories: ['product', 'methods', 'compliance', 'sector'],
+        search: 'AquaColi ENUMERA Coli100 E coli coliformes totales ISO 9308-2 MPN cromogenico validacion 100 mL muestras agua'
       }
     ],
     checklists: [
@@ -1144,7 +1171,8 @@ const WHITEPAPER_CARD_LABELS = {
     'legionella-facility-water-risk-guide': 'Legionella',
     'iso-19458-water-microbiological-sampling': 'ISO 19458',
     'excel-to-lims-water-analysis': 'Excel vers LIMS',
-    'oem-white-label-water-testing-kits': 'OEM / marque blanche'
+    'oem-white-label-water-testing-kits': 'OEM / marque blanche',
+    'aquacoli-enumera-coli100-validation': 'Paper technique'
   },
   it: {
     'coliphages-indicators': 'Indicatori virali',
@@ -1159,7 +1187,8 @@ const WHITEPAPER_CARD_LABELS = {
     'legionella-facility-water-risk-guide': 'Legionella',
     'iso-19458-water-microbiological-sampling': 'ISO 19458',
     'excel-to-lims-water-analysis': 'Da Excel a LIMS',
-    'oem-white-label-water-testing-kits': 'OEM / white label'
+    'oem-white-label-water-testing-kits': 'OEM / white label',
+    'aquacoli-enumera-coli100-validation': 'Paper tecnico'
   },
   ca: {
     'coliphages-indicators': 'Indicadors virals',
@@ -1174,11 +1203,13 @@ const WHITEPAPER_CARD_LABELS = {
     'legionella-facility-water-risk-guide': 'Legionella',
     'iso-19458-water-microbiological-sampling': 'ISO 19458',
     'excel-to-lims-water-analysis': 'Excel a LIMS',
-    'oem-white-label-water-testing-kits': 'OEM / marca blanca'
+    'oem-white-label-water-testing-kits': 'OEM / marca blanca',
+    'aquacoli-enumera-coli100-validation': 'Paper tècnic'
   }
 };
 
 const FEATURED_WHITEPAPER_ORDER = [
+  'aquacoli-enumera-coli100-validation',
   'aquaverify-product-selection-guide',
   'rd-3-2023-somatic-coliphages-guide',
   'iso-17025-water-laboratories-guide',
