@@ -36,7 +36,7 @@ Manuscrito técnico sobre un método cromogénico MPN para la enumeración simul
 - El método sustituye la lectura fluorescente UV para *E. coli* por una reacción cromogénica verde visible con luz ambiente.
 - El reactivo se integra en un tapón cerrado que libera el medio deshidratado en la muestra con menos pasos abiertos.
 - La validación comparó el método con **ISO 9308-2** en 120 muestras de agua potable, superficial, residual, regenerada y marina.
-- Los resultados apoyan la comparabilidad analítica con el método de referencia: sensibilidad del 100%, especificidad y selectividad altas, linealidad, LOD/LOQ satisfactorios y acuerdo cuantitativo compatible.
+- Los resultados apoyan la comparabilidad analítica con el método de referencia: sensibilidad del 100%, especificidad y selectividad altas, linealidad, LOD/LOQ satisfactorios y acuerdo cuantitativo coherente.
 
 ## Qué se validó
 
@@ -52,7 +52,7 @@ El estudio evalúa el flujo MPN completo: medio, botella, tapón con reactivo, g
 
 ## Relevancia operativa
 
-El manuscrito es especialmente relevante para laboratorios que buscan un flujo MPN compatible con ISO 9308-2 sin interpretación por UV. Mantiene las dianas bioquímicas usadas en métodos establecidos de coliformes y *E. coli*, pero traslada la lectura a una reacción cromogénica visible y simplifica el manejo del reactivo.
+El manuscrito es especialmente relevante para laboratorios que buscan un flujo MPN alineado con los principios de ISO 9308-2 sin interpretación por UV. Mantiene las dianas bioquímicas usadas en métodos establecidos de coliformes y *E. coli*, pero traslada la lectura a una reacción cromogénica visible y simplifica el manejo del reactivo.
 
 ## Descargas
 

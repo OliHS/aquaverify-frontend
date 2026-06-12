@@ -36,7 +36,7 @@ A technical manuscript on a chromogenic MPN method for simultaneous enumeration 
 - The method replaces UV fluorescence for *E. coli* reading with a visible green chromogenic reaction under ambient light.
 - The reagent is integrated into a closed cap format that releases dehydrated medium into the sample with fewer open handling steps.
 - Validation compared the method with **ISO 9308-2** using 120 samples across drinking water, surface water, wastewater, reclaimed water and seawater.
-- Results supported analytical comparability with the reference method, including 100% sensitivity, strong specificity and selectivity, linearity, satisfactory LOD/LOQ and compatible quantitative agreement.
+- Results supported analytical comparability with the reference method, including 100% sensitivity, strong specificity and selectivity, linearity, satisfactory LOD/LOQ and coherent quantitative agreement.
 
 ## What was validated
 
@@ -52,7 +52,7 @@ The study evaluated a complete MPN workflow: medium, bottle, reagent-in-cap hand
 
 ## Operational relevance
 
-The manuscript is especially relevant for laboratories that want an ISO 9308-2-compatible MPN workflow without UV interpretation. It keeps the biochemical detection targets used in established coliform and *E. coli* methods, but moves the readout to a visible chromogenic reaction and simplifies reagent handling.
+The manuscript is especially relevant for laboratories that want an MPN workflow aligned with ISO 9308-2 principles without UV interpretation. It keeps the biochemical detection targets used in established coliform and *E. coli* methods, but moves the readout to a visible chromogenic reaction and simplifies reagent handling.
 
 ## Downloads
 

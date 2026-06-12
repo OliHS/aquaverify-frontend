@@ -36,7 +36,7 @@ Manuscrit technique sur une méthode MPN chromogénique pour le dénombrement si
 - La méthode remplace la lecture fluorescente UV pour *E. coli* par une réaction chromogénique verte visible à la lumière ambiante.
 - Le réactif est intégré dans un bouchon fermé qui libère le milieu déshydraté dans l’échantillon avec moins d’étapes ouvertes.
 - La validation compare la méthode à **ISO 9308-2** sur 120 échantillons: eau potable, eau de surface, eaux usées, eau régénérée et eau de mer.
-- Les résultats soutiennent la comparabilité analytique avec la méthode de référence: sensibilité de 100%, forte spécificité et sélectivité, linéarité, LOD/LOQ satisfaisants et accord quantitatif compatible.
+- Les résultats soutiennent la comparabilité analytique avec la méthode de référence: sensibilité de 100%, forte spécificité et sélectivité, linéarité, LOD/LOQ satisfaisants et accord quantitatif cohérent.
 
 ## Ce qui a été validé
 
@@ -52,7 +52,7 @@ L’étude évalue le flux MPN complet: milieu, flacon, bouchon avec réactif, g
 
 ## Pertinence opérationnelle
 
-Le manuscrit est particulièrement utile aux laboratoires recherchant un flux MPN compatible ISO 9308-2 sans lecture UV. Il conserve les cibles biochimiques des méthodes établies pour coliformes et *E. coli*, mais déplace l’interprétation vers une réaction chromogénique visible et simplifie la manipulation du réactif.
+Le manuscrit est particulièrement utile aux laboratoires recherchant un flux MPN aligné avec les principes ISO 9308-2 sans lecture UV. Il conserve les cibles biochimiques des méthodes établies pour coliformes et *E. coli*, mais déplace l’interprétation vers une réaction chromogénique visible et simplifie la manipulation du réactif.
 
 ## Téléchargements
 

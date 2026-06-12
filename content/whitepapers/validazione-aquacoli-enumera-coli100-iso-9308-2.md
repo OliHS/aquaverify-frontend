@@ -36,7 +36,7 @@ Manoscritto tecnico su un metodo MPN cromogenico per l’enumerazione simultanea
 - Il metodo sostituisce la lettura fluorescente UV per *E. coli* con una reazione cromogenica verde visibile a luce ambiente.
 - Il reagente è integrato in un tappo chiuso che rilascia il terreno disidratato nel campione con meno passaggi aperti.
 - La validazione confronta il metodo con **ISO 9308-2** su 120 campioni: acqua potabile, superficiale, reflua, rigenerata e marina.
-- I risultati supportano la comparabilità analitica con il metodo di riferimento: sensibilità 100%, alta specificità e selettività, linearità, LOD/LOQ soddisfacenti e accordo quantitativo compatibile.
+- I risultati supportano la comparabilità analitica con il metodo di riferimento: sensibilità 100%, alta specificità e selettività, linearità, LOD/LOQ soddisfacenti e accordo quantitativo coerente.
 
 ## Cosa è stato validato
 
@@ -52,7 +52,7 @@ Lo studio valuta il workflow MPN completo: terreno, bottiglia, tappo con reagent
 
 ## Rilevanza operativa
 
-Il manoscritto è particolarmente rilevante per laboratori che cercano un workflow MPN compatibile con ISO 9308-2 senza interpretazione UV. Mantiene i target biochimici dei metodi consolidati per coliformi ed *E. coli*, ma sposta la lettura verso una reazione cromogenica visibile e semplifica la gestione del reagente.
+Il manoscritto è particolarmente rilevante per laboratori che cercano un workflow MPN allineato ai principi ISO 9308-2 senza interpretazione UV. Mantiene i target biochimici dei metodi consolidati per coliformi ed *E. coli*, ma sposta la lettura verso una reazione cromogenica visibile e semplifica la gestione del reagente.
 
 ## Download
 

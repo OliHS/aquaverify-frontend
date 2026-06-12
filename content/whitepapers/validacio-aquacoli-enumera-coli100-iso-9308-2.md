@@ -36,7 +36,7 @@ Manuscrit tècnic sobre un mètode MPN cromogènic per a l’enumeració simult�
 - El mètode substitueix la lectura fluorescent UV per a *E. coli* per una reacció cromogènica verda visible amb llum ambient.
 - El reactiu s’integra en un tap tancat que allibera el medi deshidratat dins la mostra amb menys passos oberts.
 - La validació compara el mètode amb **ISO 9308-2** en 120 mostres: aigua potable, superficial, residual, regenerada i marina.
-- Els resultats donen suport a la comparabilitat analítica amb el mètode de referència: sensibilitat del 100%, alta especificitat i selectivitat, linealitat, LOD/LOQ satisfactoris i acord quantitatiu compatible.
+- Els resultats donen suport a la comparabilitat analítica amb el mètode de referència: sensibilitat del 100%, alta especificitat i selectivitat, linealitat, LOD/LOQ satisfactoris i acord quantitatiu coherent.
 
 ## Què es va validar
 
@@ -52,7 +52,7 @@ L’estudi avalua el flux MPN complet: medi, ampolla, tap amb reactiu, geometria
 
 ## Rellevància operativa
 
-El manuscrit és especialment rellevant per a laboratoris que busquen un flux MPN compatible amb ISO 9308-2 sense interpretació UV. Manté les dianes bioquímiques dels mètodes establerts per a coliformes i *E. coli*, però trasllada la lectura a una reacció cromogènica visible i simplifica la gestió del reactiu.
+El manuscrit és especialment rellevant per a laboratoris que busquen un flux MPN alineat amb els principis ISO 9308-2 sense interpretació UV. Manté les dianes bioquímiques dels mètodes establerts per a coliformes i *E. coli*, però trasllada la lectura a una reacció cromogènica visible i simplifica la gestió del reactiu.
 
 ## Descàrregues
 
