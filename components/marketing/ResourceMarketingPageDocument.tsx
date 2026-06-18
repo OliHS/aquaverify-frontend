@@ -13,6 +13,7 @@ import {
   getEditorialTypeLabel,
   getResourceEditorialMeta
 } from '../../utils/resourceEditorialMetadata.js';
+import { getResourceUiLabels } from '../../utils/resourceUiLabels.js';
 
 type WhitepaperTone = 'cyan' | 'emerald' | 'indigo' | 'rose' | 'slate';
 
@@ -65,6 +66,11 @@ type ResourceContentMeta = {
   datasheetLabel?: string;
   whitepaper?: WhitepaperDeepDiveContent;
   markdownWhitepaper?: MarkdownWhitepaperContent;
+  resourceLinksTitle?: string;
+  resourceLinksIntro?: string;
+  resourceLinks?: Array<{ kind?: string; title: string; description: string; path: string }>;
+  checklistLinksTitle?: string;
+  checklistLinks?: Array<{ kind?: string; title: string; description: string; path: string }>;
   path: string;
   title: string;
 };
@@ -76,122 +82,6 @@ type ResourceMarketingPageDocumentProps = {
   breadcrumbs?: Array<{ name: string; path: string }>;
   relatedPages?: Array<{ id: string; title: string; description: string; path: string }>;
   showCookieConsent?: boolean;
-};
-
-const UI_LABELS: Record<Language, {
-  relatedPages: string;
-  nextStep: string;
-  talkToAquaVerify: string;
-  faqTitle: string;
-  screenshotsTitle: string;
-  editorialTitle: string;
-  editorialType: string;
-  writtenBy: string;
-  reviewedBy: string;
-  published: string;
-  lastReviewed: string;
-  originalAuthors: string;
-  originalSource: string;
-  peerReview: string;
-  relation: string;
-  limitations: string;
-  interests: string;
-}> = {
-  en: {
-    relatedPages: 'Related resources',
-    nextStep: 'Next step',
-    talkToAquaVerify: 'Talk to AquaVerify',
-    faqTitle: 'Frequently asked questions',
-    screenshotsTitle: 'Resource visuals',
-    editorialTitle: 'Editorial information',
-    editorialType: 'Document type',
-    writtenBy: 'Written by',
-    reviewedBy: 'Reviewed by',
-    published: 'Published',
-    lastReviewed: 'Last technical review',
-    originalAuthors: 'Original study authors',
-    originalSource: 'Primary source',
-    peerReview: 'Peer-review status',
-    relation: 'Relationship to AquaVerify',
-    limitations: 'Limitations',
-    interests: 'Interests'
-  },
-  es: {
-    relatedPages: 'Recursos relacionados',
-    nextStep: 'Siguiente paso',
-    talkToAquaVerify: 'Hablar con AquaVerify',
-    faqTitle: 'Preguntas frecuentes',
-    screenshotsTitle: 'Visuales del recurso',
-    editorialTitle: 'Información editorial',
-    editorialType: 'Tipo de documento',
-    writtenBy: 'Escrito por',
-    reviewedBy: 'Revisado por',
-    published: 'Publicado',
-    lastReviewed: 'Última revisión técnica',
-    originalAuthors: 'Autores del estudio original',
-    originalSource: 'Fuente primaria',
-    peerReview: 'Estado de revisión por pares',
-    relation: 'Relación con AquaVerify',
-    limitations: 'Limitaciones',
-    interests: 'Declaración de intereses'
-  },
-  fr: {
-    relatedPages: 'Ressources associées',
-    nextStep: 'Étape suivante',
-    talkToAquaVerify: 'Parler à AquaVerify',
-    faqTitle: 'Questions fréquentes',
-    screenshotsTitle: 'Visuels de la ressource',
-    editorialTitle: 'Informations éditoriales',
-    editorialType: 'Type de document',
-    writtenBy: 'Rédigé par',
-    reviewedBy: 'Relu par',
-    published: 'Publié',
-    lastReviewed: 'Dernière revue technique',
-    originalAuthors: 'Auteurs de l’étude originale',
-    originalSource: 'Source primaire',
-    peerReview: 'Statut d’évaluation par les pairs',
-    relation: 'Relation avec AquaVerify',
-    limitations: 'Limites',
-    interests: 'Déclaration d’intérêts'
-  },
-  it: {
-    relatedPages: 'Risorse correlate',
-    nextStep: 'Passo successivo',
-    talkToAquaVerify: 'Parla con AquaVerify',
-    faqTitle: 'Domande frequenti',
-    screenshotsTitle: 'Visual della risorsa',
-    editorialTitle: 'Informazioni editoriali',
-    editorialType: 'Tipo di documento',
-    writtenBy: 'Scritto da',
-    reviewedBy: 'Revisionato da',
-    published: 'Pubblicato',
-    lastReviewed: 'Ultima revisione tecnica',
-    originalAuthors: 'Autori dello studio originale',
-    originalSource: 'Fonte primaria',
-    peerReview: 'Stato peer-review',
-    relation: 'Relazione con AquaVerify',
-    limitations: 'Limitazioni',
-    interests: 'Dichiarazione di interessi'
-  },
-  ca: {
-    relatedPages: 'Recursos relacionats',
-    nextStep: 'Següent pas',
-    talkToAquaVerify: 'Parlar amb AquaVerify',
-    faqTitle: 'Preguntes freqüents',
-    screenshotsTitle: 'Visuals del recurs',
-    editorialTitle: 'Informació editorial',
-    editorialType: 'Tipus de document',
-    writtenBy: 'Escrit per',
-    reviewedBy: 'Revisat per',
-    published: 'Publicat',
-    lastReviewed: 'Última revisió tècnica',
-    originalAuthors: 'Autors de l’estudi original',
-    originalSource: 'Font primària',
-    peerReview: 'Estat de revisió per parells',
-    relation: 'Relació amb AquaVerify',
-    limitations: 'Limitacions',
-    interests: 'Declaració d’interessos'
-  }
 };
 
 const whitepaperToneClasses: Record<WhitepaperTone, {
@@ -330,11 +220,12 @@ const MarkdownWhitepaperArticle: React.FC<{ whitepaper: MarkdownWhitepaperConten
   whitepaper,
   pageLang
 }) => {
+  const labels = getResourceUiLabels(pageLang);
   const metaItems = [
-    { label: pageLang === 'en' ? 'Audience' : pageLang === 'fr' ? 'Audience' : pageLang === 'it' ? 'Pubblico' : pageLang === 'ca' ? 'Audiència' : 'Audiencia', value: whitepaper.audience },
-    { label: pageLang === 'en' ? 'Region' : pageLang === 'fr' ? 'Région' : pageLang === 'it' ? 'Regione' : pageLang === 'ca' ? 'Regió' : 'Región', value: whitepaper.region },
-    { label: pageLang === 'en' ? 'Reading time' : pageLang === 'fr' ? 'Temps de lecture' : pageLang === 'it' ? 'Tempo di lettura' : pageLang === 'ca' ? 'Temps de lectura' : 'Tiempo de lectura', value: whitepaper.readingTime },
-    { label: pageLang === 'en' ? 'Resource' : pageLang === 'fr' ? 'Ressource' : pageLang === 'it' ? 'Risorsa' : pageLang === 'ca' ? 'Recurs' : 'Recurso', value: whitepaper.level || 'Whitepaper' }
+    { label: labels.audience, value: whitepaper.audience },
+    { label: labels.region, value: whitepaper.region },
+    { label: labels.readingTime, value: whitepaper.readingTime },
+    { label: labels.resource, value: whitepaper.level || 'Whitepaper' }
   ].filter((item) => item.value);
   const ctaLinks = [whitepaper.primaryCta, whitepaper.secondaryCta].filter(Boolean) as MarkdownWhitepaperLink[];
 
@@ -443,7 +334,7 @@ const MarkdownWhitepaperArticle: React.FC<{ whitepaper: MarkdownWhitepaperConten
 };
 
 const EditorialTrustBlock: React.FC<{ pageId: string; pageLang: Language }> = ({ pageId, pageLang }) => {
-  const labels = UI_LABELS[pageLang] || UI_LABELS.en;
+  const labels = getResourceUiLabels(pageLang);
   const meta = getResourceEditorialMeta(pageId);
   const rows = [
     [labels.editorialType, getEditorialTypeLabel(pageId, pageLang)],
@@ -587,6 +478,43 @@ const WhitepaperDeepDive: React.FC<{ content: WhitepaperDeepDiveContent }> = ({ 
   );
 };
 
+const ResourceCollectionLinks: React.FC<{
+  title?: string;
+  intro?: string;
+  links?: Array<{ kind?: string; title: string; description: string; path: string }>;
+  preferAnchor?: boolean;
+}> = ({ title, intro, links = [], preferAnchor = false }) => {
+  if (!links.length) return null;
+
+  return (
+    <article className="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+      {title && <h2 className="font-heading text-2xl font-black text-primary">{title}</h2>}
+      {intro && <p className="mt-3 text-base leading-8 text-slate-600">{intro}</p>}
+      <div className="mt-6 grid gap-4 md:grid-cols-2">
+        {links.map((item) => {
+          const body = (
+            <>
+              {item.kind && <div className="text-[10px] font-black uppercase tracking-[0.16em] text-cyan-700">{item.kind}</div>}
+              <h3 className="mt-2 font-heading text-lg font-black text-slate-950">{item.title}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{item.description}</p>
+            </>
+          );
+          const className = 'rounded-xl border border-slate-200 bg-slate-50 p-5 transition hover:-translate-y-0.5 hover:border-cyan-200 hover:bg-cyan-50/60';
+          return preferAnchor || item.path.endsWith('.pdf') ? (
+            <a key={item.path} href={item.path} className={className}>
+              {body}
+            </a>
+          ) : (
+            <Link key={item.path} to={item.path} className={className}>
+              {body}
+            </Link>
+          );
+        })}
+      </div>
+    </article>
+  );
+};
+
 const secondaryTargetByCategory: Record<string, string> = {
   resources: 'products'
 };
@@ -610,7 +538,7 @@ export const ResourceMarketingPageDocument: React.FC<ResourceMarketingPageDocume
   }
 
   const contentMeta = content as ResourceContentMeta;
-  const labels = UI_LABELS[pageLang] || UI_LABELS.en;
+  const labels = getResourceUiLabels(pageLang);
   const primaryUrl = getPlatformSignupUrl({
     intent: page.primaryIntent,
     page: page.id,
@@ -751,6 +679,18 @@ export const ResourceMarketingPageDocument: React.FC<ResourceMarketingPageDocume
                   )}
                 </article>
               ))}
+
+              <ResourceCollectionLinks
+                title={contentMeta.resourceLinksTitle}
+                intro={contentMeta.resourceLinksIntro}
+                links={contentMeta.resourceLinks}
+              />
+
+              <ResourceCollectionLinks
+                title={contentMeta.checklistLinksTitle}
+                links={contentMeta.checklistLinks}
+                preferAnchor
+              />
 
               {contentMeta.whitepaper && (
                 <WhitepaperDeepDive content={contentMeta.whitepaper} />

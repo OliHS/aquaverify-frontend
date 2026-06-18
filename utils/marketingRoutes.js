@@ -1,4 +1,5 @@
 import { GLOSSARY_HUB_PATHS, GLOSSARY_TERM_ROUTE_PATHS } from './glossaryRoutes.js';
+import { RESOURCE_CATEGORY_PATHS } from './resourceCategoryPaths.js';
 
 export const MARKETING_ROUTE_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -64,6 +65,7 @@ export const MARKETING_ROUTE_PATHS = {
   'water-testing-labs': { en: '/industries/water-testing-laboratories', es: '/es/industrias/laboratorios-analisis-agua', fr: '/fr/industries/laboratoires-analyse-eau', it: '/it/settori/laboratori-analisi-acqua', ca: '/ca/sectors/laboratoris-analisi-aigua' },
   'water-quality-control': { en: '/industries/water-quality-control', es: '/es/industrias/control-calidad-agua', fr: '/fr/industries/controle-qualite-eau', it: '/it/settori/controllo-qualita-acqua', ca: '/ca/sectors/control-qualitat-aigua' },
   resources: { en: '/resources', es: '/es/recursos', fr: '/fr/ressources', it: '/it/risorse', ca: '/ca/recursos' },
+  ...RESOURCE_CATEGORY_PATHS,
   'iso-10705-2': { en: '/resources/iso-10705-2-somatic-coliphages', es: '/es/recursos/iso-10705-2-colifagos-somaticos', fr: '/fr/ressources/iso-10705-2-coliphages-somatiques', it: '/it/risorse/iso-10705-2-colifagi-somatici', ca: '/ca/recursos/iso-10705-2-colifags-somatics' },
   'epa-1602': { en: '/resources/epa-1602-coliphage-testing', es: '/es/recursos/epa-1602-colifagos', fr: '/fr/ressources/epa-1602-coliphages', it: '/it/risorse/epa-1602-colifagi', ca: '/ca/recursos/epa-1602-colifags' },
   'coliphages-indicators': { en: '/resources/coliphages-water-quality-indicators', es: '/es/recursos/colifagos-indicadores-calidad-agua', fr: '/fr/ressources/coliphages-indicateurs-qualite-eau', it: '/it/risorse/colifagi-indicatori-qualita-acqua', ca: '/ca/recursos/colifags-indicadors-qualitat-aigua' },

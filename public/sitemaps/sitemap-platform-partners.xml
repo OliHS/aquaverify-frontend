@@ -1,183 +1,363 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://aquaverify.com/platform</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/plataforma" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/plateforme" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/piattaforma" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/plataforma" />
   </url>
   <url>
     <loc>https://aquaverify.com/es/plataforma</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/plataforma" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/plateforme" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/piattaforma" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/plataforma" />
   </url>
   <url>
     <loc>https://aquaverify.com/fr/plateforme</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/plataforma" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/plateforme" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/piattaforma" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/plataforma" />
   </url>
   <url>
     <loc>https://aquaverify.com/it/piattaforma</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/plataforma" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/plateforme" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/piattaforma" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/plataforma" />
   </url>
   <url>
     <loc>https://aquaverify.com/ca/plataforma</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/plataforma" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/plateforme" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/piattaforma" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/plataforma" />
   </url>
   <url>
     <loc>https://aquaverify.com/saas/biotech-lims-platform</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/saas/plataforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/saas/plateforme-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/saas/piattaforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/saas/plataforma-lims-biotech" />
   </url>
   <url>
     <loc>https://aquaverify.com/es/saas/plataforma-lims-biotech</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/saas/plataforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/saas/plateforme-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/saas/piattaforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/saas/plataforma-lims-biotech" />
   </url>
   <url>
     <loc>https://aquaverify.com/fr/saas/plateforme-lims-biotech</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/saas/plataforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/saas/plateforme-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/saas/piattaforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/saas/plataforma-lims-biotech" />
   </url>
   <url>
     <loc>https://aquaverify.com/it/saas/piattaforma-lims-biotech</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/saas/plataforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/saas/plateforme-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/saas/piattaforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/saas/plataforma-lims-biotech" />
   </url>
   <url>
     <loc>https://aquaverify.com/ca/saas/plataforma-lims-biotech</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/saas/biotech-lims-platform" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/saas/plataforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/saas/plateforme-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/saas/piattaforma-lims-biotech" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/saas/plataforma-lims-biotech" />
   </url>
   <url>
     <loc>https://aquaverify.com/oem-water-testing-kits</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/oem-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/oem-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/oem-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/oem-kits-analisi-aigua" />
   </url>
   <url>
     <loc>https://aquaverify.com/es/oem-kits-analisis-agua</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/oem-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/oem-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/oem-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/oem-kits-analisi-aigua" />
   </url>
   <url>
     <loc>https://aquaverify.com/fr/oem-kits-analyse-eau</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/oem-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/oem-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/oem-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/oem-kits-analisi-aigua" />
   </url>
   <url>
     <loc>https://aquaverify.com/it/oem-kit-analisi-acqua</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/oem-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/oem-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/oem-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/oem-kits-analisi-aigua" />
   </url>
   <url>
     <loc>https://aquaverify.com/ca/oem-kits-analisi-aigua</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/oem-water-testing-kits" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/oem-kits-analisis-agua" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/oem-kits-analyse-eau" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/oem-kit-analisi-acqua" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/oem-kits-analisi-aigua" />
   </url>
   <url>
     <loc>https://aquaverify.com/distributors</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/distribuidores" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/distributeurs" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/distributori" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/distribuidors" />
   </url>
   <url>
     <loc>https://aquaverify.com/es/distribuidores</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/distribuidores" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/distributeurs" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/distributori" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/distribuidors" />
   </url>
   <url>
     <loc>https://aquaverify.com/fr/distributeurs</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/distribuidores" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/distributeurs" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/distributori" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/distribuidors" />
   </url>
   <url>
     <loc>https://aquaverify.com/it/distributori</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/distribuidores" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/distributeurs" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/distributori" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/distribuidors" />
   </url>
   <url>
     <loc>https://aquaverify.com/ca/distribuidors</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/distributors" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/distribuidores" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/distributeurs" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/distributori" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/distribuidors" />
   </url>
   <url>
     <loc>https://aquaverify.com/about</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/sobre-nosotros" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/a-propos" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/chi-siamo" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sobre-nosaltres" />
   </url>
   <url>
     <loc>https://aquaverify.com/es/sobre-nosotros</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/sobre-nosotros" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/a-propos" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/chi-siamo" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sobre-nosaltres" />
   </url>
   <url>
     <loc>https://aquaverify.com/fr/a-propos</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/sobre-nosotros" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/a-propos" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/chi-siamo" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sobre-nosaltres" />
   </url>
   <url>
     <loc>https://aquaverify.com/it/chi-siamo</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/sobre-nosotros" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/a-propos" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/chi-siamo" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sobre-nosaltres" />
   </url>
   <url>
     <loc>https://aquaverify.com/ca/sobre-nosaltres</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/about" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/sobre-nosotros" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/a-propos" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/chi-siamo" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/sobre-nosaltres" />
   </url>
   <url>
     <loc>https://aquaverify.com/contact</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/contacto" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/contatto" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/contacte" />
   </url>
   <url>
     <loc>https://aquaverify.com/es/contacto</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/contacto" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/contatto" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/contacte" />
   </url>
   <url>
     <loc>https://aquaverify.com/fr/contact</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/contacto" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/contatto" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/contacte" />
   </url>
   <url>
     <loc>https://aquaverify.com/it/contatto</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/contacto" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/contatto" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/contacte" />
   </url>
   <url>
     <loc>https://aquaverify.com/ca/contacte</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/contacto" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/contatto" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/contacte" />
   </url>
 </urlset>

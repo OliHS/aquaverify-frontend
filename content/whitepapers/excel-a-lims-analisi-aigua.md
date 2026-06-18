@@ -98,14 +98,9 @@ La millor migració no digitalitza tot en un dia. Comença per mostres i resulta
 
 Utilitza aquesta matriu per prioritzar quina ruta operativa activar abans de compra, implantació, auditoria o formació.
 
-| Àrea | Risc en full de càlcul | Què ha de fer LIMS | Mòdul AquaVerify |
-| --- | --- | --- | --- |
-| Sol·licitud | Dades duplicades o incompletes | Capturar origen, intenció, client i mostra | CRM + LIMS |
-| Execució | Mètode i operador desconnectats | Registrar mètode, full, controls i usuari | LIMS + ELN |
-| Resultat | Errors de transcripció | Capturar, revisar i aprovar amb historial | LIMS |
-| Informe | Versions PDF disperses | Generar CoA i publicar al portal | CoA + Portal |
-| Stock | Lots no vinculats | Connectar demanda, inventari i lot | Inventari + WMS |
-
+- Prioritza sol·licitud i recepció quan client, instal·lació o mostra es dupliquen entre fitxers.
+- Prioritza execució i revisió de resultat quan el risc principal és mètode, operador, controls o transcripció.
+- Prioritza informe i stock quan versions de CoA, portal o evidència de lot són difícils de reconstruir.
 
 <h2 id="checklist-descargable">Checklist descarregable</h2>
 

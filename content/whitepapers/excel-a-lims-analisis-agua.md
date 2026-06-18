@@ -98,14 +98,9 @@ La mejor migración no intenta digitalizar todo en un día. Empieza por las mues
 
 Usa esta matriz para priorizar qué ruta operativa activar antes de compra, implantación, auditoría o formación.
 
-| Área | Riesgo en Excel | Qué debe hacer LIMS | Módulo AquaVerify |
-| --- | --- | --- | --- |
-| Solicitud | Datos duplicados o incompletos | Capturar origen, intención, cliente y muestra | CRM + LIMS |
-| Ejecución | Método y operador desconectados | Registrar método, hoja, controles y usuario | LIMS + ELN |
-| Resultado | Errores de transcripción | Capturar, revisar y aprobar con historial | LIMS |
-| Informe | Versiones PDF dispersas | Generar CoA y publicar en portal | CoA + Portal |
-| Stock | Lotes no vinculados | Conectar demanda, inventario y lote | Inventario + WMS |
-
+- Prioriza solicitud y recepción cuando cliente, instalación o muestra se duplican entre archivos.
+- Prioriza ejecución y revisión de resultado cuando el riesgo principal está en método, operador, controles o transcripción.
+- Prioriza informe y stock cuando versiones de CoA, entrega en portal o evidencia de lote son difíciles de reconstruir.
 
 <h2 id="checklist-descargable">Checklist descargable</h2>
 

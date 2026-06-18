@@ -98,14 +98,9 @@ La oportunidad OEM debe evaluarse con prudencia. Volumen, importación, claims, 
 
 Usa esta matriz para priorizar qué ruta operativa activar antes de compra, implantación, auditoría o formación.
 
-| Modelo | Mejor para | Qué incluye | Riesgo a controlar |
-| --- | --- | --- | --- |
-| Distribución AquaVerify | Distribuidores científicos y laboratorios | Marca AquaVerify, catálogo, soporte comercial y técnico | Capacidad local de soporte |
-| Co-branding | Partners con cartera propia | Marca compartida, documentación adaptada y campañas sectoriales | Claridad de posicionamiento |
-| Marca blanca/OEM | Fabricantes, integradores y grupos regionales | Packaging, documentación, formación y posible flujo digital | Claims, etiquetado y responsabilidades |
-| OEM + Cloud | Partners que venden solución recurrente | Producto, portal, informes, trazabilidad y soporte | Alcance del servicio y permisos |
-| Expansión multi-país | Grupos con canal internacional | Idiomas, territorios, stock y reporting | Normativa local e importación |
-
+- Elige distribución AquaVerify cuando la prioridad sea catálogo con marca, disponibilidad local y soporte técnico.
+- Elige co-branding o marca blanca cuando el partner necesite posicionamiento adaptado, idioma de packaging o encaje en portfolio.
+- Añade la ruta Cloud cuando reporting recurrente, portal o trazabilidad formen parte de la oferta comercial.
 
 <h2 id="checklist-descargable">Checklist descargable</h2>
 

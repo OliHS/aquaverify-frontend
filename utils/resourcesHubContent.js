@@ -1,4 +1,6 @@
 import { getWhitepaperMarkdownPage } from './whitepaperMarkdownContent.js';
+import { getResourceUiLabels } from './resourceUiLabels.js';
+import { RESOURCE_CATEGORY_PATHS } from './resourceCategoryPaths.js';
 
 export const RESOURCE_HUB_WHITEPAPER_IDS = [
   'coliphages-indicators',
@@ -1448,17 +1450,93 @@ function withMarkdownWhitepaperSummaries(content, lang) {
   };
 }
 
+function withCentralResourceMetaLabels(content, lang) {
+  const labels = getResourceUiLabels(lang);
+  return {
+    ...content,
+    metaLabels: {
+      ...content.metaLabels,
+      audience: labels.audience,
+      region: labels.region,
+      level: labels.level,
+      reading: labels.readingTime,
+      open: labels.openWhitepaper,
+      download: labels.downloadChecklist,
+      related: labels.related
+    }
+  };
+}
+
+const RESOURCE_CATEGORY_ROUTE_COPY = {
+  en: {
+    'resources-regulation-compliance': ['Regulation and compliance', 'EU, US, ISO/IEC 17025 and audit-oriented resources for water quality decisions.'],
+    'resources-coliphages-viral-indicators': ['Coliphages and viral indicators', 'Guides and research summaries for viral indicator monitoring and coliphage workflows.'],
+    'resources-laboratory-sampling-methods': ['Laboratory, sampling and methods', 'Sampling, method selection and laboratory evidence resources for water microbiology.'],
+    'resources-lims-digital-traceability': ['LIMS and digital traceability', 'Resources for sample-to-report evidence, Excel migration and AquaVerify Cloud decisions.'],
+    'resources-applications-industries': ['Applications and industries', 'Sector routes for utilities, food and beverage, facilities, partner and OEM contexts.'],
+    'resources-scientific-research': ['Scientific research', 'Validation material, external study summaries, DOI-linked sources and editorial methodology.'],
+    'resources-guides-checklists': ['Guides and checklists', 'Operational guides and downloadable PDFs for practical technical preparation.']
+  },
+  es: {
+    'resources-regulation-compliance': ['Regulación y cumplimiento', 'Recursos UE, EEUU, ISO/IEC 17025 y auditoría para decisiones de calidad del agua.'],
+    'resources-coliphages-viral-indicators': ['Colífagos e indicadores virales', 'Guías y resúmenes científicos para monitorización viral y flujos de colífagos.'],
+    'resources-laboratory-sampling-methods': ['Laboratorio, muestreo y métodos', 'Recursos de muestreo, selección de método y evidencia de laboratorio.'],
+    'resources-lims-digital-traceability': ['LIMS y trazabilidad digital', 'Evidencia muestra-informe, migración desde Excel y decisiones AquaVerify Cloud.'],
+    'resources-applications-industries': ['Aplicaciones e industrias', 'Rutas sectoriales para utilities, alimentación, instalaciones, partners y OEM.'],
+    'resources-scientific-research': ['Investigación científica', 'Validación, resúmenes externos, fuentes con DOI y metodología editorial.'],
+    'resources-guides-checklists': ['Guías y checklists', 'Guías operativas y PDFs descargables para preparación técnica.']
+  },
+  fr: {
+    'resources-regulation-compliance': ['Réglementation et conformité', 'Ressources UE, États-Unis, ISO/IEC 17025 et audit pour décisions qualité eau.'],
+    'resources-coliphages-viral-indicators': ['Coliphages et indicateurs viraux', 'Guides et résumés scientifiques pour surveillance virale et flux coliphages.'],
+    'resources-laboratory-sampling-methods': ['Laboratoire, prélèvement et méthodes', 'Ressources prélèvement, choix méthode et preuve laboratoire.'],
+    'resources-lims-digital-traceability': ['LIMS et traçabilité numérique', 'Preuve échantillon-rapport, migration Excel et décisions AquaVerify Cloud.'],
+    'resources-applications-industries': ['Applications et industries', 'Parcours sectoriels pour utilities, agroalimentaire, bâtiments, partenaires et OEM.'],
+    'resources-scientific-research': ['Recherche scientifique', 'Validation, résumés externes, sources DOI et méthodologie éditoriale.'],
+    'resources-guides-checklists': ['Guides et checklists', 'Guides opérationnels et PDF téléchargeables pour préparation technique.']
+  },
+  it: {
+    'resources-regulation-compliance': ['Normativa e conformità', 'Risorse UE, Stati Uniti, ISO/IEC 17025 e audit per decisioni qualità acqua.'],
+    'resources-coliphages-viral-indicators': ['Colifagi e indicatori virali', 'Guide e sintesi scientifiche per monitoraggio virale e workflow colifagi.'],
+    'resources-laboratory-sampling-methods': ['Laboratorio, campionamento e metodi', 'Risorse per campionamento, scelta metodo ed evidenza laboratorio.'],
+    'resources-lims-digital-traceability': ['LIMS e tracciabilità digitale', 'Evidenza campione-report, migrazione Excel e decisioni AquaVerify Cloud.'],
+    'resources-applications-industries': ['Applicazioni e industrie', 'Percorsi settoriali per utility, alimenti, strutture, partner e OEM.'],
+    'resources-scientific-research': ['Ricerca scientifica', 'Validazione, sintesi esterne, fonti DOI e metodologia editoriale.'],
+    'resources-guides-checklists': ['Guide e checklist', 'Guide operative e PDF scaricabili per preparazione tecnica.']
+  },
+  ca: {
+    'resources-regulation-compliance': ['Regulació i compliment', 'Recursos UE, EUA, ISO/IEC 17025 i auditoria per decisions de qualitat de l’aigua.'],
+    'resources-coliphages-viral-indicators': ['Colífags i indicadors virals', 'Guies i resums científics per a monitoratge viral i fluxos de colífags.'],
+    'resources-laboratory-sampling-methods': ['Laboratori, mostreig i mètodes', 'Recursos de mostreig, selecció de mètode i evidència de laboratori.'],
+    'resources-lims-digital-traceability': ['LIMS i traçabilitat digital', 'Evidència mostra-informe, migració Excel i decisions AquaVerify Cloud.'],
+    'resources-applications-industries': ['Aplicacions i indústries', 'Rutes sectorials per utilities, alimentació, instal·lacions, partners i OEM.'],
+    'resources-scientific-research': ['Recerca científica', 'Validació, resums externs, fonts DOI i metodologia editorial.'],
+    'resources-guides-checklists': ['Guies i checklists', 'Guies operatives i PDF descarregables per a preparació tècnica.']
+  }
+};
+
+function resourceCategoryRoutes(lang) {
+  const copy = RESOURCE_CATEGORY_ROUTE_COPY[lang] || RESOURCE_CATEGORY_ROUTE_COPY.en;
+  return Object.keys(RESOURCE_CATEGORY_PATHS).map((id) => [id, ...(copy[id] || RESOURCE_CATEGORY_ROUTE_COPY.en[id])]);
+}
+
 export function getResourcesHubContent(lang = 'en') {
   const base = RESOURCE_HUB_CONTENT[lang] || cloneEnglishRows(lang, {
     ...RESOURCE_HUB_CONTENT.en,
     ...(RELATED_TRANSLATIONS[lang] || {})
   });
 
-  if (lang === 'en' || lang === 'es') return orderWhitepapers(withMarkdownWhitepaperSummaries(base, lang));
+  if (lang === 'en' || lang === 'es') {
+    const content = orderWhitepapers(withMarkdownWhitepaperSummaries(base, lang));
+    return withCentralResourceMetaLabels({
+      ...content,
+      routes: [...resourceCategoryRoutes(lang), ...content.routes]
+    }, lang);
+  }
 
   const fallback = RESOURCE_HUB_CONTENT.en;
   const translated = RELATED_TRANSLATIONS[lang] || {};
-  return orderWhitepapers(withMarkdownWhitepaperSummaries({
+  const content = orderWhitepapers(withMarkdownWhitepaperSummaries({
     ...fallback,
     ...translated,
     intents: cloneEnglishRows(lang, fallback).intents,
@@ -1469,6 +1547,11 @@ export function getResourcesHubContent(lang = 'en') {
     products: translatedProducts(lang, fallback.products),
     faqs: translatedFaqs(lang, fallback.faqs)
   }, lang));
+
+  return withCentralResourceMetaLabels({
+    ...content,
+    routes: [...resourceCategoryRoutes(lang), ...content.routes]
+  }, lang);
 }
 
 export function getResourcesHubFaqs(lang = 'en') {

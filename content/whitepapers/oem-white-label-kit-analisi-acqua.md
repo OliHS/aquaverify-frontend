@@ -98,14 +98,9 @@ L’opportunità OEM va valutata con prudenza. Volume, importazione, claim, etic
 
 Usa questa matrice per priorizzare il percorso operativo da attivare prima di acquisto, implementazione, audit o formazione.
 
-| Modello | Ideale per | Cosa include | Rischio da controllare |
-| --- | --- | --- | --- |
-| Distribuzione AquaVerify | Distributori scientifici e laboratori | Marchio AquaVerify, catalogo, supporto commerciale e tecnico | Capacità di supporto locale |
-| Co-branding | Partner con portafoglio proprio | Marchio condiviso, documentazione adattata e campagne settoriali | Chiarezza di posizionamento |
-| White label/OEM | Produttori, integratori e gruppi regionali | Packaging, documentazione, formazione e possibile flusso digitale | Claim, etichettatura e responsabilità |
-| OEM + Cloud | Partner che vendono soluzioni ricorrenti | Prodotto, portale, report, tracciabilità e supporto | Scopo servizio e permessi |
-| Espansione multi-paese | Gruppi con canale internazionale | Lingue, territori, stock e reporting | Normativa locale e importazione |
-
+- Scegli distribuzione AquaVerify quando la priorità è catalogo a marchio, disponibilità locale e supporto tecnico.
+- Scegli co-branding o white label quando il partner richiede posizionamento adattato, lingua packaging o fit di portafoglio.
+- Aggiungi la rotta Cloud quando reporting ricorrente, portale o tracciabilità fanno parte dell’offerta commerciale.
 
 <h2 id="checklist-descargable">Checklist scaricabile</h2>
 

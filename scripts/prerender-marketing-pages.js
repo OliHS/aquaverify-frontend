@@ -26,7 +26,11 @@ import {
   getGlossaryTermById,
   isPriorityGlossaryTerm
 } from '../utils/glossaryContent.js';
-import { getResourceEditorialMeta } from '../utils/resourceEditorialMetadata.js';
+import {
+  getEditorialTypeLabel,
+  getResourceEditorialMeta
+} from '../utils/resourceEditorialMetadata.js';
+import { getResourceUiLabels } from '../utils/resourceUiLabels.js';
 
 dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
@@ -329,6 +333,25 @@ function renderSectionList(sections = []) {
       '      </section>'
     ].filter(Boolean).join('\n');
   }).join('\n');
+}
+
+function renderResourceCollectionLinks(title, intro, links = []) {
+  if (!Array.isArray(links) || !links.length) return '';
+  return [
+    '      <section>',
+    title ? `        <h2>${escapeHtml(title)}</h2>` : '',
+    intro ? `        <p>${escapeHtml(intro)}</p>` : '',
+    '        <ul>',
+    ...links.map((item) => [
+      '          <li>',
+      item.kind ? `            <p><strong>${escapeHtml(item.kind)}</strong></p>` : '',
+      `            <h3><a href="${escapeHtml(externalOrAbsolute(item.path))}">${escapeHtml(item.title)}</a></h3>`,
+      `            <p>${escapeHtml(item.description)}</p>`,
+      '          </li>'
+    ].filter(Boolean).join('\n')),
+    '        </ul>',
+    '      </section>'
+  ].filter(Boolean).join('\n');
 }
 
 function renderAnswerLayer(page, content) {
@@ -712,14 +735,15 @@ function renderWhitepaperDeepDive(whitepaper) {
   ].filter(Boolean).join('\n');
 }
 
-function renderMarkdownWhitepaper(whitepaper) {
+function renderMarkdownWhitepaper(whitepaper, lang = 'en') {
   if (!whitepaper?.blocks?.length) return '';
+  const labels = getResourceUiLabels(lang);
 
   const metaCards = [
-    ['Audience', whitepaper.audience],
-    ['Region', whitepaper.region],
-    ['Level', whitepaper.level],
-    ['Reading time', whitepaper.readingTime]
+    [labels.audience, whitepaper.audience],
+    [labels.region, whitepaper.region],
+    [labels.level, whitepaper.level],
+    [labels.readingTime, whitepaper.readingTime]
   ].filter(([, value]) => Boolean(value));
 
   const renderBlock = (block) => {
@@ -786,13 +810,49 @@ function renderMarkdownWhitepaper(whitepaper) {
       '        </dl>'
     ].join('\n') : '',
     Array.isArray(whitepaper.relatedTopics) && whitepaper.relatedTopics.length ? [
-      '        <p><strong>Related topics:</strong> ',
+      `        <p><strong>${escapeHtml(labels.relatedTopics)}:</strong> `,
       whitepaper.relatedTopics.map((topic) => escapeHtml(topic)).join(', '),
       '</p>'
     ].join('') : '',
     ...whitepaper.blocks.map(renderBlock),
     '      </article>'
   ].filter(Boolean).join('\n');
+}
+
+function renderEditorialTrustBlock(pageId, lang = 'en') {
+  const labels = getResourceUiLabels(lang);
+  const meta = getResourceEditorialMeta(pageId);
+  const rows = [
+    [labels.editorialType, getEditorialTypeLabel(pageId, lang)],
+    [labels.writtenBy, meta.pageAuthor],
+    [labels.reviewedBy, meta.reviewer],
+    [labels.published, meta.datePublished],
+    [labels.lastReviewed, meta.dateModified],
+    [labels.originalAuthors, meta.originalAuthors],
+    [labels.primarySource, meta.sourceUrl],
+    [labels.peerReview, meta.peerReviewStatus],
+    [labels.relation, meta.relationToAquaVerify],
+    [labels.limitations, meta.limitations],
+    [labels.interests, meta.interests]
+  ].filter(([, value]) => Boolean(value));
+
+  if (rows.length <= 1) return '';
+
+  return [
+    '      <aside aria-labelledby="editorial-info-title">',
+    `        <h2 id="editorial-info-title">${escapeHtml(labels.editorialTitle)}</h2>`,
+    '        <dl>',
+    ...rows.map(([label, value]) => [
+      '          <div>',
+      `            <dt>${escapeHtml(label)}</dt>`,
+      String(value).startsWith('http')
+        ? `            <dd><a href="${escapeHtml(value)}">${escapeHtml(value)}</a></dd>`
+        : `            <dd>${escapeHtml(value)}</dd>`,
+      '          </div>'
+    ].join('\n')),
+    '        </dl>',
+    '      </aside>'
+  ].join('\n');
 }
 
 function renderHeroVisual(meta, content, title) {
@@ -937,13 +997,18 @@ function renderStaticRoot(meta) {
         : (meta.page?.id === 'glossary' || typeof meta.page?.glossaryTermId === 'number')
           ? renderGlossaryDetails(meta.page, meta.lang)
         : content.markdownWhitepaper
-          ? renderMarkdownWhitepaper(content.markdownWhitepaper)
+          ? [
+            renderMarkdownWhitepaper(content.markdownWhitepaper, meta.lang),
+            renderEditorialTrustBlock(meta.page?.id, meta.lang)
+          ].join('\n')
         : [
           renderFeaturedWhitepapers(meta.page, meta.lang),
           renderIndustriesHubSectors(meta.page, content, meta.lang),
           renderAnswerLayer(meta.page, content),
           renderDistributorsDetails(meta.page, content, meta.lang),
           meta.page?.id === 'distributors' ? '' : renderSectionList(content.sections || []),
+          renderResourceCollectionLinks(content.resourceLinksTitle, content.resourceLinksIntro, content.resourceLinks),
+          renderResourceCollectionLinks(content.checklistLinksTitle, '', content.checklistLinks),
           renderVisualBlocks(content),
           renderWhitepaperDeepDive(content.whitepaper)
         ].join('\n'),
@@ -1278,6 +1343,30 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
         }))
       }
     });
+  }
+
+  if (page?.schemaType === 'resourcesHub' && page?.id !== 'resources') {
+    const links = [
+      ...(Array.isArray(content?.resourceLinks) ? content.resourceLinks : []),
+      ...(Array.isArray(content?.checklistLinks) ? content.checklistLinks : [])
+    ];
+    if (links.length) {
+      payloads.push({
+        id: 'resource-category-itemlist',
+        data: {
+          '@context': 'https://schema.org',
+          '@type': 'ItemList',
+          name: title,
+          url: canonicalUrl,
+          itemListElement: links.map((item, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            name: item.title,
+            url: externalOrAbsolute(item.path)
+          }))
+        }
+      });
+    }
   }
 
   if (page?.id === 'glossary') {

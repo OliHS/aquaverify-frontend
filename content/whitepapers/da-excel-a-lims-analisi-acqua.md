@@ -98,14 +98,9 @@ La migliore migrazione non digitalizza tutto in un giorno. Parte da campioni e r
 
 Usa questa matrice per priorizzare il percorso operativo da attivare prima di acquisto, implementazione, audit o formazione.
 
-| Area | Rischio foglio | Cosa deve fare il LIMS | Modulo AquaVerify |
-| --- | --- | --- | --- |
-| Richiesta | Dati duplicati o incompleti | Catturare origine, intento, cliente e campione | CRM + LIMS |
-| Esecuzione | Metodo e operatore scollegati | Registrare metodo, worksheet, controlli e utente | LIMS + ELN |
-| Risultato | Errori di trascrizione | Catturare, revisionare e approvare con storico | LIMS |
-| Report | Versioni PDF disperse | Generare CoA e pubblicare nel portale | CoA + Portale |
-| Stock | Lotti non collegati | Collegare domanda, inventario e lotto | Inventario + WMS |
-
+- Dai priorità a richiesta e accettazione quando cliente, sito o campione sono duplicati tra file.
+- Dai priorità a esecuzione e revisione risultato quando il rischio principale riguarda metodo, operatore, controlli o trascrizione.
+- Dai priorità a report e stock quando versioni CoA, portale o evidenza lotto sono difficili da ricostruire.
 
 <h2 id="checklist-descargable">Checklist scaricabile</h2>
 

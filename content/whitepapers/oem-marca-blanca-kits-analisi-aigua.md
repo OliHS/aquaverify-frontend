@@ -98,14 +98,9 @@ L’oportunitat OEM s’ha d’avaluar amb prudència. Volum, importació, claim
 
 Utilitza aquesta matriu per prioritzar quina ruta operativa activar abans de compra, implantació, auditoria o formació.
 
-| Model | Millor per a | Què inclou | Risc a controlar |
-| --- | --- | --- | --- |
-| Distribució AquaVerify | Distribuïdors científics i laboratoris | Marca AquaVerify, catàleg, suport comercial i tècnic | Capacitat de suport local |
-| Co-branding | Partners amb cartera pròpia | Marca compartida, documentació adaptada i campanyes sectorials | Claredat de posicionament |
-| Marca blanca/OEM | Fabricants, integradors i grups regionals | Packaging, documentació, formació i possible flux digital | Claims, etiquetatge i responsabilitats |
-| OEM + Cloud | Partners que venen solucions recurrents | Producte, portal, informes, traçabilitat i suport | Abast del servei i permisos |
-| Expansió multi-país | Grups amb canal internacional | Idiomes, territoris, stock i reporting | Normativa local i importació |
-
+- Tria distribució AquaVerify quan la prioritat sigui catàleg amb marca, disponibilitat local i suport tècnic.
+- Tria co-branding o marca blanca quan el partner necessiti posicionament adaptat, idioma de packaging o encaix en portfolio.
+- Afegeix la ruta Cloud quan reporting recurrent, portal o traçabilitat formin part de l’oferta comercial.
 
 <h2 id="checklist-descargable">Checklist descarregable</h2>
 

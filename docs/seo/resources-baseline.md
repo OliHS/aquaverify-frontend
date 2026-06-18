@@ -19,12 +19,24 @@ Generated: 2026-06-18
 - `npm run cms:marketing:strict`: failed from known CMS sync gap, 375 missing CMS linked pages/blocks.
 - `npm run build`: passed, 736 prerendered SEO HTML routes; Vite chunk-size warnings only.
 
+## Post-remediation checks observed on 2026-06-18
+
+- `npm run validate:resources`: passed with 7 resource categories and 20 whitepaper pages checked.
+- `npm run marketing:routes:audit`: passed, 770 checked routes, 0 mismatches.
+- `npm run build`: passed, 776 prerendered SEO HTML routes; Vite chunk-size warnings only.
+- `npm run cms:links:audit`: passed.
+- `npm run cms:assets:audit`: passed.
+- `npm run cms:claims:audit`: passed.
+- `npm run marketing:faqs:audit`: passed.
+- `npm run marketing:screenshots:audit`: passed.
+- `npm run check:local`: blocked at `cms:marketing:strict` because 415 marketing pages and 415 content blocks are missing from CMS records.
+
 ## Current inventory
 
-- Resource marketing page rows: 475.
+- Resource marketing page rows: 510.
 - Checklist PDF rows: 65.
-- Total matrix rows: 540.
-- Resource pages by language: en=95, es=95, fr=95, it=95, ca=95.
+- Total matrix rows: 575.
+- Resource pages by language: en=102, es=102, fr=102, it=102, ca=102.
 - External-research summary rows: 8.
 - Rows with missing associated files: 0.
 

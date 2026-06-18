@@ -98,14 +98,9 @@ The best migration does not try to digitize everything in one day. It starts wit
 
 Use this matrix to prioritize which operational route to activate before procurement, implementation, audit or training.
 
-| Area | Spreadsheet risk | What LIMS should do | AquaVerify module |
-| --- | --- | --- | --- |
-| Request | Duplicated or incomplete data | Capture source, intent, customer and sample | CRM + LIMS |
-| Execution | Method and operator disconnected | Record method, worksheet, controls and user | LIMS + ELN |
-| Result | Transcription errors | Capture, review and approve with history | LIMS |
-| Report | Scattered PDF versions | Generate CoA and publish in portal | CoA + Portal |
-| Stock | Lots not linked | Connect demand, inventory and lot | Inventory + WMS |
-
+- Prioritize request and intake when customer, site or sample data is duplicated across files.
+- Prioritize execution and result review when method, operator, control or transcription risk is the main issue.
+- Prioritize report and stock integration when CoA versions, portal delivery or lot evidence are hard to reconstruct.
 
 <h2 id="checklist-descargable">Downloadable checklist</h2>
 

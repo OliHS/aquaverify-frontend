@@ -1,4 +1,5 @@
 import { getResourcesHubSeo } from '../resourcesHubContent.js';
+import { RESOURCE_CATEGORY_MARKETING_PAGES } from './resourceCategoryPages.js';
 import {
   WHITEPAPER_MARKDOWN_PAGE_IDS,
   getWhitepaperMarkdownPage
@@ -1164,5 +1165,8 @@ function applyMarkdownWhitepaperPages(pages) {
 
 export const RESOURCE_MARKETING_PAGES = applyMarkdownWhitepaperPages([
   ...RESOURCE_CORE_MARKETING_PAGES,
+  ...RESOURCE_CATEGORY_MARKETING_PAGES,
   ...RESOURCE_PRIORITY_MARKETING_PAGES
 ]);
+
+export { RESOURCE_CATEGORY_MARKETING_PAGES };
