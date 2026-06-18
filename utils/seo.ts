@@ -1,6 +1,7 @@
 import type { Language } from './translations';
 import { HOME_FAQS, getHomeIndustryItems, getHomeProductItems } from './homeContent';
 import { getMarketingPagePath } from './marketingRoutes';
+import { getResourceEditorialMeta } from './resourceEditorialMetadata.js';
 
 export const CORPORATE_SITE_URL = 'https://aquaverify.com';
 export const SUPPORTED_SEO_LANGUAGES: Language[] = ['en', 'es', 'fr', 'it', 'ca'];
@@ -271,7 +272,8 @@ export function applyMarketingSeo({
   pageType,
   imageUrl,
   faqs,
-  breadcrumbs
+  breadcrumbs,
+  pageId
 }: {
   lang: Language;
   title: string;
@@ -282,10 +284,16 @@ export function applyMarketingSeo({
   imageUrl?: string;
   faqs?: Array<{ question: string; answer: string }>;
   breadcrumbs?: Array<{ name: string; path: string }>;
+  pageId?: string;
 }) {
   const canonicalUrl = getAbsoluteUrl(canonicalPath);
   const socialImageUrl = getAbsoluteAssetUrl(imageUrl);
   const schemaType = getMarketingSchemaType(pageType);
+  const organizationId = `${CORPORATE_SITE_URL}/#organization`;
+  const websiteId = `${CORPORATE_SITE_URL}/#website`;
+  const webpageId = `${canonicalUrl}#webpage`;
+  const editorialMeta = pageId ? getResourceEditorialMeta(pageId) : null;
+  const isArticle = ['Article', 'TechArticle'].includes(schemaType);
 
   document.documentElement.lang = lang;
   document.title = title;
@@ -322,28 +330,69 @@ export function applyMarketingSeo({
 
   upsertJsonLd('marketing-page', {
     '@context': 'https://schema.org',
-    '@type': schemaType,
-    name: title,
-    description,
-    url: canonicalUrl,
-    image: socialImageUrl,
-    ...(schemaType === 'Product' ? {
-      brand: {
-        '@type': 'Brand',
-        name: 'AquaVerify'
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': organizationId,
+        name: 'AquaVerify',
+        url: CORPORATE_SITE_URL,
+        logo: `${CORPORATE_SITE_URL}/images/logo-mark-160.png`
+      },
+      {
+        '@type': 'WebSite',
+        '@id': websiteId,
+        name: 'AquaVerify',
+        url: CORPORATE_SITE_URL,
+        inLanguage: lang,
+        publisher: { '@id': organizationId }
+      },
+      {
+        '@type': schemaType,
+        '@id': webpageId,
+        name: title,
+        headline: title,
+        description,
+        url: canonicalUrl,
+        image: socialImageUrl,
+        inLanguage: lang,
+        mainEntityOfPage: canonicalUrl,
+        isPartOf: { '@id': websiteId },
+        publisher: { '@id': organizationId },
+        ...(schemaType === 'Product' ? {
+          brand: {
+            '@type': 'Brand',
+            name: 'AquaVerify'
+          }
+        } : {}),
+        ...(isArticle ? {
+          author: {
+            '@type': 'Organization',
+            name: editorialMeta?.pageAuthor || 'AquaVerify',
+            url: CORPORATE_SITE_URL
+          },
+          ...(editorialMeta?.datePublished ? { datePublished: editorialMeta.datePublished } : {}),
+          ...(editorialMeta?.dateModified ? { dateModified: editorialMeta.dateModified } : {}),
+          ...(editorialMeta?.doi || editorialMeta?.sourceUrl ? {
+            citation: {
+              '@type': 'CreativeWork',
+              name: editorialMeta.originalTitle || title,
+              ...(editorialMeta.originalAuthors ? { author: editorialMeta.originalAuthors } : {}),
+              ...(editorialMeta.journal ? { isPartOf: editorialMeta.journal } : {}),
+              ...(editorialMeta.conference ? { isPartOf: editorialMeta.conference } : {}),
+              ...(editorialMeta.year ? { datePublished: editorialMeta.year } : {}),
+              ...(editorialMeta.doi ? { identifier: `doi:${editorialMeta.doi}` } : {}),
+              ...(editorialMeta.sourceUrl ? { url: editorialMeta.sourceUrl } : {})
+            },
+            isBasedOn: {
+              '@type': 'CreativeWork',
+              name: editorialMeta.originalTitle || title,
+              ...(editorialMeta.sourceUrl ? { url: editorialMeta.sourceUrl } : {}),
+              ...(editorialMeta.doi ? { identifier: `doi:${editorialMeta.doi}` } : {})
+            }
+          } : {})
+        } : {})
       }
-    } : {}),
-    isPartOf: {
-      '@type': 'WebSite',
-      name: 'AquaVerify',
-      url: CORPORATE_SITE_URL
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: 'AquaVerify',
-      url: CORPORATE_SITE_URL,
-      logo: `${CORPORATE_SITE_URL}/images/logo-mark-160.png`
-    }
+    ]
   });
 
   if (breadcrumbs?.length) {

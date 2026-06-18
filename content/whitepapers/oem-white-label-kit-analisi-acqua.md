@@ -190,7 +190,7 @@ Sì. Secondo lo scopo può includere AquaVerify Cloud, portale cliente, report, 
 
 ### La conformità normativa va rivista per paese?
 
-No. Claim, etichettatura, validazioni, importazione e requisiti locali devono essere rivisti per paese, matrice e uso previsto.
+Sì. Claim, etichettatura, validazioni, importazione e requisiti locali devono essere rivisti per paese, matrice e uso previsto.
 
 
 <h2 id="referencias-oficiales">Riferimenti ufficiali</h2>

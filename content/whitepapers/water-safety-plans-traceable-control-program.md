@@ -6,7 +6,7 @@ meta_description: "A guide to structure risk-based water control from catchment 
 audience: "Utilities, municipal operators, consultants, laboratories and public health teams"
 region: "Global / European Union"
 reading_time: "15 min"
-canonical: "https://aquaverify.com/en/resources/water-safety-plans-traceable-control-program"
+canonical: "https://aquaverify.com/resources/water-safety-plans-traceable-control-program"
 ---
 
 

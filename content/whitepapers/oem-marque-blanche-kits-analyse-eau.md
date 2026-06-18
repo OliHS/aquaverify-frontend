@@ -190,7 +190,7 @@ Oui. Selon le périmètre, il peut inclure AquaVerify Cloud, portail client, rap
 
 ### La conformité doit-elle être revue par pays ?
 
-Non. Claims, étiquetage, validations, importation et exigences locales doivent être revus par pays, matrice et usage prévu.
+Oui. Les claims, l’étiquetage, les validations, l’importation et les exigences locales doivent être revus par pays, matrice et usage prévu.
 
 
 <h2 id="referencias-oficiales">Références officielles</h2>

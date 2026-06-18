@@ -19,7 +19,7 @@ canonical: "https://aquaverify.com/ca/recursos/contaminacio-viral-aigues-residua
 Un estudi de camp sobre contaminació viral en fluxos d’EDAR i ecosistemes mediterranis protegits, incloent aigua regenerada, biosòlids, aigua superficial i sediment.
 
 <div class="aqv-actions">
-  <a class="aqv-btn aqv-btn-primary" href="/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf" download>Descarregar paper complet</a>
+  <a class="aqv-btn aqv-btn-primary" href="https://doi.org/10.1007/s12560-026-09693-3" target="_blank" rel="noopener noreferrer">Consultar DOI / font oficial</a>
   <a class="aqv-btn aqv-btn-ghost" href="/ca/contacte?intent=technical_recommendation&resource=viral-pollution-wastewater-mediterranean-ecosystems">Sol·licitar recomanació tècnica</a>
 </div>
 </div>
@@ -46,9 +46,9 @@ Un estudi de camp sobre contaminació viral en fluxos d’EDAR i ecosistemes med
 - Preparar plans de mostreig per matriu per a residual, biosòlids, aigua superficial i sediment.
 - Usar AquaVerify Cloud per connectar punt, campanya, matriu, diana i històric de revisió.
 
-## Descàrrega
+## Font primària
 
-[Paper original (PDF)](/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf)
+[Paper original / DOI](https://doi.org/10.1007/s12560-026-09693-3)
 
 ## Checklist d’implementació
 
@@ -84,7 +84,7 @@ Comparteix matriu, objectiu de monitoratge, necessitat de reporting i context de
 
 ### Aquesta pàgina substitueix el paper original?
 
-No. Resumeix la rellevància tècnica i enllaça el PDF original per revisar metodologia, dades i limitacions completes.
+No. Aquesta pàgina resumeix la rellevància tècnica i enllaça el DOI o la font oficial per revisar metodologia, dades i limitacions completes.
 
 ### És un claim d’aprovació de producte?
 
@@ -98,4 +98,4 @@ Com a preparació per a una conversa tècnica sobre dianes, indicadors, disseny 
 
 - Pablo Puchades-Colera, Inés Girón-Guzmán, Enric Cuevas-Ferrando, Azahara Díaz-Reolid, Irene Falcó and collaborators.
 - Food and Environmental Virology, 18:20 (2026). DOI: 10.1007/s12560-026-09693-3.
-- Paper original: [PDF](/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf)
+- Font primària: [DOI](https://doi.org/10.1007/s12560-026-09693-3)

@@ -19,7 +19,7 @@ canonical: "https://aquaverify.com/fr/ressources/virus-enteriques-genes-resistan
 Une étude de sécurité alimentaire examinant virus entériques, signaux viraux orientés viabilité, indicateurs viraux fécaux et gènes de résistance aux antibiotiques dans des moules de Campanie, Italie.
 
 <div class="aqv-actions">
-  <a class="aqv-btn aqv-btn-primary" href="/resources/scientific-papers/enteric-viruses-antibiotic-resistance-genes-mussels.pdf" download>Télécharger l’article complet</a>
+  <a class="aqv-btn aqv-btn-primary" href="https://doi.org/10.1007/s12560-025-09635-5" target="_blank" rel="noopener noreferrer">Consulter le DOI / source officielle</a>
   <a class="aqv-btn aqv-btn-ghost" href="/fr/contact?intent=technical_recommendation&resource=enteric-viruses-antibiotic-resistance-genes-mussels">Demander une recommandation technique</a>
 </div>
 </div>
@@ -46,9 +46,9 @@ Une étude de sécurité alimentaire examinant virus entériques, signaux viraux
 - Tracer origine échantillon, lot, matrice, cible et statut de revue dans un flux qualité connecté.
 - Préparer une communication séparant résultats scientifiques et revendications produit ou réglementaires.
 
-## Téléchargement
+## Source primaire
 
-[Article original (PDF)](/resources/scientific-papers/enteric-viruses-antibiotic-resistance-genes-mussels.pdf)
+[Article original / DOI](https://doi.org/10.1007/s12560-025-09635-5)
 
 ## Checklist de mise en oeuvre
 
@@ -84,7 +84,7 @@ Partagez matrice, objectif de surveillance, besoin de reporting et contexte de d
 
 ### Cette page remplace-t-elle l’article original?
 
-Non. Elle résume la pertinence technique et renvoie au PDF original pour examiner méthode, données et limites complètes.
+Non. Elle résume la pertinence technique et renvoie au DOI ou à la source officielle pour examiner méthode, données et limites complètes.
 
 ### Est-ce une revendication d’approbation produit?
 
@@ -98,4 +98,4 @@ Comme préparation à une discussion technique sur cibles, indicateurs, plan d�
 
 - Iolanda Venuti, Enric Cuevas-Ferrando, Irene Falcó, Inés Girón-Guzmán, Marina Ceruso, Tiziana Pepe and Gloria Sánchez.
 - Food and Environmental Virology, 17:28 (2025). DOI: 10.1007/s12560-025-09635-5.
-- Article original: [PDF](/resources/scientific-papers/enteric-viruses-antibiotic-resistance-genes-mussels.pdf)
+- Source primaire : [DOI](https://doi.org/10.1007/s12560-025-09635-5)

@@ -6,7 +6,7 @@ meta_description: "A practical guide to decide between ENUMERA, INDICA, ISO/EPA 
 audience: "Laboratories, quality teams, utilities, distributors and OEM partners"
 region: "Global"
 reading_time: "14 min"
-canonical: "https://aquaverify.com/en/resources/choose-aquaverify-product-water-microbiology"
+canonical: "https://aquaverify.com/resources/choose-aquaverify-product-water-microbiology"
 ---
 
 

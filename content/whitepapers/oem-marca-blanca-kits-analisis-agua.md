@@ -6,7 +6,7 @@ meta_description: "Guía comercial y técnica para evaluar distribución AquaVer
 audience: "Distribuidores científicos, integradores, fabricantes, laboratorios, empresas de tratamiento de agua"
 region: "Global"
 reading_time: "14 min"
-canonical: "https://aquaverify.com/es/recursos/oem-marca-blanca-kits-analisis-agua"
+canonical: "https://aquaverify.com/es/recursos/oem-kits-analisis-agua-marca-blanca"
 ---
 
 
@@ -190,7 +190,7 @@ Sí. Según el alcance, puede incluir AquaVerify Cloud, portal cliente, informes
 
 ### ¿El cumplimiento regulatorio debe revisarse por país?
 
-No. Claims, etiquetado, validaciones, importación y requisitos locales deben revisarse por país, matriz y uso previsto.
+Sí. Los claims, etiquetado, validaciones, importación y requisitos locales deben revisarse por país, matriz y uso previsto.
 
 
 <h2 id="referencias-oficiales">Referencias oficiales</h2>

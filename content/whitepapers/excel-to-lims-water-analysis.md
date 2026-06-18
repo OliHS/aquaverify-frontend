@@ -6,7 +6,7 @@ meta_description: "A guide for laboratories, distributors and quality teams movi
 audience: "Laboratories, QA/QC, distributors, utilities, multi-site operations"
 region: "Global"
 reading_time: "14 min"
-canonical: "https://aquaverify.com/en/resources/excel-to-lims-water-analysis"
+canonical: "https://aquaverify.com/resources/excel-to-lims-water-analysis"
 ---
 
 

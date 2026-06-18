@@ -19,7 +19,7 @@ canonical: "https://aquaverify.com/fr/ressources/decroissance-sars-cov-2-substit
 Une étude contrôlée comparant la persistance du SARS-CoV-2 infectieux avec l’ARN viral et des marqueurs substituts en eau de rivière et eau de mer à 4 et 20 degrés Celsius.
 
 <div class="aqv-actions">
-  <a class="aqv-btn aqv-btn-primary" href="/resources/scientific-papers/sars-cov-2-surrogates-decay-aquatic-environments.pdf" download>Télécharger l’article complet</a>
+  <a class="aqv-btn aqv-btn-primary" href="https://doi.org/10.1016/j.watres.2021.117090" target="_blank" rel="noopener noreferrer">Consulter le DOI / source officielle</a>
   <a class="aqv-btn aqv-btn-ghost" href="/fr/contact?intent=technical_recommendation&resource=sars-cov-2-surrogates-decay-aquatic-environments">Demander une recommandation technique</a>
 </div>
 </div>
@@ -46,9 +46,9 @@ Une étude contrôlée comparant la persistance du SARS-CoV-2 infectieux avec l�
 - Éviter de supposer qu’un substitut se comporte comme la cible sans preuve d’appui.
 - Utiliser l’article pour former les équipes sur persistance, décroissance, prélèvement et limites de reporting.
 
-## Téléchargement
+## Source primaire
 
-[Article original (PDF)](/resources/scientific-papers/sars-cov-2-surrogates-decay-aquatic-environments.pdf)
+[Article original / DOI](https://doi.org/10.1016/j.watres.2021.117090)
 
 ## Checklist de mise en oeuvre
 
@@ -84,7 +84,7 @@ Partagez matrice, objectif de surveillance, besoin de reporting et contexte de d
 
 ### Cette page remplace-t-elle l’article original?
 
-Non. Elle résume la pertinence technique et renvoie au PDF original pour examiner méthode, données et limites complètes.
+Non. Elle résume la pertinence technique et renvoie au DOI ou à la source officielle pour examiner méthode, données et limites complètes.
 
 ### Est-ce une revendication d’approbation produit?
 
@@ -98,4 +98,4 @@ Comme préparation à une discussion technique sur cibles, indicateurs, plan d�
 
 - Laura Sala-Comorera, Liam J. Reynolds, Niamh A. Martin, John J. O’Sullivan, Wim G. Meijer and Nicola F. Fletcher.
 - Water Research, 201 (2021) 117090. DOI: 10.1016/j.watres.2021.117090.
-- Article original: [PDF](/resources/scientific-papers/sars-cov-2-surrogates-decay-aquatic-environments.pdf)
+- Source primaire : [DOI](https://doi.org/10.1016/j.watres.2021.117090)

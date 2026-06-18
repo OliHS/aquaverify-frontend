@@ -19,7 +19,7 @@ canonical: "https://aquaverify.com/fr/ressources/comparaison-methodes-coliphages
 Une comparaison pratique entre un flux standardisé de coliphages somatiques et Bluephage Easy Kit pour laboratoires d’analyse d’eau.
 
 <div class="aqv-actions">
-  <a class="aqv-btn aqv-btn-primary" href="/resources/scientific-papers/somatic-coliphage-method-comparison-water.pdf" download>Télécharger l’article complet</a>
+  <a class="aqv-btn aqv-btn-primary" href="/fr/ressources">Retour au hub ressources</a>
   <a class="aqv-btn aqv-btn-ghost" href="/fr/contact?intent=technical_recommendation&resource=somatic-coliphage-method-comparison-water">Demander une recommandation technique</a>
 </div>
 </div>
@@ -46,9 +46,9 @@ Une comparaison pratique entre un flux standardisé de coliphages somatiques et 
 - Comparer la charge opérationnelle avant d’ajouter les coliphages aux portefeuilles routiniers.
 - Relier choix méthode et reporting traçable dans AquaVerify Cloud.
 
-## Téléchargement
+## Source primaire
 
-[Article original (PDF)](/resources/scientific-papers/somatic-coliphage-method-comparison-water.pdf)
+La communication de congrès est résumée à partir de la référence ci-dessous. AquaVerify n’héberge pas de PDF public pour cette ressource sans source officielle ou preuve vérifiée de droits de distribution.
 
 ## Checklist de mise en oeuvre
 
@@ -84,7 +84,7 @@ Partagez matrice, objectif de surveillance, besoin de reporting et contexte de d
 
 ### Cette page remplace-t-elle l’article original?
 
-Non. Elle résume la pertinence technique et renvoie au PDF original pour examiner méthode, données et limites complètes.
+Non. Cette page résume la pertinence technique et référence la communication de congrès; AquaVerify n’héberge pas de PDF public sans droits de distribution vérifiés.
 
 ### Est-ce une revendication d’approbation produit?
 
@@ -98,4 +98,4 @@ Comme préparation à une discussion technique sur cibles, indicateurs, plan d�
 
 - Yaiza Santonja Martínez, Ángela Igual López, Carlos Valor Herencia, Elena Soria Soria, José Gallardo Armengot and David Ribes.
 - VI Congreso Nacional del Agua (2024).
-- Article original: [PDF](/resources/scientific-papers/somatic-coliphage-method-comparison-water.pdf)
+- Source primaire : VI Congreso Nacional del Agua (2024); URL officielle non vérifiée dans le dépôt.

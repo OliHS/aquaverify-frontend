@@ -985,6 +985,13 @@ const PRIORITY_WHITEPAPER_PATHS = {
     fr: '/fr/ressources/virus-enteriques-genes-resistance-antibiotiques-moules',
     it: '/it/risorse/virus-enterici-geni-resistenza-antibiotici-cozze',
     ca: '/ca/recursos/virus-enterics-gens-resistencia-antibiotics-musclos'
+  },
+  'editorial-methodology': {
+    en: '/resources/editorial-methodology',
+    es: '/es/recursos/metodologia-editorial',
+    fr: '/fr/ressources/methodologie-editoriale',
+    it: '/it/risorse/metodologia-editoriale',
+    ca: '/ca/recursos/metodologia-editorial'
   }
 };
 

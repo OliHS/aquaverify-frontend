@@ -6,7 +6,7 @@ meta_description: "A practical resource to translate the Spanish drinking water 
 audience: "Water laboratories, municipal operators, utilities and consultants"
 region: "Spain / European Union"
 reading_time: "13 min"
-canonical: "https://aquaverify.com/en/resources/rd-3-2023-somatic-coliphages-water-operators"
+canonical: "https://aquaverify.com/resources/rd-3-2023-somatic-coliphages-water-operators"
 ---
 
 

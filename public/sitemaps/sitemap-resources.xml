@@ -751,6 +751,36 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://aquaverify.com/resources/editorial-methodology</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/recursos/metodologia-editorial</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/ressources/methodologie-editoriale</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/risorse/metodologia-editoriale</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/recursos/metodologia-editorial</loc>
+    <lastmod>2026-05-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://aquaverify.com/en/glossary</loc>
     <lastmod>2026-05-20</lastmod>
     <changefreq>weekly</changefreq>

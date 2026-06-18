@@ -19,7 +19,7 @@ canonical: "https://aquaverify.com/resources/viral-pollution-wastewater-mediterr
 A field study on viral contamination across WWTP streams and protected Mediterranean ecosystems, including reclaimed wastewater, biosolids, surface water and sediment.
 
 <div class="aqv-actions">
-  <a class="aqv-btn aqv-btn-primary" href="/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf" download>Download full paper</a>
+  <a class="aqv-btn aqv-btn-primary" href="https://doi.org/10.1007/s12560-026-09693-3" target="_blank" rel="noopener noreferrer">View DOI / official source</a>
   <a class="aqv-btn aqv-btn-ghost" href="/contact?intent=technical_recommendation&resource=viral-pollution-wastewater-mediterranean-ecosystems">Request technical recommendation</a>
 </div>
 </div>
@@ -46,9 +46,9 @@ A field study on viral contamination across WWTP streams and protected Mediterra
 - Prepare matrix-specific sampling plans for wastewater, biosolids, surface water and sediment.
 - Use AquaVerify Cloud to keep sampling site, campaign, matrix, target and review history connected.
 
-## Download
+## Primary source
 
-[Original paper (PDF)](/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf)
+[Original paper / DOI](https://doi.org/10.1007/s12560-026-09693-3)
 
 ## Implementation checklist
 
@@ -84,7 +84,7 @@ Share your matrix, monitoring objective, reporting need and expected decision co
 
 ### Does this page replace the original paper?
 
-No. This page summarizes the technical relevance and links to the original PDF so teams can review the full methodology, data and limitations.
+No. This page summarizes the technical relevance and links to the DOI or official source so teams can review the full methodology, data and limitations.
 
 ### Is this a product approval claim?
 
@@ -98,4 +98,4 @@ Use it to prepare a technical discussion around targets, indicators, sampling de
 
 - Pablo Puchades-Colera, Inés Girón-Guzmán, Enric Cuevas-Ferrando, Azahara Díaz-Reolid, Irene Falcó and collaborators.
 - Food and Environmental Virology, 18:20 (2026). DOI: 10.1007/s12560-026-09693-3.
-- Original paper: [PDF](/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf)
+- Primary source: [DOI](https://doi.org/10.1007/s12560-026-09693-3)

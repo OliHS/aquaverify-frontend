@@ -12,6 +12,7 @@ export const RESOURCE_HUB_WHITEPAPER_IDS = [
   'sars-cov-2-surrogates-decay-aquatic-environments',
   'somatic-coliphage-method-comparison-water',
   'enteric-viruses-antibiotic-resistance-genes-mussels',
+  'editorial-methodology',
   'rd-3-2023-somatic-coliphages-guide',
   'iso-17025-water-laboratories-guide',
   'water-safety-plans-traceable-control',
@@ -439,6 +440,19 @@ export const RESOURCE_HUB_CONTENT = {
         tags: ['Mussels', 'Enteric viruses', 'ARGs', 'Food safety'],
         categories: ['viral', 'methods', 'sector', 'compliance'],
         search: 'mussels Campania Italy enteric viruses HuNoV rotavirus astrovirus antibiotic resistance genes somatic coliphages crAssphage food safety'
+      },
+      {
+        id: 'editorial-methodology',
+        label: 'Editorial method',
+        title: 'AquaVerify editorial methodology',
+        body: 'How AquaVerify prepares technical resources, verifies sources, separates scientific, regulatory and commercial claims, and manages review or correction needs.',
+        audience: 'Readers, laboratories, distributors, reviewers',
+        region: 'Global',
+        level: 'Editorial policy',
+        reading: '7 min',
+        tags: ['Editorial policy', 'Sources', 'Corrections', 'Conflicts'],
+        categories: ['compliance', 'methods'],
+        search: 'AquaVerify editorial methodology sources review corrections conflicts scientific regulatory commercial claims'
       }
     ],
     checklists: [
@@ -795,6 +809,19 @@ export const RESOURCE_HUB_CONTENT = {
         tags: ['Mejillones', 'Virus entéricos', 'ARGs', 'Seguridad alimentaria'],
         categories: ['viral', 'methods', 'sector', 'compliance'],
         search: 'mejillones Campania Italia virus entericos norovirus rotavirus astrovirus genes resistencia antibioticos colifagos somaticos crAssphage seguridad alimentaria'
+      },
+      {
+        id: 'editorial-methodology',
+        label: 'Método editorial',
+        title: 'Metodología editorial de AquaVerify',
+        body: 'Cómo AquaVerify prepara recursos técnicos, verifica fuentes, separa claims científicos, regulatorios y comerciales, y gestiona revisión o corrección.',
+        audience: 'Lectores, laboratorios, distribuidores, revisores',
+        region: 'Global',
+        level: 'Política editorial',
+        reading: '7 min',
+        tags: ['Política editorial', 'Fuentes', 'Correcciones', 'Conflictos'],
+        categories: ['compliance', 'methods'],
+        search: 'metodologia editorial AquaVerify fuentes revision correcciones conflictos claims cientificos regulatorios comerciales'
       }
     ],
     checklists: [
@@ -1312,7 +1339,8 @@ const WHITEPAPER_CARD_LABELS = {
     'viral-pollution-wastewater-mediterranean-ecosystems': 'Réutilisation eau',
     'sars-cov-2-surrogates-decay-aquatic-environments': 'Persistance SARS-CoV-2',
     'somatic-coliphage-method-comparison-water': 'Coliphages somatiques',
-    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Sécurité alimentaire'
+    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Sécurité alimentaire',
+    'editorial-methodology': 'Méthode éditoriale'
   },
   it: {
     'coliphages-indicators': 'Indicatori virali',
@@ -1333,7 +1361,8 @@ const WHITEPAPER_CARD_LABELS = {
     'viral-pollution-wastewater-mediterranean-ecosystems': 'Riuso acqua',
     'sars-cov-2-surrogates-decay-aquatic-environments': 'Persistenza SARS-CoV-2',
     'somatic-coliphage-method-comparison-water': 'Colifagi somatici',
-    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Sicurezza alimentare'
+    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Sicurezza alimentare',
+    'editorial-methodology': 'Metodo editoriale'
   },
   ca: {
     'coliphages-indicators': 'Indicadors virals',
@@ -1354,7 +1383,8 @@ const WHITEPAPER_CARD_LABELS = {
     'viral-pollution-wastewater-mediterranean-ecosystems': 'Reutilització',
     'sars-cov-2-surrogates-decay-aquatic-environments': 'Persistència SARS-CoV-2',
     'somatic-coliphage-method-comparison-water': 'Colífags somàtics',
-    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Seguretat alimentària'
+    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Seguretat alimentària',
+    'editorial-methodology': 'Mètode editorial'
   }
 };
 
@@ -1365,6 +1395,7 @@ const FEATURED_WHITEPAPER_ORDER = [
   'sars-cov-2-surrogates-decay-aquatic-environments',
   'somatic-coliphage-method-comparison-water',
   'enteric-viruses-antibiotic-resistance-genes-mussels',
+  'editorial-methodology',
   'aquaverify-product-selection-guide',
   'rd-3-2023-somatic-coliphages-guide',
   'iso-17025-water-laboratories-guide',

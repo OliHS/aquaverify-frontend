@@ -6,7 +6,7 @@ meta_description: "A practical guide for facilities, hotels, spas, healthcare bu
 audience: "Facility managers, hotels, resorts, spas, maintenance providers, labs and risk teams"
 region: "Spain / European Union / Global buildings"
 reading_time: "15 min"
-canonical: "https://aquaverify.com/en/resources/legionella-water-risk-management-facilities"
+canonical: "https://aquaverify.com/resources/legionella-water-risk-management-facilities"
 ---
 
 

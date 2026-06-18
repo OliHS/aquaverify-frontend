@@ -19,7 +19,7 @@ canonical: "https://aquaverify.com/it/risorse/epidemiologia-acque-reflue-sorvegl
 Uno studio WBE multipatogeno che collega virus respiratori, virus enterici e indicatori virali fecali nelle acque reflue urbane della regione valenciana.
 
 <div class="aqv-actions">
-  <a class="aqv-btn aqv-btn-primary" href="/resources/scientific-papers/urban-wastewater-wbe-multiviral-valencian-region.pdf" download>Scarica il paper completo</a>
+  <a class="aqv-btn aqv-btn-primary" href="https://doi.org/10.1016/j.watres.2024.121463" target="_blank" rel="noopener noreferrer">Consulta DOI / fonte ufficiale</a>
   <a class="aqv-btn aqv-btn-ghost" href="/it/contatto?intent=technical_recommendation&resource=urban-wastewater-wbe-multiviral-valencian-region">Richiedi raccomandazione tecnica</a>
 </div>
 </div>
@@ -46,9 +46,9 @@ Uno studio WBE multipatogeno che collega virus respiratori, virus enterici e ind
 - Pianificare reporting tracciabile per data, punto, target, normalizzazione e interpretazione.
 - Collegare sorveglianza virale, workflow di laboratorio, revisione CoA e comunicazione cliente o sanità pubblica.
 
-## Download
+## Fonte primaria
 
-[Paper originale (PDF)](/resources/scientific-papers/urban-wastewater-wbe-multiviral-valencian-region.pdf)
+[Articolo originale / DOI](https://doi.org/10.1016/j.watres.2024.121463)
 
 ## Checklist di implementazione
 
@@ -84,7 +84,7 @@ Condividi matrice, obiettivo di monitoraggio, necessità di reporting e contesto
 
 ### Questa pagina sostituisce il paper originale?
 
-No. Riassume la rilevanza tecnica e collega il PDF originale per rivedere metodologia, dati e limiti completi.
+No. Questa pagina sintetizza la rilevanza tecnica e rimanda al DOI o alla fonte ufficiale per esaminare metodologia, dati e limitazioni complete.
 
 ### È un claim di approvazione prodotto?
 
@@ -98,4 +98,4 @@ Come preparazione a una discussione tecnica su target, indicatori, disegno di ca
 
 - Inés Girón-Guzmán, Enric Cuevas-Ferrando, Regino Barranquero, Azahara Díaz-Reolid, Pablo Puchades-Colera, Irene Falcó, Alba Pérez-Cataluña and Gloria Sánchez.
 - Water Research, 255 (2024) 121463. DOI: 10.1016/j.watres.2024.121463.
-- Paper originale: [PDF](/resources/scientific-papers/urban-wastewater-wbe-multiviral-valencian-region.pdf)
+- Fonte primaria: [DOI](https://doi.org/10.1016/j.watres.2024.121463)

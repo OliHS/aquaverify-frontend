@@ -23,7 +23,8 @@ const PAGE_IDS = [
   'viral-pollution-wastewater-mediterranean-ecosystems',
   'sars-cov-2-surrogates-decay-aquatic-environments',
   'somatic-coliphage-method-comparison-water',
-  'enteric-viruses-antibiotic-resistance-genes-mussels'
+  'enteric-viruses-antibiotic-resistance-genes-mussels',
+  'editorial-methodology'
 ];
 
 const NEW_WHITEPAPER_FILE_MAP = {
@@ -131,6 +132,13 @@ const NEW_WHITEPAPER_FILE_MAP = {
     fr: 'virus-enteriques-genes-resistance-antibiotiques-moules',
     it: 'virus-enterici-geni-resistenza-antibiotici-cozze',
     ca: 'virus-enterics-gens-resistencia-antibiotics-musclos'
+  },
+  'editorial-methodology': {
+    en: 'editorial-methodology',
+    es: 'metodologia-editorial',
+    fr: 'methodologie-editoriale',
+    it: 'metodologia-editoriale',
+    ca: 'metodologia-editorial-ca'
   }
 };
 

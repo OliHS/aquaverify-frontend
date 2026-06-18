@@ -6,7 +6,7 @@ meta_description: "A commercial and technical guide to evaluate AquaVerify distr
 audience: "Scientific distributors, integrators, manufacturers, laboratories and water treatment companies"
 region: "Global"
 reading_time: "14 min"
-canonical: "https://aquaverify.com/en/resources/oem-white-label-water-testing-kits"
+canonical: "https://aquaverify.com/resources/oem-white-label-water-testing-kits"
 ---
 
 
@@ -190,7 +190,7 @@ Yes. Depending on scope, it can include AquaVerify Cloud, customer portal, repor
 
 ### Is regulatory compliance reviewed by country?
 
-No. Claims, labeling, validations, importation and local requirements must be reviewed by country, matrix and intended use.
+Yes. Claims, labeling, validations, importation and local requirements must be reviewed by country, matrix and intended use.
 
 
 <h2 id="referencias-oficiales">Official references</h2>

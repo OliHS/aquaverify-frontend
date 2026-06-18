@@ -19,7 +19,7 @@ canonical: "https://aquaverify.com/ca/recursos/decaiment-sars-cov-2-substituts-a
 Un estudi controlat que compara la persistència de SARS-CoV-2 infecciós amb ARN viral i marcadors substituts en aigua de riu i aigua marina a 4 i 20 graus Celsius.
 
 <div class="aqv-actions">
-  <a class="aqv-btn aqv-btn-primary" href="/resources/scientific-papers/sars-cov-2-surrogates-decay-aquatic-environments.pdf" download>Descarregar paper complet</a>
+  <a class="aqv-btn aqv-btn-primary" href="https://doi.org/10.1016/j.watres.2021.117090" target="_blank" rel="noopener noreferrer">Consultar DOI / font oficial</a>
   <a class="aqv-btn aqv-btn-ghost" href="/ca/contacte?intent=technical_recommendation&resource=sars-cov-2-surrogates-decay-aquatic-environments">Sol·licitar recomanació tècnica</a>
 </div>
 </div>
@@ -46,9 +46,9 @@ Un estudi controlat que compara la persistència de SARS-CoV-2 infecciós amb AR
 - Evitar assumir que un substitut es comporta com la diana sense evidència de suport.
 - Usar el paper per formar equips en persistència, decaïment, mostreig i límits de reporting.
 
-## Descàrrega
+## Font primària
 
-[Paper original (PDF)](/resources/scientific-papers/sars-cov-2-surrogates-decay-aquatic-environments.pdf)
+[Paper original / DOI](https://doi.org/10.1016/j.watres.2021.117090)
 
 ## Checklist d’implementació
 
@@ -84,7 +84,7 @@ Comparteix matriu, objectiu de monitoratge, necessitat de reporting i context de
 
 ### Aquesta pàgina substitueix el paper original?
 
-No. Resumeix la rellevància tècnica i enllaça el PDF original per revisar metodologia, dades i limitacions completes.
+No. Aquesta pàgina resumeix la rellevància tècnica i enllaça el DOI o la font oficial per revisar metodologia, dades i limitacions completes.
 
 ### És un claim d’aprovació de producte?
 
@@ -98,4 +98,4 @@ Com a preparació per a una conversa tècnica sobre dianes, indicadors, disseny 
 
 - Laura Sala-Comorera, Liam J. Reynolds, Niamh A. Martin, John J. O’Sullivan, Wim G. Meijer and Nicola F. Fletcher.
 - Water Research, 201 (2021) 117090. DOI: 10.1016/j.watres.2021.117090.
-- Paper original: [PDF](/resources/scientific-papers/sars-cov-2-surrogates-decay-aquatic-environments.pdf)
+- Font primària: [DOI](https://doi.org/10.1016/j.watres.2021.117090)

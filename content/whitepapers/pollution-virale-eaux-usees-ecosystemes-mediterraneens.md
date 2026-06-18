@@ -19,7 +19,7 @@ canonical: "https://aquaverify.com/fr/ressources/pollution-virale-eaux-usees-eco
 Une étude de terrain sur la contamination virale dans les flux de stations d’épuration et des écosystèmes méditerranéens protégés, incluant eau réutilisée, biosolides, eaux de surface et sédiments.
 
 <div class="aqv-actions">
-  <a class="aqv-btn aqv-btn-primary" href="/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf" download>Télécharger l’article complet</a>
+  <a class="aqv-btn aqv-btn-primary" href="https://doi.org/10.1007/s12560-026-09693-3" target="_blank" rel="noopener noreferrer">Consulter le DOI / source officielle</a>
   <a class="aqv-btn aqv-btn-ghost" href="/fr/contact?intent=technical_recommendation&resource=viral-pollution-wastewater-mediterranean-ecosystems">Demander une recommandation technique</a>
 </div>
 </div>
@@ -46,9 +46,9 @@ Une étude de terrain sur la contamination virale dans les flux de stations d’
 - Préparer des plans d’échantillonnage par matrice pour eaux usées, biosolides, eaux de surface et sédiments.
 - Utiliser AquaVerify Cloud pour relier site, campagne, matrice, cible et historique de revue.
 
-## Téléchargement
+## Source primaire
 
-[Article original (PDF)](/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf)
+[Article original / DOI](https://doi.org/10.1007/s12560-026-09693-3)
 
 ## Checklist de mise en oeuvre
 
@@ -84,7 +84,7 @@ Partagez matrice, objectif de surveillance, besoin de reporting et contexte de d
 
 ### Cette page remplace-t-elle l’article original?
 
-Non. Elle résume la pertinence technique et renvoie au PDF original pour examiner méthode, données et limites complètes.
+Non. Elle résume la pertinence technique et renvoie au DOI ou à la source officielle pour examiner méthode, données et limites complètes.
 
 ### Est-ce une revendication d’approbation produit?
 
@@ -98,4 +98,4 @@ Comme préparation à une discussion technique sur cibles, indicateurs, plan d�
 
 - Pablo Puchades-Colera, Inés Girón-Guzmán, Enric Cuevas-Ferrando, Azahara Díaz-Reolid, Irene Falcó and collaborators.
 - Food and Environmental Virology, 18:20 (2026). DOI: 10.1007/s12560-026-09693-3.
-- Article original: [PDF](/resources/scientific-papers/viral-pollution-wastewater-mediterranean-ecosystems.pdf)
+- Source primaire : [DOI](https://doi.org/10.1007/s12560-026-09693-3)

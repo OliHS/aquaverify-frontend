@@ -26,6 +26,7 @@ import {
   getGlossaryTermById,
   isPriorityGlossaryTerm
 } from '../utils/glossaryContent.js';
+import { getResourceEditorialMeta } from '../utils/resourceEditorialMetadata.js';
 
 dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
@@ -1111,37 +1112,84 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
           : pageType === 'resources'
             ? 'Article'
             : 'WebPage';
+  const organizationId = `${SITE_URL}/#organization`;
+  const websiteId = `${SITE_URL}/#website`;
+  const webpageId = `${canonicalUrl}#webpage`;
+  const editorialMeta = page?.id ? getResourceEditorialMeta(page.id) : null;
+  const isArticle = ['Article', 'TechArticle'].includes(schemaType);
+  const articleSource = editorialMeta?.doi || editorialMeta?.sourceUrl
+    ? {
+      '@type': 'CreativeWork',
+      name: editorialMeta.originalTitle || title,
+      ...(editorialMeta.originalAuthors ? { author: editorialMeta.originalAuthors } : {}),
+      ...(editorialMeta.journal ? { isPartOf: editorialMeta.journal } : {}),
+      ...(editorialMeta.conference ? { isPartOf: editorialMeta.conference } : {}),
+      ...(editorialMeta.year ? { datePublished: editorialMeta.year } : {}),
+      ...(editorialMeta.doi ? { identifier: `doi:${editorialMeta.doi}` } : {}),
+      ...(editorialMeta.sourceUrl ? { url: editorialMeta.sourceUrl } : {})
+    }
+    : null;
   const payloads = [{
     id: 'marketing-page',
     data: {
       '@context': 'https://schema.org',
-      '@type': schemaType,
-      name: title,
-      description,
-      url: canonicalUrl,
-      image: imageUrl,
-      ...(schemaType === 'Product' ? {
-        brand: {
-          '@type': 'Brand',
-          name: 'AquaVerify'
+      '@graph': [
+        {
+          '@type': 'Organization',
+          '@id': organizationId,
+          name: 'AquaVerify',
+          url: SITE_URL,
+          logo: `${SITE_URL}/images/logo-mark-160.png`
+        },
+        {
+          '@type': 'WebSite',
+          '@id': websiteId,
+          name: 'AquaVerify',
+          url: SITE_URL,
+          inLanguage: lang,
+          publisher: { '@id': organizationId }
+        },
+        {
+          '@type': schemaType,
+          '@id': webpageId,
+          name: title,
+          headline: title,
+          description,
+          url: canonicalUrl,
+          image: imageUrl,
+          inLanguage: lang,
+          mainEntityOfPage: canonicalUrl,
+          isPartOf: { '@id': websiteId },
+          publisher: { '@id': organizationId },
+          ...(schemaType === 'Product' ? {
+            brand: {
+              '@type': 'Brand',
+              name: 'AquaVerify'
+            }
+          } : {}),
+          ...(schemaType === 'TechArticle' ? {
+            keywords: content?.markdownWhitepaper?.relatedTopics?.join(', ') || undefined
+          } : {}),
+          ...(isArticle ? {
+            author: {
+              '@type': 'Organization',
+              name: editorialMeta?.pageAuthor || 'AquaVerify',
+              url: SITE_URL
+            },
+            ...(editorialMeta?.datePublished ? { datePublished: editorialMeta.datePublished } : {}),
+            ...(editorialMeta?.dateModified ? { dateModified: editorialMeta.dateModified } : {}),
+            ...(articleSource ? {
+              citation: articleSource,
+              isBasedOn: {
+                '@type': 'CreativeWork',
+                name: editorialMeta.originalTitle || title,
+                ...(editorialMeta.sourceUrl ? { url: editorialMeta.sourceUrl } : {}),
+                ...(editorialMeta.doi ? { identifier: `doi:${editorialMeta.doi}` } : {})
+              }
+            } : {})
+          } : {})
         }
-      } : {}),
-      ...(schemaType === 'TechArticle' ? {
-        headline: title,
-        inLanguage: lang,
-        keywords: content?.markdownWhitepaper?.relatedTopics?.join(', ') || undefined
-      } : {}),
-      isPartOf: {
-        '@type': 'WebSite',
-        name: 'AquaVerify',
-        url: SITE_URL
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'AquaVerify',
-        url: SITE_URL,
-        logo: `${SITE_URL}/images/logo-mark-160.png`
-      }
+      ]
     }
   }];
 

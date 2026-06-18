@@ -6,7 +6,7 @@ meta_description: "A practical guide for QA/QC teams that manage ingredient wate
 audience: "Food & beverage QA/QC, plant managers, laboratories and auditors"
 region: "European Union / Spain / Global operations"
 reading_time: "14 min"
-canonical: "https://aquaverify.com/en/resources/food-beverage-water-microbiological-control-cip-audit"
+canonical: "https://aquaverify.com/resources/food-beverage-water-microbiological-control-cip-audit"
 ---
 
 

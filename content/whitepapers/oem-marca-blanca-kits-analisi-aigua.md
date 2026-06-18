@@ -190,7 +190,7 @@ Sí. Segons l’abast, pot incloure AquaVerify Cloud, portal client, informes, t
 
 ### El compliment regulatori s’ha de revisar per país?
 
-No. Claims, etiquetatge, validacions, importació i requisits locals s’han de revisar per país, matriu i ús previst.
+Sí. Claims, etiquetatge, validacions, importació i requisits locals s’han de revisar per país, matriu i ús previst.
 
 
 <h2 id="referencias-oficiales">Referències oficials</h2>

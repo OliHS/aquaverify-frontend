@@ -6,7 +6,7 @@ meta_description: "A practical guide for laboratories, utilities, facilities, fo
 audience: "Laboratories, utilities, sampling technicians, QA/QC, facilities, industry and agriculture"
 region: "Global / EU"
 reading_time: "13 min"
-canonical: "https://aquaverify.com/en/resources/iso-19458-water-microbiological-sampling"
+canonical: "https://aquaverify.com/resources/iso-19458-water-microbiological-sampling"
 ---
 
 

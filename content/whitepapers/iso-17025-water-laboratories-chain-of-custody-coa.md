@@ -6,7 +6,7 @@ meta_description: "A practical whitepaper for laboratories that need to strength
 audience: "Laboratory directors, quality managers, senior technicians and distributors"
 region: "Global"
 reading_time: "15 min"
-canonical: "https://aquaverify.com/en/resources/iso-17025-water-laboratories-chain-of-custody-coa"
+canonical: "https://aquaverify.com/resources/iso-17025-water-laboratories-chain-of-custody-coa"
 ---
 
 

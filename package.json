@@ -24,6 +24,7 @@
     "marketing:faqs:audit": "node scripts/audit-marketing-faqs.js",
     "marketing:screenshots:audit": "node scripts/audit-marketing-screenshots.js",
     "seo:sitemap": "node scripts/generate-sitemap.js",
+    "validate:resources": "node scripts/validate-resources.js",
     "smoke:prod": "node scripts/smoke-corporate-platform.js",
     "check:local": "npm run cms:links:audit && npm run cms:marketing:strict && npm run cms:assets:audit && npm run claims:audit && npm run cms:claims:audit && npm run marketing:routes:audit && npm run marketing:faqs:audit && npm run marketing:screenshots:audit && npm run seo:sitemap && npm run build",
     "check:prod": "npm run cms:links:audit && npm run cms:marketing:strict && npm run cms:claims:audit && npm run smoke:prod",
