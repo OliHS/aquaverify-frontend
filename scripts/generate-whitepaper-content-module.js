@@ -18,7 +18,12 @@ const PAGE_IDS = [
   'iso-19458-water-microbiological-sampling',
   'excel-to-lims-water-analysis',
   'oem-white-label-water-testing-kits',
-  'aquacoli-enumera-coli100-validation'
+  'aquacoli-enumera-coli100-validation',
+  'urban-wastewater-wbe-multiviral-valencian-region',
+  'viral-pollution-wastewater-mediterranean-ecosystems',
+  'sars-cov-2-surrogates-decay-aquatic-environments',
+  'somatic-coliphage-method-comparison-water',
+  'enteric-viruses-antibiotic-resistance-genes-mussels'
 ];
 
 const NEW_WHITEPAPER_FILE_MAP = {
@@ -91,6 +96,41 @@ const NEW_WHITEPAPER_FILE_MAP = {
     fr: 'validation-aquacoli-enumera-coli100-iso-9308-2',
     it: 'validazione-aquacoli-enumera-coli100-iso-9308-2',
     ca: 'validacio-aquacoli-enumera-coli100-iso-9308-2'
+  },
+  'urban-wastewater-wbe-multiviral-valencian-region': {
+    en: 'urban-wastewater-wbe-multiviral-valencian-region',
+    es: 'epidemiologia-aguas-residuales-vigilancia-multiviral-valencia',
+    fr: 'epidemiologie-eaux-usees-surveillance-multivirale-valence',
+    it: 'epidemiologia-acque-reflue-sorveglianza-multivirale-valencia',
+    ca: 'epidemiologia-aigues-residuals-vigilancia-multiviral-valencia'
+  },
+  'viral-pollution-wastewater-mediterranean-ecosystems': {
+    en: 'viral-pollution-wastewater-mediterranean-ecosystems',
+    es: 'contaminacion-viral-aguas-residuales-ecosistemas-mediterraneos',
+    fr: 'pollution-virale-eaux-usees-ecosystemes-mediterraneens',
+    it: 'inquinamento-virale-acque-reflue-ecosistemi-mediterranei',
+    ca: 'contaminacio-viral-aigues-residuals-ecosistemes-mediterranis'
+  },
+  'sars-cov-2-surrogates-decay-aquatic-environments': {
+    en: 'sars-cov-2-surrogates-decay-aquatic-environments',
+    es: 'decaimiento-sars-cov-2-sustitutos-ambientes-acuaticos',
+    fr: 'decroissance-sars-cov-2-substituts-milieux-aquatiques',
+    it: 'decadimento-sars-cov-2-surrogati-ambienti-acquatici',
+    ca: 'decaiment-sars-cov-2-substituts-ambients-aquatics'
+  },
+  'somatic-coliphage-method-comparison-water': {
+    en: 'somatic-coliphage-method-comparison-water',
+    es: 'comparativa-metodos-colifagos-somaticos-agua',
+    fr: 'comparaison-methodes-coliphages-somatiques-eau',
+    it: 'confronto-metodi-colifagi-somatici-acqua',
+    ca: 'comparativa-metodes-colifags-somatics-aigua'
+  },
+  'enteric-viruses-antibiotic-resistance-genes-mussels': {
+    en: 'enteric-viruses-antibiotic-resistance-genes-mussels',
+    es: 'virus-entericos-genes-resistencia-antibioticos-mejillones',
+    fr: 'virus-enteriques-genes-resistance-antibiotiques-moules',
+    it: 'virus-enterici-geni-resistenza-antibiotici-cozze',
+    ca: 'virus-enterics-gens-resistencia-antibiotics-musclos'
   }
 };
 

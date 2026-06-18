@@ -950,6 +950,41 @@ const PRIORITY_WHITEPAPER_PATHS = {
     fr: '/fr/ressources/validation-aquacoli-enumera-coli100-iso-9308-2',
     it: '/it/risorse/validazione-aquacoli-enumera-coli100-iso-9308-2',
     ca: '/ca/recursos/validacio-aquacoli-enumera-coli100-iso-9308-2'
+  },
+  'urban-wastewater-wbe-multiviral-valencian-region': {
+    en: '/resources/urban-wastewater-wbe-multiviral-valencian-region',
+    es: '/es/recursos/epidemiologia-aguas-residuales-vigilancia-multiviral-valencia',
+    fr: '/fr/ressources/epidemiologie-eaux-usees-surveillance-multivirale-valence',
+    it: '/it/risorse/epidemiologia-acque-reflue-sorveglianza-multivirale-valencia',
+    ca: '/ca/recursos/epidemiologia-aigues-residuals-vigilancia-multiviral-valencia'
+  },
+  'viral-pollution-wastewater-mediterranean-ecosystems': {
+    en: '/resources/viral-pollution-wastewater-mediterranean-ecosystems',
+    es: '/es/recursos/contaminacion-viral-aguas-residuales-ecosistemas-mediterraneos',
+    fr: '/fr/ressources/pollution-virale-eaux-usees-ecosystemes-mediterraneens',
+    it: '/it/risorse/inquinamento-virale-acque-reflue-ecosistemi-mediterranei',
+    ca: '/ca/recursos/contaminacio-viral-aigues-residuals-ecosistemes-mediterranis'
+  },
+  'sars-cov-2-surrogates-decay-aquatic-environments': {
+    en: '/resources/sars-cov-2-surrogates-decay-aquatic-environments',
+    es: '/es/recursos/decaimiento-sars-cov-2-sustitutos-ambientes-acuaticos',
+    fr: '/fr/ressources/decroissance-sars-cov-2-substituts-milieux-aquatiques',
+    it: '/it/risorse/decadimento-sars-cov-2-surrogati-ambienti-acquatici',
+    ca: '/ca/recursos/decaiment-sars-cov-2-substituts-ambients-aquatics'
+  },
+  'somatic-coliphage-method-comparison-water': {
+    en: '/resources/somatic-coliphage-method-comparison-water',
+    es: '/es/recursos/comparativa-metodos-colifagos-somaticos-agua',
+    fr: '/fr/ressources/comparaison-methodes-coliphages-somatiques-eau',
+    it: '/it/risorse/confronto-metodi-colifagi-somatici-acqua',
+    ca: '/ca/recursos/comparativa-metodes-colifags-somatics-aigua'
+  },
+  'enteric-viruses-antibiotic-resistance-genes-mussels': {
+    en: '/resources/enteric-viruses-antibiotic-resistance-genes-mussels',
+    es: '/es/recursos/virus-entericos-genes-resistencia-antibioticos-mejillones',
+    fr: '/fr/ressources/virus-enteriques-genes-resistance-antibiotiques-moules',
+    it: '/it/risorse/virus-enterici-geni-resistenza-antibiotici-cozze',
+    ca: '/ca/recursos/virus-enterics-gens-resistencia-antibiotics-musclos'
   }
 };
 

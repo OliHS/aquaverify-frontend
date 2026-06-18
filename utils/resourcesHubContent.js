@@ -7,6 +7,11 @@ export const RESOURCE_HUB_WHITEPAPER_IDS = [
   'us-drinking-water-compliance-coliform-rule',
   'aquaverify-product-selection-guide',
   'aquacoli-enumera-coli100-validation',
+  'urban-wastewater-wbe-multiviral-valencian-region',
+  'viral-pollution-wastewater-mediterranean-ecosystems',
+  'sars-cov-2-surrogates-decay-aquatic-environments',
+  'somatic-coliphage-method-comparison-water',
+  'enteric-viruses-antibiotic-resistance-genes-mussels',
   'rd-3-2023-somatic-coliphages-guide',
   'iso-17025-water-laboratories-guide',
   'water-safety-plans-traceable-control',
@@ -369,6 +374,71 @@ export const RESOURCE_HUB_CONTENT = {
         tags: ['ENUMERA Coli100', 'AquaColi', 'ISO 9308-2', 'MPN'],
         categories: ['product', 'methods', 'compliance', 'sector'],
         search: 'AquaColi ENUMERA Coli100 E coli total coliforms ISO 9308-2 MPN chromogenic validation 100 mL water samples'
+      },
+      {
+        id: 'urban-wastewater-wbe-multiviral-valencian-region',
+        label: 'WBE surveillance',
+        title: 'Urban wastewater-based epidemiology for multi-viral pathogen surveillance in the Valencian region',
+        body: 'Water Research paper on SARS-CoV-2, RSV, influenza A, enteric viruses and viral faecal indicators in urban wastewater from the Valencian region, Spain.',
+        audience: 'Utilities, public health teams, labs, researchers',
+        region: 'Spain / EU',
+        level: 'Scientific paper',
+        reading: '13 min',
+        tags: ['WBE', 'Respiratory viruses', 'Enteric viruses', 'Indicators'],
+        categories: ['viral', 'methods', 'software', 'sector'],
+        search: 'wastewater-based epidemiology WBE SARS-CoV-2 RSV influenza enteric viruses crAssphage PMMoV somatic coliphages Valencia'
+      },
+      {
+        id: 'viral-pollution-wastewater-mediterranean-ecosystems',
+        label: 'Water reuse',
+        title: 'Evaluating viral pollution in wastewater and Mediterranean ecosystems',
+        body: 'Food and Environmental Virology paper assessing human enteric and respiratory viruses, faecal indicators, reclaimed wastewater, biosolids, surface water and sediment in Mediterranean protected areas.',
+        audience: 'Water reuse teams, environmental labs, utilities, researchers',
+        region: 'Mediterranean / EU',
+        level: 'Scientific paper',
+        reading: '13 min',
+        tags: ['Water reuse', 'Mediterranean ecosystems', 'Viral indicators', 'WWTP'],
+        categories: ['viral', 'compliance', 'methods', 'sector'],
+        search: 'viral pollution wastewater Mediterranean ecosystems reclaimed water biosolids surface water sediment WWTP enteric respiratory viruses'
+      },
+      {
+        id: 'sars-cov-2-surrogates-decay-aquatic-environments',
+        label: 'SARS-CoV-2 persistence',
+        title: 'Decay of infectious SARS-CoV-2 and surrogates in aquatic environments',
+        body: 'Water Research paper comparing infectious SARS-CoV-2 decay, SARS-CoV-2 RNA persistence and surrogate behaviour in river water and seawater at different temperatures.',
+        audience: 'Environmental virology labs, water researchers, risk teams',
+        region: 'Global',
+        level: 'Scientific paper',
+        reading: '10 min',
+        tags: ['SARS-CoV-2', 'MS2', 'PMMoV', 'Seawater'],
+        categories: ['viral', 'methods', 'sector'],
+        search: 'SARS-CoV-2 decay infectious RNA surrogates MS2 PMMoV river water seawater persistence temperature'
+      },
+      {
+        id: 'somatic-coliphage-method-comparison-water',
+        label: 'Somatic coliphages',
+        title: 'Comparative study of two methods for detecting and quantifying somatic coliphages in water',
+        body: 'Conference paper comparing a standardized somatic coliphage method with the Bluephage Easy Kit, including recovery, precision, uncertainty and practical method tradeoffs.',
+        audience: 'Water labs, operators, QA/QC, method leads',
+        region: 'Spain / EU',
+        level: 'Method comparison',
+        reading: '10 min',
+        tags: ['Somatic coliphages', 'Bluephage Easy Kit', 'ISO 10705-2', 'Recovery'],
+        categories: ['viral', 'methods', 'compliance', 'product'],
+        search: 'somatic coliphages detection quantification water standardized method Bluephage Easy Kit recovery precision uncertainty'
+      },
+      {
+        id: 'enteric-viruses-antibiotic-resistance-genes-mussels',
+        label: 'Food safety',
+        title: 'Potentially infectious human enteric viruses and antibiotic resistance genes in mussels',
+        body: 'Food and Environmental Virology paper on enteric viruses, viral indicators and antibiotic resistance genes in mussels from the Campania region, Italy.',
+        audience: 'Food safety teams, shellfish labs, public health, researchers',
+        region: 'Italy / EU',
+        level: 'Scientific paper',
+        reading: '12 min',
+        tags: ['Mussels', 'Enteric viruses', 'ARGs', 'Food safety'],
+        categories: ['viral', 'methods', 'sector', 'compliance'],
+        search: 'mussels Campania Italy enteric viruses HuNoV rotavirus astrovirus antibiotic resistance genes somatic coliphages crAssphage food safety'
       }
     ],
     checklists: [
@@ -660,6 +730,71 @@ export const RESOURCE_HUB_CONTENT = {
         tags: ['ENUMERA Coli100', 'AquaColi', 'ISO 9308-2', 'MPN'],
         categories: ['product', 'methods', 'compliance', 'sector'],
         search: 'AquaColi ENUMERA Coli100 E coli coliformes totales ISO 9308-2 MPN cromogenico validacion 100 mL muestras agua'
+      },
+      {
+        id: 'urban-wastewater-wbe-multiviral-valencian-region',
+        label: 'Vigilancia WBE',
+        title: 'Epidemiología basada en aguas residuales urbanas para vigilancia multiviral en la región valenciana',
+        body: 'Paper de Water Research sobre SARS-CoV-2, RSV, gripe A, virus entéricos e indicadores virales fecales en aguas residuales urbanas de la región valenciana.',
+        audience: 'Utilities, salud pública, laboratorios, investigación',
+        region: 'España / UE',
+        level: 'Paper científico',
+        reading: '13 min',
+        tags: ['WBE', 'Virus respiratorios', 'Virus entéricos', 'Indicadores'],
+        categories: ['viral', 'methods', 'software', 'sector'],
+        search: 'epidemiologia aguas residuales WBE SARS-CoV-2 RSV gripe virus entericos crAssphage PMMoV colifagos somaticos Valencia'
+      },
+      {
+        id: 'viral-pollution-wastewater-mediterranean-ecosystems',
+        label: 'Reutilización',
+        title: 'Evaluación de contaminación viral en aguas residuales y ecosistemas mediterráneos',
+        body: 'Paper de Food and Environmental Virology sobre virus entéricos y respiratorios, indicadores fecales, agua regenerada, biosólidos, agua superficial y sedimentos en áreas mediterráneas protegidas.',
+        audience: 'Reutilización de agua, laboratorios ambientales, utilities, investigación',
+        region: 'Mediterráneo / UE',
+        level: 'Paper científico',
+        reading: '13 min',
+        tags: ['Reutilización', 'Ecosistemas mediterráneos', 'Indicadores virales', 'EDAR'],
+        categories: ['viral', 'compliance', 'methods', 'sector'],
+        search: 'contaminacion viral aguas residuales ecosistemas mediterraneos agua regenerada biosolidos agua superficial sedimento EDAR virus entericos respiratorios'
+      },
+      {
+        id: 'sars-cov-2-surrogates-decay-aquatic-environments',
+        label: 'Persistencia SARS-CoV-2',
+        title: 'Decaimiento de SARS-CoV-2 infeccioso y sustitutos en ambientes acuáticos',
+        body: 'Paper de Water Research que compara el decaimiento de SARS-CoV-2 infeccioso, la persistencia de ARN de SARS-CoV-2 y el comportamiento de sustitutos en agua de río y agua marina.',
+        audience: 'Virología ambiental, investigación de agua, equipos de riesgo',
+        region: 'Global',
+        level: 'Paper científico',
+        reading: '10 min',
+        tags: ['SARS-CoV-2', 'MS2', 'PMMoV', 'Agua marina'],
+        categories: ['viral', 'methods', 'sector'],
+        search: 'SARS-CoV-2 decaimiento infeccioso ARN sustitutos MS2 PMMoV agua rio agua marina persistencia temperatura'
+      },
+      {
+        id: 'somatic-coliphage-method-comparison-water',
+        label: 'Colífagos somáticos',
+        title: 'Estudio comparativo de dos métodos de detección y cuantificación de colífagos somáticos en agua',
+        body: 'Comunicación científica que compara un método estandarizado de colífagos somáticos con Bluephage Easy Kit, incluyendo recuperación, precisión, incertidumbre y aspectos prácticos de método.',
+        audience: 'Laboratorios de agua, operadores, QA/QC, responsables de método',
+        region: 'España / UE',
+        level: 'Comparativa metodológica',
+        reading: '10 min',
+        tags: ['Colífagos somáticos', 'Bluephage Easy Kit', 'ISO 10705-2', 'Recuperación'],
+        categories: ['viral', 'methods', 'compliance', 'product'],
+        search: 'colifagos somaticos deteccion cuantificacion agua metodo estandarizado Bluephage Easy Kit recuperacion precision incertidumbre'
+      },
+      {
+        id: 'enteric-viruses-antibiotic-resistance-genes-mussels',
+        label: 'Seguridad alimentaria',
+        title: 'Virus entéricos potencialmente infecciosos y genes de resistencia a antibióticos en mejillones',
+        body: 'Paper de Food and Environmental Virology sobre virus entéricos, indicadores virales y genes de resistencia a antibióticos en mejillones de la región de Campania, Italia.',
+        audience: 'Seguridad alimentaria, laboratorios de bivalvos, salud pública, investigación',
+        region: 'Italia / UE',
+        level: 'Paper científico',
+        reading: '12 min',
+        tags: ['Mejillones', 'Virus entéricos', 'ARGs', 'Seguridad alimentaria'],
+        categories: ['viral', 'methods', 'sector', 'compliance'],
+        search: 'mejillones Campania Italia virus entericos norovirus rotavirus astrovirus genes resistencia antibioticos colifagos somaticos crAssphage seguridad alimentaria'
       }
     ],
     checklists: [
@@ -1172,7 +1307,12 @@ const WHITEPAPER_CARD_LABELS = {
     'iso-19458-water-microbiological-sampling': 'ISO 19458',
     'excel-to-lims-water-analysis': 'Excel vers LIMS',
     'oem-white-label-water-testing-kits': 'OEM / marque blanche',
-    'aquacoli-enumera-coli100-validation': 'Paper technique'
+    'aquacoli-enumera-coli100-validation': 'Paper technique',
+    'urban-wastewater-wbe-multiviral-valencian-region': 'Surveillance WBE',
+    'viral-pollution-wastewater-mediterranean-ecosystems': 'Réutilisation eau',
+    'sars-cov-2-surrogates-decay-aquatic-environments': 'Persistance SARS-CoV-2',
+    'somatic-coliphage-method-comparison-water': 'Coliphages somatiques',
+    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Sécurité alimentaire'
   },
   it: {
     'coliphages-indicators': 'Indicatori virali',
@@ -1188,7 +1328,12 @@ const WHITEPAPER_CARD_LABELS = {
     'iso-19458-water-microbiological-sampling': 'ISO 19458',
     'excel-to-lims-water-analysis': 'Da Excel a LIMS',
     'oem-white-label-water-testing-kits': 'OEM / white label',
-    'aquacoli-enumera-coli100-validation': 'Paper tecnico'
+    'aquacoli-enumera-coli100-validation': 'Paper tecnico',
+    'urban-wastewater-wbe-multiviral-valencian-region': 'Sorveglianza WBE',
+    'viral-pollution-wastewater-mediterranean-ecosystems': 'Riuso acqua',
+    'sars-cov-2-surrogates-decay-aquatic-environments': 'Persistenza SARS-CoV-2',
+    'somatic-coliphage-method-comparison-water': 'Colifagi somatici',
+    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Sicurezza alimentare'
   },
   ca: {
     'coliphages-indicators': 'Indicadors virals',
@@ -1204,12 +1349,22 @@ const WHITEPAPER_CARD_LABELS = {
     'iso-19458-water-microbiological-sampling': 'ISO 19458',
     'excel-to-lims-water-analysis': 'Excel a LIMS',
     'oem-white-label-water-testing-kits': 'OEM / marca blanca',
-    'aquacoli-enumera-coli100-validation': 'Paper tècnic'
+    'aquacoli-enumera-coli100-validation': 'Paper tècnic',
+    'urban-wastewater-wbe-multiviral-valencian-region': 'Vigilància WBE',
+    'viral-pollution-wastewater-mediterranean-ecosystems': 'Reutilització',
+    'sars-cov-2-surrogates-decay-aquatic-environments': 'Persistència SARS-CoV-2',
+    'somatic-coliphage-method-comparison-water': 'Colífags somàtics',
+    'enteric-viruses-antibiotic-resistance-genes-mussels': 'Seguretat alimentària'
   }
 };
 
 const FEATURED_WHITEPAPER_ORDER = [
   'aquacoli-enumera-coli100-validation',
+  'urban-wastewater-wbe-multiviral-valencian-region',
+  'viral-pollution-wastewater-mediterranean-ecosystems',
+  'sars-cov-2-surrogates-decay-aquatic-environments',
+  'somatic-coliphage-method-comparison-water',
+  'enteric-viruses-antibiotic-resistance-genes-mussels',
   'aquaverify-product-selection-guide',
   'rd-3-2023-somatic-coliphages-guide',
   'iso-17025-water-laboratories-guide',
