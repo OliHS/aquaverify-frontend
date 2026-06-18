@@ -57,6 +57,19 @@ function getMainAssetUrl(html) {
   return `${CORPORATE_SITE_URL}${match[0]}`;
 }
 
+function toAssetPath(assetReference) {
+  const cleaned = assetReference
+    .replace(/^\.?\//, '')
+    .replace(/^assets\//, 'assets/');
+  return cleaned.startsWith('assets/') ? cleaned : `assets/${cleaned}`;
+}
+
+function findAssetPath(text, pattern, message) {
+  const match = text.match(pattern);
+  assert(match, message);
+  return toAssetPath(match[1] || match[0]);
+}
+
 async function expectStatus(url, expectedStatus = 200, options = {}) {
   const response = await fetchWithTimeout(url, options);
   assert(
@@ -418,11 +431,26 @@ async function run() {
   });
 
   await check('marketing product analytics markers are present', async () => {
-    const marketingRouteMatch = mainAssetText.match(/assets\/MarketingRoutePage-[^"',)]+\.js/);
-    assert(marketingRouteMatch, 'Marketing route asset reference missing from main bundle');
-    const { text: marketingRouteText } = await getText(`${CORPORATE_SITE_URL}/${marketingRouteMatch[0]}`);
-    assert(marketingRouteText.includes('product_view'), 'Product view analytics marker missing from marketing route bundle');
-    assert(marketingRouteText.includes('datasheet_click'), 'Datasheet analytics marker missing from marketing route bundle');
+    const marketingRoutePath = findAssetPath(
+      mainAssetText,
+      /(?:assets\/|\.\/)?(MarketingRoutePage-[^"',)]+\.js)/,
+      'Marketing route asset reference missing from main bundle'
+    );
+    const { text: marketingRouteText } = await getText(`${CORPORATE_SITE_URL}/${marketingRoutePath}`);
+    let analyticsBundleText = marketingRouteText;
+
+    if (!analyticsBundleText.includes('product_view') || !analyticsBundleText.includes('datasheet_click')) {
+      const productsRoutePath = findAssetPath(
+        marketingRouteText,
+        /(?:assets\/|\.\/)?(ProductsMarketingRoute-[^"',)]+\.js)/,
+        'Product marketing route asset reference missing from marketing route bundle'
+      );
+      const { text: productsRouteText } = await getText(`${CORPORATE_SITE_URL}/${productsRoutePath}`);
+      analyticsBundleText = `${marketingRouteText}\n${productsRouteText}`;
+    }
+
+    assert(analyticsBundleText.includes('product_view'), 'Product view analytics marker missing from marketing route bundle');
+    assert(analyticsBundleText.includes('datasheet_click'), 'Datasheet analytics marker missing from marketing route bundle');
   });
 
   await check('corporate bundle does not use random image fallbacks', async () => {
