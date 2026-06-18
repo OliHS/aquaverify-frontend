@@ -2,6 +2,7 @@ import type { Language } from './translations';
 import { HOME_FAQS, getHomeIndustryItems, getHomeProductItems } from './homeContent';
 import { getMarketingPagePath } from './marketingRoutes';
 import { getResourceEditorialMeta } from './resourceEditorialMetadata.js';
+import { getGlossaryTermHref, getIndustryGlossaryTerms } from './glossaryContent.js';
 
 export const CORPORATE_SITE_URL = 'https://aquaverify.com';
 export const SUPPORTED_SEO_LANGUAGES: Language[] = ['en', 'es', 'fr', 'it', 'ca'];
@@ -253,8 +254,9 @@ function removeJsonLd(id: string) {
 function getMarketingSchemaType(pageType?: string) {
   if (pageType === 'Product') return 'Product';
   if (pageType === 'TechArticle') return 'TechArticle';
-  if (pageType === 'DefinedTerm') return 'DefinedTerm';
-  if (pageType === 'DefinedTermSet') return 'DefinedTermSet';
+  if (pageType === 'DefinedTerm') return 'WebPage';
+  if (pageType === 'DefinedTermSet') return 'CollectionPage';
+  if (pageType === 'IndustryService') return 'WebPage';
   if (pageType === 'resourcesHub') return 'CollectionPage';
   if (pageType === 'products' || pageType === 'industries') return 'CollectionPage';
   if (pageType === 'platform') return 'SoftwareApplication';
@@ -294,6 +296,9 @@ export function applyMarketingSeo({
   const webpageId = `${canonicalUrl}#webpage`;
   const editorialMeta = pageId ? getResourceEditorialMeta(pageId) : null;
   const isArticle = ['Article', 'TechArticle'].includes(schemaType);
+  const visibleIndustryTerms = pageType === 'IndustryService' && pageId
+    ? getIndustryGlossaryTerms(pageId, lang, 10)
+    : [];
 
   document.documentElement.lang = lang;
   document.title = title;
@@ -358,6 +363,11 @@ export function applyMarketingSeo({
         mainEntityOfPage: canonicalUrl,
         isPartOf: { '@id': websiteId },
         publisher: { '@id': organizationId },
+        ...(pageType === 'IndustryService' ? {
+          mainEntity: { '@id': `${canonicalUrl}#service` },
+          about: visibleIndustryTerms.map((term) => ({ '@id': getAbsoluteUrl(getGlossaryTermHref(term.id, lang)) })),
+          mentions: visibleIndustryTerms.map((term) => ({ '@id': getAbsoluteUrl(getGlossaryTermHref(term.id, lang)) }))
+        } : {}),
         ...(schemaType === 'Product' ? {
           brand: {
             '@type': 'Brand',
@@ -392,7 +402,16 @@ export function applyMarketingSeo({
           } : {})
         } : {})
       }
-    ]
+    ].concat(pageType === 'IndustryService' ? [{
+      '@type': 'Service',
+      '@id': `${canonicalUrl}#service`,
+      name: title,
+      description,
+      url: canonicalUrl,
+      provider: { '@id': organizationId },
+      areaServed: 'International',
+      mainEntityOfPage: { '@id': webpageId }
+    }] : [])
   });
 
   if (breadcrumbs?.length) {

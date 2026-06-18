@@ -7,9 +7,13 @@ import { CookieConsent } from './CookieConsent';
 import type { Language } from '../utils/translations';
 import {
   getGlossaryHubContent,
+  getGlossaryIndustryExplorer,
   getGlossaryRelatedLinks,
+  getGlossaryRelatedTerms,
   getGlossaryTermById,
+  getGlossaryTermHref,
   getGlossaryTermPageId,
+  getGlossaryTermSectorApplications,
   glossaryAbsolute,
   isPriorityGlossaryTerm
 } from '../utils/glossaryContent.js';
@@ -23,7 +27,7 @@ type GlossaryLandingProps = {
     path: string;
   };
   pageLang: Language;
-  termId?: number;
+  termId?: string | number;
   showCookieConsent?: boolean;
 };
 
@@ -70,35 +74,79 @@ function TermBadge({ priority, labels }: { priority: boolean; labels: ReturnType
 
 function TermCard({ term, labels }: { term: any; labels: ReturnType<typeof getGlossaryHubContent> }) {
   const priority = isPriorityGlossaryTerm(term.id);
+  const href = getGlossaryTermHref(term.id, labels.lang);
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl">
+    <article id={`termino-${term.id}`} itemScope itemType="https://schema.org/DefinedTerm" className="group flex h-full scroll-mt-28 flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:border-cyan-200 hover:shadow-xl">
+      <meta itemProp="termCode" content={term.id} />
       <div className="flex items-start justify-between gap-3">
         <span className="rounded-full bg-slate-50 px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-slate-500">
           {term.categoryLabel}
         </span>
         <TermBadge priority={priority} labels={labels} />
       </div>
-      <h3 className="mt-4 font-heading text-xl font-black leading-tight text-primary">{term.term}</h3>
-      <p className="mt-3 text-sm leading-6 text-slate-600">{term.definition}</p>
+      <h3 itemProp="name" className="mt-4 font-heading text-xl font-black leading-tight text-primary">{term.term}</h3>
+      <p itemProp="description" className="mt-3 text-sm leading-6 text-slate-600">{term.definition}</p>
       <div className="mt-4 grid gap-2 text-xs font-bold text-slate-500">
         <span>{labels.product}: <b className="text-slate-800">{term.product}</b></span>
         <span>{labels.sector}: <b className="text-slate-800">{term.sector}</b></span>
       </div>
       <div className="mt-auto pt-5">
-        {priority ? (
-          <Link to={term.url} className="inline-flex items-center text-sm font-black text-secondary transition group-hover:text-primary">
-            {labels.termCta}
-            <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
-          </Link>
-        ) : (
-          <span className="inline-flex items-center text-sm font-black text-slate-400">
-            {labels.supporting}
-          </span>
-        )}
+        <Link to={href} className={`inline-flex items-center text-sm font-black transition group-hover:text-primary ${priority ? 'text-secondary' : 'text-slate-500'}`}>
+          {priority ? labels.termCta : labels.supporting}
+          <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+        </Link>
       </div>
     </article>
   );
 }
+
+const EXTRA_LABELS: Record<string, any> = {
+  en: {
+    sectorExplorerTitle: 'Explore concepts by sector',
+    sectorExplorerBody: 'Jump from each industry to the terms that explain its water-control workflow.',
+    sectorLink: 'Open sector',
+    sectorApplications: 'Sector applications',
+    whySector: 'Why it matters',
+    sources: 'Editorial sources',
+    reviewed: 'Reviewed'
+  },
+  es: {
+    sectorExplorerTitle: 'Explorar conceptos por sector',
+    sectorExplorerBody: 'Salta de cada industria a los conceptos que explican su flujo de control del agua.',
+    sectorLink: 'Ver sector',
+    sectorApplications: 'Aplicaciones por sector',
+    whySector: 'Por qué importa',
+    sources: 'Fuentes editoriales',
+    reviewed: 'Revisado'
+  },
+  fr: {
+    sectorExplorerTitle: 'Explorer les concepts par secteur',
+    sectorExplorerBody: 'Passez de chaque industrie aux concepts qui expliquent son flux de contrôle de l’eau.',
+    sectorLink: 'Voir le secteur',
+    sectorApplications: 'Applications par secteur',
+    whySector: 'Pourquoi c’est important',
+    sources: 'Sources éditoriales',
+    reviewed: 'Révisé'
+  },
+  it: {
+    sectorExplorerTitle: 'Esplora i concetti per settore',
+    sectorExplorerBody: 'Passa da ogni settore ai concetti che spiegano il workflow di controllo dell’acqua.',
+    sectorLink: 'Apri settore',
+    sectorApplications: 'Applicazioni per settore',
+    whySector: 'Perché conta',
+    sources: 'Fonti editoriali',
+    reviewed: 'Revisionato'
+  },
+  ca: {
+    sectorExplorerTitle: 'Explorar conceptes per sector',
+    sectorExplorerBody: 'Ves de cada sector als conceptes que expliquen el seu flux de control de l’aigua.',
+    sectorLink: 'Veure sector',
+    sectorApplications: 'Aplicacions per sector',
+    whySector: 'Per què importa',
+    sources: 'Fonts editorials',
+    reviewed: 'Revisat'
+  }
+};
 
 export const GlossaryLanding: React.FC<GlossaryLandingProps> = ({
   content,
@@ -107,7 +155,8 @@ export const GlossaryLanding: React.FC<GlossaryLandingProps> = ({
   showCookieConsent = true
 }) => {
   const labels = getGlossaryHubContent(pageLang);
-  const term = typeof termId === 'number' ? getGlossaryTermById(termId, pageLang) : null;
+  const extra = EXTRA_LABELS[pageLang] || EXTRA_LABELS.en;
+  const term = termId !== undefined && termId !== null ? getGlossaryTermById(termId, pageLang) : null;
   const [activeCategory, setActiveCategory] = useState('all');
   const [query, setQuery] = useState('');
   const normalizedQuery = query.trim().toLowerCase();
@@ -140,12 +189,15 @@ export const GlossaryLanding: React.FC<GlossaryLandingProps> = ({
       upsertJsonLd('glossary-defined-term', {
         '@context': 'https://schema.org',
         '@type': 'DefinedTerm',
+        '@id': `${glossaryAbsolute(getGlossaryTermHref(term.id, pageLang))}#defined-term`,
         name: term.term,
         description: term.definition,
-        url: glossaryAbsolute(term.url),
-        termCode: term.slug,
+        url: glossaryAbsolute(getGlossaryTermHref(term.id, pageLang)),
+        termCode: term.id,
+        ...(term.aliases?.length ? { alternateName: term.aliases } : {}),
         inDefinedTermSet: {
           '@type': 'DefinedTermSet',
+          '@id': `${glossaryAbsolute(labels.path)}#defined-term-set`,
           name: labels.title,
           url: glossaryAbsolute(labels.path)
         }
@@ -157,26 +209,27 @@ export const GlossaryLanding: React.FC<GlossaryLandingProps> = ({
     upsertJsonLd('glossary-defined-term-set', {
       '@context': 'https://schema.org',
       '@type': 'DefinedTermSet',
+      '@id': `${glossaryAbsolute(labels.path)}#defined-term-set`,
       name: labels.title,
       description: labels.lead,
       url: glossaryAbsolute(labels.path),
-      hasDefinedTerm: labels.terms.map((item: any) => ({
-        '@type': 'DefinedTerm',
-        name: item.term,
-        description: item.definition,
-        url: isPriorityGlossaryTerm(item.id) ? glossaryAbsolute(item.url) : glossaryAbsolute(labels.path),
-        inDefinedTermSet: glossaryAbsolute(labels.path)
-      }))
-    });
+        hasDefinedTerm: labels.terms.map((item: any) => ({
+          '@type': 'DefinedTerm',
+          name: item.term,
+          description: item.definition,
+          termCode: item.id,
+          url: glossaryAbsolute(getGlossaryTermHref(item.id, pageLang)),
+          inDefinedTermSet: glossaryAbsolute(labels.path)
+        }))
+      });
     removeJsonLd('glossary-defined-term');
     return () => removeJsonLd('glossary-defined-term-set');
   }, [labels, term]);
 
   if (term) {
     const relatedLinks = getGlossaryRelatedLinks(term, pageLang);
-    const relatedTerms = labels.terms
-      .filter((item: any) => item.id !== term.id && item.category === term.category)
-      .slice(0, 6);
+    const relatedTerms = getGlossaryRelatedTerms(term, pageLang, 6);
+    const sectorApplications = getGlossaryTermSectorApplications(term.id, pageLang);
 
     return (
       <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
@@ -244,7 +297,29 @@ export const GlossaryLanding: React.FC<GlossaryLandingProps> = ({
             </div>
           </section>
 
-          <section className="bg-slate-50 py-16 md:py-20">
+          {sectorApplications.length > 0 && (
+            <section className="bg-slate-50 py-16 md:py-20">
+              <div className="container mx-auto px-6">
+                <div className="mb-8 max-w-4xl">
+                  <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">{labels.sector}</div>
+                  <h2 className="mt-3 font-heading text-3xl font-black leading-tight text-primary md:text-5xl">{extra.sectorApplications}</h2>
+                </div>
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {sectorApplications.map((item: any) => (
+                    <article key={item.id} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                      <h3 className="font-heading text-xl font-black leading-tight text-primary">
+                        <Link to={item.href}>{item.title}</Link>
+                      </h3>
+                      <p className="mt-3 text-sm font-semibold uppercase tracking-[0.12em] text-cyan-700">{extra.whySector}</p>
+                      <p className="mt-2 text-sm leading-6 text-slate-600">{item.relevance}</p>
+                    </article>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          <section className="bg-white py-16 md:py-20">
             <div className="container mx-auto px-6">
               <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
@@ -260,6 +335,22 @@ export const GlossaryLanding: React.FC<GlossaryLandingProps> = ({
               </div>
             </div>
           </section>
+
+          {term.sourceRefs?.length > 0 && (
+            <section className="bg-slate-50 py-12">
+              <div className="container mx-auto px-6">
+                <h2 className="font-heading text-2xl font-black text-primary">{extra.sources}</h2>
+                <div className="mt-5 grid gap-3 md:grid-cols-2">
+                  {term.sourceRefs.map((source: any) => (
+                    <a key={`${source.title}-${source.url}`} href={source.url} className="rounded-lg border border-slate-200 bg-white p-4 text-sm font-semibold leading-6 text-slate-600 shadow-sm">
+                      <strong className="block text-primary">{source.title}</strong>
+                      <span>{source.organization} · {source.year} · {extra.reviewed}: {source.reviewed}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
         </main>
         <Footer />
         {showCookieConsent && <CookieConsent />}
@@ -305,6 +396,37 @@ export const GlossaryLanding: React.FC<GlossaryLandingProps> = ({
               </div>
               <p className="mt-5 text-sm font-semibold leading-6 text-slate-600">{content.description}</p>
             </aside>
+          </div>
+        </section>
+
+        <section className="bg-white py-16 md:py-20">
+          <div className="container mx-auto px-6">
+            <div className="mb-8 max-w-4xl">
+              <div className="text-xs font-black uppercase tracking-[0.18em] text-cyan-700">{labels.sector}</div>
+              <h2 className="mt-3 font-heading text-3xl font-black leading-tight text-primary md:text-5xl">{extra.sectorExplorerTitle}</h2>
+              <p className="mt-4 text-base leading-8 text-slate-600">{extra.sectorExplorerBody}</p>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {getGlossaryIndustryExplorer(pageLang).map((industry: any) => (
+                <article key={industry.id} className="rounded-lg border border-slate-200 bg-white p-5 shadow-sm">
+                  <h3 className="font-heading text-xl font-black leading-tight text-primary">
+                    <Link to={industry.href}>{industry.title}</Link>
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-slate-600">{industry.description}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {industry.terms.slice(0, 5).map((item: any) => (
+                      <Link key={item.id} to={item.href} className="rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-black text-cyan-800">
+                        {item.term}
+                      </Link>
+                    ))}
+                  </div>
+                  <Link to={industry.href} className="mt-5 inline-flex items-center text-sm font-black text-secondary">
+                    {extra.sectorLink}
+                    <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 

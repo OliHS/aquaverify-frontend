@@ -3421,66 +3421,6 @@
     <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/reglament-ue-2020-741" />
   </url>
   <url>
-    <loc>https://aquaverify.com/en/glossary/water-safety-plan-2</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/water-safety-plan" />
-  </url>
-  <url>
-    <loc>https://aquaverify.com/es/glosario/water-safety-plan</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/water-safety-plan" />
-  </url>
-  <url>
-    <loc>https://aquaverify.com/fr/glossaire/water-safety-plan</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/water-safety-plan" />
-  </url>
-  <url>
-    <loc>https://aquaverify.com/it/glossario/water-safety-plan-2</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/water-safety-plan" />
-  </url>
-  <url>
-    <loc>https://aquaverify.com/ca/glossari/water-safety-plan</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.7</priority>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/water-safety-plan" />
-    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/water-safety-plan-2" />
-    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/water-safety-plan" />
-  </url>
-  <url>
     <loc>https://aquaverify.com/en/glossary/plaque-assay</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
@@ -6119,5 +6059,905 @@
     <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/oem" />
     <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/oem" />
     <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/oem" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/haccp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/haccp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/haccp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/haccp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/haccp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/haccp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/haccp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/haccp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/haccp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/haccp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/haccp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/haccp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/haccp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/haccp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/haccp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/haccp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/haccp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/haccp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/haccp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/haccp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/haccp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/haccp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/haccp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/haccp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/haccp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/haccp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/iso-11731</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-11731" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/iso-11731</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-11731" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/iso-11731</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-11731" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/iso-11731</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-11731" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/iso-11731</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-11731" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-11731" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/iso-22000</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-22000" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/iso-22000</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-22000" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/iso-22000</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-22000" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/iso-22000</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-22000" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/iso-22000</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-22000" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-22000" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/iso-5667-1</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-5667-1" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/iso-5667-1</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-5667-1" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/iso-5667-1</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-5667-1" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/iso-5667-1</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-5667-1" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/iso-5667-1</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/iso-5667-1" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/iso-5667-1" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/royal-decree-742-2013</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/real-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/decret-royal-742-2013" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/regio-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/reial-decret-742-2013" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/real-decreto-742-2013</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/real-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/decret-royal-742-2013" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/regio-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/reial-decret-742-2013" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/decret-royal-742-2013</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/real-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/decret-royal-742-2013" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/regio-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/reial-decret-742-2013" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/regio-decreto-742-2013</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/real-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/decret-royal-742-2013" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/regio-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/reial-decret-742-2013" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/reial-decret-742-2013</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/royal-decree-742-2013" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/real-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/decret-royal-742-2013" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/regio-decreto-742-2013" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/reial-decret-742-2013" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/21-cfr-part-11</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/21-cfr-part-11" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/21-cfr-part-11</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/21-cfr-part-11" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/21-cfr-part-11</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/21-cfr-part-11" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/21-cfr-part-11</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/21-cfr-part-11" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/21-cfr-part-11</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/21-cfr-part-11" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/21-cfr-part-11" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/alcoa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/alcoa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/alcoa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/alcoa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/alcoa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/alcoa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/alcoa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/alcoa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/alcoa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/alcoa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/alcoa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/alcoa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/alcoa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/alcoa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/alcoa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/alcoa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/alcoa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/gxp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/gxp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/gxp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/gxp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/gxp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/gxp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/gxp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/gxp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/gxp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/gxp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/gxp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/gxp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/gxp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/gxp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/gxp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/gxp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/gxp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/gxp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/gxp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/gxp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/gxp</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/gxp" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/gxp" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/gxp" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/gxp" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/gxp" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/aerosolization</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/aerosolizacion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/aerosolisation" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/aerosolizzazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/aerosolitzacio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/aerosolizacion</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/aerosolizacion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/aerosolisation" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/aerosolizzazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/aerosolitzacio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/aerosolisation</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/aerosolizacion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/aerosolisation" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/aerosolizzazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/aerosolitzacio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/aerosolizzazione</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/aerosolizacion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/aerosolisation" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/aerosolizzazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/aerosolitzacio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/aerosolitzacio</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/aerosolization" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/aerosolizacion" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/aerosolisation" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/aerosolizzazione" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/aerosolitzacio" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/hydroponics</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/hidroponia" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/hydroponie" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/idroponica" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/hidroponia" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/hidroponia</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/hidroponia" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/hydroponie" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/idroponica" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/hidroponia" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/hydroponie</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/hidroponia" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/hydroponie" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/idroponica" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/hidroponia" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/idroponica</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/hidroponia" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/hydroponie" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/idroponica" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/hidroponia" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/hidroponia</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/hydroponics" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/hidroponia" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/hydroponie" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/idroponica" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/hidroponia" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/packhouse</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/packhouse" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/packhouse" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/packhouse</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/packhouse" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/packhouse" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/packhouse</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/packhouse" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/packhouse" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/packhouse</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/packhouse" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/packhouse" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/packhouse</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/packhouse" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/packhouse" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/packhouse" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/packhouse" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/turbidity</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/turbidez" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/turbidite" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/torbidita" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/terbolesa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/turbidez</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/turbidez" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/turbidite" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/torbidita" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/terbolesa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/turbidite</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/turbidez" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/turbidite" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/torbidita" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/terbolesa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/torbidita</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/turbidez" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/turbidite" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/torbidita" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/terbolesa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/terbolesa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/turbidity" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/turbidez" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/turbidite" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/torbidita" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/terbolesa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/uv-desinfeccion-ultravioleta" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/uv-desinfection-ultraviolette" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/uv-disinfezione-ultravioletta" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/uv-desinfeccio-ultraviolada" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/uv-desinfeccion-ultravioleta</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/uv-desinfeccion-ultravioleta" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/uv-desinfection-ultraviolette" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/uv-disinfezione-ultravioletta" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/uv-desinfeccio-ultraviolada" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/uv-desinfection-ultraviolette</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/uv-desinfeccion-ultravioleta" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/uv-desinfection-ultraviolette" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/uv-disinfezione-ultravioletta" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/uv-desinfeccio-ultraviolada" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/uv-disinfezione-ultravioletta</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/uv-desinfeccion-ultravioleta" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/uv-desinfection-ultraviolette" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/uv-disinfezione-ultravioletta" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/uv-desinfeccio-ultraviolada" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/uv-desinfeccio-ultraviolada</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/uv-ultraviolet-disinfection" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/uv-desinfeccion-ultravioleta" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/uv-desinfection-ultraviolette" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/uv-disinfezione-ultravioletta" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/uv-desinfeccio-ultraviolada" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/capa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/capa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/capa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/capa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/capa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/capa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/capa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/capa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/capa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/capa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/capa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/capa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/capa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/capa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/capa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/capa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/capa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/capa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/capa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/capa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/capa</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/capa" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/capa" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/capa" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/capa" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/capa" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/en/glossary/document-control</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/control-documental" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/controle-documentaire" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/controllo-documentale" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/control-documental" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/es/glosario/control-documental</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/control-documental" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/controle-documentaire" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/controllo-documentale" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/control-documental" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/fr/glossaire/controle-documentaire</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/control-documental" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/controle-documentaire" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/controllo-documentale" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/control-documental" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/it/glossario/controllo-documentale</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/control-documental" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/controle-documentaire" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/controllo-documentale" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/control-documental" />
+  </url>
+  <url>
+    <loc>https://aquaverify.com/ca/glossari/control-documental</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://aquaverify.com/en/glossary/document-control" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://aquaverify.com/es/glosario/control-documental" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://aquaverify.com/fr/glossaire/controle-documentaire" />
+    <xhtml:link rel="alternate" hreflang="it" href="https://aquaverify.com/it/glossario/controllo-documentale" />
+    <xhtml:link rel="alternate" hreflang="ca" href="https://aquaverify.com/ca/glossari/control-documental" />
   </url>
 </urlset>

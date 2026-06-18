@@ -22,9 +22,13 @@ import {
 } from '../utils/resourcesHubContent.js';
 import {
   getGlossaryHubContent,
+  getGlossaryIndustryExplorer,
+  getGlossaryRelatedTerms,
   getGlossaryRelatedLinks,
+  getGlossaryTermHref,
   getGlossaryTermById,
-  isPriorityGlossaryTerm
+  getGlossaryTermSectorApplications,
+  getIndustryGlossaryTerms
 } from '../utils/glossaryContent.js';
 import {
   getEditorialTypeLabel,
@@ -317,16 +321,50 @@ function externalOrAbsolute(pathOrUrl) {
   return absolute(value.startsWith('/') ? value : `/${value}`);
 }
 
-function renderSectionList(sections = []) {
+function createIndustryContextualLinker(page, lang) {
+  if (page?.category !== 'industries' || page.id === 'industries-hub') return null;
+  const terms = getIndustryGlossaryTerms(page.id, lang, 8)
+    .map((term) => ({
+      id: term.id,
+      href: absolute(term.href),
+      labels: [term.term, ...(term.aliases || [])].filter(Boolean)
+    }));
+  const used = new Set();
+
+  return (value) => {
+    const source = String(value || '');
+    if (!source || used.size >= 8) return escapeHtml(source);
+    const lower = source.toLocaleLowerCase();
+
+    for (const term of terms) {
+      if (used.has(term.id)) continue;
+      const label = term.labels.find((candidate) => lower.includes(String(candidate).toLocaleLowerCase()));
+      if (!label) continue;
+      const index = lower.indexOf(String(label).toLocaleLowerCase());
+      if (index < 0) continue;
+
+      used.add(term.id);
+      const before = source.slice(0, index);
+      const linked = source.slice(index, index + String(label).length);
+      const after = source.slice(index + String(label).length);
+      return `${escapeHtml(before)}<a href="${escapeHtml(term.href)}">${escapeHtml(linked)}</a>${escapeHtml(after)}`;
+    }
+
+    return escapeHtml(source);
+  };
+}
+
+function renderSectionList(sections = [], page = null, lang = 'en') {
+  const contextualLink = createIndustryContextualLinker(page, lang);
   return sections.map((section) => {
     const bullets = Array.isArray(section.bullets) ? section.bullets : [];
     return [
       '      <section>',
       `        <h2>${escapeHtml(section.title)}</h2>`,
-      section.body ? `        <p>${escapeHtml(section.body)}</p>` : '',
+      section.body ? `        <p>${contextualLink ? contextualLink(section.body) : escapeHtml(section.body)}</p>` : '',
       bullets.length ? [
         '        <ul>',
-        ...bullets.map((bullet) => `          <li>${escapeHtml(bullet)}</li>`),
+        ...bullets.map((bullet) => `          <li>${contextualLink ? contextualLink(bullet) : escapeHtml(bullet)}</li>`),
         '        </ul>'
       ].join('\n') : '',
       section.table ? renderTechnicalTable(section.table) : '',
@@ -495,13 +533,12 @@ function renderResourcesHubDetails(page, lang) {
 function renderGlossaryDetails(page, lang) {
   const glossary = getGlossaryHubContent(lang);
   const termId = page?.glossaryTermId;
-  const term = typeof termId === 'number' ? getGlossaryTermById(termId, lang) : null;
+  const term = termId !== undefined ? getGlossaryTermById(termId, lang) : null;
 
   if (term) {
     const relatedLinks = getGlossaryRelatedLinks(term, lang);
-    const relatedTerms = glossary.terms
-      .filter((item) => item.id !== term.id && item.category === term.category)
-      .slice(0, 8);
+    const relatedTerms = getGlossaryRelatedTerms(term, lang, 8);
+    const sectorApplications = getGlossaryTermSectorApplications(term.id, lang);
 
     return [
       '      <section>',
@@ -515,6 +552,14 @@ function renderGlossaryDetails(page, lang) {
       `          <li><strong>${escapeHtml(glossary.sector)}:</strong> ${escapeHtml(term.sector)}</li>`,
       '        </ul>',
       '      </section>',
+      sectorApplications.length ? [
+        '      <section>',
+        `        <h2>${escapeHtml(lang === 'es' ? 'Aplicaciones por sector' : 'Sector applications')}</h2>`,
+        '        <ul>',
+        ...sectorApplications.map((item) => `          <li><strong><a href="${escapeHtml(absolute(item.href))}">${escapeHtml(item.title)}</a></strong> ${escapeHtml(item.relevance)}</li>`),
+        '        </ul>',
+        '      </section>'
+      ].join('\n') : '',
       '      <section>',
       `        <h2>${escapeHtml(glossary.relatedTitle)}</h2>`,
       `        <p>${escapeHtml(glossary.relatedBody)}</p>`,
@@ -525,12 +570,21 @@ function renderGlossaryDetails(page, lang) {
       '      <section>',
       `        <h2>${escapeHtml(glossary.relatedTerms)}</h2>`,
       '        <ul>',
-      ...relatedTerms.map((item) => `          <li><strong>${isPriorityGlossaryTerm(item.id) ? `<a href="${escapeHtml(absolute(item.url))}">${escapeHtml(item.term)}</a>` : escapeHtml(item.term)}</strong> ${escapeHtml(item.definition)}</li>`),
+      ...relatedTerms.map((item) => `          <li><strong><a href="${escapeHtml(absolute(getGlossaryTermHref(item.id, lang)))}">${escapeHtml(item.term)}</a></strong> ${escapeHtml(item.definition)}</li>`),
       '        </ul>',
-      '      </section>'
-    ].join('\n');
+      '      </section>',
+      term.sourceRefs?.length ? [
+        '      <section>',
+        `        <h2>${escapeHtml(lang === 'es' ? 'Fuentes editoriales' : 'Editorial sources')}</h2>`,
+        '        <ul>',
+        ...term.sourceRefs.map((source) => `          <li><a href="${escapeHtml(source.url)}">${escapeHtml(source.title)}</a> ${escapeHtml(source.organization)} · ${escapeHtml(source.year)} · ${escapeHtml(source.reviewed)}</li>`),
+        '        </ul>',
+        '      </section>'
+      ].join('\n') : ''
+    ].filter(Boolean).join('\n');
   }
 
+  const industryExplorer = getGlossaryIndustryExplorer(lang);
   return [
     '      <section>',
     `        <p>${escapeHtml(glossary.eyebrow)}</p>`,
@@ -539,11 +593,25 @@ function renderGlossaryDetails(page, lang) {
     `        <p><strong>${glossary.termsCount} ${escapeHtml(glossary.termsLabel)}</strong> · <strong>${glossary.priorityPagesCount} ${escapeHtml(glossary.priorityPagesLabel)}</strong></p>`,
     '      </section>',
     '      <section>',
+    `        <h2>${escapeHtml(lang === 'es' ? 'Explorar conceptos por sector' : 'Explore concepts by sector')}</h2>`,
+    '        <ul>',
+    ...industryExplorer.map((industry) => [
+      '          <li>',
+      `            <h3><a href="${escapeHtml(absolute(industry.href))}">${escapeHtml(industry.title)}</a></h3>`,
+      industry.description ? `            <p>${escapeHtml(industry.description)}</p>` : '',
+      '            <ul>',
+      ...industry.terms.slice(0, 5).map((item) => `              <li><a href="${escapeHtml(absolute(item.href))}">${escapeHtml(item.term)}</a></li>`),
+      '            </ul>',
+      '          </li>'
+    ].filter(Boolean).join('\n')),
+    '        </ul>',
+    '      </section>',
+    '      <section>',
     `        <h2>${escapeHtml(glossary.primaryCta)}</h2>`,
     '        <ul>',
     ...glossary.priorityTerms.map((item) => [
       '          <li>',
-      `            <h3><a href="${escapeHtml(absolute(item.url))}">${escapeHtml(item.term)}</a></h3>`,
+      `            <h3><a href="${escapeHtml(absolute(getGlossaryTermHref(item.id, lang)))}">${escapeHtml(item.term)}</a></h3>`,
       `            <p>${escapeHtml(item.definition)}</p>`,
       `            <p>${escapeHtml(glossary.product)}: ${escapeHtml(item.product)} · ${escapeHtml(glossary.sector)}: ${escapeHtml(item.sector)}</p>`,
       '          </li>'
@@ -553,7 +621,7 @@ function renderGlossaryDetails(page, lang) {
     '      <section>',
     `        <h2>${escapeHtml(glossary.all)}</h2>`,
     '        <ul>',
-    ...glossary.terms.map((item) => `          <li><strong>${escapeHtml(item.term)}</strong> ${escapeHtml(item.definition)}</li>`),
+    ...glossary.terms.map((item) => `          <li id="termino-${escapeHtml(item.id)}"><strong><a href="${escapeHtml(absolute(getGlossaryTermHref(item.id, lang)))}">${escapeHtml(item.term)}</a></strong> ${escapeHtml(item.definition)}</li>`),
     '        </ul>',
     '      </section>'
   ].join('\n');
@@ -577,6 +645,70 @@ function renderIndustriesHubSectors(page, content, lang) {
         '          </li>'
       ].filter(Boolean).join('\n');
     }),
+    '        </ul>',
+    '      </section>'
+  ].join('\n');
+}
+
+const INDUSTRY_GLOSSARY_LABELS = {
+  en: {
+    commonTitle: 'Common concepts in water control',
+    title: 'Key concepts for this sector',
+    intro: 'Glossary terms that help connect the sector workflow with sampling, microbiology, traceability and reporting.',
+    cta: 'Explore the technical glossary',
+    relevance: 'Sector relevance'
+  },
+  es: {
+    commonTitle: 'Conceptos comunes en el control del agua',
+    title: 'Conceptos clave para este sector',
+    intro: 'Conceptos del glosario que conectan el flujo sectorial con muestreo, microbiología, trazabilidad y reporting.',
+    cta: 'Explorar el glosario técnico',
+    relevance: 'Relevancia sectorial'
+  },
+  fr: {
+    commonTitle: 'Concepts communs du contrôle de l’eau',
+    title: 'Concepts clés pour ce secteur',
+    intro: 'Termes du glossaire qui relient le flux sectoriel au prélèvement, à la microbiologie, à la traçabilité et au reporting.',
+    cta: 'Explorer le glossaire technique',
+    relevance: 'Pertinence sectorielle'
+  },
+  it: {
+    commonTitle: 'Concetti comuni nel controllo dell’acqua',
+    title: 'Concetti chiave per questo settore',
+    intro: 'Termini del glossario che collegano il workflow di settore con campionamento, microbiologia, tracciabilità e reporting.',
+    cta: 'Esplora il glossario tecnico',
+    relevance: 'Rilevanza per il settore'
+  },
+  ca: {
+    commonTitle: 'Conceptes comuns en el control de l’aigua',
+    title: 'Conceptes clau per a aquest sector',
+    intro: 'Conceptes del glossari que connecten el flux sectorial amb mostreig, microbiologia, traçabilitat i informes.',
+    cta: 'Explorar el glossari tècnic',
+    relevance: 'Rellevància sectorial'
+  }
+};
+
+function renderIndustryGlossaryTerms(page, lang) {
+  if (page?.category !== 'industries') return '';
+  const labels = INDUSTRY_GLOSSARY_LABELS[lang] || INDUSTRY_GLOSSARY_LABELS.en;
+  const glossary = getGlossaryHubContent(lang);
+  const terms = getIndustryGlossaryTerms(page.id, lang, page.id === 'industries-hub' ? 8 : 10);
+  if (!terms.length) return '';
+
+  return [
+    '      <section id="conceptos-glosario">',
+    `        <p>${escapeHtml(glossary.glossaryLabel)}</p>`,
+    `        <h2>${escapeHtml(page.id === 'industries-hub' ? labels.commonTitle : labels.title)}</h2>`,
+    `        <p>${escapeHtml(labels.intro)}</p>`,
+    `        <p><a href="${escapeHtml(absolute(glossary.path))}">${escapeHtml(labels.cta)}</a></p>`,
+    '        <ul>',
+    ...terms.map((term) => [
+      '          <li>',
+      `            <h3><a href="${escapeHtml(absolute(term.href))}">${escapeHtml(term.term)}</a></h3>`,
+      `            <p>${escapeHtml(term.definition)}</p>`,
+      `            <p><strong>${escapeHtml(labels.relevance)}:</strong> ${escapeHtml(term.relevance)}</p>`,
+      '          </li>'
+    ].join('\n')),
     '        </ul>',
     '      </section>'
   ].join('\n');
@@ -1003,10 +1135,10 @@ function renderStaticRoot(meta) {
           ].join('\n')
         : [
           renderFeaturedWhitepapers(meta.page, meta.lang),
-          renderIndustriesHubSectors(meta.page, content, meta.lang),
           renderAnswerLayer(meta.page, content),
           renderDistributorsDetails(meta.page, content, meta.lang),
-          meta.page?.id === 'distributors' ? '' : renderSectionList(content.sections || []),
+          meta.page?.id === 'distributors' ? '' : renderSectionList(content.sections || [], meta.page, meta.lang),
+          renderIndustryGlossaryTerms(meta.page, meta.lang),
           renderResourceCollectionLinks(content.resourceLinksTitle, content.resourceLinksIntro, content.resourceLinks),
           renderResourceCollectionLinks(content.checklistLinksTitle, '', content.checklistLinks),
           renderVisualBlocks(content),
@@ -1154,6 +1286,10 @@ function buildBreadcrumbs(page, content, lang) {
   return crumbs.filter((crumb, index, all) => all.findIndex((item) => item.path === crumb.path) === index);
 }
 
+function glossaryTermSchemaId(termId, lang) {
+  return absolute(getGlossaryTermHref(termId, lang));
+}
+
 function buildStructuredData({ page, content, lang, canonicalUrl, title, description, imageUrl }) {
   if (!page) {
     return jsonLdScript('home-graph', buildHomeStructuredData({ lang, canonicalUrl, title, description }));
@@ -1165,9 +1301,11 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
     : pageType === 'TechArticle'
       ? 'TechArticle'
     : pageType === 'DefinedTerm'
-      ? 'DefinedTerm'
+      ? 'WebPage'
     : pageType === 'DefinedTermSet'
-      ? 'DefinedTermSet'
+      ? 'CollectionPage'
+    : pageType === 'IndustryService'
+      ? 'WebPage'
     : pageType === 'resourcesHub' || pageType === 'products' || pageType === 'industries'
       ? 'CollectionPage'
       : pageType === 'platform'
@@ -1182,6 +1320,9 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
   const webpageId = `${canonicalUrl}#webpage`;
   const editorialMeta = page?.id ? getResourceEditorialMeta(page.id) : null;
   const isArticle = ['Article', 'TechArticle'].includes(schemaType);
+  const visibleIndustryTerms = pageType === 'IndustryService' || page?.id === 'industries-hub'
+    ? getIndustryGlossaryTerms(page.id, lang, page.id === 'industries-hub' ? 8 : 10)
+    : [];
   const articleSource = editorialMeta?.doi || editorialMeta?.sourceUrl
     ? {
       '@type': 'CreativeWork',
@@ -1226,6 +1367,17 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
           mainEntityOfPage: canonicalUrl,
           isPartOf: { '@id': websiteId },
           publisher: { '@id': organizationId },
+          ...(pageType === 'IndustryService' ? {
+            mainEntity: { '@id': `${canonicalUrl}#service` },
+            about: visibleIndustryTerms.map((term) => ({ '@id': glossaryTermSchemaId(term.id, lang) })),
+            mentions: visibleIndustryTerms.map((term) => ({ '@id': glossaryTermSchemaId(term.id, lang) }))
+          } : {}),
+          ...(page?.id === 'glossary' ? {
+            mainEntity: { '@id': `${canonicalUrl}#defined-term-set` }
+          } : {}),
+          ...(pageType === 'DefinedTerm' ? {
+            mainEntity: { '@id': `${canonicalUrl}#defined-term` }
+          } : {}),
           ...(schemaType === 'Product' ? {
             brand: {
               '@type': 'Brand',
@@ -1258,6 +1410,20 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
     }
   }];
 
+  if (pageType === 'IndustryService') {
+    payloads[0].data['@graph'].push({
+      '@type': 'Service',
+      '@id': `${canonicalUrl}#service`,
+      name: title,
+      description,
+      url: canonicalUrl,
+      serviceType: content?.eyebrow || title,
+      provider: { '@id': organizationId },
+      areaServed: 'International',
+      mainEntityOfPage: { '@id': webpageId }
+    });
+  }
+
   if (page && content) {
     payloads.push({
       id: 'marketing-breadcrumbs',
@@ -1287,6 +1453,24 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
             '@type': 'Answer',
             text: faq.answer
           }
+        }))
+      }
+    });
+  }
+
+  if (page?.id === 'industries-hub' && Array.isArray(content?.sectors) && content.sectors.length) {
+    payloads.push({
+      id: 'industries-itemlist',
+      data: {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: title,
+        url: canonicalUrl,
+        itemListElement: content.sectors.map((sector, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: sector.title,
+          url: absolute(getMarketingPagePath(sector.routeId, lang))
         }))
       }
     });
@@ -1376,20 +1560,24 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
       data: {
         '@context': 'https://schema.org',
         '@type': 'DefinedTermSet',
+        '@id': `${canonicalUrl}#defined-term-set`,
         name: glossary.title,
         description: glossary.lead,
         url: canonicalUrl,
         hasDefinedTerm: glossary.terms.map((item) => ({
           '@type': 'DefinedTerm',
+          '@id': glossaryTermSchemaId(item.id, lang),
           name: item.term,
           description: item.definition,
-          url: isPriorityGlossaryTerm(item.id) ? absolute(item.url) : canonicalUrl
+          termCode: item.id,
+          ...(item.aliases?.length ? { alternateName: item.aliases } : {}),
+          url: absolute(getGlossaryTermHref(item.id, lang))
         }))
       }
     });
   }
 
-  if (typeof page?.glossaryTermId === 'number') {
+  if (page?.glossaryTermId !== undefined) {
     const glossary = getGlossaryHubContent(lang);
     const term = getGlossaryTermById(page.glossaryTermId, lang);
     if (term) {
@@ -1398,12 +1586,15 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
         data: {
           '@context': 'https://schema.org',
           '@type': 'DefinedTerm',
+          '@id': `${canonicalUrl}#defined-term`,
           name: term.term,
           description: term.definition,
           url: canonicalUrl,
-          termCode: term.slug,
+          termCode: term.id,
+          ...(term.aliases?.length ? { alternateName: term.aliases } : {}),
           inDefinedTermSet: {
             '@type': 'DefinedTermSet',
+            '@id': `${absolute(glossary.path)}#defined-term-set`,
             name: glossary.title,
             url: absolute(glossary.path)
           }

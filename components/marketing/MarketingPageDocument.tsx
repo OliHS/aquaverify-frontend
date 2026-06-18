@@ -41,7 +41,7 @@ export type MarketingPageMeta = {
   parentId?: string;
   schemaType?: string;
   productName?: string;
-  glossaryTermId?: number;
+  glossaryTermId?: string | number;
 };
 
 export const UI_LABELS: Record<Language, {
@@ -1052,7 +1052,7 @@ export const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
     );
   }
 
-  if (page.id === 'glossary' || typeof pageMeta.glossaryTermId === 'number') {
+  if (page.id === 'glossary' || pageMeta.glossaryTermId !== undefined) {
     return (
       <GlossaryLanding
         content={content}
@@ -1487,4 +1487,3 @@ export const MarketingPageDocument: React.FC<MarketingPageDocumentProps> = ({
     </div>
   );
 };
-

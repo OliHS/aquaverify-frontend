@@ -20,6 +20,7 @@ import {
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
+import { IndustryGlossaryTerms } from './IndustryGlossaryTerms';
 import type { Language } from '../utils/translations';
 import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
@@ -422,6 +423,8 @@ export const IndustriesHubLanding: React.FC<Props> = ({ content, pageLang, showC
             </div>
           </section>
         )}
+
+        <IndustryGlossaryTerms industryId="industries-hub" lang={pageLang} />
 
         <section className="bg-primary py-14 text-white md:py-20">
           <div className="container mx-auto px-6 text-center">

@@ -142,7 +142,8 @@ export const GlossaryMarketingRoute: React.FC<GlossaryMarketingRouteProps> = ({ 
       pageType: (page as MarketingPageMeta).schemaType || page.category,
       imageUrl: toPublicAssetUrl(contentMeta.ogImage || contentMeta.heroImage),
       faqs: contentMeta.faqs,
-      breadcrumbs: buildBreadcrumbs(page, contentMeta, pageLang)
+      breadcrumbs: buildBreadcrumbs(page, contentMeta, pageLang),
+      pageId: page.id
     });
   }, [page, pageLang, mergedContent]);
 

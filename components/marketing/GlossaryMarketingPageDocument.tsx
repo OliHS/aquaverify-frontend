@@ -4,7 +4,7 @@ import type { Language } from '../../utils/translations';
 
 type GlossaryMarketingPageDocumentProps = {
   page: {
-    glossaryTermId?: number;
+    glossaryTermId?: string | number;
   };
   content: {
     title: string;

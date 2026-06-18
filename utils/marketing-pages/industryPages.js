@@ -8,6 +8,13 @@ import { HOSPITALITY_TOURISM_WATER_PAGE } from '../hospitalityTourismWaterConten
 import { INDUSTRIES_HUB_PAGE } from '../industriesHubContent.js';
 import { MARKETING_LANGUAGES, locale, page, section } from './shared.js';
 
+const INDUSTRY_DATE_MODIFIED = '2026-06-18';
+const INDUSTRY_DETAIL_META = {
+  parentId: 'industries-hub',
+  schemaType: 'IndustryService',
+  dateModified: INDUSTRY_DATE_MODIFIED
+};
+
 function withAnswerLayer(content, directAnswer, technicalTable) {
   return {
     ...content,
@@ -20,7 +27,10 @@ export const INDUSTRY_ENTRY_MARKETING_PAGES = [
   page('industries-hub', 'industries', 'contact', Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [
     lang,
     INDUSTRIES_HUB_PAGE[lang]
-  ]))),
+  ])), {
+    schemaType: 'industries',
+    dateModified: INDUSTRY_DATE_MODIFIED
+  }),
   page('water-testing-labs', 'industries', 'quote', {
     en: withAnswerLayer(locale('/industries/water-testing-laboratories', 'Water testing laboratories: more capacity, traceability and confidence in every report', 'AquaVerify connects water microbiology kits, somatic coliphage control, sample-to-report digital workflows, CoA reporting and customer portal for laboratories that need reliable results without extra administrative load.', [
       section('The challenge for water testing laboratories', 'Water testing laboratories are receiving more samples, more matrices and more documentation requirements. Pressure appears when volume grows, TAT becomes tighter and every result must be defendable for customers, audits and technical managers.', ['More sample volume with the same team: organize intake, bench work, review and delivery without adding manual coordination.', 'Evidence spread across bench, quality and report: keep sample, method, batch, user, reading and validation connected.', 'Customers ask for more visibility: provide clear status, history and deliverables without endless operational emails.', 'Chain of custody and CoA reporting: make each result easier to review, explain and retrieve.']),
@@ -167,10 +177,10 @@ export const INDUSTRY_ENTRY_MARKETING_PAGES = [
         ['Reporting', 'AquaVerify Cloud', 'Audit trail, CoA i portal', 'Configurar segons procés']
       ]
     })
-  }),
+  }, INDUSTRY_DETAIL_META),
   page('water-quality-control', 'industries', 'contact', {
     ...WATER_QUALITY_CONTROL_PAGE
-  })
+  }, INDUSTRY_DETAIL_META)
 ];
 
 const INDUSTRY_PAGE_DATA = [
@@ -709,7 +719,7 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, FOOD_BEVERAGE_WATER_PAGE[lang]])),
-        { parentId: 'water-quality-control' }
+        INDUSTRY_DETAIL_META
       );
     }
 
@@ -719,7 +729,7 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, INDUSTRIAL_PROCESS_WATER_PAGE[lang]])),
-        { parentId: 'water-quality-control' }
+        INDUSTRY_DETAIL_META
       );
     }
 
@@ -729,7 +739,7 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, FACILITY_WATER_RISK_PAGE[lang]])),
-        { parentId: 'water-quality-control' }
+        INDUSTRY_DETAIL_META
       );
     }
 
@@ -739,7 +749,7 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, AGRICULTURE_WATER_PAGE[lang]])),
-        { parentId: 'water-quality-control' }
+        INDUSTRY_DETAIL_META
       );
     }
 
@@ -749,7 +759,7 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, PHARMA_COSMETICS_WATER_PAGE[lang]])),
-        { parentId: 'water-quality-control' }
+        INDUSTRY_DETAIL_META
       );
     }
 
@@ -759,7 +769,7 @@ function buildIndustryPages() {
         'industries',
         'contact',
         Object.fromEntries(MARKETING_LANGUAGES.map((lang) => [lang, HOSPITALITY_TOURISM_WATER_PAGE[lang]])),
-        { parentId: 'water-quality-control' }
+        INDUSTRY_DETAIL_META
       );
     }
 
@@ -781,7 +791,7 @@ function buildIndustryPages() {
           faqs: item.faqs?.[lang] || buildIndustryFaqs(item, lang)
         }
       ), item.directAnswers?.[lang], item.technicalTables?.[lang])])),
-      { parentId: 'water-quality-control' }
+      INDUSTRY_DETAIL_META
     );
   });
 }

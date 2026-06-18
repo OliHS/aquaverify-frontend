@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, ChevronRight, FileCheck2, FlaskConical, Gauge
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
+import { IndustryGlossaryTerms } from './IndustryGlossaryTerms';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
@@ -857,6 +858,8 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
             </div>
           </div>
         </section>
+
+        <IndustryGlossaryTerms industryId="water-quality-control" lang={pageLang} />
 
         <section id="diagnostico" className="bg-slate-50 py-16 pb-28 md:py-20">
           <div className="container mx-auto px-6">

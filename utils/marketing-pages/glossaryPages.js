@@ -6,6 +6,7 @@ import {
   getGlossaryTermPageId,
   getGlossaryTermSeo
 } from '../glossaryContent.js';
+import { GLOSSARY_REVIEW_DATE } from '../glossaryRelations.js';
 import { MARKETING_LANGUAGES, locale, page, section } from './shared.js';
 
 function buildGlossaryPages() {
@@ -38,7 +39,8 @@ function buildGlossaryPages() {
     })),
     {
       parentId: 'resources',
-      schemaType: 'DefinedTermSet'
+      schemaType: 'DefinedTermSet',
+      dateModified: GLOSSARY_REVIEW_DATE
     }
   );
 
@@ -74,7 +76,8 @@ function buildGlossaryPages() {
     {
       parentId: 'glossary',
       schemaType: 'DefinedTerm',
-      glossaryTermId: termId
+      glossaryTermId: termId,
+      dateModified: GLOSSARY_REVIEW_DATE
     }
   ));
 

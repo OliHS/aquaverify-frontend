@@ -129,6 +129,31 @@
             "permanent": true
         },
         {
+            "source": "/en/glossary/water-safety-plan-2",
+            "destination": "/en/glossary/water-safety-plan",
+            "permanent": true
+        },
+        {
+            "source": "/es/glosario/water-safety-plan",
+            "destination": "/es/glosario/plan-sanitario-del-agua",
+            "permanent": true
+        },
+        {
+            "source": "/fr/glossaire/water-safety-plan",
+            "destination": "/fr/glossaire/plan-de-securite-sanitaire-de-leau",
+            "permanent": true
+        },
+        {
+            "source": "/it/glossario/water-safety-plan-2",
+            "destination": "/it/glossario/water-safety-plan",
+            "permanent": true
+        },
+        {
+            "source": "/ca/glossari/water-safety-plan",
+            "destination": "/ca/glossari/pla-sanitari-de-laigua",
+            "permanent": true
+        },
+        {
             "source": "/industrias/agricultura",
             "destination": "/es/industrias/agricultura",
             "permanent": true

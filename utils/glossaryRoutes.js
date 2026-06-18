@@ -10,483 +10,664 @@ export const GLOSSARY_HUB_PATHS = {
   "ca": "/ca/glossari"
 };
 
-export const GLOSSARY_PRIORITY_IDS = [2,3,5,6,8,9,10,11,12,13,15,19,20,21,25,26,28,32,33,34,35,36,38,40,47,48,50,52,53,57,58,63,66,67,68,69,70,73,76,77,78,79,82,84,88,89,90,91,92,93,94,95,98,100,101,102,103,105,110,116,118,120,121,123,124,126,129,130];
+export const GLOSSARY_PRIORITY_IDS = [
+  "bacteriophage",
+  "biofilm",
+  "host-strain",
+  "total-coliforms",
+  "f-specific-coliphages",
+  "somatic-coliphages",
+  "fecal-contamination",
+  "intestinal-enterococci",
+  "escherichia-coli-e-coli",
+  "legionella",
+  "indicator-microorganism",
+  "pfu-plaque-forming-units",
+  "enteric-viruses",
+  "directive-eu-2020-2184",
+  "iso-10705-1",
+  "iso-10705-2",
+  "iso-19458",
+  "iso-9308",
+  "iso-iec-17025",
+  "water-safety-plan",
+  "royal-decree-3-2023",
+  "royal-decree-487-2022",
+  "regulation-eu-2020-741",
+  "plaque-assay",
+  "membrane-filtration",
+  "cell-lysis",
+  "limit-of-detection-lod",
+  "matrix",
+  "oos-out-of-specification",
+  "sampling-point",
+  "ttr-time-to-result",
+  "aqualab",
+  "aquaverify-cloud",
+  "audit-trail",
+  "digital-chain-of-custody",
+  "coa-certificate-of-analysis",
+  "eln",
+  "worksheet",
+  "lims",
+  "customer-portal",
+  "saas",
+  "tat-turnaround-time",
+  "analytical-traceability",
+  "internal-quality-control",
+  "enumera",
+  "indica",
+  "rapid-detection-kit",
+  "kits-iso-epa",
+  "lab-essentials",
+  "kit-lot",
+  "culture-medium",
+  "domestic-hot-water",
+  "raw-water",
+  "drinking-water",
+  "process-water",
+  "reclaimed-water",
+  "cip",
+  "agricultural-irrigation",
+  "deviation",
+  "validation-dossier",
+  "technical-review",
+  "sop",
+  "method-validation",
+  "method-verification",
+  "authorized-distributor",
+  "white-label",
+  "oem",
+  "haccp",
+  "iso-11731",
+  "iso-22000",
+  "iso-5667-1",
+  "royal-decree-742-2013",
+  "21-cfr-part-11",
+  "alcoa-plus",
+  "gxp",
+  "aerosolization",
+  "hydroponics",
+  "packhouse",
+  "turbidity",
+  "uv-disinfection",
+  "capa",
+  "document-control"
+];
 
 export const GLOSSARY_TERM_ROUTE_PATHS = {
-  "glossary-term-2": {
+  "glossary-term-bacteriophage": {
     "en": "/en/glossary/bacteriophage",
     "es": "/es/glosario/bacteriofago",
     "fr": "/fr/glossaire/bacteriophage",
     "it": "/it/glossario/batteriofago",
     "ca": "/ca/glossari/bacteriofag"
   },
-  "glossary-term-3": {
+  "glossary-term-biofilm": {
     "en": "/en/glossary/biofilm",
     "es": "/es/glosario/biofilm",
     "fr": "/fr/glossaire/biofilm",
     "it": "/it/glossario/biofilm",
     "ca": "/ca/glossari/biofilm"
   },
-  "glossary-term-5": {
+  "glossary-term-host-strain": {
     "en": "/en/glossary/host-strain",
     "es": "/es/glosario/cepa-huesped",
     "fr": "/fr/glossaire/souche-hote",
     "it": "/it/glossario/ceppo-ospite",
     "ca": "/ca/glossari/soca-hoste"
   },
-  "glossary-term-6": {
+  "glossary-term-total-coliforms": {
     "en": "/en/glossary/total-coliforms",
     "es": "/es/glosario/coliformes-totales",
     "fr": "/fr/glossaire/coliformes-totaux",
     "it": "/it/glossario/coliformi-totali",
     "ca": "/ca/glossari/coliformes-totals"
   },
-  "glossary-term-8": {
+  "glossary-term-f-specific-coliphages": {
     "en": "/en/glossary/f-specific-coliphages",
     "es": "/es/glosario/colifagos-f-especificos",
     "fr": "/fr/glossaire/coliphages-f-specifiques",
     "it": "/it/glossario/colifagi-f-specifici",
     "ca": "/ca/glossari/colifags-f-especifics"
   },
-  "glossary-term-9": {
+  "glossary-term-somatic-coliphages": {
     "en": "/en/glossary/somatic-coliphages",
     "es": "/es/glosario/colifagos-somaticos",
     "fr": "/fr/glossaire/coliphages-somatiques",
     "it": "/it/glossario/colifagi-somatici",
     "ca": "/ca/glossari/colifags-somatics"
   },
-  "glossary-term-10": {
+  "glossary-term-fecal-contamination": {
     "en": "/en/glossary/fecal-contamination",
     "es": "/es/glosario/contaminacion-fecal",
     "fr": "/fr/glossaire/contamination-fecale",
     "it": "/it/glossario/contaminazione-fecale",
     "ca": "/ca/glossari/contaminacio-fecal"
   },
-  "glossary-term-11": {
+  "glossary-term-intestinal-enterococci": {
     "en": "/en/glossary/intestinal-enterococci",
     "es": "/es/glosario/enterococos-intestinales",
     "fr": "/fr/glossaire/enterocoques-intestinaux",
     "it": "/it/glossario/enterococchi-intestinali",
     "ca": "/ca/glossari/enterococs-intestinals"
   },
-  "glossary-term-12": {
+  "glossary-term-escherichia-coli-e-coli": {
     "en": "/en/glossary/escherichia-coli-e-coli",
     "es": "/es/glosario/escherichia-coli-e-coli",
     "fr": "/fr/glossaire/escherichia-coli-e-coli",
     "it": "/it/glossario/escherichia-coli-e-coli",
     "ca": "/ca/glossari/escherichia-coli-e-coli"
   },
-  "glossary-term-13": {
+  "glossary-term-legionella": {
     "en": "/en/glossary/legionella",
     "es": "/es/glosario/legionella",
     "fr": "/fr/glossaire/legionella",
     "it": "/it/glossario/legionella",
     "ca": "/ca/glossari/legionella"
   },
-  "glossary-term-15": {
+  "glossary-term-indicator-microorganism": {
     "en": "/en/glossary/indicator-microorganism",
     "es": "/es/glosario/microorganismo-indicador",
     "fr": "/fr/glossaire/micro-organisme-indicateur",
     "it": "/it/glossario/microorganismo-indicatore",
     "ca": "/ca/glossari/microorganisme-indicador"
   },
-  "glossary-term-19": {
+  "glossary-term-pfu-plaque-forming-units": {
     "en": "/en/glossary/pfu-plaque-forming-units",
     "es": "/es/glosario/ufp-pfu",
     "fr": "/fr/glossaire/ufp-pfu",
     "it": "/it/glossario/ufp-pfu",
     "ca": "/ca/glossari/ufp-pfu"
   },
-  "glossary-term-20": {
+  "glossary-term-enteric-viruses": {
     "en": "/en/glossary/enteric-viruses",
     "es": "/es/glosario/virus-entericos",
     "fr": "/fr/glossaire/virus-enteriques",
     "it": "/it/glossario/virus-enterici",
     "ca": "/ca/glossari/virus-enterics"
   },
-  "glossary-term-21": {
+  "glossary-term-directive-eu-2020-2184": {
     "en": "/en/glossary/directiva-ue-2020-2184",
     "es": "/es/glosario/directiva-ue-2020-2184",
     "fr": "/fr/glossaire/directiva-ue-2020-2184",
     "it": "/it/glossario/directiva-ue-2020-2184",
     "ca": "/ca/glossari/directiva-ue-2020-2184"
   },
-  "glossary-term-25": {
+  "glossary-term-iso-10705-1": {
     "en": "/en/glossary/iso-10705-1",
     "es": "/es/glosario/iso-10705-1",
     "fr": "/fr/glossaire/iso-10705-1",
     "it": "/it/glossario/iso-10705-1",
     "ca": "/ca/glossari/iso-10705-1"
   },
-  "glossary-term-26": {
+  "glossary-term-iso-10705-2": {
     "en": "/en/glossary/iso-10705-2",
     "es": "/es/glosario/iso-10705-2",
     "fr": "/fr/glossaire/iso-10705-2",
     "it": "/it/glossario/iso-10705-2",
     "ca": "/ca/glossari/iso-10705-2"
   },
-  "glossary-term-28": {
+  "glossary-term-iso-19458": {
     "en": "/en/glossary/iso-19458",
     "es": "/es/glosario/iso-19458",
     "fr": "/fr/glossaire/iso-19458",
     "it": "/it/glossario/iso-19458",
     "ca": "/ca/glossari/iso-19458"
   },
-  "glossary-term-32": {
+  "glossary-term-iso-9308": {
     "en": "/en/glossary/iso-9308",
     "es": "/es/glosario/iso-9308",
     "fr": "/fr/glossaire/iso-9308",
     "it": "/it/glossario/iso-9308",
     "ca": "/ca/glossari/iso-9308"
   },
-  "glossary-term-33": {
+  "glossary-term-iso-iec-17025": {
     "en": "/en/glossary/iso-iec-17025",
     "es": "/es/glosario/iso-iec-17025",
     "fr": "/fr/glossaire/iso-iec-17025",
     "it": "/it/glossario/iso-iec-17025",
     "ca": "/ca/glossari/iso-iec-17025"
   },
-  "glossary-term-34": {
+  "glossary-term-water-safety-plan": {
     "en": "/en/glossary/water-safety-plan",
     "es": "/es/glosario/plan-sanitario-del-agua",
     "fr": "/fr/glossaire/plan-de-securite-sanitaire-de-leau",
     "it": "/it/glossario/water-safety-plan",
     "ca": "/ca/glossari/pla-sanitari-de-laigua"
   },
-  "glossary-term-35": {
+  "glossary-term-royal-decree-3-2023": {
     "en": "/en/glossary/royal-decree-3-2023",
     "es": "/es/glosario/real-decreto-3-2023",
     "fr": "/fr/glossaire/decret-royal-3-2023",
     "it": "/it/glossario/regio-decreto-3-2023",
     "ca": "/ca/glossari/reial-decret-3-2023"
   },
-  "glossary-term-36": {
+  "glossary-term-royal-decree-487-2022": {
     "en": "/en/glossary/royal-decree-487-2022",
     "es": "/es/glosario/real-decreto-487-2022",
     "fr": "/fr/glossaire/decret-royal-487-2022",
     "it": "/it/glossario/regio-decreto-487-2022",
     "ca": "/ca/glossari/reial-decret-487-2022"
   },
-  "glossary-term-38": {
+  "glossary-term-regulation-eu-2020-741": {
     "en": "/en/glossary/regulation-eu-2020-741",
     "es": "/es/glosario/reglamento-ue-2020-741",
     "fr": "/fr/glossaire/reglement-ue-2020-741",
     "it": "/it/glossario/regolamento-ue-2020-741",
     "ca": "/ca/glossari/reglament-ue-2020-741"
   },
-  "glossary-term-40": {
-    "en": "/en/glossary/water-safety-plan-2",
-    "es": "/es/glosario/water-safety-plan",
-    "fr": "/fr/glossaire/water-safety-plan",
-    "it": "/it/glossario/water-safety-plan-2",
-    "ca": "/ca/glossari/water-safety-plan"
-  },
-  "glossary-term-47": {
+  "glossary-term-plaque-assay": {
     "en": "/en/glossary/plaque-assay",
     "es": "/es/glosario/ensayo-en-placa",
     "fr": "/fr/glossaire/essai-en-plaque",
     "it": "/it/glossario/saggio-in-placca",
     "ca": "/ca/glossari/assaig-en-placa"
   },
-  "glossary-term-48": {
+  "glossary-term-membrane-filtration": {
     "en": "/en/glossary/membrane-filtration",
     "es": "/es/glosario/filtracion-por-membrana",
     "fr": "/fr/glossaire/filtration-sur-membrane",
     "it": "/it/glossario/filtrazione-su-membrana",
     "ca": "/ca/glossari/filtracio-per-membrana"
   },
-  "glossary-term-50": {
+  "glossary-term-cell-lysis": {
     "en": "/en/glossary/cell-lysis",
     "es": "/es/glosario/lisis-celular",
     "fr": "/fr/glossaire/lyse-cellulaire",
     "it": "/it/glossario/lisi-cellulare",
     "ca": "/ca/glossari/lisi-cellular"
   },
-  "glossary-term-52": {
+  "glossary-term-limit-of-detection-lod": {
     "en": "/en/glossary/limit-of-detection-lod",
     "es": "/es/glosario/limite-de-deteccion-lod",
     "fr": "/fr/glossaire/limite-de-detection-lod",
     "it": "/it/glossario/limite-di-rilevazione-lod",
     "ca": "/ca/glossari/limit-de-deteccio-lod"
   },
-  "glossary-term-53": {
+  "glossary-term-matrix": {
     "en": "/en/glossary/matrix",
     "es": "/es/glosario/matriz",
     "fr": "/fr/glossaire/matrice",
     "it": "/it/glossario/matrice",
     "ca": "/ca/glossari/matriu"
   },
-  "glossary-term-57": {
+  "glossary-term-oos-out-of-specification": {
     "en": "/en/glossary/oos-out-of-specification",
     "es": "/es/glosario/oos-fuera-de-especificacion",
     "fr": "/fr/glossaire/oos-hors-specification",
     "it": "/it/glossario/oos-fuori-specifica",
     "ca": "/ca/glossari/oos-fora-despecificacio"
   },
-  "glossary-term-58": {
+  "glossary-term-sampling-point": {
     "en": "/en/glossary/sampling-point",
     "es": "/es/glosario/punto-de-muestreo",
     "fr": "/fr/glossaire/point-de-prelevement",
     "it": "/it/glossario/punto-di-campionamento",
     "ca": "/ca/glossari/punt-de-mostreig"
   },
-  "glossary-term-63": {
+  "glossary-term-ttr-time-to-result": {
     "en": "/en/glossary/ttr-time-to-result",
     "es": "/es/glosario/ttr-tiempo-de-respuesta",
     "fr": "/fr/glossaire/ttr-temps-de-reponse",
     "it": "/it/glossario/ttr-tempo-di-risposta",
     "ca": "/ca/glossari/ttr-temps-de-resposta"
   },
-  "glossary-term-66": {
+  "glossary-term-aqualab": {
     "en": "/en/glossary/aqualab",
     "es": "/es/glosario/aqualab",
     "fr": "/fr/glossaire/aqualab",
     "it": "/it/glossario/aqualab",
     "ca": "/ca/glossari/aqualab"
   },
-  "glossary-term-67": {
+  "glossary-term-aquaverify-cloud": {
     "en": "/en/glossary/aquaverify-cloud",
     "es": "/es/glosario/aquaverify-cloud",
     "fr": "/fr/glossaire/aquaverify-cloud",
     "it": "/it/glossario/aquaverify-cloud",
     "ca": "/ca/glossari/aquaverify-cloud"
   },
-  "glossary-term-68": {
+  "glossary-term-audit-trail": {
     "en": "/en/glossary/audit-trail",
     "es": "/es/glosario/audit-trail",
     "fr": "/fr/glossaire/audit-trail",
     "it": "/it/glossario/audit-trail",
     "ca": "/ca/glossari/audit-trail"
   },
-  "glossary-term-69": {
+  "glossary-term-digital-chain-of-custody": {
     "en": "/en/glossary/digital-chain-of-custody",
     "es": "/es/glosario/cadena-de-custodia-digital",
     "fr": "/fr/glossaire/chaine-de-custodie-digitale",
     "it": "/it/glossario/catena-di-custodia-digitale",
     "ca": "/ca/glossari/cadena-de-custodia-digital"
   },
-  "glossary-term-70": {
+  "glossary-term-coa-certificate-of-analysis": {
     "en": "/en/glossary/coa-certificate-of-analysis",
     "es": "/es/glosario/coa-certificado-de-analisis",
     "fr": "/fr/glossaire/coa-certificat-danalyse",
     "it": "/it/glossario/coa-certificato-di-analisi",
     "ca": "/ca/glossari/coa-certificat-danalisi"
   },
-  "glossary-term-73": {
+  "glossary-term-eln": {
     "en": "/en/glossary/eln",
     "es": "/es/glosario/eln",
     "fr": "/fr/glossaire/eln",
     "it": "/it/glossario/eln",
     "ca": "/ca/glossari/eln"
   },
-  "glossary-term-76": {
+  "glossary-term-worksheet": {
     "en": "/en/glossary/worksheet",
     "es": "/es/glosario/hoja-de-trabajo",
     "fr": "/fr/glossaire/feuille-de-travail",
     "it": "/it/glossario/foglio-di-lavoro",
     "ca": "/ca/glossari/full-de-treball"
   },
-  "glossary-term-77": {
+  "glossary-term-lims": {
     "en": "/en/glossary/lims",
     "es": "/es/glosario/lims",
     "fr": "/fr/glossaire/lims",
     "it": "/it/glossario/lims",
     "ca": "/ca/glossari/lims"
   },
-  "glossary-term-78": {
+  "glossary-term-customer-portal": {
     "en": "/en/glossary/customer-portal",
     "es": "/es/glosario/portal-cliente",
     "fr": "/fr/glossaire/portail-client",
     "it": "/it/glossario/portale-cliente",
     "ca": "/ca/glossari/portal-client"
   },
-  "glossary-term-79": {
+  "glossary-term-saas": {
     "en": "/en/glossary/saas",
     "es": "/es/glosario/saas",
     "fr": "/fr/glossaire/saas",
     "it": "/it/glossario/saas",
     "ca": "/ca/glossari/saas"
   },
-  "glossary-term-82": {
+  "glossary-term-tat-turnaround-time": {
     "en": "/en/glossary/tat-turnaround-time",
     "es": "/es/glosario/tat-turnaround-time",
     "fr": "/fr/glossaire/tat-turnaround-time",
     "it": "/it/glossario/tat-turnaround-time",
     "ca": "/ca/glossari/tat-turnaround-time"
   },
-  "glossary-term-84": {
+  "glossary-term-analytical-traceability": {
     "en": "/en/glossary/analytical-traceability",
     "es": "/es/glosario/trazabilidad-analitica",
     "fr": "/fr/glossaire/tracabilite-analytique",
     "it": "/it/glossario/tracciabilita-analitica",
     "ca": "/ca/glossari/tracabilitat-analitica"
   },
-  "glossary-term-88": {
+  "glossary-term-internal-quality-control": {
     "en": "/en/glossary/internal-quality-control",
     "es": "/es/glosario/control-de-calidad-interno",
     "fr": "/fr/glossaire/controle-qualite-interne",
     "it": "/it/glossario/controllo-qualita-interno",
     "ca": "/ca/glossari/control-de-qualitat-intern"
   },
-  "glossary-term-89": {
+  "glossary-term-enumera": {
     "en": "/en/glossary/enumera",
     "es": "/es/glosario/enumera",
     "fr": "/fr/glossaire/enumera",
     "it": "/it/glossario/enumera",
     "ca": "/ca/glossari/enumera"
   },
-  "glossary-term-90": {
+  "glossary-term-indica": {
     "en": "/en/glossary/indica",
     "es": "/es/glosario/indica",
     "fr": "/fr/glossaire/indica",
     "it": "/it/glossario/indica",
     "ca": "/ca/glossari/indica"
   },
-  "glossary-term-91": {
+  "glossary-term-rapid-detection-kit": {
     "en": "/en/glossary/rapid-detection-kit",
     "es": "/es/glosario/kit-de-deteccion-rapida",
     "fr": "/fr/glossaire/kit-de-detection-rapide",
     "it": "/it/glossario/kit-di-rilevazione-rapida",
     "ca": "/ca/glossari/kit-de-deteccio-rapida"
   },
-  "glossary-term-92": {
+  "glossary-term-kits-iso-epa": {
     "en": "/en/glossary/kits-iso-epa",
     "es": "/es/glosario/kits-iso-epa",
     "fr": "/fr/glossaire/kits-iso-epa",
     "it": "/it/glossario/kits-iso-epa",
     "ca": "/ca/glossari/kits-iso-epa"
   },
-  "glossary-term-93": {
+  "glossary-term-lab-essentials": {
     "en": "/en/glossary/lab-essentials",
     "es": "/es/glosario/lab-essentials",
     "fr": "/fr/glossaire/lab-essentials",
     "it": "/it/glossario/lab-essentials",
     "ca": "/ca/glossari/lab-essentials"
   },
-  "glossary-term-94": {
+  "glossary-term-kit-lot": {
     "en": "/en/glossary/kit-lot",
     "es": "/es/glosario/lote-de-kit",
     "fr": "/fr/glossaire/lot-de-kit",
     "it": "/it/glossario/lotto-kit",
     "ca": "/ca/glossari/lot-de-kit"
   },
-  "glossary-term-95": {
+  "glossary-term-culture-medium": {
     "en": "/en/glossary/culture-medium",
     "es": "/es/glosario/medio-de-cultivo",
     "fr": "/fr/glossaire/milieu-de-culture",
     "it": "/it/glossario/terreno-di-coltura",
     "ca": "/ca/glossari/medi-de-cultiu"
   },
-  "glossary-term-98": {
+  "glossary-term-domestic-hot-water": {
     "en": "/en/glossary/dhw-domestic-hot-water",
     "es": "/es/glosario/acs-agua-caliente-sanitaria",
     "fr": "/fr/glossaire/ecs-eau-chaude-sanitaire",
     "it": "/it/glossario/acs-acqua-calda-sanitaria",
     "ca": "/ca/glossari/acs-aigua-calenta-sanitaria"
   },
-  "glossary-term-100": {
+  "glossary-term-raw-water": {
     "en": "/en/glossary/raw-water",
     "es": "/es/glosario/agua-bruta",
     "fr": "/fr/glossaire/eau-brute",
     "it": "/it/glossario/acqua-grezza",
     "ca": "/ca/glossari/aigua-bruta"
   },
-  "glossary-term-101": {
+  "glossary-term-drinking-water": {
     "en": "/en/glossary/drinking-water",
     "es": "/es/glosario/agua-de-consumo",
     "fr": "/fr/glossaire/eau-potable",
     "it": "/it/glossario/acqua-potabile",
     "ca": "/ca/glossari/aigua-de-consum"
   },
-  "glossary-term-102": {
+  "glossary-term-process-water": {
     "en": "/en/glossary/process-water",
     "es": "/es/glosario/agua-de-proceso",
     "fr": "/fr/glossaire/eau-de-process",
     "it": "/it/glossario/acqua-di-processo",
     "ca": "/ca/glossari/aigua-de-proces"
   },
-  "glossary-term-103": {
+  "glossary-term-reclaimed-water": {
     "en": "/en/glossary/reclaimed-water",
     "es": "/es/glosario/agua-regenerada",
     "fr": "/fr/glossaire/eau-regeneree",
     "it": "/it/glossario/acqua-rigenerata",
     "ca": "/ca/glossari/aigua-regenerada"
   },
-  "glossary-term-105": {
+  "glossary-term-cip": {
     "en": "/en/glossary/cip",
     "es": "/es/glosario/cip",
     "fr": "/fr/glossaire/cip",
     "it": "/it/glossario/cip",
     "ca": "/ca/glossari/cip"
   },
-  "glossary-term-110": {
+  "glossary-term-agricultural-irrigation": {
     "en": "/en/glossary/agricultural-irrigation",
     "es": "/es/glosario/riego-agricola",
     "fr": "/fr/glossaire/irrigation-agricole",
     "it": "/it/glossario/irrigazione-agricola",
     "ca": "/ca/glossari/reg-agricola"
   },
-  "glossary-term-116": {
+  "glossary-term-deviation": {
     "en": "/en/glossary/deviation",
     "es": "/es/glosario/desviacion",
     "fr": "/fr/glossaire/deviation",
     "it": "/it/glossario/deviazione",
     "ca": "/ca/glossari/desviacio"
   },
-  "glossary-term-118": {
+  "glossary-term-validation-dossier": {
     "en": "/en/glossary/validation-dossier",
     "es": "/es/glosario/dossier-de-validacion",
     "fr": "/fr/glossaire/dossier-de-validation",
     "it": "/it/glossario/dossier-di-validazione",
     "ca": "/ca/glossari/dossier-de-validacio"
   },
-  "glossary-term-120": {
+  "glossary-term-technical-review": {
     "en": "/en/glossary/technical-review",
     "es": "/es/glosario/revision-tecnica",
     "fr": "/fr/glossaire/revue-technique",
     "it": "/it/glossario/revisione-tecnica",
     "ca": "/ca/glossari/revisio-tecnica"
   },
-  "glossary-term-121": {
+  "glossary-term-sop": {
     "en": "/en/glossary/sop",
     "es": "/es/glosario/sop",
     "fr": "/fr/glossaire/sop",
     "it": "/it/glossario/sop",
     "ca": "/ca/glossari/sop"
   },
-  "glossary-term-123": {
+  "glossary-term-method-validation": {
     "en": "/en/glossary/method-validation",
     "es": "/es/glosario/validacion-de-metodo",
     "fr": "/fr/glossaire/validation-de-methode",
     "it": "/it/glossario/validazione-del-metodo",
     "ca": "/ca/glossari/validacio-de-metode"
   },
-  "glossary-term-124": {
+  "glossary-term-method-verification": {
     "en": "/en/glossary/method-verification",
     "es": "/es/glosario/verificacion-de-metodo",
     "fr": "/fr/glossaire/verification-de-methode",
     "it": "/it/glossario/verifica-del-metodo",
     "ca": "/ca/glossari/verificacio-de-metode"
   },
-  "glossary-term-126": {
+  "glossary-term-authorized-distributor": {
     "en": "/en/glossary/authorized-distributor",
     "es": "/es/glosario/distribuidor-autorizado",
     "fr": "/fr/glossaire/distributeur-autorise",
     "it": "/it/glossario/distributore-autorizzato",
     "ca": "/ca/glossari/distribuidor-autoritzat"
   },
-  "glossary-term-129": {
+  "glossary-term-white-label": {
     "en": "/en/glossary/white-label",
     "es": "/es/glosario/marca-blanca",
     "fr": "/fr/glossaire/marque-blanche",
     "it": "/it/glossario/white-label",
     "ca": "/ca/glossari/marca-blanca"
   },
-  "glossary-term-130": {
+  "glossary-term-oem": {
     "en": "/en/glossary/oem",
     "es": "/es/glosario/oem",
     "fr": "/fr/glossaire/oem",
     "it": "/it/glossario/oem",
     "ca": "/ca/glossari/oem"
+  },
+  "glossary-term-haccp": {
+    "en": "/en/glossary/haccp",
+    "es": "/es/glosario/haccp",
+    "fr": "/fr/glossaire/haccp",
+    "it": "/it/glossario/haccp",
+    "ca": "/ca/glossari/haccp"
+  },
+  "glossary-term-iso-11731": {
+    "en": "/en/glossary/iso-11731",
+    "es": "/es/glosario/iso-11731",
+    "fr": "/fr/glossaire/iso-11731",
+    "it": "/it/glossario/iso-11731",
+    "ca": "/ca/glossari/iso-11731"
+  },
+  "glossary-term-iso-22000": {
+    "en": "/en/glossary/iso-22000",
+    "es": "/es/glosario/iso-22000",
+    "fr": "/fr/glossaire/iso-22000",
+    "it": "/it/glossario/iso-22000",
+    "ca": "/ca/glossari/iso-22000"
+  },
+  "glossary-term-iso-5667-1": {
+    "en": "/en/glossary/iso-5667-1",
+    "es": "/es/glosario/iso-5667-1",
+    "fr": "/fr/glossaire/iso-5667-1",
+    "it": "/it/glossario/iso-5667-1",
+    "ca": "/ca/glossari/iso-5667-1"
+  },
+  "glossary-term-royal-decree-742-2013": {
+    "en": "/en/glossary/royal-decree-742-2013",
+    "es": "/es/glosario/real-decreto-742-2013",
+    "fr": "/fr/glossaire/decret-royal-742-2013",
+    "it": "/it/glossario/regio-decreto-742-2013",
+    "ca": "/ca/glossari/reial-decret-742-2013"
+  },
+  "glossary-term-21-cfr-part-11": {
+    "en": "/en/glossary/21-cfr-part-11",
+    "es": "/es/glosario/21-cfr-part-11",
+    "fr": "/fr/glossaire/21-cfr-part-11",
+    "it": "/it/glossario/21-cfr-part-11",
+    "ca": "/ca/glossari/21-cfr-part-11"
+  },
+  "glossary-term-alcoa-plus": {
+    "en": "/en/glossary/alcoa",
+    "es": "/es/glosario/alcoa",
+    "fr": "/fr/glossaire/alcoa",
+    "it": "/it/glossario/alcoa",
+    "ca": "/ca/glossari/alcoa"
+  },
+  "glossary-term-gxp": {
+    "en": "/en/glossary/gxp",
+    "es": "/es/glosario/gxp",
+    "fr": "/fr/glossaire/gxp",
+    "it": "/it/glossario/gxp",
+    "ca": "/ca/glossari/gxp"
+  },
+  "glossary-term-aerosolization": {
+    "en": "/en/glossary/aerosolization",
+    "es": "/es/glosario/aerosolizacion",
+    "fr": "/fr/glossaire/aerosolisation",
+    "it": "/it/glossario/aerosolizzazione",
+    "ca": "/ca/glossari/aerosolitzacio"
+  },
+  "glossary-term-hydroponics": {
+    "en": "/en/glossary/hydroponics",
+    "es": "/es/glosario/hidroponia",
+    "fr": "/fr/glossaire/hydroponie",
+    "it": "/it/glossario/idroponica",
+    "ca": "/ca/glossari/hidroponia"
+  },
+  "glossary-term-packhouse": {
+    "en": "/en/glossary/packhouse",
+    "es": "/es/glosario/packhouse",
+    "fr": "/fr/glossaire/packhouse",
+    "it": "/it/glossario/packhouse",
+    "ca": "/ca/glossari/packhouse"
+  },
+  "glossary-term-turbidity": {
+    "en": "/en/glossary/turbidity",
+    "es": "/es/glosario/turbidez",
+    "fr": "/fr/glossaire/turbidite",
+    "it": "/it/glossario/torbidita",
+    "ca": "/ca/glossari/terbolesa"
+  },
+  "glossary-term-uv-disinfection": {
+    "en": "/en/glossary/uv-ultraviolet-disinfection",
+    "es": "/es/glosario/uv-desinfeccion-ultravioleta",
+    "fr": "/fr/glossaire/uv-desinfection-ultraviolette",
+    "it": "/it/glossario/uv-disinfezione-ultravioletta",
+    "ca": "/ca/glossari/uv-desinfeccio-ultraviolada"
+  },
+  "glossary-term-capa": {
+    "en": "/en/glossary/capa",
+    "es": "/es/glosario/capa",
+    "fr": "/fr/glossaire/capa",
+    "it": "/it/glossario/capa",
+    "ca": "/ca/glossari/capa"
+  },
+  "glossary-term-document-control": {
+    "en": "/en/glossary/document-control",
+    "es": "/es/glosario/control-documental",
+    "fr": "/fr/glossaire/controle-documentaire",
+    "it": "/it/glossario/controllo-documentale",
+    "ca": "/ca/glossari/control-documental"
   }
 };

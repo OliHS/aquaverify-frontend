@@ -3,7 +3,8 @@
 export const GLOSSARY_TERMS = {
   "en": [
     {
-      "id": 0,
+      "id": "adenovirus",
+      "legacyId": 0,
       "term": "Adenovirus",
       "slug": "adenovirus",
       "category": "microbiologia",
@@ -17,7 +18,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/adenovirus"
     },
     {
-      "id": 1,
+      "id": "viable-bacteria",
+      "legacyId": 1,
       "term": "Viable bacteria",
       "slug": "viable-bacteria",
       "category": "microbiologia",
@@ -31,7 +33,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/viable-bacteria"
     },
     {
-      "id": 2,
+      "id": "bacteriophage",
+      "legacyId": 2,
       "term": "Bacteriophage",
       "slug": "bacteriophage",
       "category": "microbiologia",
@@ -48,7 +51,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/bacteriophage"
     },
     {
-      "id": 3,
+      "id": "biofilm",
+      "legacyId": 3,
       "term": "Biofilm",
       "slug": "biofilm",
       "category": "microbiologia",
@@ -62,7 +66,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/biofilm"
     },
     {
-      "id": 4,
+      "id": "microbial-load",
+      "legacyId": 4,
       "term": "Microbial load",
       "slug": "microbial-load",
       "category": "microbiologia",
@@ -76,7 +81,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/microbial-load"
     },
     {
-      "id": 5,
+      "id": "host-strain",
+      "legacyId": 5,
       "term": "Host strain",
       "slug": "host-strain",
       "category": "microbiologia",
@@ -90,7 +96,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/host-strain"
     },
     {
-      "id": 6,
+      "id": "total-coliforms",
+      "legacyId": 6,
       "term": "Total coliforms",
       "slug": "total-coliforms",
       "category": "microbiologia",
@@ -104,7 +111,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/total-coliforms"
     },
     {
-      "id": 7,
+      "id": "f-rna-coliphages",
+      "legacyId": 7,
       "term": "F-RNA coliphages",
       "slug": "f-rna-coliphages",
       "category": "microbiologia",
@@ -120,7 +128,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/f-rna-coliphages"
     },
     {
-      "id": 8,
+      "id": "f-specific-coliphages",
+      "legacyId": 8,
       "term": "F-specific coliphages",
       "slug": "f-specific-coliphages",
       "category": "microbiologia",
@@ -137,7 +146,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/f-specific-coliphages"
     },
     {
-      "id": 9,
+      "id": "somatic-coliphages",
+      "legacyId": 9,
       "term": "Somatic coliphages",
       "slug": "somatic-coliphages",
       "category": "microbiologia",
@@ -154,7 +164,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/somatic-coliphages"
     },
     {
-      "id": 10,
+      "id": "fecal-contamination",
+      "legacyId": 10,
       "term": "Fecal contamination",
       "slug": "fecal-contamination",
       "category": "microbiologia",
@@ -168,7 +179,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/fecal-contamination"
     },
     {
-      "id": 11,
+      "id": "intestinal-enterococci",
+      "legacyId": 11,
       "term": "Intestinal enterococci",
       "slug": "intestinal-enterococci",
       "category": "microbiologia",
@@ -182,7 +194,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/intestinal-enterococci"
     },
     {
-      "id": 12,
+      "id": "escherichia-coli-e-coli",
+      "legacyId": 12,
       "term": "Escherichia coli (E. coli)",
       "slug": "escherichia-coli-e-coli",
       "category": "microbiologia",
@@ -198,7 +211,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/escherichia-coli-e-coli"
     },
     {
-      "id": 13,
+      "id": "legionella",
+      "legacyId": 13,
       "term": "Legionella",
       "slug": "legionella",
       "category": "microbiologia",
@@ -212,7 +226,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/legionella"
     },
     {
-      "id": 14,
+      "id": "microbial-source-tracking-mst",
+      "legacyId": 14,
       "term": "Microbial Source Tracking (MST)",
       "slug": "microbial-source-tracking-mst",
       "category": "microbiologia",
@@ -228,7 +243,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/microbial-source-tracking-mst"
     },
     {
-      "id": 15,
+      "id": "indicator-microorganism",
+      "legacyId": 15,
       "term": "Indicator microorganism",
       "slug": "indicator-microorganism",
       "category": "microbiologia",
@@ -242,7 +258,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/indicator-microorganism"
     },
     {
-      "id": 16,
+      "id": "norovirus",
+      "legacyId": 16,
       "term": "Norovirus",
       "slug": "norovirus",
       "category": "microbiologia",
@@ -256,7 +273,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/norovirus"
     },
     {
-      "id": 17,
+      "id": "pathogen",
+      "legacyId": 17,
       "term": "Pathogen",
       "slug": "pathogen",
       "category": "microbiologia",
@@ -270,7 +288,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/pathogen"
     },
     {
-      "id": 18,
+      "id": "pseudomonas-aeruginosa",
+      "legacyId": 18,
       "term": "Pseudomonas aeruginosa",
       "slug": "pseudomonas-aeruginosa",
       "category": "microbiologia",
@@ -284,7 +303,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/pseudomonas-aeruginosa"
     },
     {
-      "id": 19,
+      "id": "pfu-plaque-forming-units",
+      "legacyId": 19,
       "term": "PFU / Plaque-forming units",
       "slug": "pfu-plaque-forming-units",
       "category": "microbiologia",
@@ -300,7 +320,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/pfu-plaque-forming-units"
     },
     {
-      "id": 20,
+      "id": "enteric-viruses",
+      "legacyId": 20,
       "term": "Enteric viruses",
       "slug": "enteric-viruses",
       "category": "microbiologia",
@@ -314,7 +335,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/enteric-viruses"
     },
     {
-      "id": 21,
+      "id": "directive-eu-2020-2184",
+      "legacyId": 21,
       "term": "Directiva (UE) 2020/2184",
       "slug": "directiva-ue-2020-2184",
       "category": "normativa",
@@ -330,7 +352,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/directiva-ue-2020-2184"
     },
     {
-      "id": 22,
+      "id": "epa-method-1601",
+      "legacyId": 22,
       "term": "EPA Method 1601",
       "slug": "epa-method-1601",
       "category": "normativa",
@@ -344,7 +367,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/epa-method-1601"
     },
     {
-      "id": 23,
+      "id": "epa-method-1602",
+      "legacyId": 23,
       "term": "EPA Method 1602",
       "slug": "epa-method-1602",
       "category": "normativa",
@@ -358,7 +382,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/epa-method-1602"
     },
     {
-      "id": 24,
+      "id": "haccp",
+      "legacyId": 24,
       "term": "HACCP",
       "slug": "haccp",
       "category": "normativa",
@@ -372,7 +397,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/haccp"
     },
     {
-      "id": 25,
+      "id": "iso-10705-1",
+      "legacyId": 25,
       "term": "ISO 10705-1",
       "slug": "iso-10705-1",
       "category": "normativa",
@@ -386,7 +412,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-10705-1"
     },
     {
-      "id": 26,
+      "id": "iso-10705-2",
+      "legacyId": 26,
       "term": "ISO 10705-2",
       "slug": "iso-10705-2",
       "category": "normativa",
@@ -400,7 +427,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-10705-2"
     },
     {
-      "id": 27,
+      "id": "iso-11731",
+      "legacyId": 27,
       "term": "ISO 11731",
       "slug": "iso-11731",
       "category": "normativa",
@@ -414,7 +442,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-11731"
     },
     {
-      "id": 28,
+      "id": "iso-19458",
+      "legacyId": 28,
       "term": "ISO 19458",
       "slug": "iso-19458",
       "category": "normativa",
@@ -428,7 +457,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-19458"
     },
     {
-      "id": 29,
+      "id": "iso-22000",
+      "legacyId": 29,
       "term": "ISO 22000",
       "slug": "iso-22000",
       "category": "normativa",
@@ -442,7 +472,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-22000"
     },
     {
-      "id": 30,
+      "id": "iso-5667-1",
+      "legacyId": 30,
       "term": "ISO 5667-1",
       "slug": "iso-5667-1",
       "category": "normativa",
@@ -456,7 +487,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-5667-1"
     },
     {
-      "id": 31,
+      "id": "iso-7899-2",
+      "legacyId": 31,
       "term": "ISO 7899-2",
       "slug": "iso-7899-2",
       "category": "normativa",
@@ -470,7 +502,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-7899-2"
     },
     {
-      "id": 32,
+      "id": "iso-9308",
+      "legacyId": 32,
       "term": "ISO 9308",
       "slug": "iso-9308",
       "category": "normativa",
@@ -484,7 +517,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-9308"
     },
     {
-      "id": 33,
+      "id": "iso-iec-17025",
+      "legacyId": 33,
       "term": "ISO/IEC 17025",
       "slug": "iso-iec-17025",
       "category": "normativa",
@@ -498,7 +532,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/iso-iec-17025"
     },
     {
-      "id": 34,
+      "id": "water-safety-plan",
+      "legacyId": 34,
       "term": "Water safety plan",
       "slug": "water-safety-plan",
       "category": "normativa",
@@ -512,7 +547,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/water-safety-plan"
     },
     {
-      "id": 35,
+      "id": "royal-decree-3-2023",
+      "legacyId": 35,
       "term": "Royal Decree 3/2023",
       "slug": "royal-decree-3-2023",
       "category": "normativa",
@@ -528,7 +564,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/royal-decree-3-2023"
     },
     {
-      "id": 36,
+      "id": "royal-decree-487-2022",
+      "legacyId": 36,
       "term": "Royal Decree 487/2022",
       "slug": "royal-decree-487-2022",
       "category": "normativa",
@@ -544,7 +581,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/royal-decree-487-2022"
     },
     {
-      "id": 37,
+      "id": "royal-decree-742-2013",
+      "legacyId": 37,
       "term": "Royal Decree 742/2013",
       "slug": "royal-decree-742-2013",
       "category": "normativa",
@@ -560,7 +598,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/royal-decree-742-2013"
     },
     {
-      "id": 38,
+      "id": "regulation-eu-2020-741",
+      "legacyId": 38,
       "term": "Regulation (EU) 2020/741",
       "slug": "regulation-eu-2020-741",
       "category": "normativa",
@@ -576,7 +615,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/regulation-eu-2020-741"
     },
     {
-      "id": 39,
+      "id": "revised-total-coliform-rule-rtcr",
+      "legacyId": 39,
       "term": "Revised Total Coliform Rule (RTCR)",
       "slug": "revised-total-coliform-rule-rtcr",
       "category": "normativa",
@@ -592,7 +632,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/revised-total-coliform-rule-rtcr"
     },
     {
-      "id": 40,
+      "id": "water-safety-plan",
+      "legacyId": 40,
       "term": "Water Safety Plan",
       "slug": "water-safety-plan-2",
       "category": "normativa",
@@ -608,7 +649,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/water-safety-plan-2"
     },
     {
-      "id": 41,
+      "id": "method-blank",
+      "legacyId": 41,
       "term": "Method blank",
       "slug": "method-blank",
       "category": "metodologia",
@@ -622,7 +664,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/method-blank"
     },
     {
-      "id": 42,
+      "id": "cold-chain",
+      "legacyId": 42,
       "term": "Cold chain",
       "slug": "cold-chain",
       "category": "metodologia",
@@ -636,7 +679,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/cold-chain"
     },
     {
-      "id": 43,
+      "id": "negative-control",
+      "legacyId": 43,
       "term": "Negative control",
       "slug": "negative-control",
       "category": "metodologia",
@@ -650,7 +694,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/negative-control"
     },
     {
-      "id": 44,
+      "id": "positive-control",
+      "legacyId": 44,
       "term": "Positive control",
       "slug": "positive-control",
       "category": "metodologia",
@@ -664,7 +709,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/positive-control"
     },
     {
-      "id": 45,
+      "id": "double-agar-layer",
+      "legacyId": 45,
       "term": "Double Agar Layer",
       "slug": "double-agar-layer",
       "category": "metodologia",
@@ -680,7 +726,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/double-agar-layer"
     },
     {
-      "id": 46,
+      "id": "enrichment",
+      "legacyId": 46,
       "term": "Enrichment",
       "slug": "enrichment",
       "category": "metodologia",
@@ -694,7 +741,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/enrichment"
     },
     {
-      "id": 47,
+      "id": "plaque-assay",
+      "legacyId": 47,
       "term": "Plaque assay",
       "slug": "plaque-assay",
       "category": "metodologia",
@@ -710,7 +758,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/plaque-assay"
     },
     {
-      "id": 48,
+      "id": "membrane-filtration",
+      "legacyId": 48,
       "term": "Membrane filtration",
       "slug": "membrane-filtration",
       "category": "metodologia",
@@ -724,7 +773,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/membrane-filtration"
     },
     {
-      "id": 49,
+      "id": "incubation",
+      "legacyId": 49,
       "term": "Incubation",
       "slug": "incubation",
       "category": "metodologia",
@@ -738,7 +788,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/incubation"
     },
     {
-      "id": 50,
+      "id": "cell-lysis",
+      "legacyId": 50,
       "term": "Cell lysis",
       "slug": "cell-lysis",
       "category": "metodologia",
@@ -752,7 +803,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/cell-lysis"
     },
     {
-      "id": 51,
+      "id": "limit-of-quantification-loq",
+      "legacyId": 51,
       "term": "Limit of quantification (LOQ)",
       "slug": "limit-of-quantification-loq",
       "category": "metodologia",
@@ -766,7 +818,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/limit-of-quantification-loq"
     },
     {
-      "id": 52,
+      "id": "limit-of-detection-lod",
+      "legacyId": 52,
       "term": "Limit of detection (LOD)",
       "slug": "limit-of-detection-lod",
       "category": "metodologia",
@@ -780,7 +833,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/limit-of-detection-lod"
     },
     {
-      "id": 53,
+      "id": "matrix",
+      "legacyId": 53,
       "term": "Matrix",
       "slug": "matrix",
       "category": "metodologia",
@@ -794,7 +848,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/matrix"
     },
     {
-      "id": 54,
+      "id": "composite-sample",
+      "legacyId": 54,
       "term": "Composite sample",
       "slug": "composite-sample",
       "category": "metodologia",
@@ -808,7 +863,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/composite-sample"
     },
     {
-      "id": 55,
+      "id": "grab-sample",
+      "legacyId": 55,
       "term": "Grab sample",
       "slug": "grab-sample",
       "category": "metodologia",
@@ -822,7 +878,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/grab-sample"
     },
     {
-      "id": 56,
+      "id": "most-probable-number-mpn",
+      "legacyId": 56,
       "term": "Most Probable Number (MPN)",
       "slug": "most-probable-number-mpn",
       "category": "metodologia",
@@ -838,7 +895,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/most-probable-number-mpn"
     },
     {
-      "id": 57,
+      "id": "oos-out-of-specification",
+      "legacyId": 57,
       "term": "OOS / Out of specification",
       "slug": "oos-out-of-specification",
       "category": "metodologia",
@@ -854,7 +912,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/oos-out-of-specification"
     },
     {
-      "id": 58,
+      "id": "sampling-point",
+      "legacyId": 58,
       "term": "Sampling point",
       "slug": "sampling-point",
       "category": "metodologia",
@@ -868,7 +927,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/sampling-point"
     },
     {
-      "id": 59,
+      "id": "recovery",
+      "legacyId": 59,
       "term": "Recovery",
       "slug": "recovery",
       "category": "metodologia",
@@ -882,7 +942,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/recovery"
     },
     {
-      "id": 60,
+      "id": "repeatability",
+      "legacyId": 60,
       "term": "Repeatability",
       "slug": "repeatability",
       "category": "metodologia",
@@ -896,7 +957,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/repeatability"
     },
     {
-      "id": 61,
+      "id": "reproducibility",
+      "legacyId": 61,
       "term": "Reproducibility",
       "slug": "reproducibility",
       "category": "metodologia",
@@ -910,7 +972,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/reproducibility"
     },
     {
-      "id": 62,
+      "id": "single-agar-layer-sal",
+      "legacyId": 62,
       "term": "Single Agar Layer (SAL)",
       "slug": "single-agar-layer-sal",
       "category": "metodologia",
@@ -926,7 +989,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/single-agar-layer-sal"
     },
     {
-      "id": 63,
+      "id": "ttr-time-to-result",
+      "legacyId": 63,
       "term": "TTR / Time to result",
       "slug": "ttr-time-to-result",
       "category": "metodologia",
@@ -942,7 +1006,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/ttr-time-to-result"
     },
     {
-      "id": 64,
+      "id": "21-cfr-part-11",
+      "legacyId": 64,
       "term": "21 CFR Part 11",
       "slug": "21-cfr-part-11",
       "category": "lims-cloud",
@@ -956,7 +1021,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/21-cfr-part-11"
     },
     {
-      "id": 65,
+      "id": "alcoa-plus",
+      "legacyId": 65,
       "term": "ALCOA+",
       "slug": "alcoa",
       "category": "lims-cloud",
@@ -970,7 +1036,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/alcoa"
     },
     {
-      "id": 66,
+      "id": "aqualab",
+      "legacyId": 66,
       "term": "AquaLab",
       "slug": "aqualab",
       "category": "lims-cloud",
@@ -984,7 +1051,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/aqualab"
     },
     {
-      "id": 67,
+      "id": "aquaverify-cloud",
+      "legacyId": 67,
       "term": "AquaVerify Cloud",
       "slug": "aquaverify-cloud",
       "category": "lims-cloud",
@@ -998,7 +1066,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/aquaverify-cloud"
     },
     {
-      "id": 68,
+      "id": "audit-trail",
+      "legacyId": 68,
       "term": "Audit trail",
       "slug": "audit-trail",
       "category": "lims-cloud",
@@ -1012,7 +1081,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/audit-trail"
     },
     {
-      "id": 69,
+      "id": "digital-chain-of-custody",
+      "legacyId": 69,
       "term": "Digital chain of custody",
       "slug": "digital-chain-of-custody",
       "category": "lims-cloud",
@@ -1026,7 +1096,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/digital-chain-of-custody"
     },
     {
-      "id": 70,
+      "id": "coa-certificate-of-analysis",
+      "legacyId": 70,
       "term": "CoA / Certificate of Analysis",
       "slug": "coa-certificate-of-analysis",
       "category": "lims-cloud",
@@ -1042,7 +1113,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/coa-certificate-of-analysis"
     },
     {
-      "id": 71,
+      "id": "crm",
+      "legacyId": 71,
       "term": "CRM",
       "slug": "crm",
       "category": "lims-cloud",
@@ -1056,7 +1128,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/crm"
     },
     {
-      "id": 72,
+      "id": "dashboard-lims",
+      "legacyId": 72,
       "term": "Dashboard LIMS",
       "slug": "dashboard-lims",
       "category": "lims-cloud",
@@ -1070,7 +1143,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/dashboard-lims"
     },
     {
-      "id": 73,
+      "id": "eln",
+      "legacyId": 73,
       "term": "ELN",
       "slug": "eln",
       "category": "lims-cloud",
@@ -1086,7 +1160,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/eln"
     },
     {
-      "id": 74,
+      "id": "electronic-signature",
+      "legacyId": 74,
       "term": "Electronic signature",
       "slug": "electronic-signature",
       "category": "lims-cloud",
@@ -1100,7 +1175,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/electronic-signature"
     },
     {
-      "id": 75,
+      "id": "gxp",
+      "legacyId": 75,
       "term": "GxP",
       "slug": "gxp",
       "category": "lims-cloud",
@@ -1114,7 +1190,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/gxp"
     },
     {
-      "id": 76,
+      "id": "worksheet",
+      "legacyId": 76,
       "term": "Worksheet",
       "slug": "worksheet",
       "category": "lims-cloud",
@@ -1128,7 +1205,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/worksheet"
     },
     {
-      "id": 77,
+      "id": "lims",
+      "legacyId": 77,
       "term": "LIMS",
       "slug": "lims",
       "category": "lims-cloud",
@@ -1144,7 +1222,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/lims"
     },
     {
-      "id": 78,
+      "id": "customer-portal",
+      "legacyId": 78,
       "term": "Customer portal",
       "slug": "customer-portal",
       "category": "lims-cloud",
@@ -1158,7 +1237,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/customer-portal"
     },
     {
-      "id": 79,
+      "id": "saas",
+      "legacyId": 79,
       "term": "SaaS",
       "slug": "saas",
       "category": "lims-cloud",
@@ -1172,7 +1252,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/saas"
     },
     {
-      "id": 80,
+      "id": "sample-hub",
+      "legacyId": 80,
       "term": "Sample Hub",
       "slug": "sample-hub",
       "category": "lims-cloud",
@@ -1186,7 +1267,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/sample-hub"
     },
     {
-      "id": 81,
+      "id": "sla",
+      "legacyId": 81,
       "term": "SLA",
       "slug": "sla",
       "category": "lims-cloud",
@@ -1202,7 +1284,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/sla"
     },
     {
-      "id": 82,
+      "id": "tat-turnaround-time",
+      "legacyId": 82,
       "term": "TAT / Turnaround Time",
       "slug": "tat-turnaround-time",
       "category": "lims-cloud",
@@ -1216,7 +1299,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/tat-turnaround-time"
     },
     {
-      "id": 83,
+      "id": "tenant",
+      "legacyId": 83,
       "term": "Tenant",
       "slug": "tenant",
       "category": "lims-cloud",
@@ -1230,7 +1314,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/tenant"
     },
     {
-      "id": 84,
+      "id": "analytical-traceability",
+      "legacyId": 84,
       "term": "Analytical traceability",
       "slug": "analytical-traceability",
       "category": "lims-cloud",
@@ -1244,7 +1329,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/analytical-traceability"
     },
     {
-      "id": 85,
+      "id": "wms",
+      "legacyId": 85,
       "term": "WMS",
       "slug": "wms",
       "category": "lims-cloud",
@@ -1260,7 +1346,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/wms"
     },
     {
-      "id": 86,
+      "id": "workflow-owner",
+      "legacyId": 86,
       "term": "Workflow owner",
       "slug": "workflow-owner",
       "category": "lims-cloud",
@@ -1274,7 +1361,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/workflow-owner"
     },
     {
-      "id": 87,
+      "id": "kit-expiry",
+      "legacyId": 87,
       "term": "Kit expiry",
       "slug": "kit-expiry",
       "category": "productos",
@@ -1288,7 +1376,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/kit-expiry"
     },
     {
-      "id": 88,
+      "id": "internal-quality-control",
+      "legacyId": 88,
       "term": "Internal quality control",
       "slug": "internal-quality-control",
       "category": "productos",
@@ -1302,7 +1391,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/internal-quality-control"
     },
     {
-      "id": 89,
+      "id": "enumera",
+      "legacyId": 89,
       "term": "ENUMERA",
       "slug": "enumera",
       "category": "productos",
@@ -1316,7 +1406,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/enumera"
     },
     {
-      "id": 90,
+      "id": "indica",
+      "legacyId": 90,
       "term": "INDICA",
       "slug": "indica",
       "category": "productos",
@@ -1330,7 +1421,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/indica"
     },
     {
-      "id": 91,
+      "id": "rapid-detection-kit",
+      "legacyId": 91,
       "term": "Rapid detection kit",
       "slug": "rapid-detection-kit",
       "category": "productos",
@@ -1344,7 +1436,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/rapid-detection-kit"
     },
     {
-      "id": 92,
+      "id": "kits-iso-epa",
+      "legacyId": 92,
       "term": "Kits ISO/EPA",
       "slug": "kits-iso-epa",
       "category": "productos",
@@ -1358,7 +1451,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/kits-iso-epa"
     },
     {
-      "id": 93,
+      "id": "lab-essentials",
+      "legacyId": 93,
       "term": "Lab Essentials",
       "slug": "lab-essentials",
       "category": "productos",
@@ -1372,7 +1466,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/lab-essentials"
     },
     {
-      "id": 94,
+      "id": "kit-lot",
+      "legacyId": 94,
       "term": "Kit lot",
       "slug": "kit-lot",
       "category": "productos",
@@ -1386,7 +1481,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/kit-lot"
     },
     {
-      "id": 95,
+      "id": "culture-medium",
+      "legacyId": 95,
       "term": "Culture medium",
       "slug": "culture-medium",
       "category": "productos",
@@ -1400,7 +1496,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/culture-medium"
     },
     {
-      "id": 96,
+      "id": "reagent",
+      "legacyId": 96,
       "term": "Reagent",
       "slug": "reagent",
       "category": "productos",
@@ -1414,7 +1511,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/reagent"
     },
     {
-      "id": 97,
+      "id": "smart-cap",
+      "legacyId": 97,
       "term": "Smart Cap",
       "slug": "smart-cap",
       "category": "productos",
@@ -1428,7 +1526,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/smart-cap"
     },
     {
-      "id": 98,
+      "id": "domestic-hot-water",
+      "legacyId": 98,
       "term": "DHW / Domestic hot water",
       "slug": "dhw-domestic-hot-water",
       "category": "operacion-agua",
@@ -1442,7 +1541,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/dhw-domestic-hot-water"
     },
     {
-      "id": 99,
+      "id": "aerosolization",
+      "legacyId": 99,
       "term": "Aerosolization",
       "slug": "aerosolization",
       "category": "operacion-agua",
@@ -1456,7 +1556,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/aerosolization"
     },
     {
-      "id": 100,
+      "id": "raw-water",
+      "legacyId": 100,
       "term": "Raw water",
       "slug": "raw-water",
       "category": "operacion-agua",
@@ -1470,7 +1571,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/raw-water"
     },
     {
-      "id": 101,
+      "id": "drinking-water",
+      "legacyId": 101,
       "term": "Drinking water",
       "slug": "drinking-water",
       "category": "operacion-agua",
@@ -1484,7 +1586,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/drinking-water"
     },
     {
-      "id": 102,
+      "id": "process-water",
+      "legacyId": 102,
       "term": "Process water",
       "slug": "process-water",
       "category": "operacion-agua",
@@ -1498,7 +1601,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/process-water"
     },
     {
-      "id": 103,
+      "id": "reclaimed-water",
+      "legacyId": 103,
       "term": "Reclaimed water",
       "slug": "reclaimed-water",
       "category": "operacion-agua",
@@ -1512,7 +1616,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/reclaimed-water"
     },
     {
-      "id": 104,
+      "id": "wastewater",
+      "legacyId": 104,
       "term": "Wastewater",
       "slug": "wastewater",
       "category": "operacion-agua",
@@ -1526,7 +1631,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/wastewater"
     },
     {
-      "id": 105,
+      "id": "cip",
+      "legacyId": 105,
       "term": "CIP",
       "slug": "cip",
       "category": "operacion-agua",
@@ -1542,7 +1648,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/cip"
     },
     {
-      "id": 106,
+      "id": "chlorination",
+      "legacyId": 106,
       "term": "Chlorination",
       "slug": "chlorination",
       "category": "operacion-agua",
@@ -1556,7 +1663,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/chlorination"
     },
     {
-      "id": 107,
+      "id": "hydroponics",
+      "legacyId": 107,
       "term": "Hydroponics",
       "slug": "hydroponics",
       "category": "operacion-agua",
@@ -1570,7 +1678,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/hydroponics"
     },
     {
-      "id": 108,
+      "id": "packhouse",
+      "legacyId": 108,
       "term": "Packhouse",
       "slug": "packhouse",
       "category": "operacion-agua",
@@ -1584,7 +1693,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/packhouse"
     },
     {
-      "id": 109,
+      "id": "terminal-point",
+      "legacyId": 109,
       "term": "Terminal point",
       "slug": "terminal-point",
       "category": "operacion-agua",
@@ -1598,7 +1708,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/terminal-point"
     },
     {
-      "id": 110,
+      "id": "agricultural-irrigation",
+      "legacyId": 110,
       "term": "Agricultural irrigation",
       "slug": "agricultural-irrigation",
       "category": "operacion-agua",
@@ -1612,7 +1723,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/agricultural-irrigation"
     },
     {
-      "id": 111,
+      "id": "turbidity",
+      "legacyId": 111,
       "term": "Turbidity",
       "slug": "turbidity",
       "category": "operacion-agua",
@@ -1626,7 +1738,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/turbidity"
     },
     {
-      "id": 112,
+      "id": "uv-disinfection",
+      "legacyId": 112,
       "term": "UV / Ultraviolet disinfection",
       "slug": "uv-ultraviolet-disinfection",
       "category": "operacion-agua",
@@ -1640,7 +1753,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/uv-ultraviolet-disinfection"
     },
     {
-      "id": 113,
+      "id": "approval",
+      "legacyId": 113,
       "term": "Approval",
       "slug": "approval",
       "category": "calidad",
@@ -1654,7 +1768,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/approval"
     },
     {
-      "id": 114,
+      "id": "capa",
+      "legacyId": 114,
       "term": "CAPA",
       "slug": "capa",
       "category": "calidad",
@@ -1668,7 +1783,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/capa"
     },
     {
-      "id": 115,
+      "id": "document-control",
+      "legacyId": 115,
       "term": "Document control",
       "slug": "document-control",
       "category": "calidad",
@@ -1682,7 +1798,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/document-control"
     },
     {
-      "id": 116,
+      "id": "deviation",
+      "legacyId": 116,
       "term": "Deviation",
       "slug": "deviation",
       "category": "calidad",
@@ -1696,7 +1813,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/deviation"
     },
     {
-      "id": 117,
+      "id": "dossier",
+      "legacyId": 117,
       "term": "Dossier",
       "slug": "dossier",
       "category": "calidad",
@@ -1710,7 +1828,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/dossier"
     },
     {
-      "id": 118,
+      "id": "validation-dossier",
+      "legacyId": 118,
       "term": "Validation dossier",
       "slug": "validation-dossier",
       "category": "calidad",
@@ -1724,7 +1843,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/validation-dossier"
     },
     {
-      "id": 119,
+      "id": "nonconformity",
+      "legacyId": 119,
       "term": "Nonconformity",
       "slug": "nonconformity",
       "category": "calidad",
@@ -1738,7 +1858,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/nonconformity"
     },
     {
-      "id": 120,
+      "id": "technical-review",
+      "legacyId": 120,
       "term": "Technical review",
       "slug": "technical-review",
       "category": "calidad",
@@ -1752,7 +1873,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/technical-review"
     },
     {
-      "id": 121,
+      "id": "sop",
+      "legacyId": 121,
       "term": "SOP",
       "slug": "sop",
       "category": "calidad",
@@ -1766,7 +1888,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/sop"
     },
     {
-      "id": 122,
+      "id": "tech-transfer",
+      "legacyId": 122,
       "term": "Tech Transfer",
       "slug": "tech-transfer",
       "category": "calidad",
@@ -1780,7 +1903,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/tech-transfer"
     },
     {
-      "id": 123,
+      "id": "method-validation",
+      "legacyId": 123,
       "term": "Method validation",
       "slug": "method-validation",
       "category": "calidad",
@@ -1794,7 +1918,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/method-validation"
     },
     {
-      "id": 124,
+      "id": "method-verification",
+      "legacyId": 124,
       "term": "Method verification",
       "slug": "method-verification",
       "category": "calidad",
@@ -1808,7 +1933,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/method-verification"
     },
     {
-      "id": 125,
+      "id": "co-branding",
+      "legacyId": 125,
       "term": "Co-branding",
       "slug": "co-branding",
       "category": "canal",
@@ -1822,7 +1948,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/co-branding"
     },
     {
-      "id": 126,
+      "id": "authorized-distributor",
+      "legacyId": 126,
       "term": "Authorized distributor",
       "slug": "authorized-distributor",
       "category": "canal",
@@ -1836,7 +1963,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/authorized-distributor"
     },
     {
-      "id": 127,
+      "id": "private-label-kit",
+      "legacyId": 127,
       "term": "Private-label kit",
       "slug": "private-label-kit",
       "category": "canal",
@@ -1850,7 +1978,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/private-label-kit"
     },
     {
-      "id": 128,
+      "id": "lead-routing",
+      "legacyId": 128,
       "term": "Lead routing",
       "slug": "lead-routing",
       "category": "canal",
@@ -1864,7 +1993,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/lead-routing"
     },
     {
-      "id": 129,
+      "id": "white-label",
+      "legacyId": 129,
       "term": "White label",
       "slug": "white-label",
       "category": "canal",
@@ -1878,7 +2008,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/white-label"
     },
     {
-      "id": 130,
+      "id": "oem",
+      "legacyId": 130,
       "term": "OEM",
       "slug": "oem",
       "category": "canal",
@@ -1892,7 +2023,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/oem"
     },
     {
-      "id": 131,
+      "id": "technical-onboarding",
+      "legacyId": 131,
       "term": "Technical onboarding",
       "slug": "technical-onboarding",
       "category": "canal",
@@ -1906,7 +2038,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/technical-onboarding"
     },
     {
-      "id": 132,
+      "id": "commercial-playbook",
+      "legacyId": 132,
       "term": "Commercial playbook",
       "slug": "commercial-playbook",
       "category": "canal",
@@ -1920,7 +2053,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/commercial-playbook"
     },
     {
-      "id": 133,
+      "id": "technical-reseller",
+      "legacyId": 133,
       "term": "Technical reseller",
       "slug": "technical-reseller",
       "category": "canal",
@@ -1934,7 +2068,8 @@ export const GLOSSARY_TERMS = {
       "url": "/en/glossary/technical-reseller"
     },
     {
-      "id": 134,
+      "id": "territory",
+      "legacyId": 134,
       "term": "Territory",
       "slug": "territory",
       "category": "canal",
@@ -1950,7 +2085,8 @@ export const GLOSSARY_TERMS = {
   ],
   "es": [
     {
-      "id": 0,
+      "id": "adenovirus",
+      "legacyId": 0,
       "term": "Adenovirus",
       "slug": "adenovirus",
       "category": "microbiologia",
@@ -1964,7 +2100,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/adenovirus"
     },
     {
-      "id": 1,
+      "id": "viable-bacteria",
+      "legacyId": 1,
       "term": "Bacteria viable",
       "slug": "bacteria-viable",
       "category": "microbiologia",
@@ -1978,7 +2115,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/bacteria-viable"
     },
     {
-      "id": 2,
+      "id": "bacteriophage",
+      "legacyId": 2,
       "term": "Bacteriófago",
       "slug": "bacteriofago",
       "category": "microbiologia",
@@ -1995,7 +2133,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/bacteriofago"
     },
     {
-      "id": 3,
+      "id": "biofilm",
+      "legacyId": 3,
       "term": "Biofilm",
       "slug": "biofilm",
       "category": "microbiologia",
@@ -2009,7 +2148,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/biofilm"
     },
     {
-      "id": 4,
+      "id": "microbial-load",
+      "legacyId": 4,
       "term": "Carga microbiana",
       "slug": "carga-microbiana",
       "category": "microbiologia",
@@ -2023,7 +2163,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/carga-microbiana"
     },
     {
-      "id": 5,
+      "id": "host-strain",
+      "legacyId": 5,
       "term": "Cepa huésped",
       "slug": "cepa-huesped",
       "category": "microbiologia",
@@ -2037,7 +2178,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/cepa-huesped"
     },
     {
-      "id": 6,
+      "id": "total-coliforms",
+      "legacyId": 6,
       "term": "Coliformes totales",
       "slug": "coliformes-totales",
       "category": "microbiologia",
@@ -2051,7 +2193,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/coliformes-totales"
     },
     {
-      "id": 7,
+      "id": "f-rna-coliphages",
+      "legacyId": 7,
       "term": "Colífagos F-ARN",
       "slug": "colifagos-f-arn",
       "category": "microbiologia",
@@ -2067,7 +2210,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/colifagos-f-arn"
     },
     {
-      "id": 8,
+      "id": "f-specific-coliphages",
+      "legacyId": 8,
       "term": "Colífagos F-específicos",
       "slug": "colifagos-f-especificos",
       "category": "microbiologia",
@@ -2084,7 +2228,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/colifagos-f-especificos"
     },
     {
-      "id": 9,
+      "id": "somatic-coliphages",
+      "legacyId": 9,
       "term": "Colífagos somáticos",
       "slug": "colifagos-somaticos",
       "category": "microbiologia",
@@ -2101,7 +2246,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/colifagos-somaticos"
     },
     {
-      "id": 10,
+      "id": "fecal-contamination",
+      "legacyId": 10,
       "term": "Contaminación fecal",
       "slug": "contaminacion-fecal",
       "category": "microbiologia",
@@ -2115,7 +2261,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/contaminacion-fecal"
     },
     {
-      "id": 11,
+      "id": "intestinal-enterococci",
+      "legacyId": 11,
       "term": "Enterococos intestinales",
       "slug": "enterococos-intestinales",
       "category": "microbiologia",
@@ -2129,7 +2276,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/enterococos-intestinales"
     },
     {
-      "id": 12,
+      "id": "escherichia-coli-e-coli",
+      "legacyId": 12,
       "term": "Escherichia coli (E. coli)",
       "slug": "escherichia-coli-e-coli",
       "category": "microbiologia",
@@ -2145,7 +2293,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/escherichia-coli-e-coli"
     },
     {
-      "id": 13,
+      "id": "legionella",
+      "legacyId": 13,
       "term": "Legionella",
       "slug": "legionella",
       "category": "microbiologia",
@@ -2159,7 +2308,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/legionella"
     },
     {
-      "id": 14,
+      "id": "microbial-source-tracking-mst",
+      "legacyId": 14,
       "term": "Microbial Source Tracking (MST)",
       "slug": "microbial-source-tracking-mst",
       "category": "microbiologia",
@@ -2175,7 +2325,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/microbial-source-tracking-mst"
     },
     {
-      "id": 15,
+      "id": "indicator-microorganism",
+      "legacyId": 15,
       "term": "Microorganismo indicador",
       "slug": "microorganismo-indicador",
       "category": "microbiologia",
@@ -2189,7 +2340,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/microorganismo-indicador"
     },
     {
-      "id": 16,
+      "id": "norovirus",
+      "legacyId": 16,
       "term": "Norovirus",
       "slug": "norovirus",
       "category": "microbiologia",
@@ -2203,7 +2355,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/norovirus"
     },
     {
-      "id": 17,
+      "id": "pathogen",
+      "legacyId": 17,
       "term": "Patógeno",
       "slug": "patogeno",
       "category": "microbiologia",
@@ -2217,7 +2370,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/patogeno"
     },
     {
-      "id": 18,
+      "id": "pseudomonas-aeruginosa",
+      "legacyId": 18,
       "term": "Pseudomonas aeruginosa",
       "slug": "pseudomonas-aeruginosa",
       "category": "microbiologia",
@@ -2231,7 +2385,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/pseudomonas-aeruginosa"
     },
     {
-      "id": 19,
+      "id": "pfu-plaque-forming-units",
+      "legacyId": 19,
       "term": "UFP / PFU",
       "slug": "ufp-pfu",
       "category": "microbiologia",
@@ -2247,7 +2402,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/ufp-pfu"
     },
     {
-      "id": 20,
+      "id": "enteric-viruses",
+      "legacyId": 20,
       "term": "Virus entéricos",
       "slug": "virus-entericos",
       "category": "microbiologia",
@@ -2261,7 +2417,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/virus-entericos"
     },
     {
-      "id": 21,
+      "id": "directive-eu-2020-2184",
+      "legacyId": 21,
       "term": "Directiva (UE) 2020/2184",
       "slug": "directiva-ue-2020-2184",
       "category": "normativa",
@@ -2277,7 +2434,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/directiva-ue-2020-2184"
     },
     {
-      "id": 22,
+      "id": "epa-method-1601",
+      "legacyId": 22,
       "term": "EPA Method 1601",
       "slug": "epa-method-1601",
       "category": "normativa",
@@ -2291,7 +2449,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/epa-method-1601"
     },
     {
-      "id": 23,
+      "id": "epa-method-1602",
+      "legacyId": 23,
       "term": "EPA Method 1602",
       "slug": "epa-method-1602",
       "category": "normativa",
@@ -2305,7 +2464,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/epa-method-1602"
     },
     {
-      "id": 24,
+      "id": "haccp",
+      "legacyId": 24,
       "term": "HACCP",
       "slug": "haccp",
       "category": "normativa",
@@ -2319,7 +2479,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/haccp"
     },
     {
-      "id": 25,
+      "id": "iso-10705-1",
+      "legacyId": 25,
       "term": "ISO 10705-1",
       "slug": "iso-10705-1",
       "category": "normativa",
@@ -2333,7 +2494,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-10705-1"
     },
     {
-      "id": 26,
+      "id": "iso-10705-2",
+      "legacyId": 26,
       "term": "ISO 10705-2",
       "slug": "iso-10705-2",
       "category": "normativa",
@@ -2347,7 +2509,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-10705-2"
     },
     {
-      "id": 27,
+      "id": "iso-11731",
+      "legacyId": 27,
       "term": "ISO 11731",
       "slug": "iso-11731",
       "category": "normativa",
@@ -2361,7 +2524,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-11731"
     },
     {
-      "id": 28,
+      "id": "iso-19458",
+      "legacyId": 28,
       "term": "ISO 19458",
       "slug": "iso-19458",
       "category": "normativa",
@@ -2375,7 +2539,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-19458"
     },
     {
-      "id": 29,
+      "id": "iso-22000",
+      "legacyId": 29,
       "term": "ISO 22000",
       "slug": "iso-22000",
       "category": "normativa",
@@ -2389,7 +2554,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-22000"
     },
     {
-      "id": 30,
+      "id": "iso-5667-1",
+      "legacyId": 30,
       "term": "ISO 5667-1",
       "slug": "iso-5667-1",
       "category": "normativa",
@@ -2403,7 +2569,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-5667-1"
     },
     {
-      "id": 31,
+      "id": "iso-7899-2",
+      "legacyId": 31,
       "term": "ISO 7899-2",
       "slug": "iso-7899-2",
       "category": "normativa",
@@ -2417,7 +2584,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-7899-2"
     },
     {
-      "id": 32,
+      "id": "iso-9308",
+      "legacyId": 32,
       "term": "ISO 9308",
       "slug": "iso-9308",
       "category": "normativa",
@@ -2431,7 +2599,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-9308"
     },
     {
-      "id": 33,
+      "id": "iso-iec-17025",
+      "legacyId": 33,
       "term": "ISO/IEC 17025",
       "slug": "iso-iec-17025",
       "category": "normativa",
@@ -2445,7 +2614,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/iso-iec-17025"
     },
     {
-      "id": 34,
+      "id": "water-safety-plan",
+      "legacyId": 34,
       "term": "Plan sanitario del agua",
       "slug": "plan-sanitario-del-agua",
       "category": "normativa",
@@ -2459,7 +2629,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/plan-sanitario-del-agua"
     },
     {
-      "id": 35,
+      "id": "royal-decree-3-2023",
+      "legacyId": 35,
       "term": "Real Decreto 3/2023",
       "slug": "real-decreto-3-2023",
       "category": "normativa",
@@ -2475,7 +2646,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/real-decreto-3-2023"
     },
     {
-      "id": 36,
+      "id": "royal-decree-487-2022",
+      "legacyId": 36,
       "term": "Real Decreto 487/2022",
       "slug": "real-decreto-487-2022",
       "category": "normativa",
@@ -2491,7 +2663,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/real-decreto-487-2022"
     },
     {
-      "id": 37,
+      "id": "royal-decree-742-2013",
+      "legacyId": 37,
       "term": "Real Decreto 742/2013",
       "slug": "real-decreto-742-2013",
       "category": "normativa",
@@ -2507,7 +2680,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/real-decreto-742-2013"
     },
     {
-      "id": 38,
+      "id": "regulation-eu-2020-741",
+      "legacyId": 38,
       "term": "Reglamento (UE) 2020/741",
       "slug": "reglamento-ue-2020-741",
       "category": "normativa",
@@ -2523,7 +2697,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/reglamento-ue-2020-741"
     },
     {
-      "id": 39,
+      "id": "revised-total-coliform-rule-rtcr",
+      "legacyId": 39,
       "term": "Revised Total Coliform Rule (RTCR)",
       "slug": "revised-total-coliform-rule-rtcr",
       "category": "normativa",
@@ -2539,7 +2714,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/revised-total-coliform-rule-rtcr"
     },
     {
-      "id": 40,
+      "id": "water-safety-plan",
+      "legacyId": 40,
       "term": "Water Safety Plan",
       "slug": "water-safety-plan",
       "category": "normativa",
@@ -2555,7 +2731,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/water-safety-plan"
     },
     {
-      "id": 41,
+      "id": "method-blank",
+      "legacyId": 41,
       "term": "Blanco de método",
       "slug": "blanco-de-metodo",
       "category": "metodologia",
@@ -2569,7 +2746,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/blanco-de-metodo"
     },
     {
-      "id": 42,
+      "id": "cold-chain",
+      "legacyId": 42,
       "term": "Cadena de frío",
       "slug": "cadena-de-frio",
       "category": "metodologia",
@@ -2583,7 +2761,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/cadena-de-frio"
     },
     {
-      "id": 43,
+      "id": "negative-control",
+      "legacyId": 43,
       "term": "Control negativo",
       "slug": "control-negativo",
       "category": "metodologia",
@@ -2597,7 +2776,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/control-negativo"
     },
     {
-      "id": 44,
+      "id": "positive-control",
+      "legacyId": 44,
       "term": "Control positivo",
       "slug": "control-positivo",
       "category": "metodologia",
@@ -2611,7 +2791,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/control-positivo"
     },
     {
-      "id": 45,
+      "id": "double-agar-layer",
+      "legacyId": 45,
       "term": "Double Agar Layer",
       "slug": "double-agar-layer",
       "category": "metodologia",
@@ -2627,7 +2808,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/double-agar-layer"
     },
     {
-      "id": 46,
+      "id": "enrichment",
+      "legacyId": 46,
       "term": "Enriquecimiento",
       "slug": "enriquecimiento",
       "category": "metodologia",
@@ -2641,7 +2823,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/enriquecimiento"
     },
     {
-      "id": 47,
+      "id": "plaque-assay",
+      "legacyId": 47,
       "term": "Ensayo en placa",
       "slug": "ensayo-en-placa",
       "category": "metodologia",
@@ -2657,7 +2840,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/ensayo-en-placa"
     },
     {
-      "id": 48,
+      "id": "membrane-filtration",
+      "legacyId": 48,
       "term": "Filtración por membrana",
       "slug": "filtracion-por-membrana",
       "category": "metodologia",
@@ -2671,7 +2855,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/filtracion-por-membrana"
     },
     {
-      "id": 49,
+      "id": "incubation",
+      "legacyId": 49,
       "term": "Incubación",
       "slug": "incubacion",
       "category": "metodologia",
@@ -2685,7 +2870,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/incubacion"
     },
     {
-      "id": 50,
+      "id": "cell-lysis",
+      "legacyId": 50,
       "term": "Lisis celular",
       "slug": "lisis-celular",
       "category": "metodologia",
@@ -2699,7 +2885,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/lisis-celular"
     },
     {
-      "id": 51,
+      "id": "limit-of-quantification-loq",
+      "legacyId": 51,
       "term": "Límite de cuantificación (LOQ)",
       "slug": "limite-de-cuantificacion-loq",
       "category": "metodologia",
@@ -2713,7 +2900,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/limite-de-cuantificacion-loq"
     },
     {
-      "id": 52,
+      "id": "limit-of-detection-lod",
+      "legacyId": 52,
       "term": "Límite de detección (LOD)",
       "slug": "limite-de-deteccion-lod",
       "category": "metodologia",
@@ -2727,7 +2915,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/limite-de-deteccion-lod"
     },
     {
-      "id": 53,
+      "id": "matrix",
+      "legacyId": 53,
       "term": "Matriz",
       "slug": "matriz",
       "category": "metodologia",
@@ -2741,7 +2930,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/matriz"
     },
     {
-      "id": 54,
+      "id": "composite-sample",
+      "legacyId": 54,
       "term": "Muestra compuesta",
       "slug": "muestra-compuesta",
       "category": "metodologia",
@@ -2755,7 +2945,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/muestra-compuesta"
     },
     {
-      "id": 55,
+      "id": "grab-sample",
+      "legacyId": 55,
       "term": "Muestra puntual",
       "slug": "muestra-puntual",
       "category": "metodologia",
@@ -2769,7 +2960,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/muestra-puntual"
     },
     {
-      "id": 56,
+      "id": "most-probable-number-mpn",
+      "legacyId": 56,
       "term": "Número Más Probable (NMP)",
       "slug": "numero-mas-probable-nmp",
       "category": "metodologia",
@@ -2785,7 +2977,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/numero-mas-probable-nmp"
     },
     {
-      "id": 57,
+      "id": "oos-out-of-specification",
+      "legacyId": 57,
       "term": "OOS / Fuera de especificación",
       "slug": "oos-fuera-de-especificacion",
       "category": "metodologia",
@@ -2801,7 +2994,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/oos-fuera-de-especificacion"
     },
     {
-      "id": 58,
+      "id": "sampling-point",
+      "legacyId": 58,
       "term": "Punto de muestreo",
       "slug": "punto-de-muestreo",
       "category": "metodologia",
@@ -2815,7 +3009,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/punto-de-muestreo"
     },
     {
-      "id": 59,
+      "id": "recovery",
+      "legacyId": 59,
       "term": "Recuperación",
       "slug": "recuperacion",
       "category": "metodologia",
@@ -2829,7 +3024,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/recuperacion"
     },
     {
-      "id": 60,
+      "id": "repeatability",
+      "legacyId": 60,
       "term": "Repetibilidad",
       "slug": "repetibilidad",
       "category": "metodologia",
@@ -2843,7 +3039,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/repetibilidad"
     },
     {
-      "id": 61,
+      "id": "reproducibility",
+      "legacyId": 61,
       "term": "Reproducibilidad",
       "slug": "reproducibilidad",
       "category": "metodologia",
@@ -2857,7 +3054,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/reproducibilidad"
     },
     {
-      "id": 62,
+      "id": "single-agar-layer-sal",
+      "legacyId": 62,
       "term": "Single Agar Layer (SAL)",
       "slug": "single-agar-layer-sal",
       "category": "metodologia",
@@ -2873,7 +3071,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/single-agar-layer-sal"
     },
     {
-      "id": 63,
+      "id": "ttr-time-to-result",
+      "legacyId": 63,
       "term": "TTR / Tiempo de respuesta",
       "slug": "ttr-tiempo-de-respuesta",
       "category": "metodologia",
@@ -2889,7 +3088,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/ttr-tiempo-de-respuesta"
     },
     {
-      "id": 64,
+      "id": "21-cfr-part-11",
+      "legacyId": 64,
       "term": "21 CFR Part 11",
       "slug": "21-cfr-part-11",
       "category": "lims-cloud",
@@ -2903,7 +3103,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/21-cfr-part-11"
     },
     {
-      "id": 65,
+      "id": "alcoa-plus",
+      "legacyId": 65,
       "term": "ALCOA+",
       "slug": "alcoa",
       "category": "lims-cloud",
@@ -2917,7 +3118,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/alcoa"
     },
     {
-      "id": 66,
+      "id": "aqualab",
+      "legacyId": 66,
       "term": "AquaLab",
       "slug": "aqualab",
       "category": "lims-cloud",
@@ -2931,7 +3133,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/aqualab"
     },
     {
-      "id": 67,
+      "id": "aquaverify-cloud",
+      "legacyId": 67,
       "term": "AquaVerify Cloud",
       "slug": "aquaverify-cloud",
       "category": "lims-cloud",
@@ -2945,7 +3148,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/aquaverify-cloud"
     },
     {
-      "id": 68,
+      "id": "audit-trail",
+      "legacyId": 68,
       "term": "Audit trail",
       "slug": "audit-trail",
       "category": "lims-cloud",
@@ -2959,7 +3163,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/audit-trail"
     },
     {
-      "id": 69,
+      "id": "digital-chain-of-custody",
+      "legacyId": 69,
       "term": "Cadena de custodia digital",
       "slug": "cadena-de-custodia-digital",
       "category": "lims-cloud",
@@ -2973,7 +3178,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/cadena-de-custodia-digital"
     },
     {
-      "id": 70,
+      "id": "coa-certificate-of-analysis",
+      "legacyId": 70,
       "term": "CoA / Certificado de análisis",
       "slug": "coa-certificado-de-analisis",
       "category": "lims-cloud",
@@ -2989,7 +3195,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/coa-certificado-de-analisis"
     },
     {
-      "id": 71,
+      "id": "crm",
+      "legacyId": 71,
       "term": "CRM",
       "slug": "crm",
       "category": "lims-cloud",
@@ -3003,7 +3210,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/crm"
     },
     {
-      "id": 72,
+      "id": "dashboard-lims",
+      "legacyId": 72,
       "term": "Dashboard LIMS",
       "slug": "dashboard-lims",
       "category": "lims-cloud",
@@ -3017,7 +3225,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/dashboard-lims"
     },
     {
-      "id": 73,
+      "id": "eln",
+      "legacyId": 73,
       "term": "ELN",
       "slug": "eln",
       "category": "lims-cloud",
@@ -3033,7 +3242,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/eln"
     },
     {
-      "id": 74,
+      "id": "electronic-signature",
+      "legacyId": 74,
       "term": "Firma electrónica",
       "slug": "firma-electronica",
       "category": "lims-cloud",
@@ -3047,7 +3257,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/firma-electronica"
     },
     {
-      "id": 75,
+      "id": "gxp",
+      "legacyId": 75,
       "term": "GxP",
       "slug": "gxp",
       "category": "lims-cloud",
@@ -3061,7 +3272,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/gxp"
     },
     {
-      "id": 76,
+      "id": "worksheet",
+      "legacyId": 76,
       "term": "Hoja de trabajo",
       "slug": "hoja-de-trabajo",
       "category": "lims-cloud",
@@ -3075,7 +3287,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/hoja-de-trabajo"
     },
     {
-      "id": 77,
+      "id": "lims",
+      "legacyId": 77,
       "term": "LIMS",
       "slug": "lims",
       "category": "lims-cloud",
@@ -3091,7 +3304,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/lims"
     },
     {
-      "id": 78,
+      "id": "customer-portal",
+      "legacyId": 78,
       "term": "Portal cliente",
       "slug": "portal-cliente",
       "category": "lims-cloud",
@@ -3105,7 +3319,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/portal-cliente"
     },
     {
-      "id": 79,
+      "id": "saas",
+      "legacyId": 79,
       "term": "SaaS",
       "slug": "saas",
       "category": "lims-cloud",
@@ -3119,7 +3334,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/saas"
     },
     {
-      "id": 80,
+      "id": "sample-hub",
+      "legacyId": 80,
       "term": "Sample Hub",
       "slug": "sample-hub",
       "category": "lims-cloud",
@@ -3133,7 +3349,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/sample-hub"
     },
     {
-      "id": 81,
+      "id": "sla",
+      "legacyId": 81,
       "term": "SLA",
       "slug": "sla",
       "category": "lims-cloud",
@@ -3149,7 +3366,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/sla"
     },
     {
-      "id": 82,
+      "id": "tat-turnaround-time",
+      "legacyId": 82,
       "term": "TAT / Turnaround Time",
       "slug": "tat-turnaround-time",
       "category": "lims-cloud",
@@ -3163,7 +3381,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/tat-turnaround-time"
     },
     {
-      "id": 83,
+      "id": "tenant",
+      "legacyId": 83,
       "term": "Tenant",
       "slug": "tenant",
       "category": "lims-cloud",
@@ -3177,7 +3396,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/tenant"
     },
     {
-      "id": 84,
+      "id": "analytical-traceability",
+      "legacyId": 84,
       "term": "Trazabilidad analítica",
       "slug": "trazabilidad-analitica",
       "category": "lims-cloud",
@@ -3191,7 +3411,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/trazabilidad-analitica"
     },
     {
-      "id": 85,
+      "id": "wms",
+      "legacyId": 85,
       "term": "WMS",
       "slug": "wms",
       "category": "lims-cloud",
@@ -3207,7 +3428,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/wms"
     },
     {
-      "id": 86,
+      "id": "workflow-owner",
+      "legacyId": 86,
       "term": "Workflow owner",
       "slug": "workflow-owner",
       "category": "lims-cloud",
@@ -3221,7 +3443,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/workflow-owner"
     },
     {
-      "id": 87,
+      "id": "kit-expiry",
+      "legacyId": 87,
       "term": "Caducidad del kit",
       "slug": "caducidad-del-kit",
       "category": "productos",
@@ -3235,7 +3458,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/caducidad-del-kit"
     },
     {
-      "id": 88,
+      "id": "internal-quality-control",
+      "legacyId": 88,
       "term": "Control de calidad interno",
       "slug": "control-de-calidad-interno",
       "category": "productos",
@@ -3249,7 +3473,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/control-de-calidad-interno"
     },
     {
-      "id": 89,
+      "id": "enumera",
+      "legacyId": 89,
       "term": "ENUMERA",
       "slug": "enumera",
       "category": "productos",
@@ -3263,7 +3488,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/enumera"
     },
     {
-      "id": 90,
+      "id": "indica",
+      "legacyId": 90,
       "term": "INDICA",
       "slug": "indica",
       "category": "productos",
@@ -3277,7 +3503,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/indica"
     },
     {
-      "id": 91,
+      "id": "rapid-detection-kit",
+      "legacyId": 91,
       "term": "Kit de detección rápida",
       "slug": "kit-de-deteccion-rapida",
       "category": "productos",
@@ -3291,7 +3518,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/kit-de-deteccion-rapida"
     },
     {
-      "id": 92,
+      "id": "kits-iso-epa",
+      "legacyId": 92,
       "term": "Kits ISO/EPA",
       "slug": "kits-iso-epa",
       "category": "productos",
@@ -3305,7 +3533,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/kits-iso-epa"
     },
     {
-      "id": 93,
+      "id": "lab-essentials",
+      "legacyId": 93,
       "term": "Lab Essentials",
       "slug": "lab-essentials",
       "category": "productos",
@@ -3319,7 +3548,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/lab-essentials"
     },
     {
-      "id": 94,
+      "id": "kit-lot",
+      "legacyId": 94,
       "term": "Lote de kit",
       "slug": "lote-de-kit",
       "category": "productos",
@@ -3333,7 +3563,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/lote-de-kit"
     },
     {
-      "id": 95,
+      "id": "culture-medium",
+      "legacyId": 95,
       "term": "Medio de cultivo",
       "slug": "medio-de-cultivo",
       "category": "productos",
@@ -3347,7 +3578,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/medio-de-cultivo"
     },
     {
-      "id": 96,
+      "id": "reagent",
+      "legacyId": 96,
       "term": "Reactivo",
       "slug": "reactivo",
       "category": "productos",
@@ -3361,7 +3593,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/reactivo"
     },
     {
-      "id": 97,
+      "id": "smart-cap",
+      "legacyId": 97,
       "term": "Smart Cap",
       "slug": "smart-cap",
       "category": "productos",
@@ -3375,7 +3608,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/smart-cap"
     },
     {
-      "id": 98,
+      "id": "domestic-hot-water",
+      "legacyId": 98,
       "term": "ACS / Agua caliente sanitaria",
       "slug": "acs-agua-caliente-sanitaria",
       "category": "operacion-agua",
@@ -3389,7 +3623,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/acs-agua-caliente-sanitaria"
     },
     {
-      "id": 99,
+      "id": "aerosolization",
+      "legacyId": 99,
       "term": "Aerosolización",
       "slug": "aerosolizacion",
       "category": "operacion-agua",
@@ -3403,7 +3638,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/aerosolizacion"
     },
     {
-      "id": 100,
+      "id": "raw-water",
+      "legacyId": 100,
       "term": "Agua bruta",
       "slug": "agua-bruta",
       "category": "operacion-agua",
@@ -3417,7 +3653,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/agua-bruta"
     },
     {
-      "id": 101,
+      "id": "drinking-water",
+      "legacyId": 101,
       "term": "Agua de consumo",
       "slug": "agua-de-consumo",
       "category": "operacion-agua",
@@ -3431,7 +3668,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/agua-de-consumo"
     },
     {
-      "id": 102,
+      "id": "process-water",
+      "legacyId": 102,
       "term": "Agua de proceso",
       "slug": "agua-de-proceso",
       "category": "operacion-agua",
@@ -3445,7 +3683,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/agua-de-proceso"
     },
     {
-      "id": 103,
+      "id": "reclaimed-water",
+      "legacyId": 103,
       "term": "Agua regenerada",
       "slug": "agua-regenerada",
       "category": "operacion-agua",
@@ -3459,7 +3698,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/agua-regenerada"
     },
     {
-      "id": 104,
+      "id": "wastewater",
+      "legacyId": 104,
       "term": "Agua residual",
       "slug": "agua-residual",
       "category": "operacion-agua",
@@ -3473,7 +3713,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/agua-residual"
     },
     {
-      "id": 105,
+      "id": "cip",
+      "legacyId": 105,
       "term": "CIP",
       "slug": "cip",
       "category": "operacion-agua",
@@ -3489,7 +3730,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/cip"
     },
     {
-      "id": 106,
+      "id": "chlorination",
+      "legacyId": 106,
       "term": "Cloración",
       "slug": "cloracion",
       "category": "operacion-agua",
@@ -3503,7 +3745,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/cloracion"
     },
     {
-      "id": 107,
+      "id": "hydroponics",
+      "legacyId": 107,
       "term": "Hidroponía",
       "slug": "hidroponia",
       "category": "operacion-agua",
@@ -3517,7 +3760,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/hidroponia"
     },
     {
-      "id": 108,
+      "id": "packhouse",
+      "legacyId": 108,
       "term": "Packhouse",
       "slug": "packhouse",
       "category": "operacion-agua",
@@ -3531,7 +3775,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/packhouse"
     },
     {
-      "id": 109,
+      "id": "terminal-point",
+      "legacyId": 109,
       "term": "Punto terminal",
       "slug": "punto-terminal",
       "category": "operacion-agua",
@@ -3545,7 +3790,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/punto-terminal"
     },
     {
-      "id": 110,
+      "id": "agricultural-irrigation",
+      "legacyId": 110,
       "term": "Riego agrícola",
       "slug": "riego-agricola",
       "category": "operacion-agua",
@@ -3559,7 +3805,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/riego-agricola"
     },
     {
-      "id": 111,
+      "id": "turbidity",
+      "legacyId": 111,
       "term": "Turbidez",
       "slug": "turbidez",
       "category": "operacion-agua",
@@ -3573,7 +3820,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/turbidez"
     },
     {
-      "id": 112,
+      "id": "uv-disinfection",
+      "legacyId": 112,
       "term": "UV / Desinfección ultravioleta",
       "slug": "uv-desinfeccion-ultravioleta",
       "category": "operacion-agua",
@@ -3587,7 +3835,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/uv-desinfeccion-ultravioleta"
     },
     {
-      "id": 113,
+      "id": "approval",
+      "legacyId": 113,
       "term": "Aprobación",
       "slug": "aprobacion",
       "category": "calidad",
@@ -3601,7 +3850,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/aprobacion"
     },
     {
-      "id": 114,
+      "id": "capa",
+      "legacyId": 114,
       "term": "CAPA",
       "slug": "capa",
       "category": "calidad",
@@ -3615,7 +3865,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/capa"
     },
     {
-      "id": 115,
+      "id": "document-control",
+      "legacyId": 115,
       "term": "Control documental",
       "slug": "control-documental",
       "category": "calidad",
@@ -3629,7 +3880,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/control-documental"
     },
     {
-      "id": 116,
+      "id": "deviation",
+      "legacyId": 116,
       "term": "Desviación",
       "slug": "desviacion",
       "category": "calidad",
@@ -3643,7 +3895,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/desviacion"
     },
     {
-      "id": 117,
+      "id": "dossier",
+      "legacyId": 117,
       "term": "Dossier",
       "slug": "dossier",
       "category": "calidad",
@@ -3657,7 +3910,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/dossier"
     },
     {
-      "id": 118,
+      "id": "validation-dossier",
+      "legacyId": 118,
       "term": "Dossier de validación",
       "slug": "dossier-de-validacion",
       "category": "calidad",
@@ -3671,7 +3925,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/dossier-de-validacion"
     },
     {
-      "id": 119,
+      "id": "nonconformity",
+      "legacyId": 119,
       "term": "No conformidad",
       "slug": "no-conformidad",
       "category": "calidad",
@@ -3685,7 +3940,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/no-conformidad"
     },
     {
-      "id": 120,
+      "id": "technical-review",
+      "legacyId": 120,
       "term": "Revisión técnica",
       "slug": "revision-tecnica",
       "category": "calidad",
@@ -3699,7 +3955,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/revision-tecnica"
     },
     {
-      "id": 121,
+      "id": "sop",
+      "legacyId": 121,
       "term": "SOP",
       "slug": "sop",
       "category": "calidad",
@@ -3713,7 +3970,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/sop"
     },
     {
-      "id": 122,
+      "id": "tech-transfer",
+      "legacyId": 122,
       "term": "Tech Transfer",
       "slug": "tech-transfer",
       "category": "calidad",
@@ -3727,7 +3985,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/tech-transfer"
     },
     {
-      "id": 123,
+      "id": "method-validation",
+      "legacyId": 123,
       "term": "Validación de método",
       "slug": "validacion-de-metodo",
       "category": "calidad",
@@ -3741,7 +4000,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/validacion-de-metodo"
     },
     {
-      "id": 124,
+      "id": "method-verification",
+      "legacyId": 124,
       "term": "Verificación de método",
       "slug": "verificacion-de-metodo",
       "category": "calidad",
@@ -3755,7 +4015,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/verificacion-de-metodo"
     },
     {
-      "id": 125,
+      "id": "co-branding",
+      "legacyId": 125,
       "term": "Co-branding",
       "slug": "co-branding",
       "category": "canal",
@@ -3769,7 +4030,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/co-branding"
     },
     {
-      "id": 126,
+      "id": "authorized-distributor",
+      "legacyId": 126,
       "term": "Distribuidor autorizado",
       "slug": "distribuidor-autorizado",
       "category": "canal",
@@ -3783,7 +4045,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/distribuidor-autorizado"
     },
     {
-      "id": 127,
+      "id": "private-label-kit",
+      "legacyId": 127,
       "term": "Kit bajo marca propia",
       "slug": "kit-bajo-marca-propia",
       "category": "canal",
@@ -3797,7 +4060,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/kit-bajo-marca-propia"
     },
     {
-      "id": 128,
+      "id": "lead-routing",
+      "legacyId": 128,
       "term": "Lead routing",
       "slug": "lead-routing",
       "category": "canal",
@@ -3811,7 +4075,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/lead-routing"
     },
     {
-      "id": 129,
+      "id": "white-label",
+      "legacyId": 129,
       "term": "Marca blanca",
       "slug": "marca-blanca",
       "category": "canal",
@@ -3825,7 +4090,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/marca-blanca"
     },
     {
-      "id": 130,
+      "id": "oem",
+      "legacyId": 130,
       "term": "OEM",
       "slug": "oem",
       "category": "canal",
@@ -3839,7 +4105,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/oem"
     },
     {
-      "id": 131,
+      "id": "technical-onboarding",
+      "legacyId": 131,
       "term": "Onboarding técnico",
       "slug": "onboarding-tecnico",
       "category": "canal",
@@ -3853,7 +4120,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/onboarding-tecnico"
     },
     {
-      "id": 132,
+      "id": "commercial-playbook",
+      "legacyId": 132,
       "term": "Playbook comercial",
       "slug": "playbook-comercial",
       "category": "canal",
@@ -3867,7 +4135,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/playbook-comercial"
     },
     {
-      "id": 133,
+      "id": "technical-reseller",
+      "legacyId": 133,
       "term": "Reseller técnico",
       "slug": "reseller-tecnico",
       "category": "canal",
@@ -3881,7 +4150,8 @@ export const GLOSSARY_TERMS = {
       "url": "/es/glosario/reseller-tecnico"
     },
     {
-      "id": 134,
+      "id": "territory",
+      "legacyId": 134,
       "term": "Territorio",
       "slug": "territorio",
       "category": "canal",
@@ -3897,7 +4167,8 @@ export const GLOSSARY_TERMS = {
   ],
   "fr": [
     {
-      "id": 0,
+      "id": "adenovirus",
+      "legacyId": 0,
       "term": "Adenovirus",
       "slug": "adenovirus",
       "category": "microbiologia",
@@ -3911,7 +4182,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/adenovirus"
     },
     {
-      "id": 1,
+      "id": "viable-bacteria",
+      "legacyId": 1,
       "term": "Bactérie viable",
       "slug": "bacterie-viable",
       "category": "microbiologia",
@@ -3925,7 +4197,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/bacterie-viable"
     },
     {
-      "id": 2,
+      "id": "bacteriophage",
+      "legacyId": 2,
       "term": "Bactériophage",
       "slug": "bacteriophage",
       "category": "microbiologia",
@@ -3942,7 +4215,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/bacteriophage"
     },
     {
-      "id": 3,
+      "id": "biofilm",
+      "legacyId": 3,
       "term": "Biofilm",
       "slug": "biofilm",
       "category": "microbiologia",
@@ -3956,7 +4230,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/biofilm"
     },
     {
-      "id": 4,
+      "id": "microbial-load",
+      "legacyId": 4,
       "term": "Charge microbienne",
       "slug": "charge-microbienne",
       "category": "microbiologia",
@@ -3970,7 +4245,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/charge-microbienne"
     },
     {
-      "id": 5,
+      "id": "host-strain",
+      "legacyId": 5,
       "term": "Souche hôte",
       "slug": "souche-hote",
       "category": "microbiologia",
@@ -3984,7 +4260,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/souche-hote"
     },
     {
-      "id": 6,
+      "id": "total-coliforms",
+      "legacyId": 6,
       "term": "Coliformes totaux",
       "slug": "coliformes-totaux",
       "category": "microbiologia",
@@ -3998,7 +4275,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/coliformes-totaux"
     },
     {
-      "id": 7,
+      "id": "f-rna-coliphages",
+      "legacyId": 7,
       "term": "Coliphages F-ARN",
       "slug": "coliphages-f-arn",
       "category": "microbiologia",
@@ -4014,7 +4292,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/coliphages-f-arn"
     },
     {
-      "id": 8,
+      "id": "f-specific-coliphages",
+      "legacyId": 8,
       "term": "Coliphages F-spécifiques",
       "slug": "coliphages-f-specifiques",
       "category": "microbiologia",
@@ -4031,7 +4310,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/coliphages-f-specifiques"
     },
     {
-      "id": 9,
+      "id": "somatic-coliphages",
+      "legacyId": 9,
       "term": "Coliphages somatiques",
       "slug": "coliphages-somatiques",
       "category": "microbiologia",
@@ -4048,7 +4328,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/coliphages-somatiques"
     },
     {
-      "id": 10,
+      "id": "fecal-contamination",
+      "legacyId": 10,
       "term": "Contamination fécale",
       "slug": "contamination-fecale",
       "category": "microbiologia",
@@ -4062,7 +4343,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/contamination-fecale"
     },
     {
-      "id": 11,
+      "id": "intestinal-enterococci",
+      "legacyId": 11,
       "term": "Entérocoques intestinaux",
       "slug": "enterocoques-intestinaux",
       "category": "microbiologia",
@@ -4076,7 +4358,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/enterocoques-intestinaux"
     },
     {
-      "id": 12,
+      "id": "escherichia-coli-e-coli",
+      "legacyId": 12,
       "term": "Escherichia coli (E. coli)",
       "slug": "escherichia-coli-e-coli",
       "category": "microbiologia",
@@ -4092,7 +4375,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/escherichia-coli-e-coli"
     },
     {
-      "id": 13,
+      "id": "legionella",
+      "legacyId": 13,
       "term": "Legionella",
       "slug": "legionella",
       "category": "microbiologia",
@@ -4106,7 +4390,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/legionella"
     },
     {
-      "id": 14,
+      "id": "microbial-source-tracking-mst",
+      "legacyId": 14,
       "term": "Microbial Source Tracking (MST)",
       "slug": "microbial-source-tracking-mst",
       "category": "microbiologia",
@@ -4122,7 +4407,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/microbial-source-tracking-mst"
     },
     {
-      "id": 15,
+      "id": "indicator-microorganism",
+      "legacyId": 15,
       "term": "Micro-organisme indicateur",
       "slug": "micro-organisme-indicateur",
       "category": "microbiologia",
@@ -4136,7 +4422,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/micro-organisme-indicateur"
     },
     {
-      "id": 16,
+      "id": "norovirus",
+      "legacyId": 16,
       "term": "Norovirus",
       "slug": "norovirus",
       "category": "microbiologia",
@@ -4150,7 +4437,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/norovirus"
     },
     {
-      "id": 17,
+      "id": "pathogen",
+      "legacyId": 17,
       "term": "Pathogène",
       "slug": "pathogene",
       "category": "microbiologia",
@@ -4164,7 +4452,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/pathogene"
     },
     {
-      "id": 18,
+      "id": "pseudomonas-aeruginosa",
+      "legacyId": 18,
       "term": "Pseudomonas aeruginosa",
       "slug": "pseudomonas-aeruginosa",
       "category": "microbiologia",
@@ -4178,7 +4467,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/pseudomonas-aeruginosa"
     },
     {
-      "id": 19,
+      "id": "pfu-plaque-forming-units",
+      "legacyId": 19,
       "term": "UFP / PFU",
       "slug": "ufp-pfu",
       "category": "microbiologia",
@@ -4194,7 +4484,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/ufp-pfu"
     },
     {
-      "id": 20,
+      "id": "enteric-viruses",
+      "legacyId": 20,
       "term": "Virus entériques",
       "slug": "virus-enteriques",
       "category": "microbiologia",
@@ -4208,7 +4499,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/virus-enteriques"
     },
     {
-      "id": 21,
+      "id": "directive-eu-2020-2184",
+      "legacyId": 21,
       "term": "Directiva (UE) 2020/2184",
       "slug": "directiva-ue-2020-2184",
       "category": "normativa",
@@ -4224,7 +4516,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/directiva-ue-2020-2184"
     },
     {
-      "id": 22,
+      "id": "epa-method-1601",
+      "legacyId": 22,
       "term": "EPA Method 1601",
       "slug": "epa-method-1601",
       "category": "normativa",
@@ -4238,7 +4531,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/epa-method-1601"
     },
     {
-      "id": 23,
+      "id": "epa-method-1602",
+      "legacyId": 23,
       "term": "EPA Method 1602",
       "slug": "epa-method-1602",
       "category": "normativa",
@@ -4252,7 +4546,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/epa-method-1602"
     },
     {
-      "id": 24,
+      "id": "haccp",
+      "legacyId": 24,
       "term": "HACCP",
       "slug": "haccp",
       "category": "normativa",
@@ -4266,7 +4561,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/haccp"
     },
     {
-      "id": 25,
+      "id": "iso-10705-1",
+      "legacyId": 25,
       "term": "ISO 10705-1",
       "slug": "iso-10705-1",
       "category": "normativa",
@@ -4280,7 +4576,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-10705-1"
     },
     {
-      "id": 26,
+      "id": "iso-10705-2",
+      "legacyId": 26,
       "term": "ISO 10705-2",
       "slug": "iso-10705-2",
       "category": "normativa",
@@ -4294,7 +4591,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-10705-2"
     },
     {
-      "id": 27,
+      "id": "iso-11731",
+      "legacyId": 27,
       "term": "ISO 11731",
       "slug": "iso-11731",
       "category": "normativa",
@@ -4308,7 +4606,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-11731"
     },
     {
-      "id": 28,
+      "id": "iso-19458",
+      "legacyId": 28,
       "term": "ISO 19458",
       "slug": "iso-19458",
       "category": "normativa",
@@ -4322,7 +4621,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-19458"
     },
     {
-      "id": 29,
+      "id": "iso-22000",
+      "legacyId": 29,
       "term": "ISO 22000",
       "slug": "iso-22000",
       "category": "normativa",
@@ -4336,7 +4636,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-22000"
     },
     {
-      "id": 30,
+      "id": "iso-5667-1",
+      "legacyId": 30,
       "term": "ISO 5667-1",
       "slug": "iso-5667-1",
       "category": "normativa",
@@ -4350,7 +4651,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-5667-1"
     },
     {
-      "id": 31,
+      "id": "iso-7899-2",
+      "legacyId": 31,
       "term": "ISO 7899-2",
       "slug": "iso-7899-2",
       "category": "normativa",
@@ -4364,7 +4666,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-7899-2"
     },
     {
-      "id": 32,
+      "id": "iso-9308",
+      "legacyId": 32,
       "term": "ISO 9308",
       "slug": "iso-9308",
       "category": "normativa",
@@ -4378,7 +4681,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-9308"
     },
     {
-      "id": 33,
+      "id": "iso-iec-17025",
+      "legacyId": 33,
       "term": "ISO/IEC 17025",
       "slug": "iso-iec-17025",
       "category": "normativa",
@@ -4392,7 +4696,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/iso-iec-17025"
     },
     {
-      "id": 34,
+      "id": "water-safety-plan",
+      "legacyId": 34,
       "term": "Plan de sécurité sanitaire de l’eau",
       "slug": "plan-de-securite-sanitaire-de-leau",
       "category": "normativa",
@@ -4406,7 +4711,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/plan-de-securite-sanitaire-de-leau"
     },
     {
-      "id": 35,
+      "id": "royal-decree-3-2023",
+      "legacyId": 35,
       "term": "Décret royal 3/2023",
       "slug": "decret-royal-3-2023",
       "category": "normativa",
@@ -4422,7 +4728,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/decret-royal-3-2023"
     },
     {
-      "id": 36,
+      "id": "royal-decree-487-2022",
+      "legacyId": 36,
       "term": "Décret royal 487/2022",
       "slug": "decret-royal-487-2022",
       "category": "normativa",
@@ -4438,7 +4745,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/decret-royal-487-2022"
     },
     {
-      "id": 37,
+      "id": "royal-decree-742-2013",
+      "legacyId": 37,
       "term": "Décret royal 742/2013",
       "slug": "decret-royal-742-2013",
       "category": "normativa",
@@ -4454,7 +4762,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/decret-royal-742-2013"
     },
     {
-      "id": 38,
+      "id": "regulation-eu-2020-741",
+      "legacyId": 38,
       "term": "Règlement (UE) 2020/741",
       "slug": "reglement-ue-2020-741",
       "category": "normativa",
@@ -4470,7 +4779,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/reglement-ue-2020-741"
     },
     {
-      "id": 39,
+      "id": "revised-total-coliform-rule-rtcr",
+      "legacyId": 39,
       "term": "Revised Total Coliform Rule (RTCR)",
       "slug": "revised-total-coliform-rule-rtcr",
       "category": "normativa",
@@ -4486,7 +4796,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/revised-total-coliform-rule-rtcr"
     },
     {
-      "id": 40,
+      "id": "water-safety-plan",
+      "legacyId": 40,
       "term": "Water Safety Plan",
       "slug": "water-safety-plan",
       "category": "normativa",
@@ -4502,7 +4813,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/water-safety-plan"
     },
     {
-      "id": 41,
+      "id": "method-blank",
+      "legacyId": 41,
       "term": "Blanc de méthode",
       "slug": "blanc-de-methode",
       "category": "metodologia",
@@ -4516,7 +4828,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/blanc-de-methode"
     },
     {
-      "id": 42,
+      "id": "cold-chain",
+      "legacyId": 42,
       "term": "Chaîne du froid",
       "slug": "chaine-du-froid",
       "category": "metodologia",
@@ -4530,7 +4843,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/chaine-du-froid"
     },
     {
-      "id": 43,
+      "id": "negative-control",
+      "legacyId": 43,
       "term": "Contrôle négatif",
       "slug": "controle-negatif",
       "category": "metodologia",
@@ -4544,7 +4858,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/controle-negatif"
     },
     {
-      "id": 44,
+      "id": "positive-control",
+      "legacyId": 44,
       "term": "Contrôle positif",
       "slug": "controle-positif",
       "category": "metodologia",
@@ -4558,7 +4873,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/controle-positif"
     },
     {
-      "id": 45,
+      "id": "double-agar-layer",
+      "legacyId": 45,
       "term": "Double Agar Layer",
       "slug": "double-agar-layer",
       "category": "metodologia",
@@ -4574,7 +4890,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/double-agar-layer"
     },
     {
-      "id": 46,
+      "id": "enrichment",
+      "legacyId": 46,
       "term": "Enrichissement",
       "slug": "enrichissement",
       "category": "metodologia",
@@ -4588,7 +4905,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/enrichissement"
     },
     {
-      "id": 47,
+      "id": "plaque-assay",
+      "legacyId": 47,
       "term": "Essai en plaque",
       "slug": "essai-en-plaque",
       "category": "metodologia",
@@ -4604,7 +4922,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/essai-en-plaque"
     },
     {
-      "id": 48,
+      "id": "membrane-filtration",
+      "legacyId": 48,
       "term": "Filtration sur membrane",
       "slug": "filtration-sur-membrane",
       "category": "metodologia",
@@ -4618,7 +4937,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/filtration-sur-membrane"
     },
     {
-      "id": 49,
+      "id": "incubation",
+      "legacyId": 49,
       "term": "Incubation",
       "slug": "incubation",
       "category": "metodologia",
@@ -4632,7 +4952,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/incubation"
     },
     {
-      "id": 50,
+      "id": "cell-lysis",
+      "legacyId": 50,
       "term": "Lyse cellulaire",
       "slug": "lyse-cellulaire",
       "category": "metodologia",
@@ -4646,7 +4967,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/lyse-cellulaire"
     },
     {
-      "id": 51,
+      "id": "limit-of-quantification-loq",
+      "legacyId": 51,
       "term": "Limite de quantification (LOQ)",
       "slug": "limite-de-quantification-loq",
       "category": "metodologia",
@@ -4660,7 +4982,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/limite-de-quantification-loq"
     },
     {
-      "id": 52,
+      "id": "limit-of-detection-lod",
+      "legacyId": 52,
       "term": "Limite de détection (LOD)",
       "slug": "limite-de-detection-lod",
       "category": "metodologia",
@@ -4674,7 +4997,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/limite-de-detection-lod"
     },
     {
-      "id": 53,
+      "id": "matrix",
+      "legacyId": 53,
       "term": "Matrice",
       "slug": "matrice",
       "category": "metodologia",
@@ -4688,7 +5012,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/matrice"
     },
     {
-      "id": 54,
+      "id": "composite-sample",
+      "legacyId": 54,
       "term": "Échantillon composite",
       "slug": "echantillon-composite",
       "category": "metodologia",
@@ -4702,7 +5027,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/echantillon-composite"
     },
     {
-      "id": 55,
+      "id": "grab-sample",
+      "legacyId": 55,
       "term": "Échantillon ponctuel",
       "slug": "echantillon-ponctuel",
       "category": "metodologia",
@@ -4716,7 +5042,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/echantillon-ponctuel"
     },
     {
-      "id": 56,
+      "id": "most-probable-number-mpn",
+      "legacyId": 56,
       "term": "Nombre le plus probable (NPP)",
       "slug": "nombre-le-plus-probable-npp",
       "category": "metodologia",
@@ -4732,7 +5059,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/nombre-le-plus-probable-npp"
     },
     {
-      "id": 57,
+      "id": "oos-out-of-specification",
+      "legacyId": 57,
       "term": "OOS / Hors spécification",
       "slug": "oos-hors-specification",
       "category": "metodologia",
@@ -4748,7 +5076,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/oos-hors-specification"
     },
     {
-      "id": 58,
+      "id": "sampling-point",
+      "legacyId": 58,
       "term": "Point de prélèvement",
       "slug": "point-de-prelevement",
       "category": "metodologia",
@@ -4762,7 +5091,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/point-de-prelevement"
     },
     {
-      "id": 59,
+      "id": "recovery",
+      "legacyId": 59,
       "term": "Récupération",
       "slug": "recuperation",
       "category": "metodologia",
@@ -4776,7 +5106,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/recuperation"
     },
     {
-      "id": 60,
+      "id": "repeatability",
+      "legacyId": 60,
       "term": "Répétabilité",
       "slug": "repetabilite",
       "category": "metodologia",
@@ -4790,7 +5121,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/repetabilite"
     },
     {
-      "id": 61,
+      "id": "reproducibility",
+      "legacyId": 61,
       "term": "Reproductibilité",
       "slug": "reproductibilite",
       "category": "metodologia",
@@ -4804,7 +5136,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/reproductibilite"
     },
     {
-      "id": 62,
+      "id": "single-agar-layer-sal",
+      "legacyId": 62,
       "term": "Single Agar Layer (SAL)",
       "slug": "single-agar-layer-sal",
       "category": "metodologia",
@@ -4820,7 +5153,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/single-agar-layer-sal"
     },
     {
-      "id": 63,
+      "id": "ttr-time-to-result",
+      "legacyId": 63,
       "term": "TTR / Temps de réponse",
       "slug": "ttr-temps-de-reponse",
       "category": "metodologia",
@@ -4836,7 +5170,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/ttr-temps-de-reponse"
     },
     {
-      "id": 64,
+      "id": "21-cfr-part-11",
+      "legacyId": 64,
       "term": "21 CFR Part 11",
       "slug": "21-cfr-part-11",
       "category": "lims-cloud",
@@ -4850,7 +5185,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/21-cfr-part-11"
     },
     {
-      "id": 65,
+      "id": "alcoa-plus",
+      "legacyId": 65,
       "term": "ALCOA+",
       "slug": "alcoa",
       "category": "lims-cloud",
@@ -4864,7 +5200,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/alcoa"
     },
     {
-      "id": 66,
+      "id": "aqualab",
+      "legacyId": 66,
       "term": "AquaLab",
       "slug": "aqualab",
       "category": "lims-cloud",
@@ -4878,7 +5215,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/aqualab"
     },
     {
-      "id": 67,
+      "id": "aquaverify-cloud",
+      "legacyId": 67,
       "term": "AquaVerify Cloud",
       "slug": "aquaverify-cloud",
       "category": "lims-cloud",
@@ -4892,7 +5230,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/aquaverify-cloud"
     },
     {
-      "id": 68,
+      "id": "audit-trail",
+      "legacyId": 68,
       "term": "Audit trail",
       "slug": "audit-trail",
       "category": "lims-cloud",
@@ -4906,7 +5245,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/audit-trail"
     },
     {
-      "id": 69,
+      "id": "digital-chain-of-custody",
+      "legacyId": 69,
       "term": "Chaîne de custodie digitale",
       "slug": "chaine-de-custodie-digitale",
       "category": "lims-cloud",
@@ -4920,7 +5260,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/chaine-de-custodie-digitale"
     },
     {
-      "id": 70,
+      "id": "coa-certificate-of-analysis",
+      "legacyId": 70,
       "term": "CoA / Certificat d’analyse",
       "slug": "coa-certificat-danalyse",
       "category": "lims-cloud",
@@ -4936,7 +5277,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/coa-certificat-danalyse"
     },
     {
-      "id": 71,
+      "id": "crm",
+      "legacyId": 71,
       "term": "CRM",
       "slug": "crm",
       "category": "lims-cloud",
@@ -4950,7 +5292,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/crm"
     },
     {
-      "id": 72,
+      "id": "dashboard-lims",
+      "legacyId": 72,
       "term": "Dashboard LIMS",
       "slug": "dashboard-lims",
       "category": "lims-cloud",
@@ -4964,7 +5307,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/dashboard-lims"
     },
     {
-      "id": 73,
+      "id": "eln",
+      "legacyId": 73,
       "term": "ELN",
       "slug": "eln",
       "category": "lims-cloud",
@@ -4980,7 +5324,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/eln"
     },
     {
-      "id": 74,
+      "id": "electronic-signature",
+      "legacyId": 74,
       "term": "Signature électronique",
       "slug": "signature-electronique",
       "category": "lims-cloud",
@@ -4994,7 +5339,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/signature-electronique"
     },
     {
-      "id": 75,
+      "id": "gxp",
+      "legacyId": 75,
       "term": "GxP",
       "slug": "gxp",
       "category": "lims-cloud",
@@ -5008,7 +5354,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/gxp"
     },
     {
-      "id": 76,
+      "id": "worksheet",
+      "legacyId": 76,
       "term": "Feuille de travail",
       "slug": "feuille-de-travail",
       "category": "lims-cloud",
@@ -5022,7 +5369,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/feuille-de-travail"
     },
     {
-      "id": 77,
+      "id": "lims",
+      "legacyId": 77,
       "term": "LIMS",
       "slug": "lims",
       "category": "lims-cloud",
@@ -5038,7 +5386,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/lims"
     },
     {
-      "id": 78,
+      "id": "customer-portal",
+      "legacyId": 78,
       "term": "Portail client",
       "slug": "portail-client",
       "category": "lims-cloud",
@@ -5052,7 +5401,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/portail-client"
     },
     {
-      "id": 79,
+      "id": "saas",
+      "legacyId": 79,
       "term": "SaaS",
       "slug": "saas",
       "category": "lims-cloud",
@@ -5066,7 +5416,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/saas"
     },
     {
-      "id": 80,
+      "id": "sample-hub",
+      "legacyId": 80,
       "term": "Sample Hub",
       "slug": "sample-hub",
       "category": "lims-cloud",
@@ -5080,7 +5431,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/sample-hub"
     },
     {
-      "id": 81,
+      "id": "sla",
+      "legacyId": 81,
       "term": "SLA",
       "slug": "sla",
       "category": "lims-cloud",
@@ -5096,7 +5448,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/sla"
     },
     {
-      "id": 82,
+      "id": "tat-turnaround-time",
+      "legacyId": 82,
       "term": "TAT / Turnaround Time",
       "slug": "tat-turnaround-time",
       "category": "lims-cloud",
@@ -5110,7 +5463,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/tat-turnaround-time"
     },
     {
-      "id": 83,
+      "id": "tenant",
+      "legacyId": 83,
       "term": "Tenant",
       "slug": "tenant",
       "category": "lims-cloud",
@@ -5124,7 +5478,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/tenant"
     },
     {
-      "id": 84,
+      "id": "analytical-traceability",
+      "legacyId": 84,
       "term": "Traçabilité analytique",
       "slug": "tracabilite-analytique",
       "category": "lims-cloud",
@@ -5138,7 +5493,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/tracabilite-analytique"
     },
     {
-      "id": 85,
+      "id": "wms",
+      "legacyId": 85,
       "term": "WMS",
       "slug": "wms",
       "category": "lims-cloud",
@@ -5154,7 +5510,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/wms"
     },
     {
-      "id": 86,
+      "id": "workflow-owner",
+      "legacyId": 86,
       "term": "Workflow owner",
       "slug": "workflow-owner",
       "category": "lims-cloud",
@@ -5168,7 +5525,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/workflow-owner"
     },
     {
-      "id": 87,
+      "id": "kit-expiry",
+      "legacyId": 87,
       "term": "Péremption du kit",
       "slug": "peremption-du-kit",
       "category": "productos",
@@ -5182,7 +5540,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/peremption-du-kit"
     },
     {
-      "id": 88,
+      "id": "internal-quality-control",
+      "legacyId": 88,
       "term": "Contrôle qualité interne",
       "slug": "controle-qualite-interne",
       "category": "productos",
@@ -5196,7 +5555,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/controle-qualite-interne"
     },
     {
-      "id": 89,
+      "id": "enumera",
+      "legacyId": 89,
       "term": "ENUMERA",
       "slug": "enumera",
       "category": "productos",
@@ -5210,7 +5570,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/enumera"
     },
     {
-      "id": 90,
+      "id": "indica",
+      "legacyId": 90,
       "term": "INDICA",
       "slug": "indica",
       "category": "productos",
@@ -5224,7 +5585,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/indica"
     },
     {
-      "id": 91,
+      "id": "rapid-detection-kit",
+      "legacyId": 91,
       "term": "Kit de détection rapide",
       "slug": "kit-de-detection-rapide",
       "category": "productos",
@@ -5238,7 +5600,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/kit-de-detection-rapide"
     },
     {
-      "id": 92,
+      "id": "kits-iso-epa",
+      "legacyId": 92,
       "term": "Kits ISO/EPA",
       "slug": "kits-iso-epa",
       "category": "productos",
@@ -5252,7 +5615,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/kits-iso-epa"
     },
     {
-      "id": 93,
+      "id": "lab-essentials",
+      "legacyId": 93,
       "term": "Lab Essentials",
       "slug": "lab-essentials",
       "category": "productos",
@@ -5266,7 +5630,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/lab-essentials"
     },
     {
-      "id": 94,
+      "id": "kit-lot",
+      "legacyId": 94,
       "term": "Lot de kit",
       "slug": "lot-de-kit",
       "category": "productos",
@@ -5280,7 +5645,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/lot-de-kit"
     },
     {
-      "id": 95,
+      "id": "culture-medium",
+      "legacyId": 95,
       "term": "Milieu de culture",
       "slug": "milieu-de-culture",
       "category": "productos",
@@ -5294,7 +5660,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/milieu-de-culture"
     },
     {
-      "id": 96,
+      "id": "reagent",
+      "legacyId": 96,
       "term": "Réactif",
       "slug": "reactif",
       "category": "productos",
@@ -5308,7 +5675,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/reactif"
     },
     {
-      "id": 97,
+      "id": "smart-cap",
+      "legacyId": 97,
       "term": "Smart Cap",
       "slug": "smart-cap",
       "category": "productos",
@@ -5322,7 +5690,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/smart-cap"
     },
     {
-      "id": 98,
+      "id": "domestic-hot-water",
+      "legacyId": 98,
       "term": "ECS / Eau chaude sanitaire",
       "slug": "ecs-eau-chaude-sanitaire",
       "category": "operacion-agua",
@@ -5336,7 +5705,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/ecs-eau-chaude-sanitaire"
     },
     {
-      "id": 99,
+      "id": "aerosolization",
+      "legacyId": 99,
       "term": "Aérosolisation",
       "slug": "aerosolisation",
       "category": "operacion-agua",
@@ -5350,7 +5720,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/aerosolisation"
     },
     {
-      "id": 100,
+      "id": "raw-water",
+      "legacyId": 100,
       "term": "Eau brute",
       "slug": "eau-brute",
       "category": "operacion-agua",
@@ -5364,7 +5735,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/eau-brute"
     },
     {
-      "id": 101,
+      "id": "drinking-water",
+      "legacyId": 101,
       "term": "Eau potable",
       "slug": "eau-potable",
       "category": "operacion-agua",
@@ -5378,7 +5750,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/eau-potable"
     },
     {
-      "id": 102,
+      "id": "process-water",
+      "legacyId": 102,
       "term": "Eau de process",
       "slug": "eau-de-process",
       "category": "operacion-agua",
@@ -5392,7 +5765,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/eau-de-process"
     },
     {
-      "id": 103,
+      "id": "reclaimed-water",
+      "legacyId": 103,
       "term": "Eau régénérée",
       "slug": "eau-regeneree",
       "category": "operacion-agua",
@@ -5406,7 +5780,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/eau-regeneree"
     },
     {
-      "id": 104,
+      "id": "wastewater",
+      "legacyId": 104,
       "term": "Eau usée",
       "slug": "eau-usee",
       "category": "operacion-agua",
@@ -5420,7 +5795,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/eau-usee"
     },
     {
-      "id": 105,
+      "id": "cip",
+      "legacyId": 105,
       "term": "CIP",
       "slug": "cip",
       "category": "operacion-agua",
@@ -5436,7 +5812,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/cip"
     },
     {
-      "id": 106,
+      "id": "chlorination",
+      "legacyId": 106,
       "term": "Chloration",
       "slug": "chloration",
       "category": "operacion-agua",
@@ -5450,7 +5827,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/chloration"
     },
     {
-      "id": 107,
+      "id": "hydroponics",
+      "legacyId": 107,
       "term": "Hydroponie",
       "slug": "hydroponie",
       "category": "operacion-agua",
@@ -5464,7 +5842,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/hydroponie"
     },
     {
-      "id": 108,
+      "id": "packhouse",
+      "legacyId": 108,
       "term": "Packhouse",
       "slug": "packhouse",
       "category": "operacion-agua",
@@ -5478,7 +5857,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/packhouse"
     },
     {
-      "id": 109,
+      "id": "terminal-point",
+      "legacyId": 109,
       "term": "Point terminal",
       "slug": "point-terminal",
       "category": "operacion-agua",
@@ -5492,7 +5872,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/point-terminal"
     },
     {
-      "id": 110,
+      "id": "agricultural-irrigation",
+      "legacyId": 110,
       "term": "Irrigation agricole",
       "slug": "irrigation-agricole",
       "category": "operacion-agua",
@@ -5506,7 +5887,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/irrigation-agricole"
     },
     {
-      "id": 111,
+      "id": "turbidity",
+      "legacyId": 111,
       "term": "Turbidité",
       "slug": "turbidite",
       "category": "operacion-agua",
@@ -5520,7 +5902,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/turbidite"
     },
     {
-      "id": 112,
+      "id": "uv-disinfection",
+      "legacyId": 112,
       "term": "UV / Désinfection ultraviolette",
       "slug": "uv-desinfection-ultraviolette",
       "category": "operacion-agua",
@@ -5534,7 +5917,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/uv-desinfection-ultraviolette"
     },
     {
-      "id": 113,
+      "id": "approval",
+      "legacyId": 113,
       "term": "Approbation",
       "slug": "approbation",
       "category": "calidad",
@@ -5548,7 +5932,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/approbation"
     },
     {
-      "id": 114,
+      "id": "capa",
+      "legacyId": 114,
       "term": "CAPA",
       "slug": "capa",
       "category": "calidad",
@@ -5562,7 +5947,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/capa"
     },
     {
-      "id": 115,
+      "id": "document-control",
+      "legacyId": 115,
       "term": "Contrôle documentaire",
       "slug": "controle-documentaire",
       "category": "calidad",
@@ -5576,7 +5962,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/controle-documentaire"
     },
     {
-      "id": 116,
+      "id": "deviation",
+      "legacyId": 116,
       "term": "Déviation",
       "slug": "deviation",
       "category": "calidad",
@@ -5590,7 +5977,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/deviation"
     },
     {
-      "id": 117,
+      "id": "dossier",
+      "legacyId": 117,
       "term": "Dossier",
       "slug": "dossier",
       "category": "calidad",
@@ -5604,7 +5992,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/dossier"
     },
     {
-      "id": 118,
+      "id": "validation-dossier",
+      "legacyId": 118,
       "term": "Dossier de validation",
       "slug": "dossier-de-validation",
       "category": "calidad",
@@ -5618,7 +6007,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/dossier-de-validation"
     },
     {
-      "id": 119,
+      "id": "nonconformity",
+      "legacyId": 119,
       "term": "Non-conformité",
       "slug": "non-conformite",
       "category": "calidad",
@@ -5632,7 +6022,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/non-conformite"
     },
     {
-      "id": 120,
+      "id": "technical-review",
+      "legacyId": 120,
       "term": "Revue technique",
       "slug": "revue-technique",
       "category": "calidad",
@@ -5646,7 +6037,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/revue-technique"
     },
     {
-      "id": 121,
+      "id": "sop",
+      "legacyId": 121,
       "term": "SOP",
       "slug": "sop",
       "category": "calidad",
@@ -5660,7 +6052,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/sop"
     },
     {
-      "id": 122,
+      "id": "tech-transfer",
+      "legacyId": 122,
       "term": "Tech Transfer",
       "slug": "tech-transfer",
       "category": "calidad",
@@ -5674,7 +6067,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/tech-transfer"
     },
     {
-      "id": 123,
+      "id": "method-validation",
+      "legacyId": 123,
       "term": "Validation de méthode",
       "slug": "validation-de-methode",
       "category": "calidad",
@@ -5688,7 +6082,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/validation-de-methode"
     },
     {
-      "id": 124,
+      "id": "method-verification",
+      "legacyId": 124,
       "term": "Vérification de méthode",
       "slug": "verification-de-methode",
       "category": "calidad",
@@ -5702,7 +6097,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/verification-de-methode"
     },
     {
-      "id": 125,
+      "id": "co-branding",
+      "legacyId": 125,
       "term": "Co-branding",
       "slug": "co-branding",
       "category": "canal",
@@ -5716,7 +6112,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/co-branding"
     },
     {
-      "id": 126,
+      "id": "authorized-distributor",
+      "legacyId": 126,
       "term": "Distributeur autorisé",
       "slug": "distributeur-autorise",
       "category": "canal",
@@ -5730,7 +6127,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/distributeur-autorise"
     },
     {
-      "id": 127,
+      "id": "private-label-kit",
+      "legacyId": 127,
       "term": "Kit sous marque propre",
       "slug": "kit-sous-marque-propre",
       "category": "canal",
@@ -5744,7 +6142,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/kit-sous-marque-propre"
     },
     {
-      "id": 128,
+      "id": "lead-routing",
+      "legacyId": 128,
       "term": "Lead routing",
       "slug": "lead-routing",
       "category": "canal",
@@ -5758,7 +6157,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/lead-routing"
     },
     {
-      "id": 129,
+      "id": "white-label",
+      "legacyId": 129,
       "term": "Marque blanche",
       "slug": "marque-blanche",
       "category": "canal",
@@ -5772,7 +6172,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/marque-blanche"
     },
     {
-      "id": 130,
+      "id": "oem",
+      "legacyId": 130,
       "term": "OEM",
       "slug": "oem",
       "category": "canal",
@@ -5786,7 +6187,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/oem"
     },
     {
-      "id": 131,
+      "id": "technical-onboarding",
+      "legacyId": 131,
       "term": "Onboarding technique",
       "slug": "onboarding-technique",
       "category": "canal",
@@ -5800,7 +6202,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/onboarding-technique"
     },
     {
-      "id": 132,
+      "id": "commercial-playbook",
+      "legacyId": 132,
       "term": "Playbook commercial",
       "slug": "playbook-commercial",
       "category": "canal",
@@ -5814,7 +6217,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/playbook-commercial"
     },
     {
-      "id": 133,
+      "id": "technical-reseller",
+      "legacyId": 133,
       "term": "Revendeur technique",
       "slug": "revendeur-technique",
       "category": "canal",
@@ -5828,7 +6232,8 @@ export const GLOSSARY_TERMS = {
       "url": "/fr/glossaire/revendeur-technique"
     },
     {
-      "id": 134,
+      "id": "territory",
+      "legacyId": 134,
       "term": "Territoire",
       "slug": "territoire",
       "category": "canal",
@@ -5844,7 +6249,8 @@ export const GLOSSARY_TERMS = {
   ],
   "it": [
     {
-      "id": 0,
+      "id": "adenovirus",
+      "legacyId": 0,
       "term": "Adenovirus",
       "slug": "adenovirus",
       "category": "microbiologia",
@@ -5858,7 +6264,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/adenovirus"
     },
     {
-      "id": 1,
+      "id": "viable-bacteria",
+      "legacyId": 1,
       "term": "Batterio vitale",
       "slug": "batterio-vitale",
       "category": "microbiologia",
@@ -5872,7 +6279,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/batterio-vitale"
     },
     {
-      "id": 2,
+      "id": "bacteriophage",
+      "legacyId": 2,
       "term": "Batteriofago",
       "slug": "batteriofago",
       "category": "microbiologia",
@@ -5889,7 +6297,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/batteriofago"
     },
     {
-      "id": 3,
+      "id": "biofilm",
+      "legacyId": 3,
       "term": "Biofilm",
       "slug": "biofilm",
       "category": "microbiologia",
@@ -5903,7 +6312,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/biofilm"
     },
     {
-      "id": 4,
+      "id": "microbial-load",
+      "legacyId": 4,
       "term": "Carica microbica",
       "slug": "carica-microbica",
       "category": "microbiologia",
@@ -5917,7 +6327,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/carica-microbica"
     },
     {
-      "id": 5,
+      "id": "host-strain",
+      "legacyId": 5,
       "term": "Ceppo ospite",
       "slug": "ceppo-ospite",
       "category": "microbiologia",
@@ -5931,7 +6342,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/ceppo-ospite"
     },
     {
-      "id": 6,
+      "id": "total-coliforms",
+      "legacyId": 6,
       "term": "Coliformi totali",
       "slug": "coliformi-totali",
       "category": "microbiologia",
@@ -5945,7 +6357,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/coliformi-totali"
     },
     {
-      "id": 7,
+      "id": "f-rna-coliphages",
+      "legacyId": 7,
       "term": "Colifagi F-RNA",
       "slug": "colifagi-f-rna",
       "category": "microbiologia",
@@ -5961,7 +6374,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/colifagi-f-rna"
     },
     {
-      "id": 8,
+      "id": "f-specific-coliphages",
+      "legacyId": 8,
       "term": "Colifagi F-specifici",
       "slug": "colifagi-f-specifici",
       "category": "microbiologia",
@@ -5978,7 +6392,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/colifagi-f-specifici"
     },
     {
-      "id": 9,
+      "id": "somatic-coliphages",
+      "legacyId": 9,
       "term": "Colifagi somatici",
       "slug": "colifagi-somatici",
       "category": "microbiologia",
@@ -5995,7 +6410,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/colifagi-somatici"
     },
     {
-      "id": 10,
+      "id": "fecal-contamination",
+      "legacyId": 10,
       "term": "Contaminazione fecale",
       "slug": "contaminazione-fecale",
       "category": "microbiologia",
@@ -6009,7 +6425,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/contaminazione-fecale"
     },
     {
-      "id": 11,
+      "id": "intestinal-enterococci",
+      "legacyId": 11,
       "term": "Enterococchi intestinali",
       "slug": "enterococchi-intestinali",
       "category": "microbiologia",
@@ -6023,7 +6440,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/enterococchi-intestinali"
     },
     {
-      "id": 12,
+      "id": "escherichia-coli-e-coli",
+      "legacyId": 12,
       "term": "Escherichia coli (E. coli)",
       "slug": "escherichia-coli-e-coli",
       "category": "microbiologia",
@@ -6039,7 +6457,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/escherichia-coli-e-coli"
     },
     {
-      "id": 13,
+      "id": "legionella",
+      "legacyId": 13,
       "term": "Legionella",
       "slug": "legionella",
       "category": "microbiologia",
@@ -6053,7 +6472,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/legionella"
     },
     {
-      "id": 14,
+      "id": "microbial-source-tracking-mst",
+      "legacyId": 14,
       "term": "Microbial Source Tracking (MST)",
       "slug": "microbial-source-tracking-mst",
       "category": "microbiologia",
@@ -6069,7 +6489,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/microbial-source-tracking-mst"
     },
     {
-      "id": 15,
+      "id": "indicator-microorganism",
+      "legacyId": 15,
       "term": "Microorganismo indicatore",
       "slug": "microorganismo-indicatore",
       "category": "microbiologia",
@@ -6083,7 +6504,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/microorganismo-indicatore"
     },
     {
-      "id": 16,
+      "id": "norovirus",
+      "legacyId": 16,
       "term": "Norovirus",
       "slug": "norovirus",
       "category": "microbiologia",
@@ -6097,7 +6519,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/norovirus"
     },
     {
-      "id": 17,
+      "id": "pathogen",
+      "legacyId": 17,
       "term": "Patogeno",
       "slug": "patogeno",
       "category": "microbiologia",
@@ -6111,7 +6534,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/patogeno"
     },
     {
-      "id": 18,
+      "id": "pseudomonas-aeruginosa",
+      "legacyId": 18,
       "term": "Pseudomonas aeruginosa",
       "slug": "pseudomonas-aeruginosa",
       "category": "microbiologia",
@@ -6125,7 +6549,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/pseudomonas-aeruginosa"
     },
     {
-      "id": 19,
+      "id": "pfu-plaque-forming-units",
+      "legacyId": 19,
       "term": "UFP / PFU",
       "slug": "ufp-pfu",
       "category": "microbiologia",
@@ -6141,7 +6566,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/ufp-pfu"
     },
     {
-      "id": 20,
+      "id": "enteric-viruses",
+      "legacyId": 20,
       "term": "Virus enterici",
       "slug": "virus-enterici",
       "category": "microbiologia",
@@ -6155,7 +6581,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/virus-enterici"
     },
     {
-      "id": 21,
+      "id": "directive-eu-2020-2184",
+      "legacyId": 21,
       "term": "Directiva (UE) 2020/2184",
       "slug": "directiva-ue-2020-2184",
       "category": "normativa",
@@ -6171,7 +6598,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/directiva-ue-2020-2184"
     },
     {
-      "id": 22,
+      "id": "epa-method-1601",
+      "legacyId": 22,
       "term": "EPA Method 1601",
       "slug": "epa-method-1601",
       "category": "normativa",
@@ -6185,7 +6613,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/epa-method-1601"
     },
     {
-      "id": 23,
+      "id": "epa-method-1602",
+      "legacyId": 23,
       "term": "EPA Method 1602",
       "slug": "epa-method-1602",
       "category": "normativa",
@@ -6199,7 +6628,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/epa-method-1602"
     },
     {
-      "id": 24,
+      "id": "haccp",
+      "legacyId": 24,
       "term": "HACCP",
       "slug": "haccp",
       "category": "normativa",
@@ -6213,7 +6643,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/haccp"
     },
     {
-      "id": 25,
+      "id": "iso-10705-1",
+      "legacyId": 25,
       "term": "ISO 10705-1",
       "slug": "iso-10705-1",
       "category": "normativa",
@@ -6227,7 +6658,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-10705-1"
     },
     {
-      "id": 26,
+      "id": "iso-10705-2",
+      "legacyId": 26,
       "term": "ISO 10705-2",
       "slug": "iso-10705-2",
       "category": "normativa",
@@ -6241,7 +6673,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-10705-2"
     },
     {
-      "id": 27,
+      "id": "iso-11731",
+      "legacyId": 27,
       "term": "ISO 11731",
       "slug": "iso-11731",
       "category": "normativa",
@@ -6255,7 +6688,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-11731"
     },
     {
-      "id": 28,
+      "id": "iso-19458",
+      "legacyId": 28,
       "term": "ISO 19458",
       "slug": "iso-19458",
       "category": "normativa",
@@ -6269,7 +6703,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-19458"
     },
     {
-      "id": 29,
+      "id": "iso-22000",
+      "legacyId": 29,
       "term": "ISO 22000",
       "slug": "iso-22000",
       "category": "normativa",
@@ -6283,7 +6718,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-22000"
     },
     {
-      "id": 30,
+      "id": "iso-5667-1",
+      "legacyId": 30,
       "term": "ISO 5667-1",
       "slug": "iso-5667-1",
       "category": "normativa",
@@ -6297,7 +6733,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-5667-1"
     },
     {
-      "id": 31,
+      "id": "iso-7899-2",
+      "legacyId": 31,
       "term": "ISO 7899-2",
       "slug": "iso-7899-2",
       "category": "normativa",
@@ -6311,7 +6748,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-7899-2"
     },
     {
-      "id": 32,
+      "id": "iso-9308",
+      "legacyId": 32,
       "term": "ISO 9308",
       "slug": "iso-9308",
       "category": "normativa",
@@ -6325,7 +6763,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-9308"
     },
     {
-      "id": 33,
+      "id": "iso-iec-17025",
+      "legacyId": 33,
       "term": "ISO/IEC 17025",
       "slug": "iso-iec-17025",
       "category": "normativa",
@@ -6339,7 +6778,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/iso-iec-17025"
     },
     {
-      "id": 34,
+      "id": "water-safety-plan",
+      "legacyId": 34,
       "term": "Water Safety Plan",
       "slug": "water-safety-plan",
       "category": "normativa",
@@ -6353,7 +6793,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/water-safety-plan"
     },
     {
-      "id": 35,
+      "id": "royal-decree-3-2023",
+      "legacyId": 35,
       "term": "Regio Decreto 3/2023",
       "slug": "regio-decreto-3-2023",
       "category": "normativa",
@@ -6369,7 +6810,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/regio-decreto-3-2023"
     },
     {
-      "id": 36,
+      "id": "royal-decree-487-2022",
+      "legacyId": 36,
       "term": "Regio Decreto 487/2022",
       "slug": "regio-decreto-487-2022",
       "category": "normativa",
@@ -6385,7 +6827,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/regio-decreto-487-2022"
     },
     {
-      "id": 37,
+      "id": "royal-decree-742-2013",
+      "legacyId": 37,
       "term": "Regio Decreto 742/2013",
       "slug": "regio-decreto-742-2013",
       "category": "normativa",
@@ -6401,7 +6844,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/regio-decreto-742-2013"
     },
     {
-      "id": 38,
+      "id": "regulation-eu-2020-741",
+      "legacyId": 38,
       "term": "Regolamento (UE) 2020/741",
       "slug": "regolamento-ue-2020-741",
       "category": "normativa",
@@ -6417,7 +6861,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/regolamento-ue-2020-741"
     },
     {
-      "id": 39,
+      "id": "revised-total-coliform-rule-rtcr",
+      "legacyId": 39,
       "term": "Revised Total Coliform Rule (RTCR)",
       "slug": "revised-total-coliform-rule-rtcr",
       "category": "normativa",
@@ -6433,7 +6878,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/revised-total-coliform-rule-rtcr"
     },
     {
-      "id": 40,
+      "id": "water-safety-plan",
+      "legacyId": 40,
       "term": "Water Safety Plan",
       "slug": "water-safety-plan-2",
       "category": "normativa",
@@ -6449,7 +6895,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/water-safety-plan-2"
     },
     {
-      "id": 41,
+      "id": "method-blank",
+      "legacyId": 41,
       "term": "Bianco di metodo",
       "slug": "bianco-di-metodo",
       "category": "metodologia",
@@ -6463,7 +6910,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/bianco-di-metodo"
     },
     {
-      "id": 42,
+      "id": "cold-chain",
+      "legacyId": 42,
       "term": "Catena del freddo",
       "slug": "catena-del-freddo",
       "category": "metodologia",
@@ -6477,7 +6925,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/catena-del-freddo"
     },
     {
-      "id": 43,
+      "id": "negative-control",
+      "legacyId": 43,
       "term": "Controllo negativo",
       "slug": "controllo-negativo",
       "category": "metodologia",
@@ -6491,7 +6940,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/controllo-negativo"
     },
     {
-      "id": 44,
+      "id": "positive-control",
+      "legacyId": 44,
       "term": "Controllo positivo",
       "slug": "controllo-positivo",
       "category": "metodologia",
@@ -6505,7 +6955,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/controllo-positivo"
     },
     {
-      "id": 45,
+      "id": "double-agar-layer",
+      "legacyId": 45,
       "term": "Double Agar Layer",
       "slug": "double-agar-layer",
       "category": "metodologia",
@@ -6521,7 +6972,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/double-agar-layer"
     },
     {
-      "id": 46,
+      "id": "enrichment",
+      "legacyId": 46,
       "term": "Arricchimento",
       "slug": "arricchimento",
       "category": "metodologia",
@@ -6535,7 +6987,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/arricchimento"
     },
     {
-      "id": 47,
+      "id": "plaque-assay",
+      "legacyId": 47,
       "term": "Saggio in placca",
       "slug": "saggio-in-placca",
       "category": "metodologia",
@@ -6551,7 +7004,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/saggio-in-placca"
     },
     {
-      "id": 48,
+      "id": "membrane-filtration",
+      "legacyId": 48,
       "term": "Filtrazione su membrana",
       "slug": "filtrazione-su-membrana",
       "category": "metodologia",
@@ -6565,7 +7019,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/filtrazione-su-membrana"
     },
     {
-      "id": 49,
+      "id": "incubation",
+      "legacyId": 49,
       "term": "Incubazione",
       "slug": "incubazione",
       "category": "metodologia",
@@ -6579,7 +7034,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/incubazione"
     },
     {
-      "id": 50,
+      "id": "cell-lysis",
+      "legacyId": 50,
       "term": "Lisi cellulare",
       "slug": "lisi-cellulare",
       "category": "metodologia",
@@ -6593,7 +7049,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/lisi-cellulare"
     },
     {
-      "id": 51,
+      "id": "limit-of-quantification-loq",
+      "legacyId": 51,
       "term": "Limite di quantificazione (LOQ)",
       "slug": "limite-di-quantificazione-loq",
       "category": "metodologia",
@@ -6607,7 +7064,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/limite-di-quantificazione-loq"
     },
     {
-      "id": 52,
+      "id": "limit-of-detection-lod",
+      "legacyId": 52,
       "term": "Limite di rilevazione (LOD)",
       "slug": "limite-di-rilevazione-lod",
       "category": "metodologia",
@@ -6621,7 +7079,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/limite-di-rilevazione-lod"
     },
     {
-      "id": 53,
+      "id": "matrix",
+      "legacyId": 53,
       "term": "Matrice",
       "slug": "matrice",
       "category": "metodologia",
@@ -6635,7 +7094,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/matrice"
     },
     {
-      "id": 54,
+      "id": "composite-sample",
+      "legacyId": 54,
       "term": "Campione composito",
       "slug": "campione-composito",
       "category": "metodologia",
@@ -6649,7 +7109,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/campione-composito"
     },
     {
-      "id": 55,
+      "id": "grab-sample",
+      "legacyId": 55,
       "term": "Campione puntuale",
       "slug": "campione-puntuale",
       "category": "metodologia",
@@ -6663,7 +7124,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/campione-puntuale"
     },
     {
-      "id": 56,
+      "id": "most-probable-number-mpn",
+      "legacyId": 56,
       "term": "Numero più probabile (MPN)",
       "slug": "numero-piu-probabile-mpn",
       "category": "metodologia",
@@ -6679,7 +7141,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/numero-piu-probabile-mpn"
     },
     {
-      "id": 57,
+      "id": "oos-out-of-specification",
+      "legacyId": 57,
       "term": "OOS / Fuori specifica",
       "slug": "oos-fuori-specifica",
       "category": "metodologia",
@@ -6695,7 +7158,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/oos-fuori-specifica"
     },
     {
-      "id": 58,
+      "id": "sampling-point",
+      "legacyId": 58,
       "term": "Punto di campionamento",
       "slug": "punto-di-campionamento",
       "category": "metodologia",
@@ -6709,7 +7173,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/punto-di-campionamento"
     },
     {
-      "id": 59,
+      "id": "recovery",
+      "legacyId": 59,
       "term": "Recupero",
       "slug": "recupero",
       "category": "metodologia",
@@ -6723,7 +7188,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/recupero"
     },
     {
-      "id": 60,
+      "id": "repeatability",
+      "legacyId": 60,
       "term": "Ripetibilità",
       "slug": "ripetibilita",
       "category": "metodologia",
@@ -6737,7 +7203,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/ripetibilita"
     },
     {
-      "id": 61,
+      "id": "reproducibility",
+      "legacyId": 61,
       "term": "Riproducibilità",
       "slug": "riproducibilita",
       "category": "metodologia",
@@ -6751,7 +7218,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/riproducibilita"
     },
     {
-      "id": 62,
+      "id": "single-agar-layer-sal",
+      "legacyId": 62,
       "term": "Single Agar Layer (SAL)",
       "slug": "single-agar-layer-sal",
       "category": "metodologia",
@@ -6767,7 +7235,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/single-agar-layer-sal"
     },
     {
-      "id": 63,
+      "id": "ttr-time-to-result",
+      "legacyId": 63,
       "term": "TTR / Tempo di risposta",
       "slug": "ttr-tempo-di-risposta",
       "category": "metodologia",
@@ -6783,7 +7252,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/ttr-tempo-di-risposta"
     },
     {
-      "id": 64,
+      "id": "21-cfr-part-11",
+      "legacyId": 64,
       "term": "21 CFR Part 11",
       "slug": "21-cfr-part-11",
       "category": "lims-cloud",
@@ -6797,7 +7267,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/21-cfr-part-11"
     },
     {
-      "id": 65,
+      "id": "alcoa-plus",
+      "legacyId": 65,
       "term": "ALCOA+",
       "slug": "alcoa",
       "category": "lims-cloud",
@@ -6811,7 +7282,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/alcoa"
     },
     {
-      "id": 66,
+      "id": "aqualab",
+      "legacyId": 66,
       "term": "AquaLab",
       "slug": "aqualab",
       "category": "lims-cloud",
@@ -6825,7 +7297,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/aqualab"
     },
     {
-      "id": 67,
+      "id": "aquaverify-cloud",
+      "legacyId": 67,
       "term": "AquaVerify Cloud",
       "slug": "aquaverify-cloud",
       "category": "lims-cloud",
@@ -6839,7 +7312,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/aquaverify-cloud"
     },
     {
-      "id": 68,
+      "id": "audit-trail",
+      "legacyId": 68,
       "term": "Audit trail",
       "slug": "audit-trail",
       "category": "lims-cloud",
@@ -6853,7 +7327,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/audit-trail"
     },
     {
-      "id": 69,
+      "id": "digital-chain-of-custody",
+      "legacyId": 69,
       "term": "Catena di custodia digitale",
       "slug": "catena-di-custodia-digitale",
       "category": "lims-cloud",
@@ -6867,7 +7342,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/catena-di-custodia-digitale"
     },
     {
-      "id": 70,
+      "id": "coa-certificate-of-analysis",
+      "legacyId": 70,
       "term": "CoA / Certificato di analisi",
       "slug": "coa-certificato-di-analisi",
       "category": "lims-cloud",
@@ -6883,7 +7359,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/coa-certificato-di-analisi"
     },
     {
-      "id": 71,
+      "id": "crm",
+      "legacyId": 71,
       "term": "CRM",
       "slug": "crm",
       "category": "lims-cloud",
@@ -6897,7 +7374,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/crm"
     },
     {
-      "id": 72,
+      "id": "dashboard-lims",
+      "legacyId": 72,
       "term": "Dashboard LIMS",
       "slug": "dashboard-lims",
       "category": "lims-cloud",
@@ -6911,7 +7389,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/dashboard-lims"
     },
     {
-      "id": 73,
+      "id": "eln",
+      "legacyId": 73,
       "term": "ELN",
       "slug": "eln",
       "category": "lims-cloud",
@@ -6927,7 +7406,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/eln"
     },
     {
-      "id": 74,
+      "id": "electronic-signature",
+      "legacyId": 74,
       "term": "Firma elettronica",
       "slug": "firma-elettronica",
       "category": "lims-cloud",
@@ -6941,7 +7421,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/firma-elettronica"
     },
     {
-      "id": 75,
+      "id": "gxp",
+      "legacyId": 75,
       "term": "GxP",
       "slug": "gxp",
       "category": "lims-cloud",
@@ -6955,7 +7436,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/gxp"
     },
     {
-      "id": 76,
+      "id": "worksheet",
+      "legacyId": 76,
       "term": "Foglio di lavoro",
       "slug": "foglio-di-lavoro",
       "category": "lims-cloud",
@@ -6969,7 +7451,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/foglio-di-lavoro"
     },
     {
-      "id": 77,
+      "id": "lims",
+      "legacyId": 77,
       "term": "LIMS",
       "slug": "lims",
       "category": "lims-cloud",
@@ -6985,7 +7468,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/lims"
     },
     {
-      "id": 78,
+      "id": "customer-portal",
+      "legacyId": 78,
       "term": "Portale cliente",
       "slug": "portale-cliente",
       "category": "lims-cloud",
@@ -6999,7 +7483,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/portale-cliente"
     },
     {
-      "id": 79,
+      "id": "saas",
+      "legacyId": 79,
       "term": "SaaS",
       "slug": "saas",
       "category": "lims-cloud",
@@ -7013,7 +7498,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/saas"
     },
     {
-      "id": 80,
+      "id": "sample-hub",
+      "legacyId": 80,
       "term": "Sample Hub",
       "slug": "sample-hub",
       "category": "lims-cloud",
@@ -7027,7 +7513,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/sample-hub"
     },
     {
-      "id": 81,
+      "id": "sla",
+      "legacyId": 81,
       "term": "SLA",
       "slug": "sla",
       "category": "lims-cloud",
@@ -7043,7 +7530,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/sla"
     },
     {
-      "id": 82,
+      "id": "tat-turnaround-time",
+      "legacyId": 82,
       "term": "TAT / Turnaround Time",
       "slug": "tat-turnaround-time",
       "category": "lims-cloud",
@@ -7057,7 +7545,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/tat-turnaround-time"
     },
     {
-      "id": 83,
+      "id": "tenant",
+      "legacyId": 83,
       "term": "Tenant",
       "slug": "tenant",
       "category": "lims-cloud",
@@ -7071,7 +7560,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/tenant"
     },
     {
-      "id": 84,
+      "id": "analytical-traceability",
+      "legacyId": 84,
       "term": "Tracciabilità analitica",
       "slug": "tracciabilita-analitica",
       "category": "lims-cloud",
@@ -7085,7 +7575,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/tracciabilita-analitica"
     },
     {
-      "id": 85,
+      "id": "wms",
+      "legacyId": 85,
       "term": "WMS",
       "slug": "wms",
       "category": "lims-cloud",
@@ -7101,7 +7592,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/wms"
     },
     {
-      "id": 86,
+      "id": "workflow-owner",
+      "legacyId": 86,
       "term": "Workflow owner",
       "slug": "workflow-owner",
       "category": "lims-cloud",
@@ -7115,7 +7607,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/workflow-owner"
     },
     {
-      "id": 87,
+      "id": "kit-expiry",
+      "legacyId": 87,
       "term": "Scadenza del kit",
       "slug": "scadenza-del-kit",
       "category": "productos",
@@ -7129,7 +7622,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/scadenza-del-kit"
     },
     {
-      "id": 88,
+      "id": "internal-quality-control",
+      "legacyId": 88,
       "term": "Controllo qualità interno",
       "slug": "controllo-qualita-interno",
       "category": "productos",
@@ -7143,7 +7637,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/controllo-qualita-interno"
     },
     {
-      "id": 89,
+      "id": "enumera",
+      "legacyId": 89,
       "term": "ENUMERA",
       "slug": "enumera",
       "category": "productos",
@@ -7157,7 +7652,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/enumera"
     },
     {
-      "id": 90,
+      "id": "indica",
+      "legacyId": 90,
       "term": "INDICA",
       "slug": "indica",
       "category": "productos",
@@ -7171,7 +7667,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/indica"
     },
     {
-      "id": 91,
+      "id": "rapid-detection-kit",
+      "legacyId": 91,
       "term": "Kit di rilevazione rapida",
       "slug": "kit-di-rilevazione-rapida",
       "category": "productos",
@@ -7185,7 +7682,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/kit-di-rilevazione-rapida"
     },
     {
-      "id": 92,
+      "id": "kits-iso-epa",
+      "legacyId": 92,
       "term": "Kits ISO/EPA",
       "slug": "kits-iso-epa",
       "category": "productos",
@@ -7199,7 +7697,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/kits-iso-epa"
     },
     {
-      "id": 93,
+      "id": "lab-essentials",
+      "legacyId": 93,
       "term": "Lab Essentials",
       "slug": "lab-essentials",
       "category": "productos",
@@ -7213,7 +7712,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/lab-essentials"
     },
     {
-      "id": 94,
+      "id": "kit-lot",
+      "legacyId": 94,
       "term": "Lotto kit",
       "slug": "lotto-kit",
       "category": "productos",
@@ -7227,7 +7727,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/lotto-kit"
     },
     {
-      "id": 95,
+      "id": "culture-medium",
+      "legacyId": 95,
       "term": "Terreno di coltura",
       "slug": "terreno-di-coltura",
       "category": "productos",
@@ -7241,7 +7742,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/terreno-di-coltura"
     },
     {
-      "id": 96,
+      "id": "reagent",
+      "legacyId": 96,
       "term": "Reagente",
       "slug": "reagente",
       "category": "productos",
@@ -7255,7 +7757,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/reagente"
     },
     {
-      "id": 97,
+      "id": "smart-cap",
+      "legacyId": 97,
       "term": "Smart Cap",
       "slug": "smart-cap",
       "category": "productos",
@@ -7269,7 +7772,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/smart-cap"
     },
     {
-      "id": 98,
+      "id": "domestic-hot-water",
+      "legacyId": 98,
       "term": "ACS / Acqua calda sanitaria",
       "slug": "acs-acqua-calda-sanitaria",
       "category": "operacion-agua",
@@ -7283,7 +7787,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/acs-acqua-calda-sanitaria"
     },
     {
-      "id": 99,
+      "id": "aerosolization",
+      "legacyId": 99,
       "term": "Aerosolizzazione",
       "slug": "aerosolizzazione",
       "category": "operacion-agua",
@@ -7297,7 +7802,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/aerosolizzazione"
     },
     {
-      "id": 100,
+      "id": "raw-water",
+      "legacyId": 100,
       "term": "Acqua grezza",
       "slug": "acqua-grezza",
       "category": "operacion-agua",
@@ -7311,7 +7817,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/acqua-grezza"
     },
     {
-      "id": 101,
+      "id": "drinking-water",
+      "legacyId": 101,
       "term": "Acqua potabile",
       "slug": "acqua-potabile",
       "category": "operacion-agua",
@@ -7325,7 +7832,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/acqua-potabile"
     },
     {
-      "id": 102,
+      "id": "process-water",
+      "legacyId": 102,
       "term": "Acqua di processo",
       "slug": "acqua-di-processo",
       "category": "operacion-agua",
@@ -7339,7 +7847,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/acqua-di-processo"
     },
     {
-      "id": 103,
+      "id": "reclaimed-water",
+      "legacyId": 103,
       "term": "Acqua rigenerata",
       "slug": "acqua-rigenerata",
       "category": "operacion-agua",
@@ -7353,7 +7862,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/acqua-rigenerata"
     },
     {
-      "id": 104,
+      "id": "wastewater",
+      "legacyId": 104,
       "term": "Acqua reflua",
       "slug": "acqua-reflua",
       "category": "operacion-agua",
@@ -7367,7 +7877,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/acqua-reflua"
     },
     {
-      "id": 105,
+      "id": "cip",
+      "legacyId": 105,
       "term": "CIP",
       "slug": "cip",
       "category": "operacion-agua",
@@ -7383,7 +7894,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/cip"
     },
     {
-      "id": 106,
+      "id": "chlorination",
+      "legacyId": 106,
       "term": "Clorazione",
       "slug": "clorazione",
       "category": "operacion-agua",
@@ -7397,7 +7909,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/clorazione"
     },
     {
-      "id": 107,
+      "id": "hydroponics",
+      "legacyId": 107,
       "term": "Idroponica",
       "slug": "idroponica",
       "category": "operacion-agua",
@@ -7411,7 +7924,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/idroponica"
     },
     {
-      "id": 108,
+      "id": "packhouse",
+      "legacyId": 108,
       "term": "Packhouse",
       "slug": "packhouse",
       "category": "operacion-agua",
@@ -7425,7 +7939,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/packhouse"
     },
     {
-      "id": 109,
+      "id": "terminal-point",
+      "legacyId": 109,
       "term": "Punto terminale",
       "slug": "punto-terminale",
       "category": "operacion-agua",
@@ -7439,7 +7954,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/punto-terminale"
     },
     {
-      "id": 110,
+      "id": "agricultural-irrigation",
+      "legacyId": 110,
       "term": "Irrigazione agricola",
       "slug": "irrigazione-agricola",
       "category": "operacion-agua",
@@ -7453,7 +7969,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/irrigazione-agricola"
     },
     {
-      "id": 111,
+      "id": "turbidity",
+      "legacyId": 111,
       "term": "Torbidità",
       "slug": "torbidita",
       "category": "operacion-agua",
@@ -7467,7 +7984,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/torbidita"
     },
     {
-      "id": 112,
+      "id": "uv-disinfection",
+      "legacyId": 112,
       "term": "UV / Disinfezione ultravioletta",
       "slug": "uv-disinfezione-ultravioletta",
       "category": "operacion-agua",
@@ -7481,7 +7999,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/uv-disinfezione-ultravioletta"
     },
     {
-      "id": 113,
+      "id": "approval",
+      "legacyId": 113,
       "term": "Approvazione",
       "slug": "approvazione",
       "category": "calidad",
@@ -7495,7 +8014,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/approvazione"
     },
     {
-      "id": 114,
+      "id": "capa",
+      "legacyId": 114,
       "term": "CAPA",
       "slug": "capa",
       "category": "calidad",
@@ -7509,7 +8029,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/capa"
     },
     {
-      "id": 115,
+      "id": "document-control",
+      "legacyId": 115,
       "term": "Controllo documentale",
       "slug": "controllo-documentale",
       "category": "calidad",
@@ -7523,7 +8044,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/controllo-documentale"
     },
     {
-      "id": 116,
+      "id": "deviation",
+      "legacyId": 116,
       "term": "Deviazione",
       "slug": "deviazione",
       "category": "calidad",
@@ -7537,7 +8059,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/deviazione"
     },
     {
-      "id": 117,
+      "id": "dossier",
+      "legacyId": 117,
       "term": "Dossier",
       "slug": "dossier",
       "category": "calidad",
@@ -7551,7 +8074,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/dossier"
     },
     {
-      "id": 118,
+      "id": "validation-dossier",
+      "legacyId": 118,
       "term": "Dossier di validazione",
       "slug": "dossier-di-validazione",
       "category": "calidad",
@@ -7565,7 +8089,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/dossier-di-validazione"
     },
     {
-      "id": 119,
+      "id": "nonconformity",
+      "legacyId": 119,
       "term": "Non conformità",
       "slug": "non-conformita",
       "category": "calidad",
@@ -7579,7 +8104,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/non-conformita"
     },
     {
-      "id": 120,
+      "id": "technical-review",
+      "legacyId": 120,
       "term": "Revisione tecnica",
       "slug": "revisione-tecnica",
       "category": "calidad",
@@ -7593,7 +8119,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/revisione-tecnica"
     },
     {
-      "id": 121,
+      "id": "sop",
+      "legacyId": 121,
       "term": "SOP",
       "slug": "sop",
       "category": "calidad",
@@ -7607,7 +8134,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/sop"
     },
     {
-      "id": 122,
+      "id": "tech-transfer",
+      "legacyId": 122,
       "term": "Tech Transfer",
       "slug": "tech-transfer",
       "category": "calidad",
@@ -7621,7 +8149,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/tech-transfer"
     },
     {
-      "id": 123,
+      "id": "method-validation",
+      "legacyId": 123,
       "term": "Validazione del metodo",
       "slug": "validazione-del-metodo",
       "category": "calidad",
@@ -7635,7 +8164,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/validazione-del-metodo"
     },
     {
-      "id": 124,
+      "id": "method-verification",
+      "legacyId": 124,
       "term": "Verifica del metodo",
       "slug": "verifica-del-metodo",
       "category": "calidad",
@@ -7649,7 +8179,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/verifica-del-metodo"
     },
     {
-      "id": 125,
+      "id": "co-branding",
+      "legacyId": 125,
       "term": "Co-branding",
       "slug": "co-branding",
       "category": "canal",
@@ -7663,7 +8194,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/co-branding"
     },
     {
-      "id": 126,
+      "id": "authorized-distributor",
+      "legacyId": 126,
       "term": "Distributore autorizzato",
       "slug": "distributore-autorizzato",
       "category": "canal",
@@ -7677,7 +8209,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/distributore-autorizzato"
     },
     {
-      "id": 127,
+      "id": "private-label-kit",
+      "legacyId": 127,
       "term": "Kit a marchio proprio",
       "slug": "kit-a-marchio-proprio",
       "category": "canal",
@@ -7691,7 +8224,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/kit-a-marchio-proprio"
     },
     {
-      "id": 128,
+      "id": "lead-routing",
+      "legacyId": 128,
       "term": "Lead routing",
       "slug": "lead-routing",
       "category": "canal",
@@ -7705,7 +8239,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/lead-routing"
     },
     {
-      "id": 129,
+      "id": "white-label",
+      "legacyId": 129,
       "term": "White label",
       "slug": "white-label",
       "category": "canal",
@@ -7719,7 +8254,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/white-label"
     },
     {
-      "id": 130,
+      "id": "oem",
+      "legacyId": 130,
       "term": "OEM",
       "slug": "oem",
       "category": "canal",
@@ -7733,7 +8269,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/oem"
     },
     {
-      "id": 131,
+      "id": "technical-onboarding",
+      "legacyId": 131,
       "term": "Onboarding tecnico",
       "slug": "onboarding-tecnico",
       "category": "canal",
@@ -7747,7 +8284,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/onboarding-tecnico"
     },
     {
-      "id": 132,
+      "id": "commercial-playbook",
+      "legacyId": 132,
       "term": "Playbook commerciale",
       "slug": "playbook-commerciale",
       "category": "canal",
@@ -7761,7 +8299,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/playbook-commerciale"
     },
     {
-      "id": 133,
+      "id": "technical-reseller",
+      "legacyId": 133,
       "term": "Rivenditore tecnico",
       "slug": "rivenditore-tecnico",
       "category": "canal",
@@ -7775,7 +8314,8 @@ export const GLOSSARY_TERMS = {
       "url": "/it/glossario/rivenditore-tecnico"
     },
     {
-      "id": 134,
+      "id": "territory",
+      "legacyId": 134,
       "term": "Territorio",
       "slug": "territorio",
       "category": "canal",
@@ -7791,7 +8331,8 @@ export const GLOSSARY_TERMS = {
   ],
   "ca": [
     {
-      "id": 0,
+      "id": "adenovirus",
+      "legacyId": 0,
       "term": "Adenovirus",
       "slug": "adenovirus",
       "category": "microbiologia",
@@ -7805,7 +8346,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/adenovirus"
     },
     {
-      "id": 1,
+      "id": "viable-bacteria",
+      "legacyId": 1,
       "term": "Bacteri viable",
       "slug": "bacteri-viable",
       "category": "microbiologia",
@@ -7819,7 +8361,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/bacteri-viable"
     },
     {
-      "id": 2,
+      "id": "bacteriophage",
+      "legacyId": 2,
       "term": "Bacteriòfag",
       "slug": "bacteriofag",
       "category": "microbiologia",
@@ -7836,7 +8379,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/bacteriofag"
     },
     {
-      "id": 3,
+      "id": "biofilm",
+      "legacyId": 3,
       "term": "Biofilm",
       "slug": "biofilm",
       "category": "microbiologia",
@@ -7850,7 +8394,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/biofilm"
     },
     {
-      "id": 4,
+      "id": "microbial-load",
+      "legacyId": 4,
       "term": "Càrrega microbiana",
       "slug": "carrega-microbiana",
       "category": "microbiologia",
@@ -7864,7 +8409,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/carrega-microbiana"
     },
     {
-      "id": 5,
+      "id": "host-strain",
+      "legacyId": 5,
       "term": "Soca hoste",
       "slug": "soca-hoste",
       "category": "microbiologia",
@@ -7878,7 +8424,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/soca-hoste"
     },
     {
-      "id": 6,
+      "id": "total-coliforms",
+      "legacyId": 6,
       "term": "Coliformes totals",
       "slug": "coliformes-totals",
       "category": "microbiologia",
@@ -7892,7 +8439,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/coliformes-totals"
     },
     {
-      "id": 7,
+      "id": "f-rna-coliphages",
+      "legacyId": 7,
       "term": "Colífags F-ARN",
       "slug": "colifags-f-arn",
       "category": "microbiologia",
@@ -7908,7 +8456,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/colifags-f-arn"
     },
     {
-      "id": 8,
+      "id": "f-specific-coliphages",
+      "legacyId": 8,
       "term": "Colífags F-específics",
       "slug": "colifags-f-especifics",
       "category": "microbiologia",
@@ -7925,7 +8474,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/colifags-f-especifics"
     },
     {
-      "id": 9,
+      "id": "somatic-coliphages",
+      "legacyId": 9,
       "term": "Colífags somàtics",
       "slug": "colifags-somatics",
       "category": "microbiologia",
@@ -7942,7 +8492,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/colifags-somatics"
     },
     {
-      "id": 10,
+      "id": "fecal-contamination",
+      "legacyId": 10,
       "term": "Contaminació fecal",
       "slug": "contaminacio-fecal",
       "category": "microbiologia",
@@ -7956,7 +8507,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/contaminacio-fecal"
     },
     {
-      "id": 11,
+      "id": "intestinal-enterococci",
+      "legacyId": 11,
       "term": "Enterococs intestinals",
       "slug": "enterococs-intestinals",
       "category": "microbiologia",
@@ -7970,7 +8522,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/enterococs-intestinals"
     },
     {
-      "id": 12,
+      "id": "escherichia-coli-e-coli",
+      "legacyId": 12,
       "term": "Escherichia coli (E. coli)",
       "slug": "escherichia-coli-e-coli",
       "category": "microbiologia",
@@ -7986,7 +8539,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/escherichia-coli-e-coli"
     },
     {
-      "id": 13,
+      "id": "legionella",
+      "legacyId": 13,
       "term": "Legionella",
       "slug": "legionella",
       "category": "microbiologia",
@@ -8000,7 +8554,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/legionella"
     },
     {
-      "id": 14,
+      "id": "microbial-source-tracking-mst",
+      "legacyId": 14,
       "term": "Microbial Source Tracking (MST)",
       "slug": "microbial-source-tracking-mst",
       "category": "microbiologia",
@@ -8016,7 +8571,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/microbial-source-tracking-mst"
     },
     {
-      "id": 15,
+      "id": "indicator-microorganism",
+      "legacyId": 15,
       "term": "Microorganisme indicador",
       "slug": "microorganisme-indicador",
       "category": "microbiologia",
@@ -8030,7 +8586,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/microorganisme-indicador"
     },
     {
-      "id": 16,
+      "id": "norovirus",
+      "legacyId": 16,
       "term": "Norovirus",
       "slug": "norovirus",
       "category": "microbiologia",
@@ -8044,7 +8601,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/norovirus"
     },
     {
-      "id": 17,
+      "id": "pathogen",
+      "legacyId": 17,
       "term": "Patogen",
       "slug": "patogen",
       "category": "microbiologia",
@@ -8058,7 +8616,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/patogen"
     },
     {
-      "id": 18,
+      "id": "pseudomonas-aeruginosa",
+      "legacyId": 18,
       "term": "Pseudomonas aeruginosa",
       "slug": "pseudomonas-aeruginosa",
       "category": "microbiologia",
@@ -8072,7 +8631,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/pseudomonas-aeruginosa"
     },
     {
-      "id": 19,
+      "id": "pfu-plaque-forming-units",
+      "legacyId": 19,
       "term": "UFP / PFU",
       "slug": "ufp-pfu",
       "category": "microbiologia",
@@ -8088,7 +8648,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/ufp-pfu"
     },
     {
-      "id": 20,
+      "id": "enteric-viruses",
+      "legacyId": 20,
       "term": "Virus entèrics",
       "slug": "virus-enterics",
       "category": "microbiologia",
@@ -8102,7 +8663,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/virus-enterics"
     },
     {
-      "id": 21,
+      "id": "directive-eu-2020-2184",
+      "legacyId": 21,
       "term": "Directiva (UE) 2020/2184",
       "slug": "directiva-ue-2020-2184",
       "category": "normativa",
@@ -8118,7 +8680,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/directiva-ue-2020-2184"
     },
     {
-      "id": 22,
+      "id": "epa-method-1601",
+      "legacyId": 22,
       "term": "EPA Method 1601",
       "slug": "epa-method-1601",
       "category": "normativa",
@@ -8132,7 +8695,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/epa-method-1601"
     },
     {
-      "id": 23,
+      "id": "epa-method-1602",
+      "legacyId": 23,
       "term": "EPA Method 1602",
       "slug": "epa-method-1602",
       "category": "normativa",
@@ -8146,7 +8710,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/epa-method-1602"
     },
     {
-      "id": 24,
+      "id": "haccp",
+      "legacyId": 24,
       "term": "HACCP",
       "slug": "haccp",
       "category": "normativa",
@@ -8160,7 +8725,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/haccp"
     },
     {
-      "id": 25,
+      "id": "iso-10705-1",
+      "legacyId": 25,
       "term": "ISO 10705-1",
       "slug": "iso-10705-1",
       "category": "normativa",
@@ -8174,7 +8740,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-10705-1"
     },
     {
-      "id": 26,
+      "id": "iso-10705-2",
+      "legacyId": 26,
       "term": "ISO 10705-2",
       "slug": "iso-10705-2",
       "category": "normativa",
@@ -8188,7 +8755,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-10705-2"
     },
     {
-      "id": 27,
+      "id": "iso-11731",
+      "legacyId": 27,
       "term": "ISO 11731",
       "slug": "iso-11731",
       "category": "normativa",
@@ -8202,7 +8770,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-11731"
     },
     {
-      "id": 28,
+      "id": "iso-19458",
+      "legacyId": 28,
       "term": "ISO 19458",
       "slug": "iso-19458",
       "category": "normativa",
@@ -8216,7 +8785,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-19458"
     },
     {
-      "id": 29,
+      "id": "iso-22000",
+      "legacyId": 29,
       "term": "ISO 22000",
       "slug": "iso-22000",
       "category": "normativa",
@@ -8230,7 +8800,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-22000"
     },
     {
-      "id": 30,
+      "id": "iso-5667-1",
+      "legacyId": 30,
       "term": "ISO 5667-1",
       "slug": "iso-5667-1",
       "category": "normativa",
@@ -8244,7 +8815,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-5667-1"
     },
     {
-      "id": 31,
+      "id": "iso-7899-2",
+      "legacyId": 31,
       "term": "ISO 7899-2",
       "slug": "iso-7899-2",
       "category": "normativa",
@@ -8258,7 +8830,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-7899-2"
     },
     {
-      "id": 32,
+      "id": "iso-9308",
+      "legacyId": 32,
       "term": "ISO 9308",
       "slug": "iso-9308",
       "category": "normativa",
@@ -8272,7 +8845,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-9308"
     },
     {
-      "id": 33,
+      "id": "iso-iec-17025",
+      "legacyId": 33,
       "term": "ISO/IEC 17025",
       "slug": "iso-iec-17025",
       "category": "normativa",
@@ -8286,7 +8860,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/iso-iec-17025"
     },
     {
-      "id": 34,
+      "id": "water-safety-plan",
+      "legacyId": 34,
       "term": "Pla sanitari de l’aigua",
       "slug": "pla-sanitari-de-laigua",
       "category": "normativa",
@@ -8300,7 +8875,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/pla-sanitari-de-laigua"
     },
     {
-      "id": 35,
+      "id": "royal-decree-3-2023",
+      "legacyId": 35,
       "term": "Reial decret 3/2023",
       "slug": "reial-decret-3-2023",
       "category": "normativa",
@@ -8316,7 +8892,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/reial-decret-3-2023"
     },
     {
-      "id": 36,
+      "id": "royal-decree-487-2022",
+      "legacyId": 36,
       "term": "Reial decret 487/2022",
       "slug": "reial-decret-487-2022",
       "category": "normativa",
@@ -8332,7 +8909,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/reial-decret-487-2022"
     },
     {
-      "id": 37,
+      "id": "royal-decree-742-2013",
+      "legacyId": 37,
       "term": "Reial decret 742/2013",
       "slug": "reial-decret-742-2013",
       "category": "normativa",
@@ -8348,7 +8926,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/reial-decret-742-2013"
     },
     {
-      "id": 38,
+      "id": "regulation-eu-2020-741",
+      "legacyId": 38,
       "term": "Reglament (UE) 2020/741",
       "slug": "reglament-ue-2020-741",
       "category": "normativa",
@@ -8364,7 +8943,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/reglament-ue-2020-741"
     },
     {
-      "id": 39,
+      "id": "revised-total-coliform-rule-rtcr",
+      "legacyId": 39,
       "term": "Revised Total Coliform Rule (RTCR)",
       "slug": "revised-total-coliform-rule-rtcr",
       "category": "normativa",
@@ -8380,7 +8960,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/revised-total-coliform-rule-rtcr"
     },
     {
-      "id": 40,
+      "id": "water-safety-plan",
+      "legacyId": 40,
       "term": "Water Safety Plan",
       "slug": "water-safety-plan",
       "category": "normativa",
@@ -8396,7 +8977,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/water-safety-plan"
     },
     {
-      "id": 41,
+      "id": "method-blank",
+      "legacyId": 41,
       "term": "Blanc de mètode",
       "slug": "blanc-de-metode",
       "category": "metodologia",
@@ -8410,7 +8992,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/blanc-de-metode"
     },
     {
-      "id": 42,
+      "id": "cold-chain",
+      "legacyId": 42,
       "term": "Cadena de fred",
       "slug": "cadena-de-fred",
       "category": "metodologia",
@@ -8424,7 +9007,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/cadena-de-fred"
     },
     {
-      "id": 43,
+      "id": "negative-control",
+      "legacyId": 43,
       "term": "Control negatiu",
       "slug": "control-negatiu",
       "category": "metodologia",
@@ -8438,7 +9022,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/control-negatiu"
     },
     {
-      "id": 44,
+      "id": "positive-control",
+      "legacyId": 44,
       "term": "Control positiu",
       "slug": "control-positiu",
       "category": "metodologia",
@@ -8452,7 +9037,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/control-positiu"
     },
     {
-      "id": 45,
+      "id": "double-agar-layer",
+      "legacyId": 45,
       "term": "Double Agar Layer",
       "slug": "double-agar-layer",
       "category": "metodologia",
@@ -8468,7 +9054,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/double-agar-layer"
     },
     {
-      "id": 46,
+      "id": "enrichment",
+      "legacyId": 46,
       "term": "Enriquiment",
       "slug": "enriquiment",
       "category": "metodologia",
@@ -8482,7 +9069,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/enriquiment"
     },
     {
-      "id": 47,
+      "id": "plaque-assay",
+      "legacyId": 47,
       "term": "Assaig en placa",
       "slug": "assaig-en-placa",
       "category": "metodologia",
@@ -8498,7 +9086,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/assaig-en-placa"
     },
     {
-      "id": 48,
+      "id": "membrane-filtration",
+      "legacyId": 48,
       "term": "Filtració per membrana",
       "slug": "filtracio-per-membrana",
       "category": "metodologia",
@@ -8512,7 +9101,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/filtracio-per-membrana"
     },
     {
-      "id": 49,
+      "id": "incubation",
+      "legacyId": 49,
       "term": "Incubació",
       "slug": "incubacio",
       "category": "metodologia",
@@ -8526,7 +9116,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/incubacio"
     },
     {
-      "id": 50,
+      "id": "cell-lysis",
+      "legacyId": 50,
       "term": "Lisi cel·lular",
       "slug": "lisi-cellular",
       "category": "metodologia",
@@ -8540,7 +9131,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/lisi-cellular"
     },
     {
-      "id": 51,
+      "id": "limit-of-quantification-loq",
+      "legacyId": 51,
       "term": "Límit de quantificació (LOQ)",
       "slug": "limit-de-quantificacio-loq",
       "category": "metodologia",
@@ -8554,7 +9146,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/limit-de-quantificacio-loq"
     },
     {
-      "id": 52,
+      "id": "limit-of-detection-lod",
+      "legacyId": 52,
       "term": "Límit de detecció (LOD)",
       "slug": "limit-de-deteccio-lod",
       "category": "metodologia",
@@ -8568,7 +9161,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/limit-de-deteccio-lod"
     },
     {
-      "id": 53,
+      "id": "matrix",
+      "legacyId": 53,
       "term": "Matriu",
       "slug": "matriu",
       "category": "metodologia",
@@ -8582,7 +9176,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/matriu"
     },
     {
-      "id": 54,
+      "id": "composite-sample",
+      "legacyId": 54,
       "term": "Mostra composta",
       "slug": "mostra-composta",
       "category": "metodologia",
@@ -8596,7 +9191,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/mostra-composta"
     },
     {
-      "id": 55,
+      "id": "grab-sample",
+      "legacyId": 55,
       "term": "Mostra puntual",
       "slug": "mostra-puntual",
       "category": "metodologia",
@@ -8610,7 +9206,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/mostra-puntual"
     },
     {
-      "id": 56,
+      "id": "most-probable-number-mpn",
+      "legacyId": 56,
       "term": "Nombre més probable (NMP)",
       "slug": "nombre-mes-probable-nmp",
       "category": "metodologia",
@@ -8626,7 +9223,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/nombre-mes-probable-nmp"
     },
     {
-      "id": 57,
+      "id": "oos-out-of-specification",
+      "legacyId": 57,
       "term": "OOS / Fora d’especificació",
       "slug": "oos-fora-despecificacio",
       "category": "metodologia",
@@ -8642,7 +9240,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/oos-fora-despecificacio"
     },
     {
-      "id": 58,
+      "id": "sampling-point",
+      "legacyId": 58,
       "term": "Punt de mostreig",
       "slug": "punt-de-mostreig",
       "category": "metodologia",
@@ -8656,7 +9255,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/punt-de-mostreig"
     },
     {
-      "id": 59,
+      "id": "recovery",
+      "legacyId": 59,
       "term": "Recuperació",
       "slug": "recuperacio",
       "category": "metodologia",
@@ -8670,7 +9270,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/recuperacio"
     },
     {
-      "id": 60,
+      "id": "repeatability",
+      "legacyId": 60,
       "term": "Repetibilitat",
       "slug": "repetibilitat",
       "category": "metodologia",
@@ -8684,7 +9285,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/repetibilitat"
     },
     {
-      "id": 61,
+      "id": "reproducibility",
+      "legacyId": 61,
       "term": "Reproductibilitat",
       "slug": "reproductibilitat",
       "category": "metodologia",
@@ -8698,7 +9300,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/reproductibilitat"
     },
     {
-      "id": 62,
+      "id": "single-agar-layer-sal",
+      "legacyId": 62,
       "term": "Single Agar Layer (SAL)",
       "slug": "single-agar-layer-sal",
       "category": "metodologia",
@@ -8714,7 +9317,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/single-agar-layer-sal"
     },
     {
-      "id": 63,
+      "id": "ttr-time-to-result",
+      "legacyId": 63,
       "term": "TTR / Temps de resposta",
       "slug": "ttr-temps-de-resposta",
       "category": "metodologia",
@@ -8730,7 +9334,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/ttr-temps-de-resposta"
     },
     {
-      "id": 64,
+      "id": "21-cfr-part-11",
+      "legacyId": 64,
       "term": "21 CFR Part 11",
       "slug": "21-cfr-part-11",
       "category": "lims-cloud",
@@ -8744,7 +9349,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/21-cfr-part-11"
     },
     {
-      "id": 65,
+      "id": "alcoa-plus",
+      "legacyId": 65,
       "term": "ALCOA+",
       "slug": "alcoa",
       "category": "lims-cloud",
@@ -8758,7 +9364,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/alcoa"
     },
     {
-      "id": 66,
+      "id": "aqualab",
+      "legacyId": 66,
       "term": "AquaLab",
       "slug": "aqualab",
       "category": "lims-cloud",
@@ -8772,7 +9379,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aqualab"
     },
     {
-      "id": 67,
+      "id": "aquaverify-cloud",
+      "legacyId": 67,
       "term": "AquaVerify Cloud",
       "slug": "aquaverify-cloud",
       "category": "lims-cloud",
@@ -8786,7 +9394,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aquaverify-cloud"
     },
     {
-      "id": 68,
+      "id": "audit-trail",
+      "legacyId": 68,
       "term": "Audit trail",
       "slug": "audit-trail",
       "category": "lims-cloud",
@@ -8800,7 +9409,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/audit-trail"
     },
     {
-      "id": 69,
+      "id": "digital-chain-of-custody",
+      "legacyId": 69,
       "term": "Cadena de custòdia digital",
       "slug": "cadena-de-custodia-digital",
       "category": "lims-cloud",
@@ -8814,7 +9424,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/cadena-de-custodia-digital"
     },
     {
-      "id": 70,
+      "id": "coa-certificate-of-analysis",
+      "legacyId": 70,
       "term": "CoA / Certificat d’anàlisi",
       "slug": "coa-certificat-danalisi",
       "category": "lims-cloud",
@@ -8830,7 +9441,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/coa-certificat-danalisi"
     },
     {
-      "id": 71,
+      "id": "crm",
+      "legacyId": 71,
       "term": "CRM",
       "slug": "crm",
       "category": "lims-cloud",
@@ -8844,7 +9456,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/crm"
     },
     {
-      "id": 72,
+      "id": "dashboard-lims",
+      "legacyId": 72,
       "term": "Dashboard LIMS",
       "slug": "dashboard-lims",
       "category": "lims-cloud",
@@ -8858,7 +9471,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/dashboard-lims"
     },
     {
-      "id": 73,
+      "id": "eln",
+      "legacyId": 73,
       "term": "ELN",
       "slug": "eln",
       "category": "lims-cloud",
@@ -8874,7 +9488,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/eln"
     },
     {
-      "id": 74,
+      "id": "electronic-signature",
+      "legacyId": 74,
       "term": "Signatura electrònica",
       "slug": "signatura-electronica",
       "category": "lims-cloud",
@@ -8888,7 +9503,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/signatura-electronica"
     },
     {
-      "id": 75,
+      "id": "gxp",
+      "legacyId": 75,
       "term": "GxP",
       "slug": "gxp",
       "category": "lims-cloud",
@@ -8902,7 +9518,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/gxp"
     },
     {
-      "id": 76,
+      "id": "worksheet",
+      "legacyId": 76,
       "term": "Full de treball",
       "slug": "full-de-treball",
       "category": "lims-cloud",
@@ -8916,7 +9533,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/full-de-treball"
     },
     {
-      "id": 77,
+      "id": "lims",
+      "legacyId": 77,
       "term": "LIMS",
       "slug": "lims",
       "category": "lims-cloud",
@@ -8932,7 +9550,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/lims"
     },
     {
-      "id": 78,
+      "id": "customer-portal",
+      "legacyId": 78,
       "term": "Portal client",
       "slug": "portal-client",
       "category": "lims-cloud",
@@ -8946,7 +9565,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/portal-client"
     },
     {
-      "id": 79,
+      "id": "saas",
+      "legacyId": 79,
       "term": "SaaS",
       "slug": "saas",
       "category": "lims-cloud",
@@ -8960,7 +9580,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/saas"
     },
     {
-      "id": 80,
+      "id": "sample-hub",
+      "legacyId": 80,
       "term": "Sample Hub",
       "slug": "sample-hub",
       "category": "lims-cloud",
@@ -8974,7 +9595,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/sample-hub"
     },
     {
-      "id": 81,
+      "id": "sla",
+      "legacyId": 81,
       "term": "SLA",
       "slug": "sla",
       "category": "lims-cloud",
@@ -8990,7 +9612,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/sla"
     },
     {
-      "id": 82,
+      "id": "tat-turnaround-time",
+      "legacyId": 82,
       "term": "TAT / Turnaround Time",
       "slug": "tat-turnaround-time",
       "category": "lims-cloud",
@@ -9004,7 +9627,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/tat-turnaround-time"
     },
     {
-      "id": 83,
+      "id": "tenant",
+      "legacyId": 83,
       "term": "Tenant",
       "slug": "tenant",
       "category": "lims-cloud",
@@ -9018,7 +9642,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/tenant"
     },
     {
-      "id": 84,
+      "id": "analytical-traceability",
+      "legacyId": 84,
       "term": "Traçabilitat analítica",
       "slug": "tracabilitat-analitica",
       "category": "lims-cloud",
@@ -9032,7 +9657,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/tracabilitat-analitica"
     },
     {
-      "id": 85,
+      "id": "wms",
+      "legacyId": 85,
       "term": "WMS",
       "slug": "wms",
       "category": "lims-cloud",
@@ -9048,7 +9674,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/wms"
     },
     {
-      "id": 86,
+      "id": "workflow-owner",
+      "legacyId": 86,
       "term": "Workflow owner",
       "slug": "workflow-owner",
       "category": "lims-cloud",
@@ -9062,7 +9689,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/workflow-owner"
     },
     {
-      "id": 87,
+      "id": "kit-expiry",
+      "legacyId": 87,
       "term": "Caducitat del kit",
       "slug": "caducitat-del-kit",
       "category": "productos",
@@ -9076,7 +9704,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/caducitat-del-kit"
     },
     {
-      "id": 88,
+      "id": "internal-quality-control",
+      "legacyId": 88,
       "term": "Control de qualitat intern",
       "slug": "control-de-qualitat-intern",
       "category": "productos",
@@ -9090,7 +9719,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/control-de-qualitat-intern"
     },
     {
-      "id": 89,
+      "id": "enumera",
+      "legacyId": 89,
       "term": "ENUMERA",
       "slug": "enumera",
       "category": "productos",
@@ -9104,7 +9734,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/enumera"
     },
     {
-      "id": 90,
+      "id": "indica",
+      "legacyId": 90,
       "term": "INDICA",
       "slug": "indica",
       "category": "productos",
@@ -9118,7 +9749,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/indica"
     },
     {
-      "id": 91,
+      "id": "rapid-detection-kit",
+      "legacyId": 91,
       "term": "Kit de detecció ràpida",
       "slug": "kit-de-deteccio-rapida",
       "category": "productos",
@@ -9132,7 +9764,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/kit-de-deteccio-rapida"
     },
     {
-      "id": 92,
+      "id": "kits-iso-epa",
+      "legacyId": 92,
       "term": "Kits ISO/EPA",
       "slug": "kits-iso-epa",
       "category": "productos",
@@ -9146,7 +9779,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/kits-iso-epa"
     },
     {
-      "id": 93,
+      "id": "lab-essentials",
+      "legacyId": 93,
       "term": "Lab Essentials",
       "slug": "lab-essentials",
       "category": "productos",
@@ -9160,7 +9794,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/lab-essentials"
     },
     {
-      "id": 94,
+      "id": "kit-lot",
+      "legacyId": 94,
       "term": "Lot de kit",
       "slug": "lot-de-kit",
       "category": "productos",
@@ -9174,7 +9809,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/lot-de-kit"
     },
     {
-      "id": 95,
+      "id": "culture-medium",
+      "legacyId": 95,
       "term": "Medi de cultiu",
       "slug": "medi-de-cultiu",
       "category": "productos",
@@ -9188,7 +9824,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/medi-de-cultiu"
     },
     {
-      "id": 96,
+      "id": "reagent",
+      "legacyId": 96,
       "term": "Reactiu",
       "slug": "reactiu",
       "category": "productos",
@@ -9202,7 +9839,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/reactiu"
     },
     {
-      "id": 97,
+      "id": "smart-cap",
+      "legacyId": 97,
       "term": "Smart Cap",
       "slug": "smart-cap",
       "category": "productos",
@@ -9216,7 +9854,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/smart-cap"
     },
     {
-      "id": 98,
+      "id": "domestic-hot-water",
+      "legacyId": 98,
       "term": "ACS / Aigua calenta sanitària",
       "slug": "acs-aigua-calenta-sanitaria",
       "category": "operacion-agua",
@@ -9230,7 +9869,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/acs-aigua-calenta-sanitaria"
     },
     {
-      "id": 99,
+      "id": "aerosolization",
+      "legacyId": 99,
       "term": "Aerosolització",
       "slug": "aerosolitzacio",
       "category": "operacion-agua",
@@ -9244,7 +9884,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aerosolitzacio"
     },
     {
-      "id": 100,
+      "id": "raw-water",
+      "legacyId": 100,
       "term": "Aigua bruta",
       "slug": "aigua-bruta",
       "category": "operacion-agua",
@@ -9258,7 +9899,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aigua-bruta"
     },
     {
-      "id": 101,
+      "id": "drinking-water",
+      "legacyId": 101,
       "term": "Aigua de consum",
       "slug": "aigua-de-consum",
       "category": "operacion-agua",
@@ -9272,7 +9914,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aigua-de-consum"
     },
     {
-      "id": 102,
+      "id": "process-water",
+      "legacyId": 102,
       "term": "Aigua de procés",
       "slug": "aigua-de-proces",
       "category": "operacion-agua",
@@ -9286,7 +9929,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aigua-de-proces"
     },
     {
-      "id": 103,
+      "id": "reclaimed-water",
+      "legacyId": 103,
       "term": "Aigua regenerada",
       "slug": "aigua-regenerada",
       "category": "operacion-agua",
@@ -9300,7 +9944,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aigua-regenerada"
     },
     {
-      "id": 104,
+      "id": "wastewater",
+      "legacyId": 104,
       "term": "Aigua residual",
       "slug": "aigua-residual",
       "category": "operacion-agua",
@@ -9314,7 +9959,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aigua-residual"
     },
     {
-      "id": 105,
+      "id": "cip",
+      "legacyId": 105,
       "term": "CIP",
       "slug": "cip",
       "category": "operacion-agua",
@@ -9330,7 +9976,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/cip"
     },
     {
-      "id": 106,
+      "id": "chlorination",
+      "legacyId": 106,
       "term": "Cloració",
       "slug": "cloracio",
       "category": "operacion-agua",
@@ -9344,7 +9991,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/cloracio"
     },
     {
-      "id": 107,
+      "id": "hydroponics",
+      "legacyId": 107,
       "term": "Hidroponia",
       "slug": "hidroponia",
       "category": "operacion-agua",
@@ -9358,7 +10006,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/hidroponia"
     },
     {
-      "id": 108,
+      "id": "packhouse",
+      "legacyId": 108,
       "term": "Packhouse",
       "slug": "packhouse",
       "category": "operacion-agua",
@@ -9372,7 +10021,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/packhouse"
     },
     {
-      "id": 109,
+      "id": "terminal-point",
+      "legacyId": 109,
       "term": "Punt terminal",
       "slug": "punt-terminal",
       "category": "operacion-agua",
@@ -9386,7 +10036,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/punt-terminal"
     },
     {
-      "id": 110,
+      "id": "agricultural-irrigation",
+      "legacyId": 110,
       "term": "Reg agrícola",
       "slug": "reg-agricola",
       "category": "operacion-agua",
@@ -9400,7 +10051,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/reg-agricola"
     },
     {
-      "id": 111,
+      "id": "turbidity",
+      "legacyId": 111,
       "term": "Terbolesa",
       "slug": "terbolesa",
       "category": "operacion-agua",
@@ -9414,7 +10066,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/terbolesa"
     },
     {
-      "id": 112,
+      "id": "uv-disinfection",
+      "legacyId": 112,
       "term": "UV / Desinfecció ultraviolada",
       "slug": "uv-desinfeccio-ultraviolada",
       "category": "operacion-agua",
@@ -9428,7 +10081,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/uv-desinfeccio-ultraviolada"
     },
     {
-      "id": 113,
+      "id": "approval",
+      "legacyId": 113,
       "term": "Aprovació",
       "slug": "aprovacio",
       "category": "calidad",
@@ -9442,7 +10096,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/aprovacio"
     },
     {
-      "id": 114,
+      "id": "capa",
+      "legacyId": 114,
       "term": "CAPA",
       "slug": "capa",
       "category": "calidad",
@@ -9456,7 +10111,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/capa"
     },
     {
-      "id": 115,
+      "id": "document-control",
+      "legacyId": 115,
       "term": "Control documental",
       "slug": "control-documental",
       "category": "calidad",
@@ -9470,7 +10126,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/control-documental"
     },
     {
-      "id": 116,
+      "id": "deviation",
+      "legacyId": 116,
       "term": "Desviació",
       "slug": "desviacio",
       "category": "calidad",
@@ -9484,7 +10141,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/desviacio"
     },
     {
-      "id": 117,
+      "id": "dossier",
+      "legacyId": 117,
       "term": "Dossier",
       "slug": "dossier",
       "category": "calidad",
@@ -9498,7 +10156,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/dossier"
     },
     {
-      "id": 118,
+      "id": "validation-dossier",
+      "legacyId": 118,
       "term": "Dossier de validació",
       "slug": "dossier-de-validacio",
       "category": "calidad",
@@ -9512,7 +10171,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/dossier-de-validacio"
     },
     {
-      "id": 119,
+      "id": "nonconformity",
+      "legacyId": 119,
       "term": "No conformitat",
       "slug": "no-conformitat",
       "category": "calidad",
@@ -9526,7 +10186,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/no-conformitat"
     },
     {
-      "id": 120,
+      "id": "technical-review",
+      "legacyId": 120,
       "term": "Revisió tècnica",
       "slug": "revisio-tecnica",
       "category": "calidad",
@@ -9540,7 +10201,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/revisio-tecnica"
     },
     {
-      "id": 121,
+      "id": "sop",
+      "legacyId": 121,
       "term": "SOP",
       "slug": "sop",
       "category": "calidad",
@@ -9554,7 +10216,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/sop"
     },
     {
-      "id": 122,
+      "id": "tech-transfer",
+      "legacyId": 122,
       "term": "Tech Transfer",
       "slug": "tech-transfer",
       "category": "calidad",
@@ -9568,7 +10231,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/tech-transfer"
     },
     {
-      "id": 123,
+      "id": "method-validation",
+      "legacyId": 123,
       "term": "Validació de mètode",
       "slug": "validacio-de-metode",
       "category": "calidad",
@@ -9582,7 +10246,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/validacio-de-metode"
     },
     {
-      "id": 124,
+      "id": "method-verification",
+      "legacyId": 124,
       "term": "Verificació de mètode",
       "slug": "verificacio-de-metode",
       "category": "calidad",
@@ -9596,7 +10261,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/verificacio-de-metode"
     },
     {
-      "id": 125,
+      "id": "co-branding",
+      "legacyId": 125,
       "term": "Co-branding",
       "slug": "co-branding",
       "category": "canal",
@@ -9610,7 +10276,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/co-branding"
     },
     {
-      "id": 126,
+      "id": "authorized-distributor",
+      "legacyId": 126,
       "term": "Distribuïdor autoritzat",
       "slug": "distribuidor-autoritzat",
       "category": "canal",
@@ -9624,7 +10291,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/distribuidor-autoritzat"
     },
     {
-      "id": 127,
+      "id": "private-label-kit",
+      "legacyId": 127,
       "term": "Kit sota marca pròpia",
       "slug": "kit-sota-marca-propia",
       "category": "canal",
@@ -9638,7 +10306,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/kit-sota-marca-propia"
     },
     {
-      "id": 128,
+      "id": "lead-routing",
+      "legacyId": 128,
       "term": "Lead routing",
       "slug": "lead-routing",
       "category": "canal",
@@ -9652,7 +10321,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/lead-routing"
     },
     {
-      "id": 129,
+      "id": "white-label",
+      "legacyId": 129,
       "term": "Marca blanca",
       "slug": "marca-blanca",
       "category": "canal",
@@ -9666,7 +10336,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/marca-blanca"
     },
     {
-      "id": 130,
+      "id": "oem",
+      "legacyId": 130,
       "term": "OEM",
       "slug": "oem",
       "category": "canal",
@@ -9680,7 +10351,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/oem"
     },
     {
-      "id": 131,
+      "id": "technical-onboarding",
+      "legacyId": 131,
       "term": "Onboarding tècnic",
       "slug": "onboarding-tecnic",
       "category": "canal",
@@ -9694,7 +10366,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/onboarding-tecnic"
     },
     {
-      "id": 132,
+      "id": "commercial-playbook",
+      "legacyId": 132,
       "term": "Playbook comercial",
       "slug": "playbook-comercial",
       "category": "canal",
@@ -9708,7 +10381,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/playbook-comercial"
     },
     {
-      "id": 133,
+      "id": "technical-reseller",
+      "legacyId": 133,
       "term": "Reseller tècnic",
       "slug": "reseller-tecnic",
       "category": "canal",
@@ -9722,7 +10396,8 @@ export const GLOSSARY_TERMS = {
       "url": "/ca/glossari/reseller-tecnic"
     },
     {
-      "id": 134,
+      "id": "territory",
+      "legacyId": 134,
       "term": "Territori",
       "slug": "territori",
       "category": "canal",

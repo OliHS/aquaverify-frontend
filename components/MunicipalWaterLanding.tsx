@@ -3,6 +3,7 @@ import { ArrowRight, CheckCircle2, ClipboardCheck, FileCheck2, FlaskConical, Lan
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
+import { IndustryGlossaryTerms } from './IndustryGlossaryTerms';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
@@ -606,6 +607,8 @@ export const MunicipalWaterLanding: React.FC<Props> = ({ content, pageLang, show
             </div>
           </section>
         ) : null}
+
+        <IndustryGlossaryTerms industryId="municipal-water-testing" lang={pageLang} />
 
         <section id="diagnostico" className="bg-slate-50 py-16 pb-24 md:py-20">
           <div className="container mx-auto px-6">

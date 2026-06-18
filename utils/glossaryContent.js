@@ -3,17 +3,28 @@ import {
 } from './glossaryData.js';
 import {
   GLOSSARY_HUB_PATHS,
-  GLOSSARY_PRIORITY_IDS,
+  GLOSSARY_PRIORITY_IDS as GENERATED_GLOSSARY_PRIORITY_IDS,
   GLOSSARY_TERM_ROUTE_PATHS
 } from './glossaryRoutes.js';
 import { getMarketingPagePath } from './marketingRoutes.js';
+import {
+  GLOSSARY_INDUSTRY_TERM_IDS,
+  GLOSSARY_RELATED_TERM_IDS,
+  GLOSSARY_RETIRED_LEGACY_TERM_CANONICAL_IDS,
+  GLOSSARY_REVIEW_DATE,
+  GLOSSARY_SOURCE_REFS,
+  GLOSSARY_STABLE_ID_OVERRIDES_BY_LEGACY_ID,
+  GLOSSARY_TERM_ID_ALIASES,
+  GLOSSARY_TERM_RELATIONS,
+  INDUSTRY_IDS,
+  PROMOTED_GLOSSARY_TERM_IDS,
+  SUPPLEMENTAL_GLOSSARY_TERMS
+} from './glossaryRelations.js';
 
 export const GLOSSARY_ROUTE_PATHS = {
   glossary: GLOSSARY_HUB_PATHS,
   ...GLOSSARY_TERM_ROUTE_PATHS
 };
-
-export { GLOSSARY_PRIORITY_IDS };
 
 const SITE_URL = 'https://aquaverify.com';
 
@@ -168,15 +179,6 @@ const COPY = {
     distributors: 'Trobar distribuïdor autoritzat'
   }
 };
-
-const WHITEPAPER_BY_TERM = [
-  [/coliph|colif|bacterioph|iso-10705|ufp|pfu|viral|virus/i, 'coliphages-indicators'],
-  [/directiva|directive|2020\/2184|rd 3\/2023|real decreto|decret/i, 'eu-drinking-water-directive-coliphages'],
-  [/lims|audit|coa|traz|traç|trace|portal|eln|excel|saas/i, 'excel-to-lims-water-analysis'],
-  [/19458|muestreo|sampling|mostreig|campionamento|échantillonnage/i, 'iso-19458-water-microbiological-sampling'],
-  [/oem|marca blanca|white label|marque blanche|private label/i, 'oem-white-label-water-testing-kits'],
-  [/presencia|presence|assenza|absència|enumer/i, 'presence-vs-enumeration']
-];
 
 const SPECIFIC_DEFINITIONS = {
   en: {
@@ -717,31 +719,386 @@ const SPECIFIC_DEFINITIONS = {
   }
 };
 
-function copy(lang) {
-  return COPY[lang] || COPY.en;
+const SUPPORTED_GLOSSARY_LANGUAGES = Object.keys(GLOSSARY_HUB_PATHS);
+
+const INDUSTRY_LABELS = {
+  'industries-hub': {
+    en: 'Industries hub',
+    es: 'Hub de industrias',
+    fr: 'Hub industries',
+    it: 'Hub settori',
+    ca: 'Hub de sectors'
+  },
+  'water-testing-labs': {
+    en: 'Water testing laboratories',
+    es: 'Laboratorios de análisis de agua',
+    fr: 'Laboratoires d’analyse de l’eau',
+    it: 'Laboratori di analisi acqua',
+    ca: 'Laboratoris d’anàlisi d’aigua'
+  },
+  'water-quality-control': {
+    en: 'Water quality control',
+    es: 'Control de calidad del agua',
+    fr: 'Contrôle qualité de l’eau',
+    it: 'Controllo qualità acqua',
+    ca: 'Control de qualitat de l’aigua'
+  },
+  'municipal-water-testing': {
+    en: 'Municipal water testing',
+    es: 'Análisis de agua municipal',
+    fr: 'Analyse de l’eau municipale',
+    it: 'Analisi acqua municipale',
+    ca: 'Anàlisi d’aigua municipal'
+  },
+  'food-beverage-water-quality': {
+    en: 'Food and beverage',
+    es: 'Alimentación y bebidas',
+    fr: 'Agroalimentaire',
+    it: 'Alimenti e bevande',
+    ca: 'Alimentació i begudes'
+  },
+  'industrial-process-water': {
+    en: 'Industrial process water',
+    es: 'Agua de proceso industrial',
+    fr: 'Eau de process industriel',
+    it: 'Acqua di processo industriale',
+    ca: 'Aigua de procés industrial'
+  },
+  'facility-water-risk': {
+    en: 'Facility water risk',
+    es: 'Riesgo del agua en instalaciones',
+    fr: 'Risque hydrique des bâtiments',
+    it: 'Rischio acqua nelle strutture',
+    ca: 'Risc de l’aigua en instal·lacions'
+  },
+  'agriculture-water': {
+    en: 'Agriculture water',
+    es: 'Agricultura',
+    fr: 'Eau agricole',
+    it: 'Acqua in agricoltura',
+    ca: 'Aigua agrícola'
+  },
+  'pharma-cosmetics-water': {
+    en: 'Pharma and cosmetics',
+    es: 'Pharma y cosmética',
+    fr: 'Pharma et cosmétique',
+    it: 'Pharma e cosmetica',
+    ca: 'Pharma i cosmètica'
+  },
+  'hospitality-tourism-water': {
+    en: 'Hospitality, tourism and leisure',
+    es: 'Hostelería, turismo y ocio',
+    fr: 'Hôtellerie, tourisme et loisirs',
+    it: 'Ospitalità, turismo e tempo libero',
+    ca: 'Hostaleria, turisme i oci'
+  }
+};
+
+const PRODUCT_LABELS = {
+  products: { en: 'AquaVerify products', es: 'Productos AquaVerify', fr: 'Produits AquaVerify', it: 'Prodotti AquaVerify', ca: 'Productes AquaVerify' },
+  enumera: { en: 'ENUMERA', es: 'ENUMERA', fr: 'ENUMERA', it: 'ENUMERA', ca: 'ENUMERA' },
+  indica: { en: 'INDICA', es: 'INDICA', fr: 'INDICA', it: 'INDICA', ca: 'INDICA' },
+  'standard-kits': { en: 'ISO/EPA kits', es: 'Kits ISO/EPA', fr: 'Kits ISO/EPA', it: 'Kit ISO/EPA', ca: 'Kits ISO/EPA' },
+  'lab-essentials': { en: 'Lab Essentials', es: 'Lab Essentials', fr: 'Lab Essentials', it: 'Lab Essentials', ca: 'Lab Essentials' },
+  platform: { en: 'AquaVerify Cloud', es: 'AquaVerify Cloud', fr: 'AquaVerify Cloud', it: 'AquaVerify Cloud', ca: 'AquaVerify Cloud' },
+  distributors: { en: 'Authorized distributors', es: 'Distribuidores autorizados', fr: 'Distributeurs autorisés', it: 'Distributori autorizzati', ca: 'Distribuïdors autoritzats' },
+  oem: { en: 'OEM and white label', es: 'OEM y marca blanca', fr: 'OEM et marque blanche', it: 'OEM e white label', ca: 'OEM i marca blanca' },
+  'enumera-coli100': { en: 'ENUMERA Coli100', es: 'ENUMERA Coli100', fr: 'ENUMERA Coli100', it: 'ENUMERA Coli100', ca: 'ENUMERA Coli100' },
+  'enumera-entero100': { en: 'ENUMERA Entero100', es: 'ENUMERA Entero100', fr: 'ENUMERA Entero100', it: 'ENUMERA Entero100', ca: 'ENUMERA Entero100' },
+  'enumera-soma100': { en: 'ENUMERA Soma100', es: 'ENUMERA Soma100', fr: 'ENUMERA Soma100', it: 'ENUMERA Soma100', ca: 'ENUMERA Soma100' },
+  'coli-bottle-100': { en: 'Coli Bottle 100', es: 'Coli Bottle 100', fr: 'Coli Bottle 100', it: 'Coli Bottle 100', ca: 'Coli Bottle 100' },
+  'entero-bottle-100': { en: 'Entero Bottle 100', es: 'Entero Bottle 100', fr: 'Entero Bottle 100', it: 'Entero Bottle 100', ca: 'Entero Bottle 100' },
+  'indica-coli': { en: 'INDICA Coli', es: 'INDICA Coli', fr: 'INDICA Coli', it: 'INDICA Coli', ca: 'INDICA Coli' },
+  'indica-entero': { en: 'INDICA Entero', es: 'INDICA Entero', fr: 'INDICA Entero', it: 'INDICA Entero', ca: 'INDICA Entero' },
+  'indica-soma': { en: 'INDICA Soma', es: 'INDICA Soma', fr: 'INDICA Soma', it: 'INDICA Soma', ca: 'INDICA Soma' },
+  'plaque-soma-100ml': { en: 'PLAQUE Soma 100 mL', es: 'PLAQUE Soma 100 mL', fr: 'PLAQUE Soma 100 mL', it: 'PLAQUE Soma 100 mL', ca: 'PLAQUE Soma 100 mL' },
+  'epa-soma': { en: 'EPA Soma', es: 'EPA Soma', fr: 'EPA Soma', it: 'EPA Soma', ca: 'EPA Soma' },
+  msa: { en: 'MSA', es: 'MSA', fr: 'MSA', it: 'MSA', ca: 'MSA' },
+  msb: { en: 'MSB', es: 'MSB', fr: 'MSB', it: 'MSB', ca: 'MSB' },
+  'wr5-host-strain': { en: 'WR5 host strain', es: 'Cepa huésped WR5', fr: 'Souche hôte WR5', it: 'Ceppo ospite WR5', ca: 'Soca hoste WR5' }
+};
+
+const RESOURCE_KIND_LABELS = {
+  en: 'Resource',
+  es: 'Recurso',
+  fr: 'Ressource',
+  it: 'Risorsa',
+  ca: 'Recurs'
+};
+
+const GLOSSARY_TERMS_CACHE = new Map();
+
+const SECTOR_APPLICATIONS = {
+  'escherichia-coli-e-coli': {
+    'municipal-water-testing': {
+      en: 'Used as a bacterial indicator in drinking-water control programmes and incident follow-up.',
+      es: 'Se usa como indicador bacteriano en programas de agua de consumo y seguimiento de incidencias.',
+      fr: 'Utilisé comme indicateur bactérien dans les programmes d’eau potable et le suivi d’incidents.',
+      it: 'Usato come indicatore batterico nei programmi di acqua potabile e nel follow-up di incidenti.',
+      ca: 'S’utilitza com a indicador bacterià en programes d’aigua de consum i seguiment d’incidències.'
+    },
+    'food-beverage-water-quality': {
+      en: 'Relevant where water is ingredient, process, rinse or contact water and needs batch-facing evidence.',
+      es: 'Relevante cuando el agua es ingrediente, proceso, enjuague o contacto y necesita evidencia ligada a lote.',
+      fr: 'Pertinent lorsque l’eau est ingrédient, process, rinçage ou contact et nécessite une preuve liée au lot.',
+      it: 'Rilevante quando l’acqua è ingrediente, processo, risciacquo o contatto e richiede evidenza legata al lotto.',
+      ca: 'Rellevant quan l’aigua és ingredient, procés, esbandida o contacte i necessita evidència vinculada a lot.'
+    },
+    'agriculture-water': {
+      en: 'Can support risk-based irrigation and post-harvest water plans when interpreted with matrix and crop context.',
+      es: 'Puede apoyar planes de riego y postcosecha basados en riesgo cuando se interpreta con matriz y cultivo.',
+      fr: 'Peut soutenir les plans d’irrigation et post-récolte basés sur le risque avec contexte matrice et culture.',
+      it: 'Può supportare piani irrigui e post-raccolta basati sul rischio con matrice e coltura contestualizzate.',
+      ca: 'Pot donar suport a plans de reg i postcollita basats en risc amb context de matriu i cultiu.'
+    },
+    'hospitality-tourism-water': {
+      en: 'May appear in drinking-water, pool or point-of-use controls depending on the site plan and applicable criteria.',
+      es: 'Puede aparecer en controles de consumo, piscinas o puntos de uso según el plan del sitio y criterios aplicables.',
+      fr: 'Peut intervenir dans les contrôles d’eau potable, piscine ou point d’usage selon le plan du site.',
+      it: 'Può comparire in controlli di acqua potabile, piscina o punto d’uso secondo il piano della sede.',
+      ca: 'Pot aparèixer en controls de consum, piscines o punts d’ús segons el pla del lloc.'
+    }
+  },
+  legionella: {
+    'facility-water-risk': {
+      en: 'Central to building water-risk workflows where assets, terminal points, aerosols, samples and corrective actions must remain traceable.',
+      es: 'Central en flujos de riesgo hídrico en edificios donde activos, puntos terminales, aerosoles, muestras y acciones deben quedar trazables.',
+      fr: 'Central dans les flux de risque hydrique des bâtiments reliant actifs, points terminaux, aérosols, échantillons et actions.',
+      it: 'Centrale nei flussi di rischio idrico degli edifici che collegano asset, punti terminali, aerosol, campioni e azioni.',
+      ca: 'Central en fluxos de risc hídric d’edificis on actius, punts terminals, aerosols, mostres i accions han de quedar traçables.'
+    },
+    'hospitality-tourism-water': {
+      en: 'Relevant for hotels, spas, pools and seasonal reopening workflows where water assets and suppliers are distributed.',
+      es: 'Relevante para hoteles, spas, piscinas y reaperturas de temporada con activos y proveedores distribuidos.',
+      fr: 'Pertinent pour hôtels, spas, piscines et réouvertures saisonnières avec actifs et prestataires distribués.',
+      it: 'Rilevante per hotel, spa, piscine e riaperture stagionali con asset e fornitori distribuiti.',
+      ca: 'Rellevant per a hotels, spas, piscines i reobertures de temporada amb actius i proveïdors distribuïts.'
+    }
+  },
+  cip: {
+    'food-beverage-water-quality': {
+      en: 'Connects cleaning, rinse water, production line, batch, result, deviation and audit evidence.',
+      es: 'Conecta limpieza, agua de enjuague, línea, lote, resultado, desviación y evidencia de auditoría.',
+      fr: 'Relie nettoyage, eau de rinçage, ligne, lot, résultat, écart et preuve d’audit.',
+      it: 'Collega pulizia, acqua di risciacquo, linea, lotto, risultato, deviazione ed evidenza audit.',
+      ca: 'Connecta neteja, aigua d’esbandida, línia, lot, resultat, desviació i evidència d’auditoria.'
+    },
+    'industrial-process-water': {
+      en: 'Helps connect process hygiene, recirculation, treatment, sampling points and documented follow-up.',
+      es: 'Ayuda a conectar higiene de proceso, recirculación, tratamiento, puntos de muestreo y seguimiento documentado.',
+      fr: 'Aide à relier hygiène de process, recirculation, traitement, points de prélèvement et suivi documenté.',
+      it: 'Aiuta a collegare igiene di processo, ricircolo, trattamento, punti di campionamento e follow-up documentato.',
+      ca: 'Ajuda a connectar higiene de procés, recirculació, tractament, punts de mostreig i seguiment documentat.'
+    }
+  },
+  lims: {
+    'water-testing-labs': {
+      en: 'Connects intake, chain of custody, method, result, technical review, CoA and customer portal delivery.',
+      es: 'Conecta recepción, cadena de custodia, método, resultado, revisión técnica, CoA y portal cliente.',
+      fr: 'Relie réception, chaîne de traçabilité, méthode, résultat, revue technique, CoA et portail client.',
+      it: 'Collega ricezione, catena di custodia, metodo, risultato, revisione tecnica, CoA e portale cliente.',
+      ca: 'Connecta recepció, cadena de custòdia, mètode, resultat, revisió tècnica, CoA i portal client.'
+    }
+  }
+};
+
+function assertGlossaryLanguage(lang = 'en') {
+  if (!SUPPORTED_GLOSSARY_LANGUAGES.includes(lang)) {
+    throw new Error(`Unsupported glossary language: ${lang}`);
+  }
+  return lang;
+}
+
+function copy(lang = 'en') {
+  const language = assertGlossaryLanguage(lang);
+  return COPY[language];
+}
+
+function normalizeTermId(value) {
+  const normalized = String(value || '').trim();
+  if (!normalized) return '';
+  return GLOSSARY_TERM_ID_ALIASES[normalized] || normalized;
+}
+
+function uniqueIds(ids = []) {
+  const seen = new Set();
+  return ids
+    .map(normalizeTermId)
+    .filter(Boolean)
+    .filter((id) => {
+      if (seen.has(id)) return false;
+      seen.add(id);
+      return true;
+    });
+}
+
+function stableTermIdForLegacyId(legacyId) {
+  const numericId = Number(legacyId);
+  if (GLOSSARY_RETIRED_LEGACY_TERM_CANONICAL_IDS[numericId]) {
+    return GLOSSARY_RETIRED_LEGACY_TERM_CANONICAL_IDS[numericId];
+  }
+  if (GLOSSARY_STABLE_ID_OVERRIDES_BY_LEGACY_ID[numericId]) {
+    return GLOSSARY_STABLE_ID_OVERRIDES_BY_LEGACY_ID[numericId];
+  }
+  return normalizeTermId(GLOSSARY_TERMS.en?.[numericId]?.slug || String(legacyId));
+}
+
+function resolveRequestedTermId(id) {
+  if (typeof id === 'number' || /^\d+$/.test(String(id))) {
+    return stableTermIdForLegacyId(Number(id));
+  }
+  return normalizeTermId(String(id || '').replace(/^glossary-term-/, ''));
+}
+
+export const GLOSSARY_PRIORITY_IDS = uniqueIds([
+  ...GENERATED_GLOSSARY_PRIORITY_IDS.map((id) => stableTermIdForLegacyId(id)),
+  ...PROMOTED_GLOSSARY_TERM_IDS
+]).filter((id) => id !== 'water-safety-plan-2');
+
+function industryIdsForTerm(termId) {
+  return INDUSTRY_IDS.filter((industryId) => (
+    (GLOSSARY_INDUSTRY_TERM_IDS[industryId] || []).map(normalizeTermId).includes(termId)
+  ));
+}
+
+function relationForTerm(termId) {
+  return GLOSSARY_TERM_RELATIONS[termId] || {};
+}
+
+function labelsForIds(ids, labels, lang) {
+  return uniqueIds(ids)
+    .map((id) => labels[id]?.[lang] || labels[id]?.en || id)
+    .join(', ');
+}
+
+function defaultProductIdsForTerm(term) {
+  if (term.category === 'lims-cloud') return ['platform'];
+  if (term.category === 'productos') return [term.id === 'enumera' || term.id === 'indica' || term.id === 'lab-essentials' ? term.id : 'products'];
+  if (term.category === 'canal') return ['distributors', 'oem'];
+  if (['microbiologia', 'metodologia', 'normativa'].includes(term.category)) return ['standard-kits', 'lab-essentials'];
+  return ['products'];
+}
+
+function sourceRefsForTerm(termId) {
+  return GLOSSARY_SOURCE_REFS[termId] || [];
+}
+
+function sectorApplicationFor(term, industryId, lang) {
+  return SECTOR_APPLICATIONS[term.id]?.[industryId]?.[lang]
+    || SECTOR_APPLICATIONS[term.id]?.[industryId]?.en
+    || term.application;
+}
+
+function normalizeGeneratedTerm(term, englishTerm, lang) {
+  const legacyId = Number(term.legacyId ?? term.id);
+  if (GLOSSARY_RETIRED_LEGACY_TERM_CANONICAL_IDS[legacyId]) return null;
+
+  const id = stableTermIdForLegacyId(legacyId);
+  const definitions = SPECIFIC_DEFINITIONS[lang] || {};
+  const relation = relationForTerm(id);
+  const relatedIndustryIds = uniqueIds([...(relation.relatedIndustryIds || []), ...industryIdsForTerm(id)]);
+  const relatedProductIds = uniqueIds(relation.relatedProductIds || defaultProductIdsForTerm({ ...term, id }));
+  const relatedResourceIds = uniqueIds(relation.relatedResourceIds || []);
+  const relatedTermIds = uniqueIds([...(relation.relatedTermIds || []), ...(GLOSSARY_RELATED_TERM_IDS[id] || [])]);
+
+  return {
+    ...term,
+    id,
+    legacyId,
+    canonicalId: id,
+    categoryId: term.category,
+    stableSlug: englishTerm?.slug || term.slug,
+    definition: definitions[legacyId] || term.definition,
+    aliases: relation.aliases || [],
+    relatedIndustryIds,
+    relatedProductIds,
+    relatedResourceIds,
+    relatedTermIds,
+    sourceRefs: sourceRefsForTerm(id),
+    dateModified: GLOSSARY_REVIEW_DATE,
+    product: labelsForIds(relatedProductIds, PRODUCT_LABELS, lang),
+    sector: labelsForIds(relatedIndustryIds, INDUSTRY_LABELS, lang) || labelsForIds(['water-quality-control'], INDUSTRY_LABELS, lang),
+    url: term.url
+  };
+}
+
+function normalizeSupplementalTerm(term, lang) {
+  const translation = term.translations?.[lang];
+  if (!translation) {
+    throw new Error(`Missing ${lang} supplemental glossary translation for ${term.id}`);
+  }
+  const relatedIndustryIds = uniqueIds(term.relatedIndustryIds || []);
+  const relatedProductIds = uniqueIds(term.relatedProductIds || []);
+  const relatedResourceIds = uniqueIds(term.relatedResourceIds || []);
+  const relatedTermIds = uniqueIds(term.relatedTermIds || []);
+  const hubPath = GLOSSARY_HUB_PATHS[lang];
+
+  return {
+    id: term.id,
+    legacyId: null,
+    canonicalId: term.id,
+    term: translation.term,
+    slug: translation.slug,
+    stableSlug: term.id,
+    category: term.category,
+    categoryId: term.category,
+    categoryLabel: term.categoryLabel?.[lang] || term.categoryLabel?.en || term.category,
+    definition: translation.definition,
+    application: translation.application,
+    product: labelsForIds(relatedProductIds, PRODUCT_LABELS, lang),
+    sector: labelsForIds(relatedIndustryIds, INDUSTRY_LABELS, lang),
+    keywords: term.aliases || [],
+    aliases: term.aliases || [],
+    level: term.level || 'supporting',
+    url: `${hubPath}#termino-${term.id}`,
+    relatedIndustryIds,
+    relatedProductIds,
+    relatedResourceIds,
+    relatedTermIds,
+    sourceRefs: sourceRefsForTerm(term.id),
+    dateModified: GLOSSARY_REVIEW_DATE
+  };
 }
 
 export function getGlossaryTerms(lang = 'en') {
-  const terms = GLOSSARY_TERMS[lang] || GLOSSARY_TERMS.en;
-  const definitions = SPECIFIC_DEFINITIONS[lang] || {};
-  return terms.map((term) => definitions[term.id] ? { ...term, definition: definitions[term.id] } : term);
+  const language = assertGlossaryLanguage(lang);
+  if (GLOSSARY_TERMS_CACHE.has(language)) {
+    return GLOSSARY_TERMS_CACHE.get(language);
+  }
+  const terms = GLOSSARY_TERMS[language];
+  const englishTerms = GLOSSARY_TERMS.en;
+  if (!Array.isArray(terms)) {
+    throw new Error(`Missing glossary terms for language ${language}`);
+  }
+  if (!Array.isArray(englishTerms) || terms.length !== englishTerms.length) {
+    throw new Error(`Glossary language ${language} is not aligned with English source terms`);
+  }
+
+  const normalizedTerms = [
+    ...terms.map((term, index) => normalizeGeneratedTerm(term, englishTerms[index], language)).filter(Boolean),
+    ...SUPPLEMENTAL_GLOSSARY_TERMS.map((term) => normalizeSupplementalTerm(term, language))
+  ];
+  GLOSSARY_TERMS_CACHE.set(language, normalizedTerms);
+  return normalizedTerms;
 }
 
 export function getPriorityGlossaryTerms(lang = 'en') {
-  const terms = getGlossaryTerms(lang);
-  return GLOSSARY_PRIORITY_IDS.map((id) => terms[id]).filter(Boolean);
+  return GLOSSARY_PRIORITY_IDS
+    .map((id) => getGlossaryTermById(id, lang))
+    .filter(Boolean);
 }
 
 export function getGlossaryTermById(id, lang = 'en') {
-  return getGlossaryTerms(lang)[id] || getGlossaryTerms('en')[id] || null;
+  const stableId = resolveRequestedTermId(id);
+  return getGlossaryTerms(lang).find((term) => term.id === stableId) || null;
 }
 
 export function getGlossaryTermPageId(id) {
-  return `glossary-term-${id}`;
+  return `glossary-term-${resolveRequestedTermId(id)}`;
 }
 
 export function isPriorityGlossaryTerm(id) {
-  return GLOSSARY_PRIORITY_IDS.includes(Number(id));
+  return GLOSSARY_PRIORITY_IDS.includes(resolveRequestedTermId(id));
 }
 
 export function getGlossaryCategories(lang = 'en') {
@@ -791,7 +1148,7 @@ export function getGlossaryTermSeo(id, lang = 'en') {
     description: term.definition,
     seoTitle: `${term.term} | ${labels.glossaryLabel} AquaVerify`,
     seoDescription: term.definition,
-    path: term.url,
+    path: getGlossaryTermHref(term.id, lang),
     faqs: [
       {
         question: `${labels.definition}: ${term.term}`,
@@ -819,62 +1176,111 @@ export function getGlossaryFaqs(lang = 'en') {
   ];
 }
 
-function productRouteFor(term) {
-  const value = `${term.product} ${term.term}`.toLowerCase();
-  if (value.includes('enumera')) return 'enumera';
-  if (value.includes('indica')) return 'indica';
-  if (value.includes('lab essentials')) return 'lab-essentials';
-  if (value.includes('iso') || value.includes('epa')) return 'standard-kits';
-  if (value.includes('cloud') || value.includes('lims') || value.includes('saas') || value.includes('portal')) return 'platform';
-  return 'products';
-}
-
-function sectorRouteFor(term) {
-  const value = `${term.sector} ${term.term} ${term.application}`.toLowerCase();
-  if (value.includes('municip')) return 'municipal-water-testing';
-  if (value.includes('laborator')) return 'water-testing-labs';
-  if (value.includes('aliment') || value.includes('food') || value.includes('beverage')) return 'food-beverage-water-quality';
-  if (value.includes('agric') || value.includes('riego') || value.includes('irrig')) return 'agriculture-water';
-  if (value.includes('instal') || value.includes('facility') || value.includes('acs') || value.includes('legionella')) return 'facility-water-risk';
-  if (value.includes('hotel') || value.includes('ocio') || value.includes('tourism') || value.includes('loisir')) return 'hospitality-tourism-water';
-  if (value.includes('pharma') || value.includes('cosmet')) return 'pharma-cosmetics-water';
-  if (value.includes('industr') || value.includes('process')) return 'industrial-process-water';
-  return 'industries-hub';
-}
-
-function whitepaperRouteFor(term) {
-  const haystack = `${term.term} ${term.definition} ${term.application} ${term.product} ${term.sector} ${(term.keywords || []).join(' ')}`;
-  const match = WHITEPAPER_BY_TERM.find(([pattern]) => pattern.test(haystack));
-  return match?.[1] || 'water-compliance-software-guide';
-}
-
 export function getGlossaryRelatedLinks(term, lang = 'en') {
-  const labels = copy(lang);
+  const language = assertGlossaryLanguage(lang);
+  const labels = copy(language);
   const links = [
-    { id: productRouteFor(term), label: term.product || labels.product, kind: labels.product },
-    { id: 'platform', label: 'AquaVerify Cloud', kind: 'Cloud' },
-    { id: sectorRouteFor(term), label: term.sector || labels.sector, kind: labels.sector },
-    { id: whitepaperRouteFor(term), label: labels.secondaryCta, kind: 'Whitepaper' },
-    { id: 'distributors', label: labels.distributors, kind: 'Partner' }
+    ...(term.relatedProductIds || []).map((id) => ({
+      id,
+      label: PRODUCT_LABELS[id]?.[language] || PRODUCT_LABELS[id]?.en || id,
+      kind: labels.product,
+      href: getMarketingPagePath(id, language)
+    })),
+    ...(term.relatedIndustryIds || []).filter((id) => id !== 'industries-hub').map((id) => ({
+      id,
+      label: INDUSTRY_LABELS[id]?.[language] || INDUSTRY_LABELS[id]?.en || id,
+      kind: labels.sector,
+      href: getMarketingPagePath(id, language)
+    })),
+    ...(term.relatedResourceIds || []).map((id) => ({
+      id,
+      label: RESOURCE_KIND_LABELS[language],
+      kind: RESOURCE_KIND_LABELS[language],
+      href: getMarketingPagePath(id, language)
+    }))
   ];
 
   const unique = [];
   const seen = new Set();
   links.forEach((link) => {
-    if (seen.has(link.id)) return;
-    seen.add(link.id);
-    unique.push({
-      ...link,
-      href: getMarketingPagePath(link.id, lang)
-    });
+    const key = `${link.kind}:${link.id}`;
+    if (seen.has(key) || !link.href || link.href === '/') return;
+    seen.add(key);
+    unique.push(link);
   });
   return unique;
 }
 
+export function getGlossaryRelatedTerms(term, lang = 'en', limit = 6) {
+  return uniqueIds(term?.relatedTermIds || [])
+    .filter((id) => id !== term?.id)
+    .map((id) => getGlossaryTermById(id, lang))
+    .filter(Boolean)
+    .slice(0, limit);
+}
+
+export function getGlossaryTermHref(termId, lang = 'en') {
+  const language = assertGlossaryLanguage(lang);
+  const term = getGlossaryTermById(termId, language);
+  if (!term) {
+    throw new Error(`Unknown glossary term: ${termId}`);
+  }
+  if (isPriorityGlossaryTerm(term.id) && term.url && !term.url.includes('#')) return term.url;
+  return `${GLOSSARY_HUB_PATHS[language]}#termino-${term.id}`;
+}
+
+export function getIndustryGlossaryTerms(industryId, lang = 'en', limit = 12) {
+  const language = assertGlossaryLanguage(lang);
+  const termIds = uniqueIds(GLOSSARY_INDUSTRY_TERM_IDS[industryId] || []);
+  return termIds
+    .map((termId) => {
+      const term = getGlossaryTermById(termId, language);
+      if (!term) return null;
+      return {
+        ...term,
+        href: getGlossaryTermHref(term.id, language),
+        relevance: sectorApplicationFor(term, industryId, language)
+      };
+    })
+    .filter(Boolean)
+    .slice(0, limit);
+}
+
+export function getGlossaryIndustryExplorer(lang = 'en') {
+  const language = assertGlossaryLanguage(lang);
+  return INDUSTRY_IDS
+    .filter((industryId) => industryId !== 'industries-hub')
+    .map((industryId) => {
+      const terms = getIndustryGlossaryTerms(industryId, language, 5);
+      return {
+        id: industryId,
+        title: INDUSTRY_LABELS[industryId]?.[language] || INDUSTRY_LABELS[industryId]?.en || industryId,
+        description: terms.slice(0, 3).map((term) => term.term).join(', '),
+        href: getMarketingPagePath(industryId, language),
+        terms
+      };
+    });
+}
+
+export function getGlossaryTermSectorApplications(termId, lang = 'en') {
+  const language = assertGlossaryLanguage(lang);
+  const term = getGlossaryTermById(termId, language);
+  if (!term) return [];
+  return (term.relatedIndustryIds || [])
+    .filter((industryId) => industryId !== 'industries-hub')
+    .map((industryId) => ({
+      id: industryId,
+      title: INDUSTRY_LABELS[industryId]?.[language] || INDUSTRY_LABELS[industryId]?.en || industryId,
+      href: getMarketingPagePath(industryId, language),
+      relevance: sectorApplicationFor(term, industryId, language)
+    }));
+}
+
 export function getGlossaryTermAlternates(id) {
-  return Object.fromEntries(
-    Object.entries(GLOSSARY_TERM_ROUTE_PATHS[getGlossaryTermPageId(id)] || {})
-  );
+  return Object.fromEntries(SUPPORTED_GLOSSARY_LANGUAGES.map((lang) => {
+    const term = getGlossaryTermById(id, lang);
+    return [lang, term ? getGlossaryTermHref(term.id, lang) : null];
+  }).filter(([, path]) => Boolean(path) && !String(path).includes('#')));
 }
 
 export function glossaryAbsolute(path) {

@@ -25,10 +25,15 @@
     "marketing:screenshots:audit": "node scripts/audit-marketing-screenshots.js",
     "seo:sitemap": "node scripts/generate-sitemap.js",
     "validate:resources": "node scripts/validate-resources.js",
+    "validate:glossary-industries:source": "node scripts/validate-glossary-industries.js --source",
+    "validate:glossary-industries:dist": "node scripts/validate-glossary-industries.js --dist",
+    "validate:glossary-industries": "node scripts/validate-glossary-industries.js",
     "smoke:prod": "node scripts/smoke-corporate-platform.js",
-    "check:local": "npm run validate:resources && npm run cms:links:audit && npm run cms:marketing:strict && npm run cms:assets:audit && npm run claims:audit && npm run cms:claims:audit && npm run marketing:routes:audit && npm run marketing:faqs:audit && npm run marketing:screenshots:audit && npm run seo:sitemap && npm run build",
+    "check:static": "npm run validate:resources && npm run validate:glossary-industries:source && npm run claims:audit && npm run marketing:routes:audit && npm run marketing:faqs:audit && npm run seo:sitemap && npm run build && npm run validate:resources && npm run validate:glossary-industries:dist",
+    "check:cms": "npm run cms:links:audit && npm run cms:marketing:strict && npm run cms:assets:audit && npm run cms:claims:audit",
+    "check:local": "npm run check:static && npm run check:cms && npm run marketing:screenshots:audit",
     "check:prod": "npm run cms:links:audit && npm run cms:marketing:strict && npm run cms:claims:audit && npm run smoke:prod",
-    "check:release": "npm run check:local && npm audit --audit-level=high && npm run smoke:prod",
+    "check:release": "npm run check:static && npm run check:cms && npm audit --audit-level=high && npm run smoke:prod",
     "deploy:prod": "node scripts/deploy-production.js"
   },
   "dependencies": {
