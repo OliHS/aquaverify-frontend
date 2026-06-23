@@ -4,7 +4,7 @@
   "cloud": {
     "repository": "aquaverify-cloud",
     "branch": "feat/workflow-advisor-marketing",
-    "codeCommit": "16a7dddae5a5e9f1489cb1570ee457f37e888e41"
+    "codeCommit": "8fc27c5920ccac1afe89d060c8d91ee28007567d"
   },
   "corporate": {
     "repository": "aquaverify-corporate-site",

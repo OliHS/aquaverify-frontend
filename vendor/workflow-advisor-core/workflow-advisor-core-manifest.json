@@ -1,6 +1,6 @@
 {
   "sourceRepository": "aquaverify-cloud",
-  "sourceCommit": "16a7dddae5a5e9f1489cb1570ee457f37e888e41",
+  "sourceCommit": "8fc27c5920ccac1afe89d060c8d91ee28007567d",
   "packageVersion": "1.0.0",
   "assessmentVersion": "1.0.0",
   "questionnaireVersion": "workflow-advisor-v1",
