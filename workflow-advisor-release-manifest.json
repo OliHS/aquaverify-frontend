@@ -1,0 +1,51 @@
+{
+  "releaseName": "workflow-advisor-v1",
+  "date": "2026-06-23",
+  "cloud": {
+    "repository": "aquaverify-cloud",
+    "branch": "feat/workflow-advisor-marketing",
+    "codeCommit": "16a7dddae5a5e9f1489cb1570ee457f37e888e41"
+  },
+  "corporate": {
+    "repository": "aquaverify-corporate-site",
+    "branch": "feat/workflow-advisor-public",
+    "codeCommit": "1eb28be4f2520856b5dc54be8117d9bcf2116ffc"
+  },
+  "core": {
+    "package": "@aquaverify/workflow-advisor-core",
+    "packageVersion": "1.0.0",
+    "assessmentVersion": "1.0.0",
+    "questionnaireVersion": "workflow-advisor-v1",
+    "rulesVersion": "workflow-advisor-rules-v1",
+    "catalogVersion": "workflow-advisor-catalog-v1",
+    "vendorSha256": "b45a862d7392b395ecfa8716c9d49c7481a45ae3c5275c34486e547e5e81d84d"
+  },
+  "publicRoutes": {
+    "en": "/water-quality-workflow-assessment",
+    "es": "/es/diagnostico-flujo-calidad-agua",
+    "fr": "/fr/diagnostic-flux-qualite-eau",
+    "it": "/it/valutazione-flusso-qualita-acqua",
+    "ca": "/ca/diagnostic-flux-qualitat-aigua"
+  },
+  "checks": {
+    "cloud": [
+      "AQUAVERIFY_SKIP_DB_INIT=1 node --check backend/routes/workflow_assessments_public.js",
+      "AQUAVERIFY_SKIP_DB_INIT=1 node --check backend/routes/crm_marketing.js",
+      "npm run validate:workflow-advisor-rules",
+      "npm run marketing:migrate:dry-run",
+      "npm run marketing:retention:dry-run",
+      "npm test"
+    ],
+    "corporate": [
+      "npm run verify:workflow-advisor-core",
+      "npm run validate:workflow-advisor:source",
+      "npm run build",
+      "npm run check:static"
+    ]
+  },
+  "database": {
+    "migration": "migrations/202606230001_workflow_advisor_marketing.sql",
+    "productionMigrationApplied": false,
+    "note": "Production migration requires explicit approval before execution."
+  }
+}
