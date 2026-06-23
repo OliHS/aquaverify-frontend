@@ -17,7 +17,15 @@
     <lastmod>2026-06-18</lastmod>
   </sitemap>
   <sitemap>
-    <loc>https://aquaverify.com/sitemaps/sitemap-platform-partners.xml</loc>
+    <loc>https://aquaverify.com/sitemaps/sitemap-tools.xml</loc>
+    <lastmod>2026-06-22</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://aquaverify.com/sitemaps/sitemap-workflow-advisor.xml</loc>
     <lastmod>2026-05-20</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://aquaverify.com/sitemaps/sitemap-platform-partners.xml</loc>
+    <lastmod>2026-06-22</lastmod>
   </sitemap>
 </sitemapindex>

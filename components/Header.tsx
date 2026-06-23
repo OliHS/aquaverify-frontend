@@ -18,6 +18,17 @@ import { trackCorporateEvent } from '../utils/corporateAnalytics';
 const logoSrc = '/images/logo-mark-160.png';
 
 const NAV_ROUTE_GROUPS: Record<string, string[]> = {
+  tools: [
+    'aquatools',
+    'aquatool-dilution',
+    'aquatool-molarity',
+    'aquatool-unit-converter',
+    'aquatool-rpm-rcf',
+    'aquatool-cfu',
+    'aquatool-recovery-rpd',
+    'aquatool-hardness-alkalinity',
+    'aquatool-chemical-species'
+  ],
   solutions: [
     'industries-hub',
     'water-quality-control',
@@ -44,6 +55,14 @@ const NAV_ROUTE_GROUPS: Record<string, string[]> = {
   ],
   distributors: ['distributors'],
   oem: ['oem']
+};
+
+const FREE_TOOLS_LABELS: Record<Language, string> = {
+  en: 'Free tools',
+  es: 'Herramientas gratuitas',
+  fr: 'Outils gratuits',
+  it: 'Strumenti gratuiti',
+  ca: 'Eines gratuïtes'
 };
 
 export const Header: React.FC = () => {
@@ -76,6 +95,7 @@ export const Header: React.FC = () => {
     products: getMarketingPagePath('products', lang),
     platform: getMarketingPagePath('platform', lang),
     resources: getMarketingPagePath('resources', lang),
+    tools: getMarketingPagePath('aquatools', lang),
     distributors: getMarketingPagePath('distributors', lang),
     oem: getMarketingPagePath('oem', lang)
   };
@@ -83,6 +103,7 @@ export const Header: React.FC = () => {
     { id: 'products', label: t.nav.products, field: 'link_products', legacyFallbacks: ['#', '#products'] },
     { id: 'platform', label: t.nav.platform, field: 'link_platform', legacyFallbacks: ['#', '#platform', '#saas'] },
     { id: 'solutions', label: t.nav.solutions, field: 'link_solutions', legacyFallbacks: ['#', '#solutions'] },
+    { id: 'tools', label: FREE_TOOLS_LABELS[lang], field: 'link_tools', legacyFallbacks: ['#', '#tools'] },
     { id: 'distributors', label: t.nav.distributors, field: 'link_distributors', legacyFallbacks: ['#', '#distributors'] },
     { id: 'oem', label: t.nav.oem, field: 'link_oem', legacyFallbacks: ['#', '#oem'] },
     { id: 'resources', label: t.nav.resources, field: 'link_resources', legacyFallbacks: ['#', '#resources'] }

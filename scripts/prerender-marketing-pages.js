@@ -35,6 +35,19 @@ import {
   getResourceEditorialMeta
 } from '../utils/resourceEditorialMetadata.js';
 import { getResourceUiLabels } from '../utils/resourceUiLabels.js';
+import {
+  AQUATOOLS_COPY,
+  AQUATOOLS_TOOL_DEFINITIONS,
+  AQUATOOLS_CALCULATION_VERSION
+} from '../utils/aquatoolsContent.js';
+import {
+  assessmentVersion as WORKFLOW_ADVISOR_ASSESSMENT_VERSION,
+  questionnaireVersion as WORKFLOW_ADVISOR_QUESTIONNAIRE_VERSION,
+  rulesVersion as WORKFLOW_ADVISOR_RULES_VERSION,
+  sectors as WORKFLOW_ADVISOR_SECTORS,
+  getSectorLabel as getWorkflowSectorLabel
+} from '../vendor/workflow-advisor-core/index.js';
+import { resolveIndustryBuyerProblemLinks } from '../utils/industryBuyerProblemLinks.js';
 
 dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
@@ -297,6 +310,7 @@ function renderTechnicalTable(table) {
 
   return [
     '        <table>',
+    table.title ? `          <caption>${escapeHtml(table.title)}</caption>` : '',
     '          <thead>',
     '            <tr>',
     ...columns.map((column) => `              <th>${escapeHtml(column)}</th>`),
@@ -413,6 +427,41 @@ function renderAnswerLayer(page, content) {
       renderTechnicalTable(content.technicalTable),
       '      </section>'
     ].join('\n') : ''
+  ].filter(Boolean).join('\n');
+}
+
+function renderIndustryBuyerProblems(content, lang) {
+  const buyerProblems = content?.buyerProblems;
+  const problems = Array.isArray(buyerProblems?.problems) ? buyerProblems.problems : [];
+  if (!buyerProblems || problems.length !== 5) return '';
+
+  const links = resolveIndustryBuyerProblemLinks(buyerProblems, lang);
+
+  return [
+    '      <section id="problema" style="scroll-margin-top: 112px;">',
+    `        <p><strong>${escapeHtml(buyerProblems.eyebrow)}</strong></p>`,
+    `        <h2>${escapeHtml(buyerProblems.title)}</h2>`,
+    `        <p>${escapeHtml(buyerProblems.intro)}</p>`,
+    '        <ol>',
+    ...problems.map((problem) => [
+      `          <li data-problem-id="${escapeHtml(problem.id)}">`,
+      `            <h3>${escapeHtml(problem.question)}</h3>`,
+      `            <p>${escapeHtml(problem.answer)}</p>`,
+      '          </li>'
+    ].join('\n')),
+    '        </ol>',
+    links.length ? [
+      '        <ul>',
+      ...links.map((link) => [
+        '          <li>',
+        `            <p><strong>${escapeHtml(link.kindLabel)}</strong></p>`,
+        `            <a href="${escapeHtml(absolute(link.href))}">${escapeHtml(link.label)}</a>`,
+        '          </li>'
+      ].join('\n')),
+      '        </ul>'
+    ].join('\n') : '',
+    `        <p><a href="#diagnostico">${escapeHtml(buyerProblems.cta)}</a></p>`,
+    '      </section>'
   ].filter(Boolean).join('\n');
 }
 
@@ -712,6 +761,323 @@ function renderIndustryGlossaryTerms(page, lang) {
     '        </ul>',
     '      </section>'
   ].join('\n');
+}
+
+function aboutLinkPath(item, lang) {
+  return item?.routeId ? getMarketingPagePath(item.routeId, lang) : '';
+}
+
+function renderAboutLinkList(title, links = [], lang) {
+  if (!Array.isArray(links) || !links.length) return '';
+  return [
+    '      <section>',
+    `        <h2>${escapeHtml(title)}</h2>`,
+    '        <ul>',
+    ...links.map((item) => [
+      '          <li>',
+      `            <h3><a href="${escapeHtml(absolute(aboutLinkPath(item, lang)))}">${escapeHtml(item.label)}</a></h3>`,
+      `            <p>${escapeHtml(item.body)}</p>`,
+      '          </li>'
+    ].join('\n')),
+    '        </ul>',
+    '      </section>'
+  ].join('\n');
+}
+
+function renderAboutConcepts(content, lang) {
+  const concepts = Array.isArray(content?.keyConceptIds)
+    ? content.keyConceptIds.map((id) => {
+      const term = getGlossaryTermById(id, lang);
+      if (!term) return null;
+      return {
+        id,
+        term,
+        href: getGlossaryTermHref(id, lang),
+        relation: content.keyConceptRelations?.[id] || ''
+      };
+    }).filter(Boolean)
+    : [];
+  if (!concepts.length) return '';
+
+  const title = lang === 'es'
+    ? 'Conceptos clave del glosario'
+    : lang === 'fr'
+      ? 'Concepts clés du glossaire'
+      : lang === 'it'
+        ? 'Concetti chiave del glossario'
+        : lang === 'ca'
+          ? 'Conceptes clau del glossari'
+          : 'Key glossary concepts';
+
+  return [
+    '      <section>',
+    `        <h2>${escapeHtml(title)}</h2>`,
+    '        <ul>',
+    ...concepts.map((concept) => [
+      '          <li>',
+      `            <h3><a href="${escapeHtml(absolute(concept.href))}">${escapeHtml(concept.term.term)}</a></h3>`,
+      `            <p>${escapeHtml(concept.term.definition)}</p>`,
+      concept.relation ? `            <p><strong>${escapeHtml(concept.relation)}</strong></p>` : '',
+      '          </li>'
+    ].filter(Boolean).join('\n')),
+    '        </ul>',
+    '      </section>'
+  ].join('\n');
+}
+
+function renderAboutAquaVerifyDetails(page, content, lang) {
+  if (page?.id !== 'about') return '';
+  const pillars = Array.isArray(content?.pillars) ? content.pillars : [];
+  const sections = Array.isArray(content?.sections) ? content.sections : [];
+
+  return [
+    '      <nav aria-label="Breadcrumb">',
+    `        <a href="${escapeHtml(absolute(getHomePath(lang)))}">AquaVerify</a>`,
+    `        <span>${escapeHtml(content.title)}</span>`,
+    '      </nav>',
+    content.directAnswer ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.directAnswer.title)}</h2>`,
+      `        <p>${escapeHtml(content.directAnswer.body)}</p>`,
+      '      </section>'
+    ].join('\n') : '',
+    pillars.length ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.eyebrow || content.title)}</h2>`,
+      '        <ul>',
+      ...pillars.map((pillar) => `          <li><strong>${escapeHtml(pillar.title)}:</strong> ${escapeHtml(pillar.body)}</li>`),
+      '        </ul>',
+      '      </section>'
+    ].join('\n') : '',
+    content.ecosystemTable ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.ecosystemTable.title)}</h2>`,
+      renderTechnicalTable(content.ecosystemTable),
+      '      </section>'
+    ].join('\n') : '',
+    renderAboutLinkList(content.ecosystemLinksTitle, content.ecosystemLinks, lang),
+    renderSectionList(sections, page, lang),
+    renderAboutConcepts(content, lang),
+    renderAboutLinkList(content.evidenceLinksTitle, content.evidenceLinks, lang),
+    renderAboutLinkList(content.commercialLinksTitle, content.commercialLinks, lang),
+    renderFaqs(content.faqs || []),
+    content.cta ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.cta.title)}</h2>`,
+      `        <p>${escapeHtml(content.cta.body)}</p>`,
+      `        <p><a href="${escapeHtml(absolute(getMarketingPagePath(content.cta.routeId || 'contact', lang)))}">${escapeHtml(content.cta.button)}</a></p>`,
+      '      </section>'
+    ].join('\n') : ''
+  ].filter(Boolean).join('\n');
+}
+
+function renderAquaToolsHubDetails(page, lang) {
+  if (page?.id !== 'aquatools') return '';
+  const labels = AQUATOOLS_COPY[lang] || AQUATOOLS_COPY.en;
+  return [
+    '      <section>',
+    '        <p>AquaTools Free</p>',
+    `        <h2>${escapeHtml(labels.howTitle)}</h2>`,
+    `        <p>${escapeHtml(labels.hubDescription)}</p>`,
+    '        <ul>',
+    ...AQUATOOLS_TOOL_DEFINITIONS.map((tool) => `          <li><strong><a href="${escapeHtml(absolute(getMarketingPagePath(tool.id, lang)))}">${escapeHtml(tool.copy[lang][0])}</a></strong> ${escapeHtml(tool.copy[lang][1])} <code>${escapeHtml(tool.formula)}</code></li>`),
+    '        </ul>',
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.privacyTitle)}</h2>`,
+    `        <p>${escapeHtml(labels.privacy)}</p>`,
+    `        <h2>${escapeHtml(labels.cloudTitle)}</h2>`,
+    `        <p>${escapeHtml(labels.cloudBody)}</p>`,
+    `        <p>${escapeHtml(labels.disclaimer)}</p>`,
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.resources)}</h2>`,
+    '        <ul>',
+    `          <li><a href="${escapeHtml(absolute(getMarketingPagePath('resources', lang)))}">${escapeHtml(labels.resources)}</a></li>`,
+    `          <li><a href="${escapeHtml(absolute(getMarketingPagePath('glossary', lang)))}">${escapeHtml(labels.glossary)}</a></li>`,
+    `          <li><a href="${escapeHtml(absolute(getMarketingPagePath('products', lang)))}">${escapeHtml(labels.products)}</a></li>`,
+    `          <li><a href="${escapeHtml(absolute(getMarketingPagePath('platform', lang)))}">AquaVerify Cloud</a></li>`,
+    '        </ul>',
+    '      </section>'
+  ].join('\n');
+}
+
+function renderAquaToolDetails(page, content, lang) {
+  if (page?.schemaType !== 'AquaTool') return '';
+  const tool = content?.aquatools;
+  const labels = tool?.labels || AQUATOOLS_COPY[lang] || AQUATOOLS_COPY.en;
+  if (!tool) return '';
+  const linked = (ids = []) => ids
+    .map((id) => getMarketingPagePath(id, lang))
+    .filter((item) => item && item !== '/');
+
+  return [
+    '      <nav aria-label="Breadcrumb">',
+    `        <a href="${escapeHtml(absolute(getMarketingPagePath('aquatools', lang)))}">AquaTools Free</a>`,
+    `        <span>${escapeHtml(content.title)}</span>`,
+    '      </nav>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.formula)}</h2>`,
+    `        <p><code>${escapeHtml(tool.formula)}</code></p>`,
+    `        <h2>${escapeHtml(labels.variables)}</h2>`,
+    '        <ul>',
+    ...tool.units.map((unit) => `          <li>${escapeHtml(unit)}</li>`),
+    '        </ul>',
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.example)}</h2>`,
+    `        <p>${escapeHtml(tool.exampleText)}</p>`,
+    `        <p><strong>${escapeHtml(tool.expectedResult)}</strong></p>`,
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.interpretation)}</h2>`,
+    `        <p>${escapeHtml(tool.directAnswer)}</p>`,
+    `        <h2>${escapeHtml(labels.validations)}</h2>`,
+    `        <p>${escapeHtml(labels.validationBody)}</p>`,
+    `        <h2>${escapeHtml(labels.warnings)}</h2>`,
+    `        <p>${escapeHtml(tool.disclaimer)}</p>`,
+    `        <h2>${escapeHtml(labels.privacyTitle)}</h2>`,
+    `        <p>${escapeHtml(tool.privacy)}</p>`,
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.sources)}</h2>`,
+    '        <ul>',
+    ...tool.sourceRefs.map((source) => `          <li><a href="${escapeHtml(absolute(source.url))}">${escapeHtml(source.label)}</a></li>`),
+    '        </ul>',
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.relatedTools)}</h2>`,
+    '        <ul>',
+    ...linked(tool.relatedToolIds).map((href) => `          <li><a href="${escapeHtml(absolute(href))}">${escapeHtml(href)}</a></li>`),
+    '        </ul>',
+    `        <h2>${escapeHtml(labels.industries)}</h2>`,
+    '        <ul>',
+    ...linked(tool.industryIds).map((href) => `          <li><a href="${escapeHtml(absolute(href))}">${escapeHtml(href)}</a></li>`),
+    '        </ul>',
+    `        <h2>${escapeHtml(labels.glossary)}</h2>`,
+    '        <ul>',
+    ...(tool.glossaryTermIds || []).map((termId) => {
+      const term = getGlossaryTermById(termId, lang);
+      return `          <li><a href="${escapeHtml(absolute(getGlossaryTermHref(termId, lang)))}">${escapeHtml(term?.term || termId)}</a></li>`;
+    }),
+    '        </ul>',
+    `        <h2>${escapeHtml(labels.resources)}</h2>`,
+    '        <ul>',
+    ...linked(tool.resourceIds).map((href) => `          <li><a href="${escapeHtml(absolute(href))}">${escapeHtml(href)}</a></li>`),
+    '        </ul>',
+    '      </section>',
+    '      <section>',
+    `        <h2>AquaVerify Cloud</h2>`,
+    `        <p>${escapeHtml(labels.cloudCta)}</p>`,
+    '      </section>'
+  ].join('\n');
+}
+
+const WORKFLOW_ADVISOR_STATIC_LABELS = {
+  en: {
+    directAnswer: 'Direct answer',
+    toolTitle: 'Start the workflow assessment',
+    toolBody: 'The browser experience calculates the result locally first. Answers are only sent to AquaVerify Cloud when research sharing or contact is explicitly selected.',
+    sectorsTitle: 'Sector coverage',
+    privacyTitle: 'Consent and privacy model',
+    methodTitle: 'Versioned rules engine',
+    limitsTitle: 'Assessment limits',
+    versions: 'Versions'
+  },
+  es: {
+    directAnswer: 'Respuesta directa',
+    toolTitle: 'Iniciar el diagnostico de flujo',
+    toolBody: 'La experiencia del navegador calcula primero el resultado en local. Las respuestas solo se envian a AquaVerify Cloud si se selecciona investigacion o contacto de forma explicita.',
+    sectorsTitle: 'Cobertura por sector',
+    privacyTitle: 'Modelo de consentimiento y privacidad',
+    methodTitle: 'Motor de reglas versionado',
+    limitsTitle: 'Limites del diagnostico',
+    versions: 'Versiones'
+  },
+  fr: {
+    directAnswer: 'Reponse directe',
+    toolTitle: 'Demarrer le diagnostic de flux',
+    toolBody: 'L experience navigateur calcule d abord le resultat localement. Les reponses ne sont envoyees a AquaVerify Cloud que si la recherche ou le contact est choisi explicitement.',
+    sectorsTitle: 'Couverture sectorielle',
+    privacyTitle: 'Modele de consentement et confidentialite',
+    methodTitle: 'Moteur de regles versionne',
+    limitsTitle: 'Limites du diagnostic',
+    versions: 'Versions'
+  },
+  it: {
+    directAnswer: 'Risposta diretta',
+    toolTitle: 'Avvia la valutazione del workflow',
+    toolBody: 'L esperienza nel browser calcola prima il risultato in locale. Le risposte vengono inviate ad AquaVerify Cloud solo se ricerca o contatto sono selezionati esplicitamente.',
+    sectorsTitle: 'Copertura per settore',
+    privacyTitle: 'Modello di consenso e privacy',
+    methodTitle: 'Motore di regole versionato',
+    limitsTitle: 'Limiti della valutazione',
+    versions: 'Versioni'
+  },
+  ca: {
+    directAnswer: 'Resposta directa',
+    toolTitle: 'Iniciar el diagnostic de flux',
+    toolBody: 'L experiencia del navegador calcula primer el resultat en local. Les respostes nomes s envien a AquaVerify Cloud si es tria recerca o contacte de manera explicita.',
+    sectorsTitle: 'Cobertura per sector',
+    privacyTitle: 'Model de consentiment i privacitat',
+    methodTitle: 'Motor de regles versionat',
+    limitsTitle: 'Limits del diagnostic',
+    versions: 'Versions'
+  }
+};
+
+function renderWorkflowAdvisorDetails(page, content, lang) {
+  if (page?.id !== 'workflow-advisor') return '';
+  const labels = WORKFLOW_ADVISOR_STATIC_LABELS[lang] || WORKFLOW_ADVISOR_STATIC_LABELS.en;
+  const routePath = content?.path || getMarketingPagePath('workflow-advisor', lang);
+  const blocks = Array.isArray(content?.blocks) ? content.blocks : [];
+
+  return [
+    '      <nav aria-label="Breadcrumb">',
+    `        <a href="${escapeHtml(absolute(getHomePath(lang)))}">AquaVerify</a>`,
+    `        <span>${escapeHtml(content.title)}</span>`,
+    '      </nav>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.directAnswer)}</h2>`,
+    `        <p>${escapeHtml(content.directAnswer || content.description)}</p>`,
+    '      </section>',
+    '      <section id="workflow-advisor-tool">',
+    `        <h2>${escapeHtml(labels.toolTitle)}</h2>`,
+    `        <p>${escapeHtml(labels.toolBody)}</p>`,
+    `        <p><a href="${escapeHtml(absolute(routePath))}#workflow-advisor-tool">${escapeHtml(content.cta || content.title)}</a></p>`,
+    '      </section>',
+    blocks.length ? [
+      '      <section>',
+      `        <h2>${escapeHtml(content.eyebrow || content.title)}</h2>`,
+      '        <ul>',
+      ...blocks.map(([title, body]) => `          <li><strong>${escapeHtml(title)}:</strong> ${escapeHtml(body)}</li>`),
+      '        </ul>',
+      '      </section>'
+    ].join('\n') : '',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.sectorsTitle)}</h2>`,
+    '        <ul>',
+    ...WORKFLOW_ADVISOR_SECTORS.map((sectorId) => {
+      const href = absolute(`${routePath}?sector=${encodeURIComponent(sectorId)}`);
+      return `          <li><strong><a href="${escapeHtml(href)}">${escapeHtml(getWorkflowSectorLabel(sectorId, lang))}</a></strong></li>`;
+    }),
+    '        </ul>',
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.privacyTitle)}</h2>`,
+    `        <p>${escapeHtml(content.privacyConsent || '')}</p>`,
+    `        <p>${escapeHtml(content.contactConsent || '')}</p>`,
+    `        <p>${escapeHtml(content.marketingConsent || '')}</p>`,
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.methodTitle)}</h2>`,
+    `        <p>${escapeHtml(labels.versions)}: assessment ${escapeHtml(WORKFLOW_ADVISOR_ASSESSMENT_VERSION)}, questionnaire ${escapeHtml(WORKFLOW_ADVISOR_QUESTIONNAIRE_VERSION)}, rules ${escapeHtml(WORKFLOW_ADVISOR_RULES_VERSION)}.</p>`,
+    '      </section>',
+    '      <section>',
+    `        <h2>${escapeHtml(labels.limitsTitle)}</h2>`,
+    `        <p>${escapeHtml(content.limits || '')}</p>`,
+    '      </section>'
+  ].filter(Boolean).join('\n');
 }
 
 function renderDistributorsDetails(page, content, lang) {
@@ -1126,8 +1492,16 @@ function renderStaticRoot(meta) {
       '    <div style="max-width: 1040px; margin: 0 auto;">',
       meta.page?.id === 'resources'
         ? renderResourcesHubDetails(meta.page, meta.lang)
+        : meta.page?.id === 'workflow-advisor'
+          ? renderWorkflowAdvisorDetails(meta.page, content, meta.lang)
+        : meta.page?.id === 'aquatools'
+          ? renderAquaToolsHubDetails(meta.page, meta.lang)
+        : meta.page?.schemaType === 'AquaTool'
+          ? renderAquaToolDetails(meta.page, content, meta.lang)
         : (meta.page?.id === 'glossary' || typeof meta.page?.glossaryTermId === 'number')
           ? renderGlossaryDetails(meta.page, meta.lang)
+        : meta.page?.id === 'about'
+          ? renderAboutAquaVerifyDetails(meta.page, content, meta.lang)
         : content.markdownWhitepaper
           ? [
             renderMarkdownWhitepaper(content.markdownWhitepaper, meta.lang),
@@ -1136,6 +1510,7 @@ function renderStaticRoot(meta) {
         : [
           renderFeaturedWhitepapers(meta.page, meta.lang),
           renderAnswerLayer(meta.page, content),
+          renderIndustryBuyerProblems(content, meta.lang),
           renderDistributorsDetails(meta.page, content, meta.lang),
           meta.page?.id === 'distributors' ? '' : renderSectionList(content.sections || [], meta.page, meta.lang),
           renderIndustryGlossaryTerms(meta.page, meta.lang),
@@ -1144,7 +1519,7 @@ function renderStaticRoot(meta) {
           renderVisualBlocks(content),
           renderWhitepaperDeepDive(content.whitepaper)
         ].join('\n'),
-      content.markdownWhitepaper ? '' : renderFaqs(content.faqs || []),
+      content.markdownWhitepaper || meta.page?.id === 'about' ? '' : renderFaqs(content.faqs || []),
       '    </div>',
       '  </section>'
     ].join('\n') : '',
@@ -1290,13 +1665,34 @@ function glossaryTermSchemaId(termId, lang) {
   return absolute(getGlossaryTermHref(termId, lang));
 }
 
+function getAboutItemList(content, lang) {
+  const links = [
+    ...(Array.isArray(content?.ecosystemLinks) ? content.ecosystemLinks : []),
+    ...(Array.isArray(content?.evidenceLinks) ? content.evidenceLinks : []),
+    ...(Array.isArray(content?.commercialLinks) ? content.commercialLinks : [])
+  ];
+  const seen = new Set();
+  return links
+    .map((item) => ({
+      name: item.label,
+      path: item.routeId ? getMarketingPagePath(item.routeId, lang) : ''
+    }))
+    .filter((item) => {
+      if (!item.name || !item.path || item.path === '/' || seen.has(item.path)) return false;
+      seen.add(item.path);
+      return true;
+    });
+}
+
 function buildStructuredData({ page, content, lang, canonicalUrl, title, description, imageUrl }) {
   if (!page) {
     return jsonLdScript('home-graph', buildHomeStructuredData({ lang, canonicalUrl, title, description }));
   }
 
   const pageType = page?.schemaType || page?.category;
-  const schemaType = pageType === 'Product'
+  const schemaType = pageType === 'AboutPage'
+    ? 'AboutPage'
+    : pageType === 'Product'
     ? 'Product'
     : pageType === 'TechArticle'
       ? 'TechArticle'
@@ -1305,6 +1701,12 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
     : pageType === 'DefinedTermSet'
       ? 'CollectionPage'
     : pageType === 'IndustryService'
+      ? 'WebPage'
+    : pageType === 'AquaToolsCollection'
+      ? 'CollectionPage'
+    : pageType === 'AquaTool'
+      ? 'WebPage'
+    : pageType === 'WebApplication'
       ? 'WebPage'
     : pageType === 'resourcesHub' || pageType === 'products' || pageType === 'industries'
       ? 'CollectionPage'
@@ -1335,6 +1737,88 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
       ...(editorialMeta.sourceUrl ? { url: editorialMeta.sourceUrl } : {})
     }
     : null;
+
+  if (schemaType === 'AboutPage') {
+    const graph = [
+      {
+        '@type': 'Organization',
+        '@id': organizationId,
+        name: 'AquaVerify',
+        url: SITE_URL,
+        logo: `${SITE_URL}/images/logo-mark-160.png`,
+        description,
+        ...(content?.schemaKnowsAbout?.length ? { knowsAbout: content.schemaKnowsAbout } : {})
+      },
+      {
+        '@type': 'WebSite',
+        '@id': websiteId,
+        name: 'AquaVerify',
+        url: SITE_URL,
+        inLanguage: lang,
+        publisher: { '@id': organizationId }
+      },
+      {
+        '@type': 'AboutPage',
+        '@id': webpageId,
+        url: canonicalUrl,
+        name: title,
+        headline: title,
+        description,
+        image: imageUrl,
+        inLanguage: lang,
+        isPartOf: { '@id': websiteId },
+        publisher: { '@id': organizationId },
+        mainEntity: { '@id': organizationId },
+        about: { '@id': organizationId }
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${canonicalUrl}#breadcrumb`,
+        itemListElement: buildBreadcrumbs(page, content, lang).map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          item: absolute(item.path)
+        }))
+      }
+    ];
+    const aboutItems = getAboutItemList(content, lang);
+
+    if (aboutItems.length) {
+      graph.push({
+        '@type': 'ItemList',
+        '@id': `${canonicalUrl}#ecosystem`,
+        name: content?.ecosystemLinksTitle || title,
+        itemListElement: aboutItems.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          url: absolute(item.path)
+        }))
+      });
+    }
+
+    if (content?.faqs?.length) {
+      graph.push({
+        '@type': 'FAQPage',
+        '@id': `${canonicalUrl}#faq`,
+        mainEntity: content.faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer
+          }
+        }))
+      });
+    }
+
+    return jsonLdScript('marketing-page', {
+      '@context': 'https://schema.org',
+      '@graph': graph
+    });
+  }
+
   const payloads = [{
     id: 'marketing-page',
     data: {
@@ -1525,6 +2009,85 @@ function buildStructuredData({ page, content, lang, canonicalUrl, title, descrip
             url: SITE_URL
           }
         }))
+      }
+    });
+  }
+
+  if (page?.id === 'aquatools') {
+    payloads.push({
+      id: 'aquatools-itemlist',
+      data: {
+        '@context': 'https://schema.org',
+        '@type': 'ItemList',
+        name: title,
+        url: canonicalUrl,
+        itemListElement: AQUATOOLS_TOOL_DEFINITIONS.map((tool, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: tool.copy[lang][0],
+          url: absolute(getMarketingPagePath(tool.id, lang))
+        }))
+      }
+    });
+  }
+
+  if (page?.schemaType === 'AquaTool' && content?.aquatools) {
+    const tool = content.aquatools;
+    payloads.push({
+      id: 'aquatools-webapplication',
+      data: {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        name: content.title,
+        url: canonicalUrl,
+        applicationCategory: 'ScientificApplication',
+        operatingSystem: 'Any',
+        isAccessibleForFree: true,
+        description,
+        softwareVersion: AQUATOOLS_CALCULATION_VERSION,
+        publisher: {
+          '@id': `${SITE_URL}/#organization`
+        },
+        featureList: [
+          tool.formula,
+          content.aquatools.privacy,
+          content.aquatools.disclaimer
+        ],
+        mainEntityOfPage: {
+          '@id': `${canonicalUrl}#webpage`
+        }
+      }
+    });
+  }
+
+  if (page?.id === 'workflow-advisor') {
+    payloads.push({
+      id: 'workflow-advisor-webapplication',
+      data: {
+        '@context': 'https://schema.org',
+        '@type': 'WebApplication',
+        '@id': `${canonicalUrl}#workflow-advisor`,
+        name: content.title,
+        url: canonicalUrl,
+        applicationCategory: 'ScientificApplication',
+        operatingSystem: 'Any',
+        isAccessibleForFree: true,
+        description,
+        softwareVersion: WORKFLOW_ADVISOR_RULES_VERSION,
+        publisher: {
+          '@id': `${SITE_URL}/#organization`
+        },
+        featureList: [
+          'Deterministic workflow assessment',
+          'Local-only browser calculation',
+          'Separate research, contact and marketing consent',
+          'No compliance score',
+          `Assessment ${WORKFLOW_ADVISOR_ASSESSMENT_VERSION}`,
+          `Questionnaire ${WORKFLOW_ADVISOR_QUESTIONNAIRE_VERSION}`
+        ],
+        mainEntityOfPage: {
+          '@id': `${canonicalUrl}#webpage`
+        }
       }
     });
   }

@@ -6,6 +6,7 @@ import { AGRICULTURE_WATER_PAGE } from '../agricultureWaterContent.js';
 import { PHARMA_COSMETICS_WATER_PAGE } from '../pharmaCosmeticsWaterContent.js';
 import { HOSPITALITY_TOURISM_WATER_PAGE } from '../hospitalityTourismWaterContent.js';
 import { INDUSTRIES_HUB_PAGE } from '../industriesHubContent.js';
+import { withIndustryBuyerProblems } from '../industryBuyerProblemsContent.js';
 import { MARKETING_LANGUAGES, locale, page, section } from './shared.js';
 
 const INDUSTRY_DATE_MODIFIED = '2026-06-18';
@@ -181,7 +182,7 @@ export const INDUSTRY_ENTRY_MARKETING_PAGES = [
   page('water-quality-control', 'industries', 'contact', {
     ...WATER_QUALITY_CONTROL_PAGE
   }, INDUSTRY_DETAIL_META)
-];
+].map(withIndustryBuyerProblems);
 
 const INDUSTRY_PAGE_DATA = [
   {
@@ -796,7 +797,7 @@ function buildIndustryPages() {
   });
 }
 
-export const INDUSTRY_DETAIL_MARKETING_PAGES = buildIndustryPages();
+export const INDUSTRY_DETAIL_MARKETING_PAGES = buildIndustryPages().map(withIndustryBuyerProblems);
 export const INDUSTRY_MARKETING_PAGES = [
   ...INDUSTRY_ENTRY_MARKETING_PAGES,
   ...INDUSTRY_DETAIL_MARKETING_PAGES

@@ -4,6 +4,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
 import { IndustryGlossaryTerms } from './IndustryGlossaryTerms';
+import { IndustryBuyerProblemsSection, type IndustryBuyerProblemsContent } from './industries/IndustryBuyerProblemsSection';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
@@ -24,6 +25,7 @@ type MarketingContent = {
   cta?: { title: string; body: string };
   sections?: MarketingSection[];
   faqs?: Array<{ question: string; answer: string }>;
+  buyerProblems?: IndustryBuyerProblemsContent;
 };
 
 type Props = {
@@ -853,6 +855,8 @@ export const HospitalityTourismWaterLanding: React.FC<Props> = ({ content, pageL
             ))}
           </div>
         </section>
+
+        <IndustryBuyerProblemsSection buyerProblems={content.buyerProblems} pageLang={pageLang} />
 
         <section id="reto" className="bg-slate-50 py-16 md:py-20">
           <div className="container mx-auto px-6">

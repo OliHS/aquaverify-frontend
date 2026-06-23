@@ -5,7 +5,7 @@ import { getResourceEditorialMeta } from '../utils/resourceEditorialMetadata.js'
 const SITE_URL = 'https://aquaverify.com';
 const DEFAULT_LASTMOD = '2026-05-20';
 const RESOURCE_LASTMOD = '2026-06-18';
-const CURRENT_DATE = '2026-06-18';
+const CURRENT_DATE = '2026-06-23';
 
 const homePaths = {
   'x-default': '/',
@@ -156,6 +156,20 @@ const groups = [
     entries: pageEntries(
       MARKETING_PAGES.filter((page) => page.category === 'resources'),
       '0.7'
+    )
+  },
+  {
+    file: 'sitemap-tools.xml',
+    entries: pageEntries(
+      MARKETING_PAGES.filter((page) => page.category === 'aquatools'),
+      '0.8'
+    )
+  },
+  {
+    file: 'sitemap-workflow-advisor.xml',
+    entries: pageEntries(
+      MARKETING_PAGES.filter((page) => page.category === 'workflow-advisor'),
+      '0.8'
     )
   },
   {

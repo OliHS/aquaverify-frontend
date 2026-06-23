@@ -9,6 +9,8 @@ const CompanyMarketingRoute = lazy(() => import('./marketing-routes/CompanyMarke
 const IndustriesMarketingRoute = lazy(() => import('./marketing-routes/IndustriesMarketingRoute'));
 const ResourcesMarketingRoute = lazy(() => import('./marketing-routes/ResourcesMarketingRoute'));
 const GlossaryMarketingRoute = lazy(() => import('./marketing-routes/GlossaryMarketingRoute'));
+const AquaToolsMarketingRoute = lazy(() => import('./marketing-routes/AquaToolsMarketingRoute'));
+const WorkflowAdvisorMarketingRoute = lazy(() => import('./marketing-routes/WorkflowAdvisorMarketingRoute'));
 const LegacyMarketingRoute = lazy(() => import('./marketing-routes/LegacyMarketingRoute'));
 
 const MarketingRouteFallback: React.FC = () => (
@@ -39,6 +41,10 @@ export const MarketingRoutePage: React.FC = () => {
         <ResourcesMarketingRoute route={route} />
       ) : route.family === 'glossary' ? (
         <GlossaryMarketingRoute route={route} />
+      ) : route.family === 'aquatools' ? (
+        <AquaToolsMarketingRoute route={route} />
+      ) : route.family === 'workflow-advisor' ? (
+        <WorkflowAdvisorMarketingRoute route={route} />
       ) : (
         <LegacyMarketingRoute route={route} />
       )}

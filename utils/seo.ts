@@ -252,6 +252,7 @@ function removeJsonLd(id: string) {
 }
 
 function getMarketingSchemaType(pageType?: string) {
+  if (pageType === 'AboutPage') return 'AboutPage';
   if (pageType === 'Product') return 'Product';
   if (pageType === 'TechArticle') return 'TechArticle';
   if (pageType === 'DefinedTerm') return 'WebPage';
@@ -275,7 +276,8 @@ export function applyMarketingSeo({
   imageUrl,
   faqs,
   breadcrumbs,
-  pageId
+  pageId,
+  aboutPage
 }: {
   lang: Language;
   title: string;
@@ -287,6 +289,11 @@ export function applyMarketingSeo({
   faqs?: Array<{ question: string; answer: string }>;
   breadcrumbs?: Array<{ name: string; path: string }>;
   pageId?: string;
+  aboutPage?: {
+    knowsAbout?: string[];
+    itemListName?: string;
+    itemList?: Array<{ name: string; path: string }>;
+  };
 }) {
   const canonicalUrl = getAbsoluteUrl(canonicalPath);
   const socialImageUrl = getAbsoluteAssetUrl(imageUrl);
@@ -332,6 +339,92 @@ export function applyMarketingSeo({
       href: getAbsoluteUrl(path)
     });
   });
+
+  if (schemaType === 'AboutPage') {
+    const graph: Array<Record<string, unknown>> = [
+      {
+        '@type': 'Organization',
+        '@id': organizationId,
+        name: 'AquaVerify',
+        url: CORPORATE_SITE_URL,
+        logo: `${CORPORATE_SITE_URL}/images/logo-mark-160.png`,
+        description,
+        ...(aboutPage?.knowsAbout?.length ? { knowsAbout: aboutPage.knowsAbout } : {})
+      },
+      {
+        '@type': 'WebSite',
+        '@id': websiteId,
+        name: 'AquaVerify',
+        url: CORPORATE_SITE_URL,
+        inLanguage: lang,
+        publisher: { '@id': organizationId }
+      },
+      {
+        '@type': 'AboutPage',
+        '@id': webpageId,
+        url: canonicalUrl,
+        name: title,
+        headline: title,
+        description,
+        image: socialImageUrl,
+        inLanguage: lang,
+        isPartOf: { '@id': websiteId },
+        publisher: { '@id': organizationId },
+        mainEntity: { '@id': organizationId },
+        about: { '@id': organizationId }
+      }
+    ];
+
+    if (breadcrumbs?.length) {
+      graph.push({
+        '@type': 'BreadcrumbList',
+        '@id': `${canonicalUrl}#breadcrumb`,
+        itemListElement: breadcrumbs.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          item: getAbsoluteUrl(item.path)
+        }))
+      });
+    }
+
+    if (aboutPage?.itemList?.length) {
+      graph.push({
+        '@type': 'ItemList',
+        '@id': `${canonicalUrl}#ecosystem`,
+        name: aboutPage.itemListName || title,
+        itemListElement: aboutPage.itemList.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          url: getAbsoluteUrl(item.path)
+        }))
+      });
+    }
+
+    if (faqs?.length) {
+      graph.push({
+        '@type': 'FAQPage',
+        '@id': `${canonicalUrl}#faq`,
+        mainEntity: faqs.map((faq) => ({
+          '@type': 'Question',
+          name: faq.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: faq.answer
+          }
+        }))
+      });
+    }
+
+    upsertJsonLd('marketing-page', {
+      '@context': 'https://schema.org',
+      '@graph': graph
+    });
+    removeJsonLd('marketing-breadcrumbs');
+    removeJsonLd('marketing-faq');
+    return;
+  }
 
   upsertJsonLd('marketing-page', {
     '@context': 'https://schema.org',

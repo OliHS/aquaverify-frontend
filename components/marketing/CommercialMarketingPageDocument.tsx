@@ -6,6 +6,7 @@ import { Footer } from '../Footer';
 import { CookieConsent } from '../CookieConsent';
 import { DistributorsLanding } from '../DistributorsLanding';
 import { OEMKitsLanding } from '../OEMKitsLanding';
+import { AboutAquaVerifyLanding } from '../AboutAquaVerifyLanding';
 import type { Language } from '../../utils/translations';
 import { getPlatformSignupUrl } from '../../utils/platformLinks';
 import { trackCorporateEvent } from '../../utils/corporateAnalytics';
@@ -30,6 +31,11 @@ export type MarketingContentMeta = {
   datasheetLabel?: string;
   technicalTable?: TechnicalTableContent;
   whitepaper?: WhitepaperDeepDiveContent;
+  keyConceptIds?: string[];
+  schemaKnowsAbout?: string[];
+  ecosystemLinks?: Array<{ routeId: string; label: string; body: string }>;
+  evidenceLinks?: Array<{ routeId: string; label: string; body: string }>;
+  commercialLinks?: Array<{ routeId: string; label: string; body: string }>;
   path: string;
   title: string;
 };
@@ -453,6 +459,17 @@ export const CommercialMarketingPageDocument: React.FC<CommercialMarketingPageDo
   relatedPages = [],
   showCookieConsent = true
 }) => {
+  if (page.id === 'about') {
+    return (
+      <AboutAquaVerifyLanding
+        content={content}
+        pageLang={pageLang}
+        breadcrumbs={breadcrumbs}
+        showCookieConsent={showCookieConsent}
+      />
+    );
+  }
+
   if (page.id === 'distributors') {
     return (
       <DistributorsLanding

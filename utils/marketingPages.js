@@ -24,6 +24,8 @@ import {
   RESOURCE_MARKETING_PAGES
 } from './marketing-pages/resourcePages.js';
 import { GLOSSARY_MARKETING_PAGES } from './marketing-pages/glossaryPages.js';
+import { AQUATOOLS_MARKETING_PAGES } from './aquatoolsContent.js';
+import { WORKFLOW_ADVISOR_MARKETING_PAGES } from './workflowAdvisorContent.js';
 
 export { MARKETING_LANGUAGES, LANGUAGE_NAMES, PRODUCT_DETAIL_DATA };
 
@@ -34,7 +36,9 @@ export const MARKETING_PAGES_BY_FAMILY = {
   partners: PARTNER_MARKETING_PAGES,
   company: COMPANY_MARKETING_PAGES,
   resources: RESOURCE_MARKETING_PAGES,
-  glossary: GLOSSARY_MARKETING_PAGES
+  glossary: GLOSSARY_MARKETING_PAGES,
+  aquatools: AQUATOOLS_MARKETING_PAGES,
+  'workflow-advisor': WORKFLOW_ADVISOR_MARKETING_PAGES
 };
 
 export function getMarketingPagesByFamily(family) {
@@ -49,6 +53,8 @@ export const MARKETING_PAGES = [
   ...INDUSTRY_ENTRY_MARKETING_PAGES.slice(1),
   ...RESOURCE_CORE_MARKETING_PAGES,
   ...RESOURCE_CATEGORY_MARKETING_PAGES,
+  ...WORKFLOW_ADVISOR_MARKETING_PAGES,
+  ...AQUATOOLS_MARKETING_PAGES,
   ...COMPANY_MARKETING_PAGES,
   ...INDUSTRY_DETAIL_MARKETING_PAGES,
   ...PRODUCT_DETAIL_MARKETING_PAGES,

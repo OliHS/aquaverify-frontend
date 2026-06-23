@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowRight, CheckCircle2, ChevronRight, FileCheck2, FlaskConical, Gauge, Layers3, MapPin, ShieldCheck, Timer, Waves } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronRight } from 'lucide-react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
 import { IndustryGlossaryTerms } from './IndustryGlossaryTerms';
+import { IndustryBuyerProblemsSection, type IndustryBuyerProblemsContent } from './industries/IndustryBuyerProblemsSection';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
@@ -23,6 +24,7 @@ type MarketingContent = {
     maturity?: HtmlVisualBlock;
   };
   faqs?: Array<{ question: string; answer: string }>;
+  buyerProblems?: IndustryBuyerProblemsContent;
 };
 
 type HtmlVisualItem = {
@@ -45,17 +47,6 @@ type Props = {
   content: MarketingContent;
   pageLang: Language;
   showCookieConsent?: boolean;
-};
-
-const iconMap = {
-  shield: ShieldCheck,
-  timer: Timer,
-  file: FileCheck2,
-  gauge: Gauge,
-  flask: FlaskConical,
-  map: MapPin,
-  layers: Layers3,
-  waves: Waves
 };
 
 const COPY: Record<Language, any> = {
@@ -705,23 +696,7 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
           </div>
         </nav>
 
-        <section id="problema" className="bg-white py-16 md:py-20">
-          <div className="container mx-auto px-6">
-            <SectionHead eyebrow={copy.problem.eyebrow} title={copy.problem.title} body={copy.problem.body} />
-            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {copy.problem.cards.map((card: string[]) => {
-                const Icon = iconMap[card[2] as keyof typeof iconMap] || ShieldCheck;
-                return (
-                  <article key={card[0]} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-700"><Icon className="h-5 w-5" /></div>
-                    <h3 className="font-heading text-lg font-black text-slate-950">{card[0]}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">{card[1]}</p>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        <IndustryBuyerProblemsSection buyerProblems={content.buyerProblems} pageLang={pageLang} />
 
         <SampleFlowSection
           id="infografia-flujo"
