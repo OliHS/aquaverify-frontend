@@ -58,11 +58,11 @@ const NAV_ROUTE_GROUPS: Record<string, string[]> = {
 };
 
 const FREE_TOOLS_LABELS: Record<Language, string> = {
-  en: 'Free tools',
-  es: 'Herramientas gratuitas',
-  fr: 'Outils gratuits',
-  it: 'Strumenti gratuiti',
-  ca: 'Eines gratuïtes'
+  en: 'Tools',
+  es: 'Herramientas',
+  fr: 'Outils',
+  it: 'Strumenti',
+  ca: 'Eines'
 };
 
 export const Header: React.FC = () => {
@@ -74,7 +74,6 @@ export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const platformLoginUrl = getPlatformLoginUrl(lang);
-  const platformSignupUrl = getPlatformSignupUrl({ intent: 'signup' }, lang);
   const platformQuoteUrl = getPlatformSignupUrl({ intent: 'quote', page: 'header' }, lang);
   const homePaths = ['/', '/en', '/es', '/fr', '/it', '/ca'];
   const isHomePath = homePaths.includes(location.pathname.replace(/\/+$/, '') || '/');
@@ -110,7 +109,6 @@ export const Header: React.FC = () => {
   ] as const;
   const navButtonBase = 'inline-flex items-center justify-center gap-2.5 rounded-full px-[18px] py-[13px] text-sm font-black leading-none border transition duration-200 hover:-translate-y-0.5';
   const signInButtonClasses = `${navButtonBase} border-slate-200 bg-white text-primary hover:border-cyan-200 hover:bg-cyan-50`;
-  const signUpButtonClasses = `${navButtonBase} border-transparent bg-secondary text-white shadow-lg shadow-cyan-500/20 hover:bg-primary`;
   const quoteButtonClasses = `${navButtonBase} border-transparent bg-primary text-white shadow-lg shadow-primary/20 hover:bg-secondary whitespace-nowrap`;
 
   useEffect(() => {
@@ -282,13 +280,8 @@ export const Header: React.FC = () => {
           </div>
 
           <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={LEGACY_PLATFORM_LOGIN_URLS}>
-            <a href={platformLoginUrl} className={`${signInButtonClasses} hidden 2xl:inline-flex`}>
+            <a href={platformLoginUrl} className={signInButtonClasses}>
               Sign in
-            </a>
-          </EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="url_signup" fallback={platformSignupUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
-            <a href={platformSignupUrl} className={`${signUpButtonClasses} hidden 2xl:inline-flex`}>
-              Sign up
             </a>
           </EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="url_quote" fallback={platformQuoteUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
@@ -343,11 +336,6 @@ export const Header: React.FC = () => {
           <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={LEGACY_PLATFORM_LOGIN_URLS}>
             <a href={platformLoginUrl} onClick={() => setIsMenuOpen(false)} className={`${signInButtonClasses} w-full`}>
               Sign in
-            </a>
-          </EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="url_signup" fallback={platformSignupUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
-            <a href={platformSignupUrl} onClick={() => setIsMenuOpen(false)} className={`${signUpButtonClasses} w-full`}>
-              Sign up
             </a>
           </EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="url_quote" fallback={platformQuoteUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
