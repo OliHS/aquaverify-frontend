@@ -219,10 +219,10 @@ export const Header: React.FC = () => {
       className={`${isEditing ? 'absolute top-0' : 'fixed'} w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white py-5'
         }`}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="container mx-auto flex items-center justify-between gap-4 px-6 xl:grid xl:grid-cols-[minmax(205px,0.82fr)_minmax(0,auto)_minmax(290px,0.9fr)] xl:gap-6">
         {/* Logo */}
         <div
-          className="flex items-center space-x-3 group cursor-pointer"
+          className="group flex shrink-0 cursor-pointer items-center space-x-3 xl:justify-self-start"
           onClick={handleLogoClick}
         >
           {/* Logo Image */}
@@ -239,7 +239,7 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden xl:flex items-center space-x-7">
+        <nav className="hidden min-w-0 items-center justify-center gap-4 xl:flex 2xl:gap-6">
           {navItems.map((item) => (
             <EditableLinkWrapper
               key={item.id}
@@ -251,7 +251,7 @@ export const Header: React.FC = () => {
               <a
                 href={navHrefs[item.id]}
                 onClick={(e) => handleSmoothScroll(e, item.id)}
-                className={getNavLinkClasses(item.id)}
+                className={`${getNavLinkClasses(item.id)} whitespace-nowrap text-center leading-5`}
               >
                 {item.label}
               </a>
@@ -260,8 +260,8 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Desktop CTA & Lang Switcher */}
-        <div className="hidden xl:flex items-center space-x-3">
-          <div className="relative group mr-2">
+        <div className="hidden min-w-0 items-center justify-end gap-3 xl:flex xl:justify-self-end">
+          <div className="relative group">
             <button className="flex items-center space-x-1 text-gray-500 hover:text-primary transition-colors text-xs font-bold uppercase">
               <Globe size={16} />
               <span>{lang}</span>
@@ -282,12 +282,12 @@ export const Header: React.FC = () => {
           </div>
 
           <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={LEGACY_PLATFORM_LOGIN_URLS}>
-            <a href={platformLoginUrl} className={signInButtonClasses}>
+            <a href={platformLoginUrl} className={`${signInButtonClasses} hidden 2xl:inline-flex`}>
               Sign in
             </a>
           </EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="url_signup" fallback={platformSignupUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
-            <a href={platformSignupUrl} className={signUpButtonClasses}>
+            <a href={platformSignupUrl} className={`${signUpButtonClasses} hidden 2xl:inline-flex`}>
               Sign up
             </a>
           </EditableLinkWrapper>
