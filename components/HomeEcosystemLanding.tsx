@@ -62,6 +62,7 @@ type Copy = {
   heroEyebrow: string;
   heroTitle: string;
   heroHighlight: string;
+  heroSlogan: string;
   heroLead: string;
   heroBody: string;
   ctas: { products: string; industries: string; platform: string; distributors: string; quote: string; signup: string };
@@ -124,7 +125,8 @@ const COPY: Record<Language, Copy> = {
   en: {
     heroEyebrow: 'We develop, manufacture and distribute',
     heroTitle: 'Innovative products for the',
-    heroHighlight: 'detection of viruses and bacteria in water',
+    heroHighlight: 'detection of viruses and bacteria in water.',
+    heroSlogan: 'Safe Water for a Better World.',
     heroLead: 'AquaVerify designs, manufactures and distributes water microbiology solutions to turn every sample into a reliable, traceable and actionable result.',
     heroBody: 'We combine water testing products, AquaVerify Cloud, technical reporting, authorized distributors and OEM programs for laboratories, utilities, industries, facilities, scientific partners and quality teams.',
     ctas: { products: 'View products', industries: 'Choose by industry', platform: 'View platform', distributors: 'Find a distributor', quote: 'Request a quote', signup: 'Create account' },
@@ -233,7 +235,8 @@ const COPY: Record<Language, Copy> = {
   es: {
     heroEyebrow: 'Desarrollamos, fabricamos y distribuimos',
     heroTitle: 'Productos innovadores para la',
-    heroHighlight: 'detección de virus y bacterias en el agua',
+    heroHighlight: 'detección de virus y bacterias en el agua.',
+    heroSlogan: 'Safe Water for a Better World.',
     heroLead: 'AquaVerify desarrolla, fabrica y distribuye productos innovadores para la detección de virus y bacterias en el agua.',
     heroBody: 'Conectamos productos de análisis de agua, AquaVerify Cloud, reporting técnico, distribuidores autorizados y programas OEM para laboratorios, utilities, industrias, instalaciones, partners científicos y equipos de calidad.',
     ctas: { products: 'Ver productos', industries: 'Elegir por industria', platform: 'Ver plataforma', distributors: 'Encontrar distribuidor', quote: 'Solicitar cotización', signup: 'Crear cuenta' },
@@ -348,7 +351,7 @@ COPY.fr = {
   ...COPY.en,
   heroEyebrow: 'Nous développons, fabriquons et distribuons',
   heroTitle: 'Des produits innovants pour la',
-  heroHighlight: 'détection des virus et bactéries dans l’eau',
+  heroHighlight: 'détection des virus et bactéries dans l’eau.',
   heroLead: 'AquaVerify conçoit, fabrique et distribue des solutions de microbiologie de l’eau pour transformer chaque échantillon en résultat fiable, traçable et exploitable.',
   heroBody: 'Nous combinons produits d’analyse de l’eau, AquaVerify Cloud, reporting technique, distributeurs autorisés et programmes OEM pour laboratoires, utilities, industries, installations, partenaires scientifiques et équipes qualité.',
   ctas: { products: 'Voir les produits', industries: 'Choisir par secteur', platform: 'Voir la plateforme', distributors: 'Trouver un distributeur', quote: 'Demander un devis', signup: 'Créer un compte' },
@@ -456,7 +459,7 @@ COPY.it = {
   ...COPY.en,
   heroEyebrow: 'Sviluppiamo, produciamo e distribuiamo',
   heroTitle: 'Prodotti innovativi per la',
-  heroHighlight: 'rilevazione di virus e batteri nell’acqua',
+  heroHighlight: 'rilevazione di virus e batteri nell’acqua.',
   heroLead: 'AquaVerify progetta, produce e distribuisce soluzioni di microbiologia dell’acqua per trasformare ogni campione in un risultato affidabile, tracciabile e utilizzabile.',
   heroBody: 'Combiniamo prodotti per analisi dell’acqua, AquaVerify Cloud, reporting tecnico, distributori autorizzati e programmi OEM per laboratori, utility, industrie, strutture, partner scientifici e team qualità.',
   ctas: { products: 'Vedi prodotti', industries: 'Scegli per settore', platform: 'Vedi piattaforma', distributors: 'Trova distributore', quote: 'Richiedi preventivo', signup: 'Crea account' },
@@ -564,7 +567,7 @@ COPY.ca = {
   ...COPY.es,
   heroEyebrow: 'Desenvolupem, fabriquem i distribuïm',
   heroTitle: 'Productes innovadors per a la',
-  heroHighlight: 'detecció de virus i bacteris a l’aigua',
+  heroHighlight: 'detecció de virus i bacteris a l’aigua.',
   heroLead: 'AquaVerify desenvolupa, fabrica i distribueix productes innovadors per a la detecció de virus i bacteris a l’aigua.',
   heroBody: 'Connectem productes d’anàlisi d’aigua, AquaVerify Cloud, reporting tècnic, distribuïdors autoritzats i programes OEM per a laboratoris, utilities, indústries, instal·lacions, partners científics i equips de qualitat.',
   ctas: { products: 'Veure productes', industries: 'Triar per sector', platform: 'Veure plataforma', distributors: 'Trobar distribuïdor', quote: 'Sol·licitar pressupost', signup: 'Crear compte' },
@@ -728,7 +731,8 @@ export const HomeEcosystemLanding: React.FC = () => {
             <EditableText as="div" sectionId="homeHero" field="eyebrow" fallback={copy.heroEyebrow} className="inline-flex rounded-full border border-cyan-100 bg-cyan-50 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-primary block w-fit" />
             <h1 className="mt-5 max-w-5xl font-heading text-5xl font-black leading-[0.95] tracking-[-0.04em] text-primary md:text-7xl">
               <EditableText as="span" sectionId="homeHero" field="title" fallback={copy.heroTitle} />{' '}
-              <EditableText as="span" sectionId="homeHero" field="highlight" fallback={copy.heroHighlight} className="bg-gradient-to-r from-primary via-secondary to-emerald-500 bg-clip-text text-transparent" />
+              <EditableText as="span" sectionId="homeHero" field="highlightMain" fallback={copy.heroHighlight} className="bg-gradient-to-r from-primary via-secondary to-emerald-500 bg-clip-text text-transparent" />
+              <EditableText as="span" sectionId="homeHero" field="slogan" fallback={copy.heroSlogan} className="mt-2 block bg-gradient-to-r from-primary via-secondary to-emerald-500 bg-clip-text text-transparent" />
             </h1>
             <EditableText as="p" sectionId="homeHero" field="lead" fallback={copy.heroLead} className="mt-6 max-w-5xl text-xl leading-8 text-slate-700 block" />
             <EditableText as="p" sectionId="homeHero" field="body" fallback={copy.heroBody} className="mt-4 max-w-5xl text-base leading-8 text-slate-600 block" />
