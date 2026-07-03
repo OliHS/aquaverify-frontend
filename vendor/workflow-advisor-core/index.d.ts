@@ -2,6 +2,7 @@ export type WorkflowAdvisorLanguage = 'en' | 'es' | 'fr' | 'it' | 'ca';
 export type WorkflowProcessingPurpose = 'local_only' | 'research' | 'contact' | 'research_and_contact';
 export type WorkflowRecommendationType = 'product' | 'module' | 'resource' | 'tool' | 'next_step';
 export type WorkflowFitStatus = 'potential_fit' | 'conditional_fit' | 'technical_review_required';
+export type WorkflowRecommendationAudience = 'client' | 'internal' | 'resource';
 
 export type WorkflowAssessmentInput = {
   questionnaireVersion: string;
@@ -22,6 +23,7 @@ export type WorkflowRecommendation = {
   conditionKeys: string[];
   constraintKeys: string[];
   evidenceQuestionIds: string[];
+  audience?: WorkflowRecommendationAudience;
 };
 
 export type WorkflowAssessmentResult = {
@@ -39,6 +41,7 @@ export type WorkflowAssessmentResult = {
   recommendedActions: Array<{ actionId: string; priority: number; reasonKeys: string[] }>;
   matchedRuleIds?: string[];
   reportSnapshot?: WorkflowAdvisorReport;
+  reportV2?: WorkflowAdvisorReportV2;
 };
 
 export type WorkflowAdvisorReport = {
@@ -76,6 +79,79 @@ export type WorkflowAdvisorReportRecommendation = {
   nextStep: string;
 };
 
+export type WorkflowAdvisorIndustryProfile = {
+  sectorId: string;
+  labels: Record<WorkflowAdvisorLanguage, string>;
+  reportTitle: Record<WorkflowAdvisorLanguage, string>;
+  reportSubtitle: Record<WorkflowAdvisorLanguage, string>;
+  buyerContext: Record<WorkflowAdvisorLanguage, string>;
+  coreObjects: string[];
+  commonRisks: Record<WorkflowAdvisorLanguage, string[]>;
+  evidenceObjects: Record<WorkflowAdvisorLanguage, string[]>;
+  recommendedRoadmap: Record<WorkflowAdvisorLanguage, WorkflowAdvisorReportV2Phase[]>;
+  recommendedResourceIds: string[];
+  recommendedGlossaryTermIds: string[];
+  recommendedToolIds: string[];
+  forbiddenGenericPhrases?: string[];
+};
+
+export type WorkflowAdvisorReportV2Phase = {
+  phaseId: string;
+  phase?: number;
+  title: string;
+  objective: string;
+  actions: string[];
+  expectedOutcome: string;
+  relatedCapabilities: Array<string | { targetId: string; title: string }>;
+};
+
+export type WorkflowAdvisorReportV2Recommendation = {
+  recommendationId: string;
+  targetId: string;
+  title: string;
+  status: string;
+  phaseId?: string;
+  phaseTitle?: string;
+  paragraph: string;
+  whyNow: string;
+  whatToDefine: string[];
+  nextStep: string;
+  showToClient: boolean;
+};
+
+export type WorkflowAdvisorReportV2 = {
+  reportVersion: string;
+  reportKind: 'consultative_workflow_report';
+  generatedAt: string;
+  lang: WorkflowAdvisorLanguage;
+  sector: { sectorId: string; label: string; url: string };
+  title: string;
+  subtitle: string;
+  versions: Record<string, string>;
+  sections: Record<string, string>;
+  quickRead: { primaryRisk: string; immediatePriority: string; analyticalRoute: string; nextStep: string };
+  executiveSummary: string[];
+  interpretedContext: { title: string; buyerContext: string; facts: Array<{ field: string; label: string; value: string }> };
+  flowDiagnosis: { paragraph: string; keySignals: string[] };
+  maturity: Array<{ dimensionId: string; title: string; level: number; label: string; explanation: string; nextImprovement: string }>;
+  priorityProblems: Array<{ problemId?: string; findingId?: string; title: string; priorityLabel: string; severity: string; paragraph: string }>;
+  improvementPlan: { phases: WorkflowAdvisorReportV2Phase[] };
+  recommendationSections: WorkflowAdvisorReportV2Recommendation[];
+  analyticalReview: {
+    title: string;
+    status: string;
+    paragraph: string;
+    candidates: Array<{ productId: string; title: string; status: string; reason: string }>;
+    nextStep: string;
+  };
+  missingInformation: string[];
+  relatedResources: Array<{ resourceId: string; type: string; typeLabel: string; title: string; url: string }>;
+  limitations: string[];
+  cta: { title: string; label: string; requestType: string };
+  pdf: { buttonLabel: string; printLabel: string; mode: string; filename: string };
+  technicalExport: { label: string; note: string };
+};
+
 export declare const assessmentVersion: string;
 export declare const questionnaireVersion: string;
 export declare const rulesVersion: string;
@@ -93,12 +169,19 @@ export declare const catalog: Record<string, unknown>;
 export declare const rules: readonly Record<string, unknown>[];
 export declare const localizedText: Record<WorkflowAdvisorLanguage, Record<string, unknown>>;
 export declare const reportVersion: string;
+export declare const reportV2Version: string;
 export declare const REPORT_SECTIONS: Record<WorkflowAdvisorLanguage, Record<string, string>>;
 export declare const REPORT_COPY: Record<WorkflowAdvisorLanguage, Record<string, unknown>>;
 export declare const REPORT_TRANSLATIONS: Record<string, Record<string, Record<string, string>>>;
+export declare const V2_COPY: Record<WorkflowAdvisorLanguage, Record<string, unknown>>;
+export declare const V2_OPTION_LABELS: Record<WorkflowAdvisorLanguage, Record<string, string>>;
+export declare const INDUSTRY_ROUTES: Record<string, Record<WorkflowAdvisorLanguage, string>>;
+export declare const GLOSSARY_RESOURCE_ROUTES: Record<string, Record<WorkflowAdvisorLanguage, string>>;
+export declare const workflowAdvisorIndustryProfiles: Record<string, WorkflowAdvisorIndustryProfile>;
 export declare const allowedEvents: readonly string[];
 export declare function assessWorkflow(input: WorkflowAssessmentInput): WorkflowAssessmentResult;
 export declare function buildWorkflowAdvisorReport(input: { result: WorkflowAssessmentResult; answers?: Record<string, unknown>; questionnaire?: Record<string, unknown>; lang?: WorkflowAdvisorLanguage }): WorkflowAdvisorReport;
+export declare function buildWorkflowAdvisorReportV2(input: { result: WorkflowAssessmentResult; answers?: Record<string, unknown>; questionnaire?: Record<string, unknown>; lang?: WorkflowAdvisorLanguage; industryProfile?: WorkflowAdvisorIndustryProfile }): WorkflowAdvisorReportV2;
 export declare function validateAssessmentInput(input: Partial<WorkflowAssessmentInput>): { ok: boolean; errors: Array<Record<string, unknown>>; input: WorkflowAssessmentInput };
 export declare function sanitizeAnswersForPurpose(input: Partial<WorkflowAssessmentInput>, processingPurpose: WorkflowProcessingPurpose): { ok: boolean; errors?: Array<Record<string, unknown>>; answers: Record<string, unknown> };
 export declare function deriveProcessingPurpose(consents: { researchConsent?: boolean; contactConsent?: boolean }): WorkflowProcessingPurpose;

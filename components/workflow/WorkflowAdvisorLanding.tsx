@@ -4,13 +4,14 @@ import type { Language } from '../../utils/translations';
 import {
   assessWorkflow,
   buildWorkflowAdvisorReport,
+  buildWorkflowAdvisorReportV2,
   buyerProblemIdsBySector,
   createAssessmentInput,
   getSectorLabel,
   questionnaire,
-  questionnaireVersion,
   sectors,
-  type WorkflowAssessmentResult
+  type WorkflowAssessmentResult,
+  type WorkflowAdvisorReportV2
 } from '../../vendor/workflow-advisor-core/index.js';
 import { getIndustryBuyerProblems } from '../../utils/industryBuyerProblemsContent.js';
 
@@ -135,6 +136,27 @@ const UI = {
     technicalReview: 'Revisio tecnica necessaria'
   }
 } as const;
+
+const CONTACT_FIELD_LABELS: Record<string, Record<Language, string>> = {
+  name: { en: 'Name', es: 'Nombre', fr: 'Nom', it: 'Nome', ca: 'Nom' },
+  email: { en: 'Professional email', es: 'Email profesional', fr: 'Email professionnel', it: 'Email professionale', ca: 'Email professional' },
+  company: { en: 'Company', es: 'Empresa', fr: 'Entreprise', it: 'Azienda', ca: 'Empresa' },
+  countryCode: { en: 'Country', es: 'Pais', fr: 'Pays', it: 'Paese', ca: 'Pais' },
+  buyerRole: { en: 'Role', es: 'Cargo o funcion', fr: 'Role', it: 'Ruolo', ca: 'Rol' },
+  phone: { en: 'Phone', es: 'Telefono', fr: 'Telephone', it: 'Telefono', ca: 'Telefon' },
+  comment: { en: 'Comment', es: 'Comentario', fr: 'Commentaire', it: 'Commento', ca: 'Comentari' },
+  requestType: { en: 'Request type', es: 'Tipo de solicitud', fr: 'Type de demande', it: 'Tipo richiesta', ca: 'Tipus de sol licitud' }
+};
+
+const REQUEST_TYPE_LABELS: Record<string, Record<Language, string>> = {
+  technical_review: { en: 'Technical review', es: 'Revision tecnica', fr: 'Revue technique', it: 'Revisione tecnica', ca: 'Revisio tecnica' },
+  demo: { en: 'Demo', es: 'Demo', fr: 'Demo', it: 'Demo', ca: 'Demo' },
+  quote: { en: 'Quote', es: 'Oferta', fr: 'Devis', it: 'Preventivo', ca: 'Oferta' },
+  distributor: { en: 'Distributor', es: 'Distribuidor', fr: 'Distributeur', it: 'Distributore', ca: 'Distribuidor' },
+  oem: { en: 'OEM', es: 'OEM', fr: 'OEM', it: 'OEM', ca: 'OEM' },
+  integration: { en: 'Integration', es: 'Integracion', fr: 'Integration', it: 'Integrazione', ca: 'Integracio' },
+  other: { en: 'Other', es: 'Otro', fr: 'Autre', it: 'Altro', ca: 'Altres' }
+};
 
 const OPTION_LABELS: Record<string, Record<string, string>> = {
   public_laboratory: { en: 'Public laboratory', es: 'Laboratorio publico', fr: 'Laboratoire public', it: 'Laboratorio pubblico', ca: 'Laboratori public' },
@@ -422,14 +444,15 @@ function buildInput(pageLang: Language, answers: Answers) {
   });
 }
 
-function downloadResult(result: WorkflowAssessmentResult | null, reportSnapshot: any) {
+function downloadTechnicalExport(result: WorkflowAssessmentResult | null, reportSnapshot: any, reportV2: WorkflowAdvisorReportV2 | null) {
   if (!result) return;
   const blob = new Blob([JSON.stringify({
     technicalExport: {
-      note: reportSnapshot?.technicalExport?.note,
+      note: reportV2?.technicalExport?.note || reportSnapshot?.technicalExport?.note,
       result
     },
-    reportSnapshot
+    reportSnapshot,
+    reportV2
   }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -437,6 +460,12 @@ function downloadResult(result: WorkflowAssessmentResult | null, reportSnapshot:
   link.download = `aquaverify-workflow-advisor-${result.sectorId}.json`;
   link.click();
   URL.revokeObjectURL(url);
+}
+
+function printWorkflowReport() {
+  document.body.classList.add('workflow-report-print');
+  window.print();
+  window.setTimeout(() => document.body.classList.remove('workflow-report-print'), 500);
 }
 
 const SelectField = ({ id, value, options, lang, onChange }: any) => (
@@ -477,6 +506,144 @@ const MultiField = ({ id, values, options, lang, onToggle, optionLabels }: any) 
   </fieldset>
 );
 
+const quickReadLabel = (key: string) => key.replace(/([A-Z])/g, ' $1').replace(/^./, (match) => match.toUpperCase());
+
+const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
+  <article className="workflow-report space-y-6">
+    <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
+      <CheckCircle2 className="h-6 w-6" />
+      <p className="mt-3 text-xs font-black uppercase tracking-[0.16em]">{report.reportVersion}</p>
+      <h2 className="mt-2 text-2xl font-black">{report.title}</h2>
+      <p className="mt-2 text-sm font-bold">{report.subtitle}</p>
+      {(report.executiveSummary || []).map((paragraph) => (
+        <p key={paragraph} className="mt-3 text-sm leading-7">{paragraph}</p>
+      ))}
+    </div>
+
+    <section className="grid gap-3 md:grid-cols-4">
+      {Object.entries(report.quickRead || {}).map(([key, value]) => (
+        <article key={key} className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-xs font-black uppercase text-slate-400">{quickReadLabel(key)}</p>
+          <p className="mt-2 text-sm font-bold text-slate-700">{String(value)}</p>
+        </article>
+      ))}
+    </section>
+
+    <section className="grid gap-4 lg:grid-cols-2">
+      <article className="rounded-2xl border border-slate-200 p-5">
+        <h2 className="text-lg font-black">{report.sections.context}</h2>
+        <p className="mt-3 text-sm leading-7 text-slate-600">{report.interpretedContext?.buyerContext}</p>
+        <dl className="mt-3 grid gap-2">
+          {(report.interpretedContext?.facts || []).map((item) => (
+            <div key={item.field} className="rounded-xl bg-slate-50 p-3">
+              <dt className="text-xs font-black uppercase text-slate-400">{item.label}</dt>
+              <dd className="mt-1 text-sm font-bold">{item.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </article>
+      <article className="rounded-2xl border border-slate-200 p-5">
+        <h2 className="text-lg font-black">{report.sections.flow}</h2>
+        <p className="mt-3 text-sm leading-7 text-slate-600">{report.flowDiagnosis?.paragraph}</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {(report.flowDiagnosis?.keySignals || []).map((signal) => (
+            <span key={signal} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">{signal}</span>
+          ))}
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2 className="text-lg font-black">{report.sections.maturity}</h2>
+      <div className="mt-3 overflow-hidden rounded-2xl border border-slate-200">
+        <table className="w-full text-sm">
+          <tbody>
+            {(report.maturity || []).map((item) => (
+              <tr key={item.dimensionId} className="border-t border-slate-100 align-top first:border-t-0">
+                <td className="px-3 py-4 font-black text-primary">{item.title}<div className="mt-1 text-xs text-slate-400">{item.level} / 5 - {item.label}</div></td>
+                <td className="px-3 py-4 text-slate-600">{item.explanation}<div className="mt-2 font-bold text-slate-700">{item.nextImprovement}</div></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 className="text-lg font-black">{report.sections.priorityProblems}</h2>
+      <div className="mt-3 grid gap-3 md:grid-cols-2">
+        {(report.priorityProblems || []).map((problem) => (
+          <article key={`${problem.title}-${problem.priorityLabel}`} className="rounded-2xl border border-slate-200 p-4">
+            <p className="text-xs font-black uppercase text-cyan-700">{problem.priorityLabel}</p>
+            <h3 className="mt-1 font-black">{problem.title}</h3>
+            <p className="mt-2 text-sm leading-7 text-slate-600">{problem.paragraph}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+      <h2 className="font-black">{report.sections.plan}</h2>
+      <ol className="mt-3 grid gap-3">
+        {(report.improvementPlan?.phases || []).map((phase) => (
+          <li key={phase.phaseId} className="rounded-xl bg-white p-3 text-sm">
+            <strong>{phase.phase}. {phase.title}</strong>
+            <p className="mt-2 leading-7 text-slate-600">{phase.objective}</p>
+            {phase.actions?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{phase.actions.join(' - ')}</p> : null}
+            <p className="mt-2 font-bold text-slate-700">{phase.expectedOutcome}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section className="grid gap-4 lg:grid-cols-2">
+      <article className="rounded-2xl border border-slate-200 p-5">
+        <h2 className="text-lg font-black">{report.sections.digitalModules}</h2>
+        {(report.recommendationSections || []).map((rec) => (
+          <div key={rec.recommendationId} className="mt-3 rounded-xl bg-slate-50 p-3 text-sm">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <strong>{rec.title}</strong>
+              <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-cyan-700">{rec.status}</span>
+            </div>
+            <p className="mt-2 leading-7 text-slate-600">{rec.paragraph}</p>
+            {rec.whatToDefine?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{rec.whatToDefine.join(' ')}</p> : null}
+          </div>
+        ))}
+      </article>
+      <article className="rounded-2xl border border-slate-200 p-5">
+        <h2 className="text-lg font-black">{report.sections.analyticalReview}</h2>
+        <p className="mt-3 text-sm leading-7 text-slate-600">{report.analyticalReview?.paragraph}</p>
+        {(report.analyticalReview?.candidates || []).map((candidate) => (
+          <div key={candidate.productId} className="mt-3 rounded-xl bg-slate-50 p-3 text-sm">
+            <strong>{candidate.title}</strong>
+            <span className="ml-2 text-xs font-black text-cyan-700">{candidate.status}</span>
+            <p className="mt-2 leading-7 text-slate-600">{candidate.reason}</p>
+          </div>
+        ))}
+      </article>
+    </section>
+
+    <section className="grid gap-4 lg:grid-cols-3">
+      <article className="rounded-2xl border border-slate-200 p-5">
+        <h2 className="font-black">{report.sections.missingInfo}</h2>
+        <p className="mt-3 text-sm leading-7 text-slate-600">{(report.missingInformation || []).join(' - ')}</p>
+      </article>
+      <article className="rounded-2xl border border-slate-200 p-5">
+        <h2 className="font-black">{report.sections.relatedResources}</h2>
+        {(report.relatedResources || []).map((resource) => (
+          <a key={`${resource.title}-${resource.url}`} href={resource.url} className="mt-2 block text-sm font-bold text-cyan-700">{resource.title}</a>
+        ))}
+      </article>
+      <article className="rounded-2xl border border-slate-200 p-5">
+        <h2 className="font-black">{report.sections.limitations}</h2>
+        {(report.limitations || []).map((item) => (
+          <p key={item} className="mt-2 text-sm leading-7 text-slate-600">{item}</p>
+        ))}
+      </article>
+    </section>
+  </article>
+);
+
 export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) => {
   const copy = UI[pageLang] || UI.en;
   const [step, setStep] = useState(0);
@@ -495,14 +662,19 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   const sectorSpecificQuestion = sectorQuestionId(sectorId);
   const showDebugAnnex = import.meta.env.DEV;
 
-  const resultSummary = useMemo(() => result ? {
-    highFindings: result.findings.filter((finding) => finding.priority === 'high').length,
-    technicalReviews: result.recommendations.filter((item) => item.fitStatus === 'technical_review_required').length
-  } : null, [result]);
-
   const reportSnapshot = useMemo(() => {
     if (!result) return null;
     return (result as any).reportSnapshot || buildWorkflowAdvisorReport({
+      result,
+      answers: buildInput(pageLang, answers).answers,
+      questionnaire,
+      lang: pageLang
+    });
+  }, [answers, pageLang, result]);
+
+  const reportV2 = useMemo(() => {
+    if (!result) return null;
+    return (result as any).reportV2 || buildWorkflowAdvisorReportV2({
       result,
       answers: buildInput(pageLang, answers).answers,
       questionnaire,
@@ -577,7 +749,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
 
   return (
     <main className="bg-white text-slate-900">
-      <section className="bg-slate-950 text-white">
+      <section className="workflow-advisor-landing bg-slate-950 text-white">
         <div className="container mx-auto grid min-h-[78vh] items-center gap-10 px-6 py-24 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
             <span className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-cyan-100">{content.eyebrow}</span>
@@ -600,7 +772,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
         </div>
       </section>
 
-      <section className="border-b border-slate-200 bg-slate-50 py-12">
+      <section className="workflow-advisor-landing border-b border-slate-200 bg-slate-50 py-12">
         <div className="container mx-auto grid gap-4 px-6 md:grid-cols-3">
           {(content.blocks || []).slice(4).map(([title, body]: [string, string]) => (
             <article key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -616,10 +788,10 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
         </div>
       </section>
 
-      <section id="workflow-advisor-tool" className="scroll-mt-24 py-14">
+      <section id="workflow-advisor-tool" className="workflow-advisor-form scroll-mt-24 py-14">
         <div className="container mx-auto px-6">
           <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <aside className="lg:sticky lg:top-28 lg:self-start">
+            <aside className="no-print lg:sticky lg:top-28 lg:self-start">
               <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
                 {[copy.context, copy.workflow, copy.analytical, copy.result].map((label, index) => (
                   <button
@@ -635,8 +807,8 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
               </div>
             </aside>
 
-            <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
-              <p className="text-xs font-black uppercase tracking-[0.16em] text-cyan-700">{copy.progress} {step + 1} / 4</p>
+            <div className="workflow-form-panel rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
+              <p className="no-print text-xs font-black uppercase tracking-[0.16em] text-cyan-700">{copy.progress} {step + 1} / 4</p>
 
               {step === 0 && (
                 <div className="mt-5 grid gap-5 md:grid-cols-2">
@@ -685,181 +857,26 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                     <button type="button" onClick={calculate} className="rounded-full bg-primary px-5 py-3 text-sm font-black text-white">{copy.calculate}</button>
                   ) : (
                     <div className="space-y-6" aria-live="polite">
-                      {reportSnapshot && (
-                        <>
-                          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
-                            <CheckCircle2 className="h-6 w-6" />
-                            <p className="mt-3 text-xs font-black uppercase tracking-[0.16em]">{reportSnapshot.sections.result}</p>
-                            <h2 className="mt-2 text-2xl font-black">{reportSnapshot.sector.label || getSectorLabel(result.sectorId, pageLang)}</h2>
-                            {(reportSnapshot.executiveSummary || []).map((paragraph: string) => (
-                              <p key={paragraph} className="mt-3 text-sm leading-7">{paragraph}</p>
-                            ))}
-                          </div>
+                      {reportV2 && <WorkflowReportV2 report={reportV2} />}
 
-                          <section className="grid gap-3 md:grid-cols-3">
-                            <article className="rounded-2xl border border-slate-200 bg-white p-4">
-                              <p className="text-xs font-black uppercase text-slate-400">{reportSnapshot.sections.quickRead}</p>
-                              <strong className="mt-2 block text-2xl text-primary">{result.findings.length}</strong>
-                              <span className="text-sm font-bold text-slate-500">{reportSnapshot.sections.priorityProblems}</span>
-                            </article>
-                            <article className="rounded-2xl border border-slate-200 bg-white p-4">
-                              <p className="text-xs font-black uppercase text-slate-400">{copy.technicalReview}</p>
-                              <strong className="mt-2 block text-2xl text-primary">{resultSummary?.technicalReviews || 0}</strong>
-                              <span className="text-sm font-bold text-slate-500">{reportSnapshot.sections.productEvaluation}</span>
-                            </article>
-                            <article className="rounded-2xl border border-slate-200 bg-white p-4">
-                              <p className="text-xs font-black uppercase text-slate-400">{reportSnapshot.sections.digitalModules}</p>
-                              <strong className="mt-2 block text-2xl text-primary">{reportSnapshot.digitalModules?.length || 0}</strong>
-                              <span className="text-sm font-bold text-slate-500">{reportSnapshot.sections.recommendations}</span>
-                            </article>
-                          </section>
-
-                          <section className="grid gap-4 lg:grid-cols-2">
-                            <article className="rounded-2xl border border-slate-200 p-5">
-                              <h2 className="text-lg font-black">{reportSnapshot.sections.interpretedContext}</h2>
-                              <dl className="mt-3 grid gap-2">
-                                {(reportSnapshot.interpretedContext?.items || []).map((item: any) => (
-                                  <div key={item.label} className="rounded-xl bg-slate-50 p-3">
-                                    <dt className="text-xs font-black uppercase text-slate-400">{item.label}</dt>
-                                    <dd className="mt-1 text-sm font-bold">{item.value}</dd>
-                                  </div>
-                                ))}
-                              </dl>
-                            </article>
-                            <article className="rounded-2xl border border-slate-200 p-5">
-                              <h2 className="text-lg font-black">{reportSnapshot.sections.flowAnalysis}</h2>
-                              <p className="mt-3 text-sm leading-7 text-slate-600">{reportSnapshot.flowAnalysis?.summary}</p>
-                              <div className="mt-4 flex flex-wrap gap-2">
-                                {(reportSnapshot.flowAnalysis?.keySignals || []).map((signal: string) => (
-                                  <span key={signal} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">{signal}</span>
-                                ))}
-                              </div>
-                            </article>
-                          </section>
-
-                          <section>
-                            <h2 className="text-lg font-black">{reportSnapshot.sections.maturityAnalysis}</h2>
-                            <div className="mt-3 overflow-hidden rounded-2xl border border-slate-200">
-                              <table className="w-full text-sm">
-                                <tbody>
-                                  {(reportSnapshot.maturityAnalysis || []).map((item: any) => (
-                                    <tr key={item.name} className="border-t border-slate-100 align-top first:border-t-0">
-                                      <td className="px-3 py-4 font-black text-primary">{item.name}<div className="mt-1 text-xs text-slate-400">{item.level} / 5 · {item.label}</div></td>
-                                      <td className="px-3 py-4 text-slate-600">{item.explanation}<div className="mt-2 font-bold text-slate-700">{item.nextImprovement}</div></td>
-                                    </tr>
-                                  ))}
-                                </tbody>
-                              </table>
-                            </div>
-                          </section>
-
-                          <section>
-                            <h2 className="text-lg font-black">{reportSnapshot.sections.priorityProblems}</h2>
-                            <div className="mt-3 grid gap-3 md:grid-cols-2">
-                              {(reportSnapshot.priorityProblems || []).map((problem: any) => (
-                                <article key={`${problem.title}-${problem.priorityLabel}`} className="rounded-2xl border border-slate-200 p-4">
-                                  <p className="text-xs font-black uppercase text-cyan-700">{problem.priorityLabel}</p>
-                                  <h3 className="mt-1 font-black">{problem.title}</h3>
-                                  <p className="mt-2 text-sm leading-7 text-slate-600">{problem.explanation}</p>
-                                </article>
-                              ))}
-                            </div>
-                          </section>
-
-                          <section>
-                            <h2 className="text-lg font-black">{reportSnapshot.sections.recommendations}</h2>
-                            <div className="mt-3 grid gap-4">
-                              {(reportSnapshot.recommendationGroups || []).map((group: any) => (
-                                <article key={group.groupId} className="rounded-2xl border border-slate-200 p-5">
-                                  <h3 className="font-black">{group.title}</h3>
-                                  <div className="mt-3 grid gap-3">
-                                    {(group.recommendations || []).map((rec: any) => (
-                                      <div key={`${group.groupId}-${rec.title}-${rec.status}`} className="rounded-xl bg-slate-50 p-3 text-sm">
-                                        <div className="flex flex-wrap items-center justify-between gap-2">
-                                          <strong>{rec.title}</strong>
-                                          <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-cyan-700">{rec.status}</span>
-                                        </div>
-                                        <p className="mt-2 leading-7 text-slate-600">{rec.why}</p>
-                                        {rec.conditions?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{rec.conditions.join(' ')}</p> : null}
-                                        {rec.constraints?.length ? <p className="mt-2 text-xs font-bold text-rose-700">{rec.constraints.join(' ')}</p> : null}
-                                      </div>
-                                    ))}
-                                  </div>
-                                </article>
-                              ))}
-                            </div>
-                          </section>
-
-                          <section className="grid gap-4 lg:grid-cols-2">
-                            <article className="rounded-2xl border border-slate-200 p-5">
-                              <h2 className="text-lg font-black">{reportSnapshot.sections.productEvaluation}</h2>
-                              {(reportSnapshot.productEvaluation || []).length ? (reportSnapshot.productEvaluation || []).map((product: any) => (
-                                <div key={`${product.title}-${product.status}`} className="mt-3 rounded-xl bg-slate-50 p-3 text-sm">
-                                  <strong>{product.title}</strong>
-                                  <span className="ml-2 text-xs font-black text-cyan-700">{product.status}</span>
-                                  <p className="mt-2 leading-7 text-slate-600">{product.statusExplanation}</p>
-                                </div>
-                              )) : <p className="mt-3 text-sm text-slate-500">{reportSnapshot.sections.productEvaluation}</p>}
-                            </article>
-                            <article className="rounded-2xl border border-slate-200 p-5">
-                              <h2 className="text-lg font-black">{reportSnapshot.sections.digitalModules}</h2>
-                              {(reportSnapshot.digitalModules || []).map((module: any) => (
-                                <div key={module.title} className="mt-3 rounded-xl bg-slate-50 p-3 text-sm">
-                                  <strong>{module.title}</strong>
-                                  <p className="mt-2 leading-7 text-slate-600">{module.why}</p>
-                                </div>
-                              ))}
-                            </article>
-                          </section>
-
-                          <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                            <h2 className="font-black">{reportSnapshot.sections.implementationPlan}</h2>
-                            <ol className="mt-3 grid gap-3">
-                              {(reportSnapshot.implementationPlan || []).map((phase: any) => (
-                                <li key={phase.phase} className="rounded-xl bg-white p-3 text-sm">
-                                  <strong>{phase.phase}. {phase.title}</strong>
-                                  <p className="mt-2 leading-7 text-slate-600">{phase.explanation}</p>
-                                  {phase.relatedModules?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{phase.relatedModules.join(' · ')}</p> : null}
-                                </li>
-                              ))}
-                            </ol>
-                          </section>
-
-                          <section className="grid gap-4 lg:grid-cols-3">
-                            <article className="rounded-2xl border border-slate-200 p-5">
-                              <h2 className="font-black">{reportSnapshot.sections.missingInformation}</h2>
-                              <p className="mt-3 text-sm leading-7 text-slate-600">{(reportSnapshot.missingInformation || []).join(' · ') || reportSnapshot.sections.missingInformation}</p>
-                            </article>
-                            <article className="rounded-2xl border border-slate-200 p-5">
-                              <h2 className="font-black">{reportSnapshot.sections.relatedResources}</h2>
-                              {(reportSnapshot.relatedResources || []).map((resource: any) => (
-                                <p key={resource.title} className="mt-2 text-sm font-bold text-cyan-700">{resource.title}</p>
-                              ))}
-                            </article>
-                            <article className="rounded-2xl border border-slate-200 p-5">
-                              <h2 className="font-black">{reportSnapshot.sections.limitations}</h2>
-                              {(reportSnapshot.limitations || []).map((item: string) => (
-                                <p key={item} className="mt-2 text-sm leading-7 text-slate-600">{item}</p>
-                              ))}
-                            </article>
-                          </section>
-                        </>
-                      )}
-
-                      <div className="flex flex-wrap gap-3">
-                        <button type="button" onClick={() => window.print()} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black"><Printer className="mr-2 h-4 w-4" />{copy.print}</button>
-                        <button type="button" onClick={() => downloadResult(result, reportSnapshot)} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black"><Download className="mr-2 h-4 w-4" />{copy.download}</button>
+                      <div className="no-print flex flex-wrap gap-3">
+                        <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Download className="mr-2 h-4 w-4" />{reportV2?.pdf?.buttonLabel || copy.download}</button>
+                        <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black"><Printer className="mr-2 h-4 w-4" />{reportV2?.pdf?.printLabel || copy.print}</button>
+                        <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 px-4 py-2 text-sm font-black text-cyan-800">{reportV2?.cta?.label || copy.submitContact}</button>
                       </div>
 
                       {showDebugAnnex && (
-                        <details className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                          <summary className="cursor-pointer font-black">{reportSnapshot?.technicalExport?.label || 'Technical export'}</summary>
-                          <p className="mt-2 text-sm text-slate-600">{reportSnapshot?.technicalExport?.note}</p>
+                        <details className="no-print rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                          <summary className="cursor-pointer font-black">{reportV2?.technicalExport?.label || reportSnapshot?.technicalExport?.label || 'Technical export'}</summary>
+                          <p className="mt-2 text-sm text-slate-600">{reportV2?.technicalExport?.note || reportSnapshot?.technicalExport?.note}</p>
+                          <button type="button" onClick={() => downloadTechnicalExport(result, reportSnapshot, reportV2)} className="mt-3 inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-black">
+                            <Download className="mr-2 h-4 w-4" />JSON
+                          </button>
                           <pre className="mt-3 max-h-96 overflow-auto rounded-xl bg-slate-950 p-4 text-xs text-slate-100">{JSON.stringify(result, null, 2)}</pre>
                         </details>
                       )}
 
-                      <section className="rounded-2xl border border-cyan-100 bg-cyan-50 p-5">
+                      <section className="workflow-advisor-consent no-print rounded-2xl border border-cyan-100 bg-cyan-50 p-5">
                         <label className="flex gap-3 text-sm font-bold text-cyan-950">
                           <input type="checkbox" checked={researchConsent} onChange={(event) => setResearchConsent(event.target.checked)} className="mt-1 h-4 w-4" />
                           <span>{content.privacyConsent} <a className="underline" href="https://app.aquaverify.com/legal/privacy">{copy.privacyLink}</a></span>
@@ -867,16 +884,25 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                         <button type="button" disabled={!researchConsent} onClick={() => saveAssessment(false)} className="mt-4 rounded-full bg-cyan-700 px-5 py-3 text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-50">{copy.saveResearch}</button>
                       </section>
 
-                      <section className="rounded-2xl border border-slate-200 p-5">
+                      <section id="workflow-contact-request" className="workflow-advisor-contact-form no-print scroll-mt-24 rounded-2xl border border-slate-200 p-5">
                         <h2 className="text-lg font-black">{copy.contactTitle}</h2>
                         <div className="mt-4 grid gap-3 md:grid-cols-2">
                           {['name', 'email', 'company', 'countryCode', 'buyerRole', 'phone'].map((field) => (
-                            <input key={field} value={(contact as any)[field]} onChange={(event) => setContact((current) => ({ ...current, [field]: event.target.value }))} className="rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400" placeholder={field} />
+                            <label key={field} className="block">
+                              <span className="text-xs font-black uppercase text-slate-500">{CONTACT_FIELD_LABELS[field]?.[pageLang] || field}</span>
+                              <input value={(contact as any)[field]} onChange={(event) => setContact((current) => ({ ...current, [field]: event.target.value }))} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400" />
+                            </label>
                           ))}
-                          <select value={contact.requestType} onChange={(event) => setContact((current) => ({ ...current, requestType: event.target.value }))} className="rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400">
-                            {['technical_review', 'demo', 'quote', 'distributor', 'oem', 'integration', 'other'].map((item) => <option key={item} value={item}>{item.replace(/_/g, ' ')}</option>)}
-                          </select>
-                          <textarea value={contact.comment} onChange={(event) => setContact((current) => ({ ...current, comment: event.target.value }))} className="min-h-28 rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400 md:col-span-2" placeholder="comment" />
+                          <label className="block">
+                            <span className="text-xs font-black uppercase text-slate-500">{CONTACT_FIELD_LABELS.requestType?.[pageLang]}</span>
+                            <select value={contact.requestType} onChange={(event) => setContact((current) => ({ ...current, requestType: event.target.value }))} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400">
+                              {['technical_review', 'demo', 'quote', 'distributor', 'oem', 'integration', 'other'].map((item) => <option key={item} value={item}>{REQUEST_TYPE_LABELS[item]?.[pageLang] || item}</option>)}
+                            </select>
+                          </label>
+                          <label className="block md:col-span-2">
+                            <span className="text-xs font-black uppercase text-slate-500">{CONTACT_FIELD_LABELS.comment?.[pageLang]}</span>
+                            <textarea value={contact.comment} onChange={(event) => setContact((current) => ({ ...current, comment: event.target.value }))} className="mt-1 min-h-28 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400" />
+                          </label>
                         </div>
                         <label className="mt-4 flex gap-3 text-sm font-bold">
                           <input type="checkbox" checked={contactConsent} onChange={(event) => setContactConsent(event.target.checked)} className="mt-1 h-4 w-4" />
@@ -894,9 +920,9 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                 </div>
               )}
 
-              {saveMessage && <div className="mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm font-bold text-slate-700">{saveMessage}</div>}
+              {saveMessage && <div className="no-print mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm font-bold text-slate-700">{saveMessage}</div>}
 
-              <div className="mt-8 flex justify-between">
+              <div className="no-print mt-8 flex justify-between">
                 <button type="button" disabled={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black disabled:opacity-40"><ArrowLeft className="mr-2 h-4 w-4" />{copy.back}</button>
                 {step < 2 ? (
                   <button type="button" onClick={() => setStep((current) => current + 1)} className="inline-flex items-center rounded-full bg-primary px-5 py-2 text-sm font-black text-white">{copy.next}<ArrowRight className="ml-2 h-4 w-4" /></button>
@@ -909,7 +935,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
         </div>
       </section>
 
-      <section className="bg-slate-50 py-14">
+      <section className="workflow-advisor-faq bg-slate-50 py-14">
         <div className="container mx-auto px-6">
           <h2 className="text-2xl font-black">FAQ</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
@@ -925,9 +951,37 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
 
       <style>{`
         @media print {
-          header, footer, aside, button, nav { display: none !important; }
-          main, section { background: #fff !important; color: #000 !important; }
-          #workflow-result { display: block !important; }
+          body.workflow-report-print header,
+          body.workflow-report-print footer,
+          body.workflow-report-print nav,
+          body.workflow-report-print aside,
+          body.workflow-report-print .workflow-advisor-landing,
+          body.workflow-report-print .workflow-advisor-consent,
+          body.workflow-report-print .workflow-advisor-contact-form,
+          body.workflow-report-print .workflow-advisor-faq,
+          body.workflow-report-print .no-print {
+            display: none !important;
+          }
+          body.workflow-report-print main,
+          body.workflow-report-print section,
+          body.workflow-report-print article {
+            background: #fff !important;
+            color: #000 !important;
+            box-shadow: none !important;
+          }
+          body.workflow-report-print .workflow-advisor-form,
+          body.workflow-report-print #workflow-result,
+          body.workflow-report-print .workflow-report {
+            display: block !important;
+          }
+          body.workflow-report-print .workflow-form-panel {
+            border: 0 !important;
+            padding: 0 !important;
+          }
+          body.workflow-report-print .workflow-report {
+            max-width: none !important;
+            width: 100% !important;
+          }
         }
       `}</style>
     </main>

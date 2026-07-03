@@ -16,10 +16,12 @@ import {
   assessmentPaths,
   assessmentVersion,
   assessWorkflow,
+  buildWorkflowAdvisorReportV2,
   buyerProblemIdsBySector,
   catalogVersion,
   languages,
   questionnaireVersion,
+  reportV2Version,
   rules,
   rulesVersion,
   sectors
@@ -127,11 +129,60 @@ function validateSource() {
 
   const component = readText('components/workflow/WorkflowAdvisorLanding.tsx');
   assert(component.includes('assessWorkflow('), 'Landing must calculate through deterministic core');
+  assert(component.includes('buildWorkflowAdvisorReportV2'), 'Landing must render Workflow Advisor report V2');
+  assert(component.includes('workflow-report'), 'Landing must expose dedicated workflow-report print container');
+  assert(component.includes('workflow-advisor-contact-form'), 'Landing must isolate contact form from report print mode');
+  assert(component.includes('downloadTechnicalExport'), 'Technical JSON export must be explicit support-only action');
+  assert(!component.includes('downloadResult('), 'JSON result download must not be the primary CTA');
   assert(component.includes("credentials: 'omit'"), 'Public API calls must omit credentials');
   assert(component.includes('researchConsent') && component.includes('contactConsent') && component.includes('marketingConsent'), 'Consent switches must remain separate');
   assert(component.includes('Idempotency-Key'), 'Assessment save should use idempotency key');
   assert(component.includes('workflow-advisor-tool'), 'Landing must expose workflow-advisor-tool anchor');
   assert(component.includes('saveAssessment') && component.includes('submitContact'), 'Landing must support research save and contact lead flow');
+
+  const regression = assessWorkflow({
+    questionnaireVersion,
+    lang: 'es',
+    sectorId: 'agriculture-water',
+    answers: {
+      country_code: 'FR',
+      organization_type: 'private_laboratory',
+      buyer_role: 'executive',
+      site_count_band: 'one',
+      lab_model: 'internal',
+      sample_volume_band: '50_to_199_month',
+      current_systems: ['external_lab_portal', 'erp', 'spreadsheets'],
+      digitised_stages: ['control_plan', 'technical_review', 'inventory'],
+      priority_problem_ids: ['connect-water-source-to-crop-risk', 'manage-reclaimed-water-evidence', 'improve_audit_evidence'],
+      evidence_needs: ['dashboards', 'method_traceability', 'coa'],
+      implementation_timeline: 'within_three_months',
+      preferred_route: 'authorised_distributor',
+      target_groups: ['somatic_coliphages', 'f_specific_coliphages', 'e_coli', 'general_microbiology'],
+      result_type: 'presence_absence',
+      intended_use: 'routine_internal_control',
+      method_context: 'not_defined',
+      sample_volume_context: 'one_ml',
+      water_use_context: ['irrigation_water', 'reclaimed_water']
+    }
+  });
+  const reportV2 = regression.reportV2 || buildWorkflowAdvisorReportV2({ result: regression, lang: 'es' });
+  const visibleV2 = JSON.stringify({
+    title: reportV2.title,
+    facts: reportV2.interpretedContext.facts.map((fact) => fact.value),
+    analyticalReview: {
+      title: reportV2.analyticalReview.title,
+      paragraph: reportV2.analyticalReview.paragraph,
+      candidates: reportV2.analyticalReview.candidates.map((candidate) => candidate.title)
+    },
+    recommendationSections: reportV2.recommendationSections.map((item) => item.title),
+    relatedResources: reportV2.relatedResources.map((item) => item.url)
+  });
+  assert(reportV2.reportVersion === reportV2Version, 'Regression report must use V2');
+  assert(visibleV2.includes('50-199 muestras/mes'), 'Regression report must localize sample band');
+  assert(visibleV2.includes('método no está definido'), 'Regression report must explain missing method');
+  ['50 to 199 month', 'Screening INDICA', 'module.crm', 'product.indica-screening', '/es/diagnostico-flujo-calidad-agua'].forEach((term) => {
+    assert(!visibleV2.includes(term), `Regression report leaks forbidden V2 term: ${term}`);
+  });
 
   const ruleSource = JSON.stringify(rules).toLowerCase();
   for (const forbidden of ['openai', 'anthropic', 'chatgpt', 'llm api', 'model prompt']) {
