@@ -3,10 +3,9 @@ import { ArrowLeft, ArrowRight, CheckCircle2, Download, Printer, ShieldCheck } f
 import type { Language } from '../../utils/translations';
 import {
   assessWorkflow,
+  buildWorkflowAdvisorReport,
   buyerProblemIdsBySector,
-  catalog,
   createAssessmentInput,
-  getLocalizedText,
   getSectorLabel,
   questionnaire,
   questionnaireVersion,
@@ -35,7 +34,7 @@ const UI = {
     next: 'Next',
     calculate: 'Calculate result',
     print: 'Print',
-    download: 'Download JSON',
+    download: 'Download summary',
     saveResearch: 'Share for research',
     contactTitle: 'Optional contact request',
     submitContact: 'Request contact',
@@ -57,7 +56,7 @@ const UI = {
     next: 'Siguiente',
     calculate: 'Calcular resultado',
     print: 'Imprimir',
-    download: 'Descargar JSON',
+    download: 'Descargar resumen',
     saveResearch: 'Compartir para investigacion',
     contactTitle: 'Solicitud opcional de contacto',
     submitContact: 'Solicitar contacto',
@@ -79,7 +78,7 @@ const UI = {
     next: 'Suivant',
     calculate: 'Calculer le resultat',
     print: 'Imprimer',
-    download: 'Telecharger JSON',
+    download: 'Telecharger resume',
     saveResearch: 'Partager pour recherche',
     contactTitle: 'Demande de contact optionnelle',
     submitContact: 'Demander contact',
@@ -101,7 +100,7 @@ const UI = {
     next: 'Avanti',
     calculate: 'Calcola risultato',
     print: 'Stampa',
-    download: 'Scarica JSON',
+    download: 'Scarica sintesi',
     saveResearch: 'Condividi per ricerca',
     contactTitle: 'Richiesta opzionale di contatto',
     submitContact: 'Richiedi contatto',
@@ -123,7 +122,7 @@ const UI = {
     next: 'Seguent',
     calculate: 'Calcular resultat',
     print: 'Imprimir',
-    download: 'Descarregar JSON',
+    download: 'Descarregar resum',
     saveResearch: 'Compartir per recerca',
     contactTitle: 'Sol licitud opcional de contacte',
     submitContact: 'Sol licitar contacte',
@@ -423,9 +422,15 @@ function buildInput(pageLang: Language, answers: Answers) {
   });
 }
 
-function downloadResult(result: WorkflowAssessmentResult | null) {
+function downloadResult(result: WorkflowAssessmentResult | null, reportSnapshot: any) {
   if (!result) return;
-  const blob = new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify({
+    technicalExport: {
+      note: reportSnapshot?.technicalExport?.note,
+      result
+    },
+    reportSnapshot
+  }, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
@@ -483,17 +488,27 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   const [saveMessage, setSaveMessage] = useState('');
   const [publicId, setPublicId] = useState('');
   const [contact, setContact] = useState({ name: '', email: '', company: '', countryCode: '', buyerRole: '', phone: '', requestType: 'technical_review', comment: '' });
-  const localized = getLocalizedText(pageLang);
   const sectorId = String(answers.sector_id || 'water-testing-labs');
   const buyerProblems = getIndustryBuyerProblems(sectorId, pageLang);
   const buyerProblemLabels = Object.fromEntries((buyerProblems?.problems || []).map((problem: any) => [problem.id, problem.question]));
   const priorityOptions = [...(buyerProblemIdsBySector[sectorId] || []), 'reduce_manual_transcription', 'improve_audit_evidence', 'coordinate_external_labs', 'compare_multiple_sites', 'add_new_test', 'improve_customer_visibility'];
   const sectorSpecificQuestion = sectorQuestionId(sectorId);
+  const showDebugAnnex = import.meta.env.DEV;
 
   const resultSummary = useMemo(() => result ? {
     highFindings: result.findings.filter((finding) => finding.priority === 'high').length,
     technicalReviews: result.recommendations.filter((item) => item.fitStatus === 'technical_review_required').length
   } : null, [result]);
+
+  const reportSnapshot = useMemo(() => {
+    if (!result) return null;
+    return (result as any).reportSnapshot || buildWorkflowAdvisorReport({
+      result,
+      answers: buildInput(pageLang, answers).answers,
+      questionnaire,
+      lang: pageLang
+    });
+  }, [answers, pageLang, result]);
 
   const setAnswer = (questionId: string, value: any) => {
     setAnswers((current) => ({ ...current, [questionId]: value }));
@@ -670,68 +685,179 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                     <button type="button" onClick={calculate} className="rounded-full bg-primary px-5 py-3 text-sm font-black text-white">{copy.calculate}</button>
                   ) : (
                     <div className="space-y-6" aria-live="polite">
-                      <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
-                        <CheckCircle2 className="h-6 w-6" />
-                        <h2 className="mt-2 text-xl font-black">{getSectorLabel(result.sectorId, pageLang)}</h2>
-                        <p className="mt-2 text-sm">{result.findings.length} findings · {resultSummary?.technicalReviews || 0} technical reviews · {result.recommendations.length} recommendations.</p>
-                      </div>
+                      {reportSnapshot && (
+                        <>
+                          <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
+                            <CheckCircle2 className="h-6 w-6" />
+                            <p className="mt-3 text-xs font-black uppercase tracking-[0.16em]">{reportSnapshot.sections.result}</p>
+                            <h2 className="mt-2 text-2xl font-black">{reportSnapshot.sector.label || getSectorLabel(result.sectorId, pageLang)}</h2>
+                            {(reportSnapshot.executiveSummary || []).map((paragraph: string) => (
+                              <p key={paragraph} className="mt-3 text-sm leading-7">{paragraph}</p>
+                            ))}
+                          </div>
 
-                      <section>
-                        <h2 className="text-lg font-black">{copy.result}</h2>
-                        <div className="mt-3 grid gap-3 md:grid-cols-2">
-                          {result.scores.map((score) => (
-                            <div key={score.dimensionId} className="rounded-xl border border-slate-200 p-4">
-                              <div className="text-sm font-black">{localized.maturity?.[score.dimensionId] || score.dimensionId}</div>
-                              <div className="mt-2 h-2 rounded-full bg-slate-100"><div className="h-2 rounded-full bg-cyan-500" style={{ width: `${score.level * 20}%` }} /></div>
-                              <div className="mt-2 text-xs font-bold text-slate-500">{score.level} / 5</div>
-                            </div>
-                          ))}
-                        </div>
-                      </section>
-
-                      <section>
-                        <h2 className="text-lg font-black">Findings</h2>
-                        <div className="mt-3 grid gap-3">
-                          {result.findings.map((finding) => (
-                            <article key={finding.findingId} className="rounded-xl border border-slate-200 p-4">
-                              <div className="text-sm font-black">{finding.findingId.replace(/_/g, ' ')}</div>
-                              <div className="mt-1 text-xs font-bold uppercase text-slate-400">{finding.priority}</div>
+                          <section className="grid gap-3 md:grid-cols-3">
+                            <article className="rounded-2xl border border-slate-200 bg-white p-4">
+                              <p className="text-xs font-black uppercase text-slate-400">{reportSnapshot.sections.quickRead}</p>
+                              <strong className="mt-2 block text-2xl text-primary">{result.findings.length}</strong>
+                              <span className="text-sm font-bold text-slate-500">{reportSnapshot.sections.priorityProblems}</span>
                             </article>
-                          ))}
-                        </div>
-                      </section>
+                            <article className="rounded-2xl border border-slate-200 bg-white p-4">
+                              <p className="text-xs font-black uppercase text-slate-400">{copy.technicalReview}</p>
+                              <strong className="mt-2 block text-2xl text-primary">{resultSummary?.technicalReviews || 0}</strong>
+                              <span className="text-sm font-bold text-slate-500">{reportSnapshot.sections.productEvaluation}</span>
+                            </article>
+                            <article className="rounded-2xl border border-slate-200 bg-white p-4">
+                              <p className="text-xs font-black uppercase text-slate-400">{reportSnapshot.sections.digitalModules}</p>
+                              <strong className="mt-2 block text-2xl text-primary">{reportSnapshot.digitalModules?.length || 0}</strong>
+                              <span className="text-sm font-bold text-slate-500">{reportSnapshot.sections.recommendations}</span>
+                            </article>
+                          </section>
 
-                      <section>
-                        <h2 className="text-lg font-black">Recommendations</h2>
-                        <div className="mt-3 overflow-hidden rounded-xl border border-slate-200">
-                          <table className="w-full text-sm">
-                            <thead className="bg-slate-50 text-left text-xs uppercase text-slate-500"><tr><th className="px-3 py-2">Need</th><th className="px-3 py-2">Capability</th><th className="px-3 py-2">Status</th></tr></thead>
-                            <tbody>
-                              {result.recommendations.slice(0, 10).map((item) => (
-                                <tr key={item.recommendationId} className="border-t border-slate-100">
-                                  <td className="px-3 py-3 font-bold">{item.type}</td>
-                                  <td className="px-3 py-3">{item.targetId}</td>
-                                  <td className="px-3 py-3">{localized.fit?.[item.fitStatus] || item.fitStatus}</td>
-                                </tr>
+                          <section className="grid gap-4 lg:grid-cols-2">
+                            <article className="rounded-2xl border border-slate-200 p-5">
+                              <h2 className="text-lg font-black">{reportSnapshot.sections.interpretedContext}</h2>
+                              <dl className="mt-3 grid gap-2">
+                                {(reportSnapshot.interpretedContext?.items || []).map((item: any) => (
+                                  <div key={item.label} className="rounded-xl bg-slate-50 p-3">
+                                    <dt className="text-xs font-black uppercase text-slate-400">{item.label}</dt>
+                                    <dd className="mt-1 text-sm font-bold">{item.value}</dd>
+                                  </div>
+                                ))}
+                              </dl>
+                            </article>
+                            <article className="rounded-2xl border border-slate-200 p-5">
+                              <h2 className="text-lg font-black">{reportSnapshot.sections.flowAnalysis}</h2>
+                              <p className="mt-3 text-sm leading-7 text-slate-600">{reportSnapshot.flowAnalysis?.summary}</p>
+                              <div className="mt-4 flex flex-wrap gap-2">
+                                {(reportSnapshot.flowAnalysis?.keySignals || []).map((signal: string) => (
+                                  <span key={signal} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">{signal}</span>
+                                ))}
+                              </div>
+                            </article>
+                          </section>
+
+                          <section>
+                            <h2 className="text-lg font-black">{reportSnapshot.sections.maturityAnalysis}</h2>
+                            <div className="mt-3 overflow-hidden rounded-2xl border border-slate-200">
+                              <table className="w-full text-sm">
+                                <tbody>
+                                  {(reportSnapshot.maturityAnalysis || []).map((item: any) => (
+                                    <tr key={item.name} className="border-t border-slate-100 align-top first:border-t-0">
+                                      <td className="px-3 py-4 font-black text-primary">{item.name}<div className="mt-1 text-xs text-slate-400">{item.level} / 5 · {item.label}</div></td>
+                                      <td className="px-3 py-4 text-slate-600">{item.explanation}<div className="mt-2 font-bold text-slate-700">{item.nextImprovement}</div></td>
+                                    </tr>
+                                  ))}
+                                </tbody>
+                              </table>
+                            </div>
+                          </section>
+
+                          <section>
+                            <h2 className="text-lg font-black">{reportSnapshot.sections.priorityProblems}</h2>
+                            <div className="mt-3 grid gap-3 md:grid-cols-2">
+                              {(reportSnapshot.priorityProblems || []).map((problem: any) => (
+                                <article key={`${problem.title}-${problem.priorityLabel}`} className="rounded-2xl border border-slate-200 p-4">
+                                  <p className="text-xs font-black uppercase text-cyan-700">{problem.priorityLabel}</p>
+                                  <h3 className="mt-1 font-black">{problem.title}</h3>
+                                  <p className="mt-2 text-sm leading-7 text-slate-600">{problem.explanation}</p>
+                                </article>
                               ))}
-                            </tbody>
-                          </table>
-                        </div>
-                      </section>
+                            </div>
+                          </section>
 
-                      <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                        <h2 className="font-black">Plan</h2>
-                        <ol className="mt-3 space-y-2">
-                          {result.recommendedActions.map((action) => (
-                            <li key={action.actionId} className="text-sm"><strong>{action.priority}.</strong> {action.actionId.replace(/-/g, ' ')}</li>
-                          ))}
-                        </ol>
-                      </section>
+                          <section>
+                            <h2 className="text-lg font-black">{reportSnapshot.sections.recommendations}</h2>
+                            <div className="mt-3 grid gap-4">
+                              {(reportSnapshot.recommendationGroups || []).map((group: any) => (
+                                <article key={group.groupId} className="rounded-2xl border border-slate-200 p-5">
+                                  <h3 className="font-black">{group.title}</h3>
+                                  <div className="mt-3 grid gap-3">
+                                    {(group.recommendations || []).map((rec: any) => (
+                                      <div key={`${group.groupId}-${rec.title}-${rec.status}`} className="rounded-xl bg-slate-50 p-3 text-sm">
+                                        <div className="flex flex-wrap items-center justify-between gap-2">
+                                          <strong>{rec.title}</strong>
+                                          <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-cyan-700">{rec.status}</span>
+                                        </div>
+                                        <p className="mt-2 leading-7 text-slate-600">{rec.why}</p>
+                                        {rec.conditions?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{rec.conditions.join(' ')}</p> : null}
+                                        {rec.constraints?.length ? <p className="mt-2 text-xs font-bold text-rose-700">{rec.constraints.join(' ')}</p> : null}
+                                      </div>
+                                    ))}
+                                  </div>
+                                </article>
+                              ))}
+                            </div>
+                          </section>
+
+                          <section className="grid gap-4 lg:grid-cols-2">
+                            <article className="rounded-2xl border border-slate-200 p-5">
+                              <h2 className="text-lg font-black">{reportSnapshot.sections.productEvaluation}</h2>
+                              {(reportSnapshot.productEvaluation || []).length ? (reportSnapshot.productEvaluation || []).map((product: any) => (
+                                <div key={`${product.title}-${product.status}`} className="mt-3 rounded-xl bg-slate-50 p-3 text-sm">
+                                  <strong>{product.title}</strong>
+                                  <span className="ml-2 text-xs font-black text-cyan-700">{product.status}</span>
+                                  <p className="mt-2 leading-7 text-slate-600">{product.statusExplanation}</p>
+                                </div>
+                              )) : <p className="mt-3 text-sm text-slate-500">{reportSnapshot.sections.productEvaluation}</p>}
+                            </article>
+                            <article className="rounded-2xl border border-slate-200 p-5">
+                              <h2 className="text-lg font-black">{reportSnapshot.sections.digitalModules}</h2>
+                              {(reportSnapshot.digitalModules || []).map((module: any) => (
+                                <div key={module.title} className="mt-3 rounded-xl bg-slate-50 p-3 text-sm">
+                                  <strong>{module.title}</strong>
+                                  <p className="mt-2 leading-7 text-slate-600">{module.why}</p>
+                                </div>
+                              ))}
+                            </article>
+                          </section>
+
+                          <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                            <h2 className="font-black">{reportSnapshot.sections.implementationPlan}</h2>
+                            <ol className="mt-3 grid gap-3">
+                              {(reportSnapshot.implementationPlan || []).map((phase: any) => (
+                                <li key={phase.phase} className="rounded-xl bg-white p-3 text-sm">
+                                  <strong>{phase.phase}. {phase.title}</strong>
+                                  <p className="mt-2 leading-7 text-slate-600">{phase.explanation}</p>
+                                  {phase.relatedModules?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{phase.relatedModules.join(' · ')}</p> : null}
+                                </li>
+                              ))}
+                            </ol>
+                          </section>
+
+                          <section className="grid gap-4 lg:grid-cols-3">
+                            <article className="rounded-2xl border border-slate-200 p-5">
+                              <h2 className="font-black">{reportSnapshot.sections.missingInformation}</h2>
+                              <p className="mt-3 text-sm leading-7 text-slate-600">{(reportSnapshot.missingInformation || []).join(' · ') || reportSnapshot.sections.missingInformation}</p>
+                            </article>
+                            <article className="rounded-2xl border border-slate-200 p-5">
+                              <h2 className="font-black">{reportSnapshot.sections.relatedResources}</h2>
+                              {(reportSnapshot.relatedResources || []).map((resource: any) => (
+                                <p key={resource.title} className="mt-2 text-sm font-bold text-cyan-700">{resource.title}</p>
+                              ))}
+                            </article>
+                            <article className="rounded-2xl border border-slate-200 p-5">
+                              <h2 className="font-black">{reportSnapshot.sections.limitations}</h2>
+                              {(reportSnapshot.limitations || []).map((item: string) => (
+                                <p key={item} className="mt-2 text-sm leading-7 text-slate-600">{item}</p>
+                              ))}
+                            </article>
+                          </section>
+                        </>
+                      )}
 
                       <div className="flex flex-wrap gap-3">
                         <button type="button" onClick={() => window.print()} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black"><Printer className="mr-2 h-4 w-4" />{copy.print}</button>
-                        <button type="button" onClick={() => downloadResult(result)} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black"><Download className="mr-2 h-4 w-4" />{copy.download}</button>
+                        <button type="button" onClick={() => downloadResult(result, reportSnapshot)} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black"><Download className="mr-2 h-4 w-4" />{copy.download}</button>
                       </div>
+
+                      {showDebugAnnex && (
+                        <details className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                          <summary className="cursor-pointer font-black">{reportSnapshot?.technicalExport?.label || 'Technical export'}</summary>
+                          <p className="mt-2 text-sm text-slate-600">{reportSnapshot?.technicalExport?.note}</p>
+                          <pre className="mt-3 max-h-96 overflow-auto rounded-xl bg-slate-950 p-4 text-xs text-slate-100">{JSON.stringify(result, null, 2)}</pre>
+                        </details>
+                      )}
 
                       <section className="rounded-2xl border border-cyan-100 bg-cyan-50 p-5">
                         <label className="flex gap-3 text-sm font-bold text-cyan-950">
