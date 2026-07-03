@@ -124,12 +124,25 @@ export type WorkflowAdvisorReportV2 = {
   reportKind: 'consultative_workflow_report';
   generatedAt: string;
   lang: WorkflowAdvisorLanguage;
+  cover: {
+    brand: string;
+    title: string;
+    sectorTitle: string;
+    subtitle: string;
+    generatedAtLabel: string;
+    generatedAtLocalized: string;
+    preparedByLabel: string;
+    preparedBy: string;
+    assessmentVersionLabel: string;
+    assessmentVersion: string;
+  };
   sector: { sectorId: string; label: string; url: string };
   title: string;
   subtitle: string;
   versions: Record<string, string>;
   sections: Record<string, string>;
   quickRead: { primaryRisk: string; immediatePriority: string; analyticalRoute: string; nextStep: string };
+  quickReadItems: Array<{ id: string; label: string; value: string }>;
   executiveSummary: string[];
   interpretedContext: { title: string; buyerContext: string; facts: Array<{ field: string; label: string; value: string }> };
   flowDiagnosis: { paragraph: string; keySignals: string[] };
@@ -145,10 +158,10 @@ export type WorkflowAdvisorReportV2 = {
     nextStep: string;
   };
   missingInformation: string[];
-  relatedResources: Array<{ resourceId: string; type: string; typeLabel: string; title: string; url: string }>;
+  relatedResources: Array<{ resourceId: string; type: string; typeLabel: string; title: string; description: string; url: string }>;
   limitations: string[];
   cta: { title: string; label: string; requestType: string };
-  pdf: { buttonLabel: string; printLabel: string; mode: string; filename: string };
+  pdf: { buttonLabel: string; printLabel: string; instructions: string; mode: string; filename: string };
   technicalExport: { label: string; note: string };
 };
 

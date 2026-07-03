@@ -1,6 +1,6 @@
 # Workflow Advisor Result Report V2
 
-El resultado publico de Workflow Advisor usa `workflow-advisor-report-v2` como informe consultivo principal.
+El resultado publico de Workflow Advisor usa el informe consultivo V2 como salida principal. La version tecnica existe en datos estructurados, pero no se muestra en la vista publica ni en el PDF/impresion.
 
 Objetivos:
 - Convertir respuestas estructuradas en un informe legible por comprador.
@@ -10,7 +10,8 @@ Objetivos:
 
 Contrato visible:
 - `title`, `subtitle`, `executiveSummary`
-- `quickRead`
+- `cover`
+- `quickReadItems`
 - `interpretedContext`
 - `flowDiagnosis`
 - `maturity`
@@ -20,6 +21,7 @@ Contrato visible:
 - `analyticalReview`
 - `missingInformation`
 - `relatedResources`
+- `pdf`
 - `limitations`
 
 Validacion:

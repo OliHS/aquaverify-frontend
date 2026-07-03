@@ -130,10 +130,13 @@ function validateSource() {
   const component = readText('components/workflow/WorkflowAdvisorLanding.tsx');
   assert(component.includes('assessWorkflow('), 'Landing must calculate through deterministic core');
   assert(component.includes('buildWorkflowAdvisorReportV2'), 'Landing must render Workflow Advisor report V2');
-  assert(component.includes('workflow-report'), 'Landing must expose dedicated workflow-report print container');
+  assert(component.includes('workflow-report-print'), 'Landing must expose dedicated workflow-report print container');
+  assert(component.includes('workflow-report-print-mode'), 'Landing must enable controlled report-only print mode');
   assert(component.includes('workflow-advisor-contact-form'), 'Landing must isolate contact form from report print mode');
   assert(component.includes('downloadTechnicalExport'), 'Technical JSON export must be explicit support-only action');
   assert(!component.includes('downloadResult('), 'JSON result download must not be the primary CTA');
+  assert(!component.includes('quickReadLabel'), 'Quick read labels must come localized from report V2');
+  assert(!component.includes('report.reportVersion'), 'Technical report version must not be visible in the client report');
   assert(component.includes("credentials: 'omit'"), 'Public API calls must omit credentials');
   assert(component.includes('researchConsent') && component.includes('contactConsent') && component.includes('marketingConsent'), 'Consent switches must remain separate');
   assert(component.includes('Idempotency-Key'), 'Assessment save should use idempotency key');
@@ -175,7 +178,9 @@ function validateSource() {
       candidates: reportV2.analyticalReview.candidates.map((candidate) => candidate.title)
     },
     recommendationSections: reportV2.recommendationSections.map((item) => item.title),
-    relatedResources: reportV2.relatedResources.map((item) => item.url)
+    quickReadItems: reportV2.quickReadItems,
+    relatedResources: reportV2.relatedResources.map((item) => ({ url: item.url, description: item.description })),
+    pdf: reportV2.pdf
   });
   assert(reportV2.reportVersion === reportV2Version, 'Regression report must use V2');
   assert(visibleV2.includes('50-199 muestras/mes'), 'Regression report must localize sample band');
@@ -183,6 +188,71 @@ function validateSource() {
   ['50 to 199 month', 'Screening INDICA', 'module.crm', 'product.indica-screening', '/es/diagnostico-flujo-calidad-agua'].forEach((term) => {
     assert(!visibleV2.includes(term), `Regression report leaks forbidden V2 term: ${term}`);
   });
+  assert(reportV2.quickReadItems?.some((item) => item.label === 'Riesgo principal'), 'Regression report must localize quick read labels');
+  assert(reportV2.relatedResources.every((item) => item.description), 'Regression report resources must include descriptions');
+  assert(!reportV2.pdf.buttonLabel.includes('Descargar'), 'Print-based report action must not promise PDF download');
+
+  const industrial = assessWorkflow({
+    questionnaireVersion,
+    lang: 'es',
+    sectorId: 'industrial-process-water',
+    answers: {
+      country_code: 'ES',
+      organization_type: 'manufacturer',
+      buyer_role: 'quality',
+      site_count_band: 'two_to_five',
+      lab_model: 'mixed',
+      sample_volume_band: '50_to_199_month',
+      current_systems: ['custom_software', 'email', 'spreadsheets'],
+      digitised_stages: ['chain_of_custody', 'coa_reporting'],
+      priority_problem_ids: ['connect-process-lab-and-quality', 'control-critical-process-points', 'coordinate_external_labs'],
+      evidence_needs: ['chain_of_custody', 'method_traceability', 'coa', 'audit_trail', 'deviations_and_capa'],
+      implementation_timeline: 'within_three_months',
+      preferred_route: 'technical_review',
+      target_groups: ['somatic_coliphages', 'e_coli', 'general_microbiology'],
+      result_type: 'both',
+      intended_use: 'operational_screening',
+      method_context: 'other_reference',
+      sample_volume_context: 'one_ml',
+      water_use_context: ['drinking_water', 'process_water', 'reclaimed_water']
+    }
+  });
+  const industrialV2 = industrial.reportV2 || buildWorkflowAdvisorReportV2({ result: industrial, lang: 'es' });
+  const visibleIndustrialV2 = JSON.stringify({
+    cover: industrialV2.cover,
+    quickReadItems: industrialV2.quickReadItems,
+    interpretedContext: industrialV2.interpretedContext,
+    flowDiagnosis: industrialV2.flowDiagnosis,
+    maturity: industrialV2.maturity,
+    priorityProblems: industrialV2.priorityProblems,
+    recommendationSections: industrialV2.recommendationSections,
+    analyticalReview: industrialV2.analyticalReview,
+    missingInformation: industrialV2.missingInformation,
+    relatedResources: industrialV2.relatedResources,
+    limitations: industrialV2.limitations
+  });
+  [
+    'Riesgo principal',
+    'Prioridad inmediata',
+    'Conectar proceso, laboratorio y calidad',
+    'Controlar puntos críticos de proceso',
+    'Coordinar laboratorios externos',
+    'Agua de consumo',
+    'Agua de proceso',
+    'Agua regenerada',
+    'Ruta analítica pendiente de revisión técnica',
+    'Método o referencia exacta'
+  ].forEach((term) => assert(visibleIndustrialV2.includes(term), `Industrial V2 report missing ${term}`));
+  [
+    'PRIMARY RISK',
+    'connect process lab and quality',
+    'operational screening',
+    'other reference',
+    'drinking water',
+    'process water',
+    'Producto a evaluar',
+    'es relevante porque Las'
+  ].forEach((term) => assert(!visibleIndustrialV2.includes(term), `Industrial V2 report leaks ${term}`));
 
   const ruleSource = JSON.stringify(rules).toLowerCase();
   for (const forbidden of ['openai', 'anthropic', 'chatgpt', 'llm api', 'model prompt']) {

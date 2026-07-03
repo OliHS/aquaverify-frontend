@@ -463,9 +463,9 @@ function downloadTechnicalExport(result: WorkflowAssessmentResult | null, report
 }
 
 function printWorkflowReport() {
-  document.body.classList.add('workflow-report-print');
+  document.body.classList.add('workflow-report-print-mode');
   window.print();
-  window.setTimeout(() => document.body.classList.remove('workflow-report-print'), 500);
+  window.setTimeout(() => document.body.classList.remove('workflow-report-print-mode'), 500);
 }
 
 const SelectField = ({ id, value, options, lang, onChange }: any) => (
@@ -506,30 +506,60 @@ const MultiField = ({ id, values, options, lang, onToggle, optionLabels }: any) 
   </fieldset>
 );
 
-const quickReadLabel = (key: string) => key.replace(/([A-Z])/g, ' $1').replace(/^./, (match) => match.toUpperCase());
+const groupedRecommendations = (report: WorkflowAdvisorReportV2) => {
+  const groups = new Map<string, any[]>();
+  (report.recommendationSections || []).forEach((item: any) => {
+    const title = item.phaseTitle || report.sections.digitalModules;
+    groups.set(title, [...(groups.get(title) || []), item]);
+  });
+  return [...groups.entries()].map(([title, items]) => ({ title, items }));
+};
 
 const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
-  <article className="workflow-report space-y-6">
-    <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
+  <article className="workflow-report workflow-report-print space-y-6 bg-white text-slate-950">
+    <header className="workflow-report-page workflow-report-header rounded-2xl border border-slate-200 bg-white p-6 text-slate-950">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <img src="/images/logo-name.png" alt="AquaVerify" className="h-10 w-auto" />
+        <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-cyan-800">Workflow Advisor</span>
+      </div>
+      <p className="mt-8 text-sm font-black text-cyan-700">{report.cover?.title || report.title}</p>
+      <h2 className="mt-2 text-3xl font-black">{report.cover?.sectorTitle || report.sector?.label}</h2>
+      <p className="mt-4 max-w-4xl text-sm font-bold leading-7 text-slate-700">{report.cover?.subtitle || report.subtitle}</p>
+      <dl className="mt-6 grid gap-3 text-sm sm:grid-cols-3">
+        <div className="rounded-xl bg-slate-50 p-3">
+          <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.generatedAtLabel}</dt>
+          <dd className="mt-1 font-bold">{report.cover?.generatedAtLocalized}</dd>
+        </div>
+        <div className="rounded-xl bg-slate-50 p-3">
+          <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.preparedByLabel}</dt>
+          <dd className="mt-1 font-bold">{report.cover?.preparedBy}</dd>
+        </div>
+        <div className="rounded-xl bg-slate-50 p-3">
+          <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.assessmentVersionLabel}</dt>
+          <dd className="mt-1 font-bold">{report.cover?.assessmentVersion}</dd>
+        </div>
+      </dl>
+      <div className="workflow-report-footer mt-8 border-t border-slate-200 pt-3 text-xs font-bold text-slate-500">AquaVerify · Safe Water for a Better World</div>
+    </header>
+
+    <section className="workflow-report-page rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
       <CheckCircle2 className="h-6 w-6" />
-      <p className="mt-3 text-xs font-black uppercase tracking-[0.16em]">{report.reportVersion}</p>
-      <h2 className="mt-2 text-2xl font-black">{report.title}</h2>
-      <p className="mt-2 text-sm font-bold">{report.subtitle}</p>
+      <h2 className="mt-2 text-xl font-black">{report.sections.executiveSummary}</h2>
       {(report.executiveSummary || []).map((paragraph) => (
         <p key={paragraph} className="mt-3 text-sm leading-7">{paragraph}</p>
       ))}
-    </div>
+    </section>
 
-    <section className="grid gap-3 md:grid-cols-4">
-      {Object.entries(report.quickRead || {}).map(([key, value]) => (
-        <article key={key} className="rounded-2xl border border-slate-200 bg-white p-4">
-          <p className="text-xs font-black uppercase text-slate-400">{quickReadLabel(key)}</p>
-          <p className="mt-2 text-sm font-bold text-slate-700">{String(value)}</p>
+    <section className="workflow-report-page grid gap-3 md:grid-cols-4">
+      {(report.quickReadItems || []).map((item) => (
+        <article key={item.id} className="rounded-2xl border border-slate-200 bg-white p-4">
+          <p className="text-xs font-black uppercase text-slate-400">{item.label}</p>
+          <p className="mt-2 text-sm font-bold text-slate-700">{String(item.value)}</p>
         </article>
       ))}
     </section>
 
-    <section className="grid gap-4 lg:grid-cols-2">
+    <section className="workflow-report-page grid gap-4 lg:grid-cols-2">
       <article className="rounded-2xl border border-slate-200 p-5">
         <h2 className="text-lg font-black">{report.sections.context}</h2>
         <p className="mt-3 text-sm leading-7 text-slate-600">{report.interpretedContext?.buyerContext}</p>
@@ -553,7 +583,7 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
       </article>
     </section>
 
-    <section>
+    <section className="workflow-report-page">
       <h2 className="text-lg font-black">{report.sections.maturity}</h2>
       <div className="mt-3 overflow-hidden rounded-2xl border border-slate-200">
         <table className="w-full text-sm">
@@ -569,7 +599,7 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
       </div>
     </section>
 
-    <section>
+    <section className="workflow-report-page">
       <h2 className="text-lg font-black">{report.sections.priorityProblems}</h2>
       <div className="mt-3 grid gap-3 md:grid-cols-2">
         {(report.priorityProblems || []).map((problem) => (
@@ -582,7 +612,7 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
       </div>
     </section>
 
-    <section className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+    <section className="workflow-report-page rounded-2xl border border-slate-200 bg-slate-50 p-5">
       <h2 className="font-black">{report.sections.plan}</h2>
       <ol className="mt-3 grid gap-3">
         {(report.improvementPlan?.phases || []).map((phase) => (
@@ -596,17 +626,24 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
       </ol>
     </section>
 
-    <section className="grid gap-4 lg:grid-cols-2">
+    <section className="workflow-report-page grid gap-4 lg:grid-cols-2">
       <article className="rounded-2xl border border-slate-200 p-5">
         <h2 className="text-lg font-black">{report.sections.digitalModules}</h2>
-        {(report.recommendationSections || []).map((rec) => (
-          <div key={rec.recommendationId} className="mt-3 rounded-xl bg-slate-50 p-3 text-sm">
-            <div className="flex flex-wrap items-center justify-between gap-2">
-              <strong>{rec.title}</strong>
-              <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-cyan-700">{rec.status}</span>
+        {groupedRecommendations(report).map((group) => (
+          <div key={group.title} className="mt-4">
+            <h3 className="text-sm font-black text-cyan-800">{group.title}</h3>
+            <div className="mt-2 grid gap-2">
+              {group.items.map((rec) => (
+                <div key={rec.recommendationId} className="rounded-xl bg-slate-50 p-3 text-sm">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <strong>{rec.title}</strong>
+                    <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-cyan-700">{rec.status}</span>
+                  </div>
+                  <p className="mt-2 leading-7 text-slate-600">{rec.paragraph}</p>
+                  {rec.whatToDefine?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{rec.whatToDefine.join(' ')}</p> : null}
+                </div>
+              ))}
             </div>
-            <p className="mt-2 leading-7 text-slate-600">{rec.paragraph}</p>
-            {rec.whatToDefine?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{rec.whatToDefine.join(' ')}</p> : null}
           </div>
         ))}
       </article>
@@ -623,15 +660,20 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
       </article>
     </section>
 
-    <section className="grid gap-4 lg:grid-cols-3">
+    <section className="workflow-report-page grid gap-4 lg:grid-cols-3">
       <article className="rounded-2xl border border-slate-200 p-5">
         <h2 className="font-black">{report.sections.missingInfo}</h2>
-        <p className="mt-3 text-sm leading-7 text-slate-600">{(report.missingInformation || []).join(' - ')}</p>
+        <ul className="mt-3 grid gap-2 text-sm leading-7 text-slate-600">
+          {(report.missingInformation || []).map((item) => <li key={item}>{item}</li>)}
+        </ul>
       </article>
       <article className="rounded-2xl border border-slate-200 p-5">
         <h2 className="font-black">{report.sections.relatedResources}</h2>
         {(report.relatedResources || []).map((resource) => (
-          <a key={`${resource.title}-${resource.url}`} href={resource.url} className="mt-2 block text-sm font-bold text-cyan-700">{resource.title}</a>
+          <div key={`${resource.title}-${resource.url}`} className="mt-3">
+            <a href={resource.url} className="block text-sm font-bold text-cyan-700">{resource.title}</a>
+            {resource.description ? <p className="mt-1 text-xs leading-5 text-slate-500">{resource.description}</p> : null}
+          </div>
         ))}
       </article>
       <article className="rounded-2xl border border-slate-200 p-5">
@@ -859,10 +901,12 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                     <div className="space-y-6" aria-live="polite">
                       {reportV2 && <WorkflowReportV2 report={reportV2} />}
 
-                      <div className="no-print flex flex-wrap gap-3">
-                        <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Download className="mr-2 h-4 w-4" />{reportV2?.pdf?.buttonLabel || copy.download}</button>
-                        <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black"><Printer className="mr-2 h-4 w-4" />{reportV2?.pdf?.printLabel || copy.print}</button>
-                        <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 px-4 py-2 text-sm font-black text-cyan-800">{reportV2?.cta?.label || copy.submitContact}</button>
+                      <div className="no-print rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                        <div className="flex flex-wrap gap-3">
+                          <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Printer className="mr-2 h-4 w-4" />{reportV2?.pdf?.buttonLabel || copy.print}</button>
+                          <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 bg-white px-4 py-2 text-sm font-black text-cyan-800">{reportV2?.cta?.label || copy.submitContact}</button>
+                        </div>
+                        {reportV2?.pdf?.instructions ? <p className="mt-3 text-xs font-bold leading-5 text-slate-500">{reportV2.pdf.instructions}</p> : null}
                       </div>
 
                       {showDebugAnnex && (
@@ -951,36 +995,96 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
 
       <style>{`
         @media print {
-          body.workflow-report-print header,
-          body.workflow-report-print footer,
-          body.workflow-report-print nav,
-          body.workflow-report-print aside,
-          body.workflow-report-print .workflow-advisor-landing,
-          body.workflow-report-print .workflow-advisor-consent,
-          body.workflow-report-print .workflow-advisor-contact-form,
-          body.workflow-report-print .workflow-advisor-faq,
-          body.workflow-report-print .no-print {
+          @page {
+            size: A4;
+            margin: 10mm;
+          }
+          body.workflow-report-print-mode * {
+            visibility: hidden !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print,
+          body.workflow-report-print-mode .workflow-report-print * {
+            visibility: visible !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0 !important;
+            width: 100% !important;
+            max-width: none !important;
+          }
+          body.workflow-report-print-mode .no-print,
+          body.workflow-report-print-mode .workflow-advisor-landing,
+          body.workflow-report-print-mode .workflow-advisor-contact-form,
+          body.workflow-report-print-mode .workflow-advisor-consent,
+          body.workflow-report-print-mode .workflow-advisor-faq,
+          body.workflow-report-print-mode .cookie-banner,
+          body.workflow-report-print-mode nav,
+          body.workflow-report-print-mode aside,
+          body.workflow-report-print-mode header:not(.workflow-report-header),
+          body.workflow-report-print-mode footer:not(.workflow-report-footer) {
             display: none !important;
           }
-          body.workflow-report-print main,
-          body.workflow-report-print section,
-          body.workflow-report-print article {
+          body.workflow-report-print-mode main,
+          body.workflow-report-print-mode section,
+          body.workflow-report-print-mode article {
             background: #fff !important;
             color: #000 !important;
             box-shadow: none !important;
           }
-          body.workflow-report-print .workflow-advisor-form,
-          body.workflow-report-print #workflow-result,
-          body.workflow-report-print .workflow-report {
+          body.workflow-report-print-mode .workflow-advisor-form,
+          body.workflow-report-print-mode #workflow-result,
+          body.workflow-report-print-mode .workflow-report-print {
             display: block !important;
           }
-          body.workflow-report-print .workflow-form-panel {
+          body.workflow-report-print-mode .workflow-form-panel {
             border: 0 !important;
             padding: 0 !important;
           }
-          body.workflow-report-print .workflow-report {
-            max-width: none !important;
-            width: 100% !important;
+          body.workflow-report-print-mode .workflow-report-print {
+            font-size: 10px !important;
+            line-height: 1.35 !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print > :not([hidden]) ~ :not([hidden]) {
+            margin-top: 8px !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print header,
+          body.workflow-report-print-mode .workflow-report-print section,
+          body.workflow-report-print-mode .workflow-report-print article {
+            border-radius: 8px !important;
+            padding: 9px !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print .workflow-report-header {
+            padding: 14px !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print h2 {
+            font-size: 13px !important;
+            margin: 0 0 4px !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print h3,
+          body.workflow-report-print-mode .workflow-report-print strong {
+            font-size: 10px !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print p,
+          body.workflow-report-print-mode .workflow-report-print li,
+          body.workflow-report-print-mode .workflow-report-print td,
+          body.workflow-report-print-mode .workflow-report-print th,
+          body.workflow-report-print-mode .workflow-report-print dd,
+          body.workflow-report-print-mode .workflow-report-print dt {
+            font-size: 9px !important;
+            line-height: 1.35 !important;
+            margin-top: 4px !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print table,
+          body.workflow-report-print-mode .workflow-report-print dl,
+          body.workflow-report-print-mode .workflow-report-print ol,
+          body.workflow-report-print-mode .workflow-report-print ul {
+            margin-top: 6px !important;
+          }
+          body.workflow-report-print-mode .workflow-report-print tr,
+          body.workflow-report-print-mode .workflow-report-print li {
+            break-inside: avoid;
+            page-break-inside: avoid;
           }
         }
       `}</style>

@@ -827,11 +827,11 @@ const localizedText = Object.freeze({
         maturity: {
             workflow_maturity: 'Madurez del flujo',
             traceability: 'Trazabilidad',
-            audit_readiness: 'Preparacion para auditoria',
+            audit_readiness: 'Preparación para auditoría',
             operational_complexity: 'Complejidad operativa',
             client_visibility: 'Visibilidad para clientes',
-            digital_readiness: 'Preparacion digital',
-            analytical_context_completeness: 'Contexto analitico completo'
+            digital_readiness: 'Preparación digital',
+            analytical_context_completeness: 'Contexto analítico'
         },
         limits: 'Este diagnostico es orientativo. No sustituye la evaluacion del laboratorio, la validacion o verificacion de metodos, el sistema de calidad, la autoridad competente ni la revision regulatoria por pais, matriz y uso previsto.'
     },
@@ -1662,6 +1662,8 @@ const V2_COPY = Object.freeze({
     en: {
         reportTitle: 'Assessment report',
         generatedAt: 'Generated',
+        preparedBy: 'Prepared by',
+        assessmentVersionLabel: 'Assessment version',
         language: 'Language',
         versions: 'Versions',
         quickRead: 'Quick read',
@@ -1682,8 +1684,9 @@ const V2_COPY = Object.freeze({
         limitations: 'Limitations',
         ctaTitle: 'Request technical review',
         ctaButton: 'Request technical review',
-        pdfButton: 'Download PDF report',
+        pdfButton: 'Print / save PDF',
         printButton: 'Print report',
+        printInstructions: 'Use the browser print dialog and save as PDF. Disable browser headers and footers so the exported file only contains the AquaVerify report.',
         technicalExport: 'Technical export for support',
         technicalExportNote: 'This file is not the consultative report. It contains structured data for AquaVerify technical support.',
         status: {
@@ -1726,6 +1729,8 @@ const V2_COPY = Object.freeze({
     es: {
         reportTitle: 'Informe de diagnóstico',
         generatedAt: 'Fecha',
+        preparedBy: 'Preparado por',
+        assessmentVersionLabel: 'Versión del diagnóstico',
         language: 'Idioma',
         versions: 'Versiones',
         quickRead: 'Lectura rápida',
@@ -1746,8 +1751,9 @@ const V2_COPY = Object.freeze({
         limitations: 'Limitaciones',
         ctaTitle: 'Solicitar revisión técnica',
         ctaButton: 'Solicitar revisión técnica',
-        pdfButton: 'Descargar informe PDF',
+        pdfButton: 'Imprimir / guardar PDF',
         printButton: 'Imprimir informe',
+        printInstructions: 'Usa el diálogo de impresión del navegador y guarda como PDF. Desactiva cabeceras y pies del navegador para que el archivo contenga solo el informe AquaVerify.',
         technicalExport: 'Exportación técnica para soporte',
         technicalExportNote: 'Este archivo no es el informe consultivo. Contiene datos estructurados para soporte técnico de AquaVerify.',
         status: {
@@ -1790,6 +1796,8 @@ const V2_COPY = Object.freeze({
     fr: {
         reportTitle: 'Rapport de diagnostic',
         generatedAt: 'Date',
+        preparedBy: 'Préparé par',
+        assessmentVersionLabel: 'Version du diagnostic',
         language: 'Langue',
         versions: 'Versions',
         quickRead: 'Lecture rapide',
@@ -1810,8 +1818,9 @@ const V2_COPY = Object.freeze({
         limitations: 'Limites',
         ctaTitle: 'Demander une revue technique',
         ctaButton: 'Demander une revue technique',
-        pdfButton: 'Télécharger le rapport PDF',
+        pdfButton: 'Imprimer / enregistrer PDF',
         printButton: 'Imprimer le rapport',
+        printInstructions: 'Utilisez la boîte de dialogue d’impression du navigateur et enregistrez en PDF. Désactivez les en-têtes et pieds du navigateur pour ne conserver que le rapport AquaVerify.',
         technicalExport: 'Export technique pour support',
         technicalExportNote: 'Ce fichier n’est pas le rapport consultatif. Il contient des données structurées pour le support technique AquaVerify.',
         status: {
@@ -1854,6 +1863,8 @@ const V2_COPY = Object.freeze({
     it: {
         reportTitle: 'Report diagnostico',
         generatedAt: 'Data',
+        preparedBy: 'Preparato da',
+        assessmentVersionLabel: 'Versione della diagnosi',
         language: 'Lingua',
         versions: 'Versioni',
         quickRead: 'Lettura rapida',
@@ -1874,8 +1885,9 @@ const V2_COPY = Object.freeze({
         limitations: 'Limiti',
         ctaTitle: 'Richiedi revisione tecnica',
         ctaButton: 'Richiedi revisione tecnica',
-        pdfButton: 'Scarica report PDF',
+        pdfButton: 'Stampa / salva PDF',
         printButton: 'Stampa report',
+        printInstructions: 'Usa la finestra di stampa del browser e salva in PDF. Disattiva intestazioni e piè di pagina del browser per includere solo il report AquaVerify.',
         technicalExport: 'Esportazione tecnica per supporto',
         technicalExportNote: 'Questo file non è il report consultivo. Contiene dati strutturati per il supporto tecnico AquaVerify.',
         status: {
@@ -1918,6 +1930,8 @@ const V2_COPY = Object.freeze({
     ca: {
         reportTitle: 'Informe de diagnòstic',
         generatedAt: 'Data',
+        preparedBy: 'Preparat per',
+        assessmentVersionLabel: 'Versió del diagnòstic',
         language: 'Idioma',
         versions: 'Versions',
         quickRead: 'Lectura ràpida',
@@ -1938,8 +1952,9 @@ const V2_COPY = Object.freeze({
         limitations: 'Limitacions',
         ctaTitle: 'Sol·licitar revisió tècnica',
         ctaButton: 'Sol·licitar revisió tècnica',
-        pdfButton: 'Descarregar informe PDF',
+        pdfButton: 'Imprimir / desar PDF',
         printButton: 'Imprimir informe',
+        printInstructions: 'Fes servir el diàleg d’impressió del navegador i desa com a PDF. Desactiva capçaleres i peus del navegador perquè el fitxer només contingui l’informe AquaVerify.',
         technicalExport: 'Exportació tècnica per a suport',
         technicalExportNote: 'Aquest arxiu no és l’informe consultiu. Conté dades estructurades per al suport tècnic d’AquaVerify.',
         status: {
@@ -1988,7 +2003,7 @@ const V2_OPTION_LABELS = Object.freeze({
         'manage-reclaimed-water-evidence': 'Document reclaimed water evidence',
         improve_audit_evidence: 'Improve audit evidence',
         name: 'Name',
-        email: 'Professional email',
+        email: 'Email',
         company: 'Company',
         countryCode: 'Country',
         buyerRole: 'Role',
@@ -2014,7 +2029,28 @@ const V2_OPTION_LABELS = Object.freeze({
         somatic_coliphages: 'Somatic coliphages',
         f_specific_coliphages: 'F-specific coliphages',
         general_microbiology: 'General microbiology',
-        one_ml: '1 mL'
+        one_ml: '1 mL',
+        manufacturer: 'Manufacturer',
+        quality: 'Quality',
+        two_to_five: '2 to 5',
+        mixed: 'Mixed',
+        custom_software: 'Custom software',
+        chain_of_custody: 'Chain of custody',
+        coa_reporting: 'CoA reporting',
+        audit_trail: 'Audit trail',
+        deviations_and_capa: 'Deviations and CAPA',
+        technical_review: 'Technical review',
+        both: 'Qualitative and quantitative',
+        operational_screening: 'Operational screening',
+        other_reference: 'Other methodological reference',
+        drinking_water: 'Drinking water',
+        process_water: 'Process water',
+        'control-critical-process-points': 'Control critical process points',
+        'avoid-fragmented-maintenance-records': 'Avoid fragmented maintenance records',
+        'compare-plants-and-assets': 'Compare plants and assets',
+        'manage-reuse-and-effluent-context': 'Manage reuse and effluent context',
+        'connect-process-lab-and-quality': 'Connect process, laboratory and quality',
+        coordinate_external_labs: 'Coordinate external laboratories'
     },
     es: {
         '50_to_199_month': '50-199 muestras/mes',
@@ -2022,7 +2058,7 @@ const V2_OPTION_LABELS = Object.freeze({
         'manage-reclaimed-water-evidence': 'Documentar evidencia para agua regenerada',
         improve_audit_evidence: 'Mejorar evidencia para auditoría',
         name: 'Nombre',
-        email: 'Email profesional',
+        email: 'Correo electrónico',
         company: 'Empresa',
         countryCode: 'País',
         buyerRole: 'Cargo o función',
@@ -2048,7 +2084,28 @@ const V2_OPTION_LABELS = Object.freeze({
         somatic_coliphages: 'Colífagos somáticos',
         f_specific_coliphages: 'Colífagos F-específicos',
         general_microbiology: 'Microbiología general',
-        one_ml: '1 mL'
+        one_ml: '1 mL',
+        manufacturer: 'Fabricante',
+        quality: 'Calidad',
+        two_to_five: '2 a 5',
+        mixed: 'Mixto',
+        custom_software: 'Software propio',
+        chain_of_custody: 'Cadena de custodia',
+        coa_reporting: 'Informes CoA',
+        audit_trail: 'Audit trail',
+        deviations_and_capa: 'Desviaciones y CAPA',
+        technical_review: 'Revisión técnica',
+        both: 'Cualitativo y cuantitativo',
+        operational_screening: 'Cribado operativo',
+        other_reference: 'Otra referencia metodológica',
+        drinking_water: 'Agua de consumo',
+        process_water: 'Agua de proceso',
+        'control-critical-process-points': 'Controlar puntos críticos de proceso',
+        'avoid-fragmented-maintenance-records': 'Evitar registros de mantenimiento fragmentados',
+        'compare-plants-and-assets': 'Comparar plantas y activos',
+        'manage-reuse-and-effluent-context': 'Gestionar reutilización y efluente',
+        'connect-process-lab-and-quality': 'Conectar proceso, laboratorio y calidad',
+        coordinate_external_labs: 'Coordinar laboratorios externos'
     },
     fr: {
         '50_to_199_month': '50-199 échantillons/mois',
@@ -2056,7 +2113,7 @@ const V2_OPTION_LABELS = Object.freeze({
         'manage-reclaimed-water-evidence': 'Documenter les preuves d’eau réutilisée',
         improve_audit_evidence: 'Améliorer les preuves d’audit',
         name: 'Nom',
-        email: 'Email professionnel',
+        email: 'Email',
         company: 'Entreprise',
         countryCode: 'Pays',
         buyerRole: 'Rôle',
@@ -2082,7 +2139,28 @@ const V2_OPTION_LABELS = Object.freeze({
         somatic_coliphages: 'Coliphages somatiques',
         f_specific_coliphages: 'Coliphages F-spécifiques',
         general_microbiology: 'Microbiologie générale',
-        one_ml: '1 mL'
+        one_ml: '1 mL',
+        manufacturer: 'Fabricant',
+        quality: 'Qualité',
+        two_to_five: '2 à 5',
+        mixed: 'Mixte',
+        custom_software: 'Logiciel interne',
+        chain_of_custody: 'Chaîne de traçabilité',
+        coa_reporting: 'Rapports CoA',
+        audit_trail: 'Audit trail',
+        deviations_and_capa: 'Écarts et CAPA',
+        technical_review: 'Revue technique',
+        both: 'Qualitatif et quantitatif',
+        operational_screening: 'Dépistage opérationnel',
+        other_reference: 'Autre référence méthodologique',
+        drinking_water: 'Eau de consommation',
+        process_water: 'Eau de process',
+        'control-critical-process-points': 'Contrôler les points critiques du process',
+        'avoid-fragmented-maintenance-records': 'Éviter les registres de maintenance fragmentés',
+        'compare-plants-and-assets': 'Comparer sites et actifs',
+        'manage-reuse-and-effluent-context': 'Gérer réutilisation et effluent',
+        'connect-process-lab-and-quality': 'Relier process, laboratoire et qualité',
+        coordinate_external_labs: 'Coordonner les laboratoires externes'
     },
     it: {
         '50_to_199_month': '50-199 campioni/mese',
@@ -2090,7 +2168,7 @@ const V2_OPTION_LABELS = Object.freeze({
         'manage-reclaimed-water-evidence': 'Documentare evidenza per acqua rigenerata',
         improve_audit_evidence: 'Migliorare evidenza per audit',
         name: 'Nome',
-        email: 'Email professionale',
+        email: 'Email',
         company: 'Azienda',
         countryCode: 'Paese',
         buyerRole: 'Ruolo',
@@ -2116,7 +2194,28 @@ const V2_OPTION_LABELS = Object.freeze({
         somatic_coliphages: 'Colifagi somatici',
         f_specific_coliphages: 'Colifagi F-specifici',
         general_microbiology: 'Microbiologia generale',
-        one_ml: '1 mL'
+        one_ml: '1 mL',
+        manufacturer: 'Produttore',
+        quality: 'Qualità',
+        two_to_five: '2 a 5',
+        mixed: 'Misto',
+        custom_software: 'Software proprietario',
+        chain_of_custody: 'Catena di custodia',
+        coa_reporting: 'Report CoA',
+        audit_trail: 'Audit trail',
+        deviations_and_capa: 'Deviazioni e CAPA',
+        technical_review: 'Revisione tecnica',
+        both: 'Qualitativo e quantitativo',
+        operational_screening: 'Screening operativo',
+        other_reference: 'Altro riferimento metodologico',
+        drinking_water: 'Acqua potabile',
+        process_water: 'Acqua di processo',
+        'control-critical-process-points': 'Controllare i punti critici di processo',
+        'avoid-fragmented-maintenance-records': 'Evitare registri di manutenzione frammentati',
+        'compare-plants-and-assets': 'Confrontare impianti e asset',
+        'manage-reuse-and-effluent-context': 'Gestire riuso ed effluente',
+        'connect-process-lab-and-quality': 'Collegare processo, laboratorio e qualità',
+        coordinate_external_labs: 'Coordinare laboratori esterni'
     },
     ca: {
         '50_to_199_month': '50-199 mostres/mes',
@@ -2124,7 +2223,7 @@ const V2_OPTION_LABELS = Object.freeze({
         'manage-reclaimed-water-evidence': 'Documentar evidència per aigua regenerada',
         improve_audit_evidence: 'Millorar evidència per auditoria',
         name: 'Nom',
-        email: 'Email professional',
+        email: 'Email',
         company: 'Empresa',
         countryCode: 'País',
         buyerRole: 'Rol',
@@ -2150,7 +2249,28 @@ const V2_OPTION_LABELS = Object.freeze({
         somatic_coliphages: 'Colífags somàtics',
         f_specific_coliphages: 'Colífags F-específics',
         general_microbiology: 'Microbiologia general',
-        one_ml: '1 mL'
+        one_ml: '1 mL',
+        manufacturer: 'Fabricant',
+        quality: 'Qualitat',
+        two_to_five: '2 a 5',
+        mixed: 'Mixt',
+        custom_software: 'Software propi',
+        chain_of_custody: 'Cadena de custòdia',
+        coa_reporting: 'Informes CoA',
+        audit_trail: 'Audit trail',
+        deviations_and_capa: 'Desviacions i CAPA',
+        technical_review: 'Revisió tècnica',
+        both: 'Qualitatiu i quantitatiu',
+        operational_screening: 'Cribratge operatiu',
+        other_reference: 'Una altra referència metodològica',
+        drinking_water: 'Aigua de consum',
+        process_water: 'Aigua de procés',
+        'control-critical-process-points': 'Controlar punts crítics de procés',
+        'avoid-fragmented-maintenance-records': 'Evitar registres de manteniment fragmentats',
+        'compare-plants-and-assets': 'Comparar plantes i actius',
+        'manage-reuse-and-effluent-context': 'Gestionar reutilització i efluent',
+        'connect-process-lab-and-quality': 'Connectar procés, laboratori i qualitat',
+        coordinate_external_labs: 'Coordinar laboratoris externs'
     }
 });
 
@@ -2258,10 +2378,31 @@ const GLOSSARY_RESOURCE_ROUTES = Object.freeze({
     },
     coa: {
         en: '/en/glossary/coa-certificate-of-analysis',
-        es: '/es/glosario/coa-certificado-analisis',
-        fr: '/fr/glossaire/coa-certificat-analyse',
-        it: '/it/glossario/coa-certificato-analisi',
-        ca: '/ca/glossari/coa-certificat-analisi'
+        es: '/es/glosario/coa-certificado-de-analisis',
+        fr: '/fr/glossaire/coa-certificat-danalyse',
+        it: '/it/glossario/coa-certificato-di-analisi',
+        ca: '/ca/glossari/coa-certificat-danalisi'
+    },
+    process_water: {
+        en: '/en/glossary/process-water',
+        es: '/es/glosario/agua-de-proceso',
+        fr: '/fr/glossaire/eau-de-process',
+        it: '/it/glossario/acqua-di-processo',
+        ca: '/ca/glossari/aigua-de-proces'
+    },
+    biofilm: {
+        en: '/en/glossary/biofilm',
+        es: '/es/glosario/biofilm',
+        fr: '/fr/glossaire/biofilm',
+        it: '/it/glossario/biofilm',
+        ca: '/ca/glossari/biofilm'
+    },
+    digital_chain_custody: {
+        en: '/en/glossary/digital-chain-of-custody',
+        es: '/es/glosario/cadena-de-custodia-digital',
+        fr: '/fr/glossaire/chaine-de-custodie-digitale',
+        it: '/it/glossario/catena-di-custodia-digitale',
+        ca: '/ca/glossari/cadena-de-custodia-digital'
     },
     iso_19458: {
         en: '/en/glossary/iso-19458',
@@ -2290,6 +2431,13 @@ const GLOSSARY_RESOURCE_ROUTES = Object.freeze({
         fr: '/fr/outils/calculateur-durete-alcalinite',
         it: '/it/strumenti/calcolatore-durezza-alcalinita',
         ca: '/ca/eines/calculadora-duresa-alcalinitat'
+    },
+    excel_to_lims: {
+        en: '/en/resources/excel-to-lims-water-analysis',
+        es: '/es/recursos/excel-a-lims-analisis-agua',
+        fr: '/fr/ressources/excel-vers-lims-analyse-eau',
+        it: '/it/risorse/da-excel-a-lims-analisi-acqua',
+        ca: '/ca/recursos/excel-a-lims-analisi-aigua'
     }
 });
 
@@ -2442,7 +2590,7 @@ const workflowAdvisorIndustryProfiles = Object.freeze({
         sectorId: 'industrial-process-water',
         labels: localText('Industrial process water', 'Agua de proceso industrial', 'Eau de procédé industriel', 'Acqua di processo industriale', 'Aigua de procés industrial'),
         reportTitle: localText('Assessment report - Industrial process water', 'Informe de diagnóstico - Agua de proceso industrial', 'Rapport de diagnostic - Eau de procédé industriel', 'Report diagnostico - Acqua di processo industriale', 'Informe de diagnòstic - Aigua de procés industrial'),
-        reportSubtitle: localText('Industrial workflow assessment: intake, treatment, circuit, asset, process, recirculation, cooling, cleaning, reuse, effluent and corrective action.', 'Evaluación del flujo industrial: captación, tratamiento, circuito, activo, proceso, recirculación, refrigeración, limpieza, reutilización, efluente y acción correctiva.', 'Évaluation du flux industriel : captage, traitement, circuit, actif, procédé, recirculation, refroidissement, nettoyage, réutilisation, effluent et action corrective.', 'Valutazione del flusso industriale: captazione, trattamento, circuito, asset, processo, ricircolo, raffreddamento, pulizia, riuso, effluente e azione correttiva.', 'Avaluació del flux industrial: captació, tractament, circuit, actiu, procés, recirculació, refrigeració, neteja, reutilització, efluent i acció correctiva.'),
+        reportSubtitle: localText('Indicative assessment of the industrial water control workflow: intake, treatment, circuit, asset, process, recirculation, cooling, cleaning, reuse, effluent and corrective action.', 'Evaluación orientativa del flujo de control de agua industrial: captación, tratamiento, circuito, activo, proceso, recirculación, refrigeración, limpieza, reutilización, efluente y acción correctiva.', 'Évaluation indicative du flux de contrôle d’eau industrielle : captage, traitement, circuit, actif, procédé, recirculation, refroidissement, nettoyage, réutilisation, effluent et action corrective.', 'Valutazione orientativa del flusso di controllo dell’acqua industriale: captazione, trattamento, circuito, asset, processo, ricircolo, raffreddamento, pulizia, riuso, effluente e azione correttiva.', 'Avaluació orientativa del flux de control d’aigua industrial: captació, tractament, circuit, actiu, procés, recirculació, refrigeració, neteja, reutilització, efluent i acció correctiva.'),
         buyerContext: localText('The assessment links water quality to assets, process conditions, EHS, maintenance and corrective action.', 'El diagnóstico conecta calidad del agua con activos, condiciones de proceso, EHS, mantenimiento y acción correctiva.', 'Le diagnostic relie qualité de l’eau, actifs, conditions procédé, EHS, maintenance et action corrective.', 'La valutazione collega qualità acqua, asset, condizioni di processo, EHS, manutenzione e azione correttiva.', 'El diagnòstic connecta qualitat de l’aigua amb actius, condicions de procés, EHS, manteniment i acció correctiva.'),
         coreObjects: ['intake', 'treatment', 'circuit', 'asset', 'process', 'recirculation', 'cooling', 'cleaning', 'reuse', 'effluent', 'maintenance', 'EHS', 'supplier', 'corrective action'],
         commonRisks: { en: ['Process-water decisions weaken if sample context is not connected to asset, circuit and operating condition.'], es: ['La decisión sobre agua de proceso se debilita si la muestra no se conecta con activo, circuito y condición operativa.'], fr: ['La décision eau procédé est fragile si l’échantillon n’est pas relié à l’actif, au circuit et à la condition opératoire.'], it: ['La decisione su acqua di processo è fragile se il campione non è collegato ad asset, circuito e condizione operativa.'], ca: ['La decisió sobre aigua de procés és feble si la mostra no es connecta amb actiu, circuit i condició operativa.'] },
@@ -2464,9 +2612,9 @@ const workflowAdvisorIndustryProfiles = Object.freeze({
             ],
             fr: [], it: [], ca: []
         },
-        recommendedResourceIds: ['aquaverify_cloud', 'coa'],
-        recommendedGlossaryTermIds: ['coa'],
-        recommendedToolIds: ['aquatools_chemical_species', 'aquatools_hardness'],
+        recommendedResourceIds: ['industrial-process-water-page', 'aquaverify_cloud'],
+        recommendedGlossaryTermIds: ['process_water', 'biofilm', 'coa', 'digital_chain_custody'],
+        recommendedToolIds: ['aquatools_hardness', 'aquatools_chemical_species', 'excel_to_lims'],
         forbiddenGenericPhrases: ['water programme']
     },
     'facility-water-risk': {
@@ -3272,14 +3420,20 @@ const V2_NARRATIVE = Object.freeze({
         selectedPriority: 'Priority selected by the user',
         findingPriority: 'Detected workflow signal',
         dashboardLater: 'Dashboards are useful after the base sample, custody, method and evidence data are consistent.',
-        moduleWhyNow: (title, reason) => `${title} is relevant because ${reason}`,
+        moduleWhyNow: (title, reason) => `${title} helps keep the workflow reconstructable. ${reason}`,
         moduleDefinition: 'Define owners, fields, permissions and acceptance criteria before treating this capability as operational evidence.',
         moduleNext: 'Use this as part of the phased plan rather than as a standalone capability area.',
         analyticalPending: (resultType, volume, targets) => `The analytical route remains open. The answers mention ${resultType}, ${volume} and ${targets}, but matrix, method, country, intended use and laboratory scope must be confirmed before evaluating INDICA, ENUMERA, PLAQUE or ISO/EPA kits.`,
         analyticalClear: 'The answers provide enough context to prepare a technical review, but the final product route must still be confirmed by matrix, method, country, volume, intended use and laboratory.',
         technicalReviewNext: 'Prepare a non-sensitive technical review with matrix, volume, method, country, intended use and laboratory role.',
+        noClosedRecommendation: 'No closed recommendation',
+        familiesToReview: {
+            indica: 'Presence/absence or screening, subject to review.',
+            enumera: 'Quantification, subject to review.',
+            plaque: 'Reference or plate workflow, subject to review.'
+        },
         noMissing: 'No major missing item was detected for this consultative report.',
-        resourceTypes: { industry: 'Industry page', glossary: 'Glossary', platform: 'Platform', tool: 'Tool' },
+        resourceTypes: { industry: 'Industry page', glossary: 'Glossary', platform: 'Platform', tool: 'Tool', resource: 'Resource' },
         roadmap: [
             ['Point map and context', 'Connect the main water points, uses and responsible owners.', ['Inventory points', 'Classify uses', 'Assign owners'], 'Each sample can be interpreted in context.'],
             ['Sample and custody history', 'Connect sampling, operator, date, custody and reception.', ['Create sample identifier', 'Record field context', 'Track custody'], 'The sample history becomes reconstructable.'],
@@ -3301,14 +3455,20 @@ const V2_NARRATIVE = Object.freeze({
         selectedPriority: 'Prioridad seleccionada por el usuario',
         findingPriority: 'Señal de flujo detectada',
         dashboardLater: 'Los dashboards son útiles después de que el dato base de muestra, custodia, método y evidencia sea consistente.',
-        moduleWhyNow: (title, reason) => `${title} es relevante porque ${reason}`,
+        moduleWhyNow: (title, reason) => `${title} ayuda a mantener el flujo reconstruible. ${reason}`,
         moduleDefinition: 'Definir responsables, campos, permisos y criterios de aceptación antes de tratar esta capacidad como evidencia operativa.',
         moduleNext: 'Usarlo como parte del plan por fases, no como un módulo aislado.',
         analyticalPending: (resultType, volume, targets) => `La ruta analítica sigue abierta. Las respuestas mencionan ${resultType}, ${volume} y ${targets}, pero deben confirmarse matriz, método, país, uso previsto y laboratorio antes de evaluar INDICA, ENUMERA, PLAQUE o kits ISO/EPA.`,
         analyticalClear: 'Las respuestas permiten preparar una revisión técnica, pero la ruta final de producto debe confirmarse por matriz, método, país, volumen, uso previsto y laboratorio.',
         technicalReviewNext: 'Preparar una revisión técnica no sensible con matriz, volumen, método, país, uso previsto y rol del laboratorio.',
+        noClosedRecommendation: 'No recomendación cerrada',
+        familiesToReview: {
+            indica: 'Presencia/ausencia o cribado, sujeto a revisión.',
+            enumera: 'Cuantificación, sujeto a revisión.',
+            plaque: 'Referencia o placa, sujeto a revisión.'
+        },
         noMissing: 'No se detectó ningún faltante principal para este informe consultivo.',
-        resourceTypes: { industry: 'Página sectorial', glossary: 'Glosario', platform: 'Plataforma', tool: 'Herramienta' },
+        resourceTypes: { industry: 'Página sectorial', glossary: 'Glosario', platform: 'Plataforma', tool: 'Herramienta', resource: 'Recurso' },
         roadmap: [
             ['Mapa de puntos y contexto', 'Conectar puntos de agua, usos y responsables principales.', ['Inventariar puntos', 'Clasificar usos', 'Asignar responsables'], 'Cada muestra puede interpretarse en contexto.'],
             ['Historial de muestra y custodia', 'Conectar muestreo, operador, fecha, custodia y recepción.', ['Crear identificador de muestra', 'Registrar contexto de campo', 'Trazar custodia'], 'El historial de muestra se vuelve reconstruible.'],
@@ -3330,14 +3490,20 @@ const V2_NARRATIVE = Object.freeze({
         selectedPriority: 'Priorité sélectionnée par l’utilisateur',
         findingPriority: 'Signal de flux détecté',
         dashboardLater: 'Les dashboards sont utiles après cohérence des données de base sur échantillon, garde, méthode et preuve.',
-        moduleWhyNow: (title, reason) => `${title} est pertinent car ${reason}`,
+        moduleWhyNow: (title, reason) => `${title} aide à rendre le flux reconstructible. ${reason}`,
         moduleDefinition: 'Définir responsables, champs, permissions et critères d’acceptation avant de traiter cette capacité comme preuve opérationnelle.',
         moduleNext: 'L’utiliser dans le plan par phases plutôt que comme module isolé.',
         analyticalPending: (resultType, volume, targets) => `La route analytique reste ouverte. Les réponses mentionnent ${resultType}, ${volume} et ${targets}, mais matrice, méthode, pays, usage prévu et portée laboratoire doivent être confirmés avant d’évaluer INDICA, ENUMERA, PLAQUE ou des kits ISO/EPA.`,
         analyticalClear: 'Les réponses permettent de préparer une revue technique, mais la route produit finale doit être confirmée par matrice, méthode, pays, volume, usage prévu et laboratoire.',
         technicalReviewNext: 'Préparer une revue technique non sensible avec matrice, volume, méthode, pays, usage prévu et rôle laboratoire.',
+        noClosedRecommendation: 'Aucune recommandation fermée',
+        familiesToReview: {
+            indica: 'Présence/absence ou dépistage, sous réserve de revue.',
+            enumera: 'Quantification, sous réserve de revue.',
+            plaque: 'Référence ou plaque, sous réserve de revue.'
+        },
         noMissing: 'Aucun manque principal n’a été détecté pour ce rapport consultatif.',
-        resourceTypes: { industry: 'Page sectorielle', glossary: 'Glossaire', platform: 'Plateforme', tool: 'Outil' },
+        resourceTypes: { industry: 'Page sectorielle', glossary: 'Glossaire', platform: 'Plateforme', tool: 'Outil', resource: 'Ressource' },
         roadmap: [
             ['Carte des points et du contexte', 'Relier les points d’eau, usages et responsables principaux.', ['Inventorier les points', 'Classer les usages', 'Attribuer les responsables'], 'Chaque échantillon peut être interprété dans son contexte.'],
             ['Historique échantillon et garde', 'Relier prélèvement, opérateur, date, garde et réception.', ['Créer l’identifiant échantillon', 'Documenter le contexte terrain', 'Tracer la garde'], 'L’historique échantillon devient reconstructible.'],
@@ -3359,14 +3525,20 @@ const V2_NARRATIVE = Object.freeze({
         selectedPriority: 'Priorità selezionata dall’utente',
         findingPriority: 'Segnale di flusso rilevato',
         dashboardLater: 'Le dashboard sono utili dopo dati base coerenti su campione, custodia, metodo ed evidenza.',
-        moduleWhyNow: (title, reason) => `${title} è rilevante perché ${reason}`,
+        moduleWhyNow: (title, reason) => `${title} aiuta a rendere il flusso ricostruibile. ${reason}`,
         moduleDefinition: 'Definire responsabili, campi, permessi e criteri di accettazione prima di trattare questa capacità come evidenza operativa.',
         moduleNext: 'Usarlo nel piano per fasi, non come modulo isolato.',
         analyticalPending: (resultType, volume, targets) => `Il percorso analitico resta aperto. Le risposte menzionano ${resultType}, ${volume} e ${targets}, ma matrice, metodo, paese, uso previsto e laboratorio devono essere confermati prima di valutare INDICA, ENUMERA, PLAQUE o kit ISO/EPA.`,
         analyticalClear: 'Le risposte permettono di preparare una revisione tecnica, ma il percorso prodotto finale deve essere confermato per matrice, metodo, paese, volume, uso previsto e laboratorio.',
         technicalReviewNext: 'Preparare una revisione tecnica non sensibile con matrice, volume, metodo, paese, uso previsto e ruolo laboratorio.',
+        noClosedRecommendation: 'Nessuna raccomandazione chiusa',
+        familiesToReview: {
+            indica: 'Presenza/assenza o screening, soggetto a revisione.',
+            enumera: 'Quantificazione, soggetta a revisione.',
+            plaque: 'Riferimento o piastra, soggetto a revisione.'
+        },
         noMissing: 'Nessun elemento mancante principale rilevato per questo report consultivo.',
-        resourceTypes: { industry: 'Pagina settore', glossary: 'Glossario', platform: 'Piattaforma', tool: 'Strumento' },
+        resourceTypes: { industry: 'Pagina settore', glossary: 'Glossario', platform: 'Piattaforma', tool: 'Strumento', resource: 'Risorsa' },
         roadmap: [
             ['Mappa dei punti e contesto', 'Collegare punti d’acqua, usi e responsabili principali.', ['Inventariare punti', 'Classificare usi', 'Assegnare responsabili'], 'Ogni campione può essere interpretato nel suo contesto.'],
             ['Storico campione e custodia', 'Collegare campionamento, operatore, data, custodia e ricezione.', ['Creare ID campione', 'Registrare contesto campo', 'Tracciare custodia'], 'Lo storico del campione diventa ricostruibile.'],
@@ -3388,14 +3560,20 @@ const V2_NARRATIVE = Object.freeze({
         selectedPriority: 'Prioritat seleccionada per l’usuari',
         findingPriority: 'Senyal de flux detectat',
         dashboardLater: 'Els dashboards són útils després que la dada base de mostra, custòdia, mètode i evidència sigui consistent.',
-        moduleWhyNow: (title, reason) => `${title} és rellevant perquè ${reason}`,
+        moduleWhyNow: (title, reason) => `${title} ajuda a fer que el flux sigui reconstruïble. ${reason}`,
         moduleDefinition: 'Definir responsables, camps, permisos i criteris d’acceptació abans de tractar aquesta capacitat com evidència operativa.',
         moduleNext: 'Usar-ho dins del pla per fases, no com un mòdul aïllat.',
         analyticalPending: (resultType, volume, targets) => `La ruta analítica continua oberta. Les respostes mencionen ${resultType}, ${volume} i ${targets}, però cal confirmar matriu, mètode, país, ús previst i laboratori abans d’avaluar INDICA, ENUMERA, PLAQUE o kits ISO/EPA.`,
         analyticalClear: 'Les respostes permeten preparar una revisió tècnica, però la ruta final de producte s’ha de confirmar per matriu, mètode, país, volum, ús previst i laboratori.',
         technicalReviewNext: 'Preparar una revisió tècnica no sensible amb matriu, volum, mètode, país, ús previst i rol del laboratori.',
+        noClosedRecommendation: 'Cap recomanació tancada',
+        familiesToReview: {
+            indica: 'Presència/absència o cribratge, subjecte a revisió.',
+            enumera: 'Quantificació, subjecta a revisió.',
+            plaque: 'Referència o placa, subjecte a revisió.'
+        },
         noMissing: 'No s’ha detectat cap mancança principal per a aquest informe consultiu.',
-        resourceTypes: { industry: 'Pàgina sectorial', glossary: 'Glossari', platform: 'Plataforma', tool: 'Eina' },
+        resourceTypes: { industry: 'Pàgina sectorial', glossary: 'Glossari', platform: 'Plataforma', tool: 'Eina', resource: 'Recurs' },
         roadmap: [
             ['Mapa de punts i context', 'Connectar punts d’aigua, usos i responsables principals.', ['Inventariar punts', 'Classificar usos', 'Assignar responsables'], 'Cada mostra es pot interpretar en context.'],
             ['Historial de mostra i custòdia', 'Connectar mostreig, operador, data, custòdia i recepció.', ['Crear identificador de mostra', 'Registrar context de camp', 'Traçar custòdia'], 'L’historial de mostra esdevé reconstruïble.'],
@@ -3408,16 +3586,36 @@ const V2_NARRATIVE = Object.freeze({
 
 const V2_RESOURCE_TITLES = Object.freeze({
     aquaverify_cloud: localText('AquaVerify Cloud', 'AquaVerify Cloud', 'AquaVerify Cloud', 'AquaVerify Cloud', 'AquaVerify Cloud'),
+    'industrial-process-water-page': localText('Industrial process water', 'Agua de proceso industrial', 'Eau de process industriel', 'Acqua di processo industriale', 'Aigua de procés industrial'),
     'agriculture-page': localText('Agriculture water management', 'Gestión de agua agrícola', 'Gestion de l’eau agricole', 'Gestione acqua agricola', 'Gestió d’aigua agrícola'),
     reclaimed_water: localText('Reclaimed water', 'Agua regenerada', 'Eau réutilisée', 'Acqua rigenerata', 'Aigua regenerada'),
+    process_water: localText('Process water', 'Agua de proceso', 'Eau de process', 'Acqua di processo', 'Aigua de procés'),
+    biofilm: localText('Biofilm', 'Biofilm', 'Biofilm', 'Biofilm', 'Biofilm'),
+    digital_chain_custody: localText('Digital chain of custody', 'Cadena de custodia digital', 'Chaîne de traçabilité numérique', 'Catena di custodia digitale', 'Cadena de custòdia digital'),
     irrigation: localText('Agricultural irrigation', 'Riego agrícola', 'Irrigation agricole', 'Irrigazione agricola', 'Reg agrícola'),
     e_coli: localText('E. coli', 'E. coli', 'E. coli', 'E. coli', 'E. coli'),
     somatic_coliphages: localText('Somatic coliphages', 'Colífagos somáticos', 'Coliphages somatiques', 'Colifagi somatici', 'Colífags somàtics'),
     f_specific_coliphages: localText('F-specific coliphages', 'Colífagos F-específicos', 'Coliphages F-spécifiques', 'Colifagi F-specifici', 'Colífags F-específics'),
     coa: localText('Certificate of analysis', 'Certificado de análisis', 'Certificat d’analyse', 'Certificato di analisi', 'Certificat d’anàlisi'),
     iso_19458: localText('ISO 19458', 'ISO 19458', 'ISO 19458', 'ISO 19458', 'ISO 19458'),
+    excel_to_lims: localText('Excel to LIMS migration', 'Migración de Excel a LIMS', 'Migration Excel vers LIMS', 'Migrazione da Excel a LIMS', 'Migració d’Excel a LIMS'),
     aquatools_chemical_species: localText('Chemical species converter', 'Conversor de especies químicas', 'Convertisseur d’espèces chimiques', 'Convertitore specie chimiche', 'Conversor d’espècies químiques'),
     aquatools_hardness: localText('Hardness and alkalinity calculator', 'Calculadora de dureza y alcalinidad', 'Calculateur dureté et alcalinité', 'Calcolatore durezza e alcalinità', 'Calculadora de duresa i alcalinitat')
+});
+
+const V2_RESOURCE_DESCRIPTIONS = Object.freeze({
+    aquaverify_cloud: localText('Operational layer for samples, custody, review, CoA, actions and evidence history.', 'Capa operativa para muestras, custodia, revisión, CoA, acciones e histórico de evidencia.', 'Couche opérationnelle pour échantillons, garde, revue, CoA, actions et historique de preuve.', 'Layer operativo per campioni, custodia, revisione, CoA, azioni e storico evidenze.', 'Capa operativa per a mostres, custòdia, revisió, CoA, accions i històric d’evidència.'),
+    'industrial-process-water-page': localText('Sector page for connecting plant, laboratory, process assets and corrective actions.', 'Página sectorial para conectar planta, laboratorio, activos de proceso y acciones correctivas.', 'Page sectorielle pour relier usine, laboratoire, actifs process et actions correctives.', 'Pagina di settore per collegare impianto, laboratorio, asset di processo e azioni correttive.', 'Pàgina sectorial per connectar planta, laboratori, actius de procés i accions correctives.'),
+    'agriculture-page': localText('Sector page for agricultural water evidence and audit workflows.', 'Página sectorial para evidencia de agua agrícola y flujos de auditoría.', 'Page sectorielle pour preuve d’eau agricole et flux d’audit.', 'Pagina di settore per evidenza acqua agricola e flussi audit.', 'Pàgina sectorial per evidència d’aigua agrícola i fluxos d’auditoria.'),
+    reclaimed_water: localText('Glossary entry for reuse contexts that require explicit matrix and evidence review.', 'Glosario para contextos de reutilización que requieren matriz y revisión de evidencia explícitas.', 'Glossaire des contextes de réutilisation qui exigent matrice et preuve explicites.', 'Glossario per contesti di riuso che richiedono matrice e revisione evidenza esplicite.', 'Glossari per a contextos de reutilització que requereixen matriu i revisió d’evidència explícites.'),
+    process_water: localText('Glossary entry for industrial process water, uses, matrices and operational decisions.', 'Glosario sobre agua de proceso industrial, usos, matrices y decisiones operativas.', 'Glossaire sur eau de process industriel, usages, matrices et décisions opérationnelles.', 'Glossario su acqua di processo industriale, usi, matrici e decisioni operative.', 'Glossari sobre aigua de procés industrial, usos, matrius i decisions operatives.'),
+    biofilm: localText('Glossary entry for biofilm risk in circuits, assets, cooling, cleaning and reuse.', 'Glosario sobre riesgo de biofilm en circuitos, activos, refrigeración, limpieza y reutilización.', 'Glossaire du risque biofilm dans circuits, actifs, refroidissement, nettoyage et réutilisation.', 'Glossario sul rischio biofilm in circuiti, asset, raffreddamento, pulizia e riuso.', 'Glossari sobre risc de biofilm en circuits, actius, refrigeració, neteja i reutilització.'),
+    digital_chain_custody: localText('Glossary entry for keeping sampling context connected from field to review.', 'Glosario para mantener contexto de muestreo conectado desde campo hasta revisión.', 'Glossaire pour garder le contexte de prélèvement relié du terrain à la revue.', 'Glossario per mantenere il contesto di campionamento collegato dal campo alla revisione.', 'Glossari per mantenir el context de mostreig connectat des del camp fins a la revisió.'),
+    coa: localText('Glossary entry for reviewed analytical deliverables and certificate history.', 'Glosario sobre entregables analíticos revisados e histórico de certificados.', 'Glossaire des livrables analytiques revus et historique de certificats.', 'Glossario su deliverable analitici revisionati e storico certificati.', 'Glossari sobre lliurables analítics revisats i històric de certificats.'),
+    iso_19458: localText('Sampling reference to review objectives, containers, transport and traceability.', 'Referencia de muestreo para revisar objetivos, recipientes, transporte y trazabilidad.', 'Référence de prélèvement pour revoir objectifs, contenants, transport et traçabilité.', 'Riferimento di campionamento per rivedere obiettivi, contenitori, trasporto e tracciabilità.', 'Referència de mostreig per revisar objectius, recipients, transport i traçabilitat.'),
+    excel_to_lims: localText('Checklist for moving from spreadsheets to a connected sample-to-report workflow.', 'Checklist para pasar de hojas de cálculo a un flujo conectado de muestra a informe.', 'Checklist pour passer des tableurs à un flux connecté de l’échantillon au rapport.', 'Checklist per passare dai fogli di calcolo a un flusso connesso campione-report.', 'Checklist per passar de fulls de càlcul a un flux connectat de mostra a informe.'),
+    aquatools_chemical_species: localText('Complementary calculator for routine chemistry conversions when water context requires it.', 'Calculadora complementaria para conversiones químicas rutinarias cuando el contexto del agua lo requiere.', 'Calculateur complémentaire pour conversions chimiques courantes selon le contexte eau.', 'Calcolatore complementare per conversioni chimiche di routine quando il contesto acqua lo richiede.', 'Calculadora complementària per conversions químiques rutinàries quan el context d’aigua ho requereix.'),
+    aquatools_hardness: localText('Complementary calculator for hardness and alkalinity checks in operational water control.', 'Calculadora complementaria para dureza y alcalinidad en control operativo del agua.', 'Calculateur complémentaire pour dureté et alcalinité en contrôle opérationnel de l’eau.', 'Calcolatore complementare per durezza e alcalinità nel controllo operativo acqua.', 'Calculadora complementària per duresa i alcalinitat en control operatiu de l’aigua.')
 });
 
 const V2_TARGET_LABELS = Object.freeze({
@@ -3429,6 +3627,105 @@ const V2_TARGET_LABELS = Object.freeze({
     'inventory-traceability': localText('Inventory and batch traceability', 'Inventario y trazabilidad de lotes', 'Inventaire et traçabilité des lots', 'Inventario e tracciabilità lotti', 'Inventari i traçabilitat de lots'),
     'deviations-capa': localText('Deviations and CAPA', 'Desviaciones y CAPA', 'Écarts et CAPA', 'Deviazioni e CAPA', 'Desviacions i CAPA'),
     dashboards: localText('Dashboards and trend views', 'Dashboards y tendencias', 'Dashboards et vues de tendance', 'Dashboard e viste trend', 'Dashboards i vistes de tendència')
+});
+
+const V2_MODULE_BLOCKS = Object.freeze({
+    base: localText('Operational base', 'Base operativa', 'Base opérationnelle', 'Base operativa', 'Base operativa'),
+    evidence: localText('Evidence and review', 'Evidencia y revisión', 'Preuve et revue', 'Evidenza e revisione', 'Evidència i revisió'),
+    scale: localText('Scaling', 'Escalado', 'Passage à l’échelle', 'Scalabilità', 'Escalat')
+});
+
+const V2_MODULE_BLOCK_BY_TARGET = Object.freeze({
+    'field-sampling': 'base',
+    'sample-management': 'base',
+    'inventory-traceability': 'base',
+    'lims-review': 'evidence',
+    'coa-reporting': 'evidence',
+    'deviations-capa': 'evidence',
+    'customer-portal': 'scale',
+    dashboards: 'scale'
+});
+
+const V2_REASON_TEXT = Object.freeze({
+    es: {
+        'reason.fragmented_sample_flow': 'El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.',
+        'reason.digitised_stages_present': 'Ya existen etapas digitalizadas que conviene conectar en un historial operativo más coherente.',
+        'reason.traceability_signal_count': 'La trazabilidad necesita unir custodia, método, lectura, revisión, lote y acción posterior.',
+        'reason.audit_evidence_signal_count': 'La evidencia de auditoría debe conectar revisión técnica, CoA, desviaciones e inventario sin depender de documentos aislados.',
+        'reason.volume_sites_roles': 'El volumen de muestras, sedes y roles aumenta el esfuerzo de coordinación entre proceso, laboratorio y calidad.',
+        'reason.current_systems_readiness': 'Existe una base digital, pero el dato todavía puede quedar dividido entre sistemas, correo y hojas de cálculo.',
+        'reason.analytical_context_fields': 'El contexto analítico requiere revisión antes de cerrar una ruta de producto.',
+        'reason.field_custody_needed': 'El resultado necesita conservar punto, circuito, activo, operador, fecha, condiciones y estado de la muestra.',
+        'reason.review_not_connected': 'El resultado analítico y la revisión técnica deben quedar conectados en el mismo historial.',
+        'reason.coa_evidence_needed': 'El flujo necesita evidencia documental estructurada para CoA, revisión y conversaciones de auditoría.',
+        'reason.customer_visibility_gap': 'Los responsables necesitan consultar estado, resultado, informe o acción por punto, circuito o activo.',
+        'reason.batch_inventory_traceability': 'La trazabilidad de lote, kit, consumible o inventario refuerza el historial de muestra.',
+        'reason.deviation_closure_needed': 'El contexto sugiere seguimiento de desviaciones, incidencias o acciones correctivas.',
+        'reason.trends_and_sites': 'Las tendencias deben aparecer después de consolidar punto, circuito, activo y resultado.',
+        'reason.calculation_support': 'El soporte de cálculo puede ayudar como complemento cuando el contexto químico del agua lo requiere.',
+        'reason.quantitative_indicator_workflow': 'El caso menciona cuantificación, pero la ruta analítica aún necesita revisión técnica.',
+        'reason.somatic_coliphage_enumeration': 'El caso menciona colífagos somáticos, pero falta confirmar matriz, método y alcance.',
+        'reason.presence_absence_screening': 'El caso menciona cribado de presencia/ausencia, sujeto a confirmación técnica.',
+        'reason.plate_workflow_needed': 'La ruta de placa requiere revisar equipamiento, incubación, lectura y evidencia documental.',
+        'reason.reference_method_context': 'Una referencia metodológica no especificada exige revisión antes de seleccionar producto.',
+        'reason.context_needs_review': 'El contexto analítico no es suficiente para una recomendación cerrada.'
+    }
+});
+
+const V2_CONDITION_TEXT = Object.freeze({
+    es: {
+        'condition.define_sampling_sop': 'Definir estados mínimos de muestra y SOP de muestreo.',
+        'condition.configure_method_and_roles': 'Definir método, roles, permisos y criterios de revisión.',
+        'condition.define_report_templates': 'Definir plantilla de informe, estados de revisión y reglas de publicación.',
+        'condition.define_customer_scope': 'Definir quién recibe el CoA o informe y qué información puede consultar.',
+        'condition.load_product_batches': 'Definir lotes, consumibles y caducidades antes de depender de esa trazabilidad.',
+        'condition.define_quality_workflow': 'Definir desviación, responsable, criterio de cierre y evidencia asociada.',
+        'condition.define_dimensions': 'Definir planta, punto, circuito, activo y periodo antes de construir dashboards.',
+        'condition.review_matrix_method_country': 'Confirmar matriz, método, país, volumen, uso previsto y laboratorio.',
+        'condition.review_coliphage_scope': 'Confirmar organismo prioritario, huésped, volumen, método y alcance del laboratorio.',
+        'condition.screening_context_only': 'Definir cuándo el cribado operativo requiere confirmación o revisión posterior.',
+        'condition.collect_non_sensitive_context': 'Recoger contexto técnico no sensible antes de cerrar la recomendación.'
+    }
+});
+
+const V2_ACTION_TEXT = Object.freeze({
+    es: {
+        'standardize-sample-workflow': 'Estandarizar puntos, activos, responsables y SOP de muestreo',
+        'connect-custody-method-batch': 'Conectar muestra, custodia, método, lote y acción posterior',
+        'connect-reading-and-review': 'Conectar lectura, revisión técnica y CoA',
+        'improve-report-delivery': 'Mejorar informes, CoA e histórico de evidencia',
+        'schedule-technical-review': 'Programar revisión técnica del contexto analítico',
+        'scale-with-trends-and-dashboard': 'Escalar a tendencias cuando la base de datos sea consistente'
+    }
+});
+
+const V2_INDUSTRIAL_PROBLEM_TEXT = Object.freeze({
+    es: {
+        'connect-process-lab-and-quality': {
+            title: 'Coordinación entre proceso, laboratorio y calidad',
+            paragraph: 'El flujo necesita que cada resultado se interprete junto con el circuito, activo, condición de proceso y criterio de calidad. Si esta relación queda repartida entre software propio, email y hojas de cálculo, la decisión puede depender de reconstrucciones manuales.'
+        },
+        'control-critical-process-points': {
+            title: 'Control de puntos críticos de proceso',
+            paragraph: 'Los puntos críticos deben diferenciarse por uso del agua, riesgo operativo, matriz, frecuencia y responsable. Un resultado aislado no explica si la acción afecta a mantenimiento, EHS, producción, reutilización o descarga.'
+        },
+        coordinate_external_labs: {
+            title: 'Coordinación con laboratorios externos',
+            paragraph: 'Cuando participa un laboratorio externo, la solicitud, custodia, método, CoA, revisión y seguimiento deben mantenerse conectados. Esto evita que el informe llegue sin suficiente contexto operativo.'
+        }
+    }
+});
+
+const V2_MATURITY_TEXT = Object.freeze({
+    es: {
+        workflow_maturity: 'El flujo es básico porque combina varios sistemas de trabajo y todavía puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.',
+        traceability: 'La trazabilidad es básica si el resultado no queda unido de forma consistente a activo, circuito, condición operativa, método, lote y acción posterior.',
+        audit_readiness: 'La evidencia está parcialmente estructurada, pero debe conectar CoA, revisión técnica, acción correctiva y responsable para que una revisión no dependa de correos o documentos aislados.',
+        operational_complexity: 'La complejidad aumenta cuando intervienen varios usos del agua, laboratorios externos, puntos críticos y decisiones de mantenimiento o EHS.',
+        client_visibility: 'La visibilidad es limitada si los responsables no pueden consultar estado, resultado, informe o acción por punto, circuito o activo.',
+        digital_readiness: 'Existe una base digital, pero debe consolidarse para que el dato no quede dividido entre software propio, email y hojas de cálculo.',
+        analytical_context_completeness: 'El contexto analítico requiere revisión cuando el método se declara como otra referencia, el uso previsto es cribado operativo y se combinan varias matrices o usos del agua.'
+    }
 });
 
 const V2_PHASE_CAPABILITIES = Object.freeze([
@@ -3460,6 +3757,27 @@ function localizedListFirst(map, lang = 'en', fallback = '') {
     const value = localizedMapValue(map, lang, fallback);
     if (Array.isArray(value)) return value[0] || fallback;
     return value || fallback;
+}
+
+function localizedDateV2(date, lang = 'en') {
+    const locales = { en: 'en-US', es: 'es-ES', fr: 'fr-FR', it: 'it-IT', ca: 'ca-ES' };
+    try {
+        return new Intl.DateTimeFormat(locales[lang] || locales.en, { year: 'numeric', month: 'long', day: 'numeric' }).format(date);
+    } catch {
+        return date.toISOString().slice(0, 10);
+    }
+}
+
+function v2LocalizedKey(labels, category, key, lang = 'en') {
+    if (category === 'reason' && V2_REASON_TEXT[lang]?.[key]) return V2_REASON_TEXT[lang][key];
+    if (category === 'condition' && V2_CONDITION_TEXT[lang]?.[key]) return V2_CONDITION_TEXT[lang][key];
+    if (category === 'action' && V2_ACTION_TEXT[lang]?.[key]) return V2_ACTION_TEXT[lang][key];
+    return localizeKey(labels, category, key);
+}
+
+function firstReasonTextV2(item, labels, lang = 'en') {
+    const key = item.reasonKeys?.[0] || 'reason.context_needs_review';
+    return v2LocalizedKey(labels, 'reason', key, lang);
 }
 
 function optionLabelV2(value, lang = 'en') {
@@ -3564,6 +3882,19 @@ function buildExecutiveSummaryV2({ result, profile, lang }) {
     ];
 }
 
+function buildInterpretedContextV2({ result, answers, profile, lang }) {
+    const narrative = v2Narrative(lang);
+    const systems = answerValueV2(answers, 'current_systems', lang);
+    const stages = answerValueV2(answers, 'digitised_stages', lang);
+    const evidence = answerValueV2(answers, 'evidence_needs', lang);
+    const waterUses = answerValueV2(answers, 'water_use_context', lang);
+    if (lang === 'es' && result.sectorId === 'industrial-process-water') {
+        return `El flujo indicado combina ${systems}. Aunque ya existen etapas digitalizadas como ${stages}, la conexión entre proceso, laboratorio y calidad todavía puede quedar fragmentada cuando intervienen varios puntos críticos, laboratorios externos o decisiones sobre ${waterUses}.`;
+    }
+    const buyerContext = localizedMapValue(profile.buyerContext, lang, '');
+    return [buyerContext, narrative.flowParagraph(systems, stages, evidence)].filter(Boolean).join(' ');
+}
+
 function buildFlowDiagnosisV2({ result, answers, profile, lang }) {
     const narrative = v2Narrative(lang);
     const labels = reportLabels(lang);
@@ -3574,8 +3905,11 @@ function buildFlowDiagnosisV2({ result, answers, profile, lang }) {
         ...result.findings.map((finding) => localizeKey(labels, 'finding', finding.findingId)),
         ...(profile.evidenceObjects?.[lang] || []).slice(0, 5)
     ]).slice(0, 8);
+    const paragraph = lang === 'es' && result.sectorId === 'industrial-process-water'
+        ? `El flujo tiene una base digital parcial porque ${stages} ya aparecen como etapas digitalizadas. Sin embargo, la convivencia entre ${systems} puede dificultar reconstruir una decisión cuando el resultado debe relacionarse con circuito, activo, condición de proceso, laboratorio externo y acción correctiva. La mejora prioritaria es conectar los puntos de agua con activos y circuitos antes de ampliar hacia dashboards.`
+        : narrative.flowParagraph(systems, stages, evidence);
     return {
-        paragraph: narrative.flowParagraph(systems, stages, evidence),
+        paragraph,
         keySignals
     };
 }
@@ -3588,8 +3922,9 @@ function buildMaturityV2(result, lang = 'en') {
         title: localizedText[lang]?.maturity?.[score.dimensionId] || localizedText.en.maturity[score.dimensionId] || score.dimensionId,
         level: score.level,
         label: copy.levelLabels[Math.max(0, Math.min(4, score.level - 1))],
-        explanation: (score.reasonKeys || []).map((key) => localizeKey(labels, 'reason', key)).join(' '),
-        nextImprovement: localizeKey(labels, 'action', DIMENSION_ACTIONS[score.dimensionId] || 'standardize-sample-workflow')
+        explanation: (result.sectorId === 'industrial-process-water' ? V2_MATURITY_TEXT[lang]?.[score.dimensionId] : '')
+            || (score.reasonKeys || []).map((key) => v2LocalizedKey(labels, 'reason', key, lang)).join(' '),
+        nextImprovement: v2LocalizedKey(labels, 'action', DIMENSION_ACTIONS[score.dimensionId] || 'standardize-sample-workflow', lang)
     }));
 }
 
@@ -3599,24 +3934,32 @@ function buildPriorityProblemsV2({ result, answers, lang }) {
     const labels = reportLabels(lang);
     const selected = answerArrayV2(answers, 'priority_problem_ids').map((problemId) => ({
         problemId,
-        title: optionLabelV2(problemId, lang),
+        title: V2_INDUSTRIAL_PROBLEM_TEXT[lang]?.[problemId]?.title || optionLabelV2(problemId, lang),
         priorityLabel: narrative.selectedPriority,
         severity: 'medium',
-        paragraph: optionLabelV2(problemId, lang)
+        paragraph: V2_INDUSTRIAL_PROBLEM_TEXT[lang]?.[problemId]?.paragraph || optionLabelV2(problemId, lang)
     }));
     const detected = result.findings.map((finding) => ({
         findingId: finding.findingId,
         title: localizeKey(labels, 'finding', finding.findingId),
         priorityLabel: copy.severity[finding.priority] || finding.priority,
         severity: finding.priority,
-        paragraph: (finding.reasonKeys || []).map((key) => localizeKey(labels, 'reason', key)).join(' ') || narrative.findingPriority
+        paragraph: (finding.reasonKeys || []).map((key) => v2LocalizedKey(labels, 'reason', key, lang)).join(' ') || narrative.findingPriority
     }));
-    return [...detected, ...selected].slice(0, 6);
+    return [...selected, ...detected].slice(0, 6);
 }
 
 function capabilityPhaseIndex(targetId) {
     const index = V2_PHASE_CAPABILITIES.findIndex((capabilities) => capabilities.includes(targetId));
     return index >= 0 ? index : 2;
+}
+
+function modulePlanBlock(targetId, lang = 'en') {
+    const blockId = V2_MODULE_BLOCK_BY_TARGET[targetId] || 'evidence';
+    return {
+        blockId,
+        title: localizedMapValue(V2_MODULE_BLOCKS[blockId], lang, localizedMapValue(V2_MODULE_BLOCKS.evidence, lang, 'Evidence and review'))
+    };
 }
 
 function buildRecommendationSectionsV2({ result, roadmap, lang }) {
@@ -3632,20 +3975,18 @@ function buildRecommendationSectionsV2({ result, roadmap, lang }) {
         .sort((a, b) => capabilityPhaseIndex(a.targetId) - capabilityPhaseIndex(b.targetId) || a.priority - b.priority)
         .map((item) => {
             const title = targetLabelV2(item.targetId, lang);
-            const phase = roadmap.find((candidate) => (candidate.relatedCapabilities || []).includes(item.targetId))
-                || roadmap[capabilityPhaseIndex(item.targetId)]
-                || roadmap[0];
-            const reason = firstReasonText(item, labels);
+            const phase = modulePlanBlock(item.targetId, lang);
+            const reason = firstReasonTextV2(item, labels, lang);
             return {
                 recommendationId: item.recommendationId,
                 targetId: item.targetId,
                 title,
                 status: copy.status[item.fitStatus] || item.fitStatus,
-                phaseId: phase?.phaseId,
-                phaseTitle: phase?.title,
+                phaseId: phase.blockId,
+                phaseTitle: phase.title,
                 paragraph: narrative.moduleWhyNow(title, reason),
                 whyNow: reason,
-                whatToDefine: (item.conditionKeys || []).map((key) => localizeKey(labels, 'condition', key)).filter(Boolean),
+                whatToDefine: (item.conditionKeys || []).map((key) => v2LocalizedKey(labels, 'condition', key, lang)).filter(Boolean),
                 nextStep: narrative.moduleNext,
                 showToClient: true
             };
@@ -3666,22 +4007,35 @@ function buildAnalyticalReviewV2({ result, answers, lang }) {
     const targets = answerArrayV2(answers, 'target_groups').map((item) => optionLabelV2(item, lang)).filter(Boolean);
     const resultType = answerValueV2(answers, 'result_type', lang);
     const volume = answerValueV2(answers, 'sample_volume_context', lang);
+    const intendedUse = answerValueV2(answers, 'intended_use', lang);
+    const methodLabel = answerValueV2(answers, 'method_context', lang);
+    const waterUses = answerValueV2(answers, 'water_use_context', lang);
     const method = String(answers.method_context || '');
     const methodMissing = !method || ['not_defined', 'other_reference', 'unknown'].includes(method);
     const productRecommendations = result.recommendations.filter((item) => item.type === 'product');
     const candidateIds = unique(productRecommendations.map((item) => item.targetId));
-    const candidates = candidateIds.map((targetId) => ({
+    const pendingCandidates = [
+        { productId: 'family-indica', title: 'INDICA', status: narrative.noClosedRecommendation, reason: narrative.familiesToReview.indica },
+        { productId: 'family-enumera', title: 'ENUMERA', status: narrative.noClosedRecommendation, reason: narrative.familiesToReview.enumera },
+        { productId: 'family-plaque-iso-epa', title: 'PLAQUE / Kits ISO/EPA', status: narrative.noClosedRecommendation, reason: narrative.familiesToReview.plaque }
+    ];
+    const candidates = methodMissing ? pendingCandidates : candidateIds.map((targetId) => ({
         productId: targetId,
         title: productCandidateTitle(targetId),
         status: copy.status.product_to_evaluate,
         reason: productRecommendations.find((item) => item.targetId === targetId)?.reasonKeys
-            ?.map((key) => localizeKey(labels, 'reason', key))
+            ?.map((key) => v2LocalizedKey(labels, 'reason', key, lang))
             .join(' ') || copy.routePending
     }));
     const targetText = targets.length ? targets.join(', ') : narrative.noValue;
     let paragraph = methodMissing
         ? narrative.analyticalPending(resultType, volume, targetText)
         : narrative.analyticalClear;
+    if (lang === 'es'
+        && result.sectorId === 'industrial-process-water'
+        && methodMissing) {
+        paragraph = `Has indicado resultado ${resultType.toLowerCase()}, volumen de ${volume}, ${intendedUse.toLowerCase()} y ${methodLabel.toLowerCase()}. También aparecen varios usos de agua: ${waterUses}. Con esta información no debe cerrarse un producto concreto. Antes de evaluar INDICA, ENUMERA, PLAQUE o kits ISO/EPA deben confirmarse matriz, organismo prioritario, volumen real de muestra, método, país, laboratorio y uso previsto.`;
+    }
     if (lang === 'es'
         && result.sectorId === 'agriculture-water'
         && String(answers.result_type || '') === 'presence_absence'
@@ -3700,6 +4054,20 @@ function buildAnalyticalReviewV2({ result, answers, lang }) {
 
 function buildMissingInformationV2(answers = {}, lang = 'en') {
     const copy = v2Copy(lang);
+    if (lang === 'es') {
+        return [
+            'Método o referencia exacta: necesario para saber si la ruta analítica debe orientarse a presencia/ausencia, enumeración, placa, referencia ISO/EPA o revisión específica.',
+            'Matriz concreta para cada uso de agua: necesaria para diferenciar agua de consumo, agua de proceso, agua regenerada u otra matriz.',
+            'Organismo prioritario: necesario para priorizar indicador, colífagos, E. coli, microbiología general u otro objetivo.',
+            'Volumen real aplicable por matriz: necesario porque 1 mL puede no representar todos los usos o métodos.',
+            'Uso del resultado: confirmar si será interno, contractual, auditoría o regulatorio.',
+            'Laboratorio responsable y alcance: necesario para saber si el resultado procede de laboratorio interno, externo o mixto y con qué alcance.',
+            'Criterios de revisión: necesarios para interpretar desviaciones, aceptación interna y acciones posteriores.',
+            'Quién recibe el CoA o informe: necesario para orientar publicación, revisión y trazabilidad de entrega.',
+            'Acciones ante una desviación: definir qué se activa ante resultado fuera de criterio, remuestreo, mantenimiento o EHS.',
+            'País o jurisdicción aplicable a cada uso: necesario antes de cerrar cualquier evaluación técnica o regulatoria.'
+        ];
+    }
     const checks = [
         ['water_use_context', localText('Matrix or water use', 'Matriz o uso del agua', 'Matrice ou usage de l’eau', 'Matrice o uso acqua', 'Matriu o ús de l’aigua')],
         ['method_context', localText('Method', 'Método', 'Méthode', 'Metodo', 'Mètode')],
@@ -3724,7 +4092,7 @@ function buildRelatedResourcesV2({ profile, lang }) {
         ...(profile.recommendedToolIds || [])
     ]);
     return ids.map((resourceId) => {
-        const isIndustry = resourceId === 'agriculture-page';
+        const isIndustry = resourceId === 'agriculture-page' || resourceId === 'industrial-process-water-page';
         const url = isIndustry
             ? (INDUSTRY_ROUTES[profile.sectorId]?.[lang] || INDUSTRY_ROUTES[profile.sectorId]?.en || '')
             : (GLOSSARY_RESOURCE_ROUTES[resourceId]?.[lang] || GLOSSARY_RESOURCE_ROUTES[resourceId]?.en || '');
@@ -3734,15 +4102,18 @@ function buildRelatedResourcesV2({ profile, lang }) {
                 ? 'tool'
                 : isIndustry
                     ? 'industry'
-                    : 'glossary';
+                    : resourceId === 'excel_to_lims'
+                        ? 'resource'
+                        : 'glossary';
         return {
             resourceId,
             type,
-            typeLabel: narrative.resourceTypes[type],
+            typeLabel: narrative.resourceTypes[type] || narrative.resourceTypes.glossary,
             title: localizedMapValue(V2_RESOURCE_TITLES[resourceId], lang, optionLabelV2(resourceId, lang)),
+            description: localizedMapValue(V2_RESOURCE_DESCRIPTIONS[resourceId], lang, ''),
             url
         };
-    }).filter((resource) => resource.url && !resource.url.includes('diagnostico'));
+    }).filter((resource) => resource.url && resource.description && !resource.url.includes('diagnostico'));
 }
 
 function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: questionnaireDefinition = questionnaire, lang = 'en', industryProfile } = {}) {
@@ -3754,11 +4125,30 @@ function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: que
     const roadmap = roadmapForProfile(profile, safeLang);
     const analyticalReview = buildAnalyticalReviewV2({ result, answers, lang: safeLang });
     const sectorLabel = localizedMapValue(profile.labels, safeLang, getSectorLabel(result.sectorId, safeLang));
+    const generatedAtDate = new Date();
+    const quickRead = {
+        primaryRisk: localizedListFirst(profile.commonRisks, safeLang, ''),
+        immediatePriority: roadmap[0]?.title || narrative.contextTitle,
+        analyticalRoute: analyticalReview.title,
+        nextStep: roadmap[0]?.objective || narrative.technicalReviewNext
+    };
     return {
         reportVersion: reportV2Version,
         reportKind: 'consultative_workflow_report',
-        generatedAt: new Date().toISOString(),
+        generatedAt: generatedAtDate.toISOString(),
         lang: safeLang,
+        cover: {
+            brand: 'AquaVerify',
+            title: copy.reportTitle,
+            sectorTitle: sectorLabel,
+            subtitle: localizedMapValue(profile.reportSubtitle, safeLang, ''),
+            generatedAtLabel: copy.generatedAt,
+            generatedAtLocalized: localizedDateV2(generatedAtDate, safeLang),
+            preparedByLabel: copy.preparedBy,
+            preparedBy: 'AquaVerify Workflow Advisor',
+            assessmentVersionLabel: copy.assessmentVersionLabel,
+            assessmentVersion
+        },
         sector: {
             sectorId: result.sectorId,
             label: sectorLabel,
@@ -3787,16 +4177,17 @@ function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: que
             relatedResources: copy.relatedResources,
             limitations: copy.limitations
         },
-        quickRead: {
-            primaryRisk: localizedListFirst(profile.commonRisks, safeLang, ''),
-            immediatePriority: roadmap[0]?.title || narrative.contextTitle,
-            analyticalRoute: analyticalReview.title,
-            nextStep: roadmap[0]?.objective || narrative.technicalReviewNext
-        },
+        quickRead,
+        quickReadItems: [
+            { id: 'primaryRisk', label: copy.primaryRisk, value: quickRead.primaryRisk },
+            { id: 'immediatePriority', label: copy.immediatePriority, value: quickRead.immediatePriority },
+            { id: 'analyticalRoute', label: copy.analyticalRoute, value: quickRead.analyticalRoute },
+            { id: 'nextStep', label: copy.nextStep, value: quickRead.nextStep }
+        ],
         executiveSummary: buildExecutiveSummaryV2({ result, profile, lang: safeLang }),
         interpretedContext: {
             title: narrative.contextTitle,
-            buyerContext: localizedMapValue(profile.buyerContext, safeLang, ''),
+            buyerContext: buildInterpretedContextV2({ result, answers, profile, lang: safeLang }),
             facts: buildAnswersSnapshotV2({ answers, sectorId: result.sectorId, sourceProblemId: result.sourceProblemId, lang: safeLang })
         },
         flowDiagnosis: buildFlowDiagnosisV2({ result, answers, profile, lang: safeLang }),
@@ -3825,6 +4216,7 @@ function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: que
         pdf: {
             buttonLabel: copy.pdfButton,
             printLabel: copy.printButton,
+            instructions: copy.printInstructions,
             mode: 'dedicated-print',
             filename: `aquaverify-workflow-advisor-${result.sectorId}-${safeLang}.pdf`
         },

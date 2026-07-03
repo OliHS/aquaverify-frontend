@@ -1,8 +1,8 @@
-# Workflow Advisor PDF Report
+# Workflow Advisor PDF / Print Report
 
-El PDF publico se genera con impresion dedicada del bloque `.workflow-report`.
+El informe publico se exporta con impresion dedicada del bloque `.workflow-report-print`.
 
-El modo `workflow-report-print` oculta:
+El modo `workflow-report-print-mode` oculta:
 - navegacion global
 - hero y bloques introductorios
 - formulario del cuestionario
@@ -12,11 +12,10 @@ El modo `workflow-report-print` oculta:
 - anexos tecnicos y JSON
 
 Botones visibles tras calcular:
-- Descargar informe PDF
-- Imprimir informe
+- Imprimir / guardar PDF
 - Solicitar revision tecnica
 
-La descarga PDF usa la impresion del navegador para que el usuario guarde el informe consultivo. El JSON queda solo como exportacion tecnica en modo desarrollo.
+El boton usa la impresion del navegador para que el usuario guarde el informe consultivo como PDF. El texto visible pide desactivar cabeceras y pies del navegador. El JSON queda solo como exportacion tecnica en modo desarrollo.
 
 Contrato PDF:
 - `reportV2.pdf.mode = dedicated-print`
