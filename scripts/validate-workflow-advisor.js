@@ -105,6 +105,7 @@ function validateSource() {
     assert(content.title && content.description && content.seoTitle && content.seoDescription, `Missing SEO copy for ${lang}`);
     assert(content.blocks?.length >= 6, `Expected six content blocks for ${lang}`);
     assert(content.faqs?.length >= 4, `Expected four FAQ entries for ${lang}`);
+    assert(content.localModeNote, `Missing local mode note for ${lang}`);
     assert(content.privacyConsent && content.contactConsent && content.marketingConsent, `Missing consent copy for ${lang}`);
     assert(content.limits, `Missing limitations copy for ${lang}`);
     assert(content.ogImage === '/images/social/aquaverify-workflow-advisor.png', `Unexpected OG image for ${lang}`);
@@ -133,6 +134,8 @@ function validateSource() {
   assert(component.includes('workflow-report-print'), 'Landing must expose dedicated workflow-report print container');
   assert(component.includes('workflow-report-print-mode'), 'Landing must enable controlled report-only print mode');
   assert(component.includes('workflow-advisor-contact-form'), 'Landing must isolate contact form from report print mode');
+  assert(component.includes('workflow-advisor-research-modal'), 'Research consent must open in a post-result modal');
+  assert(!component.includes('workflow-advisor-consent no-print'), 'Fixed research consent block must not render on the main page');
   assert(component.includes('downloadTechnicalExport'), 'Technical JSON export must be explicit support-only action');
   assert(!component.includes('downloadResult('), 'JSON result download must not be the primary CTA');
   assert(!component.includes('quickReadLabel'), 'Quick read labels must come localized from report V2');
@@ -142,6 +145,29 @@ function validateSource() {
   assert(component.includes('Idempotency-Key'), 'Assessment save should use idempotency key');
   assert(component.includes('workflow-advisor-tool'), 'Landing must expose workflow-advisor-tool anchor');
   assert(component.includes('saveAssessment') && component.includes('submitContact'), 'Landing must support research save and contact lead flow');
+  assert(component.includes("saveAssessment('research')"), 'Research sharing must explicitly call the research save path');
+  assert(component.includes("saveAssessment('contact')"), 'Contact requests must explicitly call the contact save path');
+  assert(!component.includes('saveAssessment(false)') && !component.includes('saveAssessment(true)'), 'Save path must not rely on boolean consent mixing');
+  assert(component.includes('researchConsent: isResearchSave'), 'Research save must only send research consent for research action');
+  assert(component.includes('contactConsent: isContactSave'), 'Contact save must only send contact consent for contact action');
+  assert(component.includes('marketingConsent: isContactSave ? marketingConsent : false'), 'Research sharing must not send marketing consent');
+  assert(component.includes('body.workflow-report-print-mode .workflow-advisor-consent'), 'Print CSS must still hide any legacy research consent block');
+  assert(component.includes('body.workflow-report-print-mode .workflow-advisor-contact-form'), 'Print CSS must hide contact form');
+  assert(component.includes('body.workflow-report-print-mode .workflow-advisor-cookie'), 'Print CSS must hide cookie surfaces');
+  assert(component.includes('body.workflow-report-print-mode .cookie-banner'), 'Print CSS must hide cookie banner');
+
+  const cookieComponent = readText('components/CookieConsent.tsx');
+  [
+    'Preferencias de cookies',
+    'Usamos cookies esenciales para que el sitio funcione y cookies opcionales para mejorar la experiencia de AquaVerify.',
+    'Política de cookies',
+    'Aceptar todas',
+    'Rechazar opcionales',
+    'Personalizar'
+  ].forEach((term) => assert(cookieComponent.includes(term), `Cookie banner missing Spanish copy: ${term}`));
+  assert(cookieComponent.includes('cookie-banner workflow-advisor-cookie no-print'), 'Cookie banner must be excluded from print/PDF');
+  assert(!cookieComponent.match(/es:\s*{[\s\S]*Cookie preferences[\s\S]*?}/), 'Spanish cookie banner must not use English title');
+  assert(!cookieComponent.match(/es:\s*{[\s\S]*Accept all[\s\S]*?}/), 'Spanish cookie banner must not use English accept-all label');
 
   const regression = assessWorkflow({
     questionnaireVersion,
@@ -278,9 +304,12 @@ function validateDist() {
     assert(html.includes('name="robots" content="index, follow'), `Missing robots in ${content.path}`);
     assert(html.includes(content.title), `Missing title content in ${content.path}`);
     assert(html.includes('workflow-advisor-tool'), `Missing assessment anchor in ${content.path}`);
-    assert(html.includes(content.privacyConsent), `Missing research consent copy in ${content.path}`);
-    assert(html.includes(content.contactConsent), `Missing contact consent copy in ${content.path}`);
-    assert(html.includes(content.marketingConsent), `Missing marketing consent copy in ${content.path}`);
+    assert(html.includes(content.localModeNote), `Missing local mode note in ${content.path}`);
+    assert(!html.includes(content.privacyConsent), `Research consent must not appear before result in ${content.path}`);
+    assert(!html.includes(content.contactConsent), `Contact consent must not appear before result in ${content.path}`);
+    assert(!html.includes(content.marketingConsent), `Marketing consent must not appear before result in ${content.path}`);
+    assert(!html.includes('workflow-advisor-consent'), `Fixed research consent block leaked into prerendered HTML for ${content.path}`);
+    assert(!html.includes('Permito que AquaVerify guarde estas respuestas'), `Research consent checkbox leaked into prerendered HTML for ${content.path}`);
     assert(html.includes(content.limits), `Missing limitation copy in ${content.path}`);
     assert(html.includes('FAQPage'), `Missing FAQPage JSON-LD in ${content.path}`);
     assert(html.includes('WebApplication'), `Missing WebApplication JSON-LD in ${content.path}`);

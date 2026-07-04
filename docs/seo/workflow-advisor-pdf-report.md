@@ -1,22 +1,42 @@
 # Workflow Advisor PDF / Print Report
 
-El informe publico se exporta con impresion dedicada del bloque `.workflow-report-print`.
+Date: 2026-07-04
 
-El modo `workflow-report-print-mode` oculta:
-- navegacion global
-- hero y bloques introductorios
-- formulario del cuestionario
-- consentimiento de investigacion
-- formulario de contacto
+The public report is exported through controlled print mode on `.workflow-report-print`.
+
+After the report, the visible actions are:
+
+- Descargar informe PDF / Download PDF report
+- Imprimir informe / Print report
+- Compartir resultado para mejorar el diagnostico / Share result to improve the assessment
+- Solicitar revision tecnica / Request technical review
+
+The download and print actions both open the browser print dialog so the visitor can save the consultative report as PDF. The visible instructions ask the visitor to disable browser headers and footers.
+
+## Excluded From PDF/Print
+
+Print mode hides:
+
+- global navigation and footer
+- landing and questionnaire blocks
+- research modal and any legacy `.workflow-advisor-consent`
+- contact form and contact consents
 - FAQ
-- anexos tecnicos y JSON
+- cookie banner and cookie panel
+- technical annex and JSON export
+- all `.no-print` controls
 
-Botones visibles tras calcular:
-- Imprimir / guardar PDF
-- Solicitar revision tecnica
+Required CSS selectors:
 
-El boton usa la impresion del navegador para que el usuario guarde el informe consultivo como PDF. El texto visible pide desactivar cabeceras y pies del navegador. El JSON queda solo como exportacion tecnica en modo desarrollo.
+```css
+.workflow-advisor-consent,
+.workflow-advisor-contact-form,
+.workflow-advisor-faq,
+.workflow-advisor-cookie,
+.cookie-banner,
+.no-print {
+  display: none !important;
+}
+```
 
-Contrato PDF:
-- `reportV2.pdf.mode = dedicated-print`
-- `reportV2.pdf.filename = aquaverify-workflow-advisor-{sector}-{lang}.pdf`
+The PDF must not contain research checkbox copy, privacy-policy links, contact fields, contact consent, marketing consent, FAQ, cookie controls or browser header/footer text.

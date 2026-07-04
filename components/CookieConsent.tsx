@@ -26,7 +26,7 @@ interface CookiePolicyState {
 
 const LABELS = {
   en: {
-    manage: 'Gestionar cookies',
+    manage: 'Manage cookies',
     badge: 'Cookies',
     title: 'Cookie preferences',
     copy: 'We use essential cookies for the site to work and optional cookies to improve the AquaVerify experience.',
@@ -48,45 +48,45 @@ const LABELS = {
     manage: 'Gestionar cookies',
     badge: 'Cookies',
     title: 'Preferencias de cookies',
-    copy: 'Usamos cookies tecnicas para que la web funcione y cookies opcionales para mejorar la experiencia AquaVerify.',
-    acceptAll: 'Aceptar todo',
+    copy: 'Usamos cookies esenciales para que el sitio funcione y cookies opcionales para mejorar la experiencia de AquaVerify.',
+    acceptAll: 'Aceptar todas',
     rejectOptional: 'Rechazar opcionales',
     customize: 'Personalizar',
     save: 'Guardar preferencias',
     close: 'Cerrar',
-    necessaryTitle: 'Cookies tecnicas',
-    necessaryCopy: 'Necesarias para seguridad, idioma y funcionamiento basico de la web.',
-    analyticsTitle: 'Analitica',
+    necessaryTitle: 'Cookies esenciales',
+    necessaryCopy: 'Necesarias para seguridad, idioma y funcionamiento básico del sitio.',
+    analyticsTitle: 'Analítica',
     analyticsCopy: 'Nos ayuda a entender visitas y mejorar la web corporativa.',
     marketingTitle: 'Marketing',
-    marketingCopy: 'Permite recordar preferencias para campanas y contenido de producto.',
+    marketingCopy: 'Permite recordar preferencias para campañas y contenido de producto.',
     alwaysOn: 'Siempre activas',
-    policy: 'Politica de cookies'
+    policy: 'Política de cookies'
   },
   fr: {
-    manage: 'Gestionar cookies',
+    manage: 'Gérer les cookies',
     badge: 'Cookies',
-    title: 'Preferences de cookies',
-    copy: 'Nous utilisons des cookies essentiels pour le site et des cookies optionnels pour ameliorer AquaVerify.',
+    title: 'Préférences de cookies',
+    copy: 'Nous utilisons des cookies essentiels au fonctionnement du site et des cookies optionnels pour améliorer l expérience AquaVerify.',
     acceptAll: 'Tout accepter',
-    rejectOptional: 'Refuser optionnels',
+    rejectOptional: 'Refuser les optionnels',
     customize: 'Personnaliser',
     save: 'Enregistrer',
     close: 'Fermer',
     necessaryTitle: 'Cookies essentiels',
-    necessaryCopy: 'Necessaires pour la securite, la langue et le fonctionnement du site.',
+    necessaryCopy: 'Nécessaires pour la sécurité, la langue et le fonctionnement du site.',
     analyticsTitle: 'Analytique',
-    analyticsCopy: 'Nous aide a comprendre les visites et ameliorer le site.',
+    analyticsCopy: 'Nous aide à comprendre les visites et à améliorer le site.',
     marketingTitle: 'Marketing',
-    marketingCopy: 'Aide a memoriser les preferences pour les campagnes et contenus produit.',
+    marketingCopy: 'Aide à mémoriser les préférences pour les campagnes et contenus produit.',
     alwaysOn: 'Toujours actifs',
-    policy: 'Politique cookies'
+    policy: 'Politique de cookies'
   },
   it: {
-    manage: 'Gestionar cookies',
+    manage: 'Gestisci cookie',
     badge: 'Cookie',
     title: 'Preferenze cookie',
-    copy: 'Usiamo cookie essenziali per il sito e cookie opzionali per migliorare AquaVerify.',
+    copy: 'Usiamo cookie essenziali per il funzionamento del sito e cookie opzionali per migliorare l esperienza AquaVerify.',
     acceptAll: 'Accetta tutto',
     rejectOptional: 'Rifiuta opzionali',
     customize: 'Personalizza',
@@ -105,14 +105,14 @@ const LABELS = {
     manage: 'Gestionar cookies',
     badge: 'Cookies',
     title: 'Preferències de cookies',
-    copy: 'Fem servir cookies tècniques perquè la web funcioni i cookies opcionals per millorar l’experiència AquaVerify.',
+    copy: 'Fem servir cookies essencials perquè el lloc funcioni i cookies opcionals per millorar l experiència AquaVerify.',
     acceptAll: 'Acceptar-ho tot',
     rejectOptional: 'Rebutjar opcionals',
     customize: 'Personalitzar',
     save: 'Guardar preferències',
     close: 'Tancar',
-    necessaryTitle: 'Cookies tècniques',
-    necessaryCopy: 'Necessàries per a seguretat, idioma i funcionament bàsic de la web.',
+    necessaryTitle: 'Cookies essencials',
+    necessaryCopy: 'Necessàries per a seguretat, idioma i funcionament bàsic del lloc.',
     analyticsTitle: 'Analítica',
     analyticsCopy: 'Ens ajuda a entendre visites i millorar la web corporativa.',
     marketingTitle: 'Màrqueting',
@@ -303,7 +303,7 @@ export const CookieConsent: React.FC = () => {
   return (
     <>
       {showNotice && (
-        <div className="fixed bottom-24 left-4 right-4 z-[91] rounded-2xl border border-slate-200 bg-white p-5 text-slate-700 shadow-2xl md:left-auto md:right-4 md:max-w-md">
+        <div className="cookie-banner workflow-advisor-cookie no-print fixed bottom-24 left-4 right-4 z-[91] rounded-2xl border border-slate-200 bg-white p-5 text-slate-700 shadow-2xl md:left-auto md:right-4 md:max-w-md">
           <div className="text-[11px] font-black uppercase tracking-[0.18em] text-cyan-700">{labels.badge}</div>
           <h2 className="mt-2 text-lg font-black text-slate-900">{labels.title}</h2>
           <p className="mt-2 text-sm leading-6 text-slate-600">{labels.copy}</p>
@@ -337,7 +337,7 @@ export const CookieConsent: React.FC = () => {
       )}
 
       {isPanelOpen && (
-        <div className="fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/45 px-4 py-6 backdrop-blur-sm sm:items-center">
+        <div className="cookie-banner workflow-advisor-cookie no-print fixed inset-0 z-[100] flex items-end justify-center bg-slate-950/45 px-4 py-6 backdrop-blur-sm sm:items-center">
           <div className="w-full max-w-lg rounded-2xl bg-white shadow-2xl">
             <div className="flex items-center justify-between border-b border-slate-100 px-6 py-5">
               <div>

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Download, Printer, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Download, Printer, ShieldCheck, X } from 'lucide-react';
 import type { Language } from '../../utils/translations';
 import {
   assessWorkflow,
@@ -36,11 +36,19 @@ const UI = {
     calculate: 'Calculate result',
     print: 'Print',
     download: 'Download summary',
-    saveResearch: 'Share for research',
+    downloadPdf: 'Download PDF report',
+    printReport: 'Print report',
+    shareResult: 'Share result to improve the assessment',
+    requestTechnicalReview: 'Request technical review',
+    shareTitle: 'Share result to improve the assessment',
+    shareText: 'AquaVerify will store your answers without contact details to produce aggregated statistics by sector, problem and workflow maturity. We will not store name, email, phone or company with this option.',
+    shareSubmit: 'Share result',
+    cancel: 'Cancel',
     contactTitle: 'Optional contact request',
     submitContact: 'Request contact',
-    saved: 'Saved for research. Keep this delete token if you may want to delete the record later:',
-    localOnly: 'Local only: no answers are sent unless you choose research sharing or contact.',
+    saved: 'Result shared. Keep this delete token if you may want to delete the record later:',
+    localOnly: 'Local mode by default',
+    localNote: 'You can complete the assessment without identifying yourself. Answers stay in your browser unless you decide to share the result or request contact.',
     storageDisabled: 'Storage is not active on the platform yet. You can still use and print the local result.',
     contactSent: 'Contact request received.',
     privacyLink: 'Privacy policy',
@@ -58,16 +66,24 @@ const UI = {
     calculate: 'Calcular resultado',
     print: 'Imprimir',
     download: 'Descargar resumen',
-    saveResearch: 'Compartir para investigacion',
-    contactTitle: 'Solicitud opcional de contacto',
-    submitContact: 'Solicitar contacto',
-    saved: 'Guardado para investigacion. Conserva este token de borrado si quieres eliminar el registro mas adelante:',
-    localOnly: 'Modo local: no se envian respuestas salvo que elijas investigacion o contacto.',
-    storageDisabled: 'El almacenamiento no esta activo aun en la plataforma. Puedes usar e imprimir el resultado local.',
+    downloadPdf: 'Descargar informe PDF',
+    printReport: 'Imprimir informe',
+    shareResult: 'Compartir resultado para mejorar el diagnóstico',
+    requestTechnicalReview: 'Solicitar revisión técnica',
+    shareTitle: 'Compartir resultado para mejorar el diagnóstico',
+    shareText: 'AquaVerify guardará tus respuestas sin datos de contacto para elaborar estadísticas agregadas por sector, problema y madurez del flujo. No guardaremos nombre, email, teléfono ni empresa en esta opción.',
+    shareSubmit: 'Compartir resultado',
+    cancel: 'Cancelar',
+    contactTitle: 'Solicitud de revisión técnica',
+    submitContact: 'Solicitar revisión técnica',
+    saved: 'Resultado compartido. Conserva este token de borrado si quieres eliminar el registro más adelante:',
+    localOnly: 'Modo local por defecto',
+    localNote: 'Puedes completar el diagnóstico sin identificarte. Las respuestas permanecen en el navegador salvo que decidas compartir el resultado o solicitar contacto.',
+    storageDisabled: 'El almacenamiento de resultados no está activo aún en la plataforma. Puedes usar e imprimir el resultado local.',
     contactSent: 'Solicitud de contacto recibida.',
-    privacyLink: 'Politica de privacidad',
+    privacyLink: 'Política de privacidad',
     noMarketingNeeded: 'El marketing es opcional y no es necesario para solicitar contacto.',
-    technicalReview: 'Necesita revision tecnica'
+    technicalReview: 'Necesita revisión técnica'
   },
   fr: {
     progress: 'Etape',
@@ -80,11 +96,19 @@ const UI = {
     calculate: 'Calculer le resultat',
     print: 'Imprimer',
     download: 'Telecharger resume',
-    saveResearch: 'Partager pour recherche',
+    downloadPdf: 'Télécharger le rapport PDF',
+    printReport: 'Imprimer le rapport',
+    shareResult: 'Partager le résultat pour améliorer le diagnostic',
+    requestTechnicalReview: 'Demander une revue technique',
+    shareTitle: 'Partager le résultat pour améliorer le diagnostic',
+    shareText: 'AquaVerify conservera vos réponses sans coordonnées afin de produire des statistiques agrégées par secteur, problème et maturité du flux. Nous ne conserverons pas le nom, l email, le téléphone ni l entreprise avec cette option.',
+    shareSubmit: 'Partager le résultat',
+    cancel: 'Annuler',
     contactTitle: 'Demande de contact optionnelle',
-    submitContact: 'Demander contact',
-    saved: 'Enregistre pour recherche. Gardez ce jeton de suppression si vous souhaitez supprimer l enregistrement:',
-    localOnly: 'Mode local: aucune reponse n est envoyee sauf choix recherche ou contact.',
+    submitContact: 'Demander une revue technique',
+    saved: 'Résultat partagé. Gardez ce jeton de suppression si vous souhaitez supprimer l enregistrement:',
+    localOnly: 'Mode local par défaut',
+    localNote: 'Vous pouvez compléter le diagnostic sans vous identifier. Les réponses restent dans votre navigateur sauf si vous décidez de partager le résultat ou de demander un contact.',
     storageDisabled: 'Le stockage n est pas encore actif sur la plateforme. Vous pouvez utiliser et imprimer le resultat local.',
     contactSent: 'Demande de contact recue.',
     privacyLink: 'Politique de confidentialite',
@@ -102,11 +126,19 @@ const UI = {
     calculate: 'Calcola risultato',
     print: 'Stampa',
     download: 'Scarica sintesi',
-    saveResearch: 'Condividi per ricerca',
+    downloadPdf: 'Scarica il report PDF',
+    printReport: 'Stampa il report',
+    shareResult: 'Condividi il risultato per migliorare la valutazione',
+    requestTechnicalReview: 'Richiedi revisione tecnica',
+    shareTitle: 'Condividi il risultato per migliorare la valutazione',
+    shareText: 'AquaVerify salverà le tue risposte senza dati di contatto per elaborare statistiche aggregate per settore, problema e maturità del flusso. Non salveremo nome, email, telefono o azienda con questa opzione.',
+    shareSubmit: 'Condividi il risultato',
+    cancel: 'Annulla',
     contactTitle: 'Richiesta opzionale di contatto',
-    submitContact: 'Richiedi contatto',
-    saved: 'Salvato per ricerca. Conserva questo token di cancellazione se vuoi eliminare il record:',
-    localOnly: 'Modalita locale: nessuna risposta viene inviata salvo scelta ricerca o contatto.',
+    submitContact: 'Richiedi revisione tecnica',
+    saved: 'Risultato condiviso. Conserva questo token di cancellazione se vuoi eliminare il record:',
+    localOnly: 'Modalita locale predefinita',
+    localNote: 'Puoi completare la valutazione senza identificarti. Le risposte restano nel browser salvo che tu decida di condividere il risultato o richiedere un contatto.',
     storageDisabled: 'Lo storage non e ancora attivo sulla piattaforma. Puoi usare e stampare il risultato locale.',
     contactSent: 'Richiesta di contatto ricevuta.',
     privacyLink: 'Informativa privacy',
@@ -124,11 +156,19 @@ const UI = {
     calculate: 'Calcular resultat',
     print: 'Imprimir',
     download: 'Descarregar resum',
-    saveResearch: 'Compartir per recerca',
-    contactTitle: 'Sol licitud opcional de contacte',
-    submitContact: 'Sol licitar contacte',
-    saved: 'Desat per recerca. Conserva aquest token de supressio si vols eliminar el registre:',
-    localOnly: 'Mode local: no s envien respostes llevat que triis recerca o contacte.',
+    downloadPdf: 'Descarregar informe PDF',
+    printReport: 'Imprimir informe',
+    shareResult: 'Compartir el resultat per millorar el diagnòstic',
+    requestTechnicalReview: 'Sol·licitar revisió tècnica',
+    shareTitle: 'Compartir el resultat per millorar el diagnòstic',
+    shareText: 'AquaVerify desarà les teves respostes sense dades de contacte per elaborar estadístiques agregades per sector, problema i maduresa del flux. No desarem nom, email, telèfon ni empresa amb aquesta opció.',
+    shareSubmit: 'Compartir el resultat',
+    cancel: 'Cancel·lar',
+    contactTitle: 'Sol·licitud de revisió tècnica',
+    submitContact: 'Sol·licitar revisió tècnica',
+    saved: 'Resultat compartit. Conserva aquest token de supressió si vols eliminar el registre:',
+    localOnly: 'Mode local per defecte',
+    localNote: 'Pots completar el diagnòstic sense identificar-te. Les respostes romanen al navegador tret que decideixis compartir el resultat o sol·licitar contacte.',
     storageDisabled: 'L emmagatzematge encara no esta actiu a la plataforma. Pots usar i imprimir el resultat local.',
     contactSent: 'Sol licitud de contacte rebuda.',
     privacyLink: 'Politica de privacitat',
@@ -694,6 +734,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   const [researchConsent, setResearchConsent] = useState(false);
   const [contactConsent, setContactConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
+  const [isResearchModalOpen, setIsResearchModalOpen] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
   const [publicId, setPublicId] = useState('');
   const [contact, setContact] = useState({ name: '', email: '', company: '', countryCode: '', buyerRole: '', phone: '', requestType: 'technical_review', comment: '' });
@@ -736,9 +777,11 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
     window.setTimeout(() => document.getElementById('workflow-result')?.focus(), 80);
   };
 
-  const saveAssessment = async (withContact = false) => {
-    if (!result && !withContact) calculate();
+  const saveAssessment = async (purpose: 'research' | 'contact') => {
+    if (!result) calculate();
     const input = buildInput(pageLang, answers);
+    const isResearchSave = purpose === 'research';
+    const isContactSave = purpose === 'contact';
     try {
       const response = await fetch(`${API_BASE}/api/public/v1/workflow-assessments`, {
         method: 'POST',
@@ -749,9 +792,9 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
         },
         body: JSON.stringify({
           input,
-          researchConsent,
-          contactConsent: withContact || contactConsent,
-          marketingConsent,
+          researchConsent: isResearchSave,
+          contactConsent: isContactSave,
+          marketingConsent: isContactSave ? marketingConsent : false,
           sourcePath: window.location.pathname,
           referrerHost: document.referrer ? new URL(document.referrer).hostname : '',
           utm: Object.fromEntries(new URLSearchParams(window.location.search).entries())
@@ -763,7 +806,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
         return '';
       }
       setPublicId(data.publicId || '');
-      setSaveMessage(data.deleteToken ? `${copy.saved} ${data.deleteToken}` : copy.storageDisabled);
+      if (isResearchSave) setSaveMessage(data.deleteToken ? `${copy.saved} ${data.deleteToken}` : copy.saved.replace(/:$/, '.'));
       return data.publicId || '';
     } catch {
       setSaveMessage(copy.storageDisabled);
@@ -771,9 +814,23 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
     }
   };
 
+  const openResearchModal = () => {
+    setResearchConsent(false);
+    setIsResearchModalOpen(true);
+  };
+
+  const saveResearchAssessment = async () => {
+    if (!researchConsent) return;
+    const id = await saveAssessment('research');
+    if (id) {
+      setResearchConsent(false);
+      setIsResearchModalOpen(false);
+    }
+  };
+
   const submitContact = async () => {
     if (!contactConsent) return;
-    const id = publicId || await saveAssessment(true);
+    const id = publicId || await saveAssessment('contact');
     if (!id) return;
     try {
       const response = await fetch(`${API_BASE}/api/public/v1/workflow-assessments/${encodeURIComponent(id)}/lead`, {
@@ -825,7 +882,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
           <article className="rounded-2xl border border-cyan-100 bg-cyan-50 p-5 text-cyan-950">
             <ShieldCheck className="h-6 w-6" />
             <h2 className="mt-3 font-black">{copy.localOnly}</h2>
-            <p className="mt-2 text-sm leading-7">{content.limits}</p>
+            <p className="mt-2 text-sm leading-7">{copy.localNote}</p>
           </article>
         </div>
       </section>
@@ -903,8 +960,10 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
 
                       <div className="no-print rounded-2xl border border-slate-200 bg-slate-50 p-4">
                         <div className="flex flex-wrap gap-3">
-                          <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Printer className="mr-2 h-4 w-4" />{reportV2?.pdf?.buttonLabel || copy.print}</button>
-                          <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 bg-white px-4 py-2 text-sm font-black text-cyan-800">{reportV2?.cta?.label || copy.submitContact}</button>
+                          <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Download className="mr-2 h-4 w-4" />{copy.downloadPdf}</button>
+                          <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-slate-700"><Printer className="mr-2 h-4 w-4" />{copy.printReport}</button>
+                          <button type="button" onClick={openResearchModal} className="inline-flex items-center rounded-full border border-emerald-200 bg-white px-4 py-2 text-sm font-black text-emerald-800"><ShieldCheck className="mr-2 h-4 w-4" />{copy.shareResult}</button>
+                          <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 bg-white px-4 py-2 text-sm font-black text-cyan-800">{copy.requestTechnicalReview}</button>
                         </div>
                         {reportV2?.pdf?.instructions ? <p className="mt-3 text-xs font-bold leading-5 text-slate-500">{reportV2.pdf.instructions}</p> : null}
                       </div>
@@ -919,14 +978,6 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                           <pre className="mt-3 max-h-96 overflow-auto rounded-xl bg-slate-950 p-4 text-xs text-slate-100">{JSON.stringify(result, null, 2)}</pre>
                         </details>
                       )}
-
-                      <section className="workflow-advisor-consent no-print rounded-2xl border border-cyan-100 bg-cyan-50 p-5">
-                        <label className="flex gap-3 text-sm font-bold text-cyan-950">
-                          <input type="checkbox" checked={researchConsent} onChange={(event) => setResearchConsent(event.target.checked)} className="mt-1 h-4 w-4" />
-                          <span>{content.privacyConsent} <a className="underline" href="https://app.aquaverify.com/legal/privacy">{copy.privacyLink}</a></span>
-                        </label>
-                        <button type="button" disabled={!researchConsent} onClick={() => saveAssessment(false)} className="mt-4 rounded-full bg-cyan-700 px-5 py-3 text-sm font-black text-white disabled:cursor-not-allowed disabled:opacity-50">{copy.saveResearch}</button>
-                      </section>
 
                       <section id="workflow-contact-request" className="workflow-advisor-contact-form no-print scroll-mt-24 rounded-2xl border border-slate-200 p-5">
                         <h2 className="text-lg font-black">{copy.contactTitle}</h2>
@@ -961,6 +1012,34 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                       </section>
                     </div>
                   )}
+                </div>
+              )}
+
+              {isResearchModalOpen && (
+                <div className="workflow-advisor-research-modal no-print fixed inset-0 z-[110] flex items-end justify-center bg-slate-950/55 px-4 py-6 backdrop-blur-sm sm:items-center" role="dialog" aria-modal="true" aria-labelledby="workflow-research-share-title">
+                  <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl">
+                    <div className="flex items-start justify-between gap-4 border-b border-slate-100 px-6 py-5">
+                      <div>
+                        <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-700">AquaVerify</p>
+                        <h2 id="workflow-research-share-title" className="mt-1 text-xl font-black text-slate-950">{copy.shareTitle}</h2>
+                      </div>
+                      <button type="button" onClick={() => setIsResearchModalOpen(false)} className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900" aria-label={copy.cancel}>
+                        <X size={18} />
+                      </button>
+                    </div>
+                    <div className="space-y-4 px-6 py-5">
+                      <p className="text-sm leading-7 text-slate-600">{copy.shareText}</p>
+                      <label className="flex gap-3 rounded-2xl border border-emerald-100 bg-emerald-50 p-4 text-sm font-bold text-emerald-950">
+                        <input type="checkbox" checked={researchConsent} onChange={(event) => setResearchConsent(event.target.checked)} className="mt-1 h-4 w-4 rounded border-emerald-300 text-emerald-700 focus:ring-emerald-500" />
+                        <span>{content.privacyConsent}</span>
+                      </label>
+                      <a className="inline-flex text-sm font-bold text-cyan-700 hover:text-cyan-900" href="https://app.aquaverify.com/legal/privacy" target="_blank" rel="noreferrer">{copy.privacyLink}</a>
+                    </div>
+                    <div className="flex flex-col gap-2 border-t border-slate-100 px-6 py-5 sm:flex-row sm:justify-end">
+                      <button type="button" onClick={() => setIsResearchModalOpen(false)} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50">{copy.cancel}</button>
+                      <button type="button" disabled={!researchConsent} onClick={saveResearchAssessment} className="rounded-xl bg-emerald-700 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{copy.shareSubmit}</button>
+                    </div>
+                  </div>
                 </div>
               )}
 
@@ -1017,7 +1096,9 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
           body.workflow-report-print-mode .workflow-advisor-landing,
           body.workflow-report-print-mode .workflow-advisor-contact-form,
           body.workflow-report-print-mode .workflow-advisor-consent,
+          body.workflow-report-print-mode .workflow-advisor-research-modal,
           body.workflow-report-print-mode .workflow-advisor-faq,
+          body.workflow-report-print-mode .workflow-advisor-cookie,
           body.workflow-report-print-mode .cookie-banner,
           body.workflow-report-print-mode nav,
           body.workflow-report-print-mode aside,

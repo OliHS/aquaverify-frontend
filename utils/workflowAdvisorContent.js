@@ -28,7 +28,8 @@ export const WORKFLOW_ADVISOR_COPY = {
       ['El resultado valida un metodo o cumplimiento?', 'No. Muestra madurez, brechas y posibles caminos de revision. No emite conformidad ni aceptacion regulatoria.'],
       ['Puedo pedir contacto sin aceptar marketing?', 'Si. El contacto y las comunicaciones comerciales son consentimientos separados.']
     ],
-    privacyConsent: 'Permito que AquaVerify guarde estas respuestas sin datos de contacto y de forma seudonimizada para elaborar estadisticas agregadas y mejorar el diagnostico. Puedo continuar sin aceptar.',
+    localModeNote: 'Puedes completar el diagnóstico sin identificarte. Las respuestas permanecen en el navegador salvo que decidas compartir el resultado o solicitar contacto.',
+    privacyConsent: 'Permito que AquaVerify guarde estas respuestas de forma seudonimizada para estadísticas agregadas y mejora del diagnóstico.',
     contactConsent: 'Solicito que AquaVerify utilice estos datos y el contexto del diagnostico para responder a mi solicitud.',
     marketingConsent: 'Quiero recibir comunicaciones comerciales sobre productos, recursos, eventos y novedades de AquaVerify.',
     limits: 'Este diagnostico es orientativo. No sustituye la evaluacion del laboratorio, la validacion o verificacion de metodos, el sistema de calidad, la autoridad competente ni la revision regulatoria por pais, matriz y uso previsto.'
@@ -54,7 +55,8 @@ export const WORKFLOW_ADVISOR_COPY = {
       ['Does the result validate a method or compliance?', 'No. It shows maturity, gaps and possible review paths. It does not issue conformity or regulatory acceptance.'],
       ['Can I request contact without marketing?', 'Yes. Contact and commercial communications are separate consents.']
     ],
-    privacyConsent: 'I allow AquaVerify to store these answers without contact details and in pseudonymised form to produce aggregated statistics and improve the assessment. I can continue without agreeing.',
+    localModeNote: 'You can complete the assessment without identifying yourself. Answers stay in your browser unless you decide to share the result or request contact.',
+    privacyConsent: 'I allow AquaVerify to store these answers in pseudonymised form for aggregated statistics and improvement of the assessment.',
     contactConsent: 'I request AquaVerify to use these details and the assessment context to respond to my request.',
     marketingConsent: 'I want to receive commercial communications about AquaVerify products, resources, events and news.',
     limits: 'This assessment is indicative. It does not replace laboratory evaluation, method validation or verification, the quality system, the competent authority or regulatory review by country, matrix and intended use.'
@@ -80,7 +82,8 @@ export const WORKFLOW_ADVISOR_COPY = {
       ['Le resultat valide-t-il une methode?', 'Non. Il indique maturite, ecarts et pistes de revue, sans conformite ni acceptation reglementaire.'],
       ['Puis-je demander un contact sans marketing?', 'Oui. Contact et communications commerciales sont separes.']
     ],
-    privacyConsent: 'J autorise AquaVerify a conserver ces reponses sans coordonnees et sous forme pseudonymisee afin de produire des statistiques agregees et d ameliorer le diagnostic. Je peux continuer sans accepter.',
+    localModeNote: 'Vous pouvez compléter le diagnostic sans vous identifier. Les réponses restent dans votre navigateur sauf si vous décidez de partager le résultat ou de demander un contact.',
+    privacyConsent: 'J autorise AquaVerify à conserver ces réponses sous forme pseudonymisée pour des statistiques agrégées et l amélioration du diagnostic.',
     contactConsent: 'Je demande a AquaVerify d utiliser ces donnees et le contexte du diagnostic pour repondre a ma demande.',
     marketingConsent: 'Je souhaite recevoir des communications commerciales sur les produits, ressources, evenements et nouveautes AquaVerify.',
     limits: 'Ce diagnostic est indicatif. Il ne remplace pas l evaluation du laboratoire, la validation ou verification des methodes, le systeme qualite, l autorite competente ni la revue reglementaire par pays, matrice et usage prevu.'
@@ -106,7 +109,8 @@ export const WORKFLOW_ADVISOR_COPY = {
       ['Il risultato valida un metodo?', 'No. Mostra maturita, gap e percorsi di revisione, senza conformita o accettazione regolatoria.'],
       ['Posso chiedere contatto senza marketing?', 'Si. Contatto e comunicazioni commerciali sono separati.']
     ],
-    privacyConsent: 'Autorizzo AquaVerify a conservare queste risposte senza dati di contatto e in forma pseudonimizzata per produrre statistiche aggregate e migliorare la valutazione. Posso continuare senza accettare.',
+    localModeNote: 'Puoi completare la valutazione senza identificarti. Le risposte restano nel browser salvo che tu decida di condividere il risultato o richiedere un contatto.',
+    privacyConsent: 'Autorizzo AquaVerify a conservare queste risposte in forma pseudonimizzata per statistiche aggregate e miglioramento della valutazione.',
     contactConsent: 'Richiedo che AquaVerify utilizzi questi dati e il contesto della valutazione per rispondere alla mia richiesta.',
     marketingConsent: 'Desidero ricevere comunicazioni commerciali su prodotti, risorse, eventi e novita AquaVerify.',
     limits: 'Questa valutazione e orientativa. Non sostituisce la valutazione del laboratorio, la validazione o verifica dei metodi, il sistema qualita, l autorita competente o la revisione regolatoria per paese, matrice e uso previsto.'
@@ -132,7 +136,8 @@ export const WORKFLOW_ADVISOR_COPY = {
       ['El resultat valida un metode?', 'No. Mostra maduresa, bretxes i vies de revisio, sense conformitat ni acceptacio reguladora.'],
       ['Puc demanar contacte sense marketing?', 'Si. Contacte i comunicacions comercials son separats.']
     ],
-    privacyConsent: 'Permeto que AquaVerify desi aquestes respostes sense dades de contacte i de manera seudonimitzada per elaborar estadistiques agregades i millorar el diagnostic. Puc continuar sense acceptar.',
+    localModeNote: 'Pots completar el diagnòstic sense identificar-te. Les respostes romanen al navegador tret que decideixis compartir el resultat o sol·licitar contacte.',
+    privacyConsent: 'Permeto que AquaVerify desi aquestes respostes de manera seudonimitzada per a estadístiques agregades i millora del diagnòstic.',
     contactConsent: 'Sol licito que AquaVerify utilitzi aquestes dades i el context del diagnostic per respondre a la meva sol licitud.',
     marketingConsent: 'Vull rebre comunicacions comercials sobre productes, recursos, esdeveniments i novetats d AquaVerify.',
     limits: 'Aquest diagnostic es orientatiu. No substitueix l avaluacio del laboratori, la validacio o verificacio de metodes, el sistema de qualitat, l autoritat competent ni la revisio reguladora per pais, matriu i us previst.'
@@ -158,6 +163,7 @@ export const WORKFLOW_ADVISOR_MARKETING_PAGES = [{
       cta: copy.cta,
       blocks: copy.blocks,
       faqs: copy.faq.map(([question, answer]) => ({ question, answer })),
+      localModeNote: copy.localModeNote,
       privacyConsent: copy.privacyConsent,
       contactConsent: copy.contactConsent,
       marketingConsent: copy.marketingConsent,

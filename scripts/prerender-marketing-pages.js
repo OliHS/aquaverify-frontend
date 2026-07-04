@@ -980,6 +980,8 @@ const WORKFLOW_ADVISOR_STATIC_LABELS = {
     toolBody: 'The browser experience calculates the result locally first. Answers are only sent to AquaVerify Cloud when research sharing or contact is explicitly selected.',
     sectorsTitle: 'Sector coverage',
     privacyTitle: 'Consent and privacy model',
+    researchOptional: 'After the result, the visitor may choose to share pseudonymised answers to improve aggregated diagnostics.',
+    contactOptional: 'Technical review requests use a separate contact consent. Marketing remains optional.',
     methodTitle: 'Versioned rules engine',
     limitsTitle: 'Assessment limits',
     versions: 'Versions'
@@ -990,6 +992,8 @@ const WORKFLOW_ADVISOR_STATIC_LABELS = {
     toolBody: 'La experiencia del navegador calcula primero el resultado en local. Las respuestas solo se envian a AquaVerify Cloud si se selecciona investigacion o contacto de forma explicita.',
     sectorsTitle: 'Cobertura por sector',
     privacyTitle: 'Modelo de consentimiento y privacidad',
+    researchOptional: 'Después del resultado, el visitante puede compartir respuestas seudonimizadas para mejorar estadísticas agregadas del diagnóstico.',
+    contactOptional: 'Las solicitudes de revisión técnica usan un consentimiento de contacto separado. El marketing sigue siendo opcional.',
     methodTitle: 'Motor de reglas versionado',
     limitsTitle: 'Limites del diagnostico',
     versions: 'Versiones'
@@ -1000,6 +1004,8 @@ const WORKFLOW_ADVISOR_STATIC_LABELS = {
     toolBody: 'L experience navigateur calcule d abord le resultat localement. Les reponses ne sont envoyees a AquaVerify Cloud que si la recherche ou le contact est choisi explicitement.',
     sectorsTitle: 'Couverture sectorielle',
     privacyTitle: 'Modele de consentement et confidentialite',
+    researchOptional: 'Après le résultat, le visiteur peut partager des réponses pseudonymisées afin d améliorer les statistiques agrégées du diagnostic.',
+    contactOptional: 'Les demandes de revue technique utilisent un consentement de contact séparé. Le marketing reste optionnel.',
     methodTitle: 'Moteur de regles versionne',
     limitsTitle: 'Limites du diagnostic',
     versions: 'Versions'
@@ -1010,6 +1016,8 @@ const WORKFLOW_ADVISOR_STATIC_LABELS = {
     toolBody: 'L esperienza nel browser calcola prima il risultato in locale. Le risposte vengono inviate ad AquaVerify Cloud solo se ricerca o contatto sono selezionati esplicitamente.',
     sectorsTitle: 'Copertura per settore',
     privacyTitle: 'Modello di consenso e privacy',
+    researchOptional: 'Dopo il risultato, il visitatore può condividere risposte pseudonimizzate per migliorare statistiche aggregate della valutazione.',
+    contactOptional: 'Le richieste di revisione tecnica usano un consenso di contatto separato. Il marketing resta opzionale.',
     methodTitle: 'Motore di regole versionato',
     limitsTitle: 'Limiti della valutazione',
     versions: 'Versioni'
@@ -1020,6 +1028,8 @@ const WORKFLOW_ADVISOR_STATIC_LABELS = {
     toolBody: 'L experiencia del navegador calcula primer el resultat en local. Les respostes nomes s envien a AquaVerify Cloud si es tria recerca o contacte de manera explicita.',
     sectorsTitle: 'Cobertura per sector',
     privacyTitle: 'Model de consentiment i privacitat',
+    researchOptional: 'Després del resultat, el visitant pot compartir respostes seudonimitzades per millorar estadístiques agregades del diagnòstic.',
+    contactOptional: 'Les sol·licituds de revisió tècnica utilitzen un consentiment de contacte separat. El màrqueting continua sent opcional.',
     methodTitle: 'Motor de regles versionat',
     limitsTitle: 'Limits del diagnostic',
     versions: 'Versions'
@@ -1065,9 +1075,9 @@ function renderWorkflowAdvisorDetails(page, content, lang) {
     '      </section>',
     '      <section>',
     `        <h2>${escapeHtml(labels.privacyTitle)}</h2>`,
-    `        <p>${escapeHtml(content.privacyConsent || '')}</p>`,
-    `        <p>${escapeHtml(content.contactConsent || '')}</p>`,
-    `        <p>${escapeHtml(content.marketingConsent || '')}</p>`,
+    `        <p>${escapeHtml(content.localModeNote || labels.toolBody)}</p>`,
+    `        <p>${escapeHtml(labels.researchOptional)}</p>`,
+    `        <p>${escapeHtml(labels.contactOptional)}</p>`,
     '      </section>',
     '      <section>',
     `        <h2>${escapeHtml(labels.methodTitle)}</h2>`,
