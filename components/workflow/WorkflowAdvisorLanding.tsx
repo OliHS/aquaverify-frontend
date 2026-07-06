@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle2, Download, Printer, ShieldCheck, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Language } from '../../utils/translations';
@@ -28,23 +28,31 @@ const API_BASE = (import.meta.env.VITE_PLATFORM_URL || 'https://app.aquaverify.c
 const UI = {
   en: {
     progress: 'Step',
+    progressAria: 'Progreso del diagnóstico',
     context: 'Context',
     workflow: 'Workflow',
     analytical: 'Analytical context',
     result: 'Result',
+    resultTitle: 'Assessment result',
     back: 'Back',
     next: 'Next',
     calculate: 'Calculate result',
     print: 'Print',
     download: 'Download summary',
-    downloadPdf: 'Download PDF report',
+    downloadPdf: 'Print / save PDF',
     printReport: 'Print report',
     shareResult: 'Share result to improve the assessment',
     requestTechnicalReview: 'Request technical review',
-    shareTitle: 'Share result to improve the assessment',
-    shareText: 'AquaVerify will store your answers without contact details to produce aggregated statistics by sector, problem and workflow maturity. We will not store name, email, phone or company with this option.',
-    shareSubmit: 'Share result',
+    shareTitle: 'Before downloading the report',
+    shareText: 'You can download the report without sharing your answers. If you want to help improve the assessment, AquaVerify can store your answers without contact details and in pseudonymised form to produce aggregated statistics by sector, problem and workflow maturity.',
+    shareSubmit: 'Share and download',
+    downloadWithoutSharing: 'Download without sharing',
+    shareAndDownload: 'Share and download',
+    shareCheckbox: 'I allow AquaVerify to store these answers in pseudonymised form for aggregated statistics and assessment improvement.',
+    shareError: 'The result could not be shared. You can still download without sharing.',
     cancel: 'Cancel',
+    requiredError: 'Please complete this field before continuing.',
+    countryCodeError: 'Use a two-letter country code.',
     contactTitle: 'Optional contact request',
     submitContact: 'Request contact',
     saved: 'Result shared. Keep this delete token if you may want to delete the record later:',
@@ -58,23 +66,31 @@ const UI = {
   },
   es: {
     progress: 'Paso',
+    progressAria: 'Progreso del diagnóstico',
     context: 'Contexto',
     workflow: 'Flujo',
     analytical: 'Contexto analítico',
     result: 'Resultado',
+    resultTitle: 'Resultado del diagnóstico',
     back: 'Volver',
     next: 'Siguiente',
     calculate: 'Calcular resultado',
     print: 'Imprimir',
     download: 'Descargar resumen',
-    downloadPdf: 'Descargar informe PDF',
+    downloadPdf: 'Imprimir / guardar PDF',
     printReport: 'Imprimir informe',
     shareResult: 'Compartir resultado para mejorar el diagnóstico',
     requestTechnicalReview: 'Solicitar revisión técnica',
-    shareTitle: 'Compartir resultado para mejorar el diagnóstico',
-    shareText: 'AquaVerify guardará tus respuestas sin datos de contacto para elaborar estadísticas agregadas por sector, problema y madurez del flujo. No guardaremos nombre, email, teléfono ni empresa en esta opción.',
-    shareSubmit: 'Compartir resultado',
+    shareTitle: 'Antes de descargar el informe',
+    shareText: 'Puedes descargar el informe sin compartir tus respuestas. Si quieres ayudar a mejorar el diagnóstico, AquaVerify puede guardar tus respuestas sin datos de contacto y de forma seudonimizada para elaborar estadísticas agregadas por sector, problema y madurez del flujo.',
+    shareSubmit: 'Compartir y descargar',
+    downloadWithoutSharing: 'Descargar sin compartir',
+    shareAndDownload: 'Compartir y descargar',
+    shareCheckbox: 'Permito que AquaVerify guarde estas respuestas de forma seudonimizada para estadísticas agregadas y mejora del diagnóstico.',
+    shareError: 'No se ha podido compartir el resultado. Puedes descargar sin compartir.',
     cancel: 'Cancelar',
+    requiredError: 'Completa este campo antes de continuar.',
+    countryCodeError: 'Usa un código de país de dos letras.',
     contactTitle: 'Solicitud de revisión técnica',
     submitContact: 'Solicitar revisión técnica',
     saved: 'Resultado compartido. Conserva este token de borrado si quieres eliminar el registro más adelante:',
@@ -87,24 +103,32 @@ const UI = {
     technicalReview: 'Necesita revisión técnica'
   },
   fr: {
-    progress: 'Etape',
+    progress: 'Étape',
+    progressAria: 'Progreso del diagnóstico',
     context: 'Contexte',
     workflow: 'Flux',
     analytical: 'Contexte analytique',
-    result: 'Resultat',
+    result: 'Résultat',
+    resultTitle: 'Résultat du diagnostic',
     back: 'Retour',
     next: 'Suivant',
-    calculate: 'Calculer le resultat',
+    calculate: 'Calculer le résultat',
     print: 'Imprimer',
-    download: 'Telecharger resume',
-    downloadPdf: 'Télécharger le rapport PDF',
+    download: 'Télécharger le résumé',
+    downloadPdf: 'Imprimer / enregistrer PDF',
     printReport: 'Imprimer le rapport',
     shareResult: 'Partager le résultat pour améliorer le diagnostic',
     requestTechnicalReview: 'Demander une revue technique',
-    shareTitle: 'Partager le résultat pour améliorer le diagnostic',
-    shareText: 'AquaVerify conservera vos réponses sans coordonnées afin de produire des statistiques agrégées par secteur, problème et maturité du flux. Nous ne conserverons pas le nom, l email, le téléphone ni l entreprise avec cette option.',
-    shareSubmit: 'Partager le résultat',
+    shareTitle: 'Avant de télécharger le rapport',
+    shareText: 'Vous pouvez télécharger le rapport sans partager vos réponses. Si vous souhaitez contribuer à améliorer le diagnostic, AquaVerify peut conserver vos réponses sans coordonnées et sous forme pseudonymisée afin de produire des statistiques agrégées par secteur, problème et maturité du flux.',
+    shareSubmit: 'Partager et télécharger',
+    downloadWithoutSharing: 'Télécharger sans partager',
+    shareAndDownload: 'Partager et télécharger',
+    shareCheckbox: 'J’autorise AquaVerify à conserver ces réponses sous forme pseudonymisée pour des statistiques agrégées et l’amélioration du diagnostic.',
+    shareError: 'Le résultat n’a pas pu être partagé. Vous pouvez quand même télécharger sans partager.',
     cancel: 'Annuler',
+    requiredError: 'Veuillez compléter ce champ avant de continuer.',
+    countryCodeError: 'Utilisez un code pays à deux lettres.',
     contactTitle: 'Demande de contact optionnelle',
     submitContact: 'Demander une revue technique',
     saved: 'Résultat partagé. Gardez ce jeton de suppression si vous souhaitez supprimer l enregistrement:',
@@ -118,23 +142,31 @@ const UI = {
   },
   it: {
     progress: 'Passo',
+    progressAria: 'Progreso del diagnóstico',
     context: 'Contesto',
     workflow: 'Flusso',
     analytical: 'Contesto analitico',
     result: 'Risultato',
+    resultTitle: 'Risultato della valutazione',
     back: 'Indietro',
     next: 'Avanti',
-    calculate: 'Calcola risultato',
+    calculate: 'Calcola il risultato',
     print: 'Stampa',
     download: 'Scarica sintesi',
-    downloadPdf: 'Scarica il report PDF',
+    downloadPdf: 'Stampa / salva PDF',
     printReport: 'Stampa il report',
     shareResult: 'Condividi il risultato per migliorare la valutazione',
     requestTechnicalReview: 'Richiedi revisione tecnica',
-    shareTitle: 'Condividi il risultato per migliorare la valutazione',
-    shareText: 'AquaVerify salverà le tue risposte senza dati di contatto per elaborare statistiche aggregate per settore, problema e maturità del flusso. Non salveremo nome, email, telefono o azienda con questa opzione.',
-    shareSubmit: 'Condividi il risultato',
+    shareTitle: 'Prima di scaricare il report',
+    shareText: 'Puoi scaricare il report senza condividere le risposte. Se vuoi aiutare a migliorare la valutazione, AquaVerify può salvare le risposte senza dati di contatto e in forma pseudonimizzata per elaborare statistiche aggregate per settore, problema e maturità del flusso.',
+    shareSubmit: 'Condividi e scarica',
+    downloadWithoutSharing: 'Scarica senza condividere',
+    shareAndDownload: 'Condividi e scarica',
+    shareCheckbox: 'Consento ad AquaVerify di salvare queste risposte in forma pseudonimizzata per statistiche aggregate e miglioramento della valutazione.',
+    shareError: 'Non è stato possibile condividere il risultato. Puoi comunque scaricare senza condividere.',
     cancel: 'Annulla',
+    requiredError: 'Completa questo campo prima di continuare.',
+    countryCodeError: 'Usa un codice paese di due lettere.',
     contactTitle: 'Richiesta opzionale di contatto',
     submitContact: 'Richiedi revisione tecnica',
     saved: 'Risultato condiviso. Conserva questo token di cancellazione se vuoi eliminare il record:',
@@ -148,23 +180,31 @@ const UI = {
   },
   ca: {
     progress: 'Pas',
+    progressAria: 'Progreso del diagnóstico',
     context: 'Context',
     workflow: 'Flux',
-    analytical: 'Context analitic',
+    analytical: 'Context analític',
     result: 'Resultat',
+    resultTitle: 'Resultat del diagnòstic',
     back: 'Tornar',
-    next: 'Seguent',
+    next: 'Següent',
     calculate: 'Calcular resultat',
     print: 'Imprimir',
     download: 'Descarregar resum',
-    downloadPdf: 'Descarregar informe PDF',
+    downloadPdf: 'Imprimir / desar PDF',
     printReport: 'Imprimir informe',
     shareResult: 'Compartir el resultat per millorar el diagnòstic',
     requestTechnicalReview: 'Sol·licitar revisió tècnica',
-    shareTitle: 'Compartir el resultat per millorar el diagnòstic',
-    shareText: 'AquaVerify desarà les teves respostes sense dades de contacte per elaborar estadístiques agregades per sector, problema i maduresa del flux. No desarem nom, email, telèfon ni empresa amb aquesta opció.',
-    shareSubmit: 'Compartir el resultat',
+    shareTitle: 'Abans de descarregar l’informe',
+    shareText: 'Pots descarregar l’informe sense compartir les respostes. Si vols ajudar a millorar el diagnòstic, AquaVerify pot desar les respostes sense dades de contacte i de manera pseudonimitzada per elaborar estadístiques agregades per sector, problema i maduresa del flux.',
+    shareSubmit: 'Compartir i descarregar',
+    downloadWithoutSharing: 'Descarregar sense compartir',
+    shareAndDownload: 'Compartir i descarregar',
+    shareCheckbox: 'Permeto que AquaVerify desi aquestes respostes de manera pseudonimitzada per a estadístiques agregades i millora del diagnòstic.',
+    shareError: 'No s’ha pogut compartir el resultat. Pots descarregar sense compartir.',
     cancel: 'Cancel·lar',
+    requiredError: 'Completa aquest camp abans de continuar.',
+    countryCodeError: 'Fes servir un codi de país de dues lletres.',
     contactTitle: 'Sol·licitud de revisió tècnica',
     submitContact: 'Sol·licitar revisió tècnica',
     saved: 'Resultat compartit. Conserva aquest token de supressió si vols eliminar el registre:',
@@ -410,6 +450,177 @@ const FIELD_LABELS = {
   }
 };
 
+const QUESTION_HELP_KEYS = [
+  'sector_id',
+  'country_code',
+  'organization_type',
+  'buyer_role',
+  'site_count_band',
+  'lab_model',
+  'sample_volume_band',
+  'current_systems',
+  'digitised_stages',
+  'priority_problem_ids',
+  'evidence_needs',
+  'implementation_timeline',
+  'preferred_route',
+  'target_groups',
+  'result_type',
+  'intended_use',
+  'method_context',
+  'sample_volume_context',
+  'water_use_context',
+  'laboratory_workflow_needs',
+  'release_decision_context',
+  'facility_assets',
+  'pharma_quality_context',
+  'hospitality_context'
+] as const;
+
+const workflowAdvisorQuestionHelp: Record<Language, Record<typeof QUESTION_HELP_KEYS[number], string>> = {
+  en: {
+    sector_id: 'Select the sector that best describes your operation. This adapts the questions, report language and recommendations.',
+    country_code: 'Enter the main country for the programme. It is not used to geolocate you; it reminds the report that regulatory use must be reviewed by jurisdiction.',
+    organization_type: 'The organization type helps distinguish laboratories, operators, manufacturers, facilities, agriculture, distributors and other B2B models.',
+    buyer_role: 'Select your main function. The report can interpret quality, laboratory, operations, purchasing or leadership priorities differently.',
+    site_count_band: 'Indicate how many sites or locations are involved. This helps estimate operational complexity and coordination needs.',
+    lab_model: 'Indicate whether analysis is internal, external or mixed. This affects custody, review, CoA and coordination considerations.',
+    sample_volume_band: 'Select an approximate sample range. Do not enter sensitive data or real results; we only estimate workflow complexity.',
+    current_systems: 'Mark where requests, samples, results, reports or actions are recorded today. You can select several systems.',
+    digitised_stages: 'Indicate which stages already have digital records. This helps detect gaps between sampling, testing, review, CoA, deviations and inventory.',
+    priority_problem_ids: 'Choose up to three main problems. Prioritising keeps the report useful and avoids generic recommendations.',
+    evidence_needs: 'Select the evidence you need to retain or demonstrate, such as custody, method, batch, review, CoA, audit trail or dashboards.',
+    implementation_timeline: 'Indicate whether you are exploring, preparing an implementation or responding to an urgent need. This does not affect pricing or availability.',
+    preferred_route: 'Indicate how you prefer to move forward: product, software, distributor, OEM, technical review or a combination.',
+    target_groups: 'Select the target organisms or groups. If they are unclear, the report will keep the analytical route as technical review.',
+    result_type: 'Indicate whether you need presence/absence, enumeration or both. This does not automatically select a product.',
+    intended_use: 'Indicate the intended use of the result: internal control, screening, research, audit, regulatory reporting or another context.',
+    method_context: 'Indicate whether a method or reference is already defined. If it is unclear, the report should not close a product recommendation.',
+    sample_volume_context: 'Select the relevant sample volume. If it varies by matrix or method, it should be technically reviewed.',
+    water_use_context: 'Select the water uses that define the programme. This helps align risks, evidence needs and the analytical route.',
+    laboratory_workflow_needs: 'Select the laboratory workflow situations that matter most. This helps the report distinguish service, accreditation and turnaround needs.',
+    release_decision_context: 'Select where water results influence release or hold decisions. This helps separate routine control from batch or sanitation evidence.',
+    facility_assets: 'Select the assets or water systems involved. This helps interpret facility risk, sampling points and coordination needs.',
+    pharma_quality_context: 'Select the quality contexts that apply. This helps keep recommendations aligned with review, data integrity and batch evidence.',
+    hospitality_context: 'Select the hospitality contexts involved. This helps interpret seasonal, multi-site and guest-facing water risk.'
+  },
+  es: {
+    sector_id: 'Selecciona el sector que mejor describe tu operación. Esto adapta las preguntas, el lenguaje del informe y las recomendaciones.',
+    country_code: 'Indica el país principal del programa. No se usa para geolocalizarte; ayuda a recordar que cualquier uso regulatorio debe revisarse por jurisdicción.',
+    organization_type: 'El tipo de organización ayuda a diferenciar laboratorios, operadores, fabricantes, instalaciones, agricultura, distribuidores y otros modelos B2B.',
+    buyer_role: 'Selecciona tu función principal. El informe puede interpretar de forma distinta prioridades de calidad, laboratorio, operaciones, compras o dirección.',
+    site_count_band: 'Indica cuántas sedes o ubicaciones participan. Esto ayuda a estimar complejidad operativa y necesidad de coordinación.',
+    lab_model: 'Indica si el análisis se realiza internamente, externamente o con un modelo mixto. Esto afecta cadena de custodia, revisión, CoA y coordinación.',
+    sample_volume_band: 'Selecciona un rango aproximado de muestras. No introduzcas datos sensibles ni resultados reales; solo necesitamos estimar complejidad del flujo.',
+    current_systems: 'Marca dónde se registran hoy solicitudes, muestras, resultados, informes o acciones. Puedes seleccionar varios sistemas.',
+    digitised_stages: 'Indica qué etapas ya tienen registro digital. Esto ayuda a detectar huecos entre muestreo, ensayo, revisión, CoA, desviaciones e inventario.',
+    priority_problem_ids: 'Elige hasta tres problemas principales. Priorizar ayuda a generar un informe más útil y evita recomendaciones demasiado genéricas.',
+    evidence_needs: 'Selecciona qué evidencias necesitas conservar o demostrar. Por ejemplo: cadena de custodia, método, lote, revisión, CoA, audit trail o dashboards.',
+    implementation_timeline: 'Indica si estás explorando, preparando una implantación o respondiendo a una necesidad urgente. No afecta a precios ni disponibilidad.',
+    preferred_route: 'Indica cómo prefieres avanzar: producto, software, distribuidor, OEM, revisión técnica o una combinación.',
+    target_groups: 'Selecciona los organismos o grupos objetivo. Si no están claros, el informe mantendrá la ruta analítica como revisión técnica.',
+    result_type: 'Indica si necesitas presencia/ausencia, enumeración o ambos. Esto no selecciona automáticamente un producto.',
+    intended_use: 'Indica el uso previsto del resultado: control interno, cribado, investigación, auditoría, reporte regulatorio u otro contexto.',
+    method_context: 'Indica si existe un método o referencia definida. Si no está claro, el informe no debe cerrar una recomendación de producto.',
+    sample_volume_context: 'Selecciona el volumen de muestra relevante. Si varía según matriz o método, debe revisarse técnicamente.',
+    water_use_context: 'Selecciona los usos del agua que definen el programa. Esto ayuda a alinear riesgos, evidencias y ruta analítica.',
+    laboratory_workflow_needs: 'Selecciona las situaciones de flujo de laboratorio más importantes. Esto diferencia servicio, acreditación y presión de tiempos.',
+    release_decision_context: 'Selecciona dónde el resultado de agua influye en liberar o retener. Esto separa control rutinario de evidencia de lote o saneamiento.',
+    facility_assets: 'Selecciona los activos o sistemas de agua implicados. Esto ayuda a interpretar riesgo de instalación, puntos de muestreo y coordinación.',
+    pharma_quality_context: 'Selecciona los contextos de calidad aplicables. Esto mantiene las recomendaciones alineadas con revisión, integridad de datos y evidencia de lote.',
+    hospitality_context: 'Selecciona los contextos de hostelería implicados. Esto ayuda a interpretar riesgo estacional, multisitio y de cara al huésped.'
+  },
+  fr: {
+    sector_id: 'Sélectionnez le secteur qui décrit le mieux votre opération. Cela adapte les questions, le langage du rapport et les recommandations.',
+    country_code: 'Indiquez le pays principal du programme. Il ne sert pas à vous géolocaliser; il rappelle que tout usage réglementaire doit être revu par juridiction.',
+    organization_type: 'Le type d’organisation aide à distinguer laboratoires, opérateurs, fabricants, installations, agriculture, distributeurs et autres modèles B2B.',
+    buyer_role: 'Sélectionnez votre fonction principale. Le rapport peut interpréter différemment les priorités qualité, laboratoire, opérations, achats ou direction.',
+    site_count_band: 'Indiquez combien de sites ou lieux participent. Cela aide à estimer la complexité opérationnelle et le besoin de coordination.',
+    lab_model: 'Indiquez si l’analyse est interne, externe ou mixte. Cela influence la chaîne de traçabilité, la revue, le CoA et la coordination.',
+    sample_volume_band: 'Sélectionnez une plage approximative d’échantillons. Ne saisissez pas de données sensibles ni de résultats réels; nous estimons seulement la complexité du flux.',
+    current_systems: 'Cochez où les demandes, échantillons, résultats, rapports ou actions sont enregistrés aujourd’hui. Plusieurs systèmes peuvent être sélectionnés.',
+    digitised_stages: 'Indiquez les étapes qui ont déjà un enregistrement numérique. Cela aide à détecter les écarts entre prélèvement, essai, revue, CoA, écarts et inventaire.',
+    priority_problem_ids: 'Choisissez jusqu’à trois problèmes principaux. La priorisation rend le rapport plus utile et évite des recommandations trop génériques.',
+    evidence_needs: 'Sélectionnez les preuves à conserver ou démontrer: chaîne de traçabilité, méthode, lot, revue, CoA, audit trail ou tableaux de bord.',
+    implementation_timeline: 'Indiquez si vous explorez, préparez une mise en œuvre ou répondez à un besoin urgent. Cela n’affecte ni les prix ni la disponibilité.',
+    preferred_route: 'Indiquez comment vous préférez avancer: produit, logiciel, distributeur, OEM, revue technique ou combinaison.',
+    target_groups: 'Sélectionnez les organismes ou groupes cibles. S’ils ne sont pas clairs, le rapport gardera la voie analytique en revue technique.',
+    result_type: 'Indiquez si vous avez besoin de présence/absence, dénombrement ou les deux. Cela ne sélectionne pas automatiquement un produit.',
+    intended_use: 'Indiquez l’usage prévu du résultat: contrôle interne, criblage, recherche, audit, reporting réglementaire ou autre contexte.',
+    method_context: 'Indiquez si une méthode ou référence est définie. Si ce n’est pas clair, le rapport ne doit pas fermer une recommandation produit.',
+    sample_volume_context: 'Sélectionnez le volume d’échantillon pertinent. S’il varie selon matrice ou méthode, il doit être revu techniquement.',
+    water_use_context: 'Sélectionnez les usages de l’eau qui définissent le programme. Cela aide à aligner risques, preuves et voie analytique.',
+    laboratory_workflow_needs: 'Sélectionnez les situations de flux laboratoire les plus importantes. Cela distingue service, accréditation et pression des délais.',
+    release_decision_context: 'Sélectionnez où le résultat d’eau influence une décision de libération ou blocage. Cela sépare contrôle routine et preuve de lot ou assainissement.',
+    facility_assets: 'Sélectionnez les actifs ou systèmes d’eau concernés. Cela aide à interpréter le risque installation, les points de prélèvement et la coordination.',
+    pharma_quality_context: 'Sélectionnez les contextes qualité applicables. Cela garde les recommandations alignées avec revue, intégrité des données et preuve de lot.',
+    hospitality_context: 'Sélectionnez les contextes hôtellerie concernés. Cela aide à interpréter le risque saisonnier, multi-site et visible par les clients.'
+  },
+  it: {
+    sector_id: 'Seleziona il settore che descrive meglio la tua operazione. Questo adatta domande, linguaggio del report e raccomandazioni.',
+    country_code: 'Indica il paese principale del programma. Non viene usato per geolocalizzarti; ricorda che ogni uso regolatorio va rivisto per giurisdizione.',
+    organization_type: 'Il tipo di organizzazione aiuta a distinguere laboratori, operatori, produttori, strutture, agricoltura, distributori e altri modelli B2B.',
+    buyer_role: 'Seleziona la tua funzione principale. Il report può interpretare in modo diverso priorità di qualità, laboratorio, operazioni, acquisti o direzione.',
+    site_count_band: 'Indica quante sedi o ubicazioni partecipano. Questo aiuta a stimare complessità operativa e necessità di coordinamento.',
+    lab_model: 'Indica se l’analisi è interna, esterna o mista. Questo incide su catena di custodia, revisione, CoA e coordinamento.',
+    sample_volume_band: 'Seleziona un intervallo approssimativo di campioni. Non inserire dati sensibili o risultati reali; serve solo a stimare la complessità del flusso.',
+    current_systems: 'Indica dove oggi si registrano richieste, campioni, risultati, report o azioni. Puoi selezionare più sistemi.',
+    digitised_stages: 'Indica quali fasi hanno già una registrazione digitale. Aiuta a individuare vuoti tra campionamento, test, revisione, CoA, deviazioni e inventario.',
+    priority_problem_ids: 'Scegli fino a tre problemi principali. Dare priorità rende il report più utile ed evita raccomandazioni troppo generiche.',
+    evidence_needs: 'Seleziona le evidenze da conservare o dimostrare, ad esempio custodia, metodo, lotto, revisione, CoA, audit trail o dashboard.',
+    implementation_timeline: 'Indica se stai esplorando, preparando un’implementazione o rispondendo a un bisogno urgente. Non incide su prezzi o disponibilità.',
+    preferred_route: 'Indica come preferisci procedere: prodotto, software, distributore, OEM, revisione tecnica o combinazione.',
+    target_groups: 'Seleziona organismi o gruppi target. Se non sono chiari, il report manterrà la rotta analitica come revisione tecnica.',
+    result_type: 'Indica se servono presenza/assenza, enumerazione o entrambi. Questo non seleziona automaticamente un prodotto.',
+    intended_use: 'Indica l’uso previsto del risultato: controllo interno, screening, ricerca, audit, reporting regolatorio o altro contesto.',
+    method_context: 'Indica se esiste un metodo o riferimento definito. Se non è chiaro, il report non deve chiudere una raccomandazione di prodotto.',
+    sample_volume_context: 'Seleziona il volume di campione rilevante. Se varia per matrice o metodo, deve essere rivisto tecnicamente.',
+    water_use_context: 'Seleziona gli usi dell’acqua che definiscono il programma. Aiuta ad allineare rischi, evidenze e rotta analitica.',
+    laboratory_workflow_needs: 'Seleziona le situazioni di flusso laboratorio più importanti. Questo distingue servizio, accreditamento e pressione sui tempi.',
+    release_decision_context: 'Seleziona dove il risultato dell’acqua influenza rilascio o blocco. Questo separa controllo routine da evidenza di lotto o sanificazione.',
+    facility_assets: 'Seleziona asset o sistemi d’acqua coinvolti. Aiuta a interpretare rischio struttura, punti di campionamento e coordinamento.',
+    pharma_quality_context: 'Seleziona i contesti qualità applicabili. Mantiene le raccomandazioni allineate con revisione, integrità dati ed evidenza di lotto.',
+    hospitality_context: 'Seleziona i contesti hospitality coinvolti. Aiuta a interpretare rischio stagionale, multi-sede e visibile agli ospiti.'
+  },
+  ca: {
+    sector_id: 'Selecciona el sector que descriu millor la teva operació. Això adapta les preguntes, el llenguatge de l’informe i les recomanacions.',
+    country_code: 'Indica el país principal del programa. No s’utilitza per geolocalitzar-te; recorda que qualsevol ús regulador s’ha de revisar per jurisdicció.',
+    organization_type: 'El tipus d’organització ajuda a diferenciar laboratoris, operadors, fabricants, instal·lacions, agricultura, distribuïdors i altres models B2B.',
+    buyer_role: 'Selecciona la teva funció principal. L’informe pot interpretar diferent prioritats de qualitat, laboratori, operacions, compres o direcció.',
+    site_count_band: 'Indica quantes seus o ubicacions participen. Això ajuda a estimar complexitat operativa i necessitat de coordinació.',
+    lab_model: 'Indica si l’anàlisi es fa internament, externament o amb un model mixt. Això afecta cadena de custòdia, revisió, CoA i coordinació.',
+    sample_volume_band: 'Selecciona un rang aproximat de mostres. No introdueixis dades sensibles ni resultats reals; només estimem la complexitat del flux.',
+    current_systems: 'Marca on es registren avui sol·licituds, mostres, resultats, informes o accions. Pots seleccionar diversos sistemes.',
+    digitised_stages: 'Indica quines etapes ja tenen registre digital. Això ajuda a detectar buits entre mostreig, assaig, revisió, CoA, desviacions i inventari.',
+    priority_problem_ids: 'Tria fins a tres problemes principals. Prioritzar ajuda a generar un informe més útil i evita recomanacions massa genèriques.',
+    evidence_needs: 'Selecciona quines evidències necessites conservar o demostrar, com cadena de custòdia, mètode, lot, revisió, CoA, audit trail o dashboards.',
+    implementation_timeline: 'Indica si estàs explorant, preparant una implantació o responent a una necessitat urgent. No afecta preus ni disponibilitat.',
+    preferred_route: 'Indica com prefereixes avançar: producte, software, distribuïdor, OEM, revisió tècnica o una combinació.',
+    target_groups: 'Selecciona els organismes o grups objectiu. Si no són clars, l’informe mantindrà la ruta analítica com a revisió tècnica.',
+    result_type: 'Indica si necessites presència/absència, enumeració o totes dues. Això no selecciona automàticament un producte.',
+    intended_use: 'Indica l’ús previst del resultat: control intern, cribratge, investigació, auditoria, informe regulador o un altre context.',
+    method_context: 'Indica si existeix un mètode o referència definida. Si no és clar, l’informe no ha de tancar una recomanació de producte.',
+    sample_volume_context: 'Selecciona el volum de mostra rellevant. Si varia segons matriu o mètode, s’ha de revisar tècnicament.',
+    water_use_context: 'Selecciona els usos de l’aigua que defineixen el programa. Això ajuda a alinear riscos, evidències i ruta analítica.',
+    laboratory_workflow_needs: 'Selecciona les situacions de flux de laboratori més importants. Això diferencia servei, acreditació i pressió de terminis.',
+    release_decision_context: 'Selecciona on el resultat d’aigua influeix en alliberar o retenir. Això separa control rutinari d’evidència de lot o sanejament.',
+    facility_assets: 'Selecciona els actius o sistemes d’aigua implicats. Això ajuda a interpretar risc d’instal·lació, punts de mostreig i coordinació.',
+    pharma_quality_context: 'Selecciona els contextos de qualitat aplicables. Això manté les recomanacions alineades amb revisió, integritat de dades i evidència de lot.',
+    hospitality_context: 'Selecciona els contextos d’hostaleria implicats. Això ajuda a interpretar risc estacional, multiseu i visible per als hostes.'
+  }
+};
+
+const STEP_FIELDS = [
+  ['sector_id', 'country_code', 'organization_type', 'buyer_role'],
+  ['site_count_band', 'lab_model', 'sample_volume_band', 'current_systems', 'digitised_stages', 'priority_problem_ids', 'evidence_needs'],
+  ['implementation_timeline', 'preferred_route', 'target_groups', 'result_type', 'intended_use', 'method_context', 'sample_volume_context'],
+  []
+] as const;
+
+function questionHelp(id: string, lang: Language) {
+  return workflowAdvisorQuestionHelp[lang][id as typeof QUESTION_HELP_KEYS[number]];
+}
+
 function optionLabel(id: string, lang: Language) {
   if (sectors.includes(id)) return getSectorLabel(id, lang);
   return OPTION_LABELS[id]?.[lang] || OPTION_LABELS[id]?.en || id.replace(/[_-]+/g, ' ');
@@ -513,25 +724,39 @@ function printWorkflowReport() {
   window.setTimeout(() => document.body.classList.remove('workflow-report-print-mode'), 500);
 }
 
-const SelectField = ({ id, value, options, lang, onChange }: any) => (
-  <label className="block">
+function prefersReducedMotion() {
+  return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function isAnswerEmpty(value: Answers[string]) {
+  if (Array.isArray(value)) return value.length === 0;
+  return value === null || value === undefined || value === '';
+}
+
+const SelectField = ({ id, value, options, lang, onChange, help, error }: any) => (
+  <label className="block" data-question-id={id}>
     <span className="text-sm font-black text-slate-800">{fieldLabel(id, lang)}</span>
+    {help ? <span id={`${id}-help`} className="mt-1 block text-xs font-semibold leading-5 text-slate-500">{help}</span> : null}
     <select
       value={value || ''}
       onChange={(event) => onChange(event.target.value)}
-      className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-3 text-sm outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100"
+      aria-describedby={`${id}-help${error ? ` ${id}-error` : ''}`}
+      aria-invalid={error ? 'true' : undefined}
+      className={`mt-2 w-full rounded-xl border bg-white px-3 py-3 text-sm outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100 ${error ? 'border-red-300' : 'border-slate-200'}`}
     >
       <option value="">-</option>
       {options.map((option: string) => (
         <option key={option} value={option}>{optionLabel(option, lang)}</option>
       ))}
     </select>
+    {error ? <span id={`${id}-error`} tabIndex={-1} className="mt-2 block text-xs font-black text-red-700">{error}</span> : null}
   </label>
 );
 
-const MultiField = ({ id, values, options, lang, onToggle, optionLabels }: any) => (
-  <fieldset>
+const MultiField = ({ id, values, options, lang, onToggle, optionLabels, help, error }: any) => (
+  <fieldset data-question-id={id} aria-describedby={`${id}-help${error ? ` ${id}-error` : ''}`} aria-invalid={error ? 'true' : undefined}>
     <legend className="text-sm font-black text-slate-800">{fieldLabel(id, lang)}</legend>
+    {help ? <p id={`${id}-help`} className="mt-1 text-xs font-semibold leading-5 text-slate-500">{help}</p> : null}
     <div className="mt-2 grid gap-2 sm:grid-cols-2">
       {options.map((option: string) => {
         const selected = values.includes(option);
@@ -548,6 +773,7 @@ const MultiField = ({ id, values, options, lang, onToggle, optionLabels }: any) 
         );
       })}
     </div>
+    {error ? <p id={`${id}-error`} tabIndex={-1} className="mt-2 text-xs font-black text-red-700">{error}</p> : null}
   </fieldset>
 );
 
@@ -735,14 +961,22 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   const copy = UI[pageLang] || UI.en;
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>(() => getInitialAnswers(pageLang));
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [result, setResult] = useState<WorkflowAssessmentResult | null>(null);
   const [researchConsent, setResearchConsent] = useState(false);
   const [contactConsent, setContactConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
-  const [isResearchModalOpen, setIsResearchModalOpen] = useState(false);
+  const [isPdfModalOpen, setIsPdfModalOpen] = useState(false);
+  const [pdfModalError, setPdfModalError] = useState('');
   const [saveMessage, setSaveMessage] = useState('');
   const [publicId, setPublicId] = useState('');
   const [contact, setContact] = useState({ name: '', email: '', company: '', countryCode: '', buyerRole: '', phone: '', requestType: 'technical_review', comment: '' });
+  const questionnaireTopRef = useRef<HTMLElement | null>(null);
+  const resultTopRef = useRef<HTMLDivElement | null>(null);
+  const stepHeadingRef = useRef<HTMLHeadingElement | null>(null);
+  const resultHeadingRef = useRef<HTMLHeadingElement | null>(null);
+  const downloadButtonRef = useRef<HTMLButtonElement | null>(null);
+  const modalRef = useRef<HTMLDivElement | null>(null);
   const sectorId = String(answers.sector_id || 'water-testing-labs');
   const buyerProblems = getIndustryBuyerProblems(sectorId, pageLang);
   const buyerProblemLabels = Object.fromEntries((buyerProblems?.problems || []).map((problem: any) => [problem.id, problem.question]));
@@ -771,15 +1005,83 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   }, [answers, pageLang, result]);
 
   const setAnswer = (questionId: string, value: any) => {
+    setErrors((current) => {
+      if (!current[questionId]) return current;
+      const next = { ...current };
+      delete next[questionId];
+      return next;
+    });
     setAnswers((current) => ({ ...current, [questionId]: value }));
   };
 
-  const calculate = () => {
+  const scrollAndFocus = useCallback((target: HTMLElement | null, focusTarget?: HTMLElement | null) => {
+    if (!target) return;
+    target.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+    window.setTimeout(() => (focusTarget || target).focus({ preventScroll: true }), prefersReducedMotion() ? 0 : 160);
+  }, []);
+
+  const focusFirstError = useCallback((fieldId: string) => {
+    const wrapper = document.querySelector<HTMLElement>(`[data-question-id="${fieldId}"]`);
+    if (!wrapper) return;
+    const error = wrapper.querySelector<HTMLElement>(`#${fieldId}-error`);
+    const focusable = wrapper.querySelector<HTMLElement>('select, input, textarea, button, [tabindex]:not([tabindex="-1"])');
+    wrapper.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
+    window.setTimeout(() => (focusable || error || wrapper).focus({ preventScroll: true }), prefersReducedMotion() ? 0 : 160);
+  }, []);
+
+  const stepFields = useCallback((stepIndex: number) => {
+    const fields = [...(STEP_FIELDS[stepIndex] || [])] as string[];
+    if (stepIndex === 2) fields.push(sectorSpecificQuestion);
+    return fields;
+  }, [sectorSpecificQuestion]);
+
+  const validateCurrentStep = useCallback((stepIndex: number) => {
+    const nextErrors: Record<string, string> = {};
+    for (const fieldId of stepFields(stepIndex)) {
+      if (isAnswerEmpty(answers[fieldId])) {
+        nextErrors[fieldId] = copy.requiredError;
+      }
+      if (fieldId === 'country_code' && String(answers.country_code || '').trim().length > 0 && !/^[A-Z]{2}$/i.test(String(answers.country_code))) {
+        nextErrors[fieldId] = copy.countryCodeError;
+      }
+    }
+    setErrors(nextErrors);
+    const firstError = Object.keys(nextErrors)[0];
+    if (firstError) {
+      focusFirstError(firstError);
+      return false;
+    }
+    return true;
+  }, [answers, copy.countryCodeError, copy.requiredError, focusFirstError, stepFields]);
+
+  const goToStep = useCallback((nextStep: number) => {
+    setStep(nextStep);
+    window.setTimeout(() => {
+      const focusTarget = nextStep === 3 ? resultHeadingRef.current || stepHeadingRef.current : stepHeadingRef.current;
+      scrollAndFocus(nextStep === 3 ? resultTopRef.current || questionnaireTopRef.current : questionnaireTopRef.current, focusTarget);
+    }, 40);
+  }, [scrollAndFocus]);
+
+  const calculate = useCallback(() => {
     const input = buildInput(pageLang, answers);
     const next = assessWorkflow(input);
     setResult(next);
-    setStep(3);
-    window.setTimeout(() => document.getElementById('workflow-result')?.focus(), 80);
+    goToStep(3);
+  }, [answers, goToStep, pageLang]);
+
+  const handleNext = () => {
+    if (!validateCurrentStep(step)) return;
+    goToStep(Math.min(3, step + 1));
+  };
+
+  const handleBack = () => {
+    setErrors({});
+    goToStep(Math.max(0, step - 1));
+  };
+
+  const handleCalculate = () => {
+    if (!validateCurrentStep(2)) return;
+    calculate();
   };
 
   const saveAssessment = async (purpose: 'research' | 'contact') => {
@@ -819,17 +1121,32 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
     }
   };
 
-  const openResearchModal = () => {
+  const closePdfModal = useCallback(() => {
+    setIsPdfModalOpen(false);
+    setPdfModalError('');
     setResearchConsent(false);
-    setIsResearchModalOpen(true);
+    window.setTimeout(() => downloadButtonRef.current?.focus({ preventScroll: true }), 40);
+  }, []);
+
+  const openPdfModal = () => {
+    setPdfModalError('');
+    setResearchConsent(false);
+    setIsPdfModalOpen(true);
   };
 
-  const saveResearchAssessment = async () => {
+  const downloadWithoutSharing = () => {
+    closePdfModal();
+    window.setTimeout(printWorkflowReport, 60);
+  };
+
+  const shareAndDownload = async () => {
     if (!researchConsent) return;
     const id = await saveAssessment('research');
     if (id) {
-      setResearchConsent(false);
-      setIsResearchModalOpen(false);
+      closePdfModal();
+      window.setTimeout(printWorkflowReport, 60);
+    } else {
+      setPdfModalError(copy.shareError);
     }
   };
 
@@ -850,6 +1167,35 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
       setSaveMessage(copy.storageDisabled);
     }
   };
+
+  useEffect(() => {
+    if (!isPdfModalOpen) return;
+    const modal = modalRef.current;
+    const focusableSelector = 'button:not([disabled]), input:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])';
+    const focusFirst = () => modal?.querySelector<HTMLElement>(focusableSelector)?.focus();
+    window.setTimeout(focusFirst, 40);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        closePdfModal();
+        return;
+      }
+      if (event.key !== 'Tab' || !modal) return;
+      const focusable = Array.from(modal.querySelectorAll<HTMLElement>(focusableSelector));
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [closePdfModal, isPdfModalOpen]);
 
   return (
     <main className="bg-slate-50 text-slate-900">
@@ -905,81 +1251,104 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
       </section>
 
       <section id="workflow-advisor-tool" className="workflow-advisor-form scroll-mt-24 py-14">
-        <div className="container mx-auto px-6">
-          <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
-            <aside className="no-print lg:sticky lg:top-28 lg:self-start">
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-                {[copy.context, copy.workflow, copy.analytical, copy.result].map((label, index) => (
-                  <button
-                    key={label}
-                    type="button"
-                    onClick={() => setStep(index)}
-                    className={`flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-black ${step === index ? 'bg-cyan-50 text-cyan-800' : 'text-slate-500 hover:bg-slate-50'}`}
-                  >
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full border border-current text-xs">{index + 1}</span>
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </aside>
+        <div className="container mx-auto max-w-6xl px-6">
+          <div className="workflow-advisor-shell space-y-5">
+            <nav aria-label="Progreso del diagnóstico" className="workflow-advisor-stepper no-print sticky top-20 z-30 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+              <ol className="grid gap-2 sm:grid-cols-4">
+                {[copy.context, copy.workflow, copy.analytical, copy.result].map((label, index) => {
+                  const isCurrent = step === index;
+                  const isComplete = index < step || (index === 3 && !!result);
+                  const isEnabled = index <= step || (index === 3 && !!result);
+                  return (
+                    <li key={label}>
+                      <button
+                        type="button"
+                        disabled={!isEnabled}
+                        aria-current={isCurrent ? 'step' : undefined}
+                        aria-disabled={!isEnabled ? 'true' : undefined}
+                        onClick={() => {
+                          if (isEnabled) goToStep(index);
+                        }}
+                        className={`flex h-full w-full items-center gap-3 rounded-xl border px-3 py-3 text-left text-sm font-black transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 ${isCurrent ? 'border-cyan-200 bg-cyan-50 text-cyan-800' : isComplete ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-transparent text-slate-500 hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-60'}`}
+                      >
+                        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-current text-xs">{index + 1}</span>
+                        <span>{label}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ol>
+            </nav>
 
-            <div className="workflow-form-panel rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
+            <section ref={questionnaireTopRef} className="workflow-questionnaire-panel workflow-form-panel scroll-mt-32 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
               <p className="no-print text-xs font-black uppercase tracking-[0.16em] text-cyan-700">{copy.progress} {step + 1} / 4</p>
+              <h2 ref={stepHeadingRef} tabIndex={-1} className="mt-2 text-2xl font-black text-slate-950 outline-none">
+                {[copy.context, copy.workflow, copy.analytical, copy.result][step]}
+              </h2>
 
               {step === 0 && (
                 <div className="mt-5 grid gap-5 md:grid-cols-2">
-                  <SelectField id="sector_id" lang={pageLang} value={answers.sector_id} options={sectors} onChange={(value: string) => setAnswer('sector_id', value)} />
-                  <label className="block">
+                  <SelectField id="sector_id" lang={pageLang} value={answers.sector_id} options={sectors} help={questionHelp('sector_id', pageLang)} error={errors.sector_id} onChange={(value: string) => setAnswer('sector_id', value)} />
+                  <label className="block" data-question-id="country_code">
                     <span className="text-sm font-black text-slate-800">{fieldLabel('country_code', pageLang)}</span>
-                    <input value={String(answers.country_code || '')} onChange={(event) => setAnswer('country_code', event.target.value.toUpperCase().slice(0, 2))} className="mt-2 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm uppercase outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" placeholder="ES" />
+                    <span id="country_code-help" className="mt-1 block text-xs font-semibold leading-5 text-slate-500">{questionHelp('country_code', pageLang)}</span>
+                    <input
+                      value={String(answers.country_code || '')}
+                      onChange={(event) => setAnswer('country_code', event.target.value.toUpperCase().slice(0, 2))}
+                      aria-describedby={`country_code-help${errors.country_code ? ' country_code-error' : ''}`}
+                      aria-invalid={errors.country_code ? 'true' : undefined}
+                      className={`mt-2 w-full rounded-xl border px-3 py-3 text-sm uppercase outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100 ${errors.country_code ? 'border-red-300' : 'border-slate-200'}`}
+                      placeholder="ES"
+                    />
+                    {errors.country_code ? <span id="country_code-error" tabIndex={-1} className="mt-2 block text-xs font-black text-red-700">{errors.country_code}</span> : null}
                   </label>
-                  <SelectField id="organization_type" lang={pageLang} value={answers.organization_type} options={questionnaire.singleChoiceOptions.organization_type} onChange={(value: string) => setAnswer('organization_type', value)} />
-                  <SelectField id="buyer_role" lang={pageLang} value={answers.buyer_role} options={questionnaire.singleChoiceOptions.buyer_role} onChange={(value: string) => setAnswer('buyer_role', value)} />
+                  <SelectField id="organization_type" lang={pageLang} value={answers.organization_type} options={questionnaire.singleChoiceOptions.organization_type} help={questionHelp('organization_type', pageLang)} error={errors.organization_type} onChange={(value: string) => setAnswer('organization_type', value)} />
+                  <SelectField id="buyer_role" lang={pageLang} value={answers.buyer_role} options={questionnaire.singleChoiceOptions.buyer_role} help={questionHelp('buyer_role', pageLang)} error={errors.buyer_role} onChange={(value: string) => setAnswer('buyer_role', value)} />
                 </div>
               )}
 
               {step === 1 && (
                 <div className="mt-5 grid gap-6">
                   <div className="grid gap-5 md:grid-cols-3">
-                    <SelectField id="site_count_band" lang={pageLang} value={answers.site_count_band} options={questionnaire.singleChoiceOptions.site_count_band} onChange={(value: string) => setAnswer('site_count_band', value)} />
-                    <SelectField id="lab_model" lang={pageLang} value={answers.lab_model} options={questionnaire.singleChoiceOptions.lab_model} onChange={(value: string) => setAnswer('lab_model', value)} />
-                    <SelectField id="sample_volume_band" lang={pageLang} value={answers.sample_volume_band} options={questionnaire.singleChoiceOptions.sample_volume_band} onChange={(value: string) => setAnswer('sample_volume_band', value)} />
+                    <SelectField id="site_count_band" lang={pageLang} value={answers.site_count_band} options={questionnaire.singleChoiceOptions.site_count_band} help={questionHelp('site_count_band', pageLang)} error={errors.site_count_band} onChange={(value: string) => setAnswer('site_count_band', value)} />
+                    <SelectField id="lab_model" lang={pageLang} value={answers.lab_model} options={questionnaire.singleChoiceOptions.lab_model} help={questionHelp('lab_model', pageLang)} error={errors.lab_model} onChange={(value: string) => setAnswer('lab_model', value)} />
+                    <SelectField id="sample_volume_band" lang={pageLang} value={answers.sample_volume_band} options={questionnaire.singleChoiceOptions.sample_volume_band} help={questionHelp('sample_volume_band', pageLang)} error={errors.sample_volume_band} onChange={(value: string) => setAnswer('sample_volume_band', value)} />
                   </div>
-                  <MultiField id="current_systems" lang={pageLang} values={answers.current_systems || []} options={questionnaire.multiChoiceOptions.current_systems} onToggle={(option: string) => setAnswer('current_systems', toggleMulti(answers, 'current_systems', option))} />
-                  <MultiField id="digitised_stages" lang={pageLang} values={answers.digitised_stages || []} options={questionnaire.multiChoiceOptions.digitised_stages} onToggle={(option: string) => setAnswer('digitised_stages', toggleMulti(answers, 'digitised_stages', option))} />
-                  <MultiField id="priority_problem_ids" lang={pageLang} values={answers.priority_problem_ids || []} options={priorityOptions} optionLabels={buyerProblemLabels} onToggle={(option: string) => setAnswer('priority_problem_ids', toggleMulti(answers, 'priority_problem_ids', option))} />
-                  <MultiField id="evidence_needs" lang={pageLang} values={answers.evidence_needs || []} options={questionnaire.multiChoiceOptions.evidence_needs} onToggle={(option: string) => setAnswer('evidence_needs', toggleMulti(answers, 'evidence_needs', option))} />
+                  <MultiField id="current_systems" lang={pageLang} values={answers.current_systems || []} options={questionnaire.multiChoiceOptions.current_systems} help={questionHelp('current_systems', pageLang)} error={errors.current_systems} onToggle={(option: string) => setAnswer('current_systems', toggleMulti(answers, 'current_systems', option))} />
+                  <MultiField id="digitised_stages" lang={pageLang} values={answers.digitised_stages || []} options={questionnaire.multiChoiceOptions.digitised_stages} help={questionHelp('digitised_stages', pageLang)} error={errors.digitised_stages} onToggle={(option: string) => setAnswer('digitised_stages', toggleMulti(answers, 'digitised_stages', option))} />
+                  <MultiField id="priority_problem_ids" lang={pageLang} values={answers.priority_problem_ids || []} options={priorityOptions} optionLabels={buyerProblemLabels} help={questionHelp('priority_problem_ids', pageLang)} error={errors.priority_problem_ids} onToggle={(option: string) => setAnswer('priority_problem_ids', toggleMulti(answers, 'priority_problem_ids', option))} />
+                  <MultiField id="evidence_needs" lang={pageLang} values={answers.evidence_needs || []} options={questionnaire.multiChoiceOptions.evidence_needs} help={questionHelp('evidence_needs', pageLang)} error={errors.evidence_needs} onToggle={(option: string) => setAnswer('evidence_needs', toggleMulti(answers, 'evidence_needs', option))} />
                 </div>
               )}
 
               {step === 2 && (
                 <div className="mt-5 grid gap-6">
                   <div className="grid gap-5 md:grid-cols-2">
-                    <SelectField id="implementation_timeline" lang={pageLang} value={answers.implementation_timeline} options={questionnaire.singleChoiceOptions.implementation_timeline} onChange={(value: string) => setAnswer('implementation_timeline', value)} />
-                    <SelectField id="preferred_route" lang={pageLang} value={answers.preferred_route} options={questionnaire.singleChoiceOptions.preferred_route} onChange={(value: string) => setAnswer('preferred_route', value)} />
-                    <SelectField id="result_type" lang={pageLang} value={answers.result_type} options={questionnaire.singleChoiceOptions.result_type} onChange={(value: string) => setAnswer('result_type', value)} />
-                    <SelectField id="intended_use" lang={pageLang} value={answers.intended_use} options={questionnaire.singleChoiceOptions.intended_use} onChange={(value: string) => setAnswer('intended_use', value)} />
-                    <SelectField id="method_context" lang={pageLang} value={answers.method_context} options={questionnaire.singleChoiceOptions.method_context} onChange={(value: string) => setAnswer('method_context', value)} />
-                    <SelectField id="sample_volume_context" lang={pageLang} value={answers.sample_volume_context} options={questionnaire.singleChoiceOptions.sample_volume_context} onChange={(value: string) => setAnswer('sample_volume_context', value)} />
+                    <SelectField id="implementation_timeline" lang={pageLang} value={answers.implementation_timeline} options={questionnaire.singleChoiceOptions.implementation_timeline} help={questionHelp('implementation_timeline', pageLang)} error={errors.implementation_timeline} onChange={(value: string) => setAnswer('implementation_timeline', value)} />
+                    <SelectField id="preferred_route" lang={pageLang} value={answers.preferred_route} options={questionnaire.singleChoiceOptions.preferred_route} help={questionHelp('preferred_route', pageLang)} error={errors.preferred_route} onChange={(value: string) => setAnswer('preferred_route', value)} />
+                    <SelectField id="result_type" lang={pageLang} value={answers.result_type} options={questionnaire.singleChoiceOptions.result_type} help={questionHelp('result_type', pageLang)} error={errors.result_type} onChange={(value: string) => setAnswer('result_type', value)} />
+                    <SelectField id="intended_use" lang={pageLang} value={answers.intended_use} options={questionnaire.singleChoiceOptions.intended_use} help={questionHelp('intended_use', pageLang)} error={errors.intended_use} onChange={(value: string) => setAnswer('intended_use', value)} />
+                    <SelectField id="method_context" lang={pageLang} value={answers.method_context} options={questionnaire.singleChoiceOptions.method_context} help={questionHelp('method_context', pageLang)} error={errors.method_context} onChange={(value: string) => setAnswer('method_context', value)} />
+                    <SelectField id="sample_volume_context" lang={pageLang} value={answers.sample_volume_context} options={questionnaire.singleChoiceOptions.sample_volume_context} help={questionHelp('sample_volume_context', pageLang)} error={errors.sample_volume_context} onChange={(value: string) => setAnswer('sample_volume_context', value)} />
                   </div>
-                  <MultiField id="target_groups" lang={pageLang} values={answers.target_groups || []} options={questionnaire.multiChoiceOptions.target_groups} onToggle={(option: string) => setAnswer('target_groups', toggleMulti(answers, 'target_groups', option))} />
-                  <MultiField id={sectorSpecificQuestion} lang={pageLang} values={answers[sectorSpecificQuestion] || []} options={questionnaire.sectorQuestionOptions[sectorSpecificQuestion]} onToggle={(option: string) => setAnswer(sectorSpecificQuestion, toggleMulti(answers, sectorSpecificQuestion, option))} />
+                  <MultiField id="target_groups" lang={pageLang} values={answers.target_groups || []} options={questionnaire.multiChoiceOptions.target_groups} help={questionHelp('target_groups', pageLang)} error={errors.target_groups} onToggle={(option: string) => setAnswer('target_groups', toggleMulti(answers, 'target_groups', option))} />
+                  <MultiField id={sectorSpecificQuestion} lang={pageLang} values={answers[sectorSpecificQuestion] || []} options={questionnaire.sectorQuestionOptions[sectorSpecificQuestion]} help={questionHelp(sectorSpecificQuestion, pageLang)} error={errors[sectorSpecificQuestion]} onToggle={(option: string) => setAnswer(sectorSpecificQuestion, toggleMulti(answers, sectorSpecificQuestion, option))} />
                 </div>
               )}
 
               {step === 3 && (
-                <div id="workflow-result" tabIndex={-1} className="mt-5 outline-none">
+                <div id="workflow-result" ref={resultTopRef} tabIndex={-1} className="mt-5 scroll-mt-32 outline-none">
+                  <h2 ref={resultHeadingRef} tabIndex={-1} className="mb-5 text-2xl font-black text-slate-950 outline-none">{copy.resultTitle}</h2>
                   {!result ? (
-                    <button type="button" onClick={calculate} className="rounded-full bg-primary px-5 py-3 text-sm font-black text-white">{copy.calculate}</button>
+                    <button type="button" onClick={handleCalculate} className="rounded-full bg-primary px-5 py-3 text-sm font-black text-white">{copy.calculate}</button>
                   ) : (
                     <div className="space-y-6" aria-live="polite">
                       {reportV2 && <WorkflowReportV2 report={reportV2} />}
 
                       <div className="no-print rounded-2xl border border-slate-200 bg-slate-50 p-4">
                         <div className="flex flex-wrap gap-3">
-                          <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Download className="mr-2 h-4 w-4" />{copy.downloadPdf}</button>
+                          <button ref={downloadButtonRef} type="button" onClick={openPdfModal} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Download className="mr-2 h-4 w-4" />{copy.downloadPdf}</button>
                           <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-slate-700"><Printer className="mr-2 h-4 w-4" />{copy.printReport}</button>
-                          <button type="button" onClick={openResearchModal} className="inline-flex items-center rounded-full border border-emerald-200 bg-white px-4 py-2 text-sm font-black text-emerald-800"><ShieldCheck className="mr-2 h-4 w-4" />{copy.shareResult}</button>
                           <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 bg-white px-4 py-2 text-sm font-black text-cyan-800">{copy.requestTechnicalReview}</button>
                         </div>
                         {reportV2?.pdf?.instructions ? <p className="mt-3 text-xs font-bold leading-5 text-slate-500">{reportV2.pdf.instructions}</p> : null}
@@ -1032,15 +1401,15 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                 </div>
               )}
 
-              {isResearchModalOpen && (
-                <div className="workflow-advisor-research-modal no-print fixed inset-0 z-[110] flex items-end justify-center bg-slate-900/45 px-4 py-6 backdrop-blur-sm sm:items-center" role="dialog" aria-modal="true" aria-labelledby="workflow-research-share-title">
-                  <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl">
+              {isPdfModalOpen && (
+                <div className="workflow-advisor-modal workflow-advisor-research-modal no-print fixed inset-0 z-[110] flex items-end justify-center bg-slate-900/45 px-4 py-6 backdrop-blur-sm sm:items-center" role="dialog" aria-modal="true" aria-labelledby="workflow-pdf-share-title">
+                  <div ref={modalRef} className="w-full max-w-xl rounded-2xl bg-white shadow-2xl">
                     <div className="flex items-start justify-between gap-4 border-b border-slate-100 px-6 py-5">
                       <div>
                         <p className="text-xs font-black uppercase tracking-[0.16em] text-emerald-700">AquaVerify</p>
-                        <h2 id="workflow-research-share-title" className="mt-1 text-xl font-black text-slate-950">{copy.shareTitle}</h2>
+                        <h2 id="workflow-pdf-share-title" className="mt-1 text-xl font-black text-slate-950">{copy.shareTitle}</h2>
                       </div>
-                      <button type="button" onClick={() => setIsResearchModalOpen(false)} className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900" aria-label={copy.cancel}>
+                      <button type="button" onClick={closePdfModal} className="rounded-full p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500" aria-label={copy.cancel}>
                         <X size={18} />
                       </button>
                     </div>
@@ -1048,13 +1417,15 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                       <p className="text-sm leading-7 text-slate-600">{copy.shareText}</p>
                       <label className="flex gap-3 rounded-2xl border border-emerald-100 bg-emerald-50 p-4 text-sm font-bold text-emerald-950">
                         <input type="checkbox" checked={researchConsent} onChange={(event) => setResearchConsent(event.target.checked)} className="mt-1 h-4 w-4 rounded border-emerald-300 text-emerald-700 focus:ring-emerald-500" />
-                        <span>{content.privacyConsent}</span>
+                        <span>{copy.shareCheckbox}</span>
                       </label>
                       <a className="inline-flex text-sm font-bold text-cyan-700 hover:text-cyan-900" href="https://app.aquaverify.com/legal/privacy" target="_blank" rel="noreferrer">{copy.privacyLink}</a>
+                      {pdfModalError ? <p role="alert" className="rounded-xl border border-red-200 bg-red-50 p-3 text-sm font-bold text-red-800">{pdfModalError}</p> : null}
                     </div>
                     <div className="flex flex-col gap-2 border-t border-slate-100 px-6 py-5 sm:flex-row sm:justify-end">
-                      <button type="button" onClick={() => setIsResearchModalOpen(false)} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50">{copy.cancel}</button>
-                      <button type="button" disabled={!researchConsent} onClick={saveResearchAssessment} className="rounded-xl bg-emerald-700 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-800 disabled:cursor-not-allowed disabled:opacity-50">{copy.shareSubmit}</button>
+                      <button type="button" onClick={closePdfModal} className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-black text-slate-700 transition hover:bg-slate-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500">{copy.cancel}</button>
+                      <button type="button" onClick={downloadWithoutSharing} className="rounded-xl border border-cyan-200 bg-white px-4 py-3 text-sm font-black text-cyan-800 transition hover:bg-cyan-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500">{copy.downloadWithoutSharing}</button>
+                      <button type="button" disabled={!researchConsent} onClick={shareAndDownload} className="rounded-xl bg-emerald-700 px-4 py-3 text-sm font-black text-white transition hover:bg-emerald-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-500 disabled:cursor-not-allowed disabled:opacity-50">{copy.shareAndDownload}</button>
                     </div>
                   </div>
                 </div>
@@ -1063,14 +1434,14 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
               {saveMessage && <div className="no-print mt-5 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm font-bold text-slate-700">{saveMessage}</div>}
 
               <div className="no-print mt-8 flex justify-between">
-                <button type="button" disabled={step === 0} onClick={() => setStep((current) => Math.max(0, current - 1))} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black disabled:opacity-40"><ArrowLeft className="mr-2 h-4 w-4" />{copy.back}</button>
+                <button type="button" disabled={step === 0} onClick={handleBack} className="inline-flex items-center rounded-full border border-slate-200 px-4 py-2 text-sm font-black disabled:opacity-40"><ArrowLeft className="mr-2 h-4 w-4" />{copy.back}</button>
                 {step < 2 ? (
-                  <button type="button" onClick={() => setStep((current) => current + 1)} className="inline-flex items-center rounded-full bg-primary px-5 py-2 text-sm font-black text-white">{copy.next}<ArrowRight className="ml-2 h-4 w-4" /></button>
+                  <button type="button" onClick={handleNext} className="inline-flex items-center rounded-full bg-primary px-5 py-2 text-sm font-black text-white">{copy.next}<ArrowRight className="ml-2 h-4 w-4" /></button>
                 ) : step === 2 ? (
-                  <button type="button" onClick={calculate} className="inline-flex items-center rounded-full bg-primary px-5 py-2 text-sm font-black text-white">{copy.calculate}<ArrowRight className="ml-2 h-4 w-4" /></button>
+                  <button type="button" onClick={handleCalculate} className="inline-flex items-center rounded-full bg-primary px-5 py-2 text-sm font-black text-white">{copy.calculate}<ArrowRight className="ml-2 h-4 w-4" /></button>
                 ) : null}
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </section>
@@ -1110,9 +1481,11 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
             max-width: none !important;
           }
           body.workflow-report-print-mode .no-print,
+          body.workflow-report-print-mode .workflow-advisor-stepper,
           body.workflow-report-print-mode .workflow-advisor-landing,
           body.workflow-report-print-mode .workflow-advisor-contact-form,
           body.workflow-report-print-mode .workflow-advisor-consent,
+          body.workflow-report-print-mode .workflow-advisor-modal,
           body.workflow-report-print-mode .workflow-advisor-research-modal,
           body.workflow-report-print-mode .workflow-advisor-faq,
           body.workflow-report-print-mode .workflow-advisor-cookie,
@@ -1121,6 +1494,18 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
           body.workflow-report-print-mode aside,
           body.workflow-report-print-mode header:not(.workflow-report-header),
           body.workflow-report-print-mode footer:not(.workflow-report-footer) {
+            display: none !important;
+          }
+          .no-print,
+          .workflow-advisor-stepper,
+          .workflow-advisor-consent,
+          .workflow-advisor-contact-form,
+          .workflow-advisor-faq,
+          .workflow-advisor-modal,
+          .cookie-banner,
+          nav,
+          header:not(.workflow-report-header),
+          footer:not(.workflow-report-footer) {
             display: none !important;
           }
           body.workflow-report-print-mode main,

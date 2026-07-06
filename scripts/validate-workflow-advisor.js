@@ -134,7 +134,14 @@ function validateSource() {
   assert(component.includes('workflow-report-print'), 'Landing must expose dedicated workflow-report print container');
   assert(component.includes('workflow-report-print-mode'), 'Landing must enable controlled report-only print mode');
   assert(component.includes('workflow-advisor-contact-form'), 'Landing must isolate contact form from report print mode');
+  assert(component.includes('workflow-advisor-stepper'), 'Landing must render the horizontal Workflow Advisor stepper');
+  assert(component.includes('aria-label="Progreso del diagnóstico"'), 'Stepper must expose the required diagnostic progress aria label');
+  assert(component.includes("aria-current={isCurrent ? 'step' : undefined}"), 'Current step must use aria-current="step"');
+  assert(component.includes('workflow-questionnaire-panel workflow-form-panel'), 'Questionnaire must render as a full-width panel');
+  assert(component.includes('container mx-auto max-w-6xl px-6'), 'Questionnaire shell must use the corporate full-width content measure');
+  assert(!component.includes('<aside className="no-print lg:sticky'), 'Workflow Advisor must not use the old left sidebar step navigation');
   assert(component.includes('workflow-advisor-research-modal'), 'Research consent must open in a post-result modal');
+  assert(component.includes('workflow-advisor-modal'), 'PDF sharing choice must open in a modal excluded from print');
   assert(!component.includes('workflow-advisor-consent no-print'), 'Fixed research consent block must not render on the main page');
   assert(component.includes('downloadTechnicalExport'), 'Technical JSON export must be explicit support-only action');
   assert(!component.includes('downloadResult('), 'JSON result download must not be the primary CTA');
@@ -147,14 +154,67 @@ function validateSource() {
   assert(component.includes('saveAssessment') && component.includes('submitContact'), 'Landing must support research save and contact lead flow');
   assert(component.includes("saveAssessment('research')"), 'Research sharing must explicitly call the research save path');
   assert(component.includes("saveAssessment('contact')"), 'Contact requests must explicitly call the contact save path');
+  assert(component.includes('downloadWithoutSharing') && component.includes('shareAndDownload'), 'PDF modal must offer download without sharing and share-and-download actions');
+  assert(component.includes('disabled={!researchConsent}') && component.includes('onClick={shareAndDownload}'), 'Share-and-download must require the explicit research checkbox');
+  assert(component.includes('onClick={downloadWithoutSharing}'), 'Download without sharing must be a separate local action');
+  assert(component.includes('onClick={closePdfModal}'), 'Cancel must close the PDF modal without downloading');
+  assert(component.includes('setPdfModalError(copy.shareError)'), 'Share failures must keep the no-share download path available');
   assert(!component.includes('saveAssessment(false)') && !component.includes('saveAssessment(true)'), 'Save path must not rely on boolean consent mixing');
   assert(component.includes('researchConsent: isResearchSave'), 'Research save must only send research consent for research action');
   assert(component.includes('contactConsent: isContactSave'), 'Contact save must only send contact consent for contact action');
   assert(component.includes('marketingConsent: isContactSave ? marketingConsent : false'), 'Research sharing must not send marketing consent');
+  assert(component.includes('questionnaireTopRef') && component.includes('resultTopRef'), 'Questionnaire and result must have scroll targets');
+  assert(component.includes('scrollIntoView({ behavior: prefersReducedMotion() ?') && component.includes('prefers-reduced-motion'), 'Step changes must scroll while respecting reduced motion');
+  assert(component.includes('focusFirstError') && component.includes('data-question-id'), 'Validation errors must scroll and focus the first invalid question');
+  assert(component.includes('stepHeadingRef') && component.includes('resultHeadingRef'), 'Step and result headings must receive focus after navigation');
+  assert(component.includes('workflowAdvisorQuestionHelp'), 'Question help dictionary is required');
+  [
+    'sector_id',
+    'country_code',
+    'organization_type',
+    'buyer_role',
+    'site_count_band',
+    'lab_model',
+    'sample_volume_band',
+    'current_systems',
+    'digitised_stages',
+    'priority_problem_ids',
+    'evidence_needs',
+    'implementation_timeline',
+    'preferred_route',
+    'target_groups',
+    'result_type',
+    'intended_use',
+    'method_context',
+    'sample_volume_context',
+    'water_use_context',
+    'laboratory_workflow_needs',
+    'release_decision_context',
+    'facility_assets',
+    'pharma_quality_context',
+    'hospitality_context'
+  ].forEach((key) => {
+    assert(component.includes(`'${key}'`) && component.includes(`${key}:`), `Question help missing key ${key}`);
+  });
+  [
+    "downloadWithoutSharing: 'Download without sharing'",
+    "downloadWithoutSharing: 'Descargar sin compartir'",
+    "downloadWithoutSharing: 'Télécharger sans partager'",
+    "downloadWithoutSharing: 'Scarica senza condividere'",
+    "downloadWithoutSharing: 'Descarregar sense compartir'",
+    "shareAndDownload: 'Share and download'",
+    "shareAndDownload: 'Compartir y descargar'",
+    "shareAndDownload: 'Partager et télécharger'",
+    "shareAndDownload: 'Condividi e scarica'",
+    "shareAndDownload: 'Compartir i descarregar'"
+  ].forEach((term) => assert(component.includes(term), `PDF modal localization missing ${term}`));
   assert(component.includes('body.workflow-report-print-mode .workflow-advisor-consent'), 'Print CSS must still hide any legacy research consent block');
+  assert(component.includes('body.workflow-report-print-mode .workflow-advisor-stepper'), 'Print CSS must hide the stepper');
+  assert(component.includes('body.workflow-report-print-mode .workflow-advisor-modal'), 'Print CSS must hide modal surfaces');
   assert(component.includes('body.workflow-report-print-mode .workflow-advisor-contact-form'), 'Print CSS must hide contact form');
   assert(component.includes('body.workflow-report-print-mode .workflow-advisor-cookie'), 'Print CSS must hide cookie surfaces');
   assert(component.includes('body.workflow-report-print-mode .cookie-banner'), 'Print CSS must hide cookie banner');
+  assert(component.includes('.workflow-advisor-modal,') && component.includes('header:not(.workflow-report-header)'), 'Print CSS must include the mandatory no-print selector set');
   assert(component.includes('<main className="bg-slate-50 text-slate-900">'), 'Workflow Advisor main surface must use the light corporate background');
   assert(component.includes('workflow-advisor-landing border-b border-cyan-100'), 'Workflow Advisor hero must use the light corporate hero surface');
   assert(component.includes('Preparando el diagnóstico…') || readText('pages/MarketingRoutePage.tsx').includes('Preparando el diagnóstico…'), 'Workflow Advisor route must have a localized loading shell');
