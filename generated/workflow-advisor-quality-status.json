@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checkedAt": "2026-07-06",
+  "fixtures": [
+    "industrial",
+    "agriculture",
+    "municipal"
+  ],
+  "reportVersion": "workflow-advisor-report-v2"
+}

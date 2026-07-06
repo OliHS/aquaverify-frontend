@@ -28,6 +28,7 @@ import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { HOME_FAQS } from '../utils/homeContent';
 import { EditableText } from './admin/EditableText';
+import { HomeWorkflowAdvisorCta } from './home/HomeWorkflowAdvisorCta';
 
 const ENUMERA_VIDEO = '/videos/enumera-tray-video.mp4';
 const ENUMERA_VIDEO_POSTER = '/images/home/enumera-tray-video-poster.jpg';
@@ -742,6 +743,7 @@ export const HomeEcosystemLanding: React.FC = () => {
               <InternalCta to={getMarketingPagePath('platform', lang)} event="click_home_hero_platform">{copy.ctas.platform}</InternalCta>
               <InternalCta to={getMarketingPagePath('distributors', lang)} event="click_home_hero_distributors">{copy.ctas.distributors}</InternalCta>
             </div>
+            <HomeWorkflowAdvisorCta lang={lang} />
             <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
               {copy.proof.map((item) => (
                 <div key={item.value} className="rounded-2xl border border-slate-200 bg-white/85 p-4 shadow-sm">

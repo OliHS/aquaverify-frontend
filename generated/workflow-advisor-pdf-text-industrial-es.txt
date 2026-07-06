@@ -1,0 +1,122 @@
+--- Extracted page 1 ---
+AquaVerify
+Informe de diagnóstico
+Agua de proceso industrial
+Evaluación orientativa del flujo de control de agua industrial: captación, tratamiento, circuito, activo, proceso, recirculación, refrigeración, limpieza, reutilización, efluente y acción correctiva.
+Fecha
+6 de julio de 2026
+Preparado por
+AquaVerify Workflow Advisor
+
+Resumen ejecutivo
+Este informe interpreta las respuestas como un flujo de Agua de proceso industrial con contexto analítico suficiente para orientar una conversación técnica y alta presión de coordinación.
+El diagnóstico conecta calidad del agua con activos, condiciones de proceso, EHS, mantenimiento y acción correctiva. La decisión sobre agua de proceso se debilita si la muestra no se conecta con activo, circuito y condición operativa. La mejora útil es hacer que la evidencia sea reconstruible antes de cerrar decisiones de producto o vistas de dashboard.
+
+--- Extracted page 2 ---
+Lectura rápida
+Riesgo principal: La decisión sobre agua de proceso se debilita si la muestra no se conecta con activo, circuito y condición operativa.
+Prioridad inmediata: Mapa de circuitos y activos
+Ruta analítica: Ruta analítica pendiente de revisión técnica
+Siguiente paso: Conectar puntos de agua con circuitos y activos.
+Contexto interpretado
+El flujo indicado combina Software propio, Correo electrónico, Hojas de cálculo. Aunque ya existen etapas digitalizadas como Cadena de custodia, Informes CoA, la conexión entre proceso, laboratorio y calidad todavía puede quedar fragmentada cuando intervienen varios puntos críticos, laboratorios externos o decisiones sobre Agua de consumo, Agua de proceso, Agua regenerada.
+Sector: Agua de proceso industrial
+País: ES
+Tipo de organización: Fabricante
+Cargo o función: Calidad
+Sedes: 2 a 5
+Modelo de laboratorio: Mixto
+Volumen de muestras: 50-199 muestras/mes
+Sistemas actuales: Software propio, Correo electrónico, Hojas de cálculo
+Etapas digitalizadas: Cadena de custodia, Informes CoA
+Problemas prioritarios: Conectar proceso, laboratorio y calidad, Controlar puntos críticos de proceso, Coordinar laboratorios externos
+Necesidades de evidencia: Cadena de custodia, Trazabilidad de método, CoA, Audit trail, Desviaciones y CAPA
+Tipo de resultado: Cualitativo y cuantitativo
+Uso previsto: Cribado operativo
+Método: Otra referencia metodológica
+Volumen: 1 mL
+Uso del agua: Agua de consumo, Agua de proceso, Agua regenerada
+Análisis del flujo
+El flujo tiene una base digital parcial porque Cadena de custodia, Informes CoA ya aparecen como etapas digitalizadas. Sin embargo, la convivencia entre Software propio, Correo electrónico, Hojas de cálculo puede dificultar reconstruir una decisión cuando el resultado debe relacionarse con circuito, activo, condición de proceso, laboratorio externo y acción correctiva. La mejora prioritaria es conectar los puntos de agua con activos y circuitos antes de ampliar hacia dashboards.
+Flujo manual fragmentado
+Brecha de custodia y trazabilidad
+Brecha de evidencia documental
+Visibilidad limitada para clientes
+captación
+tratamiento
+circuito
+activo
+
+--- Extracted page 3 ---
+Madurez por dimensiones
+Madurez del flujo. 2/5 Básico. El flujo es básico porque combina varios sistemas de trabajo y todavía puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe. Estandarizar puntos, activos, responsables y SOP de muestreo
+Trazabilidad. 2/5 Básico. La trazabilidad es básica si el resultado no queda unido de forma consistente a activo, circuito, condición operativa, método, lote y acción posterior. Conectar muestra, custodia, método, lote y acción posterior
+Preparación para auditoría. 3/5 Parcialmente estructurado. La evidencia está parcialmente estructurada, pero debe conectar CoA, revisión técnica, acción correctiva y responsable para que una revisión no dependa de correos o documentos aislados. Conectar lectura, revisión técnica y CoA
+Complejidad operativa. 4/5 Estructurado. La complejidad aumenta cuando intervienen varios usos del agua, laboratorios externos, puntos críticos y decisiones de mantenimiento o EHS. Estandarizar puntos, activos, responsables y SOP de muestreo
+Visibilidad para clientes. 1/5 Muy limitado. La visibilidad es limitada si los responsables no pueden consultar estado, resultado, informe o acción por punto, circuito o activo. Mejorar informes, CoA e histórico de evidencia
+Preparación digital. 3/5 Parcialmente estructurado. Existe una base digital, pero debe consolidarse para que el dato no quede dividido entre software propio, correo electrónico y hojas de cálculo. Conectar muestra, custodia, método, lote y acción posterior
+Contexto analítico. 5/5 Avanzado. El contexto analítico requiere revisión cuando el método se declara como otra referencia, el uso previsto es cribado operativo y se combinan varias matrices o usos del agua. Programar revisión técnica del contexto analítico
+
+--- Extracted page 4 ---
+Problemas prioritarios
+Prioridad seleccionada por el usuario. Coordinación entre proceso, laboratorio y calidad. El flujo necesita que cada resultado se interprete junto con el circuito, activo, condición de proceso y criterio de calidad. Si esta relación queda repartida entre software propio, correo electrónico y hojas de cálculo, la decisión puede depender de reconstrucciones manuales.
+Prioridad seleccionada por el usuario. Control de puntos críticos de proceso. Los puntos críticos deben diferenciarse por uso del agua, riesgo operativo, matriz, frecuencia y responsable. Un resultado aislado no explica si la acción afecta a mantenimiento, EHS, producción, reutilización o descarga.
+Prioridad seleccionada por el usuario. Coordinación con laboratorios externos. Cuando participa un laboratorio externo, la solicitud, custodia, método, CoA, revisión y seguimiento deben mantenerse conectados. Esto evita que el informe llegue sin suficiente contexto operativo.
+Alta. Flujo manual fragmentado. El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.
+Alta. Brecha de custodia y trazabilidad. El resultado necesita conservar punto, circuito, activo, operador, fecha, condiciones y estado de la muestra.
+Media. Brecha de evidencia documental. El flujo necesita evidencia documental estructurada para CoA, revisión y conversaciones de auditoría.
+
+--- Extracted page 5 ---
+Plan de mejora
+1. Mapa de circuitos y activos. Conectar puntos de agua con circuitos y activos. Inventariar circuitos Asignar activos Registrar condiciones El contexto operativo queda visible.
+2. Muestra, punto, condición operativa y laboratorio. Conectar muestra y resultado con estado de proceso. Definir punto Registrar condición Revisar modelo de laboratorio El resultado se interpreta según estado operativo.
+3. Desviaciones y acciones correctivas. Documentar desviación, responsable y cierre. Definir estados Asignar acción Registrar evidencia La acción correctiva es trazable.
+4. Reutilización, recirculación o efluente. Añadir evidencia específica cuando aplique. Clasificar uso Definir límites Adjuntar evidencia Las decisiones de reutilización quedan documentadas.
+5. Tendencias por planta, circuito o activo. Usar tendencias cuando el dato base esté conectado. Comparar circuitos Revisar recurrencia Priorizar mantenimiento Mantenimiento y EHS comparten una vista común.
+
+--- Extracted page 6 ---
+Módulos digitales dentro del plan
+Base operativa. Muestreo de campo y custodia. Encaje potencial. Muestreo de campo y custodia ayuda a mantener el flujo reconstruible. El resultado necesita conservar punto, circuito, activo, operador, fecha, condiciones y estado de la muestra. Definir estados mínimos de muestra y SOP de muestreo.
+Base operativa. Gestión de muestras. Encaje potencial. Gestión de muestras ayuda a mantener el flujo reconstruible. El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.
+Base operativa. Inventario y trazabilidad de lotes. Encaje potencial. Inventario y trazabilidad de lotes ayuda a mantener el flujo reconstruible. La trazabilidad de lote, kit, consumible o inventario refuerza el historial de muestra. Definir lotes, consumibles y caducidades antes de depender de esa trazabilidad.
+Evidencia y revisión. Capa de revisión LIMS. Encaje potencial. Capa de revisión LIMS ayuda a mantener el flujo reconstruible. El resultado analítico y la revisión técnica deben quedar conectados en el mismo historial. Definir método, roles, permisos y criterios de revisión.
+Evidencia y revisión. Desviaciones y CAPA. Encaje condicionado. Desviaciones y CAPA ayuda a mantener el flujo reconstruible. El contexto sugiere seguimiento de desviaciones, incidencias o acciones correctivas. Definir desviación, responsable, criterio de cierre y evidencia asociada.
+Evidencia y revisión. CoA y reporting documental. Encaje potencial. CoA y reporting documental ayuda a mantener el flujo reconstruible. El flujo necesita evidencia documental estructurada para CoA, revisión y conversaciones de auditoría. Definir plantilla de informe, estados de revisión y reglas de publicación.
+Escalado. Portal cliente. Encaje potencial. Portal cliente ayuda a mantener el flujo reconstruible. Los responsables necesitan consultar estado, resultado, informe o acción por punto, circuito o activo. Definir quién recibe el CoA o informe y qué información puede consultar.
+
+--- Extracted page 7 ---
+Ruta analítica / productos a evaluar
+Ruta analítica pendiente de revisión técnica
+Revisión técnica necesaria
+Has indicado resultado cualitativo y cuantitativo, volumen de 1 mL, cribado operativo y otra referencia metodológica. También aparecen varios usos de agua: Agua de consumo, Agua de proceso, Agua regenerada. Con esta información no debe cerrarse un producto concreto. Antes de evaluar INDICA, ENUMERA, PLAQUE o kits ISO/EPA deben confirmarse matriz, organismo prioritario, volumen real de muestra, método, país, laboratorio y uso previsto.
+INDICA. No recomendación cerrada. Presencia/ausencia o cribado, sujeto a revisión.
+ENUMERA. No recomendación cerrada. Cuantificación, sujeto a revisión.
+PLAQUE / Kits ISO/EPA. No recomendación cerrada. Referencia o placa, sujeto a revisión.
+Preparar una revisión técnica no sensible con matriz, volumen, método, país, uso previsto y rol del laboratorio.
+
+--- Extracted page 8 ---
+Información que falta
+Método o referencia exacta: necesario para saber si la ruta analítica debe orientarse a presencia/ausencia, enumeración, placa, referencia ISO/EPA o revisión específica.
+Matriz concreta para cada uso de agua: necesaria para diferenciar agua de consumo, agua de proceso, agua regenerada u otra matriz.
+Organismo prioritario: necesario para priorizar indicador, colífagos, E. coli, microbiología general u otro objetivo.
+Volumen real aplicable por matriz: necesario porque 1 mL puede no representar todos los usos o métodos.
+Uso del resultado: confirmar si será interno, contractual, auditoría o regulatorio.
+Laboratorio responsable y alcance: necesario para saber si el resultado procede de laboratorio interno, externo o mixto y con qué alcance.
+Criterios de revisión: necesarios para interpretar desviaciones, aceptación interna y acciones posteriores.
+Quién recibe el CoA o informe: necesario para orientar publicación, revisión y trazabilidad de entrega.
+Acciones ante una desviación: definir qué se activa ante resultado fuera de criterio, remuestreo, mantenimiento o EHS.
+País o jurisdicción aplicable a cada uso: necesario antes de cerrar cualquier evaluación técnica o regulatoria.
+Recursos relacionados
+Página sectorial. Agua de proceso industrial. Página sectorial para conectar planta, laboratorio, activos de proceso y acciones correctivas.
+Plataforma. AquaVerify Cloud. Capa operativa para muestras, custodia, revisión, CoA, acciones e histórico de evidencia.
+Glosario. Agua de proceso. Glosario sobre agua de proceso industrial, usos, matrices y decisiones operativas.
+Glosario. Biofilm. Glosario sobre riesgo de biofilm en circuitos, activos, refrigeración, limpieza y reutilización.
+Glosario. Certificado de análisis. Glosario sobre entregables analíticos revisados e histórico de certificados.
+Glosario. Cadena de custodia digital. Glosario para mantener contexto de muestreo conectado desde campo hasta revisión.
+Herramienta. Calculadora de dureza y alcalinidad. Calculadora complementaria para dureza y alcalinidad en control operativo del agua.
+Herramienta. Conversor de especies químicas. Calculadora complementaria para conversiones químicas rutinarias cuando el contexto del agua lo requiere.
+Recurso. Migración de Excel a LIMS. Checklist para pasar de hojas de cálculo a un flujo conectado de muestra a informe.
+Limitaciones
+Este informe se basa únicamente en respuestas estructuradas. No se han revisado SOP, datos reales, informes de laboratorio ni documentación interna.
+No se infiere aceptación regulatoria automática. Cualquier uso sujeto a norma debe revisarse por país, matriz, método, alcance del laboratorio y autoridad competente.
+Los productos candidatos no son recomendaciones cerradas hasta revisar matriz, método, volumen, uso previsto, laboratorio y país.

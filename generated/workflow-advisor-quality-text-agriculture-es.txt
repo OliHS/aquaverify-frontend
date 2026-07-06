@@ -1,0 +1,235 @@
+AquaVerify
+Informe de diagnóstico
+Agua agrícola
+Evaluación orientativa del flujo de control de agua agrícola: fuente, punto, cultivo, campaña, muestra, método, CoA y evidencia para comprador o auditoría.
+Fecha
+6 de julio de 2026
+Preparado por
+AquaVerify Workflow Advisor
+Versión del diagnóstico
+1.0.0
+Lectura rápida
+Resumen ejecutivo
+Contexto interpretado
+Análisis del flujo
+Madurez por dimensiones
+Problemas prioritarios
+Plan de mejora
+Módulos digitales dentro del plan
+Ruta analítica / productos a evaluar
+Información que falta
+Recursos relacionados
+Limitaciones
+Este informe interpreta las respuestas como un flujo de Agua agrícola con contexto analítico suficiente para orientar una conversación técnica y alta presión de coordinación.
+El diagnóstico interpreta el flujo como evidencia de agua agrícola conectada con fuente de agua, parcela, cultivo, campaña, muestra, método y necesidades de comprador o auditoría. La trazabilidad fragmentada entre fuente de agua, parcela, cultivo, campaña, muestra, método y evidencia para comprador puede debilitar una auditoría. La mejora útil es hacer que la evidencia sea reconstruible antes de cerrar decisiones de producto o vistas de dashboard.
+Riesgo principal
+La trazabilidad fragmentada entre fuente de agua, parcela, cultivo, campaña, muestra, método y evidencia para comprador puede debilitar una auditoría.
+Prioridad inmediata
+Inventario hídrico y mapa de riesgo
+Ruta analítica
+Ruta analítica pendiente de revisión técnica
+Siguiente paso
+Relacionar fuentes, puntos, parcela/cultivo/campaña y uso del agua.
+El diagnóstico interpreta el flujo como evidencia de agua agrícola conectada con fuente de agua, parcela, cultivo, campaña, muestra, método y necesidades de comprador o auditoría. El flujo actual combina Portal de laboratorio externo, ERP, Hojas de cálculo. Las etapas digitalizadas incluyen Plan de control, Revisión técnica, Inventario. La necesidad de evidencia se centra en Dashboards, Trazabilidad de método, CoA.
+Sector
+Agua agrícola
+País
+FR
+Tipo de organización
+Laboratorio privado
+Cargo o función
+Dirección
+Sedes
+Una
+Modelo de laboratorio
+Interno
+Volumen de muestras
+50-199 muestras/mes
+Sistemas actuales
+Portal de laboratorio externo, ERP, Hojas de cálculo
+Etapas digitalizadas
+Plan de control, Revisión técnica, Inventario
+Problemas prioritarios
+Conectar fuente de agua, parcela, cultivo y riesgo, Documentar evidencia para agua regenerada, Mejorar evidencia para auditoría
+Necesidades de evidencia
+Dashboards, Trazabilidad de método, CoA
+Tipo de resultado
+Presencia/ausencia
+Uso previsto
+Control interno rutinario
+Método
+No definido
+Volumen
+1 mL
+Uso del agua
+Agua de riego, Agua regenerada
+El flujo actual combina Portal de laboratorio externo, ERP, Hojas de cálculo. Las etapas digitalizadas incluyen Plan de control, Revisión técnica, Inventario. La necesidad de evidencia se centra en Dashboards, Trazabilidad de método, CoA.
+Flujo manual fragmentado
+Brecha de custodia y trazabilidad
+Brecha de evidencia documental
+fuente de agua
+parcela
+cultivo
+campaña
+agua regenerada
+Madurez del flujo
+2
+Básico
+El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.
+Estandarizar puntos, activos, responsables y SOP de muestreo
+Trazabilidad
+2
+Básico
+La trazabilidad necesita unir custodia, método, lectura, revisión, lote y acción posterior.
+Conectar muestra, custodia, método, lote y acción posterior
+Preparación para auditoría
+3
+Parcialmente estructurado
+La evidencia de auditoría debe conectar revisión técnica, CoA, desviaciones e inventario sin depender de documentos aislados.
+Conectar lectura, revisión técnica y CoA
+Complejidad operativa
+4
+Estructurado
+El volumen de muestras, sedes y roles aumenta el esfuerzo de coordinación entre proceso, laboratorio y calidad.
+Estandarizar puntos, activos, responsables y SOP de muestreo
+Visibilidad para clientes
+3
+Parcialmente estructurado
+Los responsables necesitan consultar estado, resultado, informe o acción por punto, circuito o activo.
+Mejorar informes, CoA e histórico de evidencia
+Preparación digital
+3
+Parcialmente estructurado
+Existe una base digital, pero el dato todavía puede quedar dividido entre sistemas, correo y hojas de cálculo.
+Conectar muestra, custodia, método, lote y acción posterior
+Contexto analítico
+4
+Estructurado
+El contexto analítico requiere revisión antes de cerrar una ruta de producto.
+Programar revisión técnica del contexto analítico
+Prioridad seleccionada por el usuario
+Conectar fuente de agua, parcela, cultivo y riesgo
+Conectar fuente de agua, parcela, cultivo y riesgo
+Prioridad seleccionada por el usuario
+Documentar evidencia para agua regenerada
+Documentar evidencia para agua regenerada
+Prioridad seleccionada por el usuario
+Mejorar evidencia para auditoría
+Mejorar evidencia para auditoría
+Alta
+Flujo manual fragmentado
+El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.
+Alta
+Brecha de custodia y trazabilidad
+El resultado necesita conservar punto, circuito, activo, operador, fecha, condiciones y estado de la muestra.
+Media
+Brecha de evidencia documental
+El flujo necesita evidencia documental estructurada para CoA, revisión y conversaciones de auditoría.
+1
+Inventario hídrico y mapa de riesgo
+Relacionar fuentes, puntos, parcela/cultivo/campaña y uso del agua.
+Inventariar fuentes
+Definir puntos
+Asociar cultivo/campaña
+Identificar agua regenerada
+Asignar responsable
+Un mapa de puntos que permita interpretar cada muestra en su contexto agrícola.
+2
+Trazabilidad de muestra y custodia
+Conectar muestreo, operador, fecha, matriz, custodia y recepción.
+Crear identificador único de muestra
+Registrar contexto de campo
+Trazar custodia
+Cada resultado puede reconstruirse desde la fuente de agua hasta el informe.
+3
+Método, revisión técnica y CoA
+Vincular método, lote, lectura, revisión técnica e informe.
+Definir ruta de método
+Registrar lote y lectura
+Revisar CoA
+Evidencia más consistente para responsable técnico, comprador o auditoría.
+4
+Evidencia para agua regenerada, comprador o auditoría
+Preparar un paquete documental por fuente, cultivo, campaña o lote de agua.
+Adjuntar CoA
+Registrar decisiones
+Documentar seguimiento
+El equipo puede justificar decisiones y seguimiento sin reconstruir información desde varios sistemas.
+5
+Tendencias y dashboards
+Usar dashboards solo cuando el dato base sea consistente.
+Comparar fuentes
+Revisar histórico por parcela
+Seguir evidencia para comprador
+Comparación fiable por fuente, parcela, campaña, cultivo o laboratorio.
+Base operativa
+Muestreo de campo y custodia
+Encaje potencial
+Muestreo de campo y custodia ayuda a mantener el flujo reconstruible. El resultado necesita conservar punto, circuito, activo, operador, fecha, condiciones y estado de la muestra.
+Definir estados mínimos de muestra y SOP de muestreo.
+Base operativa
+Gestión de muestras
+Encaje potencial
+Gestión de muestras ayuda a mantener el flujo reconstruible. El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.
+Evidencia y revisión
+Capa de revisión LIMS
+Encaje potencial
+Capa de revisión LIMS ayuda a mantener el flujo reconstruible. El resultado analítico y la revisión técnica deben quedar conectados en el mismo historial.
+Definir método, roles, permisos y criterios de revisión.
+Evidencia y revisión
+CoA y reporting documental
+Encaje potencial
+CoA y reporting documental ayuda a mantener el flujo reconstruible. El flujo necesita evidencia documental estructurada para CoA, revisión y conversaciones de auditoría.
+Definir plantilla de informe, estados de revisión y reglas de publicación.
+Escalado
+Portal cliente
+Encaje potencial
+Portal cliente ayuda a mantener el flujo reconstruible. Los responsables necesitan consultar estado, resultado, informe o acción por punto, circuito o activo.
+Definir quién recibe el CoA o informe y qué información puede consultar.
+Ruta analítica pendiente de revisión técnica
+Revisión técnica necesaria
+Has indicado presencia/ausencia, volumen de 1 mL y varios grupos objetivo: colífagos somáticos, colífagos F-específicos, E. coli y microbiología general. Como el método no está definido, no debe cerrarse una recomendación de producto. Antes de evaluar INDICA, ENUMERA, PLAQUE o kits ISO/EPA deben confirmarse matriz, volumen, método, país, uso previsto y laboratorio.
+Preparar una revisión técnica no sensible con matriz, volumen, método, país, uso previsto y rol del laboratorio.
+INDICA
+No recomendación cerrada
+Presencia/ausencia o cribado, sujeto a revisión.
+ENUMERA
+No recomendación cerrada
+Cuantificación, sujeto a revisión.
+PLAQUE / Kits ISO/EPA
+No recomendación cerrada
+Referencia o placa, sujeto a revisión.
+Método o referencia exacta: necesario para saber si la ruta analítica debe orientarse a presencia/ausencia, enumeración, placa, referencia ISO/EPA o revisión específica.
+Matriz concreta para cada uso de agua: necesaria para diferenciar agua de consumo, agua de proceso, agua regenerada u otra matriz.
+Organismo prioritario: necesario para priorizar indicador, colífagos, E. coli, microbiología general u otro objetivo.
+Volumen real aplicable por matriz: necesario porque 1 mL puede no representar todos los usos o métodos.
+Uso del resultado: confirmar si será interno, contractual, auditoría o regulatorio.
+Laboratorio responsable y alcance: necesario para saber si el resultado procede de laboratorio interno, externo o mixto y con qué alcance.
+Criterios de revisión: necesarios para interpretar desviaciones, aceptación interna y acciones posteriores.
+Quién recibe el CoA o informe: necesario para orientar publicación, revisión y trazabilidad de entrega.
+Acciones ante una desviación: definir qué se activa ante resultado fuera de criterio, remuestreo, mantenimiento o EHS.
+País o jurisdicción aplicable a cada uso: necesario antes de cerrar cualquier evaluación técnica o regulatoria.
+Página sectorial
+Gestión de agua agrícola
+Página sectorial para evidencia de agua agrícola y flujos de auditoría.
+Plataforma
+AquaVerify Cloud
+Capa operativa para muestras, custodia, revisión, CoA, acciones e histórico de evidencia.
+Glosario
+Agua regenerada
+Glosario para contextos de reutilización que requieren matriz y revisión de evidencia explícitas.
+Glosario
+Certificado de análisis
+Glosario sobre entregables analíticos revisados e histórico de certificados.
+Glosario
+ISO 19458
+Referencia de muestreo para revisar objetivos, recipientes, transporte y trazabilidad.
+Herramienta
+Conversor de especies químicas
+Calculadora complementaria para conversiones químicas rutinarias cuando el contexto del agua lo requiere.
+Herramienta
+Calculadora de dureza y alcalinidad
+Calculadora complementaria para dureza y alcalinidad en control operativo del agua.
+Este informe se basa únicamente en respuestas estructuradas. No se han revisado SOP, datos reales, informes de laboratorio ni documentación interna.
+No se infiere aceptación regulatoria automática. Cualquier uso sujeto a norma debe revisarse por país, matriz, método, alcance del laboratorio y autoridad competente.
+Los productos candidatos no son recomendaciones cerradas hasta revisar matriz, método, volumen, uso previsto, laboratorio y país.

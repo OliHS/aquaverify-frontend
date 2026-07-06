@@ -3703,7 +3703,7 @@ const V2_INDUSTRIAL_PROBLEM_TEXT = Object.freeze({
     es: {
         'connect-process-lab-and-quality': {
             title: 'Coordinación entre proceso, laboratorio y calidad',
-            paragraph: 'El flujo necesita que cada resultado se interprete junto con el circuito, activo, condición de proceso y criterio de calidad. Si esta relación queda repartida entre software propio, email y hojas de cálculo, la decisión puede depender de reconstrucciones manuales.'
+            paragraph: 'El flujo necesita que cada resultado se interprete junto con el circuito, activo, condición de proceso y criterio de calidad. Si esta relación queda repartida entre software propio, correo electrónico y hojas de cálculo, la decisión puede depender de reconstrucciones manuales.'
         },
         'control-critical-process-points': {
             title: 'Control de puntos críticos de proceso',
@@ -3723,7 +3723,7 @@ const V2_MATURITY_TEXT = Object.freeze({
         audit_readiness: 'La evidencia está parcialmente estructurada, pero debe conectar CoA, revisión técnica, acción correctiva y responsable para que una revisión no dependa de correos o documentos aislados.',
         operational_complexity: 'La complejidad aumenta cuando intervienen varios usos del agua, laboratorios externos, puntos críticos y decisiones de mantenimiento o EHS.',
         client_visibility: 'La visibilidad es limitada si los responsables no pueden consultar estado, resultado, informe o acción por punto, circuito o activo.',
-        digital_readiness: 'Existe una base digital, pero debe consolidarse para que el dato no quede dividido entre software propio, email y hojas de cálculo.',
+        digital_readiness: 'Existe una base digital, pero debe consolidarse para que el dato no quede dividido entre software propio, correo electrónico y hojas de cálculo.',
         analytical_context_completeness: 'El contexto analítico requiere revisión cuando el método se declara como otra referencia, el uso previsto es cribado operativo y se combinan varias matrices o usos del agua.'
     }
 });

@@ -1,4 +1,5 @@
 import fs from 'node:fs/promises';
+import fsSync from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
@@ -48,6 +49,12 @@ import {
   getSectorLabel as getWorkflowSectorLabel
 } from '../vendor/workflow-advisor-core/index.js';
 import { resolveIndustryBuyerProblemLinks } from '../utils/industryBuyerProblemLinks.js';
+import {
+  getWorkflowAdvisorHomeCta,
+  isWorkflowAdvisorHomeCtaEnabled,
+  isWorkflowAdvisorQualityGateRequired,
+  resolveWorkflowAdvisorHomeCtaVisibility
+} from '../utils/workflowAdvisorHomeCta.js';
 
 dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
@@ -56,6 +63,7 @@ const DIST_DIR = 'dist';
 const SITE_URL = 'https://aquaverify.com';
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
+const WORKFLOW_ADVISOR_QUALITY_STATUS_PATH = path.join('generated', 'workflow-advisor-quality-status.json');
 
 const SEO_LOCALES = {
   en: 'en_US',
@@ -247,6 +255,47 @@ function escapeHtml(value) {
     '"': '&quot;',
     "'": '&#39;'
   })[char]);
+}
+
+function readWorkflowAdvisorQualityStatus() {
+  try {
+    return JSON.parse(fsSync.readFileSync(WORKFLOW_ADVISOR_QUALITY_STATUS_PATH, 'utf8'));
+  } catch {
+    return {
+      passed: false,
+      fixtures: [],
+      reportVersion: ''
+    };
+  }
+}
+
+const workflowAdvisorQualityStatus = readWorkflowAdvisorQualityStatus();
+
+function shouldRenderHomeWorkflowAdvisorCta() {
+  return resolveWorkflowAdvisorHomeCtaVisibility({
+    enabled: isWorkflowAdvisorHomeCtaEnabled(),
+    qualityGateRequired: isWorkflowAdvisorQualityGateRequired(),
+    qualityPassed: Boolean(workflowAdvisorQualityStatus?.passed)
+  });
+}
+
+function renderHomeWorkflowAdvisorCta(lang) {
+  if (!shouldRenderHomeWorkflowAdvisorCta()) return '';
+
+  const cta = getWorkflowAdvisorHomeCta(lang);
+  return [
+    '      <section aria-labelledby="home-workflow-advisor-title" data-home-workflow-advisor-cta style="margin-top: 28px; max-width: 900px; border: 1px solid #e2e8f0; border-radius: 8px; background: rgba(255,255,255,.94); padding: 20px; box-shadow: 0 10px 28px rgba(15,23,42,.08);">',
+    '        <div style="display: flex; flex-wrap: wrap; gap: 18px; align-items: center; justify-content: space-between;">',
+    '          <div style="min-width: 260px; flex: 1 1 520px;">',
+    `            <p style="margin: 0; color: #047857; font-size: 12px; font-weight: 900; letter-spacing: .16em; text-transform: uppercase;">${escapeHtml(cta.eyebrow)}</p>`,
+    `            <h2 id="home-workflow-advisor-title" style="margin: 6px 0 0; color: #0A4F7D; font-size: 28px; line-height: 1.1; font-weight: 900;">${escapeHtml(cta.title)}</h2>`,
+    `            <p style="margin: 10px 0 0; color: #475569; font-size: 15px; line-height: 1.7;">${escapeHtml(cta.body)}</p>`,
+    `            <p style="margin: 12px 0 0; color: #64748b; font-size: 12px; line-height: 1.5; font-weight: 900;">${escapeHtml(cta.microcopy)}</p>`,
+    '          </div>',
+    `          <a href="${escapeHtml(cta.href)}" data-event="${escapeHtml(cta.event)}" style="display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: #0A4F7D; color: #ffffff; padding: 12px 18px; text-decoration: none; font-size: 14px; font-weight: 900;">${escapeHtml(cta.button)} <span aria-hidden="true" style="margin-left: 8px;">→</span></a>`,
+    '        </div>',
+    '      </section>'
+  ].join('\n');
 }
 
 function renderMarkdownInlineHtml(value) {
@@ -1491,6 +1540,7 @@ function renderStaticRoot(meta) {
     `      <h1 style="margin: 0; max-width: 900px; font-size: 46px; line-height: 1.04; letter-spacing: -.03em; font-weight: 900; background: linear-gradient(90deg,#0A4F7D,#00AEEF,#10b981); -webkit-background-clip: text; background-clip: text; color: transparent;">${escapeHtml(title)}</h1>`,
     `      <p style="margin: 22px 0 0; max-width: 820px; color: #475569; font-size: 18px; line-height: 1.7;">${escapeHtml(description)}</p>`,
     renderHeroVisual(meta, content, title),
+    !content ? renderHomeWorkflowAdvisorCta(meta.lang) : '',
     '      <p style="margin: 28px 0 0;">',
     `        <a href="${escapeHtml(canonicalUrl)}" style="display: inline-flex; align-items: center; border-radius: 999px; background: #00AEEF; color: #ffffff; padding: 12px 18px; text-decoration: none; font-weight: 900;">${escapeHtml(title)}</a>`,
     datasheetUrl ? `        <a href="${escapeHtml(datasheetUrl)}" style="display: inline-flex; align-items: center; border-radius: 999px; border: 1px solid #e2e8f0; color: #0A4F7D; padding: 12px 18px; text-decoration: none; font-weight: 900; margin-left: 10px;">${escapeHtml(content?.datasheetLabel || 'Datasheet')}</a>` : '',
