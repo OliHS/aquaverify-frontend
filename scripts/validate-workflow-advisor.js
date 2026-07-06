@@ -155,6 +155,12 @@ function validateSource() {
   assert(component.includes('body.workflow-report-print-mode .workflow-advisor-contact-form'), 'Print CSS must hide contact form');
   assert(component.includes('body.workflow-report-print-mode .workflow-advisor-cookie'), 'Print CSS must hide cookie surfaces');
   assert(component.includes('body.workflow-report-print-mode .cookie-banner'), 'Print CSS must hide cookie banner');
+  assert(component.includes('<main className="bg-slate-50 text-slate-900">'), 'Workflow Advisor main surface must use the light corporate background');
+  assert(component.includes('workflow-advisor-landing border-b border-cyan-100'), 'Workflow Advisor hero must use the light corporate hero surface');
+  assert(component.includes('Preparando el diagnóstico…') || readText('pages/MarketingRoutePage.tsx').includes('Preparando el diagnóstico…'), 'Workflow Advisor route must have a localized loading shell');
+  ['workflow-advisor-landing bg-slate-950', 'workflow-advisor-landing bg-black', 'workflow-advisor-landing bg-zinc-950', 'workflow-advisor-landing bg-neutral-950', 'from-black', 'via-slate-950', 'dark:'].forEach((term) => {
+    assert(!component.includes(term), `Workflow Advisor primary layout contains forbidden dark design token: ${term}`);
+  });
 
   const cookieComponent = readText('components/CookieConsent.tsx');
   [

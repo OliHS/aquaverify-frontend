@@ -33,7 +33,9 @@ The default is enabled with the quality gate required. Setting either flag to `f
 
 ## Analytics
 
-The anchor uses:
+The React component uses `Link` from React Router with `discover="render"` and `prefetch="intent"`. The rendered HTML remains an anchor with a real localized href.
+
+The link uses:
 
 ```text
 data-event="click_home_hero_workflow_advisor"
@@ -59,3 +61,5 @@ npm run validate:home
 ```
 
 `validate:home` checks flag behavior, localized href/copy, prerendered HTML, the CTA event and preservation of the existing hero CTA events.
+
+Navigation and loading behavior are documented in `docs/seo/workflow-advisor-navigation.md`.

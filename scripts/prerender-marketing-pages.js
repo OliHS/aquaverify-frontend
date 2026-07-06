@@ -292,7 +292,7 @@ function renderHomeWorkflowAdvisorCta(lang) {
     `            <p style="margin: 10px 0 0; color: #475569; font-size: 15px; line-height: 1.7;">${escapeHtml(cta.body)}</p>`,
     `            <p style="margin: 12px 0 0; color: #64748b; font-size: 12px; line-height: 1.5; font-weight: 900;">${escapeHtml(cta.microcopy)}</p>`,
     '          </div>',
-    `          <a href="${escapeHtml(cta.href)}" data-event="${escapeHtml(cta.event)}" style="display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: #0A4F7D; color: #ffffff; padding: 12px 18px; text-decoration: none; font-size: 14px; font-weight: 900;">${escapeHtml(cta.button)} <span aria-hidden="true" style="margin-left: 8px;">→</span></a>`,
+    `          <a href="${escapeHtml(cta.href)}" data-discover="true" data-event="${escapeHtml(cta.event)}" style="display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; background: #0A4F7D; color: #ffffff; padding: 12px 18px; text-decoration: none; font-size: 14px; font-weight: 900;">${escapeHtml(cta.button)} <span aria-hidden="true" style="margin-left: 8px;">→</span></a>`,
     '        </div>',
     '      </section>'
   ].join('\n');

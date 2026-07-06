@@ -35,6 +35,8 @@ Current expected shape:
 
 The Home CTA reads this status at build/runtime and stays hidden when `passed` is not true.
 
+This guard remains required for production even though the Home CTA now uses internal React Router navigation. Navigation improvements do not bypass report/PDF quality checks.
+
 ## Blocked Regressions
 
 The gate fails if the visible ES report leaks:

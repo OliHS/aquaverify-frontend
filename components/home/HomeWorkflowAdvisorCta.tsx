@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, ClipboardCheck, ShieldCheck } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import type { Language } from '../../utils/translations';
 import { trackCorporateEvent } from '../../utils/corporateAnalytics';
 import workflowAdvisorQualityStatus from '../../generated/workflow-advisor-quality-status.json';
@@ -57,15 +58,17 @@ export const HomeWorkflowAdvisorCta: React.FC<Props> = ({ lang }) => {
             </p>
           </div>
         </div>
-        <a
-          href={cta.href}
+        <Link
+          to={cta.href}
+          discover="render"
+          prefetch="intent"
           data-event={cta.event}
           onClick={trackClick}
           className="inline-flex shrink-0 items-center justify-center rounded-full bg-primary px-5 py-3 text-sm font-black text-white shadow-lg shadow-primary/20 transition hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-500"
         >
           {cta.button}
           <ArrowRight aria-hidden="true" className="ml-2 h-4 w-4" />
-        </a>
+        </Link>
       </div>
     </section>
   );

@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { findMarketingRouteByPath } from '../utils/marketingRoutes.js';
+import type { Language } from '../utils/translations';
 
 const ProductsMarketingRoute = lazy(() => import('./marketing-routes/ProductsMarketingRoute'));
 const PlatformMarketingRoute = lazy(() => import('./marketing-routes/PlatformMarketingRoute'));
@@ -13,8 +14,29 @@ const AquaToolsMarketingRoute = lazy(() => import('./marketing-routes/AquaToolsM
 const WorkflowAdvisorMarketingRoute = lazy(() => import('./marketing-routes/WorkflowAdvisorMarketingRoute'));
 const LegacyMarketingRoute = lazy(() => import('./marketing-routes/LegacyMarketingRoute'));
 
-const MarketingRouteFallback: React.FC = () => (
-  <div className="min-h-screen bg-white" aria-busy="true" aria-live="polite" />
+const PREPARING_COPY: Record<Language, string> = {
+  en: 'Preparing the assessment…',
+  es: 'Preparando el diagnóstico…',
+  fr: 'Préparation du diagnostic…',
+  it: 'Preparazione della valutazione…',
+  ca: 'Preparant el diagnòstic…'
+};
+
+const MarketingRouteFallback: React.FC<{ lang: Language }> = ({ lang }) => (
+  <main className="min-h-screen bg-slate-50 pt-24 text-slate-900" aria-busy="true" aria-live="polite">
+    <section className="border-b border-cyan-100 bg-[radial-gradient(circle_at_88%_12%,rgba(34,211,238,0.18),transparent_28%),#ffffff] px-6 py-16">
+      <div className="container mx-auto max-w-4xl">
+        <div className="h-3 w-32 rounded-full bg-cyan-100" />
+        <div className="mt-6 h-12 max-w-2xl rounded bg-slate-100 md:h-16" />
+        <div className="mt-4 h-4 max-w-xl rounded bg-slate-100" />
+        <div className="mt-3 h-4 max-w-lg rounded bg-slate-100" />
+        <div className="mt-8 inline-flex items-center rounded-full border border-cyan-100 bg-white px-4 py-2 text-sm font-black text-primary shadow-sm">
+          <span className="mr-3 h-2 w-2 animate-pulse rounded-full bg-secondary" />
+          {PREPARING_COPY[lang] || PREPARING_COPY.en}
+        </div>
+      </div>
+    </section>
+  </main>
 );
 
 export const MarketingRoutePage: React.FC = () => {
@@ -26,7 +48,7 @@ export const MarketingRoutePage: React.FC = () => {
   }
 
   return (
-    <Suspense fallback={<MarketingRouteFallback />}>
+    <Suspense fallback={<MarketingRouteFallback lang={(route.lang || route.language || 'en') as Language} />}>
       {route.family === 'products' ? (
         <ProductsMarketingRoute route={route} />
       ) : route.family === 'platform' ? (

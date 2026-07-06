@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowLeft, ArrowRight, CheckCircle2, Download, Printer, ShieldCheck, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import type { Language } from '../../utils/translations';
 import {
   assessWorkflow,
@@ -59,7 +60,7 @@ const UI = {
     progress: 'Paso',
     context: 'Contexto',
     workflow: 'Flujo',
-    analytical: 'Contexto analitico',
+    analytical: 'Contexto analítico',
     result: 'Resultado',
     back: 'Volver',
     next: 'Siguiente',
@@ -470,6 +471,10 @@ function toggleMulti(answers: Answers, questionId: string, option: string) {
     : [...current, option].slice(0, questionId === 'priority_problem_ids' ? 3 : 99);
 }
 
+function homePath(lang: Language) {
+  return lang === 'en' ? '/' : `/${lang}`;
+}
+
 function buildInput(pageLang: Language, answers: Answers) {
   const sectorId = String(answers.sector_id || 'water-testing-labs');
   return createAssessmentInput({
@@ -847,23 +852,35 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   };
 
   return (
-    <main className="bg-white text-slate-900">
-      <section className="workflow-advisor-landing bg-slate-950 text-white">
-        <div className="container mx-auto grid min-h-[78vh] items-center gap-10 px-6 py-24 lg:grid-cols-[1.05fr_0.95fr]">
+    <main className="bg-slate-50 text-slate-900">
+      <section className="workflow-advisor-landing border-b border-cyan-100 bg-[radial-gradient(circle_at_88%_8%,rgba(34,211,238,0.18),transparent_28%),radial-gradient(circle_at_10%_16%,rgba(10,45,77,0.08),transparent_30%),#ffffff]">
+        <div className="container mx-auto grid min-h-[72vh] items-center gap-8 px-6 py-24 lg:grid-cols-[1.05fr_0.95fr]">
           <div>
-            <span className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-300/10 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-cyan-100">{content.eyebrow}</span>
-            <h1 className="mt-5 font-heading text-4xl font-black leading-tight md:text-6xl">{content.heroTitle}</h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-200">{content.directAnswer}</p>
-            <a href="#workflow-advisor-tool" className="mt-8 inline-flex items-center rounded-full bg-secondary px-6 py-3 text-sm font-black text-white shadow-lg shadow-cyan-500/20">
-              {content.cta}<ArrowRight className="ml-2 h-4 w-4" />
-            </a>
+            <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-2 text-xs font-black uppercase tracking-[0.14em] text-slate-500">
+              <Link to={homePath(pageLang)} className="transition hover:text-primary">AquaVerify</Link>
+              <span aria-hidden="true">/</span>
+              <span className="text-cyan-700">Workflow Advisor</span>
+            </nav>
+            <span className="mt-6 inline-flex rounded-full border border-cyan-100 bg-cyan-50 px-3 py-1 text-xs font-black uppercase tracking-[0.16em] text-cyan-800">{content.eyebrow}</span>
+            <h1 className="mt-5 max-w-5xl font-heading text-4xl font-black leading-tight text-primary md:text-6xl">{content.heroTitle}</h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-700">{content.directAnswer}</p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href="#workflow-advisor-tool" className="inline-flex items-center rounded-full bg-primary px-6 py-3 text-sm font-black text-white shadow-lg shadow-primary/20 transition hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-500">
+                {content.cta}<ArrowRight className="ml-2 h-4 w-4" />
+              </a>
+              <span className="inline-flex items-center rounded-full border border-cyan-100 bg-white px-4 py-2 text-xs font-black text-slate-600 shadow-sm">
+                <ShieldCheck aria-hidden="true" className="mr-2 h-4 w-4 text-cyan-700" />
+                {copy.localOnly}
+              </span>
+            </div>
+            <p className="mt-4 max-w-2xl text-sm font-bold leading-6 text-slate-500">{copy.localNote}</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+          <div className="rounded-2xl border border-slate-200 bg-white/90 p-5 shadow-xl shadow-slate-200/60 backdrop-blur">
             <div className="grid gap-3">
               {(content.blocks || []).slice(0, 4).map(([title, body]: [string, string]) => (
-                <article key={title} className="rounded-xl border border-white/10 bg-white/5 p-4">
-                  <h2 className="text-sm font-black text-white">{title}</h2>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">{body}</p>
+                <article key={title} className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                  <h2 className="text-sm font-black text-primary">{title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">{body}</p>
                 </article>
               ))}
             </div>
@@ -975,7 +992,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                           <button type="button" onClick={() => downloadTechnicalExport(result, reportSnapshot, reportV2)} className="mt-3 inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-black">
                             <Download className="mr-2 h-4 w-4" />JSON
                           </button>
-                          <pre className="mt-3 max-h-96 overflow-auto rounded-xl bg-slate-950 p-4 text-xs text-slate-100">{JSON.stringify(result, null, 2)}</pre>
+                          <pre className="mt-3 max-h-96 overflow-auto rounded-xl bg-slate-900 p-4 text-xs text-slate-100">{JSON.stringify(result, null, 2)}</pre>
                         </details>
                       )}
 
@@ -1016,7 +1033,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
               )}
 
               {isResearchModalOpen && (
-                <div className="workflow-advisor-research-modal no-print fixed inset-0 z-[110] flex items-end justify-center bg-slate-950/55 px-4 py-6 backdrop-blur-sm sm:items-center" role="dialog" aria-modal="true" aria-labelledby="workflow-research-share-title">
+                <div className="workflow-advisor-research-modal no-print fixed inset-0 z-[110] flex items-end justify-center bg-slate-900/45 px-4 py-6 backdrop-blur-sm sm:items-center" role="dialog" aria-modal="true" aria-labelledby="workflow-research-share-title">
                   <div className="w-full max-w-xl rounded-2xl bg-white shadow-2xl">
                     <div className="flex items-start justify-between gap-4 border-b border-slate-100 px-6 py-5">
                       <div>
