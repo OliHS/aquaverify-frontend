@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Download, ShieldCheck, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, ChevronDown, Download, ShieldCheck, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Language } from '../../utils/translations';
 import {
@@ -61,7 +61,8 @@ const UI = {
     contactSent: 'Contact request received.',
     privacyLink: 'Privacy policy',
     noMarketingNeeded: 'Marketing is optional and not required for contact.',
-    technicalReview: 'Needs technical review'
+    technicalReview: 'Needs technical review',
+    selectPlaceholder: 'Select an option'
   },
   es: {
     progress: 'Paso',
@@ -98,7 +99,8 @@ const UI = {
     contactSent: 'Solicitud de contacto recibida.',
     privacyLink: 'Política de privacidad',
     noMarketingNeeded: 'El marketing es opcional y no es necesario para solicitar contacto.',
-    technicalReview: 'Necesita revisión técnica'
+    technicalReview: 'Necesita revisión técnica',
+    selectPlaceholder: 'Selecciona una opción'
   },
   fr: {
     progress: 'Étape',
@@ -135,7 +137,8 @@ const UI = {
     contactSent: 'Demande de contact recue.',
     privacyLink: 'Politique de confidentialite',
     noMarketingNeeded: 'Le marketing est optionnel et non requis pour le contact.',
-    technicalReview: 'Revue technique necessaire'
+    technicalReview: 'Revue technique necessaire',
+    selectPlaceholder: 'Sélectionnez une option'
   },
   it: {
     progress: 'Passo',
@@ -172,7 +175,8 @@ const UI = {
     contactSent: 'Richiesta di contatto ricevuta.',
     privacyLink: 'Informativa privacy',
     noMarketingNeeded: 'Il marketing e opzionale e non serve per il contatto.',
-    technicalReview: 'Revisione tecnica necessaria'
+    technicalReview: 'Revisione tecnica necessaria',
+    selectPlaceholder: 'Seleziona un’opzione'
   },
   ca: {
     progress: 'Pas',
@@ -209,7 +213,8 @@ const UI = {
     contactSent: 'Sol licitud de contacte rebuda.',
     privacyLink: 'Politica de privacitat',
     noMarketingNeeded: 'El marketing es opcional i no cal per al contacte.',
-    technicalReview: 'Revisio tecnica necessaria'
+    technicalReview: 'Revisio tecnica necessaria',
+    selectPlaceholder: 'Selecciona una opció'
   }
 } as const;
 
@@ -217,50 +222,50 @@ const CONTACT_FIELD_LABELS: Record<string, Record<Language, string>> = {
   name: { en: 'Name', es: 'Nombre', fr: 'Nom', it: 'Nome', ca: 'Nom' },
   email: { en: 'Professional email', es: 'Email profesional', fr: 'Email professionnel', it: 'Email professionale', ca: 'Email professional' },
   company: { en: 'Company', es: 'Empresa', fr: 'Entreprise', it: 'Azienda', ca: 'Empresa' },
-  countryCode: { en: 'Country', es: 'Pais', fr: 'Pays', it: 'Paese', ca: 'Pais' },
-  buyerRole: { en: 'Role', es: 'Cargo o funcion', fr: 'Role', it: 'Ruolo', ca: 'Rol' },
-  phone: { en: 'Phone', es: 'Telefono', fr: 'Telephone', it: 'Telefono', ca: 'Telefon' },
+  countryCode: { en: 'Country', es: 'País', fr: 'Pays', it: 'Paese', ca: 'País' },
+  buyerRole: { en: 'Role', es: 'Cargo o función', fr: 'Role', it: 'Ruolo', ca: 'Rol' },
+  phone: { en: 'Phone', es: 'Teléfono', fr: 'Telephone', it: 'Telefono', ca: 'Telèfon' },
   comment: { en: 'Comment', es: 'Comentario', fr: 'Commentaire', it: 'Commento', ca: 'Comentari' },
-  requestType: { en: 'Request type', es: 'Tipo de solicitud', fr: 'Type de demande', it: 'Tipo richiesta', ca: 'Tipus de sol licitud' }
+  requestType: { en: 'Request type', es: 'Tipo de solicitud', fr: 'Type de demande', it: 'Tipo richiesta', ca: 'Tipus de sol·licitud' }
 };
 
 const REQUEST_TYPE_LABELS: Record<string, Record<Language, string>> = {
-  technical_review: { en: 'Technical review', es: 'Revision tecnica', fr: 'Revue technique', it: 'Revisione tecnica', ca: 'Revisio tecnica' },
+  technical_review: { en: 'Technical review', es: 'Revisión técnica', fr: 'Revue technique', it: 'Revisione tecnica', ca: 'Revisió tècnica' },
   demo: { en: 'Demo', es: 'Demo', fr: 'Demo', it: 'Demo', ca: 'Demo' },
   quote: { en: 'Quote', es: 'Oferta', fr: 'Devis', it: 'Preventivo', ca: 'Oferta' },
   distributor: { en: 'Distributor', es: 'Distribuidor', fr: 'Distributeur', it: 'Distributore', ca: 'Distribuidor' },
   oem: { en: 'OEM', es: 'OEM', fr: 'OEM', it: 'OEM', ca: 'OEM' },
-  integration: { en: 'Integration', es: 'Integracion', fr: 'Integration', it: 'Integrazione', ca: 'Integracio' },
+  integration: { en: 'Integration', es: 'Integración', fr: 'Integration', it: 'Integrazione', ca: 'Integració' },
   other: { en: 'Other', es: 'Otro', fr: 'Autre', it: 'Altro', ca: 'Altres' }
 };
 
 const OPTION_LABELS: Record<string, Record<string, string>> = {
-  public_laboratory: { en: 'Public laboratory', es: 'Laboratorio publico', fr: 'Laboratoire public', it: 'Laboratorio pubblico', ca: 'Laboratori public' },
+  public_laboratory: { en: 'Public laboratory', es: 'Laboratorio público', fr: 'Laboratoire public', it: 'Laboratorio pubblico', ca: 'Laboratori públic' },
   private_laboratory: { en: 'Private laboratory', es: 'Laboratorio privado', fr: 'Laboratoire prive', it: 'Laboratorio privato', ca: 'Laboratori privat' },
   municipal_operator: { en: 'Municipal operator', es: 'Operador municipal', fr: 'Operateur municipal', it: 'Operatore municipale', ca: 'Operador municipal' },
   utility: { en: 'Utility', es: 'Utility', fr: 'Utility', it: 'Utility', ca: 'Utility' },
   manufacturer: { en: 'Manufacturer', es: 'Fabricante', fr: 'Fabricant', it: 'Produttore', ca: 'Fabricant' },
-  facility_operator: { en: 'Facility operator', es: 'Operador de instalaciones', fr: 'Exploitant de site', it: 'Operatore struttura', ca: 'Operador instal lacio' },
-  farm_or_grower: { en: 'Farm or grower', es: 'Explotacion agricola', fr: 'Exploitation agricole', it: 'Azienda agricola', ca: 'Explotacio agricola' },
+  facility_operator: { en: 'Facility operator', es: 'Operador de instalaciones', fr: 'Exploitant de site', it: 'Operatore struttura', ca: 'Operador instal·lació' },
+  farm_or_grower: { en: 'Farm or grower', es: 'Explotación agrícola', fr: 'Exploitation agricole', it: 'Azienda agricola', ca: 'Explotació agrícola' },
   cooperative: { en: 'Cooperative', es: 'Cooperativa', fr: 'Cooperative', it: 'Cooperativa', ca: 'Cooperativa' },
-  hospitality_operator: { en: 'Hospitality operator', es: 'Operador turistico', fr: 'Operateur hotelier', it: 'Operatore hospitality', ca: 'Operador turistic' },
+  hospitality_operator: { en: 'Hospitality operator', es: 'Operador turístico', fr: 'Operateur hotelier', it: 'Operatore hospitality', ca: 'Operador turístic' },
   distributor: { en: 'Distributor', es: 'Distribuidor', fr: 'Distributeur', it: 'Distributore', ca: 'Distribuidor' },
   consultant: { en: 'Consultant', es: 'Consultor', fr: 'Consultant', it: 'Consulente', ca: 'Consultor' },
-  engineering_company: { en: 'Engineering company', es: 'Ingenieria', fr: 'Ingenierie', it: 'Societa di ingegneria', ca: 'Enginyeria' },
-  executive: { en: 'Executive', es: 'Direccion', fr: 'Direction', it: 'Direzione', ca: 'Direccio' },
+  engineering_company: { en: 'Engineering company', es: 'Ingeniería', fr: 'Ingenierie', it: 'Societa di ingegneria', ca: 'Enginyeria' },
+  executive: { en: 'Executive', es: 'Dirección', fr: 'Direction', it: 'Direzione', ca: 'Direcció' },
   laboratory: { en: 'Laboratory', es: 'Laboratorio', fr: 'Laboratoire', it: 'Laboratorio', ca: 'Laboratori' },
   quality: { en: 'Quality', es: 'Calidad', fr: 'Qualite', it: 'Qualita', ca: 'Qualitat' },
   operations: { en: 'Operations', es: 'Operaciones', fr: 'Operations', it: 'Operazioni', ca: 'Operacions' },
-  engineering_maintenance: { en: 'Engineering and maintenance', es: 'Ingenieria y mantenimiento', fr: 'Ingenierie et maintenance', it: 'Ingegneria e manutenzione', ca: 'Enginyeria i manteniment' },
+  engineering_maintenance: { en: 'Engineering and maintenance', es: 'Ingeniería y mantenimiento', fr: 'Ingenierie et maintenance', it: 'Ingegneria e manutenzione', ca: 'Enginyeria i manteniment' },
   ehs: { en: 'EHS', es: 'EHS', fr: 'EHS', it: 'EHS', ca: 'EHS' },
   procurement: { en: 'Procurement', es: 'Compras', fr: 'Achats', it: 'Acquisti', ca: 'Compres' },
   digital_it: { en: 'Digital / IT', es: 'Digital / IT', fr: 'Digital / IT', it: 'Digital / IT', ca: 'Digital / IT' },
   regulatory: { en: 'Regulatory', es: 'Regulatorio', fr: 'Reglementaire', it: 'Regolatorio', ca: 'Regulador' },
-  sales_distribution: { en: 'Sales / distribution', es: 'Ventas / distribucion', fr: 'Ventes / distribution', it: 'Vendite / distribuzione', ca: 'Vendes / distribucio' },
+  sales_distribution: { en: 'Sales / distribution', es: 'Ventas / distribución', fr: 'Ventes / distribution', it: 'Vendite / distribuzione', ca: 'Vendes / distribució' },
   one: { en: 'One', es: 'Una', fr: 'Un', it: 'Uno', ca: 'Un' },
   two_to_five: { en: '2 to 5', es: '2 a 5', fr: '2 a 5', it: '2 a 5', ca: '2 a 5' },
   six_to_twenty: { en: '6 to 20', es: '6 a 20', fr: '6 a 20', it: '6 a 20', ca: '6 a 20' },
-  more_than_twenty: { en: 'More than 20', es: 'Mas de 20', fr: 'Plus de 20', it: 'Piu di 20', ca: 'Mes de 20' },
+  more_than_twenty: { en: 'More than 20', es: 'Más de 20', fr: 'Plus de 20', it: 'Piu di 20', ca: 'Més de 20' },
   internal: { en: 'Internal', es: 'Interno', fr: 'Interne', it: 'Interno', ca: 'Intern' },
   external: { en: 'External', es: 'Externo', fr: 'Externe', it: 'Esterno', ca: 'Extern' },
   mixed: { en: 'Mixed', es: 'Mixto', fr: 'Mixte', it: 'Misto', ca: 'Mixt' },
@@ -273,9 +278,9 @@ const OPTION_LABELS: Record<string, Record<string, string>> = {
   variable: { en: 'Variable', es: 'Variable', fr: 'Variable', it: 'Variabile', ca: 'Variable' },
   unknown: { en: 'Unknown', es: 'No definido', fr: 'Inconnu', it: 'Non definito', ca: 'No definit' },
   paper: { en: 'Paper', es: 'Papel', fr: 'Papier', it: 'Carta', ca: 'Paper' },
-  spreadsheets: { en: 'Spreadsheets', es: 'Hojas de calculo', fr: 'Tableurs', it: 'Fogli di calcolo', ca: 'Fulls de calcul' },
+  spreadsheets: { en: 'Spreadsheets', es: 'Hojas de cálculo', fr: 'Tableurs', it: 'Fogli di calcolo', ca: 'Fulls de càlcul' },
   shared_forms: { en: 'Shared forms', es: 'Formularios compartidos', fr: 'Formulaires partages', it: 'Moduli condivisi', ca: 'Formularis compartits' },
-  email: { en: 'Email', es: 'Correo', fr: 'Email', it: 'Email', ca: 'Correu' },
+  email: { en: 'Email', es: 'Correo electrónico', fr: 'Email', it: 'Email', ca: 'Correu electrònic' },
   external_lab_portal: { en: 'External lab portal', es: 'Portal de laboratorio externo', fr: 'Portail labo externe', it: 'Portale laboratorio esterno', ca: 'Portal laboratori extern' },
   lims: { en: 'LIMS', es: 'LIMS', fr: 'LIMS', it: 'LIMS', ca: 'LIMS' },
   qms: { en: 'QMS', es: 'QMS', fr: 'QMS', it: 'QMS', ca: 'QMS' },
@@ -286,25 +291,25 @@ const OPTION_LABELS: Record<string, Record<string, string>> = {
   control_plan: { en: 'Control plan', es: 'Plan de control', fr: 'Plan de controle', it: 'Piano di controllo', ca: 'Pla de control' },
   sampling: { en: 'Sampling', es: 'Muestreo', fr: 'Echantillonnage', it: 'Campionamento', ca: 'Mostreig' },
   chain_of_custody: { en: 'Chain of custody', es: 'Cadena de custodia', fr: 'Chaine de tracabilite', it: 'Catena di custodia', ca: 'Cadena de custodia' },
-  reception: { en: 'Reception', es: 'Recepcion', fr: 'Reception', it: 'Ricezione', ca: 'Recepcio' },
-  analysis: { en: 'Analysis', es: 'Analisis', fr: 'Analyse', it: 'Analisi', ca: 'Analisi' },
+  reception: { en: 'Reception', es: 'Recepción', fr: 'Reception', it: 'Ricezione', ca: 'Recepció' },
+  analysis: { en: 'Analysis', es: 'Análisis', fr: 'Analyse', it: 'Analisi', ca: 'Anàlisi' },
   reading: { en: 'Reading', es: 'Lectura', fr: 'Lecture', it: 'Lettura', ca: 'Lectura' },
-  technical_review: { en: 'Technical review', es: 'Revision tecnica', fr: 'Revue technique', it: 'Revisione tecnica', ca: 'Revisio tecnica' },
+  technical_review: { en: 'Technical review', es: 'Revisión técnica', fr: 'Revue technique', it: 'Revisione tecnica', ca: 'Revisió tècnica' },
   coa_reporting: { en: 'CoA reporting', es: 'Informes CoA', fr: 'Rapports CoA', it: 'Report CoA', ca: 'Informes CoA' },
   customer_delivery: { en: 'Customer delivery', es: 'Entrega a cliente', fr: 'Livraison client', it: 'Consegna cliente', ca: 'Entrega client' },
   deviations: { en: 'Deviations', es: 'Desviaciones', fr: 'Deviations', it: 'Deviazioni', ca: 'Desviacions' },
   inventory: { en: 'Inventory', es: 'Inventario', fr: 'Inventaire', it: 'Inventario', ca: 'Inventari' },
-  trend_analysis: { en: 'Trend analysis', es: 'Analisis de tendencias', fr: 'Analyse tendances', it: 'Analisi trend', ca: 'Analisi tendencies' },
+  trend_analysis: { en: 'Trend analysis', es: 'Análisis de tendencias', fr: 'Analyse tendances', it: 'Analisi trend', ca: 'Anàlisi de tendències' },
   sampling_context: { en: 'Sampling context', es: 'Contexto de muestreo', fr: 'Contexte echantillonnage', it: 'Contesto campionamento', ca: 'Context mostreig' },
   kit_batch_traceability: { en: 'Kit batch traceability', es: 'Trazabilidad de lote de kit', fr: 'Tracabilite lot kit', it: 'Tracciabilita lotto kit', ca: 'Tracabilitat lot kit' },
-  method_traceability: { en: 'Method traceability', es: 'Trazabilidad de metodo', fr: 'Tracabilite methode', it: 'Tracciabilita metodo', ca: 'Tracabilitat metode' },
+  method_traceability: { en: 'Method traceability', es: 'Trazabilidad de método', fr: 'Tracabilite methode', it: 'Tracciabilita metodo', ca: 'Traçabilitat de mètode' },
   coa: { en: 'CoA', es: 'CoA', fr: 'CoA', it: 'CoA', ca: 'CoA' },
   audit_trail: { en: 'Audit trail', es: 'Audit trail', fr: 'Audit trail', it: 'Audit trail', ca: 'Audit trail' },
-  electronic_approval: { en: 'Electronic approval', es: 'Aprobacion electronica', fr: 'Approbation electronique', it: 'Approvazione elettronica', ca: 'Aprovacio electronica' },
+  electronic_approval: { en: 'Electronic approval', es: 'Aprobación electrónica', fr: 'Approbation electronique', it: 'Approvazione elettronica', ca: 'Aprovació electrònica' },
   deviations_and_capa: { en: 'Deviations and CAPA', es: 'Desviaciones y CAPA', fr: 'Deviations et CAPA', it: 'Deviazioni e CAPA', ca: 'Desviacions i CAPA' },
   customer_portal: { en: 'Customer portal', es: 'Portal cliente', fr: 'Portail client', it: 'Portale cliente', ca: 'Portal client' },
   dashboards: { en: 'Dashboards', es: 'Dashboards', fr: 'Dashboards', it: 'Dashboard', ca: 'Dashboards' },
-  multi_site_history: { en: 'Multi-site history', es: 'Historico multisitio', fr: 'Historique multi-site', it: 'Storico multisito', ca: 'Historic multisite' },
+  multi_site_history: { en: 'Multi-site history', es: 'Histórico multisitio', fr: 'Historique multi-site', it: 'Storico multisito', ca: 'Històric multisite' },
   inventory_traceability: { en: 'Inventory traceability', es: 'Trazabilidad de inventario', fr: 'Tracabilite inventaire', it: 'Tracciabilita inventario', ca: 'Tracabilitat inventari' },
   urgent_incident: { en: 'Urgent incident', es: 'Incidencia urgente', fr: 'Incident urgent', it: 'Incidente urgente', ca: 'Incidencia urgent' },
   within_three_months: { en: 'Within 3 months', es: 'En 3 meses', fr: 'Sous 3 mois', it: 'Entro 3 mesi', ca: 'En 3 mesos' },
@@ -316,26 +321,26 @@ const OPTION_LABELS: Record<string, Record<string, string>> = {
   product_and_software: { en: 'Product and software', es: 'Producto y software', fr: 'Produit et logiciel', it: 'Prodotto e software', ca: 'Producte i software' },
   authorised_distributor: { en: 'Authorised distributor', es: 'Distribuidor autorizado', fr: 'Distributeur autorise', it: 'Distributore autorizzato', ca: 'Distribuidor autoritzat' },
   oem_private_label: { en: 'OEM / private label', es: 'OEM / marca blanca', fr: 'OEM / marque blanche', it: 'OEM / private label', ca: 'OEM / marca blanca' },
-  not_sure: { en: 'Not sure', es: 'No lo se', fr: 'Pas sur', it: 'Non sicuro', ca: 'No ho se' },
-  somatic_coliphages: { en: 'Somatic coliphages', es: 'Colifagos somaticos', fr: 'Coliphages somatiques', it: 'Colifagi somatici', ca: 'Colifags somatics' },
-  f_specific_coliphages: { en: 'F-specific coliphages', es: 'Colifagos F-especificos', fr: 'Coliphages F-specifiques', it: 'Colifagi F-specifici', ca: 'Colifags F-especifics' },
+  not_sure: { en: 'Not sure', es: 'No lo sé', fr: 'Pas sur', it: 'Non sicuro', ca: 'No ho sé' },
+  somatic_coliphages: { en: 'Somatic coliphages', es: 'Colífagos somáticos', fr: 'Coliphages somatiques', it: 'Colifagi somatici', ca: 'Colífags somàtics' },
+  f_specific_coliphages: { en: 'F-specific coliphages', es: 'Colífagos F-específicos', fr: 'Coliphages F-specifiques', it: 'Colifagi F-specifici', ca: 'Colífags F-específics' },
   e_coli: { en: 'E. coli', es: 'E. coli', fr: 'E. coli', it: 'E. coli', ca: 'E. coli' },
   total_coliforms: { en: 'Total coliforms', es: 'Coliformes totales', fr: 'Coliformes totaux', it: 'Coliformi totali', ca: 'Coliformes totals' },
   intestinal_enterococci: { en: 'Intestinal enterococci', es: 'Enterococos intestinales', fr: 'Enterocoques intestinaux', it: 'Enterococchi intestinali', ca: 'Enterococs intestinals' },
   legionella: { en: 'Legionella', es: 'Legionella', fr: 'Legionella', it: 'Legionella', ca: 'Legionella' },
-  general_microbiology: { en: 'General microbiology', es: 'Microbiologia general', fr: 'Microbiologie generale', it: 'Microbiologia generale', ca: 'Microbiologia general' },
-  chemical_water_parameters: { en: 'Chemical water parameters', es: 'Parametros quimicos', fr: 'Parametres chimiques', it: 'Parametri chimici', ca: 'Parametres quimics' },
+  general_microbiology: { en: 'General microbiology', es: 'Microbiología general', fr: 'Microbiologie generale', it: 'Microbiologia generale', ca: 'Microbiologia general' },
+  chemical_water_parameters: { en: 'Chemical water parameters', es: 'Parámetros químicos del agua', fr: 'Paramètres chimiques de l’eau', it: 'Parametri chimici dell’acqua', ca: 'Paràmetres químics de l’aigua' },
   presence_absence: { en: 'Presence/absence', es: 'Presencia/ausencia', fr: 'Presence/absence', it: 'Presenza/assenza', ca: 'Presencia/absencia' },
-  enumeration: { en: 'Enumeration', es: 'Enumeracion', fr: 'Denombrement', it: 'Enumerazione', ca: 'Enumeracio' },
+  enumeration: { en: 'Enumeration', es: 'Enumeración', fr: 'Denombrement', it: 'Enumerazione', ca: 'Enumeració' },
   both: { en: 'Both', es: 'Ambos', fr: 'Les deux', it: 'Entrambi', ca: 'Ambdos' },
   operational_screening: { en: 'Operational screening', es: 'Screening operativo', fr: 'Screening operationnel', it: 'Screening operativo', ca: 'Screening operatiu' },
   routine_internal_control: { en: 'Routine internal control', es: 'Control interno rutinario', fr: 'Controle interne routine', it: 'Controllo interno routine', ca: 'Control intern rutinari' },
-  treatment_verification: { en: 'Treatment verification', es: 'Verificacion de tratamiento', fr: 'Verification traitement', it: 'Verifica trattamento', ca: 'Verificacio tractament' },
-  incident_investigation: { en: 'Incident investigation', es: 'Investigacion de incidencia', fr: 'Investigation incident', it: 'Indagine incidente', ca: 'Investigacio incidencia' },
-  research_validation: { en: 'Research validation', es: 'Validacion de investigacion', fr: 'Validation recherche', it: 'Validazione ricerca', ca: 'Validacio recerca' },
+  treatment_verification: { en: 'Treatment verification', es: 'Verificación de tratamiento', fr: 'Verification traitement', it: 'Verifica trattamento', ca: 'Verificació tractament' },
+  incident_investigation: { en: 'Incident investigation', es: 'Investigación de incidencia', fr: 'Investigation incident', it: 'Indagine incidente', ca: 'Investigació incidència' },
+  research_validation: { en: 'Research validation', es: 'Validación de investigación', fr: 'Validation recherche', it: 'Validazione ricerca', ca: 'Validació recerca' },
   accredited_testing: { en: 'Accredited testing', es: 'Ensayo acreditado', fr: 'Essai accredite', it: 'Test accreditato', ca: 'Assaig acreditat' },
   regulatory_reporting: { en: 'Regulatory reporting', es: 'Reporte regulatorio', fr: 'Rapport reglementaire', it: 'Reporting regolatorio', ca: 'Informe regulador' },
-  customer_audit_evidence: { en: 'Customer audit evidence', es: 'Evidencia para auditoria de cliente', fr: 'Preuve audit client', it: 'Evidenza audit cliente', ca: 'Evidencia auditoria client' },
+  customer_audit_evidence: { en: 'Customer audit evidence', es: 'Evidencia para auditoría de cliente', fr: 'Preuve audit client', it: 'Evidenza audit cliente', ca: 'Evidència auditoria client' },
   internal_sop: { en: 'Internal SOP', es: 'SOP interno', fr: 'SOP interne', it: 'SOP interno', ca: 'SOP intern' },
   iso_10705_2: { en: 'ISO 10705-2', es: 'ISO 10705-2', fr: 'ISO 10705-2', it: 'ISO 10705-2', ca: 'ISO 10705-2' },
   epa_1601: { en: 'EPA 1601', es: 'EPA 1601', fr: 'EPA 1601', it: 'EPA 1601', ca: 'EPA 1601' },
@@ -357,26 +362,26 @@ const OPTION_LABELS: Record<string, Record<string, string>> = {
   wastewater: { en: 'Wastewater', es: 'Agua residual', fr: 'Eaux usees', it: 'Acque reflue', ca: 'Aigues residuals' },
   reclaimed_water: { en: 'Reclaimed water', es: 'Agua regenerada', fr: 'Eau reutilisee', it: 'Acqua rigenerata', ca: 'Aigua regenerada' },
   process_water: { en: 'Process water', es: 'Agua de proceso', fr: 'Eau de procede', it: 'Acqua di processo', ca: 'Aigua de proces' },
-  pool_spa_water: { en: 'Pool or spa water', es: 'Piscina o spa', fr: 'Piscine ou spa', it: 'Piscina o spa', ca: 'Piscina o spa' },
+  pool_spa_water: { en: 'Pool or spa water', es: 'Agua de piscina o spa', fr: 'Eau de piscine ou spa', it: 'Acqua di piscina o spa', ca: 'Aigua de piscina o spa' },
   irrigation_water: { en: 'Irrigation water', es: 'Agua de riego', fr: 'Eau irrigation', it: 'Acqua irrigazione', ca: 'Aigua de reg' },
   purified_water: { en: 'Purified water', es: 'Agua purificada', fr: 'Eau purifiee', it: 'Acqua purificata', ca: 'Aigua purificada' },
   wfi: { en: 'WFI', es: 'WFI', fr: 'WFI', it: 'WFI', ca: 'WFI' },
   new_service: { en: 'New service', es: 'Nuevo servicio', fr: 'Nouveau service', it: 'Nuovo servizio', ca: 'Nou servei' },
-  accredited_scope_review: { en: 'Accredited scope review', es: 'Revision de alcance acreditado', fr: 'Revue portee accreditee', it: 'Revisione ambito accreditato', ca: 'Revisio abast acreditat' },
+  accredited_scope_review: { en: 'Accredited scope review', es: 'Revisión de alcance acreditado', fr: 'Revue portee accreditee', it: 'Revisione ambito accreditato', ca: 'Revisió abast acreditat' },
   tat_pressure: { en: 'Turnaround pressure', es: 'Presion de TAT', fr: 'Pression delai', it: 'Pressione TAT', ca: 'Pressio TAT' },
   multiple_providers: { en: 'Multiple providers', es: 'Varios proveedores', fr: 'Plusieurs fournisseurs', it: 'Piu fornitori', ca: 'Diversos proveidors' },
-  reading_review: { en: 'Reading and review', es: 'Lectura y revision', fr: 'Lecture et revue', it: 'Lettura e revisione', ca: 'Lectura i revisio' },
+  reading_review: { en: 'Reading and review', es: 'Lectura y revisión', fr: 'Lecture et revue', it: 'Lettura e revisione', ca: 'Lectura i revisió' },
   plate_workflow: { en: 'Plate workflow', es: 'Flujo de placa', fr: 'Flux plaque', it: 'Flusso piastra', ca: 'Flux placa' },
-  batch_release: { en: 'Batch release', es: 'Liberacion de lote', fr: 'Liberation lot', it: 'Rilascio lotto', ca: 'Alliberament lot' },
-  line_release: { en: 'Line release', es: 'Liberacion de linea', fr: 'Liberation ligne', it: 'Rilascio linea', ca: 'Alliberament linia' },
-  sanitation_release: { en: 'Sanitation release', es: 'Liberacion de saneamiento', fr: 'Liberation assainissement', it: 'Rilascio sanificazione', ca: 'Alliberament sanejament' },
-  customer_audit: { en: 'Customer audit', es: 'Auditoria de cliente', fr: 'Audit client', it: 'Audit cliente', ca: 'Auditoria client' },
-  internal_hold: { en: 'Internal hold', es: 'Retencion interna', fr: 'Blocage interne', it: 'Blocco interno', ca: 'Retencio interna' },
+  batch_release: { en: 'Batch release', es: 'Liberación de lote', fr: 'Liberation lot', it: 'Rilascio lotto', ca: 'Alliberament lot' },
+  line_release: { en: 'Line release', es: 'Liberación de línea', fr: 'Liberation ligne', it: 'Rilascio linea', ca: 'Alliberament línia' },
+  sanitation_release: { en: 'Sanitation release', es: 'Liberación de saneamiento', fr: 'Liberation assainissement', it: 'Rilascio sanificazione', ca: 'Alliberament sanejament' },
+  customer_audit: { en: 'Customer audit', es: 'Auditoría de cliente', fr: 'Audit client', it: 'Audit cliente', ca: 'Auditoria client' },
+  internal_hold: { en: 'Internal hold', es: 'Retención interna', fr: 'Blocage interne', it: 'Blocco interno', ca: 'Retenció interna' },
   domestic_hot_water: { en: 'Domestic hot water', es: 'ACS', fr: 'Eau chaude sanitaire', it: 'Acqua calda sanitaria', ca: 'ACS' },
   domestic_cold_water: { en: 'Domestic cold water', es: 'AFCH', fr: 'Eau froide sanitaire', it: 'Acqua fredda sanitaria', ca: 'AFCH' },
-  storage_tanks: { en: 'Storage tanks', es: 'Depositos', fr: 'Reservoirs', it: 'Serbatoi', ca: 'Diposits' },
+  storage_tanks: { en: 'Storage tanks', es: 'Depósitos', fr: 'Reservoirs', it: 'Serbatoi', ca: 'Dipòsits' },
   showers: { en: 'Showers', es: 'Duchas', fr: 'Douches', it: 'Docce', ca: 'Dutxes' },
-  cooling_towers: { en: 'Cooling towers', es: 'Torres de refrigeracion', fr: 'Tours aerorefrigerantes', it: 'Torri evaporative', ca: 'Torres de refrigeracio' },
+  cooling_towers: { en: 'Cooling towers', es: 'Torres de refrigeración', fr: 'Tours aerorefrigerantes', it: 'Torri evaporative', ca: 'Torres de refrigeració' },
   spas: { en: 'Spas', es: 'Spas', fr: 'Spas', it: 'Spa', ca: 'Spas' },
   fountains: { en: 'Fountains', es: 'Fuentes', fr: 'Fontaines', it: 'Fontane', ca: 'Fonts' },
   humidifiers: { en: 'Humidifiers', es: 'Humidificadores', fr: 'Humidificateurs', it: 'Umidificatori', ca: 'Humidificadors' },
@@ -397,8 +402,8 @@ const OPTION_LABELS: Record<string, Record<string, string>> = {
   resorts: { en: 'Resorts', es: 'Resorts', fr: 'Resorts', it: 'Resort', ca: 'Resorts' },
   campings: { en: 'Campings', es: 'Campings', fr: 'Campings', it: 'Campeggi', ca: 'Campings' },
   spa: { en: 'Spa', es: 'Spa', fr: 'Spa', it: 'Spa', ca: 'Spa' },
-  water_parks: { en: 'Water parks', es: 'Parques acuaticos', fr: 'Parcs aquatiques', it: 'Parchi acquatici', ca: 'Parcs aquatics' },
-  food_service: { en: 'Food service', es: 'Restauracion', fr: 'Restauration', it: 'Ristorazione', ca: 'Restauracio' },
+  water_parks: { en: 'Water parks', es: 'Parques acuáticos', fr: 'Parcs aquatiques', it: 'Parchi acquatici', ca: 'Parcs aquàtics' },
+  food_service: { en: 'Food service', es: 'Restauración', fr: 'Restauration', it: 'Ristorazione', ca: 'Restauració' },
   ice: { en: 'Ice', es: 'Hielo', fr: 'Glace', it: 'Ghiaccio', ca: 'Gel' },
   rooms: { en: 'Rooms', es: 'Habitaciones', fr: 'Chambres', it: 'Camere', ca: 'Habitacions' },
   seasonal_reopening: { en: 'Seasonal reopening', es: 'Reapertura estacional', fr: 'Reouverture saisonniere', it: 'Riapertura stagionale', ca: 'Reobertura estacional' },
@@ -413,21 +418,27 @@ const FIELD_LABELS = {
     site_count_band: 'Sites', lab_model: 'Laboratory model', sample_volume_band: 'Sample volume', current_systems: 'Current systems',
     digitised_stages: 'Digitised stages', priority_problem_ids: 'Priority problems', evidence_needs: 'Evidence needs',
     implementation_timeline: 'Timeline', preferred_route: 'Preferred route', target_groups: 'Target groups',
-    result_type: 'Result type', intended_use: 'Intended use', method_context: 'Method context', sample_volume_context: 'Sample volume context'
+    result_type: 'Result type', intended_use: 'Intended use', method_context: 'Method context', sample_volume_context: 'Sample volume context',
+    water_use_context: 'Water use context', laboratory_workflow_needs: 'Laboratory workflow needs', release_decision_context: 'Release decision context',
+    facility_assets: 'Facility assets', pharma_quality_context: 'Pharma quality context', hospitality_context: 'Hospitality context'
   },
   es: {
-    sector_id: 'Sector', country_code: 'Pais', organization_type: 'Tipo de organizacion', buyer_role: 'Rol',
+    sector_id: 'Sector', country_code: 'País', organization_type: 'Tipo de organización', buyer_role: 'Rol',
     site_count_band: 'Sedes', lab_model: 'Modelo de laboratorio', sample_volume_band: 'Volumen de muestras', current_systems: 'Sistemas actuales',
     digitised_stages: 'Etapas digitalizadas', priority_problem_ids: 'Problemas prioritarios', evidence_needs: 'Necesidades de evidencia',
     implementation_timeline: 'Plazo', preferred_route: 'Ruta preferida', target_groups: 'Grupos objetivo',
-    result_type: 'Tipo de resultado', intended_use: 'Uso previsto', method_context: 'Contexto de metodo', sample_volume_context: 'Volumen de muestra'
+    result_type: 'Tipo de resultado', intended_use: 'Uso previsto', method_context: 'Contexto de método', sample_volume_context: 'Volumen de muestra',
+    water_use_context: 'Contexto de uso del agua', laboratory_workflow_needs: 'Necesidades del flujo de laboratorio', release_decision_context: 'Contexto de liberación o retención',
+    facility_assets: 'Activos de instalación', pharma_quality_context: 'Contexto de calidad pharma', hospitality_context: 'Contexto de hostelería'
   },
   fr: {
-    sector_id: 'Secteur', country_code: 'Pays', organization_type: 'Type d organisation', buyer_role: 'Role',
-    site_count_band: 'Sites', lab_model: 'Modele laboratoire', sample_volume_band: 'Volume echantillons', current_systems: 'Systemes actuels',
-    digitised_stages: 'Etapes numerisees', priority_problem_ids: 'Problemes prioritaires', evidence_needs: 'Besoins de preuve',
-    implementation_timeline: 'Delai', preferred_route: 'Voie preferee', target_groups: 'Groupes cibles',
-    result_type: 'Type de resultat', intended_use: 'Usage prevu', method_context: 'Contexte methode', sample_volume_context: 'Volume echantillon'
+    sector_id: 'Secteur', country_code: 'Pays', organization_type: 'Type d’organisation', buyer_role: 'Rôle',
+    site_count_band: 'Sites', lab_model: 'Modèle laboratoire', sample_volume_band: 'Volume d’échantillons', current_systems: 'Systèmes actuels',
+    digitised_stages: 'Étapes numérisées', priority_problem_ids: 'Problèmes prioritaires', evidence_needs: 'Besoins de preuve',
+    implementation_timeline: 'Délai', preferred_route: 'Voie préférée', target_groups: 'Groupes cibles',
+    result_type: 'Type de résultat', intended_use: 'Usage prévu', method_context: 'Contexte méthode', sample_volume_context: 'Volume d’échantillon',
+    water_use_context: 'Contexte d’usage de l’eau', laboratory_workflow_needs: 'Besoins de flux laboratoire', release_decision_context: 'Contexte de libération ou blocage',
+    facility_assets: 'Actifs d’installation', pharma_quality_context: 'Contexte qualité pharma', hospitality_context: 'Contexte hôtellerie'
   },
   it: {
     sector_id: 'Settore', country_code: 'Paese', organization_type: 'Tipo organizzazione', buyer_role: 'Ruolo',
@@ -437,11 +448,13 @@ const FIELD_LABELS = {
     result_type: 'Tipo risultato', intended_use: 'Uso previsto', method_context: 'Contesto metodo', sample_volume_context: 'Volume campione'
   },
   ca: {
-    sector_id: 'Sector', country_code: 'Pais', organization_type: 'Tipus d organitzacio', buyer_role: 'Rol',
+    sector_id: 'Sector', country_code: 'País', organization_type: 'Tipus d’organització', buyer_role: 'Rol',
     site_count_band: 'Sedes', lab_model: 'Model de laboratori', sample_volume_band: 'Volum de mostres', current_systems: 'Sistemes actuals',
-    digitised_stages: 'Etapes digitalitzades', priority_problem_ids: 'Problemes prioritaris', evidence_needs: 'Necessitats d evidencia',
+    digitised_stages: 'Etapes digitalitzades', priority_problem_ids: 'Problemes prioritaris', evidence_needs: 'Necessitats d’evidència',
     implementation_timeline: 'Termini', preferred_route: 'Ruta preferida', target_groups: 'Grups objectiu',
-    result_type: 'Tipus de resultat', intended_use: 'Us previst', method_context: 'Context de metode', sample_volume_context: 'Volum de mostra'
+    result_type: 'Tipus de resultat', intended_use: 'Ús previst', method_context: 'Context de mètode', sample_volume_context: 'Volum de mostra',
+    water_use_context: 'Context d’ús de l’aigua', laboratory_workflow_needs: 'Necessitats del flux de laboratori', release_decision_context: 'Context d’alliberament o retenció',
+    facility_assets: 'Actius d’instal·lació', pharma_quality_context: 'Context de qualitat pharma', hospitality_context: 'Context d’hostaleria'
   }
 };
 
@@ -622,10 +635,14 @@ const REPORT_SECTION_TITLES: Record<Language, Record<string, string>> = {
     improvementPlan: 'Improvement plan',
     digitalModules: 'Digital modules within the plan',
     analyticalRoute: 'Analytical route / products to evaluate',
+    pilotRecommendation: 'Recommended pilot',
+    diagnosticDetail: 'Assessment detail level',
     missingInformation: 'Missing information',
     relatedResources: 'Related resources',
     limitations: 'Limitations',
     missingInfoWhy: 'Why it matters',
+    missingInfoOwner: 'Who should confirm it',
+    missingInfoUse: 'How to use it',
     missingInfoHelp: 'Define this before closing the analytical route, product evaluation or implementation decision.',
     firstImprovement: 'What to improve first'
   },
@@ -638,10 +655,14 @@ const REPORT_SECTION_TITLES: Record<Language, Record<string, string>> = {
     improvementPlan: 'Plan de mejora',
     digitalModules: 'Módulos digitales dentro del plan',
     analyticalRoute: 'Ruta analítica / productos a evaluar',
+    pilotRecommendation: 'Piloto recomendado',
+    diagnosticDetail: 'Nivel de detalle del diagnóstico',
     missingInformation: 'Información que falta',
     relatedResources: 'Recursos relacionados',
     limitations: 'Limitaciones',
     missingInfoWhy: 'Por qué importa',
+    missingInfoOwner: 'Quién debería confirmarlo',
+    missingInfoUse: 'Cómo usarlo',
     missingInfoHelp: 'Define este punto antes de cerrar la ruta analítica, la evaluación de producto o la decisión de implantación.',
     firstImprovement: 'Qué mejorar primero'
   },
@@ -654,10 +675,14 @@ const REPORT_SECTION_TITLES: Record<Language, Record<string, string>> = {
     improvementPlan: 'Plan d’amélioration',
     digitalModules: 'Modules numériques dans le plan',
     analyticalRoute: 'Route analytique / produits à évaluer',
+    pilotRecommendation: 'Pilote recommandé',
+    diagnosticDetail: 'Niveau de détail du diagnostic',
     missingInformation: 'Informations manquantes',
     relatedResources: 'Ressources associées',
     limitations: 'Limites',
     missingInfoWhy: 'Pourquoi c’est important',
+    missingInfoOwner: 'Qui doit confirmer',
+    missingInfoUse: 'Comment l’utiliser',
     missingInfoHelp: 'Définissez ce point avant de fermer la route analytique, l’évaluation produit ou la décision de mise en œuvre.',
     firstImprovement: 'À améliorer en premier'
   },
@@ -670,10 +695,14 @@ const REPORT_SECTION_TITLES: Record<Language, Record<string, string>> = {
     improvementPlan: 'Piano di miglioramento',
     digitalModules: 'Moduli digitali nel piano',
     analyticalRoute: 'Percorso analitico / prodotti da valutare',
+    pilotRecommendation: 'Pilota raccomandato',
+    diagnosticDetail: 'Livello di dettaglio della diagnosi',
     missingInformation: 'Informazioni mancanti',
     relatedResources: 'Risorse correlate',
     limitations: 'Limiti',
     missingInfoWhy: 'Perché è importante',
+    missingInfoOwner: 'Chi dovrebbe confermarlo',
+    missingInfoUse: 'Come usarlo',
     missingInfoHelp: 'Definisci questo punto prima di chiudere il percorso analitico, la valutazione del prodotto o la decisione di implementazione.',
     firstImprovement: 'Cosa migliorare prima'
   },
@@ -686,10 +715,14 @@ const REPORT_SECTION_TITLES: Record<Language, Record<string, string>> = {
     improvementPlan: 'Pla de millora',
     digitalModules: 'Mòduls digitals dins del pla',
     analyticalRoute: 'Ruta analítica / productes a avaluar',
+    pilotRecommendation: 'Pilot recomanat',
+    diagnosticDetail: 'Nivell de detall del diagnòstic',
     missingInformation: 'Informació que falta',
     relatedResources: 'Recursos relacionats',
     limitations: 'Limitacions',
     missingInfoWhy: 'Per què importa',
+    missingInfoOwner: 'Qui ho hauria de confirmar',
+    missingInfoUse: 'Com utilitzar-ho',
     missingInfoHelp: 'Defineix aquest punt abans de tancar la ruta analítica, l’avaluació de producte o la decisió d’implantació.',
     firstImprovement: 'Què cal millorar primer'
   }
@@ -701,10 +734,12 @@ const WORKFLOW_RESULT_SECTION_ORDER = [
   'madurez',
   'problemas',
   'plan-mejora',
+  'piloto',
   'modulos',
   'ruta-analitica',
   'informacion-faltante',
   'recursos',
+  'nivel-detalle',
   'limitaciones'
 ] as const;
 
@@ -824,24 +859,82 @@ function isAnswerEmpty(value: Answers[string]) {
   return value === null || value === undefined || value === '';
 }
 
+const SELECT_STATE_CLASSES: Record<string, string> = {
+  empty: 'border-cyan-300 bg-cyan-50 text-slate-700',
+  filled: 'border-slate-300 bg-white text-slate-900 shadow-sm',
+  error: 'border-red-300 bg-red-50 text-slate-900',
+  disabled: 'cursor-not-allowed border-slate-200 bg-slate-100 text-slate-400'
+};
+
+const WorkflowAdvisorSelect = ({
+  id,
+  label,
+  value,
+  options,
+  lang,
+  onChange,
+  help,
+  error,
+  disabled,
+  placeholder,
+  optionLabeler = optionLabel,
+  labelClassName = 'text-sm font-black text-slate-800',
+  wrapperClassName = 'block'
+}: {
+  id: string;
+  label: string;
+  value?: string;
+  options: string[];
+  lang: Language;
+  onChange: (value: string) => void;
+  help?: string;
+  error?: string;
+  disabled?: boolean;
+  placeholder?: string;
+  optionLabeler?: (option: string, lang: Language) => string;
+  labelClassName?: string;
+  wrapperClassName?: string;
+}) => {
+  const currentValue = value || '';
+  const selectState = disabled ? 'disabled' : error ? 'error' : currentValue ? 'filled' : 'empty';
+  const describedBy = [help ? `${id}-help` : null, error ? `${id}-error` : null].filter(Boolean).join(' ') || undefined;
+  return (
+    <label className={wrapperClassName} data-question-id={id}>
+      <span className={labelClassName}>{label}</span>
+      {help ? <span id={`${id}-help`} className="mt-1 block text-xs font-semibold leading-5 text-slate-500">{help}</span> : null}
+      <div className="relative mt-2">
+        <select
+          value={currentValue}
+          disabled={disabled}
+          onChange={(event) => onChange(event.target.value)}
+          aria-describedby={describedBy}
+          aria-invalid={error ? 'true' : undefined}
+          data-select-state={selectState}
+          className={`w-full appearance-none rounded-xl border px-3 py-3 pr-10 text-sm font-bold outline-none transition focus:border-cyan-500 focus:ring-4 focus:ring-cyan-100 ${SELECT_STATE_CLASSES[selectState]}`}
+        >
+          <option value="">{placeholder || UI[lang].selectPlaceholder}</option>
+          {options.map((option: string) => (
+            <option key={option} value={option}>{optionLabeler(option, lang)}</option>
+          ))}
+        </select>
+        <ChevronDown aria-hidden="true" className={`pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 ${selectState === 'disabled' ? 'text-slate-400' : selectState === 'error' ? 'text-red-600' : 'text-cyan-700'}`} />
+      </div>
+      {error ? <span id={`${id}-error`} tabIndex={-1} className="mt-2 block text-xs font-black text-red-700">{error}</span> : null}
+    </label>
+  );
+};
+
 const SelectField = ({ id, value, options, lang, onChange, help, error }: any) => (
-  <label className="block" data-question-id={id}>
-    <span className="text-sm font-black text-slate-800">{fieldLabel(id, lang)}</span>
-    {help ? <span id={`${id}-help`} className="mt-1 block text-xs font-semibold leading-5 text-slate-500">{help}</span> : null}
-    <select
-      value={value || ''}
-      onChange={(event) => onChange(event.target.value)}
-      aria-describedby={`${id}-help${error ? ` ${id}-error` : ''}`}
-      aria-invalid={error ? 'true' : undefined}
-      className={`mt-2 w-full rounded-xl border bg-white px-3 py-3 text-sm outline-none focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100 ${error ? 'border-red-300' : 'border-slate-200'}`}
-    >
-      <option value="">-</option>
-      {options.map((option: string) => (
-        <option key={option} value={option}>{optionLabel(option, lang)}</option>
-      ))}
-    </select>
-    {error ? <span id={`${id}-error`} tabIndex={-1} className="mt-2 block text-xs font-black text-red-700">{error}</span> : null}
-  </label>
+  <WorkflowAdvisorSelect
+    id={id}
+    label={fieldLabel(id, lang)}
+    value={value}
+    options={options}
+    lang={lang}
+    onChange={onChange}
+    help={help}
+    error={error}
+  />
 );
 
 const MultiField = ({ id, values, options, lang, onToggle, optionLabels, help, error }: any) => (
@@ -1036,6 +1129,26 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
             </ol>
           </WorkflowReportSection>
 
+          {(report as any).pilotRecommendation ? (
+            <WorkflowReportSection id="piloto" title={titles.pilotRecommendation}>
+              <p className="text-sm leading-7 text-slate-600">{(report as any).pilotRecommendation.paragraph}</p>
+              <dl className="grid gap-3 text-sm md:grid-cols-2">
+                {[
+                  ['scope', (report as any).pilotRecommendation.scope],
+                  ['duration', (report as any).pilotRecommendation.duration],
+                  ['roles', (report as any).pilotRecommendation.roles],
+                  ['evidence', (report as any).pilotRecommendation.evidence],
+                  ['expectedOutcome', (report as any).pilotRecommendation.expectedOutcome]
+                ].filter(([, value]) => value).map(([key, value]) => (
+                  <div key={key} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <dt className="text-xs font-black uppercase tracking-[0.12em] text-slate-400">{label(key, key)}</dt>
+                    <dd className="mt-2 font-bold leading-6 text-slate-700">{String(value)}</dd>
+                  </div>
+                ))}
+              </dl>
+            </WorkflowReportSection>
+          ) : null}
+
           <WorkflowReportSection id="modulos" title={titles.digitalModules}>
             {groupedRecommendations(report).map((group) => (
               <div key={group.title} className="mt-4">
@@ -1072,25 +1185,50 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
           </WorkflowReportSection>
 
           <WorkflowReportSection id="informacion-faltante" title={titles.missingInformation}>
-            <ul className="space-y-3 text-sm leading-7 text-slate-600">
-              {(report.missingInformation || []).map((item) => (
-                <li key={item} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4">
-                  <strong className="block text-slate-950">{item}</strong>
-                  <span className="mt-1 block text-xs font-black uppercase tracking-[0.12em] text-slate-400">{titles.missingInfoWhy}</span>
-                  <span className="mt-1 block">{titles.missingInfoHelp}</span>
+            <ul className="grid gap-3 text-sm leading-7 text-slate-600 md:grid-cols-2">
+              {(report.missingInformation || []).map((rawItem: any) => {
+                const item = typeof rawItem === 'string'
+                  ? { itemId: rawItem, title: rawItem, whyItMatters: titles.missingInfoHelp, owner: '', useInReview: '' }
+                  : rawItem;
+                return (
+                  <li key={item.itemId || item.title} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4">
+                    <strong className="block text-slate-950">{item.title}</strong>
+                    <span className="mt-3 block text-xs font-black uppercase tracking-[0.12em] text-slate-400">{titles.missingInfoWhy}</span>
+                    <span className="mt-1 block">{item.whyItMatters || titles.missingInfoHelp}</span>
+                    {item.owner ? (
+                      <>
+                        <span className="mt-3 block text-xs font-black uppercase tracking-[0.12em] text-slate-400">{titles.missingInfoOwner}</span>
+                        <span className="mt-1 block">{item.owner}</span>
+                      </>
+                    ) : null}
+                    {item.useInReview ? (
+                      <>
+                        <span className="mt-3 block text-xs font-black uppercase tracking-[0.12em] text-slate-400">{titles.missingInfoUse}</span>
+                        <span className="mt-1 block">{item.useInReview}</span>
+                      </>
+                    ) : null}
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </WorkflowReportSection>
 
           <WorkflowReportSection id="recursos" title={titles.relatedResources}>
             {(report.relatedResources || []).map((resource) => (
               <article key={`${resource.title}-${resource.url}`} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4">
+                {(resource as any).typeLabel ? <span className="mb-2 inline-flex rounded-full bg-cyan-50 px-2 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-cyan-800">{(resource as any).typeLabel}</span> : null}
                 <a href={resource.url} className="block text-sm font-bold text-cyan-700">{resource.title}</a>
                 {resource.description ? <p className="mt-1 text-xs leading-5 text-slate-500">{resource.description}</p> : null}
               </article>
             ))}
           </WorkflowReportSection>
+
+          {(report as any).diagnosticDetail ? (
+            <WorkflowReportSection id="nivel-detalle" title={titles.diagnosticDetail}>
+              <p className="text-sm font-black text-cyan-800">{(report as any).diagnosticDetail.status}</p>
+              <p className="text-sm leading-7 text-slate-600">{(report as any).diagnosticDetail.paragraph}</p>
+            </WorkflowReportSection>
+          ) : null}
 
           <WorkflowReportSection id="limitaciones" title={titles.limitations}>
             {(report.limitations || []).map((item) => (
@@ -1518,12 +1656,16 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                               <input value={(contact as any)[field]} onChange={(event) => setContact((current) => ({ ...current, [field]: event.target.value }))} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400" />
                             </label>
                           ))}
-                          <label className="block">
-                            <span className="text-xs font-black uppercase text-slate-500">{CONTACT_FIELD_LABELS.requestType?.[pageLang]}</span>
-                            <select value={contact.requestType} onChange={(event) => setContact((current) => ({ ...current, requestType: event.target.value }))} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400">
-                              {['technical_review', 'demo', 'quote', 'distributor', 'oem', 'integration', 'other'].map((item) => <option key={item} value={item}>{REQUEST_TYPE_LABELS[item]?.[pageLang] || item}</option>)}
-                            </select>
-                          </label>
+                          <WorkflowAdvisorSelect
+                            id="contact_request_type"
+                            label={CONTACT_FIELD_LABELS.requestType?.[pageLang] || 'Request'}
+                            value={contact.requestType}
+                            options={['technical_review', 'demo', 'quote', 'distributor', 'oem', 'integration', 'other']}
+                            lang={pageLang}
+                            onChange={(value) => setContact((current) => ({ ...current, requestType: value }))}
+                            optionLabeler={(item) => REQUEST_TYPE_LABELS[item]?.[pageLang] || item}
+                            labelClassName="text-xs font-black uppercase text-slate-500"
+                          />
                           <label className="block md:col-span-2">
                             <span className="text-xs font-black uppercase text-slate-500">{CONTACT_FIELD_LABELS.comment?.[pageLang]}</span>
                             <textarea value={contact.comment} onChange={(event) => setContact((current) => ({ ...current, comment: event.target.value }))} className="mt-1 min-h-28 w-full rounded-xl border border-slate-200 px-3 py-3 text-sm outline-none focus:border-cyan-400" />

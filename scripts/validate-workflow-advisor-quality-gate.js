@@ -28,6 +28,14 @@ const FORBIDDEN_ES_TERMS = [
   'connect water source to crop risk',
   'manage reclaimed water evidence',
   'improve audit evidence',
+  'coordinate network sampling',
+  'manage incidents and resampling',
+  'prepare water safety plan records',
+  'surface water',
+  'pool spa water',
+  'wastewater',
+  'chemical water parameters',
+  '50 to 199 month',
   'name',
   'company',
   'countryCode',
@@ -58,16 +66,25 @@ const FORBIDDEN_ES_TERMS = [
 const UNACCENTED_SPANISH_TERMS = [
   'Diagnostico',
   'microbiologia',
+  'documentacion',
+  'evaluacion',
   'revision',
   'metodo',
   'informacion',
+  'aprobacion',
+  'electronica',
   'tecnica',
   'modulos',
   'auditoria',
   'analitico',
-  'evaluacion',
   'aceptacion',
-  'pais'
+  'automatico',
+  'pais',
+  'estadistica',
+  'investigacion',
+  'opcion',
+  'direccion',
+  'coordinacion'
 ];
 
 const REQUIRED_SPANISH_TERMS = [
@@ -82,7 +99,7 @@ const REQUIRED_SPANISH_TERMS = [
   'analítico',
   'evaluación',
   'aceptación',
-  'país'
+  'país',
 ];
 
 function escapeRegExp(value) {
@@ -126,7 +143,7 @@ function validatePrudentAnalyticalRoute(fixture, report, text) {
   if (!needsReview) return;
 
   assert(report.analyticalReview?.title === 'Ruta analítica pendiente de revisión técnica', `${fixture.id} should use pending technical review analytical route`);
-  assert(report.analyticalReview?.paragraph?.includes('no debe cerrarse'), `${fixture.id} should explain that product selection is not closed`);
+  assert(/no debe cerrarse|deben confirmarse|requiere confirmar/i.test(report.analyticalReview?.paragraph || ''), `${fixture.id} should explain that product selection is not closed`);
   assert((report.analyticalReview?.candidates || []).every((candidate) => candidate.status === 'No recomendación cerrada'), `${fixture.id} should mark candidates as non-closed recommendations`);
   assert(text.includes('Método o referencia exacta'), `${fixture.id} should request exact method/reference`);
 }
@@ -139,6 +156,8 @@ function validateReport(report, fixture, text) {
   assert(text.includes('Ruta analítica'), `${fixture.id} must render localized analytical route`);
   assert(text.includes('Siguiente paso'), `${fixture.id} must render localized next-step label`);
   assert(text.includes('Plan de mejora'), `${fixture.id} must render improvement plan`);
+  assert(text.includes('Piloto recomendado'), `${fixture.id} must render recommended pilot`);
+  assert(text.includes('Nivel de detalle del diagnóstico'), `${fixture.id} must render diagnostic detail level`);
   [
     'Cómo puede ayudar AquaVerify',
     'Impacto operativo',
@@ -146,11 +165,43 @@ function validateReport(report, fixture, text) {
     'Condición antes de implantar',
     'Problema que resuelve',
     'Datos necesarios',
-    'Resultado operativo esperado'
+    'Resultado operativo esperado',
+    'Alcance sugerido',
+    'Roles implicados',
+    'Evidencia que debería conservarse',
+    'Por qué importa',
+    'Quién debería confirmarlo',
+    'Cómo usarlo'
   ].forEach((term) => assert(text.includes(term), `${fixture.id} visible report text missing enriched term: ${term}`));
   assert(!text.includes('es relevante porque Las respuestas'), `${fixture.id} contains automated recommendation wording`);
   assert(!text.includes('es relevante porque El resultado'), `${fixture.id} contains automated recommendation wording`);
   assert(!text.includes('es relevante porque La trazabilidad'), `${fixture.id} contains automated recommendation wording`);
+  const explanations = (report.priorityProblems || []).map((item) => item.explanation || item.paragraph).filter(Boolean);
+  assert(new Set(explanations).size === explanations.length, `${fixture.id} priority problem explanations must not repeat`);
+  assert((report.priorityProblems || []).every((item) => item.title && item.explanation && item.operationalImpact && item.improvementFocus && item.aquaverifySupport && item.relatedCapabilities?.length && item.nextStep), `${fixture.id} priority problems must include all premium fields`);
+  assert(!explanations.some((item) => item.includes('El problema seleccionado indica')), `${fixture.id} priority problems must not use generic repeated wording`);
+  const missingItems = report.missingInformation || [];
+  assert(missingItems.length > 0, `${fixture.id} missing information must not be empty`);
+  assert(missingItems.every((item) => typeof item !== 'string' && item.title && item.whyItMatters && item.owner && item.useInReview), `${fixture.id} missing information must be structured`);
+  const missingReasons = missingItems.map((item) => item.whyItMatters);
+  assert(new Set(missingReasons).size === missingReasons.length, `${fixture.id} missing information reasons must not repeat`);
+  assert(report.pilotRecommendation?.scope && report.pilotRecommendation?.roles && report.pilotRecommendation?.evidence && report.pilotRecommendation?.expectedOutcome, `${fixture.id} must include complete recommended pilot`);
+  assert(report.diagnosticDetail?.status && report.diagnosticDetail?.paragraph, `${fixture.id} must include assessment detail level`);
+  assert(!/compliance|cumplimiento/i.test(`${report.diagnosticDetail?.title || ''} ${report.diagnosticDetail?.status || ''} ${report.diagnosticDetail?.paragraph || ''}`), `${fixture.id} assessment detail must not be framed as compliance`);
+  assert((report.relatedResources || []).length >= 3, `${fixture.id} must include at least three related resources`);
+  assert((report.relatedResources || []).every((resource) => resource.title && resource.description && resource.url && resource.typeLabel), `${fixture.id} resources must include title, description, URL and type`);
+  assert(!(report.relatedResources || []).some((resource) => /diagnostico-flujo-calidad-agua|diagnostic-flux|diagnosi-flusso/i.test(resource.url)), `${fixture.id} resources must not point to the diagnostic landing`);
+  if (fixture.id === 'municipal') {
+    [
+      'Coordinar muestreo de red',
+      'Gestionar incidencias y remuestreos',
+      'Preparar registros para el Plan de Seguridad del Agua',
+      'Agua superficial',
+      'Agua residual',
+      'Parámetros químicos del agua',
+      'Suficiente para orientar el flujo, pero requiere revisión técnica para cerrar ruta analítica.'
+    ].forEach((term) => assert(text.includes(term), `Municipal report missing ${term}`));
+  }
   validatePrudentAnalyticalRoute(fixture, report, text);
 }
 

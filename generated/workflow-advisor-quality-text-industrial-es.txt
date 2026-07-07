@@ -15,8 +15,10 @@ Análisis del flujo
 Madurez por dimensiones
 Problemas prioritarios
 Plan de mejora
+Piloto recomendado
 Módulos digitales dentro del plan
 Ruta analítica / productos a evaluar
+Nivel de detalle del diagnóstico
 Información que falta
 Recursos relacionados
 Limitaciones
@@ -28,6 +30,13 @@ Impacto operativo
 Enfoque de mejora
 Siguiente paso
 Resultado operativo esperado
+Alcance sugerido
+Duración orientativa
+Roles implicados
+Evidencia que debería conservarse
+Por qué importa
+Quién debería confirmarlo
+Cómo usarlo
 Fase relacionada
 Problema que resuelve
 Datos necesarios
@@ -293,6 +302,13 @@ Producto pendiente de revisión técnica
 Usar dashboards solo cuando punto, muestra, revisión y acción sean fiables.
 Mantenimiento y EHS comparten una vista común.
 Seleccionar dos o tres indicadores antes de escalar a toda la cartera.
+Piloto recomendado
+Antes de escalar el flujo completo, AquaVerify recomienda validar un piloto limitado. El objetivo es comprobar si punto, muestra, método, revisión, CoA y acción pueden reconstruirse sin depender de correos o documentos aislados.
+Un punto, circuito, sede o familia de muestras del flujo seleccionado.
+Cuatro a seis semanas o un ciclo operativo completo.
+Operaciones, laboratorio, calidad y responsable técnico.
+Punto o activo, muestra, custodia, método, resultado, revisión, informe y acción posterior.
+Confirmar si el flujo de Agua de proceso industrial es reconstruible antes de escalar módulos o dashboards.
 Base operativa
 Muestreo de campo y custodia
 Encaje potencial
@@ -368,16 +384,18 @@ Cuantificación, sujeto a revisión.
 PLAQUE / Kits ISO/EPA
 No recomendación cerrada
 Referencia o placa, sujeto a revisión.
-Método o referencia exacta: necesario para saber si la ruta analítica debe orientarse a presencia/ausencia, enumeración, placa, referencia ISO/EPA o revisión específica.
-Matriz concreta para cada uso de agua: necesaria para diferenciar agua de consumo, agua de proceso, agua regenerada u otra matriz.
-Organismo prioritario: necesario para priorizar indicador, colífagos, E. coli, microbiología general u otro objetivo.
-Volumen real aplicable por matriz: necesario porque 1 mL puede no representar todos los usos o métodos.
-Uso del resultado: confirmar si será interno, contractual, auditoría o regulatorio.
-Laboratorio responsable y alcance: necesario para saber si el resultado procede de laboratorio interno, externo o mixto y con qué alcance.
-Criterios de revisión: necesarios para interpretar desviaciones, aceptación interna y acciones posteriores.
-Quién recibe el CoA o informe: necesario para orientar publicación, revisión y trazabilidad de entrega.
-Acciones ante una desviación: definir qué se activa ante resultado fuera de criterio, remuestreo, mantenimiento o EHS.
-País o jurisdicción aplicable a cada uso: necesario antes de cerrar cualquier evaluación técnica o regulatoria.
+Método o referencia exacta
+Define si la ruta analítica debe orientarse a presencia/ausencia, enumeración, placa, referencia ISO/EPA o revisión específica.
+Laboratorio o responsable técnico.
+Permite separar producto a evaluar, módulo digital y requisito documental.
+Criterios de revisión y estados de decisión
+Un resultado solo es útil operativamente si están definidos revisión, retención, liberación, remuestreo o acción.
+Calidad, operador y responsable técnico.
+Convierte el informe en un flujo capaz de asignar acciones y cerrar seguimiento.
+Quién recibe el CoA o informe
+Las reglas de publicación dependen de si el entregable es interno, para cliente, institucional o para auditoría.
+Calidad, responsable de cliente o responsable municipal.
+Orienta portal, histórico de certificados y permisos.
 Página sectorial
 Agua de proceso industrial
 Página sectorial para conectar planta, laboratorio, activos de proceso y acciones correctivas.
@@ -405,6 +423,9 @@ Calculadora complementaria para conversiones químicas rutinarias cuando el cont
 Recurso
 Migración de Excel a LIMS
 Checklist para pasar de hojas de cálculo a un flujo conectado de muestra a informe.
+Nivel de detalle del diagnóstico
+Suficiente para orientar el flujo, pero requiere revisión técnica para cerrar ruta analítica.
+El diagnóstico puede orientar la mejora del flujo. La ruta analítica aún depende de confirmar método, matriz, volumen, grupo objetivo y uso previsto antes de evaluar productos.
 Este informe se basa únicamente en respuestas estructuradas. No se han revisado SOP, datos reales, informes de laboratorio ni documentación interna.
 No se infiere aceptación regulatoria automática. Cualquier uso sujeto a norma debe revisarse por país, matriz, método, alcance del laboratorio y autoridad competente.
 Los productos candidatos no son recomendaciones cerradas hasta revisar matriz, método, volumen, uso previsto, laboratorio y país.

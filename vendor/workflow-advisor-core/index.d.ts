@@ -128,6 +128,31 @@ export type WorkflowAdvisorReportV2Recommendation = {
   showToClient: boolean;
 };
 
+export type WorkflowAdvisorReportV2MissingInformation = {
+  itemId: string;
+  title: string;
+  whyItMatters: string;
+  owner: string;
+  useInReview: string;
+};
+
+export type WorkflowAdvisorReportV2PilotRecommendation = {
+  title: string;
+  paragraph: string;
+  scope: string;
+  duration: string;
+  roles: string;
+  evidence: string;
+  expectedOutcome: string;
+};
+
+export type WorkflowAdvisorReportV2DiagnosticDetail = {
+  title: string;
+  status: string;
+  paragraph: string;
+  signals?: Record<string, string | number | boolean>;
+};
+
 export type WorkflowAdvisorReportV2 = {
   reportVersion: string;
   reportKind: 'consultative_workflow_report';
@@ -159,6 +184,7 @@ export type WorkflowAdvisorReportV2 = {
   maturity: Array<{ dimensionId: string; title: string; level: number; label: string; explanation: string; nextImprovement: string; interpretation?: string; firstImprovement?: string; aquaverifySupport?: string; relatedCapabilities?: string[]; implementationCondition?: string }>;
   priorityProblems: Array<{ problemId?: string; findingId?: string; title: string; priorityLabel: string; severity: string; paragraph: string; explanation?: string; operationalImpact?: string; improvementFocus?: string; aquaverifySupport?: string; relatedCapabilities?: string[]; nextStep?: string }>;
   improvementPlan: { phases: WorkflowAdvisorReportV2Phase[] };
+  pilotRecommendation?: WorkflowAdvisorReportV2PilotRecommendation;
   recommendationSections: WorkflowAdvisorReportV2Recommendation[];
   analyticalReview: {
     title: string;
@@ -167,8 +193,9 @@ export type WorkflowAdvisorReportV2 = {
     candidates: Array<{ productId: string; title: string; status: string; reason: string }>;
     nextStep: string;
   };
-  missingInformation: string[];
+  missingInformation: WorkflowAdvisorReportV2MissingInformation[];
   relatedResources: Array<{ resourceId: string; type: string; typeLabel: string; title: string; description: string; url: string }>;
+  diagnosticDetail?: WorkflowAdvisorReportV2DiagnosticDetail;
   limitations: string[];
   cta: { title: string; label: string; requestType: string };
   pdf: { buttonLabel: string; printLabel: string; instructions: string; mode: string; filename: string };

@@ -43,6 +43,13 @@ const PDF_FORBIDDEN_TERMS = [
   'Desactiva cabeceras',
   'Compartir resultado para mejorar',
   'workflow-result-actions'
+  , 'coordinate network sampling'
+  , 'manage incidents and resampling'
+  , 'prepare water safety plan records'
+  , 'surface water'
+  , 'pool spa water'
+  , 'wastewater'
+  , 'chemical water parameters'
 ];
 
 const REQUIRED_PDF_TERMS = [
@@ -53,7 +60,10 @@ const REQUIRED_PDF_TERMS = [
   'Análisis del flujo',
   'Madurez por dimensiones',
   'Plan de mejora',
+  'Piloto recomendado',
   'Ruta analítica',
+  'Información que falta',
+  'Nivel de detalle del diagnóstico',
   'Limitaciones',
   'Cómo puede ayudar AquaVerify',
   'Impacto operativo',
@@ -61,7 +71,13 @@ const REQUIRED_PDF_TERMS = [
   'Condición antes de implantar',
   'Problema que resuelve',
   'Datos necesarios',
-  'Resultado operativo esperado'
+  'Resultado operativo esperado',
+  'Alcance sugerido',
+  'Roles implicados',
+  'Evidencia que debería conservarse',
+  'Por qué importa',
+  'Quién debería confirmarlo',
+  'Cómo usarlo'
 ];
 
 const REQUIRED_INDUSTRIAL_TERMS = [
@@ -106,6 +122,7 @@ function containsTerm(text, term) {
 
 function renderPdfText(fixtureId, report) {
   const pages = buildReportTextPages(report);
+  assert(pages.length >= 6 && pages.length <= 8, `${fixtureId} PDF should stay around 6-8 pages, got ${pages.length}`);
   pages.forEach((page, index) => {
     const usefulLength = normalizeWhitespace(page).length;
     assert(usefulLength >= 120, `${fixtureId} PDF page ${index + 1} is almost empty (${usefulLength} chars)`);

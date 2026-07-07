@@ -233,10 +233,12 @@ function validateSource() {
     'madurez',
     'problemas',
     'plan-mejora',
+    'piloto',
     'modulos',
     'ruta-analitica',
     'informacion-faltante',
     'recursos',
+    'nivel-detalle',
     'limitaciones'
   ];
   workflowResultAnchors.forEach((id) => assert(component.includes(`'${id}'`) && component.includes(`id="${id}"`), `Workflow report missing anchor ${id}`));
@@ -256,10 +258,12 @@ function validateSource() {
       'id="madurez"',
       'id="problemas"',
       'id="plan-mejora"',
+      'id="piloto"',
       'id="modulos"',
       'id="ruta-analitica"',
       'id="informacion-faltante"',
       'id="recursos"',
+      'id="nivel-detalle"',
       'id="limitaciones"'
     ],
     'Workflow result sections must keep the approved vertical reading order'
@@ -271,8 +275,10 @@ function validateSource() {
     "maturity: 'Maturity by dimension'",
     "priorityProblems: 'Priority problems'",
     "improvementPlan: 'Improvement plan'",
+    "pilotRecommendation: 'Recommended pilot'",
     "digitalModules: 'Digital modules within the plan'",
     "analyticalRoute: 'Analytical route / products to evaluate'",
+    "diagnosticDetail: 'Assessment detail level'",
     "missingInformation: 'Missing information'",
     "relatedResources: 'Related resources'",
     "limitations: 'Limitations'",
@@ -282,8 +288,10 @@ function validateSource() {
     "maturity: 'Madurez por dimensiones'",
     "priorityProblems: 'Problemas prioritarios'",
     "improvementPlan: 'Plan de mejora'",
+    "pilotRecommendation: 'Piloto recomendado'",
     "digitalModules: 'Módulos digitales dentro del plan'",
     "analyticalRoute: 'Ruta analítica / productos a evaluar'",
+    "diagnosticDetail: 'Nivel de detalle del diagnóstico'",
     "missingInformation: 'Información que falta'",
     "relatedResources: 'Recursos relacionados'",
     "limitations: 'Limitaciones'",
@@ -293,8 +301,10 @@ function validateSource() {
     "maturity: 'Maturité par dimension'",
     "priorityProblems: 'Problèmes prioritaires'",
     "improvementPlan: 'Plan d’amélioration'",
+    "pilotRecommendation: 'Pilote recommandé'",
     "digitalModules: 'Modules numériques dans le plan'",
     "analyticalRoute: 'Route analytique / produits à évaluer'",
+    "diagnosticDetail: 'Niveau de détail du diagnostic'",
     "missingInformation: 'Informations manquantes'",
     "relatedResources: 'Ressources associées'",
     "limitations: 'Limites'",
@@ -304,8 +314,10 @@ function validateSource() {
     "maturity: 'Maturità per dimensione'",
     "priorityProblems: 'Problemi prioritari'",
     "improvementPlan: 'Piano di miglioramento'",
+    "pilotRecommendation: 'Pilota raccomandato'",
     "digitalModules: 'Moduli digitali nel piano'",
     "analyticalRoute: 'Percorso analitico / prodotti da valutare'",
+    "diagnosticDetail: 'Livello di dettaglio della diagnosi'",
     "missingInformation: 'Informazioni mancanti'",
     "relatedResources: 'Risorse correlate'",
     "limitations: 'Limiti'",
@@ -315,8 +327,10 @@ function validateSource() {
     "maturity: 'Maduresa per dimensió'",
     "priorityProblems: 'Problemes prioritaris'",
     "improvementPlan: 'Pla de millora'",
+    "pilotRecommendation: 'Pilot recomanat'",
     "digitalModules: 'Mòduls digitals dins del pla'",
     "analyticalRoute: 'Ruta analítica / productes a avaluar'",
+    "diagnosticDetail: 'Nivell de detall del diagnòstic'",
     "missingInformation: 'Informació que falta'",
     "relatedResources: 'Recursos relacionats'",
     "limitations: 'Limitacions'"
@@ -338,7 +352,12 @@ function validateSource() {
     ['docs/seo/workflow-advisor-result-actions.md', 'two post-report actions'],
     ['docs/seo/workflow-advisor-maturity-content.md', 'maturity enrichment'],
     ['docs/seo/workflow-advisor-plan-enrichment.md', 'plan enrichment'],
-    ['docs/seo/workflow-advisor-result-ux-polish.md', 'result UX polish']
+    ['docs/seo/workflow-advisor-result-ux-polish.md', 'result UX polish'],
+    ['docs/seo/workflow-advisor-select-ux.md', 'select UX'],
+    ['docs/seo/workflow-advisor-premium-result.md', 'premium result'],
+    ['docs/seo/workflow-advisor-missing-information.md', 'missing information'],
+    ['docs/seo/workflow-advisor-pilot-recommendation.md', 'pilot recommendation'],
+    ['docs/seo/workflow-advisor-resource-links.md', 'resource links']
   ].forEach(([file, term]) => {
     assert(fs.existsSync(file), `Missing Workflow Advisor documentation file ${file}`);
     assert(readText(file).includes(term), `Workflow Advisor documentation ${file} missing ${term}`);
@@ -364,6 +383,24 @@ function validateSource() {
   assert(component.includes('focusFirstError') && component.includes('data-question-id'), 'Validation errors must scroll and focus the first invalid question');
   assert(component.includes('stepHeadingRef') && component.includes('resultHeadingRef'), 'Step and result headings must receive focus after navigation');
   assert(component.includes('workflowAdvisorQuestionHelp'), 'Question help dictionary is required');
+  assert(component.includes('const WorkflowAdvisorSelect ='), 'Workflow Advisor must use a reusable select component');
+  assert(component.includes('ChevronDown'), 'Workflow Advisor selects must render a chevron');
+  assert(component.includes('appearance-none'), 'Workflow Advisor selects must remove native input-like select appearance');
+  assert(component.includes('data-select-state={selectState}'), 'Workflow Advisor selects must expose empty/filled/error/disabled state');
+  assert(component.includes('SELECT_STATE_CLASSES'), 'Workflow Advisor selects must define visual state classes');
+  assert(component.includes('bg-cyan-50') && component.includes('border-cyan-300'), 'Empty select state must be visually distinct');
+  assert(component.includes('bg-red-50') && component.includes('border-red-300'), 'Error select state must be visually distinct');
+  assert(component.includes('bg-slate-100') && component.includes('cursor-not-allowed'), 'Disabled select state must be visually distinct');
+  assert(component.includes('aria-describedby={describedBy}'), 'Workflow Advisor selects must preserve aria-describedby');
+  assert(component.includes("aria-invalid={error ? 'true' : undefined}"), 'Workflow Advisor selects must expose aria-invalid on error');
+  assert(!component.includes('<option value="">-</option>'), 'Workflow Advisor select placeholder must not be "-"');
+  [
+    "selectPlaceholder: 'Select an option'",
+    "selectPlaceholder: 'Selecciona una opción'",
+    "selectPlaceholder: 'Sélectionnez une option'",
+    "selectPlaceholder: 'Seleziona un’opzione'",
+    "selectPlaceholder: 'Selecciona una opció'"
+  ].forEach((term) => assert(component.includes(term), `Workflow Advisor select placeholder missing ${term}`));
   [
     'sector_id',
     'country_code',

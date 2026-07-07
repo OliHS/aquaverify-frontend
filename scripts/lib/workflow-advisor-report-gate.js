@@ -85,16 +85,16 @@ export const WORKFLOW_ADVISOR_GATE_FIXTURES = [
         sample_volume_band: '200_to_999_month',
         current_systems: ['paper', 'spreadsheets', 'external_lab_portal'],
         digitised_stages: ['sampling', 'coa_reporting'],
-        priority_problem_ids: ['coordinate-network-sampling', 'manage-incidents-and-resampling', 'improve_audit_evidence'],
+        priority_problem_ids: ['coordinate-network-sampling', 'manage-incidents-and-resampling', 'prepare-water-safety-plan-records'],
         evidence_needs: ['chain_of_custody', 'method_traceability', 'coa', 'audit_trail'],
         implementation_timeline: 'within_three_months',
         preferred_route: 'product_and_software',
-        target_groups: ['somatic_coliphages', 'e_coli', 'general_microbiology'],
+        target_groups: ['somatic_coliphages', 'e_coli', 'general_microbiology', 'chemical_water_parameters'],
         result_type: 'both',
         intended_use: 'treatment_verification',
-        method_context: 'iso_10705_2',
+        method_context: 'not_defined',
         sample_volume_context: 'one_hundred_ml',
-        water_use_context: ['drinking_water']
+        water_use_context: ['surface_water', 'wastewater']
       }
     }
   }
@@ -191,6 +191,16 @@ export function visibleReportText(report) {
     append(lines, phase.nextStep);
   }
 
+  if (report.pilotRecommendation) {
+    append(lines, report.sections?.pilotRecommendation || report.pilotRecommendation.title);
+    append(lines, report.pilotRecommendation.paragraph);
+    append(lines, report.pilotRecommendation.scope);
+    append(lines, report.pilotRecommendation.duration);
+    append(lines, report.pilotRecommendation.roles);
+    append(lines, report.pilotRecommendation.evidence);
+    append(lines, report.pilotRecommendation.expectedOutcome);
+  }
+
   for (const rec of report.recommendationSections || []) {
     append(lines, rec.phaseTitle);
     append(lines, rec.title);
@@ -213,11 +223,25 @@ export function visibleReportText(report) {
     append(lines, candidate.reason);
   }
 
-  append(lines, report.missingInformation);
+  for (const item of report.missingInformation || []) {
+    if (typeof item === 'string') {
+      append(lines, item);
+    } else {
+      append(lines, item.title);
+      append(lines, item.whyItMatters);
+      append(lines, item.owner);
+      append(lines, item.useInReview);
+    }
+  }
   for (const resource of report.relatedResources || []) {
     append(lines, resource.typeLabel);
     append(lines, resource.title);
     append(lines, resource.description);
+  }
+  if (report.diagnosticDetail) {
+    append(lines, report.sections?.diagnosticDetail || report.diagnosticDetail.title);
+    append(lines, report.diagnosticDetail.status);
+    append(lines, report.diagnosticDetail.paragraph);
   }
   append(lines, report.limitations);
 
@@ -287,6 +311,15 @@ export function buildReportTextPages(report) {
       ...(report.improvementPlan?.phases || []).map((phase) => `${phase.phase}. ${phase.title}. ${labels.objective || ''}: ${phase.objective} ${labels.actions || ''}: ${(phase.actions || []).join(' ')} ${labels.modulesRelated || ''}: ${(phase.modulesRelated || []).join(' ')} ${(phase.productsToEvaluate || []).join(' ')} ${labels.implementationCondition || ''}: ${phase.implementationCondition || ''} ${labels.expectedOutcome || ''}: ${phase.expectedOutcome} ${labels.nextStep || ''}: ${phase.nextStep || ''}`)
     ].filter(Boolean).join('\n'),
     [
+      report.sections?.pilotRecommendation,
+      report.pilotRecommendation?.paragraph,
+      report.pilotRecommendation ? `${labels.scope || ''}: ${report.pilotRecommendation.scope}` : '',
+      report.pilotRecommendation ? `${labels.duration || ''}: ${report.pilotRecommendation.duration}` : '',
+      report.pilotRecommendation ? `${labels.roles || ''}: ${report.pilotRecommendation.roles}` : '',
+      report.pilotRecommendation ? `${labels.evidence || ''}: ${report.pilotRecommendation.evidence}` : '',
+      report.pilotRecommendation ? `${labels.expectedOutcome || ''}: ${report.pilotRecommendation.expectedOutcome}` : ''
+    ].filter(Boolean).join('\n'),
+    [
       report.sections?.digitalModules,
       ...(report.recommendationSections || []).map((rec) => `${rec.phaseTitle || ''}. ${rec.title}. ${rec.status}. ${labels.relatedPhase || ''}: ${rec.relatedPhase || ''}. ${labels.problemSolved || ''}: ${rec.problemSolved || rec.paragraph} ${labels.requiredData || ''}: ${rec.requiredData || ''} ${labels.expectedOutcome || ''}: ${rec.operationalOutcome || ''} ${labels.implementationCondition || ''}: ${rec.implementationCondition || ''} ${(rec.whatToDefine || []).join(' ')}`)
     ].filter(Boolean).join('\n'),
@@ -300,9 +333,15 @@ export function buildReportTextPages(report) {
     ].filter(Boolean).join('\n'),
     [
       report.sections?.missingInfo,
-      ...(report.missingInformation || []),
+      ...(report.missingInformation || []).map((item) => {
+        if (typeof item === 'string') return item;
+        return `${item.title}. ${labels.missingInfoWhy || ''}: ${item.whyItMatters || ''} ${labels.missingInfoOwner || ''}: ${item.owner || ''} ${labels.missingInfoUse || ''}: ${item.useInReview || ''}`;
+      }),
       report.sections?.relatedResources,
       ...(report.relatedResources || []).map((resource) => `${resource.typeLabel}. ${resource.title}. ${resource.description || ''}`),
+      report.sections?.diagnosticDetail,
+      report.diagnosticDetail?.status,
+      report.diagnosticDetail?.paragraph,
       report.sections?.limitations,
       ...(report.limitations || [])
     ].filter(Boolean).join('\n')
@@ -314,7 +353,7 @@ export function buildReportTextPages(report) {
   let current = '';
   for (const block of blocks) {
     const next = current ? `${current}\n\n${block}` : block;
-    if (normalizeWhitespace(next).length > 1800 && normalizeWhitespace(current).length >= 120) {
+    if (normalizeWhitespace(next).length > 3600 && normalizeWhitespace(current).length >= 120) {
       pages.push(current);
       current = block;
     } else {
