@@ -37,7 +37,12 @@ const PDF_FORBIDDEN_TERMS = [
   'WORKFLOW-ADVISOR-REPORT-V2',
   'reportVersion',
   'matchedRuleIds',
-  'workflow_maturity'
+  'workflow_maturity',
+  'Imprimir informe',
+  'Usa el diálogo',
+  'Desactiva cabeceras',
+  'Compartir resultado para mejorar',
+  'workflow-result-actions'
 ];
 
 const REQUIRED_PDF_TERMS = [
@@ -49,7 +54,14 @@ const REQUIRED_PDF_TERMS = [
   'Madurez por dimensiones',
   'Plan de mejora',
   'Ruta analítica',
-  'Limitaciones'
+  'Limitaciones',
+  'Cómo puede ayudar AquaVerify',
+  'Impacto operativo',
+  'Enfoque de mejora',
+  'Condición antes de implantar',
+  'Problema que resuelve',
+  'Datos necesarios',
+  'Resultado operativo esperado'
 ];
 
 const REQUIRED_INDUSTRIAL_TERMS = [

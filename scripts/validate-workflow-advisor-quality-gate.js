@@ -33,6 +33,10 @@ const FORBIDDEN_ES_TERMS = [
   'countryCode',
   'buyerRole',
   'technical review',
+  'Imprimir informe',
+  'Usa el diálogo',
+  'Desactiva cabeceras',
+  'Compartir resultado para mejorar',
   'comment',
   'reason.',
   'condition.',
@@ -135,6 +139,15 @@ function validateReport(report, fixture, text) {
   assert(text.includes('Ruta analítica'), `${fixture.id} must render localized analytical route`);
   assert(text.includes('Siguiente paso'), `${fixture.id} must render localized next-step label`);
   assert(text.includes('Plan de mejora'), `${fixture.id} must render improvement plan`);
+  [
+    'Cómo puede ayudar AquaVerify',
+    'Impacto operativo',
+    'Enfoque de mejora',
+    'Condición antes de implantar',
+    'Problema que resuelve',
+    'Datos necesarios',
+    'Resultado operativo esperado'
+  ].forEach((term) => assert(text.includes(term), `${fixture.id} visible report text missing enriched term: ${term}`));
   assert(!text.includes('es relevante porque Las respuestas'), `${fixture.id} contains automated recommendation wording`);
   assert(!text.includes('es relevante porque El resultado'), `${fixture.id} contains automated recommendation wording`);
   assert(!text.includes('es relevante porque La trazabilidad'), `${fixture.id} contains automated recommendation wording`);

@@ -167,6 +167,44 @@ function validateSource() {
   assert(component.includes('workflow-report-section workflow-report-page rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7'), 'Report sections must use the approved wide-card surface');
   assert(component.includes('workflow-report-card'), 'Report content blocks must use stable printable card wrappers');
   assert(component.includes('workflow-result-actions no-print'), 'Post-report actions must be outside the printable report');
+  const actionsStart = component.indexOf('workflow-result-actions no-print');
+  const actionsEnd = component.indexOf('{showDebugAnnex &&', actionsStart);
+  const actionsPanel = component.slice(actionsStart, actionsEnd);
+  assert((actionsPanel.match(/<button/g) || []).length === 2, 'Post-report actions must render exactly two buttons');
+  assert(actionsPanel.includes('copy.downloadPdf') && actionsPanel.includes('copy.requestTechnicalReview'), 'Post-report actions must be PDF and technical review only');
+  ['copy.printReport', 'shareResult', 'downloadTechnicalExport', 'reportV2?.pdf?.instructions'].forEach((term) => {
+    assert(!actionsPanel.includes(term), `Post-report action panel must not include ${term}`);
+  });
+  [
+    'printReport:',
+    'Imprimir informe',
+    'Print report',
+    'Imprimer le rapport',
+    'Stampa il report',
+    'Usa el diálogo',
+    'Desactiva cabeceras',
+    'Printer'
+  ].forEach((term) => assert(!component.includes(term), `Workflow result must not retain old print action or helper copy: ${term}`));
+  [
+    "firstImprovement: 'Qué mejorar primero'",
+    "label('aquaverifySupport', 'How AquaVerify can help')",
+    "label('operationalImpact', 'Operational impact')",
+    "label('improvementFocus', 'Improvement focus')",
+    "label('implementationCondition', 'Condition before implementation')",
+    "problemSolved', 'Problem solved'",
+    "requiredData', 'Required data'",
+    "modulesRelated', 'Related modules'"
+  ].forEach((term) => assert(component.includes(term), `Workflow result enrichment rendering missing ${term}`));
+  const workflowCoreSource = readText('vendor/workflow-advisor-core/index.js');
+  [
+    "aquaverifySupportLabel: 'Cómo puede ayudar AquaVerify'",
+    "operationalImpactLabel: 'Impacto operativo'",
+    "improvementFocusLabel: 'Enfoque de mejora'",
+    "implementationConditionLabel: 'Condición antes de implantar'",
+    "problemSolvedLabel: 'Problema que resuelve'",
+    "requiredDataLabel: 'Datos necesarios'",
+    "expectedOutcomeLabel: 'Resultado operativo esperado'"
+  ].forEach((term) => assert(workflowCoreSource.includes(term), `Workflow core localization missing ${term}`));
   const debugAnnexStart = component.indexOf('showDebugAnnex &&');
   const debugAnnexEnd = component.indexOf('workflow-contact-request', debugAnnexStart);
   const debugAnnex = component.slice(debugAnnexStart, debugAnnexEnd);
@@ -296,7 +334,11 @@ function validateSource() {
   [
     ['docs/seo/workflow-advisor-result-layout.md', 'single-column report layout'],
     ['docs/seo/workflow-advisor-report-readability.md', 'readability'],
-    ['docs/seo/workflow-advisor-pdf-layout.md', 'print/PDF']
+    ['docs/seo/workflow-advisor-pdf-layout.md', 'print/PDF'],
+    ['docs/seo/workflow-advisor-result-actions.md', 'two post-report actions'],
+    ['docs/seo/workflow-advisor-maturity-content.md', 'maturity enrichment'],
+    ['docs/seo/workflow-advisor-plan-enrichment.md', 'plan enrichment'],
+    ['docs/seo/workflow-advisor-result-ux-polish.md', 'result UX polish']
   ].forEach(([file, term]) => {
     assert(fs.existsSync(file), `Missing Workflow Advisor documentation file ${file}`);
     assert(readText(file).includes(term), `Workflow Advisor documentation ${file} missing ${term}`);
@@ -437,6 +479,7 @@ function validateSource() {
   assert(reportV2.quickReadItems?.some((item) => item.label === 'Riesgo principal'), 'Regression report must localize quick read labels');
   assert(reportV2.relatedResources.every((item) => item.description), 'Regression report resources must include descriptions');
   assert(!reportV2.pdf.buttonLabel.includes('Descargar'), 'Print-based report action must not promise PDF download');
+  assert(reportV2.pdf.printLabel === 'Imprimir / guardar PDF' && reportV2.pdf.instructions === '', 'PDF contract must use the two-action copy and omit print-helper instructions');
 
   const industrial = assessWorkflow({
     questionnaireVersion,
@@ -469,8 +512,10 @@ function validateSource() {
     quickReadItems: industrialV2.quickReadItems,
     interpretedContext: industrialV2.interpretedContext,
     flowDiagnosis: industrialV2.flowDiagnosis,
+    labels: industrialV2.labels,
     maturity: industrialV2.maturity,
     priorityProblems: industrialV2.priorityProblems,
+    improvementPlan: industrialV2.improvementPlan,
     recommendationSections: industrialV2.recommendationSections,
     analyticalReview: industrialV2.analyticalReview,
     missingInformation: industrialV2.missingInformation,
@@ -487,8 +532,20 @@ function validateSource() {
     'Agua de proceso',
     'Agua regenerada',
     'Ruta analítica pendiente de revisión técnica',
-    'Método o referencia exacta'
+    'Método o referencia exacta',
+    'Cómo puede ayudar AquaVerify',
+    'Impacto operativo',
+    'Enfoque de mejora',
+    'Problema que resuelve',
+    'Datos necesarios',
+    'Resultado operativo esperado'
   ].forEach((term) => assert(visibleIndustrialV2.includes(term), `Industrial V2 report missing ${term}`));
+  assert(industrialV2.maturity.every((item) => item.interpretation && item.firstImprovement && item.aquaverifySupport && item.relatedCapabilities?.length && item.implementationCondition), 'Industrial V2 maturity must be enriched for every dimension');
+  assert(industrialV2.priorityProblems.every((item) => item.explanation && item.operationalImpact && item.improvementFocus && item.aquaverifySupport && item.relatedCapabilities?.length && item.nextStep), 'Industrial V2 priority problems must be enriched');
+  assert(industrialV2.improvementPlan.phases.every((phase) => phase.objective && phase.actions?.length && phase.modulesRelated?.length && phase.productsToEvaluate?.length && phase.implementationCondition && phase.expectedOutcome && phase.nextStep), 'Industrial V2 improvement phases must include modules, product review condition and next step');
+  assert(industrialV2.recommendationSections.length > 0, 'Industrial V2 must include client-facing digital modules');
+  assert(industrialV2.recommendationSections.every((rec) => rec.relatedPhase && rec.problemSolved && rec.requiredData && rec.operationalOutcome && rec.implementationCondition), 'Industrial V2 digital module sections must be enriched');
+  assert(!industrialV2.recommendationSections.some((rec) => ['crm', 'aquatools'].includes(rec.targetId) || /Seguimiento CRM|module\.crm/i.test(`${rec.title} ${rec.paragraph} ${rec.problemSolved}`)), 'Industrial V2 must not expose CRM or AquaTools as a client module');
   [
     'PRIMARY RISK',
     'connect process lab and quality',

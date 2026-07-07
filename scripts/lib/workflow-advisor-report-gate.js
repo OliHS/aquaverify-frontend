@@ -140,6 +140,7 @@ export function visibleReportText(report) {
   append(lines, report.cover?.assessmentVersionLabel);
   append(lines, report.cover?.assessmentVersion);
   append(lines, Object.values(report.sections || {}));
+  append(lines, Object.values(report.labels || {}));
   append(lines, report.executiveSummary);
 
   for (const item of report.quickReadItems || []) {
@@ -160,14 +161,22 @@ export function visibleReportText(report) {
     append(lines, item.title);
     append(lines, item.level);
     append(lines, item.label);
-    append(lines, item.explanation);
-    append(lines, item.nextImprovement);
+    append(lines, item.interpretation || item.explanation);
+    append(lines, item.firstImprovement || item.nextImprovement);
+    append(lines, item.aquaverifySupport);
+    append(lines, item.relatedCapabilities);
+    append(lines, item.implementationCondition);
   }
 
   for (const problem of report.priorityProblems || []) {
     append(lines, problem.priorityLabel);
     append(lines, problem.title);
-    append(lines, problem.paragraph);
+    append(lines, problem.explanation || problem.paragraph);
+    append(lines, problem.operationalImpact);
+    append(lines, problem.improvementFocus);
+    append(lines, problem.aquaverifySupport);
+    append(lines, problem.relatedCapabilities);
+    append(lines, problem.nextStep);
   }
 
   for (const phase of report.improvementPlan?.phases || []) {
@@ -175,14 +184,22 @@ export function visibleReportText(report) {
     append(lines, phase.title);
     append(lines, phase.objective);
     append(lines, phase.actions);
+    append(lines, phase.modulesRelated);
+    append(lines, phase.productsToEvaluate);
+    append(lines, phase.implementationCondition);
     append(lines, phase.expectedOutcome);
+    append(lines, phase.nextStep);
   }
 
   for (const rec of report.recommendationSections || []) {
     append(lines, rec.phaseTitle);
     append(lines, rec.title);
     append(lines, rec.status);
-    append(lines, rec.paragraph);
+    append(lines, rec.relatedPhase);
+    append(lines, rec.problemSolved || rec.paragraph);
+    append(lines, rec.requiredData);
+    append(lines, rec.operationalOutcome);
+    append(lines, rec.implementationCondition);
     append(lines, rec.whatToDefine);
   }
 
@@ -231,6 +248,7 @@ export function writeQualityStatus(passed, details = {}) {
 }
 
 export function buildReportTextPages(report) {
+  const labels = report.labels || {};
   const blocks = [
     [
       report.cover?.brand,
@@ -258,19 +276,19 @@ export function buildReportTextPages(report) {
     ].filter(Boolean).join('\n'),
     [
       report.sections?.maturity,
-      ...(report.maturity || []).map((item) => `${item.title}. ${item.level}/5 ${item.label}. ${item.explanation} ${item.nextImprovement}`)
+      ...(report.maturity || []).map((item) => `${item.title}. ${item.level}/5 ${item.label}. ${item.interpretation || item.explanation} ${labels.firstImprovement || ''}: ${item.firstImprovement || item.nextImprovement} ${labels.aquaverifySupport || ''}: ${item.aquaverifySupport || ''} ${labels.relatedCapabilities || ''}: ${(item.relatedCapabilities || []).join(' ')} ${labels.implementationCondition || ''}: ${item.implementationCondition || ''}`)
     ].filter(Boolean).join('\n'),
     [
       report.sections?.priorityProblems,
-      ...(report.priorityProblems || []).map((problem) => `${problem.priorityLabel}. ${problem.title}. ${problem.paragraph}`)
+      ...(report.priorityProblems || []).map((problem) => `${problem.priorityLabel}. ${problem.title}. ${problem.explanation || problem.paragraph} ${labels.operationalImpact || ''}: ${problem.operationalImpact || ''} ${labels.improvementFocus || ''}: ${problem.improvementFocus || ''} ${labels.aquaverifySupport || ''}: ${problem.aquaverifySupport || ''} ${labels.relatedCapabilities || ''}: ${(problem.relatedCapabilities || []).join(' ')} ${labels.nextStep || ''}: ${problem.nextStep || ''}`)
     ].filter(Boolean).join('\n'),
     [
       report.sections?.plan,
-      ...(report.improvementPlan?.phases || []).map((phase) => `${phase.phase}. ${phase.title}. ${phase.objective} ${(phase.actions || []).join(' ')} ${phase.expectedOutcome}`)
+      ...(report.improvementPlan?.phases || []).map((phase) => `${phase.phase}. ${phase.title}. ${labels.objective || ''}: ${phase.objective} ${labels.actions || ''}: ${(phase.actions || []).join(' ')} ${labels.modulesRelated || ''}: ${(phase.modulesRelated || []).join(' ')} ${(phase.productsToEvaluate || []).join(' ')} ${labels.implementationCondition || ''}: ${phase.implementationCondition || ''} ${labels.expectedOutcome || ''}: ${phase.expectedOutcome} ${labels.nextStep || ''}: ${phase.nextStep || ''}`)
     ].filter(Boolean).join('\n'),
     [
       report.sections?.digitalModules,
-      ...(report.recommendationSections || []).map((rec) => `${rec.phaseTitle || ''}. ${rec.title}. ${rec.status}. ${rec.paragraph} ${(rec.whatToDefine || []).join(' ')}`)
+      ...(report.recommendationSections || []).map((rec) => `${rec.phaseTitle || ''}. ${rec.title}. ${rec.status}. ${labels.relatedPhase || ''}: ${rec.relatedPhase || ''}. ${labels.problemSolved || ''}: ${rec.problemSolved || rec.paragraph} ${labels.requiredData || ''}: ${rec.requiredData || ''} ${labels.expectedOutcome || ''}: ${rec.operationalOutcome || ''} ${labels.implementationCondition || ''}: ${rec.implementationCondition || ''} ${(rec.whatToDefine || []).join(' ')}`)
     ].filter(Boolean).join('\n'),
     [
       report.sections?.analyticalReview,

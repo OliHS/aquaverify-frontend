@@ -20,6 +20,21 @@ Ruta analítica / productos a evaluar
 Información que falta
 Recursos relacionados
 Limitaciones
+Qué mejorar primero
+Cómo puede ayudar AquaVerify
+Módulos o capacidades relacionadas
+Condición antes de implantar
+Impacto operativo
+Enfoque de mejora
+Siguiente paso
+Resultado operativo esperado
+Fase relacionada
+Problema que resuelve
+Datos necesarios
+Objetivo
+Acciones
+Módulos relacionados
+Producto pendiente de revisión técnica
 Este informe interpreta las respuestas como un flujo de Agua agrícola con contexto analítico suficiente para orientar una conversación técnica y alta presión de coordinación.
 El diagnóstico interpreta el flujo como evidencia de agua agrícola conectada con fuente de agua, parcela, cultivo, campaña, muestra, método y necesidades de comprador o auditoría. La trazabilidad fragmentada entre fuente de agua, parcela, cultivo, campaña, muestra, método y evidencia para comprador puede debilitar una auditoría. La mejora útil es hacer que la evidencia sea reconstruible antes de cerrar decisiones de producto o vistas de dashboard.
 Riesgo principal
@@ -76,55 +91,149 @@ Madurez del flujo
 2
 Básico
 El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.
-Estandarizar puntos, activos, responsables y SOP de muestreo
+Definir un flujo mínimo de muestra a informe: punto, solicitud, custodia, recepción, método, lectura, revisión y entrega.
+AquaVerify Cloud puede ayudar a estructurar ese flujo mediante gestión de muestras, estados, responsables y conexión con revisión técnica y CoA.
+Gestión de muestras
+Cadena de custodia
+LIMS / revisión
+CoA
+Antes de digitalizar, conviene definir los estados mínimos del flujo y quién es responsable de cada transición.
 Trazabilidad
 2
 Básico
 La trazabilidad necesita unir custodia, método, lectura, revisión, lote y acción posterior.
-Conectar muestra, custodia, método, lote y acción posterior
+Vincular cada resultado con punto, matriz, operador, lote, método, lectura, revisión y evidencia asociada.
+La trazabilidad de muestras, lotes, consumibles y métodos puede reducir reconstrucciones manuales cuando hay auditorías, incidencias o revisión técnica.
+Cadena de custodia
+Trazabilidad de lote
+Inventario
+Audit trail
+CoA
+Debe definirse qué lotes, consumibles y controles se registrarán en cada etapa.
 Preparación para auditoría
 3
 Parcialmente estructurado
 La evidencia de auditoría debe conectar revisión técnica, CoA, desviaciones e inventario sin depender de documentos aislados.
-Conectar lectura, revisión técnica y CoA
+Transformar informes aislados en un expediente revisable que conecte muestra, método, criterio, revisión, CoA, desviación y cierre.
+Los módulos de CoA, revisión técnica, audit trail y desviaciones pueden ayudar a preparar evidencia más defendible para auditoría interna, cliente o autoridad competente.
+CoA
+Revisión técnica
+Audit trail
+Desviaciones / CAPA cuando aplique
+Las plantillas de informe, los criterios de revisión y los responsables deben definirse antes de automatizar entregables.
 Complejidad operativa
 4
 Estructurado
 El volumen de muestras, sedes y roles aumenta el esfuerzo de coordinación entre proceso, laboratorio y calidad.
-Estandarizar puntos, activos, responsables y SOP de muestreo
+Reducir puntos de fricción entre sedes, puntos de agua, laboratorios, proveedores y responsables.
+La gestión por sedes, puntos, estados y responsables permite comparar flujos sin depender de correos o documentos separados.
+Gestión multisede
+Dashboards
+Tareas
+Estados de muestra
+Roles y permisos
+Primero hay que definir cómo se agrupan sedes, puntos, activos o circuitos según el sector.
 Visibilidad para clientes
 3
 Parcialmente estructurado
 Los responsables necesitan consultar estado, resultado, informe o acción por punto, circuito o activo.
-Mejorar informes, CoA e histórico de evidencia
+Definir quién necesita ver estado, resultado, histórico, CoA o seguimiento de acciones.
+El portal cliente y los informes estructurados pueden reducir consultas manuales y ofrecer acceso controlado a resultados e histórico.
+Portal cliente
+CoA
+Histórico por punto
+Dashboards
+Antes de activar un portal, hay que definir permisos, visibilidad por cliente y reglas de publicación.
 Preparación digital
 3
 Parcialmente estructurado
 Existe una base digital, pero el dato todavía puede quedar dividido entre sistemas, correo y hojas de cálculo.
-Conectar muestra, custodia, método, lote y acción posterior
+Consolidar los sistemas actuales para evitar que parte del flujo quede en software propio, correo, hojas de cálculo o portales externos sin conexión.
+AquaVerify Cloud puede actuar como capa operativa para unir muestra, laboratorio, revisión, CoA, inventario y seguimiento.
+Sample hub
+LIMS
+Inventario
+CoA
+Integraciones cuando existan
+Conviene empezar con un piloto limitado antes de migrar todo el flujo.
 Contexto analítico
 4
 Estructurado
 El contexto analítico requiere revisión antes de cerrar una ruta de producto.
-Programar revisión técnica del contexto analítico
+Completar organismo prioritario, matriz, volumen, método, país, laboratorio y uso previsto antes de cerrar cualquier producto.
+AquaVerify puede orientar la revisión técnica y separar ruta analítica, módulos digitales y recursos útiles sin asumir aceptación regulatoria automática.
+Revisión técnica
+Recursos técnicos
+Productos a evaluar
+Glosario
+AquaTools cuando aplique
+No debe cerrarse una recomendación de producto sin confirmar método, matriz, país y uso previsto.
 Prioridad seleccionada por el usuario
 Conectar fuente de agua, parcela, cultivo y riesgo
-Conectar fuente de agua, parcela, cultivo y riesgo
+El problema seleccionado indica que contexto operativo, evidencia analítica y seguimiento aún no están conectados en un flujo revisable.
+La decisión puede depender de reconstrucciones manuales entre sistemas, personas y documentos.
+Crear un expediente operativo que conecte punto, muestra, método, resultado, revisión y acción.
+AquaVerify Cloud puede ayudar con gestión de muestras, revisión, CoA, dashboards y seguimiento de acciones.
+Gestión de muestras
+LIMS / revisión
+CoA
+Dashboards
+Empezar con un piloto limitado en un punto, circuito, sede o familia de muestras.
 Prioridad seleccionada por el usuario
 Documentar evidencia para agua regenerada
-Documentar evidencia para agua regenerada
+El problema seleccionado indica que contexto operativo, evidencia analítica y seguimiento aún no están conectados en un flujo revisable.
+La decisión puede depender de reconstrucciones manuales entre sistemas, personas y documentos.
+Crear un expediente operativo que conecte punto, muestra, método, resultado, revisión y acción.
+AquaVerify Cloud puede ayudar con gestión de muestras, revisión, CoA, dashboards y seguimiento de acciones.
+Gestión de muestras
+LIMS / revisión
+CoA
+Dashboards
+Empezar con un piloto limitado en un punto, circuito, sede o familia de muestras.
 Prioridad seleccionada por el usuario
-Mejorar evidencia para auditoría
-Mejorar evidencia para auditoría
+Mejorar evidencia para comprador o auditoría
+El problema seleccionado indica que contexto operativo, evidencia analítica y seguimiento aún no están conectados en un flujo revisable.
+La decisión puede depender de reconstrucciones manuales entre sistemas, personas y documentos.
+Crear un expediente operativo que conecte punto, muestra, método, resultado, revisión y acción.
+AquaVerify Cloud puede ayudar con gestión de muestras, revisión, CoA, dashboards y seguimiento de acciones.
+Gestión de muestras
+LIMS / revisión
+CoA
+Dashboards
+Empezar con un piloto limitado en un punto, circuito, sede o familia de muestras.
 Alta
 Flujo manual fragmentado
 El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.
+La decisión puede depender de reconstrucciones manuales entre sistemas, personas y documentos.
+Crear un expediente operativo que conecte punto, muestra, método, resultado, revisión y acción.
+AquaVerify Cloud puede ayudar con gestión de muestras, revisión, CoA, dashboards y seguimiento de acciones.
+Gestión de muestras
+LIMS / revisión
+CoA
+Dashboards
+Empezar con un piloto limitado en un punto, circuito, sede o familia de muestras.
 Alta
 Brecha de custodia y trazabilidad
 El resultado necesita conservar punto, circuito, activo, operador, fecha, condiciones y estado de la muestra.
+La decisión puede depender de reconstrucciones manuales entre sistemas, personas y documentos.
+Crear un expediente operativo que conecte punto, muestra, método, resultado, revisión y acción.
+AquaVerify Cloud puede ayudar con gestión de muestras, revisión, CoA, dashboards y seguimiento de acciones.
+Gestión de muestras
+LIMS / revisión
+CoA
+Dashboards
+Empezar con un piloto limitado en un punto, circuito, sede o familia de muestras.
 Media
 Brecha de evidencia documental
 El flujo necesita evidencia documental estructurada para CoA, revisión y conversaciones de auditoría.
+La decisión puede depender de reconstrucciones manuales entre sistemas, personas y documentos.
+Crear un expediente operativo que conecte punto, muestra, método, resultado, revisión y acción.
+AquaVerify Cloud puede ayudar con gestión de muestras, revisión, CoA, dashboards y seguimiento de acciones.
+Gestión de muestras
+LIMS / revisión
+CoA
+Dashboards
+Empezar con un piloto limitado en un punto, circuito, sede o familia de muestras.
 1
 Inventario hídrico y mapa de riesgo
 Relacionar fuentes, puntos, parcela/cultivo/campaña y uso del agua.
@@ -133,58 +242,101 @@ Definir puntos
 Asociar cultivo/campaña
 Identificar agua regenerada
 Asignar responsable
+Muestreo de campo y custodia
+Producto pendiente de revisión técnica
+Estructura de sedes, circuitos, activos y puntos críticos.
 Un mapa de puntos que permita interpretar cada muestra en su contexto agrícola.
+Elegir un circuito piloto y cargar sus puntos principales.
 2
 Trazabilidad de muestra y custodia
 Conectar muestreo, operador, fecha, matriz, custodia y recepción.
 Crear identificador único de muestra
 Registrar contexto de campo
 Trazar custodia
+Muestreo de campo y custodia
+Gestión de muestras
+Producto pendiente de revisión técnica
+Definir estados de muestra, evidencia de custodia y laboratorio responsable.
 Cada resultado puede reconstruirse desde la fuente de agua hasta el informe.
+Pasar la primera familia de muestras por el flujo compartido.
 3
 Método, revisión técnica y CoA
 Vincular método, lote, lectura, revisión técnica e informe.
 Definir ruta de método
 Registrar lote y lectura
 Revisar CoA
+Capa de revisión LIMS
+CoA y reporting documental
+Producto pendiente de revisión técnica
+Definir método, criterios de revisión, roles y límites de aprobación.
 Evidencia más consistente para responsable técnico, comprador o auditoría.
+Configurar una plantilla de revisión y probarla con casos reales no sensibles.
 4
 Evidencia para agua regenerada, comprador o auditoría
 Preparar un paquete documental por fuente, cultivo, campaña o lote de agua.
 Adjuntar CoA
 Registrar decisiones
 Documentar seguimiento
+CoA y reporting documental
+Portal cliente
+Producto pendiente de revisión técnica
+Definir plantilla de informe, reglas de publicación y destinatarios.
 El equipo puede justificar decisiones y seguimiento sin reconstruir información desde varios sistemas.
+Generar un informe revisado de muestra antes de abrir acceso más amplio.
 5
 Tendencias y dashboards
 Usar dashboards solo cuando el dato base sea consistente.
 Comparar fuentes
 Revisar histórico por parcela
 Seguir evidencia para comprador
+Dashboards y tendencias
+Producto pendiente de revisión técnica
+Usar dashboards solo cuando punto, muestra, revisión y acción sean fiables.
 Comparación fiable por fuente, parcela, campaña, cultivo o laboratorio.
+Seleccionar dos o tres indicadores antes de escalar a toda la cartera.
 Base operativa
 Muestreo de campo y custodia
 Encaje potencial
-Muestreo de campo y custodia ayuda a mantener el flujo reconstruible. El resultado necesita conservar punto, circuito, activo, operador, fecha, condiciones y estado de la muestra.
+Base operativa
+Reduce huecos entre contexto de campo, punto, operador, condiciones y recepción.
+Puntos, matrices, responsables de campo, estados de muestreo y laboratorio receptor.
+La evidencia de muestreo llega a revisión con menos reconstrucción manual.
+Definir estados de campo antes de extenderlo a todas las sedes.
 Definir estados mínimos de muestra y SOP de muestreo.
 Base operativa
 Gestión de muestras
 Encaje potencial
-Gestión de muestras ayuda a mantener el flujo reconstruible. El flujo puede requerir reconstrucción manual entre muestra, circuito, laboratorio, revisión e informe.
+Base operativa
+Reduce la dispersión entre solicitud, punto, recepción, ensayo y revisión.
+Puntos, matrices, responsables, estados y laboratorio asociado.
+Cada muestra tiene un historial común y puede conectarse con método, lote, CoA o acción posterior.
+Definir estados mínimos antes de migrar el flujo completo.
 Evidencia y revisión
 Capa de revisión LIMS
 Encaje potencial
-Capa de revisión LIMS ayuda a mantener el flujo reconstruible. El resultado analítico y la revisión técnica deben quedar conectados en el mismo historial.
+Evidencia y revisión
+Separa ejecución, revisión técnica, criterios y evidencia de aprobación.
+Métodos, criterios de revisión, roles, permisos y estados de excepción.
+Los resultados pueden aprobarse o retenerse con responsabilidad técnica más clara.
+Definir criterios de revisión antes de automatizar aprobaciones.
 Definir método, roles, permisos y criterios de revisión.
 Evidencia y revisión
 CoA y reporting documental
 Encaje potencial
-CoA y reporting documental ayuda a mantener el flujo reconstruible. El flujo necesita evidencia documental estructurada para CoA, revisión y conversaciones de auditoría.
+Evidencia y revisión
+Convierte resultados revisados en entregables consistentes con histórico trazable.
+Plantillas, destinatarios, reglas de publicación y estado de revisión.
+Equipos internos o clientes reciben evidencia consistente sin reconstrucción manual.
+Aprobar plantillas y reglas de publicación antes del uso externo.
 Definir plantilla de informe, estados de revisión y reglas de publicación.
 Escalado
 Portal cliente
 Encaje potencial
-Portal cliente ayuda a mantener el flujo reconstruible. Los responsables necesitan consultar estado, resultado, informe o acción por punto, circuito o activo.
+Escalado
+Reduce consultas manuales de estado e informe para actores autorizados.
+Destinatarios, permisos, estado de publicación e histórico visible.
+Clientes o responsables internos consultan evidencia controlada sin reenvíos por correo electrónico.
+Definir visibilidad y publicación antes de abrir acceso.
 Definir quién recibe el CoA o informe y qué información puede consultar.
 Ruta analítica pendiente de revisión técnica
 Revisión técnica necesaria

@@ -102,6 +102,10 @@ export type WorkflowAdvisorReportV2Phase = {
   objective: string;
   actions: string[];
   expectedOutcome: string;
+  modulesRelated?: string[];
+  productsToEvaluate?: string[];
+  implementationCondition?: string;
+  nextStep?: string;
   relatedCapabilities: Array<string | { targetId: string; title: string }>;
 };
 
@@ -112,7 +116,12 @@ export type WorkflowAdvisorReportV2Recommendation = {
   status: string;
   phaseId?: string;
   phaseTitle?: string;
+  relatedPhase?: string;
   paragraph: string;
+  problemSolved?: string;
+  requiredData?: string;
+  operationalOutcome?: string;
+  implementationCondition?: string;
   whyNow: string;
   whatToDefine: string[];
   nextStep: string;
@@ -141,13 +150,14 @@ export type WorkflowAdvisorReportV2 = {
   subtitle: string;
   versions: Record<string, string>;
   sections: Record<string, string>;
+  labels?: Record<string, string>;
   quickRead: { primaryRisk: string; immediatePriority: string; analyticalRoute: string; nextStep: string };
   quickReadItems: Array<{ id: string; label: string; value: string }>;
   executiveSummary: string[];
   interpretedContext: { title: string; buyerContext: string; facts: Array<{ field: string; label: string; value: string }> };
   flowDiagnosis: { paragraph: string; keySignals: string[] };
-  maturity: Array<{ dimensionId: string; title: string; level: number; label: string; explanation: string; nextImprovement: string }>;
-  priorityProblems: Array<{ problemId?: string; findingId?: string; title: string; priorityLabel: string; severity: string; paragraph: string }>;
+  maturity: Array<{ dimensionId: string; title: string; level: number; label: string; explanation: string; nextImprovement: string; interpretation?: string; firstImprovement?: string; aquaverifySupport?: string; relatedCapabilities?: string[]; implementationCondition?: string }>;
+  priorityProblems: Array<{ problemId?: string; findingId?: string; title: string; priorityLabel: string; severity: string; paragraph: string; explanation?: string; operationalImpact?: string; improvementFocus?: string; aquaverifySupport?: string; relatedCapabilities?: string[]; nextStep?: string }>;
   improvementPlan: { phases: WorkflowAdvisorReportV2Phase[] };
   recommendationSections: WorkflowAdvisorReportV2Recommendation[];
   analyticalReview: {

@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { ArrowLeft, ArrowRight, CheckCircle2, Download, Printer, ShieldCheck, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, CheckCircle2, Download, ShieldCheck, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Language } from '../../utils/translations';
 import {
@@ -40,7 +40,6 @@ const UI = {
     print: 'Print',
     download: 'Download summary',
     downloadPdf: 'Print / save PDF',
-    printReport: 'Print report',
     shareResult: 'Share result to improve the assessment',
     requestTechnicalReview: 'Request technical review',
     shareTitle: 'Before downloading the report',
@@ -78,7 +77,6 @@ const UI = {
     print: 'Imprimir',
     download: 'Descargar resumen',
     downloadPdf: 'Imprimir / guardar PDF',
-    printReport: 'Imprimir informe',
     shareResult: 'Compartir resultado para mejorar el diagnóstico',
     requestTechnicalReview: 'Solicitar revisión técnica',
     shareTitle: 'Antes de descargar el informe',
@@ -116,7 +114,6 @@ const UI = {
     print: 'Imprimer',
     download: 'Télécharger le résumé',
     downloadPdf: 'Imprimer / enregistrer PDF',
-    printReport: 'Imprimer le rapport',
     shareResult: 'Partager le résultat pour améliorer le diagnostic',
     requestTechnicalReview: 'Demander une revue technique',
     shareTitle: 'Avant de télécharger le rapport',
@@ -154,7 +151,6 @@ const UI = {
     print: 'Stampa',
     download: 'Scarica sintesi',
     downloadPdf: 'Stampa / salva PDF',
-    printReport: 'Stampa il report',
     shareResult: 'Condividi il risultato per migliorare la valutazione',
     requestTechnicalReview: 'Richiedi revisione tecnica',
     shareTitle: 'Prima di scaricare il report',
@@ -192,7 +188,6 @@ const UI = {
     print: 'Imprimir',
     download: 'Descarregar resum',
     downloadPdf: 'Imprimir / desar PDF',
-    printReport: 'Imprimir informe',
     shareResult: 'Compartir el resultat per millorar el diagnòstic',
     requestTechnicalReview: 'Sol·licitar revisió tècnica',
     shareTitle: 'Abans de descarregar l’informe',
@@ -894,6 +889,8 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
     {(() => {
       const lang = report.lang as Language;
       const titles = REPORT_SECTION_TITLES[lang];
+      const labels = (report as any).labels || {};
+      const label = (key: string, fallback: string) => labels[key] || fallback;
       const analyticalTitle = report.analyticalReview?.title || titles.analyticalRoute;
       return (
         <>
@@ -971,8 +968,20 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
                     <h3 className="font-black text-primary">{item.title}</h3>
                     <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-600">{item.level} / 5 · {item.label}</span>
                   </div>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.explanation}</p>
-                  <p className="mt-3 text-sm leading-7 text-slate-700"><strong>{titles.firstImprovement}:</strong> {item.nextImprovement}</p>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{(item as any).interpretation || item.explanation}</p>
+                  <div className="mt-4 grid gap-3 text-sm md:grid-cols-2">
+                    <p className="leading-7 text-slate-700"><strong>{label('firstImprovement', titles.firstImprovement)}:</strong> {(item as any).firstImprovement || item.nextImprovement}</p>
+                    {(item as any).aquaverifySupport ? <p className="leading-7 text-slate-700"><strong>{label('aquaverifySupport', 'How AquaVerify can help')}:</strong> {(item as any).aquaverifySupport}</p> : null}
+                    {(item as any).relatedCapabilities?.length ? (
+                      <div>
+                        <strong className="text-slate-950">{label('relatedCapabilities', 'Related modules or capabilities')}</strong>
+                        <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-600">
+                          {(item as any).relatedCapabilities.map((capability: string) => <li key={capability}>{capability}</li>)}
+                        </ul>
+                      </div>
+                    ) : null}
+                    {(item as any).implementationCondition ? <p className="leading-7 text-slate-700"><strong>{label('implementationCondition', 'Condition before implementation')}:</strong> {(item as any).implementationCondition}</p> : null}
+                  </div>
                 </article>
               ))}
             </div>
@@ -984,7 +993,21 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
                 <article key={`${problem.title}-${problem.priorityLabel}`} className="workflow-report-card rounded-2xl border border-slate-200 bg-slate-50 p-4">
                   <p className="text-xs font-black uppercase text-cyan-700">{problem.priorityLabel}</p>
                   <h3 className="mt-1 font-black">{problem.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">{problem.paragraph}</p>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{(problem as any).explanation || problem.paragraph}</p>
+                  <div className="mt-4 grid gap-3 text-sm md:grid-cols-2">
+                    {(problem as any).operationalImpact ? <p className="leading-7 text-slate-700"><strong>{label('operationalImpact', 'Operational impact')}:</strong> {(problem as any).operationalImpact}</p> : null}
+                    {(problem as any).improvementFocus ? <p className="leading-7 text-slate-700"><strong>{label('improvementFocus', 'Improvement focus')}:</strong> {(problem as any).improvementFocus}</p> : null}
+                    {(problem as any).aquaverifySupport ? <p className="leading-7 text-slate-700"><strong>{label('aquaverifySupport', 'How AquaVerify can help')}:</strong> {(problem as any).aquaverifySupport}</p> : null}
+                    {(problem as any).relatedCapabilities?.length ? (
+                      <div>
+                        <strong className="text-slate-950">{label('relatedCapabilities', 'Related modules or capabilities')}</strong>
+                        <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-600">
+                          {(problem as any).relatedCapabilities.map((capability: string) => <li key={capability}>{capability}</li>)}
+                        </ul>
+                      </div>
+                    ) : null}
+                  </div>
+                  {(problem as any).nextStep ? <p className="mt-4 text-sm leading-7 text-slate-700"><strong>{label('nextStep', 'Next step')}:</strong> {(problem as any).nextStep}</p> : null}
                 </article>
               ))}
             </div>
@@ -995,9 +1018,19 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
               {(report.improvementPlan?.phases || []).map((phase) => (
                 <li key={phase.phaseId} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm">
                   <strong className="text-base text-slate-950">{phase.phase}. {phase.title}</strong>
-                  <p className="mt-2 leading-7 text-slate-600">{phase.objective}</p>
-                  {phase.actions?.length ? <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-600">{phase.actions.map((action) => <li key={action}>{action}</li>)}</ul> : null}
-                  <p className="mt-2 font-bold text-slate-700">{phase.expectedOutcome}</p>
+                  <p className="mt-2 leading-7 text-slate-600"><strong>{label('objective', 'Objective')}:</strong> {phase.objective}</p>
+                  {phase.actions?.length ? (
+                    <div className="mt-3">
+                      <strong className="text-slate-950">{label('actions', 'Actions')}</strong>
+                      <ul className="mt-2 list-disc space-y-1 pl-5 text-slate-600">{phase.actions.map((action) => <li key={action}>{action}</li>)}</ul>
+                    </div>
+                  ) : null}
+                  {(phase as any).modulesRelated?.length ? (
+                    <p className="mt-3 leading-7 text-slate-700"><strong>{label('modulesRelated', 'Related modules')}:</strong> {(phase as any).modulesRelated.join(', ')}</p>
+                  ) : null}
+                  {(phase as any).implementationCondition ? <p className="mt-2 leading-7 text-slate-700"><strong>{label('implementationCondition', 'Condition before implementation')}:</strong> {(phase as any).implementationCondition}</p> : null}
+                  <p className="mt-2 leading-7 text-slate-700"><strong>{label('expectedOutcome', 'Expected outcome')}:</strong> {phase.expectedOutcome}</p>
+                  {(phase as any).nextStep ? <p className="mt-2 leading-7 text-slate-700"><strong>{label('nextStep', 'Next step')}:</strong> {(phase as any).nextStep}</p> : null}
                 </li>
               ))}
             </ol>
@@ -1014,7 +1047,11 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
                         <strong>{rec.title}</strong>
                         <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-cyan-700">{rec.status}</span>
                       </div>
-                      <p className="mt-2 leading-7 text-slate-600">{rec.paragraph}</p>
+                      <p className="mt-2 leading-7 text-slate-600"><strong>{label('relatedPhase', 'Related phase')}:</strong> {(rec as any).relatedPhase || rec.phaseTitle}</p>
+                      <p className="mt-2 leading-7 text-slate-600"><strong>{label('problemSolved', 'Problem solved')}:</strong> {(rec as any).problemSolved || rec.paragraph}</p>
+                      {(rec as any).requiredData ? <p className="mt-2 leading-7 text-slate-700"><strong>{label('requiredData', 'Required data')}:</strong> {(rec as any).requiredData}</p> : null}
+                      {(rec as any).operationalOutcome ? <p className="mt-2 leading-7 text-slate-700"><strong>{label('expectedOutcome', 'Expected outcome')}:</strong> {(rec as any).operationalOutcome}</p> : null}
+                      {(rec as any).implementationCondition ? <p className="mt-2 leading-7 text-slate-700"><strong>{label('implementationCondition', 'Condition before implementation')}:</strong> {(rec as any).implementationCondition}</p> : null}
                       {rec.whatToDefine?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{rec.whatToDefine.join(' ')}</p> : null}
                     </article>
                   ))}
@@ -1454,13 +1491,11 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                     <div className="space-y-6" aria-live="polite">
                       {reportV2 && <WorkflowReportV2 report={reportV2} />}
 
-                      <div className="workflow-result-actions no-print rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <div className="workflow-result-actions no-print rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                         <div className="flex flex-wrap gap-3">
-                          <button ref={downloadButtonRef} type="button" onClick={openPdfModal} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Download className="mr-2 h-4 w-4" />{copy.downloadPdf}</button>
-                          <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-slate-700"><Printer className="mr-2 h-4 w-4" />{copy.printReport}</button>
-                          <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 bg-white px-4 py-2 text-sm font-black text-cyan-800">{copy.requestTechnicalReview}</button>
+                          <button ref={downloadButtonRef} type="button" onClick={openPdfModal} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500"><Download aria-hidden="true" className="mr-2 h-4 w-4" />{copy.downloadPdf}</button>
+                          <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 bg-white px-4 py-2 text-sm font-black text-cyan-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500">{copy.requestTechnicalReview}</button>
                         </div>
-                        {reportV2?.pdf?.instructions ? <p className="mt-3 text-xs font-bold leading-5 text-slate-500">{reportV2.pdf.instructions}</p> : null}
                       </div>
 
                       {showDebugAnnex && (

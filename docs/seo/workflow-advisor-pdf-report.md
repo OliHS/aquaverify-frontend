@@ -1,17 +1,15 @@
 # Workflow Advisor PDF / Print Report
 
-Date: 2026-07-04
+Date: 2026-07-07
 
 The public report is exported through controlled print mode on `.workflow-report-print`.
 
 After the report, the visible actions are:
 
-- Descargar informe PDF / Download PDF report
-- Imprimir informe / Print report
-- Compartir resultado para mejorar el diagnostico / Share result to improve the assessment
+- Imprimir / guardar PDF / Print / save PDF
 - Solicitar revision tecnica / Request technical review
 
-The download and print actions both open the browser print dialog so the visitor can save the consultative report as PDF. The visible instructions ask the visitor to disable browser headers and footers.
+The PDF action opens the browser print dialog so the visitor can save the consultative report as PDF. The result page does not render browser-header/footer microcopy beside the action buttons.
 
 ## Excluded From PDF/Print
 

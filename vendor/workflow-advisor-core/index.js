@@ -1685,8 +1685,21 @@ const V2_COPY = Object.freeze({
         ctaTitle: 'Request technical review',
         ctaButton: 'Request technical review',
         pdfButton: 'Print / save PDF',
-        printButton: 'Print report',
-        printInstructions: 'Use the browser print dialog and save as PDF. Disable browser headers and footers so the exported file only contains the AquaVerify report.',
+        firstImprovementLabel: 'What to improve first',
+        aquaverifySupportLabel: 'How AquaVerify can help',
+        relatedCapabilitiesLabel: 'Related modules or capabilities',
+        implementationConditionLabel: 'Condition before implementation',
+        operationalImpactLabel: 'Operational impact',
+        improvementFocusLabel: 'Improvement focus',
+        nextStepLabel: 'Next step',
+        expectedOutcomeLabel: 'Expected outcome',
+        relatedPhaseLabel: 'Related phase',
+        problemSolvedLabel: 'Problem solved',
+        requiredDataLabel: 'Required data',
+        productPendingTechnicalReview: 'Product pending technical review',
+        objectiveLabel: 'Objective',
+        actionsLabel: 'Actions',
+        modulesRelatedLabel: 'Related modules',
         technicalExport: 'Technical export for support',
         technicalExportNote: 'This file is not the consultative report. It contains structured data for AquaVerify technical support.',
         status: {
@@ -1752,8 +1765,21 @@ const V2_COPY = Object.freeze({
         ctaTitle: 'Solicitar revisión técnica',
         ctaButton: 'Solicitar revisión técnica',
         pdfButton: 'Imprimir / guardar PDF',
-        printButton: 'Imprimir informe',
-        printInstructions: 'Usa el diálogo de impresión del navegador y guarda como PDF. Desactiva cabeceras y pies del navegador para que el archivo contenga solo el informe AquaVerify.',
+        firstImprovementLabel: 'Qué mejorar primero',
+        aquaverifySupportLabel: 'Cómo puede ayudar AquaVerify',
+        relatedCapabilitiesLabel: 'Módulos o capacidades relacionadas',
+        implementationConditionLabel: 'Condición antes de implantar',
+        operationalImpactLabel: 'Impacto operativo',
+        improvementFocusLabel: 'Enfoque de mejora',
+        nextStepLabel: 'Siguiente paso',
+        expectedOutcomeLabel: 'Resultado operativo esperado',
+        relatedPhaseLabel: 'Fase relacionada',
+        problemSolvedLabel: 'Problema que resuelve',
+        requiredDataLabel: 'Datos necesarios',
+        productPendingTechnicalReview: 'Producto pendiente de revisión técnica',
+        objectiveLabel: 'Objetivo',
+        actionsLabel: 'Acciones',
+        modulesRelatedLabel: 'Módulos relacionados',
         technicalExport: 'Exportación técnica para soporte',
         technicalExportNote: 'Este archivo no es el informe consultivo. Contiene datos estructurados para soporte técnico de AquaVerify.',
         status: {
@@ -1819,8 +1845,21 @@ const V2_COPY = Object.freeze({
         ctaTitle: 'Demander une revue technique',
         ctaButton: 'Demander une revue technique',
         pdfButton: 'Imprimer / enregistrer PDF',
-        printButton: 'Imprimer le rapport',
-        printInstructions: 'Utilisez la boîte de dialogue d’impression du navigateur et enregistrez en PDF. Désactivez les en-têtes et pieds du navigateur pour ne conserver que le rapport AquaVerify.',
+        firstImprovementLabel: 'Ce qu’il faut améliorer en premier',
+        aquaverifySupportLabel: 'Comment AquaVerify peut aider',
+        relatedCapabilitiesLabel: 'Modules ou capacités associés',
+        implementationConditionLabel: 'Condition avant mise en œuvre',
+        operationalImpactLabel: 'Impact opérationnel',
+        improvementFocusLabel: 'Axe d’amélioration',
+        nextStepLabel: 'Prochaine étape',
+        expectedOutcomeLabel: 'Résultat attendu',
+        relatedPhaseLabel: 'Phase associée',
+        problemSolvedLabel: 'Problème résolu',
+        requiredDataLabel: 'Données nécessaires',
+        productPendingTechnicalReview: 'Produit en attente de revue technique',
+        objectiveLabel: 'Objectif',
+        actionsLabel: 'Actions',
+        modulesRelatedLabel: 'Modules associés',
         technicalExport: 'Export technique pour support',
         technicalExportNote: 'Ce fichier n’est pas le rapport consultatif. Il contient des données structurées pour le support technique AquaVerify.',
         status: {
@@ -1886,8 +1925,21 @@ const V2_COPY = Object.freeze({
         ctaTitle: 'Richiedi revisione tecnica',
         ctaButton: 'Richiedi revisione tecnica',
         pdfButton: 'Stampa / salva PDF',
-        printButton: 'Stampa report',
-        printInstructions: 'Usa la finestra di stampa del browser e salva in PDF. Disattiva intestazioni e piè di pagina del browser per includere solo il report AquaVerify.',
+        firstImprovementLabel: 'Cosa migliorare per primo',
+        aquaverifySupportLabel: 'Come AquaVerify può aiutare',
+        relatedCapabilitiesLabel: 'Moduli o capacità correlate',
+        implementationConditionLabel: 'Condizione prima dell’implementazione',
+        operationalImpactLabel: 'Impatto operativo',
+        improvementFocusLabel: 'Focus di miglioramento',
+        nextStepLabel: 'Prossimo passo',
+        expectedOutcomeLabel: 'Risultato atteso',
+        relatedPhaseLabel: 'Fase correlata',
+        problemSolvedLabel: 'Problema risolto',
+        requiredDataLabel: 'Dati necessari',
+        productPendingTechnicalReview: 'Prodotto in attesa di revisione tecnica',
+        objectiveLabel: 'Obiettivo',
+        actionsLabel: 'Azioni',
+        modulesRelatedLabel: 'Moduli correlati',
         technicalExport: 'Esportazione tecnica per supporto',
         technicalExportNote: 'Questo file non è il report consultivo. Contiene dati strutturati per il supporto tecnico AquaVerify.',
         status: {
@@ -1953,8 +2005,21 @@ const V2_COPY = Object.freeze({
         ctaTitle: 'Sol·licitar revisió tècnica',
         ctaButton: 'Sol·licitar revisió tècnica',
         pdfButton: 'Imprimir / desar PDF',
-        printButton: 'Imprimir informe',
-        printInstructions: 'Fes servir el diàleg d’impressió del navegador i desa com a PDF. Desactiva capçaleres i peus del navegador perquè el fitxer només contingui l’informe AquaVerify.',
+        firstImprovementLabel: 'Què cal millorar primer',
+        aquaverifySupportLabel: 'Com pot ajudar AquaVerify',
+        relatedCapabilitiesLabel: 'Mòduls o capacitats relacionades',
+        implementationConditionLabel: 'Condició abans d’implantar',
+        operationalImpactLabel: 'Impacte operatiu',
+        improvementFocusLabel: 'Enfocament de millora',
+        nextStepLabel: 'Pas següent',
+        expectedOutcomeLabel: 'Resultat esperat',
+        relatedPhaseLabel: 'Fase relacionada',
+        problemSolvedLabel: 'Problema que resol',
+        requiredDataLabel: 'Dades necessàries',
+        productPendingTechnicalReview: 'Producte pendent de revisió tècnica',
+        objectiveLabel: 'Objectiu',
+        actionsLabel: 'Accions',
+        modulesRelatedLabel: 'Mòduls relacionats',
         technicalExport: 'Exportació tècnica per a suport',
         technicalExportNote: 'Aquest arxiu no és l’informe consultiu. Conté dades estructurades per al suport tècnic d’AquaVerify.',
         status: {
@@ -2446,6 +2511,10 @@ function roadmapPhase(phaseId, title, objective, actions, expectedOutcome, relat
 }
 
 function localText(en, es, fr, it, ca) {
+    return { en, es, fr, it, ca };
+}
+
+function localList(en, es, fr, it, ca) {
     return { en, es, fr, it, ca };
 }
 
@@ -3728,6 +3797,414 @@ const V2_MATURITY_TEXT = Object.freeze({
     }
 });
 
+const V2_MATURITY_ENRICHMENT = Object.freeze({
+    workflow_maturity: {
+        firstImprovement: localText(
+            'Define a minimum sample-to-report workflow: point, request, custody, reception, method, reading, review and delivery.',
+            'Definir un flujo mínimo de muestra a informe: punto, solicitud, custodia, recepción, método, lectura, revisión y entrega.',
+            'Définir un flux minimal de l’échantillon au rapport : point, demande, garde, réception, méthode, lecture, revue et livraison.',
+            'Definire un flusso minimo dal campione al report: punto, richiesta, custodia, ricezione, metodo, lettura, revisione e consegna.',
+            'Definir un flux mínim de mostra a informe: punt, sol·licitud, custòdia, recepció, mètode, lectura, revisió i entrega.'
+        ),
+        aquaverifySupport: localText(
+            'AquaVerify Cloud can structure that flow through sample management, states, owners, technical review and CoA connection.',
+            'AquaVerify Cloud puede ayudar a estructurar ese flujo mediante gestión de muestras, estados, responsables y conexión con revisión técnica y CoA.',
+            'AquaVerify Cloud peut structurer ce flux avec gestion des échantillons, états, responsables, revue technique et CoA.',
+            'AquaVerify Cloud può strutturare il flusso con gestione campioni, stati, responsabili, revisione tecnica e CoA.',
+            'AquaVerify Cloud pot estructurar aquest flux amb gestió de mostres, estats, responsables, revisió tècnica i CoA.'
+        ),
+        relatedCapabilities: localList(
+            ['Sample management', 'Chain of custody', 'LIMS / review', 'CoA'],
+            ['Gestión de muestras', 'Cadena de custodia', 'LIMS / revisión', 'CoA'],
+            ['Gestion des échantillons', 'Chaîne de traçabilité', 'LIMS / revue', 'CoA'],
+            ['Gestione campioni', 'Catena di custodia', 'LIMS / revisione', 'CoA'],
+            ['Gestió de mostres', 'Cadena de custòdia', 'LIMS / revisió', 'CoA']
+        ),
+        implementationCondition: localText(
+            'Before digitising, define the minimum flow states and who owns each transition.',
+            'Antes de digitalizar, conviene definir los estados mínimos del flujo y quién es responsable de cada transición.',
+            'Avant de numériser, définissez les états minimaux du flux et le responsable de chaque transition.',
+            'Prima di digitalizzare, definire gli stati minimi del flusso e il responsabile di ogni transizione.',
+            'Abans de digitalitzar, cal definir els estats mínims del flux i qui és responsable de cada transició.'
+        )
+    },
+    traceability: {
+        firstImprovement: localText(
+            'Link every result to point, matrix, operator, batch, method, reading, review and associated evidence.',
+            'Vincular cada resultado con punto, matriz, operador, lote, método, lectura, revisión y evidencia asociada.',
+            'Relier chaque résultat au point, matrice, opérateur, lot, méthode, lecture, revue et preuve associée.',
+            'Collegare ogni risultato a punto, matrice, operatore, lotto, metodo, lettura, revisione ed evidenza associata.',
+            'Vincular cada resultat amb punt, matriu, operador, lot, mètode, lectura, revisió i evidència associada.'
+        ),
+        aquaverifySupport: localText(
+            'Traceability across samples, lots, consumables and methods can reduce manual reconstruction during audits, incidents or technical review.',
+            'La trazabilidad de muestras, lotes, consumibles y métodos puede reducir reconstrucciones manuales cuando hay auditorías, incidencias o revisión técnica.',
+            'La traçabilité des échantillons, lots, consommables et méthodes peut réduire les reconstructions manuelles lors d’audits, incidents ou revues techniques.',
+            'La tracciabilità di campioni, lotti, consumabili e metodi può ridurre ricostruzioni manuali durante audit, incidenti o revisione tecnica.',
+            'La traçabilitat de mostres, lots, consumibles i mètodes pot reduir reconstruccions manuals en auditories, incidències o revisió tècnica.'
+        ),
+        relatedCapabilities: localList(
+            ['Chain of custody', 'Batch traceability', 'Inventory', 'Audit trail', 'CoA'],
+            ['Cadena de custodia', 'Trazabilidad de lote', 'Inventario', 'Audit trail', 'CoA'],
+            ['Chaîne de traçabilité', 'Traçabilité des lots', 'Inventaire', 'Audit trail', 'CoA'],
+            ['Catena di custodia', 'Tracciabilità lotto', 'Inventario', 'Audit trail', 'CoA'],
+            ['Cadena de custòdia', 'Traçabilitat de lot', 'Inventari', 'Audit trail', 'CoA']
+        ),
+        implementationCondition: localText(
+            'Define which lots, consumables and controls are recorded at each stage.',
+            'Debe definirse qué lotes, consumibles y controles se registrarán en cada etapa.',
+            'Définir quels lots, consommables et contrôles seront enregistrés à chaque étape.',
+            'Definire quali lotti, consumabili e controlli registrare in ogni fase.',
+            'Cal definir quins lots, consumibles i controls es registraran en cada etapa.'
+        )
+    },
+    audit_readiness: {
+        firstImprovement: localText(
+            'Turn isolated reports into a reviewable file linking sample, method, criterion, review, CoA, deviation and closure.',
+            'Transformar informes aislados en un expediente revisable que conecte muestra, método, criterio, revisión, CoA, desviación y cierre.',
+            'Transformer des rapports isolés en dossier revu reliant échantillon, méthode, critère, revue, CoA, écart et clôture.',
+            'Trasformare report isolati in un fascicolo revisionabile che collega campione, metodo, criterio, revisione, CoA, deviazione e chiusura.',
+            'Transformar informes aïllats en un expedient revisable que connecti mostra, mètode, criteri, revisió, CoA, desviació i tancament.'
+        ),
+        aquaverifySupport: localText(
+            'CoA, technical review, audit trail and deviation modules can prepare more defensible evidence for internal audit, customer or authority review.',
+            'Los módulos de CoA, revisión técnica, audit trail y desviaciones pueden ayudar a preparar evidencia más defendible para auditoría interna, cliente o autoridad competente.',
+            'Les modules CoA, revue technique, audit trail et écarts peuvent préparer une preuve plus défendable pour audit interne, client ou autorité compétente.',
+            'I moduli CoA, revisione tecnica, audit trail e deviazioni aiutano a preparare evidenza più difendibile per audit interno, cliente o autorità competente.',
+            'Els mòduls de CoA, revisió tècnica, audit trail i desviacions poden preparar evidència més defensable per auditoria interna, client o autoritat competent.'
+        ),
+        relatedCapabilities: localList(
+            ['CoA', 'Technical review', 'Audit trail', 'Deviations / CAPA when applicable'],
+            ['CoA', 'Revisión técnica', 'Audit trail', 'Desviaciones / CAPA cuando aplique'],
+            ['CoA', 'Revue technique', 'Audit trail', 'Écarts / CAPA si applicable'],
+            ['CoA', 'Revisione tecnica', 'Audit trail', 'Deviazioni / CAPA se applicabile'],
+            ['CoA', 'Revisió tècnica', 'Audit trail', 'Desviacions / CAPA quan apliqui']
+        ),
+        implementationCondition: localText(
+            'Report templates, review criteria and responsible owners must be defined before automating deliverables.',
+            'Las plantillas de informe, los criterios de revisión y los responsables deben definirse antes de automatizar entregables.',
+            'Les modèles de rapport, critères de revue et responsables doivent être définis avant d’automatiser les livrables.',
+            'Template di report, criteri di revisione e responsabili vanno definiti prima di automatizzare i deliverable.',
+            'Les plantilles d’informe, criteris de revisió i responsables s’han de definir abans d’automatitzar lliurables.'
+        )
+    },
+    operational_complexity: {
+        firstImprovement: localText(
+            'Reduce friction between sites, water points, laboratories, suppliers and responsible owners.',
+            'Reducir puntos de fricción entre sedes, puntos de agua, laboratorios, proveedores y responsables.',
+            'Réduire les frictions entre sites, points d’eau, laboratoires, prestataires et responsables.',
+            'Ridurre attriti tra sedi, punti acqua, laboratori, fornitori e responsabili.',
+            'Reduir friccions entre seus, punts d’aigua, laboratoris, proveïdors i responsables.'
+        ),
+        aquaverifySupport: localText(
+            'Management by site, point, status and owner helps compare workflows without relying on emails or separate documents.',
+            'La gestión por sedes, puntos, estados y responsables permite comparar flujos sin depender de correos o documentos separados.',
+            'La gestion par site, point, état et responsable permet de comparer les flux sans dépendre d’emails ou documents séparés.',
+            'La gestione per sede, punto, stato e responsabile consente di confrontare flussi senza dipendere da email o documenti separati.',
+            'La gestió per seu, punt, estat i responsable permet comparar fluxos sense dependre de correus o documents separats.'
+        ),
+        relatedCapabilities: localList(
+            ['Multi-site management', 'Dashboards', 'Tasks', 'Sample states', 'Roles and permissions'],
+            ['Gestión multisede', 'Dashboards', 'Tareas', 'Estados de muestra', 'Roles y permisos'],
+            ['Gestion multi-site', 'Dashboards', 'Tâches', 'États échantillon', 'Rôles et permissions'],
+            ['Gestione multi-sede', 'Dashboard', 'Attività', 'Stati campione', 'Ruoli e permessi'],
+            ['Gestió multiseu', 'Dashboards', 'Tasques', 'Estats de mostra', 'Rols i permisos']
+        ),
+        implementationCondition: localText(
+            'First define how sites, points, assets or circuits are grouped by sector.',
+            'Primero hay que definir cómo se agrupan sedes, puntos, activos o circuitos según el sector.',
+            'Définir d’abord comment sites, points, actifs ou circuits sont regroupés selon le secteur.',
+            'Definire prima come raggruppare sedi, punti, asset o circuiti secondo il settore.',
+            'Primer cal definir com s’agrupen seus, punts, actius o circuits segons el sector.'
+        )
+    },
+    client_visibility: {
+        firstImprovement: localText(
+            'Define who needs to see status, result, history, CoA or action follow-up.',
+            'Definir quién necesita ver estado, resultado, histórico, CoA o seguimiento de acciones.',
+            'Définir qui doit voir état, résultat, historique, CoA ou suivi d’actions.',
+            'Definire chi deve vedere stato, risultato, storico, CoA o follow-up delle azioni.',
+            'Definir qui necessita veure estat, resultat, històric, CoA o seguiment d’accions.'
+        ),
+        aquaverifySupport: localText(
+            'The customer portal and structured reports can reduce manual queries and offer controlled access to results and history.',
+            'El portal cliente y los informes estructurados pueden reducir consultas manuales y ofrecer acceso controlado a resultados e histórico.',
+            'Le portail client et les rapports structurés peuvent réduire les demandes manuelles et offrir un accès contrôlé aux résultats et historiques.',
+            'Il portale cliente e i report strutturati possono ridurre richieste manuali e offrire accesso controllato a risultati e storico.',
+            'El portal client i els informes estructurats poden reduir consultes manuals i oferir accés controlat a resultats i històric.'
+        ),
+        relatedCapabilities: localList(
+            ['Customer portal', 'CoA', 'History by point', 'Dashboards'],
+            ['Portal cliente', 'CoA', 'Histórico por punto', 'Dashboards'],
+            ['Portail client', 'CoA', 'Historique par point', 'Dashboards'],
+            ['Portale cliente', 'CoA', 'Storico per punto', 'Dashboard'],
+            ['Portal client', 'CoA', 'Històric per punt', 'Dashboards']
+        ),
+        implementationCondition: localText(
+            'Before activating a portal, define permissions, customer visibility and publication rules.',
+            'Antes de activar un portal, hay que definir permisos, visibilidad por cliente y reglas de publicación.',
+            'Avant d’activer un portail, définissez permissions, visibilité client et règles de publication.',
+            'Prima di attivare un portale, definire permessi, visibilità per cliente e regole di pubblicazione.',
+            'Abans d’activar un portal, cal definir permisos, visibilitat per client i regles de publicació.'
+        )
+    },
+    digital_readiness: {
+        firstImprovement: localText(
+            'Consolidate current systems so part of the flow does not remain split across custom software, email, spreadsheets or external portals.',
+            'Consolidar los sistemas actuales para evitar que parte del flujo quede en software propio, correo, hojas de cálculo o portales externos sin conexión.',
+            'Consolider les systèmes actuels pour éviter qu’une partie du flux reste dans logiciel interne, email, tableurs ou portails externes sans connexion.',
+            'Consolidare i sistemi attuali per evitare che parte del flusso resti in software proprietario, email, fogli o portali esterni non collegati.',
+            'Consolidar els sistemes actuals per evitar que part del flux quedi en software propi, correu, fulls de càlcul o portals externs sense connexió.'
+        ),
+        aquaverifySupport: localText(
+            'AquaVerify Cloud can act as an operational layer connecting sample, laboratory, review, CoA, inventory and follow-up.',
+            'AquaVerify Cloud puede actuar como capa operativa para unir muestra, laboratorio, revisión, CoA, inventario y seguimiento.',
+            'AquaVerify Cloud peut agir comme couche opérationnelle reliant échantillon, laboratoire, revue, CoA, inventaire et suivi.',
+            'AquaVerify Cloud può agire come layer operativo che collega campione, laboratorio, revisione, CoA, inventario e follow-up.',
+            'AquaVerify Cloud pot actuar com a capa operativa per unir mostra, laboratori, revisió, CoA, inventari i seguiment.'
+        ),
+        relatedCapabilities: localList(
+            ['Sample hub', 'LIMS', 'Inventory', 'CoA', 'Integrations when available'],
+            ['Sample hub', 'LIMS', 'Inventario', 'CoA', 'Integraciones cuando existan'],
+            ['Sample hub', 'LIMS', 'Inventaire', 'CoA', 'Intégrations si disponibles'],
+            ['Sample hub', 'LIMS', 'Inventario', 'CoA', 'Integrazioni se disponibili'],
+            ['Sample hub', 'LIMS', 'Inventari', 'CoA', 'Integracions quan existeixin']
+        ),
+        implementationCondition: localText(
+            'Start with a limited pilot before migrating the full workflow.',
+            'Conviene empezar con un piloto limitado antes de migrar todo el flujo.',
+            'Commencer par un pilote limité avant de migrer tout le flux.',
+            'Conviene iniziare con un pilota limitato prima di migrare tutto il flusso.',
+            'Convé començar amb un pilot limitat abans de migrar tot el flux.'
+        )
+    },
+    analytical_context_completeness: {
+        firstImprovement: localText(
+            'Complete priority organism, matrix, volume, method, country, laboratory and intended use before closing the analytical route.',
+            'Completar organismo prioritario, matriz, volumen, método, país, laboratorio y uso previsto antes de cerrar cualquier producto.',
+            'Compléter organisme prioritaire, matrice, volume, méthode, pays, laboratoire et usage prévu avant de fermer tout produit.',
+            'Completare organismo prioritario, matrice, volume, metodo, paese, laboratorio e uso previsto prima di chiudere qualsiasi prodotto.',
+            'Completar organisme prioritari, matriu, volum, mètode, país, laboratori i ús previst abans de tancar qualsevol producte.'
+        ),
+        aquaverifySupport: localText(
+            'AquaVerify can guide technical review and separate analytical route, digital modules and useful resources without assuming automatic regulatory acceptance.',
+            'AquaVerify puede orientar la revisión técnica y separar ruta analítica, módulos digitales y recursos útiles sin asumir aceptación regulatoria automática.',
+            'AquaVerify peut orienter la revue technique et séparer route analytique, modules numériques et ressources utiles sans présumer d’acceptation réglementaire automatique.',
+            'AquaVerify può orientare la revisione tecnica e separare percorso analitico, moduli digitali e risorse utili senza assumere accettazione regolatoria automatica.',
+            'AquaVerify pot orientar la revisió tècnica i separar ruta analítica, mòduls digitals i recursos útils sense assumir acceptació reguladora automàtica.'
+        ),
+        relatedCapabilities: localList(
+            ['Technical review', 'Technical resources', 'Products to evaluate', 'Glossary', 'AquaTools when applicable'],
+            ['Revisión técnica', 'Recursos técnicos', 'Productos a evaluar', 'Glosario', 'AquaTools cuando aplique'],
+            ['Revue technique', 'Ressources techniques', 'Produits à évaluer', 'Glossaire', 'AquaTools si applicable'],
+            ['Revisione tecnica', 'Risorse tecniche', 'Prodotti da valutare', 'Glossario', 'AquaTools se applicabile'],
+            ['Revisió tècnica', 'Recursos tècnics', 'Productes a avaluar', 'Glossari', 'AquaTools quan apliqui']
+        ),
+        implementationCondition: localText(
+            'Do not close a product recommendation without confirming method, matrix, country and intended use.',
+            'No debe cerrarse una recomendación de producto sin confirmar método, matriz, país y uso previsto.',
+            'Ne pas fermer une recommandation produit sans confirmer méthode, matrice, pays et usage prévu.',
+            'Non chiudere una raccomandazione prodotto senza confermare metodo, matrice, paese e uso previsto.',
+            'No s’ha de tancar una recomanació de producte sense confirmar mètode, matriu, país i ús previst.'
+        )
+    }
+});
+
+const V2_PROBLEM_TITLE_TEXT = Object.freeze({
+    'connect-process-lab-and-quality': localText('Coordination between process, laboratory and quality', 'Coordinación entre proceso, laboratorio y calidad', 'Coordination entre process, laboratoire et qualité', 'Coordinamento tra processo, laboratorio e qualità', 'Coordinació entre procés, laboratori i qualitat'),
+    'control-critical-process-points': localText('Control of critical process points', 'Control de puntos críticos de proceso', 'Contrôle des points critiques de process', 'Controllo dei punti critici di processo', 'Control de punts crítics de procés'),
+    coordinate_external_labs: localText('Coordination with external laboratories', 'Coordinación con laboratorios externos', 'Coordination avec laboratoires externes', 'Coordinamento con laboratori esterni', 'Coordinació amb laboratoris externs'),
+    'connect-water-source-to-crop-risk': localText('Connect water source, plot, crop and risk', 'Conectar fuente de agua, parcela, cultivo y riesgo', 'Relier source d’eau, parcelle, culture et risque', 'Collegare fonte d’acqua, parcella, coltura e rischio', 'Connectar font d’aigua, parcel·la, cultiu i risc'),
+    'manage-reclaimed-water-evidence': localText('Document reclaimed water evidence', 'Documentar evidencia para agua regenerada', 'Documenter la preuve d’eau réutilisée', 'Documentare evidenza per acqua rigenerata', 'Documentar evidència per aigua regenerada'),
+    improve_audit_evidence: localText('Improve buyer or audit evidence', 'Mejorar evidencia para comprador o auditoría', 'Améliorer la preuve pour acheteur ou audit', 'Migliorare evidenza per buyer o audit', 'Millorar evidència per comprador o auditoria'),
+    'coordinate-field-lab-operator': localText('Coordinate field, laboratory, operator and municipal owner', 'Coordinar campo, laboratorio, operador y responsable municipal', 'Coordonner terrain, laboratoire, opérateur et responsable municipal', 'Coordinare campo, laboratorio, operatore e responsabile municipale', 'Coordinar camp, laboratori, operador i responsable municipal'),
+    'understand-system-performance': localText('Understand performance from source to network', 'Entender el comportamiento entre captación, tratamiento, depósito y red', 'Comprendre le comportement entre captage, traitement, réservoir et réseau', 'Capire il comportamento tra captazione, trattamento, serbatoio e rete', 'Entendre el comportament entre captació, tractament, dipòsit i xarxa'),
+    'manage-incidents': localText('Manage incidents without reconstructing history', 'Gestionar incidencias sin reconstruir el historial', 'Gérer les incidents sans reconstruire l’historique', 'Gestire incidenti senza ricostruire lo storico', 'Gestionar incidències sense reconstruir l’historial'),
+    'identify-critical-water-uses': localText('Identify critical water uses', 'Identificar usos críticos del agua', 'Identifier les usages critiques de l’eau', 'Identificare usi critici dell’acqua', 'Identificar usos crítics de l’aigua'),
+    'avoid-batch-delays': localText('Avoid batch or line holds', 'Evitar bloqueos de lote o línea', 'Éviter les blocages de lot ou ligne', 'Evitare blocchi di lotto o linea', 'Evitar bloquejos de lot o línia'),
+    'prove-cip-rinse': localText('Demonstrate CIP, sanitation and final rinse', 'Demostrar CIP, saneamiento y enjuague final', 'Démontrer CIP, assainissement et rinçage final', 'Dimostrare CIP, sanificazione e risciacquo finale', 'Demostrar CIP, sanejament i esbandit final'),
+    'inventory-assets-and-points': localText('Reliable inventory of assets and water points', 'Inventario fiable de activos y puntos de agua', 'Inventaire fiable des actifs et points d’eau', 'Inventario affidabile di asset e punti acqua', 'Inventari fiable d’actius i punts d’aigua'),
+    'schedule-recurring-controls': localText('Control recurring tasks and reopenings', 'Controlar tareas recurrentes y reaperturas', 'Contrôler tâches récurrentes et réouvertures', 'Controllare attività ricorrenti e riaperture', 'Controlar tasques recurrents i reobertures'),
+    'manage-aerosol-risk': localText('Manage Legionella and aerosolisation risk', 'Gestionar riesgos de Legionella y aerosolización', 'Gérer le risque Legionella et aérosolisation', 'Gestire rischio Legionella e aerosolizzazione', 'Gestionar riscos de Legionella i aerosolització'),
+    'link-water-to-batch': localText('Link water, point of use, equipment and batch', 'Vincular agua, punto de uso, equipo y lote', 'Relier eau, point d’usage, équipement et lot', 'Collegare acqua, punto d’uso, attrezzatura e lotto', 'Vincular aigua, punt d’ús, equip i lot'),
+    'detect-trends-before-oos': localText('Detect trends before OOS or critical deviation', 'Detectar tendencias antes de OOS o desviaciones críticas', 'Détecter les tendances avant OOS ou écart critique', 'Rilevare trend prima di OOS o deviazioni critiche', 'Detectar tendències abans d’OOS o desviacions crítiques'),
+    'protect-data-integrity': localText('Protect data integrity for CAPA and audit', 'Proteger integridad de datos para CAPA y auditoría', 'Protéger l’intégrité des données pour CAPA et audit', 'Proteggere integrità dati per CAPA e audit', 'Protegir integritat de dades per CAPA i auditoria'),
+    'map-guest-water-assets': localText('Map guest-impacting water assets', 'Mapear activos que afectan al huésped', 'Cartographier les actifs eau visibles client', 'Mappare asset acqua che impattano l’ospite', 'Mapar actius d’aigua que afecten l’hoste'),
+    'manage-seasonality': localText('Manage closures, reopenings and seasonality', 'Gestionar cierres, reaperturas y temporada', 'Gérer fermetures, réouvertures et saison', 'Gestire chiusure, riaperture e stagione', 'Gestionar tancaments, reobertures i temporada'),
+    'prepare-inspection-evidence': localText('Prepare evidence for inspections and corporate review', 'Preparar evidencia para inspecciones y revisión corporativa', 'Préparer la preuve pour inspections et revue corporate', 'Preparare evidenza per ispezioni e revisione corporate', 'Preparar evidència per inspeccions i revisió corporativa'),
+    'increase-throughput': localText('Process more samples without more administration', 'Procesar más muestras sin aumentar carga administrativa', 'Traiter plus d’échantillons sans charge administrative accrue', 'Processare più campioni senza aumentare carico amministrativo', 'Processar més mostres sense augmentar càrrega administrativa'),
+    'reduce-turnaround': localText('Reduce TAT without weakening technical review', 'Reducir TAT sin debilitar revisión técnica', 'Réduire le TAT sans affaiblir la revue technique', 'Ridurre TAT senza indebolire revisione tecnica', 'Reduir TAT sense afeblir revisió tècnica'),
+    'preserve-custody': localText('Keep chain of custody and batch traceability', 'Mantener cadena de custodia y trazabilidad de lotes', 'Maintenir chaîne de traçabilité et lots', 'Mantenere catena di custodia e tracciabilità lotti', 'Mantenir cadena de custòdia i traçabilitat de lots'),
+    'define-risk-programme': localText('Define points, frequencies and critical indicators', 'Definir puntos, frecuencias e indicadores críticos', 'Définir points, fréquences et indicateurs critiques', 'Definire punti, frequenze e indicatori critici', 'Definir punts, freqüències i indicadors crítics'),
+    'consolidate-water-data': localText('Consolidate results across sites, labs and matrices', 'Consolidar resultados de sedes, laboratorios y matrices', 'Consolider résultats de sites, laboratoires et matrices', 'Consolidare risultati di sedi, laboratori e matrici', 'Consolidar resultats de seus, laboratoris i matrius'),
+    'respond-to-deviations': localText('Respond quickly to deviations', 'Responder con rapidez ante desviaciones', 'Répondre vite aux écarts', 'Rispondere rapidamente alle deviazioni', 'Respondre amb rapidesa davant desviacions')
+});
+
+const V2_SECTOR_PROBLEM_ENRICHMENT = Object.freeze({
+    default: {
+        explanation: localText(
+            'The selected problem indicates that operational context, analytical evidence and follow-up are not yet connected in one reviewable workflow.',
+            'El problema seleccionado indica que contexto operativo, evidencia analítica y seguimiento aún no están conectados en un flujo revisable.',
+            'Le problème sélectionné indique que contexte opérationnel, preuve analytique et suivi ne sont pas encore connectés dans un flux revu.',
+            'Il problema selezionato indica che contesto operativo, evidenza analitica e follow-up non sono ancora collegati in un flusso revisionabile.',
+            'El problema seleccionat indica que context operatiu, evidència analítica i seguiment encara no estan connectats en un flux revisable.'
+        ),
+        operationalImpact: localText(
+            'Decisions can depend on manual reconstruction across systems, people and documents.',
+            'La decisión puede depender de reconstrucciones manuales entre sistemas, personas y documentos.',
+            'La décision peut dépendre de reconstructions manuelles entre systèmes, personnes et documents.',
+            'La decisione può dipendere da ricostruzioni manuali tra sistemi, persone e documenti.',
+            'La decisió pot dependre de reconstruccions manuals entre sistemes, persones i documents.'
+        ),
+        improvementFocus: localText(
+            'Create one operational file linking point, sample, method, result, review and action.',
+            'Crear un expediente operativo que conecte punto, muestra, método, resultado, revisión y acción.',
+            'Créer un dossier opérationnel reliant point, échantillon, méthode, résultat, revue et action.',
+            'Creare un fascicolo operativo che collega punto, campione, metodo, risultato, revisione e azione.',
+            'Crear un expedient operatiu que connecti punt, mostra, mètode, resultat, revisió i acció.'
+        ),
+        aquaverifySupport: localText(
+            'AquaVerify Cloud can support this with sample management, review, CoA, dashboards and action follow-up.',
+            'AquaVerify Cloud puede ayudar con gestión de muestras, revisión, CoA, dashboards y seguimiento de acciones.',
+            'AquaVerify Cloud peut aider avec gestion des échantillons, revue, CoA, dashboards et suivi d’actions.',
+            'AquaVerify Cloud può aiutare con gestione campioni, revisione, CoA, dashboard e follow-up azioni.',
+            'AquaVerify Cloud pot ajudar amb gestió de mostres, revisió, CoA, dashboards i seguiment d’accions.'
+        ),
+        relatedCapabilities: localList(
+            ['Sample management', 'LIMS / review', 'CoA', 'Dashboards'],
+            ['Gestión de muestras', 'LIMS / revisión', 'CoA', 'Dashboards'],
+            ['Gestion des échantillons', 'LIMS / revue', 'CoA', 'Dashboards'],
+            ['Gestione campioni', 'LIMS / revisione', 'CoA', 'Dashboard'],
+            ['Gestió de mostres', 'LIMS / revisió', 'CoA', 'Dashboards']
+        ),
+        nextStep: localText(
+            'Start with a limited pilot for one point, circuit, site or sample family.',
+            'Empezar con un piloto limitado en un punto, circuito, sede o familia de muestras.',
+            'Commencer par un pilote limité sur un point, circuit, site ou famille d’échantillons.',
+            'Iniziare con un pilota limitato su un punto, circuito, sede o famiglia di campioni.',
+            'Començar amb un pilot limitat en un punt, circuit, seu o família de mostres.'
+        )
+    },
+    'industrial-process-water': {
+        explanation: localText(
+            'The workflow needs each result to be read with circuit, asset, process condition and quality criterion.',
+            'El flujo necesita que cada resultado se interprete junto con el circuito, activo, condición de proceso y criterio de calidad.',
+            'Le flux doit lire chaque résultat avec circuit, actif, condition de process et critère qualité.',
+            'Il flusso deve leggere ogni risultato con circuito, asset, condizione di processo e criterio qualità.',
+            'El flux necessita que cada resultat s’interpreti amb circuit, actiu, condició de procés i criteri de qualitat.'
+        ),
+        operationalImpact: localText(
+            'If this link is split across custom software, email and spreadsheets, the decision can depend on manual reconstruction.',
+            'Si esta relación queda repartida entre software propio, correo electrónico y hojas de cálculo, la decisión puede depender de reconstrucciones manuales.',
+            'Si ce lien reste réparti entre logiciel interne, email et tableurs, la décision peut dépendre de reconstructions manuelles.',
+            'Se il collegamento resta diviso tra software proprietario, email e fogli, la decisione può dipendere da ricostruzioni manuali.',
+            'Si aquesta relació queda repartida entre software propi, email i fulls de càlcul, la decisió pot dependre de reconstruccions manuals.'
+        ),
+        improvementFocus: localText(
+            'Create one file per point or circuit connecting sample, method, result, review and action.',
+            'Crear un expediente único por punto o circuito que conecte muestra, método, resultado, revisión y acción.',
+            'Créer un dossier unique par point ou circuit reliant échantillon, méthode, résultat, revue et action.',
+            'Creare un fascicolo unico per punto o circuito che collega campione, metodo, risultato, revisione e azione.',
+            'Crear un expedient únic per punt o circuit que connecti mostra, mètode, resultat, revisió i acció.'
+        ),
+        aquaverifySupport: localText(
+            'AquaVerify Cloud can help through sample management, LIMS/review, CoA and action follow-up.',
+            'AquaVerify Cloud puede ayudar mediante gestión de muestras, LIMS/revisión, CoA y seguimiento de acciones.',
+            'AquaVerify Cloud peut aider via gestion des échantillons, LIMS/revue, CoA et suivi d’actions.',
+            'AquaVerify Cloud può aiutare con gestione campioni, LIMS/revisione, CoA e follow-up azioni.',
+            'AquaVerify Cloud pot ajudar amb gestió de mostres, LIMS/revisió, CoA i seguiment d’accions.'
+        ),
+        relatedCapabilities: localList(
+            ['Sample management', 'LIMS / review', 'CoA', 'Dashboards'],
+            ['Gestión de muestras', 'LIMS / revisión', 'CoA', 'Dashboards'],
+            ['Gestion des échantillons', 'LIMS / revue', 'CoA', 'Dashboards'],
+            ['Gestione campioni', 'LIMS / revisione', 'CoA', 'Dashboard'],
+            ['Gestió de mostres', 'LIMS / revisió', 'CoA', 'Dashboards']
+        ),
+        nextStep: localText(
+            'Start with a pilot in one circuit or a limited set of critical points.',
+            'Empezar con un piloto en un circuito o conjunto limitado de puntos críticos.',
+            'Commencer par un pilote sur un circuit ou un groupe limité de points critiques.',
+            'Iniziare con un pilota su un circuito o un set limitato di punti critici.',
+            'Començar amb un pilot en un circuit o conjunt limitat de punts crítics.'
+        )
+    }
+});
+
+const V2_PHASE_ENRICHMENT = Object.freeze([
+    {
+        implementationCondition: localText('Define sites, circuits, assets and critical points before scaling.', 'Estructura de sedes, circuitos, activos y puntos críticos.', 'Structure des sites, circuits, actifs et points critiques.', 'Struttura di sedi, circuiti, asset e punti critici.', 'Estructura de seus, circuits, actius i punts crítics.'),
+        nextStep: localText('Choose a pilot circuit or point group and load its main records.', 'Elegir un circuito piloto y cargar sus puntos principales.', 'Choisir un circuit pilote et charger ses points principaux.', 'Scegliere un circuito pilota e caricare i punti principali.', 'Triar un circuit pilot i carregar-ne els punts principals.')
+    },
+    {
+        implementationCondition: localText('Define sample states, custody evidence and responsible laboratory.', 'Definir estados de muestra, evidencia de custodia y laboratorio responsable.', 'Définir états échantillon, preuve de garde et laboratoire responsable.', 'Definire stati campione, evidenza di custodia e laboratorio responsabile.', 'Definir estats de mostra, evidència de custòdia i laboratori responsable.'),
+        nextStep: localText('Run the first controlled sample family through the shared workflow.', 'Pasar la primera familia de muestras por el flujo compartido.', 'Faire passer une première famille d’échantillons dans le flux partagé.', 'Far passare la prima famiglia di campioni nel flusso condiviso.', 'Passar la primera família de mostres pel flux compartit.')
+    },
+    {
+        implementationCondition: localText('Define method, review criteria, roles and approval limits.', 'Definir método, criterios de revisión, roles y límites de aprobación.', 'Définir méthode, critères de revue, rôles et limites d’approbation.', 'Definire metodo, criteri di revisione, ruoli e limiti di approvazione.', 'Definir mètode, criteris de revisió, rols i límits d’aprovació.'),
+        nextStep: localText('Configure one review template and test it with real non-sensitive cases.', 'Configurar una plantilla de revisión y probarla con casos reales no sensibles.', 'Configurer un modèle de revue et le tester avec des cas réels non sensibles.', 'Configurare un template di revisione e provarlo con casi reali non sensibili.', 'Configurar una plantilla de revisió i provar-la amb casos reals no sensibles.')
+    },
+    {
+        implementationCondition: localText('Define report template, publication rules and recipient scope.', 'Definir plantilla de informe, reglas de publicación y destinatarios.', 'Définir modèle de rapport, règles de publication et destinataires.', 'Definire template report, regole di pubblicazione e destinatari.', 'Definir plantilla d’informe, regles de publicació i destinataris.'),
+        nextStep: localText('Generate a reviewed sample report before opening wider access.', 'Generar un informe revisado de muestra antes de abrir acceso más amplio.', 'Générer un rapport revu d’échantillon avant d’ouvrir un accès plus large.', 'Generare un report revisionato di esempio prima di aprire accesso più ampio.', 'Generar un informe revisat de mostra abans d’obrir un accés més ampli.')
+    },
+    {
+        implementationCondition: localText('Use dashboards only after point, sample, review and action data are reliable.', 'Usar dashboards solo cuando punto, muestra, revisión y acción sean fiables.', 'Utiliser les dashboards seulement quand point, échantillon, revue et action sont fiables.', 'Usare dashboard solo quando punto, campione, revisione e azione sono affidabili.', 'Usar dashboards només quan punt, mostra, revisió i acció siguin fiables.'),
+        nextStep: localText('Select two or three indicators to monitor before scaling portfolio-wide.', 'Seleccionar dos o tres indicadores antes de escalar a toda la cartera.', 'Choisir deux ou trois indicateurs avant de passer à toute la portée.', 'Selezionare due o tre indicatori prima di scalare a tutto il portafoglio.', 'Seleccionar dos o tres indicadors abans d’escalar a tota la cartera.')
+    }
+]);
+
+const V2_MODULE_ENRICHMENT = Object.freeze({
+    'field-sampling': {
+        problemSolved: localText('Reduces gaps between field context, point, operator, conditions and reception.', 'Reduce huecos entre contexto de campo, punto, operador, condiciones y recepción.', 'Réduit les écarts entre contexte terrain, point, opérateur, conditions et réception.', 'Riduce vuoti tra contesto campo, punto, operatore, condizioni e ricezione.', 'Redueix buits entre context de camp, punt, operador, condicions i recepció.'),
+        requiredData: localText('Points, matrices, field owners, sampling states and receiving laboratory.', 'Puntos, matrices, responsables de campo, estados de muestreo y laboratorio receptor.', 'Points, matrices, responsables terrain, états de prélèvement et laboratoire récepteur.', 'Punti, matrici, responsabili campo, stati di campionamento e laboratorio ricevente.', 'Punts, matrius, responsables de camp, estats de mostreig i laboratori receptor.'),
+        operationalOutcome: localText('Sampling evidence reaches the review stage with less manual context recovery.', 'La evidencia de muestreo llega a revisión con menos reconstrucción manual.', 'La preuve de prélèvement arrive en revue avec moins de reconstruction manuelle.', 'L’evidenza di campionamento arriva alla revisione con meno ricostruzione manuale.', 'L’evidència de mostreig arriba a revisió amb menys reconstrucció manual.'),
+        implementationCondition: localText('Define field states before expanding to every site.', 'Definir estados de campo antes de extenderlo a todas las sedes.', 'Définir les états terrain avant extension à tous les sites.', 'Definire stati di campo prima di estendere a tutte le sedi.', 'Definir estats de camp abans d’estendre-ho a totes les seus.')
+    },
+    'sample-management': {
+        problemSolved: localText('Reduces dispersion between request, point, reception, test and review.', 'Reduce la dispersión entre solicitud, punto, recepción, ensayo y revisión.', 'Réduit la dispersion entre demande, point, réception, essai et revue.', 'Riduce dispersione tra richiesta, punto, ricezione, test e revisione.', 'Redueix la dispersió entre sol·licitud, punt, recepció, assaig i revisió.'),
+        requiredData: localText('Points, matrices, owners, states and associated laboratory.', 'Puntos, matrices, responsables, estados y laboratorio asociado.', 'Points, matrices, responsables, états et laboratoire associé.', 'Punti, matrici, responsabili, stati e laboratorio associato.', 'Punts, matrius, responsables, estats i laboratori associat.'),
+        operationalOutcome: localText('Each sample has a shared history that can connect with method, batch, CoA or later action.', 'Cada muestra tiene un historial común y puede conectarse con método, lote, CoA o acción posterior.', 'Chaque échantillon a un historique commun relié à méthode, lot, CoA ou action ultérieure.', 'Ogni campione ha uno storico comune collegabile a metodo, lotto, CoA o azione successiva.', 'Cada mostra té un historial comú i pot connectar-se amb mètode, lot, CoA o acció posterior.'),
+        implementationCondition: localText('Define minimum states before migrating the full workflow.', 'Definir estados mínimos antes de migrar el flujo completo.', 'Définir les états minimaux avant de migrer tout le flux.', 'Definire stati minimi prima di migrare tutto il flusso.', 'Definir estats mínims abans de migrar tot el flux.')
+    },
+    'inventory-traceability': {
+        problemSolved: localText('Connects lots, consumables, expiration and method evidence to sample history.', 'Conecta lotes, consumibles, caducidad y evidencia de método con el historial de muestra.', 'Relie lots, consommables, expiration et preuve méthode à l’historique échantillon.', 'Collega lotti, consumabili, scadenza ed evidenza metodo allo storico campione.', 'Connecta lots, consumibles, caducitat i evidència de mètode amb l’historial de mostra.'),
+        requiredData: localText('Lots, consumables, expiry dates, controls and method scope.', 'Lotes, consumibles, caducidades, controles y alcance de método.', 'Lots, consommables, dates d’expiration, contrôles et portée méthode.', 'Lotti, consumabili, scadenze, controlli e ambito metodo.', 'Lots, consumibles, caducitats, controls i abast de mètode.'),
+        operationalOutcome: localText('Audit and incident review can reconstruct which materials supported each result.', 'Auditoría e incidencia pueden reconstruir qué materiales soportaron cada resultado.', 'Audit et incident peuvent reconstruire quels matériaux soutenaient chaque résultat.', 'Audit e incidente possono ricostruire quali materiali supportavano ogni risultato.', 'Auditoria i incidència poden reconstruir quins materials suportaven cada resultat.'),
+        implementationCondition: localText('Decide which lots and controls are mandatory before relying on traceability.', 'Decidir qué lotes y controles son obligatorios antes de depender de la trazabilidad.', 'Décider quels lots et contrôles sont obligatoires avant de dépendre de la traçabilité.', 'Decidere quali lotti e controlli sono obbligatori prima di dipendere dalla tracciabilità.', 'Decidir quins lots i controls són obligatoris abans de dependre de la traçabilitat.')
+    },
+    'lims-review': {
+        problemSolved: localText('Separates execution from technical review, criteria and approval evidence.', 'Separa ejecución, revisión técnica, criterios y evidencia de aprobación.', 'Sépare exécution, revue technique, critères et preuve d’approbation.', 'Separa esecuzione, revisione tecnica, criteri ed evidenza di approvazione.', 'Separa execució, revisió tècnica, criteris i evidència d’aprovació.'),
+        requiredData: localText('Methods, review criteria, roles, permissions and exception states.', 'Métodos, criterios de revisión, roles, permisos y estados de excepción.', 'Méthodes, critères de revue, rôles, permissions et états d’exception.', 'Metodi, criteri di revisione, ruoli, permessi e stati di eccezione.', 'Mètodes, criteris de revisió, rols, permisos i estats d’excepció.'),
+        operationalOutcome: localText('Results can be approved or held with clearer technical accountability.', 'Los resultados pueden aprobarse o retenerse con responsabilidad técnica más clara.', 'Les résultats peuvent être approuvés ou bloqués avec responsabilité technique plus claire.', 'I risultati possono essere approvati o trattenuti con responsabilità tecnica più chiara.', 'Els resultats poden aprovar-se o retenir-se amb responsabilitat tècnica més clara.'),
+        implementationCondition: localText('Define review criteria before automating approvals.', 'Definir criterios de revisión antes de automatizar aprobaciones.', 'Définir les critères de revue avant d’automatiser les approbations.', 'Definire criteri di revisione prima di automatizzare approvazioni.', 'Definir criteris de revisió abans d’automatitzar aprovacions.')
+    },
+    'coa-reporting': {
+        problemSolved: localText('Turns reviewed results into consistent deliverables with traceable history.', 'Convierte resultados revisados en entregables consistentes con histórico trazable.', 'Transforme les résultats revus en livrables cohérents avec historique traçable.', 'Trasforma risultati revisionati in deliverable coerenti con storico tracciabile.', 'Converteix resultats revisats en lliurables consistents amb històric traçable.'),
+        requiredData: localText('Report templates, recipient scope, publication rules and review state.', 'Plantillas, destinatarios, reglas de publicación y estado de revisión.', 'Modèles, destinataires, règles de publication et état de revue.', 'Template, destinatari, regole di pubblicazione e stato revisione.', 'Plantilles, destinataris, regles de publicació i estat de revisió.'),
+        operationalOutcome: localText('Internal teams or customers receive consistent evidence without manual rebuilding.', 'Equipos internos o clientes reciben evidencia consistente sin reconstrucción manual.', 'Équipes internes ou clients reçoivent une preuve cohérente sans reconstruction manuelle.', 'Team interni o clienti ricevono evidenza coerente senza ricostruzione manuale.', 'Equips interns o clients reben evidència consistent sense reconstrucció manual.'),
+        implementationCondition: localText('Approve templates and publication rules before external use.', 'Aprobar plantillas y reglas de publicación antes del uso externo.', 'Approuver modèles et règles de publication avant usage externe.', 'Approvare template e regole di pubblicazione prima dell’uso esterno.', 'Aprovar plantilles i regles de publicació abans de l’ús extern.')
+    },
+    'deviations-capa': {
+        problemSolved: localText('Connects deviations, incidents or corrective actions with the original evidence.', 'Conecta desviaciones, incidencias o acciones correctivas con la evidencia original.', 'Relie écarts, incidents ou actions correctives à la preuve d’origine.', 'Collega deviazioni, incidenti o azioni correttive all’evidenza originale.', 'Connecta desviacions, incidències o accions correctives amb l’evidència original.'),
+        requiredData: localText('Deviation states, owners, criteria, due dates and closure evidence.', 'Estados de desviación, responsables, criterios, fechas y evidencia de cierre.', 'États d’écart, responsables, critères, échéances et preuve de clôture.', 'Stati deviazione, responsabili, criteri, scadenze ed evidenza di chiusura.', 'Estats de desviació, responsables, criteris, dates i evidència de tancament.'),
+        operationalOutcome: localText('Follow-up is auditable and less dependent on separate messages.', 'El seguimiento es auditable y depende menos de mensajes separados.', 'Le suivi est auditable et dépend moins de messages séparés.', 'Il follow-up è auditabile e dipende meno da messaggi separati.', 'El seguiment és auditable i depèn menys de missatges separats.'),
+        implementationCondition: localText('Define closure criteria and responsible roles before launch.', 'Definir criterios de cierre y responsables antes de activarlo.', 'Définir critères de clôture et responsables avant lancement.', 'Definire criteri di chiusura e responsabili prima del lancio.', 'Definir criteris de tancament i responsables abans d’activar-ho.')
+    },
+    'customer-portal': {
+        problemSolved: localText('Reduces manual status and report queries for controlled stakeholders.', 'Reduce consultas manuales de estado e informe para actores autorizados.', 'Réduit les demandes manuelles de statut et rapport pour acteurs autorisés.', 'Riduce richieste manuali di stato e report per stakeholder autorizzati.', 'Redueix consultes manuals d’estat i informe per actors autoritzats.'),
+        requiredData: localText('Recipients, permissions, publication status and visible report history.', 'Destinatarios, permisos, estado de publicación e histórico visible.', 'Destinataires, permissions, état de publication et historique visible.', 'Destinatari, permessi, stato pubblicazione e storico visibile.', 'Destinataris, permisos, estat de publicació i històric visible.'),
+        operationalOutcome: localText('Customers or internal stakeholders see controlled evidence without email forwarding.', 'Clientes o responsables internos consultan evidencia controlada sin reenvíos por correo electrónico.', 'Clients ou responsables internes consultent la preuve contrôlée sans transfert email.', 'Clienti o responsabili interni consultano evidenza controllata senza inoltri email.', 'Clients o responsables interns consulten evidència controlada sense reenviaments per email.'),
+        implementationCondition: localText('Define visibility and publication rules before opening access.', 'Definir visibilidad y publicación antes de abrir acceso.', 'Définir visibilité et publication avant ouverture d’accès.', 'Definire visibilità e pubblicazione prima di aprire accesso.', 'Definir visibilitat i publicació abans d’obrir accés.')
+    },
+    dashboards: {
+        problemSolved: localText('Highlights trends, recurrence and bottlenecks once the base data is reliable.', 'Muestra tendencias, recurrencias y cuellos de botella cuando el dato base es fiable.', 'Met en évidence tendances, récurrences et blocages quand la donnée de base est fiable.', 'Evidenzia trend, ricorrenze e colli di bottiglia quando il dato base è affidabile.', 'Mostra tendències, recurrències i colls d’ampolla quan la dada base és fiable.'),
+        requiredData: localText('Stable points, sample states, review outcomes, actions and time periods.', 'Puntos estables, estados de muestra, revisión, acciones y periodos.', 'Points stables, états échantillon, revue, actions et périodes.', 'Punti stabili, stati campione, revisione, azioni e periodi.', 'Punts estables, estats de mostra, revisió, accions i períodes.'),
+        operationalOutcome: localText('Teams can prioritise prevention with a comparable operational history.', 'Los equipos priorizan prevención con un histórico operativo comparable.', 'Les équipes priorisent la prévention avec un historique opérationnel comparable.', 'I team prioritizzano prevenzione con storico operativo comparabile.', 'Els equips prioritzen prevenció amb un històric operatiu comparable.'),
+        implementationCondition: localText('Do not start with dashboards before sample, review and action data are consistent.', 'No empezar por dashboards antes de que muestra, revisión y acción sean consistentes.', 'Ne pas commencer par les dashboards avant cohérence échantillon, revue et action.', 'Non iniziare dai dashboard prima che campione, revisione e azione siano coerenti.', 'No començar pels dashboards abans que mostra, revisió i acció siguin consistents.')
+    }
+});
+
 const V2_PHASE_CAPABILITIES = Object.freeze([
     ['field-sampling', 'sample-management'],
     ['sample-management', 'inventory-traceability'],
@@ -3751,6 +4228,11 @@ function profileForSector(sectorId) {
 function localizedMapValue(map, lang = 'en', fallback = '') {
     if (!map) return fallback;
     return map[lang] || map.en || map.es || fallback;
+}
+
+function localizedListValue(map, lang = 'en') {
+    const value = localizedMapValue(map, lang, []);
+    return Array.isArray(value) ? value : [];
 }
 
 function localizedListFirst(map, lang = 'en', fallback = '') {
@@ -3917,35 +4399,80 @@ function buildFlowDiagnosisV2({ result, answers, profile, lang }) {
 function buildMaturityV2(result, lang = 'en') {
     const copy = v2Copy(lang);
     const labels = reportLabels(lang);
-    return result.scores.map((score) => ({
-        dimensionId: score.dimensionId,
-        title: localizedText[lang]?.maturity?.[score.dimensionId] || localizedText.en.maturity[score.dimensionId] || score.dimensionId,
-        level: score.level,
-        label: copy.levelLabels[Math.max(0, Math.min(4, score.level - 1))],
-        explanation: (result.sectorId === 'industrial-process-water' ? V2_MATURITY_TEXT[lang]?.[score.dimensionId] : '')
-            || (score.reasonKeys || []).map((key) => v2LocalizedKey(labels, 'reason', key, lang)).join(' '),
-        nextImprovement: v2LocalizedKey(labels, 'action', DIMENSION_ACTIONS[score.dimensionId] || 'standardize-sample-workflow', lang)
-    }));
+    return result.scores.map((score) => {
+        const enrichment = V2_MATURITY_ENRICHMENT[score.dimensionId] || V2_MATURITY_ENRICHMENT.workflow_maturity;
+        const nextImprovement = localizedMapValue(enrichment.firstImprovement, lang, '')
+            || v2LocalizedKey(labels, 'action', DIMENSION_ACTIONS[score.dimensionId] || 'standardize-sample-workflow', lang);
+        return {
+            dimensionId: score.dimensionId,
+            title: localizedText[lang]?.maturity?.[score.dimensionId] || localizedText.en.maturity[score.dimensionId] || score.dimensionId,
+            level: score.level,
+            label: copy.levelLabels[Math.max(0, Math.min(4, score.level - 1))],
+            explanation: (result.sectorId === 'industrial-process-water' ? V2_MATURITY_TEXT[lang]?.[score.dimensionId] : '')
+                || (score.reasonKeys || []).map((key) => v2LocalizedKey(labels, 'reason', key, lang)).join(' '),
+            nextImprovement,
+            interpretation: (result.sectorId === 'industrial-process-water' ? V2_MATURITY_TEXT[lang]?.[score.dimensionId] : '')
+                || (score.reasonKeys || []).map((key) => v2LocalizedKey(labels, 'reason', key, lang)).join(' '),
+            firstImprovement: nextImprovement,
+            aquaverifySupport: localizedMapValue(enrichment.aquaverifySupport, lang, ''),
+            relatedCapabilities: localizedListValue(enrichment.relatedCapabilities, lang),
+            implementationCondition: localizedMapValue(enrichment.implementationCondition, lang, '')
+        };
+    });
+}
+
+function problemNarrativeFor(result, problemId, lang = 'en', fallbackExplanation = '') {
+    const title = localizedMapValue(V2_PROBLEM_TITLE_TEXT[problemId], lang, optionLabelV2(problemId, lang));
+    const sectorDetails = V2_SECTOR_PROBLEM_ENRICHMENT[result.sectorId] || V2_SECTOR_PROBLEM_ENRICHMENT.default;
+    const details = {
+        explanation: localizedMapValue(sectorDetails.explanation, lang, fallbackExplanation),
+        operationalImpact: localizedMapValue(sectorDetails.operationalImpact, lang, ''),
+        improvementFocus: localizedMapValue(sectorDetails.improvementFocus, lang, ''),
+        aquaverifySupport: localizedMapValue(sectorDetails.aquaverifySupport, lang, ''),
+        relatedCapabilities: localizedListValue(sectorDetails.relatedCapabilities, lang),
+        nextStep: localizedMapValue(sectorDetails.nextStep, lang, '')
+    };
+    return { title, ...details };
 }
 
 function buildPriorityProblemsV2({ result, answers, lang }) {
     const copy = v2Copy(lang);
     const narrative = v2Narrative(lang);
     const labels = reportLabels(lang);
-    const selected = answerArrayV2(answers, 'priority_problem_ids').map((problemId) => ({
-        problemId,
-        title: V2_INDUSTRIAL_PROBLEM_TEXT[lang]?.[problemId]?.title || optionLabelV2(problemId, lang),
-        priorityLabel: narrative.selectedPriority,
-        severity: 'medium',
-        paragraph: V2_INDUSTRIAL_PROBLEM_TEXT[lang]?.[problemId]?.paragraph || optionLabelV2(problemId, lang)
-    }));
-    const detected = result.findings.map((finding) => ({
-        findingId: finding.findingId,
-        title: localizeKey(labels, 'finding', finding.findingId),
-        priorityLabel: copy.severity[finding.priority] || finding.priority,
-        severity: finding.priority,
-        paragraph: (finding.reasonKeys || []).map((key) => v2LocalizedKey(labels, 'reason', key, lang)).join(' ') || narrative.findingPriority
-    }));
+    const selected = answerArrayV2(answers, 'priority_problem_ids').map((problemId) => {
+        const legacyIndustrial = V2_INDUSTRIAL_PROBLEM_TEXT[lang]?.[problemId];
+        const details = problemNarrativeFor(result, problemId, lang, legacyIndustrial?.paragraph || optionLabelV2(problemId, lang));
+        return {
+            problemId,
+            title: legacyIndustrial?.title || details.title,
+            priorityLabel: narrative.selectedPriority,
+            severity: 'medium',
+            paragraph: legacyIndustrial?.paragraph || details.explanation,
+            explanation: legacyIndustrial?.paragraph || details.explanation,
+            operationalImpact: details.operationalImpact,
+            improvementFocus: details.improvementFocus,
+            aquaverifySupport: details.aquaverifySupport,
+            relatedCapabilities: details.relatedCapabilities,
+            nextStep: details.nextStep
+        };
+    });
+    const detected = result.findings.map((finding) => {
+        const explanation = (finding.reasonKeys || []).map((key) => v2LocalizedKey(labels, 'reason', key, lang)).join(' ') || narrative.findingPriority;
+        const details = problemNarrativeFor(result, finding.findingId, lang, explanation);
+        return {
+            findingId: finding.findingId,
+            title: localizeKey(labels, 'finding', finding.findingId),
+            priorityLabel: copy.severity[finding.priority] || finding.priority,
+            severity: finding.priority,
+            paragraph: explanation,
+            explanation,
+            operationalImpact: details.operationalImpact,
+            improvementFocus: details.improvementFocus,
+            aquaverifySupport: details.aquaverifySupport,
+            relatedCapabilities: details.relatedCapabilities,
+            nextStep: details.nextStep
+        };
+    });
     return [...selected, ...detected].slice(0, 6);
 }
 
@@ -3964,11 +4491,10 @@ function modulePlanBlock(targetId, lang = 'en') {
 
 function buildRecommendationSectionsV2({ result, roadmap, lang }) {
     const copy = v2Copy(lang);
-    const narrative = v2Narrative(lang);
     const labels = reportLabels(lang);
     return result.recommendations
         .filter((item) => {
-            if (item.type !== 'module' || item.audience === 'internal' || ['crm', 'gis'].includes(item.targetId)) return false;
+            if (item.type !== 'module' || item.audience === 'internal' || ['crm', 'gis', 'aquatools'].includes(item.targetId)) return false;
             if (item.targetId === 'dashboards' && (scoreLevel(result, 'workflow_maturity') <= 2 || scoreLevel(result, 'traceability') <= 2)) return false;
             return true;
         })
@@ -3977,6 +4503,9 @@ function buildRecommendationSectionsV2({ result, roadmap, lang }) {
             const title = targetLabelV2(item.targetId, lang);
             const phase = modulePlanBlock(item.targetId, lang);
             const reason = firstReasonTextV2(item, labels, lang);
+            const enrichment = V2_MODULE_ENRICHMENT[item.targetId] || V2_MODULE_ENRICHMENT['sample-management'];
+            const problemSolved = localizedMapValue(enrichment.problemSolved, lang, reason);
+            const implementationCondition = localizedMapValue(enrichment.implementationCondition, lang, '');
             return {
                 recommendationId: item.recommendationId,
                 targetId: item.targetId,
@@ -3984,10 +4513,15 @@ function buildRecommendationSectionsV2({ result, roadmap, lang }) {
                 status: copy.status[item.fitStatus] || item.fitStatus,
                 phaseId: phase.blockId,
                 phaseTitle: phase.title,
-                paragraph: narrative.moduleWhyNow(title, reason),
+                relatedPhase: phase.title,
+                paragraph: problemSolved,
+                problemSolved,
+                requiredData: localizedMapValue(enrichment.requiredData, lang, ''),
+                operationalOutcome: localizedMapValue(enrichment.operationalOutcome, lang, ''),
+                implementationCondition,
                 whyNow: reason,
                 whatToDefine: (item.conditionKeys || []).map((key) => v2LocalizedKey(labels, 'condition', key, lang)).filter(Boolean),
-                nextStep: narrative.moduleNext,
+                nextStep: implementationCondition,
                 showToClient: true
             };
         });
@@ -4177,6 +4711,23 @@ function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: que
             relatedResources: copy.relatedResources,
             limitations: copy.limitations
         },
+        labels: {
+            firstImprovement: copy.firstImprovementLabel,
+            aquaverifySupport: copy.aquaverifySupportLabel,
+            relatedCapabilities: copy.relatedCapabilitiesLabel,
+            implementationCondition: copy.implementationConditionLabel,
+            operationalImpact: copy.operationalImpactLabel,
+            improvementFocus: copy.improvementFocusLabel,
+            nextStep: copy.nextStepLabel,
+            expectedOutcome: copy.expectedOutcomeLabel,
+            relatedPhase: copy.relatedPhaseLabel,
+            problemSolved: copy.problemSolvedLabel,
+            requiredData: copy.requiredDataLabel,
+            objective: copy.objectiveLabel,
+            actions: copy.actionsLabel,
+            modulesRelated: copy.modulesRelatedLabel,
+            productPendingTechnicalReview: copy.productPendingTechnicalReview
+        },
         quickRead,
         quickReadItems: [
             { id: 'primaryRisk', label: copy.primaryRisk, value: quickRead.primaryRisk },
@@ -4197,6 +4748,10 @@ function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: que
             phases: roadmap.map((phase, index) => ({
                 ...phase,
                 phase: index + 1,
+                modulesRelated: (phase.relatedCapabilities || []).map((targetId) => targetLabelV2(targetId, safeLang)),
+                productsToEvaluate: [copy.productPendingTechnicalReview],
+                implementationCondition: localizedMapValue(V2_PHASE_ENRICHMENT[index]?.implementationCondition, safeLang, ''),
+                nextStep: localizedMapValue(V2_PHASE_ENRICHMENT[index]?.nextStep, safeLang, ''),
                 relatedCapabilities: (phase.relatedCapabilities || []).map((targetId) => ({
                     targetId,
                     title: targetLabelV2(targetId, safeLang)
@@ -4215,8 +4770,8 @@ function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: que
         },
         pdf: {
             buttonLabel: copy.pdfButton,
-            printLabel: copy.printButton,
-            instructions: copy.printInstructions,
+            printLabel: copy.pdfButton,
+            instructions: '',
             mode: 'dedicated-print',
             filename: `aquaverify-workflow-advisor-${result.sectorId}-${safeLang}.pdf`
         },
