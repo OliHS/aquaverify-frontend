@@ -153,6 +153,25 @@ export type WorkflowAdvisorReportV2DiagnosticDetail = {
   signals?: Record<string, string | number | boolean>;
 };
 
+export type WorkflowAdvisorReportV2OverallMaturity = {
+  title: string;
+  score: number;
+  label: string;
+  display: string;
+  description: string;
+  includedDimensionIds: string[];
+  excludedDimensionIds: string[];
+};
+
+export type WorkflowAdvisorReportV2OperationalComplexity = {
+  title: string;
+  dimensionId: 'operational_complexity';
+  level: number;
+  label: string;
+  display: string;
+  description: string;
+};
+
 export type WorkflowAdvisorReportV2 = {
   reportVersion: string;
   reportKind: 'consultative_workflow_report';
@@ -179,6 +198,8 @@ export type WorkflowAdvisorReportV2 = {
   quickRead: { primaryRisk: string; immediatePriority: string; analyticalRoute: string; nextStep: string };
   quickReadItems: Array<{ id: string; label: string; value: string }>;
   executiveSummary: string[];
+  overallMaturity?: WorkflowAdvisorReportV2OverallMaturity;
+  operationalComplexity?: WorkflowAdvisorReportV2OperationalComplexity;
   interpretedContext: { title: string; buyerContext: string; facts: Array<{ field: string; label: string; value: string }> };
   flowDiagnosis: { paragraph: string; keySignals: string[] };
   maturity: Array<{ dimensionId: string; title: string; level: number; label: string; explanation: string; nextImprovement: string; interpretation?: string; firstImprovement?: string; aquaverifySupport?: string; relatedCapabilities?: string[]; implementationCondition?: string }>;
@@ -192,6 +213,7 @@ export type WorkflowAdvisorReportV2 = {
     paragraph: string;
     candidates: Array<{ productId: string; title: string; status: string; reason: string }>;
     nextStep: string;
+    ctaLabel?: string;
   };
   missingInformation: WorkflowAdvisorReportV2MissingInformation[];
   relatedResources: Array<{ resourceId: string; type: string; typeLabel: string; title: string; description: string; url: string }>;
@@ -229,6 +251,7 @@ export declare const INDUSTRY_ROUTES: Record<string, Record<WorkflowAdvisorLangu
 export declare const GLOSSARY_RESOURCE_ROUTES: Record<string, Record<WorkflowAdvisorLanguage, string>>;
 export declare const workflowAdvisorIndustryProfiles: Record<string, WorkflowAdvisorIndustryProfile>;
 export declare const allowedEvents: readonly string[];
+export declare function calculateOverallWorkflowMaturity(scores: Array<{ dimensionId: string; level: number }>): { score: number; includedDimensionIds: string[]; excludedDimensionIds: string[]; weights: Record<string, number> };
 export declare function assessWorkflow(input: WorkflowAssessmentInput): WorkflowAssessmentResult;
 export declare function buildWorkflowAdvisorReport(input: { result: WorkflowAssessmentResult; answers?: Record<string, unknown>; questionnaire?: Record<string, unknown>; lang?: WorkflowAdvisorLanguage }): WorkflowAdvisorReport;
 export declare function buildWorkflowAdvisorReportV2(input: { result: WorkflowAssessmentResult; answers?: Record<string, unknown>; questionnaire?: Record<string, unknown>; lang?: WorkflowAdvisorLanguage; industryProfile?: WorkflowAdvisorIndustryProfile }): WorkflowAdvisorReportV2;

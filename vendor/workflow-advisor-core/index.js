@@ -842,12 +842,12 @@ const localizedText = Object.freeze({
             technical_review_required: 'Revue technique necessaire'
         },
         maturity: {
-            workflow_maturity: 'Maturite du flux',
-            traceability: 'Tracabilite',
-            audit_readiness: 'Preparation audit',
-            operational_complexity: 'Complexite operationnelle',
-            client_visibility: 'Visibilite client',
-            digital_readiness: 'Preparation numerique',
+            workflow_maturity: 'Maturité du flux',
+            traceability: 'Traçabilité',
+            audit_readiness: 'Préparation audit',
+            operational_complexity: 'Complexité opérationnelle',
+            client_visibility: 'Visibilité client',
+            digital_readiness: 'Préparation numérique',
             analytical_context_completeness: 'Contexte analytique complet'
         },
         limits: 'Ce diagnostic est indicatif. Il ne remplace pas l evaluation du laboratoire, la validation ou verification des methodes, le systeme qualite, l autorite competente ni la revue reglementaire par pays, matrice et usage prevu.'
@@ -859,11 +859,11 @@ const localizedText = Object.freeze({
             technical_review_required: 'Revisione tecnica necessaria'
         },
         maturity: {
-            workflow_maturity: 'Maturita del flusso',
-            traceability: 'Tracciabilita',
+            workflow_maturity: 'Maturità del flusso',
+            traceability: 'Tracciabilità',
             audit_readiness: 'Preparazione audit',
-            operational_complexity: 'Complessita operativa',
-            client_visibility: 'Visibilita cliente',
+            operational_complexity: 'Complessità operativa',
+            client_visibility: 'Visibilità cliente',
             digital_readiness: 'Preparazione digitale',
             analytical_context_completeness: 'Contesto analitico completo'
         },
@@ -882,7 +882,7 @@ const localizedText = Object.freeze({
             operational_complexity: 'Complexitat operativa',
             client_visibility: 'Visibilitat per a clients',
             digital_readiness: 'Preparacio digital',
-            analytical_context_completeness: 'Context analitic complet'
+            analytical_context_completeness: 'Context analític complet'
         },
         limits: 'Aquest diagnostic es orientatiu. No substitueix l avaluacio del laboratori, la validacio o verificacio de metodes, el sistema de qualitat, l autoritat competent ni la revisio reguladora per pais, matriu i us previst.'
     }
@@ -1684,9 +1684,14 @@ const V2_COPY = Object.freeze({
         missingInfo: 'Information still needed',
         relatedResources: 'Related resources',
         limitations: 'Limitations',
-        ctaTitle: 'Request technical review',
-        ctaButton: 'Request technical review',
+        ctaTitle: 'Request free technical review',
+        ctaButton: 'Request free technical review',
+        analyticalReviewCta: 'Request free technical review',
         pdfButton: 'Print / save PDF',
+        overallMaturityLabel: 'Overall workflow maturity',
+        overallMaturityDescription: 'Overall maturity summarises the level of connection between operational workflow, traceability, evidence, visibility, digital readiness and analytical context. It is not a compliance score or an automatic product recommendation.',
+        operationalComplexityLabel: 'Operational complexity detected',
+        operationalComplexityDescription: 'This dimension indicates how much coordination the workflow requires. High complexity is not negative by itself, but it requires greater clarity around points, owners, evidence and systems.',
         firstImprovementLabel: 'What to improve first',
         aquaverifySupportLabel: 'How AquaVerify can help',
         relatedCapabilitiesLabel: 'Related modules or capabilities',
@@ -1705,7 +1710,7 @@ const V2_COPY = Object.freeze({
         relatedPhaseLabel: 'Related phase',
         problemSolvedLabel: 'Problem solved',
         requiredDataLabel: 'Required data',
-        productPendingTechnicalReview: 'Product pending technical review',
+        productPendingTechnicalReview: 'Candidate to evaluate · Technical review required',
         objectiveLabel: 'Objective',
         actionsLabel: 'Actions',
         modulesRelatedLabel: 'Related modules',
@@ -1715,8 +1720,9 @@ const V2_COPY = Object.freeze({
             potential_fit: 'Potential fit',
             conditional_fit: 'Conditional fit',
             technical_review_required: 'Technical review required',
-            product_to_evaluate: 'Product to evaluate'
+            product_to_evaluate: 'Candidate to evaluate · Technical review required'
         },
+        complexityLabels: ['Low', 'Moderate', 'Relevant', 'High', 'Very high'],
         levelLabels: ['Very limited', 'Basic', 'Partially structured', 'Structured', 'Advanced'],
         severity: { high: 'High', medium: 'Medium', low: 'Low' },
         noIndicated: 'not indicated',
@@ -1773,9 +1779,14 @@ const V2_COPY = Object.freeze({
         missingInfo: 'Información que falta',
         relatedResources: 'Recursos relacionados',
         limitations: 'Limitaciones',
-        ctaTitle: 'Solicitar revisión técnica',
-        ctaButton: 'Solicitar revisión técnica',
+        ctaTitle: 'Solicitar revisión técnica gratuita',
+        ctaButton: 'Solicitar revisión técnica gratuita',
+        analyticalReviewCta: 'Solicitar revisión técnica gratuita',
         pdfButton: 'Imprimir / guardar PDF',
+        overallMaturityLabel: 'Madurez global del flujo',
+        overallMaturityDescription: 'La madurez global resume el nivel de conexión entre flujo operativo, trazabilidad, evidencia, visibilidad, preparación digital y contexto analítico. No es una puntuación de cumplimiento ni una recomendación automática de producto.',
+        operationalComplexityLabel: 'Complejidad operativa detectada',
+        operationalComplexityDescription: 'Esta dimensión indica cuánta coordinación requiere el flujo. Una complejidad alta no es negativa por sí misma, pero exige mayor claridad en puntos, responsables, evidencias y sistemas.',
         firstImprovementLabel: 'Qué mejorar primero',
         aquaverifySupportLabel: 'Cómo puede ayudar AquaVerify',
         relatedCapabilitiesLabel: 'Módulos o capacidades relacionadas',
@@ -1794,7 +1805,7 @@ const V2_COPY = Object.freeze({
         relatedPhaseLabel: 'Fase relacionada',
         problemSolvedLabel: 'Problema que resuelve',
         requiredDataLabel: 'Datos necesarios',
-        productPendingTechnicalReview: 'Producto pendiente de revisión técnica',
+        productPendingTechnicalReview: 'Candidato a evaluar · Requiere revisión técnica',
         objectiveLabel: 'Objetivo',
         actionsLabel: 'Acciones',
         modulesRelatedLabel: 'Módulos relacionados',
@@ -1804,8 +1815,9 @@ const V2_COPY = Object.freeze({
             potential_fit: 'Encaje potencial',
             conditional_fit: 'Encaje condicionado',
             technical_review_required: 'Revisión técnica necesaria',
-            product_to_evaluate: 'Producto a evaluar'
+            product_to_evaluate: 'Candidato a evaluar · Requiere revisión técnica'
         },
+        complexityLabels: ['Baja', 'Moderada', 'Relevante', 'Alta', 'Muy alta'],
         levelLabels: ['Muy limitado', 'Básico', 'Parcialmente estructurado', 'Estructurado', 'Avanzado'],
         severity: { high: 'Alta', medium: 'Media', low: 'Baja' },
         noIndicated: 'no indicado',
@@ -1862,9 +1874,14 @@ const V2_COPY = Object.freeze({
         missingInfo: 'Informations manquantes',
         relatedResources: 'Ressources associées',
         limitations: 'Limites',
-        ctaTitle: 'Demander une revue technique',
-        ctaButton: 'Demander une revue technique',
+        ctaTitle: 'Demander une revue technique gratuite',
+        ctaButton: 'Demander une revue technique gratuite',
+        analyticalReviewCta: 'Demander une revue technique gratuite',
         pdfButton: 'Imprimer / enregistrer PDF',
+        overallMaturityLabel: 'Maturité globale du flux',
+        overallMaturityDescription: 'La maturité globale résume le niveau de connexion entre le flux opérationnel, la traçabilité, les preuves, la visibilité, la préparation numérique et le contexte analytique. Ce n’est pas une note de conformité ni une recommandation automatique de produit.',
+        operationalComplexityLabel: 'Complexité opérationnelle détectée',
+        operationalComplexityDescription: 'Cette dimension indique le niveau de coordination requis par le flux. Une complexité élevée n’est pas négative en soi, mais elle exige davantage de clarté sur les points, les responsables, les preuves et les systèmes.',
         firstImprovementLabel: 'Ce qu’il faut améliorer en premier',
         aquaverifySupportLabel: 'Comment AquaVerify peut aider',
         relatedCapabilitiesLabel: 'Modules ou capacités associés',
@@ -1883,7 +1900,7 @@ const V2_COPY = Object.freeze({
         relatedPhaseLabel: 'Phase associée',
         problemSolvedLabel: 'Problème résolu',
         requiredDataLabel: 'Données nécessaires',
-        productPendingTechnicalReview: 'Produit en attente de revue technique',
+        productPendingTechnicalReview: 'Candidat à évaluer · Revue technique nécessaire',
         objectiveLabel: 'Objectif',
         actionsLabel: 'Actions',
         modulesRelatedLabel: 'Modules associés',
@@ -1893,8 +1910,9 @@ const V2_COPY = Object.freeze({
             potential_fit: 'Adéquation potentielle',
             conditional_fit: 'Adéquation conditionnelle',
             technical_review_required: 'Revue technique nécessaire',
-            product_to_evaluate: 'Produit à évaluer'
+            product_to_evaluate: 'Candidat à évaluer · Revue technique nécessaire'
         },
+        complexityLabels: ['Faible', 'Modérée', 'Significative', 'Élevée', 'Très élevée'],
         levelLabels: ['Très limité', 'Basique', 'Partiellement structuré', 'Structuré', 'Avancé'],
         severity: { high: 'Élevée', medium: 'Moyenne', low: 'Faible' },
         noIndicated: 'non indiqué',
@@ -1951,9 +1969,14 @@ const V2_COPY = Object.freeze({
         missingInfo: 'Informazioni mancanti',
         relatedResources: 'Risorse correlate',
         limitations: 'Limiti',
-        ctaTitle: 'Richiedi revisione tecnica',
-        ctaButton: 'Richiedi revisione tecnica',
+        ctaTitle: 'Richiedi revisione tecnica gratuita',
+        ctaButton: 'Richiedi revisione tecnica gratuita',
+        analyticalReviewCta: 'Richiedi revisione tecnica gratuita',
         pdfButton: 'Stampa / salva PDF',
+        overallMaturityLabel: 'Maturità complessiva del flusso',
+        overallMaturityDescription: 'La maturità complessiva riassume il livello di connessione tra flusso operativo, tracciabilità, evidenze, visibilità, preparazione digitale e contesto analitico. Non è un punteggio di conformità né una raccomandazione automatica di prodotto.',
+        operationalComplexityLabel: 'Complessità operativa rilevata',
+        operationalComplexityDescription: 'Questa dimensione indica quanta coordinazione richiede il flusso. Una complessità alta non è negativa di per sé, ma richiede maggiore chiarezza su punti, responsabili, evidenze e sistemi.',
         firstImprovementLabel: 'Cosa migliorare per primo',
         aquaverifySupportLabel: 'Come AquaVerify può aiutare',
         relatedCapabilitiesLabel: 'Moduli o capacità correlate',
@@ -1972,7 +1995,7 @@ const V2_COPY = Object.freeze({
         relatedPhaseLabel: 'Fase correlata',
         problemSolvedLabel: 'Problema risolto',
         requiredDataLabel: 'Dati necessari',
-        productPendingTechnicalReview: 'Prodotto in attesa di revisione tecnica',
+        productPendingTechnicalReview: 'Candidato da valutare · Revisione tecnica necessaria',
         objectiveLabel: 'Obiettivo',
         actionsLabel: 'Azioni',
         modulesRelatedLabel: 'Moduli correlati',
@@ -1982,8 +2005,9 @@ const V2_COPY = Object.freeze({
             potential_fit: 'Potenziale adeguatezza',
             conditional_fit: 'Adeguatezza condizionata',
             technical_review_required: 'Revisione tecnica necessaria',
-            product_to_evaluate: 'Prodotto da valutare'
+            product_to_evaluate: 'Candidato da valutare · Revisione tecnica necessaria'
         },
+        complexityLabels: ['Bassa', 'Moderata', 'Rilevante', 'Alta', 'Molto alta'],
         levelLabels: ['Molto limitato', 'Base', 'Parzialmente strutturato', 'Strutturato', 'Avanzato'],
         severity: { high: 'Alta', medium: 'Media', low: 'Bassa' },
         noIndicated: 'non indicato',
@@ -2040,9 +2064,14 @@ const V2_COPY = Object.freeze({
         missingInfo: 'Informació pendent',
         relatedResources: 'Recursos relacionats',
         limitations: 'Limitacions',
-        ctaTitle: 'Sol·licitar revisió tècnica',
-        ctaButton: 'Sol·licitar revisió tècnica',
+        ctaTitle: 'Sol·licitar revisió tècnica gratuïta',
+        ctaButton: 'Sol·licitar revisió tècnica gratuïta',
+        analyticalReviewCta: 'Sol·licitar revisió tècnica gratuïta',
         pdfButton: 'Imprimir / desar PDF',
+        overallMaturityLabel: 'Maduresa global del flux',
+        overallMaturityDescription: 'La maduresa global resumeix el nivell de connexió entre flux operatiu, traçabilitat, evidència, visibilitat, preparació digital i context analític. No és una puntuació de compliment ni una recomanació automàtica de producte.',
+        operationalComplexityLabel: 'Complexitat operativa detectada',
+        operationalComplexityDescription: 'Aquesta dimensió indica quanta coordinació requereix el flux. Una complexitat alta no és negativa per si mateixa, però exigeix més claredat en punts, responsables, evidències i sistemes.',
         firstImprovementLabel: 'Què cal millorar primer',
         aquaverifySupportLabel: 'Com pot ajudar AquaVerify',
         relatedCapabilitiesLabel: 'Mòduls o capacitats relacionades',
@@ -2061,7 +2090,7 @@ const V2_COPY = Object.freeze({
         relatedPhaseLabel: 'Fase relacionada',
         problemSolvedLabel: 'Problema que resol',
         requiredDataLabel: 'Dades necessàries',
-        productPendingTechnicalReview: 'Producte pendent de revisió tècnica',
+        productPendingTechnicalReview: 'Candidat a avaluar · Revisió tècnica necessària',
         objectiveLabel: 'Objectiu',
         actionsLabel: 'Accions',
         modulesRelatedLabel: 'Mòduls relacionats',
@@ -2071,8 +2100,9 @@ const V2_COPY = Object.freeze({
             potential_fit: 'Encaix potencial',
             conditional_fit: 'Encaix condicionat',
             technical_review_required: 'Revisió tècnica necessària',
-            product_to_evaluate: 'Producte a avaluar'
+            product_to_evaluate: 'Candidat a avaluar · Revisió tècnica necessària'
         },
+        complexityLabels: ['Baixa', 'Moderada', 'Rellevant', 'Alta', 'Molt alta'],
         levelLabels: ['Molt limitat', 'Bàsic', 'Parcialment estructurat', 'Estructurat', 'Avançat'],
         severity: { high: 'Alta', medium: 'Mitjana', low: 'Baixa' },
         noIndicated: 'no indicat',
@@ -2289,9 +2319,9 @@ const V2_OPTION_LABELS = Object.freeze({
         'manage-reuse-and-effluent-context': 'Gérer réutilisation et effluent',
         'connect-process-lab-and-quality': 'Relier process, laboratoire et qualité',
         coordinate_external_labs: 'Coordonner les laboratoires externes',
-        'coordinate-network-sampling': 'Coordonner le prélèvement réseau',
-        'manage-incidents-and-resampling': 'Gérer incidents et re-prélèvements',
-        'prepare-water-safety-plan-records': 'Préparer les registres du Plan de sécurité de l’eau'
+        'coordinate-network-sampling': 'Coordonner le prélèvement sur le réseau',
+        'manage-incidents-and-resampling': 'Gérer les incidents et les nouveaux prélèvements',
+        'prepare-water-safety-plan-records': 'Préparer les enregistrements du plan de sécurité de l’eau'
     },
     it: {
         '50_to_199_month': '50-199 campioni/mese',
@@ -2351,9 +2381,9 @@ const V2_OPTION_LABELS = Object.freeze({
         'manage-reuse-and-effluent-context': 'Gestire riuso ed effluente',
         'connect-process-lab-and-quality': 'Collegare processo, laboratorio e qualità',
         coordinate_external_labs: 'Coordinare laboratori esterni',
-        'coordinate-network-sampling': 'Coordinare il campionamento di rete',
+        'coordinate-network-sampling': 'Coordinare il campionamento della rete',
         'manage-incidents-and-resampling': 'Gestire incidenti e ricampionamenti',
-        'prepare-water-safety-plan-records': 'Preparare i registri del Piano di sicurezza dell’acqua'
+        'prepare-water-safety-plan-records': 'Preparare i registri del Water Safety Plan'
     },
     ca: {
         '50_to_199_month': '50-199 mostres/mes',
@@ -2413,9 +2443,9 @@ const V2_OPTION_LABELS = Object.freeze({
         'manage-reuse-and-effluent-context': 'Gestionar reutilització i efluent',
         'connect-process-lab-and-quality': 'Connectar procés, laboratori i qualitat',
         coordinate_external_labs: 'Coordinar laboratoris externs',
-        'coordinate-network-sampling': 'Coordinar mostreig de xarxa',
-        'manage-incidents-and-resampling': 'Gestionar incidències i remostrejos',
-        'prepare-water-safety-plan-records': 'Preparar registres per al Pla de Seguretat de l’Aigua'
+        'coordinate-network-sampling': 'Coordinar el mostreig de la xarxa',
+        'manage-incidents-and-resampling': 'Gestionar incidències i remostreigs',
+        'prepare-water-safety-plan-records': 'Preparar els registres del pla de seguretat de l’aigua'
     }
 });
 
@@ -3589,7 +3619,7 @@ const V2_NARRATIVE = Object.freeze({
         analyticalPending: (resultType, volume, targets) => `The analytical route remains open. The answers mention ${resultType}, ${volume} and ${targets}, but matrix, method, country, intended use and laboratory scope must be confirmed before evaluating INDICA, ENUMERA, PLAQUE or ISO/EPA kits.`,
         analyticalClear: 'The answers provide enough context to prepare a technical review, but the final product route must still be confirmed by matrix, method, country, volume, intended use and laboratory.',
         technicalReviewNext: 'Prepare a non-sensitive technical review with matrix, volume, method, country, intended use and laboratory role.',
-        noClosedRecommendation: 'No closed recommendation',
+        noClosedRecommendation: 'Candidate to evaluate · Technical review required',
         familiesToReview: {
             indica: 'Presence/absence or screening, subject to review.',
             enumera: 'Quantification, subject to review.',
@@ -3624,7 +3654,7 @@ const V2_NARRATIVE = Object.freeze({
         analyticalPending: (resultType, volume, targets) => `La ruta analítica sigue abierta. Las respuestas mencionan ${resultType}, ${volume} y ${targets}, pero deben confirmarse matriz, método, país, uso previsto y laboratorio antes de evaluar INDICA, ENUMERA, PLAQUE o kits ISO/EPA.`,
         analyticalClear: 'Las respuestas permiten preparar una revisión técnica, pero la ruta final de producto debe confirmarse por matriz, método, país, volumen, uso previsto y laboratorio.',
         technicalReviewNext: 'Preparar una revisión técnica no sensible con matriz, volumen, método, país, uso previsto y rol del laboratorio.',
-        noClosedRecommendation: 'No recomendación cerrada',
+        noClosedRecommendation: 'Candidato a evaluar · Requiere revisión técnica',
         familiesToReview: {
             indica: 'Presencia/ausencia o cribado, sujeto a revisión.',
             enumera: 'Cuantificación, sujeto a revisión.',
@@ -3659,7 +3689,7 @@ const V2_NARRATIVE = Object.freeze({
         analyticalPending: (resultType, volume, targets) => `La route analytique reste ouverte. Les réponses mentionnent ${resultType}, ${volume} et ${targets}, mais matrice, méthode, pays, usage prévu et portée laboratoire doivent être confirmés avant d’évaluer INDICA, ENUMERA, PLAQUE ou des kits ISO/EPA.`,
         analyticalClear: 'Les réponses permettent de préparer une revue technique, mais la route produit finale doit être confirmée par matrice, méthode, pays, volume, usage prévu et laboratoire.',
         technicalReviewNext: 'Préparer une revue technique non sensible avec matrice, volume, méthode, pays, usage prévu et rôle laboratoire.',
-        noClosedRecommendation: 'Aucune recommandation fermée',
+        noClosedRecommendation: 'Candidat à évaluer · Revue technique nécessaire',
         familiesToReview: {
             indica: 'Présence/absence ou dépistage, sous réserve de revue.',
             enumera: 'Quantification, sous réserve de revue.',
@@ -3694,7 +3724,7 @@ const V2_NARRATIVE = Object.freeze({
         analyticalPending: (resultType, volume, targets) => `Il percorso analitico resta aperto. Le risposte menzionano ${resultType}, ${volume} e ${targets}, ma matrice, metodo, paese, uso previsto e laboratorio devono essere confermati prima di valutare INDICA, ENUMERA, PLAQUE o kit ISO/EPA.`,
         analyticalClear: 'Le risposte permettono di preparare una revisione tecnica, ma il percorso prodotto finale deve essere confermato per matrice, metodo, paese, volume, uso previsto e laboratorio.',
         technicalReviewNext: 'Preparare una revisione tecnica non sensibile con matrice, volume, metodo, paese, uso previsto e ruolo laboratorio.',
-        noClosedRecommendation: 'Nessuna raccomandazione chiusa',
+        noClosedRecommendation: 'Candidato da valutare · Revisione tecnica necessaria',
         familiesToReview: {
             indica: 'Presenza/assenza o screening, soggetto a revisione.',
             enumera: 'Quantificazione, soggetta a revisione.',
@@ -3729,7 +3759,7 @@ const V2_NARRATIVE = Object.freeze({
         analyticalPending: (resultType, volume, targets) => `La ruta analítica continua oberta. Les respostes mencionen ${resultType}, ${volume} i ${targets}, però cal confirmar matriu, mètode, país, ús previst i laboratori abans d’avaluar INDICA, ENUMERA, PLAQUE o kits ISO/EPA.`,
         analyticalClear: 'Les respostes permeten preparar una revisió tècnica, però la ruta final de producte s’ha de confirmar per matriu, mètode, país, volum, ús previst i laboratori.',
         technicalReviewNext: 'Preparar una revisió tècnica no sensible amb matriu, volum, mètode, país, ús previst i rol del laboratori.',
-        noClosedRecommendation: 'Cap recomanació tancada',
+        noClosedRecommendation: 'Candidat a avaluar · Revisió tècnica necessària',
         familiesToReview: {
             indica: 'Presència/absència o cribratge, subjecte a revisió.',
             enumera: 'Quantificació, subjecta a revisió.',
@@ -3895,6 +3925,30 @@ const V2_MATURITY_TEXT = Object.freeze({
         digital_readiness: 'Existe una base digital, pero debe consolidarse para que el dato no quede dividido entre software propio, correo electrónico y hojas de cálculo.',
         analytical_context_completeness: 'El contexto analítico requiere revisión cuando el método se declara como otra referencia, el uso previsto es cribado operativo y se combinan varias matrices o usos del agua.'
     }
+});
+
+const V2_PRODUCT_REVIEW_TEXT = Object.freeze({
+    indica: localText(
+        'INDICA could be relevant if the goal is presence/absence or screening. Before considering it an applicable option, matrix, target organism, volume, method, country, laboratory and intended use must be confirmed. Contact our water biotechnology experts for a professional, free and no-obligation technical review.',
+        'INDICA podría ser relevante si el objetivo es presencia/ausencia o cribado. Antes de considerarlo una opción aplicable deben confirmarse matriz, organismo, volumen, método, país, laboratorio y uso previsto. Contacta con nuestros expertos en biotecnología del agua para una revisión técnica profesional, gratuita y sin compromiso.',
+        'INDICA peut être pertinent si l’objectif est la présence/absence ou le dépistage. Avant de le considérer comme une option applicable, il faut confirmer la matrice, l’organisme cible, le volume, la méthode, le pays, le laboratoire et l’usage prévu. Contactez nos experts en biotechnologie de l’eau pour une revue technique professionnelle, gratuite et sans engagement.',
+        'INDICA potrebbe essere rilevante se l’obiettivo è presenza/assenza o screening. Prima di considerarlo un’opzione applicabile, devono essere confermati matrice, organismo target, volume, metodo, paese, laboratorio e uso previsto. Contatta i nostri esperti in biotecnologia dell’acqua per una revisione tecnica professionale, gratuita e senza impegno.',
+        'INDICA podria ser rellevant si l’objectiu és presència/absència o cribratge. Abans de considerar-lo una opció aplicable, cal confirmar matriu, organisme objectiu, volum, mètode, país, laboratori i ús previst. Contacta amb els nostres experts en biotecnologia de l’aigua per a una revisió tècnica professional, gratuïta i sense compromís.'
+    ),
+    enumera: localText(
+        'ENUMERA could be relevant if a quantitative result or microbiological enumeration is required. Before considering it an applicable option, target organism, matrix, volume, method, country, laboratory, intended use and analytical workflow scope must be confirmed. Contact our water biotechnology experts for a professional, free and no-obligation technical review.',
+        'ENUMERA podría ser relevante si se necesita un resultado cuantitativo o una enumeración microbiológica. Antes de considerarlo una opción aplicable deben confirmarse organismo, matriz, volumen, método, país, laboratorio, uso previsto y alcance del flujo analítico. Contacta con nuestros expertos en biotecnología del agua para una revisión técnica profesional, gratuita y sin compromiso.',
+        'ENUMERA peut être pertinent lorsqu’un résultat quantitatif ou un dénombrement microbiologique est nécessaire. Avant de le considérer comme une option applicable, il faut confirmer l’organisme cible, la matrice, le volume, la méthode, le pays, le laboratoire, l’usage prévu et le périmètre du flux analytique. Contactez nos experts en biotechnologie de l’eau pour une revue technique professionnelle, gratuite et sans engagement.',
+        'ENUMERA potrebbe essere rilevante quando è necessario un risultato quantitativo o un’enumerazione microbiologica. Prima di considerarlo un’opzione applicabile, devono essere confermati organismo target, matrice, volume, metodo, paese, laboratorio, uso previsto e ambito del flusso analitico. Contatta i nostri esperti in biotecnologia dell’acqua per una revisione tecnica professionale, gratuita e senza impegno.',
+        'ENUMERA podria ser rellevant quan cal un resultat quantitatiu o un recompte microbiològic. Abans de considerar-lo una opció aplicable, cal confirmar organisme objectiu, matriu, volum, mètode, país, laboratori, ús previst i abast del flux analític. Contacta amb els nostres experts en biotecnologia de l’aigua per a una revisió tècnica professional, gratuïta i sense compromís.'
+    ),
+    plaqueIsoEpa: localText(
+        'PLAQUE or ISO/EPA reference-oriented kits may be relevant when the laboratory needs a plate-based workflow, a methodological reference or a specific technical review. Before considering them an applicable option, method, matrix, target organism, country, laboratory, intended use and procedure requirements must be confirmed. Contact our water biotechnology experts for a professional, free and no-obligation technical review.',
+        'PLAQUE o los kits orientados a referencias ISO/EPA pueden ser relevantes cuando el laboratorio necesita un flujo de placa, una referencia metodológica o una revisión técnica específica. Antes de considerarlos una opción aplicable deben confirmarse método, matriz, organismo, país, laboratorio, uso previsto y requisitos del procedimiento. Contacta con nuestros expertos en biotecnología del agua para una revisión técnica profesional, gratuita y sin compromiso.',
+        'PLAQUE ou les kits orientés vers des références ISO/EPA peuvent être pertinents lorsque le laboratoire a besoin d’un flux sur plaque, d’une référence méthodologique ou d’une revue technique spécifique. Avant de les considérer comme une option applicable, il faut confirmer la méthode, la matrice, l’organisme cible, le pays, le laboratoire, l’usage prévu et les exigences de la procédure. Contactez nos experts en biotechnologie de l’eau pour une revue technique professionnelle, gratuite et sans engagement.',
+        'PLAQUE o i kit orientati a riferimenti ISO/EPA possono essere rilevanti quando il laboratorio necessita di un flusso su piastra, di un riferimento metodologico o di una revisione tecnica specifica. Prima di considerarli un’opzione applicabile, devono essere confermati metodo, matrice, organismo target, paese, laboratorio, uso previsto e requisiti della procedura. Contatta i nostri esperti in biotecnologia dell’acqua per una revisione tecnica professionale, gratuita e senza impegno.',
+        'PLAQUE o els kits orientats a referències ISO/EPA poden ser rellevants quan el laboratori necessita un flux en placa, una referència metodològica o una revisió tècnica específica. Abans de considerar-los una opció aplicable, cal confirmar mètode, matriu, organisme objectiu, país, laboratori, ús previst i requisits del procediment. Contacta amb els nostres experts en biotecnologia de l’aigua per a una revisió tècnica professional, gratuïta i sense compromís.'
+    )
 });
 
 const V2_MATURITY_ENRICHMENT = Object.freeze({
@@ -4118,11 +4172,11 @@ const V2_PROBLEM_TITLE_TEXT = Object.freeze({
     'manage-reclaimed-water-evidence': localText('Document reclaimed water evidence', 'Documentar evidencia para agua regenerada', 'Documenter la preuve d’eau réutilisée', 'Documentare evidenza per acqua rigenerata', 'Documentar evidència per aigua regenerada'),
     improve_audit_evidence: localText('Improve buyer or audit evidence', 'Mejorar evidencia para comprador o auditoría', 'Améliorer la preuve pour acheteur ou audit', 'Migliorare evidenza per buyer o audit', 'Millorar evidència per comprador o auditoria'),
     'coordinate-field-lab-operator': localText('Coordinate field, laboratory, operator and municipal owner', 'Coordinar campo, laboratorio, operador y responsable municipal', 'Coordonner terrain, laboratoire, opérateur et responsable municipal', 'Coordinare campo, laboratorio, operatore e responsabile municipale', 'Coordinar camp, laboratori, operador i responsable municipal'),
-    'coordinate-network-sampling': localText('Coordinate network sampling', 'Coordinar muestreo de red', 'Coordonner le prélèvement réseau', 'Coordinare il campionamento di rete', 'Coordinar mostreig de xarxa'),
+    'coordinate-network-sampling': localText('Coordinate network sampling', 'Coordinar muestreo de red', 'Coordonner le prélèvement sur le réseau', 'Coordinare il campionamento della rete', 'Coordinar el mostreig de la xarxa'),
     'understand-system-performance': localText('Understand performance from source to network', 'Entender el comportamiento entre captación, tratamiento, depósito y red', 'Comprendre le comportement entre captage, traitement, réservoir et réseau', 'Capire il comportamento tra captazione, trattamento, serbatoio e rete', 'Entendre el comportament entre captació, tractament, dipòsit i xarxa'),
     'manage-incidents': localText('Manage incidents without reconstructing history', 'Gestionar incidencias sin reconstruir el historial', 'Gérer les incidents sans reconstruire l’historique', 'Gestire incidenti senza ricostruire lo storico', 'Gestionar incidències sense reconstruir l’historial'),
-    'manage-incidents-and-resampling': localText('Manage incidents and resampling', 'Gestionar incidencias y remuestreos', 'Gérer incidents et re-prélèvements', 'Gestire incidenti e ricampionamenti', 'Gestionar incidències i remostrejos'),
-    'prepare-water-safety-plan-records': localText('Prepare Water Safety Plan records', 'Preparar registros para el Plan de Seguridad del Agua', 'Préparer les registres du Plan de sécurité de l’eau', 'Preparare i registri del Piano di sicurezza dell’acqua', 'Preparar registres per al Pla de Seguretat de l’Aigua'),
+    'manage-incidents-and-resampling': localText('Manage incidents and resampling', 'Gestionar incidencias y remuestreos', 'Gérer les incidents et les nouveaux prélèvements', 'Gestire incidenti e ricampionamenti', 'Gestionar incidències i remostreigs'),
+    'prepare-water-safety-plan-records': localText('Prepare Water Safety Plan records', 'Preparar registros para el Plan de Seguridad del Agua', 'Préparer les enregistrements du plan de sécurité de l’eau', 'Preparare i registri del Water Safety Plan', 'Preparar els registres del pla de seguretat de l’aigua'),
     'identify-critical-water-uses': localText('Identify critical water uses', 'Identificar usos críticos del agua', 'Identifier les usages critiques de l’eau', 'Identificare usi critici dell’acqua', 'Identificar usos crítics de l’aigua'),
     'avoid-batch-delays': localText('Avoid batch or line holds', 'Evitar bloqueos de lote o línea', 'Éviter les blocages de lot ou ligne', 'Evitare blocchi di lotto o linea', 'Evitar bloquejos de lot o línia'),
     'prove-cip-rinse': localText('Demonstrate CIP, sanitation and final rinse', 'Demostrar CIP, saneamiento y enjuague final', 'Démontrer CIP, assainissement et rinçage final', 'Dimostrare CIP, sanificazione e risciacquo finale', 'Demostrar CIP, sanejament i esbandit final'),
@@ -4512,6 +4566,83 @@ function scoreLevel(result, dimensionId) {
     return result.scores.find((score) => score.dimensionId === dimensionId)?.level || 1;
 }
 
+const OVERALL_MATURITY_WEIGHTS = Object.freeze({
+    workflow_maturity: 0.20,
+    traceability: 0.20,
+    audit_readiness: 0.15,
+    client_visibility: 0.15,
+    digital_readiness: 0.15,
+    analytical_context_completeness: 0.15
+});
+
+function roundOneDecimal(value) {
+    return Math.round(Number(value || 0) * 10) / 10;
+}
+
+function calculateOverallWorkflowMaturity(scores = []) {
+    const levelsByDimension = new Map((Array.isArray(scores) ? scores : [])
+        .filter((score) => score && Object.prototype.hasOwnProperty.call(OVERALL_MATURITY_WEIGHTS, score.dimensionId))
+        .map((score) => [score.dimensionId, Math.max(1, Math.min(5, Number(score.level || 1)))]));
+    let weightedTotal = 0;
+    let weightTotal = 0;
+    for (const [dimensionId, weight] of Object.entries(OVERALL_MATURITY_WEIGHTS)) {
+        if (!levelsByDimension.has(dimensionId)) continue;
+        weightedTotal += levelsByDimension.get(dimensionId) * weight;
+        weightTotal += weight;
+    }
+    const score = weightTotal > 0 ? roundOneDecimal(weightedTotal / weightTotal) : 1.0;
+    return {
+        score,
+        includedDimensionIds: [...levelsByDimension.keys()],
+        excludedDimensionIds: ['operational_complexity'],
+        weights: OVERALL_MATURITY_WEIGHTS
+    };
+}
+
+function maturityBandIndex(score) {
+    const value = Number(score || 1);
+    if (value <= 1.8) return 0;
+    if (value <= 2.6) return 1;
+    if (value <= 3.4) return 2;
+    if (value <= 4.2) return 3;
+    return 4;
+}
+
+function formatDecimalScore(value, lang = 'en') {
+    const fixed = Number(value || 0).toFixed(1);
+    return lang === 'en' ? fixed : fixed.replace('.', ',');
+}
+
+function buildOverallWorkflowMaturityV2(result, lang = 'en') {
+    const copy = v2Copy(lang);
+    const calculation = calculateOverallWorkflowMaturity(result.scores || []);
+    const label = copy.levelLabels[maturityBandIndex(calculation.score)];
+    const display = `${copy.overallMaturityLabel}: ${formatDecimalScore(calculation.score, lang)} / 5 · ${label}`;
+    return {
+        title: copy.overallMaturityLabel,
+        score: calculation.score,
+        label,
+        display,
+        description: copy.overallMaturityDescription,
+        includedDimensionIds: calculation.includedDimensionIds,
+        excludedDimensionIds: calculation.excludedDimensionIds
+    };
+}
+
+function buildOperationalComplexityV2(result, lang = 'en') {
+    const copy = v2Copy(lang);
+    const level = scoreLevel(result, 'operational_complexity');
+    const label = copy.complexityLabels[Math.max(0, Math.min(4, level - 1))];
+    return {
+        title: copy.operationalComplexityLabel,
+        dimensionId: 'operational_complexity',
+        level,
+        label,
+        display: `${copy.operationalComplexityLabel}: ${level} / 5 · ${label}`,
+        description: copy.operationalComplexityDescription
+    };
+}
+
 function buildAnswersSnapshotV2({ answers = {}, sectorId, sourceProblemId, lang = 'en' }) {
     const copy = v2Copy(lang);
     const fields = [
@@ -4764,6 +4895,19 @@ function productCandidateTitle(targetId) {
     return String(targetId || '').replace(/[_-]+/g, ' ');
 }
 
+function productReviewFamilyKey(targetId) {
+    const normalized = String(targetId || '').toLowerCase();
+    if (normalized.includes('indica')) return 'indica';
+    if (normalized.includes('enumera')) return 'enumera';
+    if (normalized.includes('plaque') || normalized.includes('iso-epa')) return 'plaqueIsoEpa';
+    return 'plaqueIsoEpa';
+}
+
+function productReviewReason(targetId, lang = 'en') {
+    const familyKey = productReviewFamilyKey(targetId);
+    return localizedMapValue(V2_PRODUCT_REVIEW_TEXT[familyKey], lang, localizedMapValue(V2_PRODUCT_REVIEW_TEXT.plaqueIsoEpa, lang, ''));
+}
+
 function buildAnalyticalReviewV2({ result, answers, lang }) {
     const copy = v2Copy(lang);
     const narrative = v2Narrative(lang);
@@ -4779,17 +4923,19 @@ function buildAnalyticalReviewV2({ result, answers, lang }) {
     const productRecommendations = result.recommendations.filter((item) => item.type === 'product');
     const candidateIds = unique(productRecommendations.map((item) => item.targetId));
     const pendingCandidates = [
-        { productId: 'family-indica', title: 'INDICA', status: narrative.noClosedRecommendation, reason: narrative.familiesToReview.indica },
-        { productId: 'family-enumera', title: 'ENUMERA', status: narrative.noClosedRecommendation, reason: narrative.familiesToReview.enumera },
-        { productId: 'family-plaque-iso-epa', title: 'PLAQUE / Kits ISO/EPA', status: narrative.noClosedRecommendation, reason: narrative.familiesToReview.plaque }
+        { productId: 'family-indica', title: 'INDICA', status: copy.status.product_to_evaluate, reason: productReviewReason('indica-screening', lang) },
+        { productId: 'family-enumera', title: 'ENUMERA', status: copy.status.product_to_evaluate, reason: productReviewReason('enumera-coli100', lang) },
+        { productId: 'family-plaque-iso-epa', title: 'PLAQUE / Kits ISO/EPA', status: copy.status.product_to_evaluate, reason: productReviewReason('iso-epa-kits', lang) }
     ];
     const candidates = methodMissing ? pendingCandidates : candidateIds.map((targetId) => ({
         productId: targetId,
         title: productCandidateTitle(targetId),
         status: copy.status.product_to_evaluate,
-        reason: productRecommendations.find((item) => item.targetId === targetId)?.reasonKeys
-            ?.map((key) => v2LocalizedKey(labels, 'reason', key, lang))
-            .join(' ') || copy.routePending
+        reason: productReviewReason(targetId, lang)
+            || productRecommendations.find((item) => item.targetId === targetId)?.reasonKeys
+                ?.map((key) => v2LocalizedKey(labels, 'reason', key, lang))
+                .join(' ')
+            || copy.routePending
     }));
     const targetText = targets.length ? targets.join(', ') : narrative.noValue;
     let paragraph = methodMissing
@@ -4812,7 +4958,8 @@ function buildAnalyticalReviewV2({ result, answers, lang }) {
         status: copy.status.technical_review_required,
         paragraph,
         candidates,
-        nextStep: narrative.technicalReviewNext
+        nextStep: narrative.technicalReviewNext,
+        ctaLabel: copy.analyticalReviewCta || copy.ctaButton
     };
 }
 
@@ -5052,6 +5199,8 @@ function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: que
     const missingInformation = buildMissingInformationV2(answers, safeLang);
     const pilotRecommendation = buildPilotRecommendationV2({ result, profile, lang: safeLang });
     const diagnosticDetail = buildDiagnosticDetailV2({ result, answers, missingInformation, lang: safeLang });
+    const overallMaturity = buildOverallWorkflowMaturityV2(result, safeLang);
+    const operationalComplexity = buildOperationalComplexityV2(result, safeLang);
     const quickRead = {
         primaryRisk: localizedListFirst(profile.commonRisks, safeLang, ''),
         immediatePriority: roadmap[0]?.title || narrative.contextTitle,
@@ -5137,6 +5286,8 @@ function buildWorkflowAdvisorReportV2({ result, answers = {}, questionnaire: que
             { id: 'nextStep', label: copy.nextStep, value: quickRead.nextStep }
         ],
         executiveSummary: buildExecutiveSummaryV2({ result, profile, lang: safeLang }),
+        overallMaturity,
+        operationalComplexity,
         interpretedContext: {
             title: narrative.contextTitle,
             buyerContext: buildInterpretedContextV2({ result, answers, profile, lang: safeLang }),
@@ -5323,6 +5474,7 @@ export {
     GLOSSARY_RESOURCE_ROUTES,
     workflowAdvisorIndustryProfiles,
     allowedEvents,
+    calculateOverallWorkflowMaturity,
     assessWorkflow,
     buildWorkflowAdvisorReport,
     buildWorkflowAdvisorReportV2,

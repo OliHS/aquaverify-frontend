@@ -58,7 +58,7 @@ When the analytical context is incomplete or not closed, the report must show:
 Ruta analítica pendiente de revisión técnica
 ```
 
-Candidates such as INDICA, ENUMERA or PLAQUE / ISO-EPA kits must remain marked as `No recomendación cerrada` until matrix, method, volume, country, intended use and laboratory scope are reviewed.
+Candidates such as INDICA, ENUMERA or PLAQUE / ISO-EPA kits must remain marked as `Candidato a evaluar · Requiere revisión técnica` until matrix, method, volume, country, intended use and laboratory scope are reviewed. The section must also include the long family-specific review copy and the `Solicitar revisión técnica gratuita` CTA.
 
 ## Audit Artifacts
 

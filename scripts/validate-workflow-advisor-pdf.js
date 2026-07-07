@@ -50,12 +50,21 @@ const PDF_FORBIDDEN_TERMS = [
   , 'pool spa water'
   , 'wastewater'
   , 'chemical water parameters'
+  , 'No recomendación cerrada'
+  , 'candidate to evaluate'
+  , 'technical review required'
 ];
 
 const REQUIRED_PDF_TERMS = [
   'Informe de diagnóstico',
   'AquaVerify',
   'Resumen ejecutivo',
+  'Madurez global del flujo',
+  'Complejidad operativa detectada',
+  'Candidato a evaluar · Requiere revisión técnica',
+  'Solicitar revisión técnica gratuita',
+  'Contacta con nuestros expertos en biotecnología del agua',
+  'revisión técnica profesional, gratuita y sin compromiso',
   'Lectura rápida',
   'Análisis del flujo',
   'Madurez por dimensiones',

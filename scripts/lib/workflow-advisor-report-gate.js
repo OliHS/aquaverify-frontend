@@ -142,6 +142,10 @@ export function visibleReportText(report) {
   append(lines, Object.values(report.sections || {}));
   append(lines, Object.values(report.labels || {}));
   append(lines, report.executiveSummary);
+  append(lines, report.overallMaturity?.display);
+  append(lines, report.overallMaturity?.description);
+  append(lines, report.operationalComplexity?.display);
+  append(lines, report.operationalComplexity?.description);
 
   for (const item of report.quickReadItems || []) {
     append(lines, item.label);
@@ -217,6 +221,7 @@ export function visibleReportText(report) {
   append(lines, report.analyticalReview?.status);
   append(lines, report.analyticalReview?.paragraph);
   append(lines, report.analyticalReview?.nextStep);
+  append(lines, report.analyticalReview?.ctaLabel);
   for (const candidate of report.analyticalReview?.candidates || []) {
     append(lines, candidate.title);
     append(lines, candidate.status);
@@ -286,7 +291,11 @@ export function buildReportTextPages(report) {
     ].filter(Boolean).join('\n'),
     [
       report.sections?.executiveSummary,
-      ...(report.executiveSummary || [])
+      ...(report.executiveSummary || []),
+      report.overallMaturity?.display,
+      report.overallMaturity?.description,
+      report.operationalComplexity?.display,
+      report.operationalComplexity?.description
     ].filter(Boolean).join('\n'),
     [
       report.sections?.quickRead,
@@ -329,7 +338,8 @@ export function buildReportTextPages(report) {
       report.analyticalReview?.status,
       report.analyticalReview?.paragraph,
       ...(report.analyticalReview?.candidates || []).map((candidate) => `${candidate.title}. ${candidate.status}. ${candidate.reason}`),
-      report.analyticalReview?.nextStep
+      report.analyticalReview?.nextStep,
+      report.analyticalReview?.ctaLabel
     ].filter(Boolean).join('\n'),
     [
       report.sections?.missingInfo,

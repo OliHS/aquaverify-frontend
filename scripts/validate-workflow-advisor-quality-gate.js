@@ -36,6 +36,9 @@ const FORBIDDEN_ES_TERMS = [
   'wastewater',
   'chemical water parameters',
   '50 to 199 month',
+  'No recomendación cerrada',
+  'candidate to evaluate',
+  'technical review required',
   'name',
   'company',
   'countryCode',
@@ -144,7 +147,13 @@ function validatePrudentAnalyticalRoute(fixture, report, text) {
 
   assert(report.analyticalReview?.title === 'Ruta analítica pendiente de revisión técnica', `${fixture.id} should use pending technical review analytical route`);
   assert(/no debe cerrarse|deben confirmarse|requiere confirmar/i.test(report.analyticalReview?.paragraph || ''), `${fixture.id} should explain that product selection is not closed`);
-  assert((report.analyticalReview?.candidates || []).every((candidate) => candidate.status === 'No recomendación cerrada'), `${fixture.id} should mark candidates as non-closed recommendations`);
+  assert((report.analyticalReview?.candidates || []).every((candidate) => candidate.status === 'Candidato a evaluar · Requiere revisión técnica'), `${fixture.id} should mark candidates as technical-review candidates`);
+  assert((report.analyticalReview?.candidates || []).some((candidate) => candidate.title === 'INDICA' && candidate.reason.includes('INDICA podría ser relevante')), `${fixture.id} should include INDICA technical-review product text`);
+  assert((report.analyticalReview?.candidates || []).some((candidate) => candidate.title === 'ENUMERA' && candidate.reason.includes('ENUMERA podría ser relevante')), `${fixture.id} should include ENUMERA technical-review product text`);
+  assert((report.analyticalReview?.candidates || []).some((candidate) => candidate.title === 'PLAQUE / Kits ISO/EPA' && candidate.reason.includes('PLAQUE o los kits orientados')), `${fixture.id} should include PLAQUE / ISO-EPA technical-review product text`);
+  assert(text.includes('Contacta con nuestros expertos en biotecnología del agua'), `${fixture.id} should invite water biotechnology expert review`);
+  assert(text.includes('revisión técnica profesional, gratuita y sin compromiso'), `${fixture.id} should state free no-obligation technical review`);
+  assert(text.includes('Solicitar revisión técnica gratuita'), `${fixture.id} should include technical review CTA`);
   assert(text.includes('Método o referencia exacta'), `${fixture.id} should request exact method/reference`);
 }
 
@@ -158,6 +167,12 @@ function validateReport(report, fixture, text) {
   assert(text.includes('Plan de mejora'), `${fixture.id} must render improvement plan`);
   assert(text.includes('Piloto recomendado'), `${fixture.id} must render recommended pilot`);
   assert(text.includes('Nivel de detalle del diagnóstico'), `${fixture.id} must render diagnostic detail level`);
+  assert(text.includes('Madurez global del flujo'), `${fixture.id} must render overall workflow maturity`);
+  assert(/Madurez global del flujo: \d,\d \/ 5 ·/.test(text), `${fixture.id} must render formatted overall maturity score`);
+  assert(text.includes('No es una puntuación de cumplimiento ni una recomendación automática de producto'), `${fixture.id} must explain maturity is not compliance or product recommendation`);
+  assert(text.includes('Complejidad operativa detectada'), `${fixture.id} must render operational complexity separately`);
+  assert(/Complejidad operativa detectada: \d \/ 5 ·/.test(text), `${fixture.id} must render formatted operational complexity score`);
+  assert(report.overallMaturity?.excludedDimensionIds?.includes('operational_complexity'), `${fixture.id} overall maturity must exclude operational complexity`);
   [
     'Cómo puede ayudar AquaVerify',
     'Impacto operativo',
@@ -199,6 +214,8 @@ function validateReport(report, fixture, text) {
       'Agua superficial',
       'Agua residual',
       'Parámetros químicos del agua',
+      'Candidato a evaluar · Requiere revisión técnica',
+      'Solicitar revisión técnica gratuita',
       'Suficiente para orientar el flujo, pero requiere revisión técnica para cerrar ruta analítica.'
     ].forEach((term) => assert(text.includes(term), `Municipal report missing ${term}`));
   }

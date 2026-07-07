@@ -18,6 +18,7 @@ import {
   assessWorkflow,
   buildWorkflowAdvisorReportV2,
   buyerProblemIdsBySector,
+  calculateOverallWorkflowMaturity,
   catalogVersion,
   languages,
   questionnaireVersion,
@@ -167,6 +168,8 @@ function validateSource() {
   assert(component.includes('workflow-report-section workflow-report-page rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7'), 'Report sections must use the approved wide-card surface');
   assert(component.includes('workflow-report-card'), 'Report content blocks must use stable printable card wrappers');
   assert(component.includes('workflow-result-actions no-print'), 'Post-report actions must be outside the printable report');
+  assert(component.includes('onRequestTechnicalReview') && component.includes('requestTechnicalReviewFocus'), 'Analytical route CTA must focus the technical review request block');
+  assert(component.includes('contactRequestRef') && component.includes('contactHeadingRef'), 'Technical review CTA must use focusable contact refs');
   const actionsStart = component.indexOf('workflow-result-actions no-print');
   const actionsEnd = component.indexOf('{showDebugAnnex &&', actionsStart);
   const actionsPanel = component.slice(actionsStart, actionsEnd);
@@ -205,6 +208,15 @@ function validateSource() {
     "requiredDataLabel: 'Datos necesarios'",
     "expectedOutcomeLabel: 'Resultado operativo esperado'"
   ].forEach((term) => assert(workflowCoreSource.includes(term), `Workflow core localization missing ${term}`));
+  [
+    "overallMaturityLabel: 'Madurez global del flujo'",
+    "operationalComplexityLabel: 'Complejidad operativa detectada'",
+    "product_to_evaluate: 'Candidato a evaluar · Requiere revisión técnica'",
+    "analyticalReviewCta: 'Solicitar revisión técnica gratuita'",
+    'INDICA podría ser relevante si el objetivo es presencia/ausencia o cribado',
+    'ENUMERA podría ser relevante si se necesita un resultado cuantitativo',
+    'PLAQUE o los kits orientados a referencias ISO/EPA pueden ser relevantes'
+  ].forEach((term) => assert(workflowCoreSource.includes(term), `Workflow core product/maturity copy missing ${term}`));
   const debugAnnexStart = component.indexOf('showDebugAnnex &&');
   const debugAnnexEnd = component.indexOf('workflow-contact-request', debugAnnexStart);
   const debugAnnex = component.slice(debugAnnexStart, debugAnnexEnd);
@@ -357,7 +369,10 @@ function validateSource() {
     ['docs/seo/workflow-advisor-premium-result.md', 'premium result'],
     ['docs/seo/workflow-advisor-missing-information.md', 'missing information'],
     ['docs/seo/workflow-advisor-pilot-recommendation.md', 'pilot recommendation'],
-    ['docs/seo/workflow-advisor-resource-links.md', 'resource links']
+    ['docs/seo/workflow-advisor-resource-links.md', 'resource links'],
+    ['docs/seo/workflow-advisor-product-status-copy.md', 'product status copy'],
+    ['docs/seo/workflow-advisor-overall-maturity.md', 'overall maturity'],
+    ['docs/seo/workflow-advisor-i18n-audit.md', 'i18n audit']
   ].forEach(([file, term]) => {
     assert(fs.existsSync(file), `Missing Workflow Advisor documentation file ${file}`);
     assert(readText(file).includes(term), `Workflow Advisor documentation ${file} missing ${term}`);
@@ -508,6 +523,15 @@ function validateSource() {
     pdf: reportV2.pdf
   });
   assert(reportV2.reportVersion === reportV2Version, 'Regression report must use V2');
+  assert(calculateOverallWorkflowMaturity([
+    { dimensionId: 'workflow_maturity', level: 3 },
+    { dimensionId: 'traceability', level: 3 },
+    { dimensionId: 'audit_readiness', level: 3 },
+    { dimensionId: 'client_visibility', level: 3 },
+    { dimensionId: 'digital_readiness', level: 3 },
+    { dimensionId: 'analytical_context_completeness', level: 3 },
+    { dimensionId: 'operational_complexity', level: 5 }
+  ]).score === 3, 'Overall maturity must not include operational complexity');
   assert(visibleV2.includes('50-199 muestras/mes'), 'Regression report must localize sample band');
   assert(visibleV2.includes('método no está definido'), 'Regression report must explain missing method');
   ['50 to 199 month', 'Screening INDICA', 'module.crm', 'product.indica-screening', '/es/diagnostico-flujo-calidad-agua'].forEach((term) => {
@@ -517,6 +541,58 @@ function validateSource() {
   assert(reportV2.relatedResources.every((item) => item.description), 'Regression report resources must include descriptions');
   assert(!reportV2.pdf.buttonLabel.includes('Descargar'), 'Print-based report action must not promise PDF download');
   assert(reportV2.pdf.printLabel === 'Imprimir / guardar PDF' && reportV2.pdf.instructions === '', 'PDF contract must use the two-action copy and omit print-helper instructions');
+
+  for (const lang of languages) {
+    const localizedResult = assessWorkflow({
+      questionnaireVersion,
+      lang,
+      sectorId: 'municipal-water-testing',
+      answers: {
+        country_code: 'ES',
+        organization_type: 'municipal_operator',
+        buyer_role: 'operations',
+        site_count_band: 'six_to_twenty',
+        lab_model: 'mixed',
+        sample_volume_band: '200_to_999_month',
+        current_systems: ['paper', 'spreadsheets', 'external_lab_portal'],
+        digitised_stages: ['sampling', 'coa_reporting'],
+        priority_problem_ids: ['coordinate-network-sampling', 'manage-incidents-and-resampling', 'prepare-water-safety-plan-records'],
+        evidence_needs: ['chain_of_custody', 'method_traceability', 'coa', 'audit_trail'],
+        implementation_timeline: 'within_three_months',
+        preferred_route: 'product_and_software',
+        target_groups: ['somatic_coliphages', 'e_coli', 'general_microbiology', 'chemical_water_parameters'],
+        result_type: 'both',
+        intended_use: 'treatment_verification',
+        method_context: 'not_defined',
+        sample_volume_context: 'one_hundred_ml',
+        water_use_context: ['surface_water', 'wastewater']
+      }
+    });
+    const localizedReport = localizedResult.reportV2 || buildWorkflowAdvisorReportV2({ result: localizedResult, lang });
+    const localizedVisible = JSON.stringify({
+      quickReadItems: localizedReport.quickReadItems,
+      interpretedContext: localizedReport.interpretedContext,
+      overallMaturity: localizedReport.overallMaturity,
+      operationalComplexity: localizedReport.operationalComplexity,
+      priorityProblems: localizedReport.priorityProblems,
+      analyticalReview: localizedReport.analyticalReview,
+      missingInformation: localizedReport.missingInformation
+    }).toLowerCase();
+    ['missing translation', 'undefined', 'no recomendación cerrada'].forEach((term) => {
+      assert(!localizedVisible.includes(term), `Localized ${lang} report leaks ${term}`);
+    });
+    if (lang !== 'en') {
+      [
+        'coordinate network sampling',
+        'manage incidents and resampling',
+        'prepare water safety plan records',
+        'surface water',
+        'pool spa water',
+        'wastewater',
+        'chemical water parameters'
+      ].forEach((term) => assert(!localizedVisible.includes(term), `Localized ${lang} report leaks raw English key ${term}`));
+    }
+  }
 
   const industrial = assessWorkflow({
     questionnaireVersion,
@@ -547,6 +623,8 @@ function validateSource() {
   const visibleIndustrialV2 = JSON.stringify({
     cover: industrialV2.cover,
     quickReadItems: industrialV2.quickReadItems,
+    overallMaturity: industrialV2.overallMaturity,
+    operationalComplexity: industrialV2.operationalComplexity,
     interpretedContext: industrialV2.interpretedContext,
     flowDiagnosis: industrialV2.flowDiagnosis,
     labels: industrialV2.labels,
@@ -575,8 +653,14 @@ function validateSource() {
     'Enfoque de mejora',
     'Problema que resuelve',
     'Datos necesarios',
-    'Resultado operativo esperado'
+    'Resultado operativo esperado',
+    'Madurez global del flujo',
+    'Complejidad operativa detectada',
+    'Candidato a evaluar · Requiere revisión técnica',
+    'Solicitar revisión técnica gratuita',
+    'Contacta con nuestros expertos en biotecnología del agua'
   ].forEach((term) => assert(visibleIndustrialV2.includes(term), `Industrial V2 report missing ${term}`));
+  assert(industrialV2.overallMaturity?.excludedDimensionIds?.includes('operational_complexity'), 'Industrial V2 overall maturity must exclude operational complexity');
   assert(industrialV2.maturity.every((item) => item.interpretation && item.firstImprovement && item.aquaverifySupport && item.relatedCapabilities?.length && item.implementationCondition), 'Industrial V2 maturity must be enriched for every dimension');
   assert(industrialV2.priorityProblems.every((item) => item.explanation && item.operationalImpact && item.improvementFocus && item.aquaverifySupport && item.relatedCapabilities?.length && item.nextStep), 'Industrial V2 priority problems must be enriched');
   assert(industrialV2.improvementPlan.phases.every((phase) => phase.objective && phase.actions?.length && phase.modulesRelated?.length && phase.productsToEvaluate?.length && phase.implementationCondition && phase.expectedOutcome && phase.nextStep), 'Industrial V2 improvement phases must include modules, product review condition and next step');
@@ -591,6 +675,7 @@ function validateSource() {
     'drinking water',
     'process water',
     'Producto a evaluar',
+    'No recomendación cerrada',
     'es relevante porque Las'
   ].forEach((term) => assert(!visibleIndustrialV2.includes(term), `Industrial V2 report leaks ${term}`));
 

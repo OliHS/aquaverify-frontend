@@ -330,10 +330,10 @@ const OPTION_LABELS: Record<string, Record<string, string>> = {
   legionella: { en: 'Legionella', es: 'Legionella', fr: 'Legionella', it: 'Legionella', ca: 'Legionella' },
   general_microbiology: { en: 'General microbiology', es: 'Microbiología general', fr: 'Microbiologie generale', it: 'Microbiologia generale', ca: 'Microbiologia general' },
   chemical_water_parameters: { en: 'Chemical water parameters', es: 'Parámetros químicos del agua', fr: 'Paramètres chimiques de l’eau', it: 'Parametri chimici dell’acqua', ca: 'Paràmetres químics de l’aigua' },
-  presence_absence: { en: 'Presence/absence', es: 'Presencia/ausencia', fr: 'Presence/absence', it: 'Presenza/assenza', ca: 'Presencia/absencia' },
-  enumeration: { en: 'Enumeration', es: 'Enumeración', fr: 'Denombrement', it: 'Enumerazione', ca: 'Enumeració' },
-  both: { en: 'Both', es: 'Ambos', fr: 'Les deux', it: 'Entrambi', ca: 'Ambdos' },
-  operational_screening: { en: 'Operational screening', es: 'Screening operativo', fr: 'Screening operationnel', it: 'Screening operativo', ca: 'Screening operatiu' },
+  presence_absence: { en: 'Presence/absence', es: 'Presencia/ausencia', fr: 'Présence/absence', it: 'Presenza/assenza', ca: 'Presència/absència' },
+  enumeration: { en: 'Enumeration', es: 'Enumeración', fr: 'Dénombrement', it: 'Enumerazione', ca: 'Enumeració' },
+  both: { en: 'Both', es: 'Ambos', fr: 'Les deux', it: 'Entrambi', ca: 'Ambdós' },
+  operational_screening: { en: 'Operational screening', es: 'Cribado operativo', fr: 'Dépistage opérationnel', it: 'Screening operativo', ca: 'Cribratge operatiu' },
   routine_internal_control: { en: 'Routine internal control', es: 'Control interno rutinario', fr: 'Controle interne routine', it: 'Controllo interno routine', ca: 'Control intern rutinari' },
   treatment_verification: { en: 'Treatment verification', es: 'Verificación de tratamiento', fr: 'Verification traitement', it: 'Verifica trattamento', ca: 'Verificació tractament' },
   incident_investigation: { en: 'Incident investigation', es: 'Investigación de incidencia', fr: 'Investigation incident', it: 'Indagine incidente', ca: 'Investigació incidència' },
@@ -358,10 +358,10 @@ const OPTION_LABELS: Record<string, Record<string, string>> = {
   add_new_test: { en: 'Add a new test', es: 'Incorporar nuevo ensayo', fr: 'Ajouter un nouvel essai', it: 'Aggiungere nuovo test', ca: 'Afegir nou assaig' },
   improve_customer_visibility: { en: 'Improve customer visibility', es: 'Mejorar visibilidad para clientes', fr: 'Ameliorer visibilite client', it: 'Migliorare visibilita cliente', ca: 'Millorar visibilitat client' },
   drinking_water: { en: 'Drinking water', es: 'Agua potable', fr: 'Eau potable', it: 'Acqua potabile', ca: 'Aigua potable' },
-  surface_water: { en: 'Surface water', es: 'Agua superficial', fr: 'Eau de surface', it: 'Acqua superficiale', ca: 'Aigua superficial' },
-  wastewater: { en: 'Wastewater', es: 'Agua residual', fr: 'Eaux usees', it: 'Acque reflue', ca: 'Aigues residuals' },
-  reclaimed_water: { en: 'Reclaimed water', es: 'Agua regenerada', fr: 'Eau reutilisee', it: 'Acqua rigenerata', ca: 'Aigua regenerada' },
-  process_water: { en: 'Process water', es: 'Agua de proceso', fr: 'Eau de procede', it: 'Acqua di processo', ca: 'Aigua de proces' },
+  surface_water: { en: 'Surface water', es: 'Agua superficial', fr: 'Eau superficielle', it: 'Acqua superficiale', ca: 'Aigua superficial' },
+  wastewater: { en: 'Wastewater', es: 'Agua residual', fr: 'Eaux usées', it: 'Acqua reflua', ca: 'Aigües residuals' },
+  reclaimed_water: { en: 'Reclaimed water', es: 'Agua regenerada', fr: 'Eau réutilisée', it: 'Acqua rigenerata', ca: 'Aigua regenerada' },
+  process_water: { en: 'Process water', es: 'Agua de proceso', fr: 'Eau de procédé', it: 'Acqua di processo', ca: 'Aigua de procés' },
   pool_spa_water: { en: 'Pool or spa water', es: 'Agua de piscina o spa', fr: 'Eau de piscine ou spa', it: 'Acqua di piscina o spa', ca: 'Aigua de piscina o spa' },
   irrigation_water: { en: 'Irrigation water', es: 'Agua de riego', fr: 'Eau irrigation', it: 'Acqua irrigazione', ca: 'Aigua de reg' },
   purified_water: { en: 'Purified water', es: 'Agua purificada', fr: 'Eau purifiee', it: 'Acqua purificata', ca: 'Aigua purificada' },
@@ -408,8 +408,8 @@ const OPTION_LABELS: Record<string, Record<string, string>> = {
   rooms: { en: 'Rooms', es: 'Habitaciones', fr: 'Chambres', it: 'Camere', ca: 'Habitacions' },
   seasonal_reopening: { en: 'Seasonal reopening', es: 'Reapertura estacional', fr: 'Reouverture saisonniere', it: 'Riapertura stagionale', ca: 'Reobertura estacional' },
   multi_site_chain: { en: 'Multi-site chain', es: 'Cadena multisitio', fr: 'Chaine multi-site', it: 'Catena multisito', ca: 'Cadena multisite' },
-  other_not_listed: { en: 'Needs technical review', es: 'Necesita revision tecnica', fr: 'Revue technique necessaire', it: 'Revisione tecnica necessaria', ca: 'Revisio tecnica necessaria' },
-  not_defined: { en: 'Not defined', es: 'No definido', fr: 'Non defini', it: 'Non definito', ca: 'No definit' }
+  other_not_listed: { en: 'Needs technical review', es: 'Necesita revisión técnica', fr: 'Revue technique nécessaire', it: 'Revisione tecnica necessaria', ca: 'Revisió tècnica necessària' },
+  not_defined: { en: 'Not defined', es: 'No definido', fr: 'Non défini', it: 'Non definito', ca: 'No definit' }
 };
 
 const FIELD_LABELS = {
@@ -977,7 +977,7 @@ const WorkflowReportSection = ({ id, title, children }: { id: string; title: str
   </section>
 );
 
-const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
+const WorkflowReportV2 = ({ report, onRequestTechnicalReview }: { report: WorkflowAdvisorReportV2; onRequestTechnicalReview: () => void }) => (
   <article className="workflow-result workflow-report workflow-report-print mx-auto max-w-5xl space-y-8 bg-white text-slate-950" data-report-section-order={WORKFLOW_RESULT_SECTION_ORDER.join(' ')}>
     {(() => {
       const lang = report.lang as Language;
@@ -1018,6 +1018,22 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
             {(report.executiveSummary || []).map((paragraph) => (
               <p key={paragraph} className="mt-3 text-sm leading-7">{paragraph}</p>
             ))}
+            {((report as any).overallMaturity || (report as any).operationalComplexity) ? (
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                {(report as any).overallMaturity ? (
+                  <article className="rounded-xl bg-white/70 p-4">
+                    <p className="text-sm font-black">{(report as any).overallMaturity.display}</p>
+                    <p className="mt-2 text-xs font-bold leading-6 text-emerald-900">{(report as any).overallMaturity.description}</p>
+                  </article>
+                ) : null}
+                {(report as any).operationalComplexity ? (
+                  <article className="rounded-xl bg-white/70 p-4">
+                    <p className="text-sm font-black">{(report as any).operationalComplexity.display}</p>
+                    <p className="mt-2 text-xs font-bold leading-6 text-emerald-900">{(report as any).operationalComplexity.description}</p>
+                  </article>
+                ) : null}
+              </div>
+            ) : null}
           </section>
 
           <section className="workflow-report-section workflow-report-page rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
@@ -1182,6 +1198,15 @@ const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
                 <p className="mt-2 leading-7 text-slate-600">{candidate.reason}</p>
               </article>
             ))}
+            {(report.analyticalReview as any)?.ctaLabel ? (
+              <button
+                type="button"
+                onClick={onRequestTechnicalReview}
+                className="mt-4 inline-flex rounded-full bg-primary px-4 py-2 text-sm font-black text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500"
+              >
+                {(report.analyticalReview as any).ctaLabel}
+              </button>
+            ) : null}
           </WorkflowReportSection>
 
           <WorkflowReportSection id="informacion-faltante" title={titles.missingInformation}>
@@ -1259,6 +1284,8 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   const resultTopRef = useRef<HTMLDivElement | null>(null);
   const stepHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const resultHeadingRef = useRef<HTMLHeadingElement | null>(null);
+  const contactRequestRef = useRef<HTMLElement | null>(null);
+  const contactHeadingRef = useRef<HTMLHeadingElement | null>(null);
   const downloadButtonRef = useRef<HTMLButtonElement | null>(null);
   const modalRef = useRef<HTMLDivElement | null>(null);
   const sectorId = String(answers.sector_id || 'water-testing-labs');
@@ -1312,6 +1339,10 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
     wrapper.scrollIntoView({ behavior: prefersReducedMotion() ? 'auto' : 'smooth', block: 'start' });
     window.setTimeout(() => (focusable || error || wrapper).focus({ preventScroll: true }), prefersReducedMotion() ? 0 : 160);
   }, []);
+
+  const requestTechnicalReviewFocus = useCallback(() => {
+    scrollAndFocus(contactRequestRef.current || document.getElementById('workflow-contact-request'), contactHeadingRef.current);
+  }, [scrollAndFocus]);
 
   const stepFields = useCallback((stepIndex: number) => {
     const fields = [...(STEP_FIELDS[stepIndex] || [])] as string[];
@@ -1627,12 +1658,12 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                     <button type="button" onClick={handleCalculate} className="rounded-full bg-primary px-5 py-3 text-sm font-black text-white">{copy.calculate}</button>
                   ) : (
                     <div className="space-y-6" aria-live="polite">
-                      {reportV2 && <WorkflowReportV2 report={reportV2} />}
+                      {reportV2 && <WorkflowReportV2 report={reportV2} onRequestTechnicalReview={requestTechnicalReviewFocus} />}
 
                       <div className="workflow-result-actions no-print rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
                         <div className="flex flex-wrap gap-3">
                           <button ref={downloadButtonRef} type="button" onClick={openPdfModal} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500"><Download aria-hidden="true" className="mr-2 h-4 w-4" />{copy.downloadPdf}</button>
-                          <button type="button" onClick={() => document.getElementById('workflow-contact-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' })} className="inline-flex items-center rounded-full border border-cyan-200 bg-white px-4 py-2 text-sm font-black text-cyan-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500">{copy.requestTechnicalReview}</button>
+                          <button type="button" onClick={requestTechnicalReviewFocus} className="inline-flex items-center rounded-full border border-cyan-200 bg-white px-4 py-2 text-sm font-black text-cyan-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500">{copy.requestTechnicalReview}</button>
                         </div>
                       </div>
 
@@ -1647,8 +1678,8 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                         </details>
                       )}
 
-                      <section id="workflow-contact-request" className="workflow-advisor-contact-form no-print scroll-mt-24 rounded-2xl border border-slate-200 p-5">
-                        <h2 className="text-lg font-black">{copy.contactTitle}</h2>
+                      <section id="workflow-contact-request" ref={contactRequestRef} className="workflow-advisor-contact-form no-print scroll-mt-24 rounded-2xl border border-slate-200 p-5">
+                        <h2 ref={contactHeadingRef} tabIndex={-1} className="text-lg font-black outline-none">{copy.contactTitle}</h2>
                         <div className="mt-4 grid gap-3 md:grid-cols-2">
                           {['name', 'email', 'company', 'countryCode', 'buyerRole', 'phone'].map((field) => (
                             <label key={field} className="block">

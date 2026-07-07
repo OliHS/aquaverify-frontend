@@ -43,9 +43,13 @@ Datos necesarios
 Objetivo
 Acciones
 Módulos relacionados
-Producto pendiente de revisión técnica
+Candidato a evaluar · Requiere revisión técnica
 Este informe interpreta las respuestas como un flujo de Agua municipal con contexto analítico suficiente para orientar una conversación técnica y alta presión de coordinación.
 El control municipal conecta campo, laboratorio, operador, responsable municipal, comité técnico y autoridad competente. Una incidencia tarda más en investigarse si campo, laboratorio y evidencia institucional están desconectados. La mejora útil es hacer que la evidencia sea reconstruible antes de cerrar decisiones de producto o vistas de dashboard.
+Madurez global del flujo: 2,5 / 5 · Básico
+La madurez global resume el nivel de conexión entre flujo operativo, trazabilidad, evidencia, visibilidad, preparación digital y contexto analítico. No es una puntuación de cumplimiento ni una recomendación automática de producto.
+Complejidad operativa detectada: 5 / 5 · Muy alta
+Esta dimensión indica cuánta coordinación requiere el flujo. Una complejidad alta no es negativa por sí misma, pero exige mayor claridad en puntos, responsables, evidencias y sistemas.
 Riesgo principal
 Una incidencia tarda más en investigarse si campo, laboratorio y evidencia institucional están desconectados.
 Prioridad inmediata
@@ -251,7 +255,7 @@ Asignar zonas
 Definir responsables
 Muestreo de campo y custodia
 Gestión de muestras
-Producto pendiente de revisión técnica
+Candidato a evaluar · Requiere revisión técnica
 Estructura de sedes, circuitos, activos y puntos críticos.
 Un mapa municipal de puntos.
 Elegir un circuito piloto y cargar sus puntos principales.
@@ -263,7 +267,7 @@ Registrar condiciones
 Trazar custodia
 Gestión de muestras
 Inventario y trazabilidad de lotes
-Producto pendiente de revisión técnica
+Candidato a evaluar · Requiere revisión técnica
 Definir estados de muestra, evidencia de custodia y laboratorio responsable.
 Cada muestra se reconstruye de campo a laboratorio.
 Pasar la primera familia de muestras por el flujo compartido.
@@ -275,7 +279,7 @@ Registrar lectura
 Aprobar revisión
 Capa de revisión LIMS
 Desviaciones y CAPA
-Producto pendiente de revisión técnica
+Candidato a evaluar · Requiere revisión técnica
 Definir método, criterios de revisión, roles y límites de aprobación.
 El resultado tiene contexto técnico defendible.
 Configurar una plantilla de revisión y probarla con casos reales no sensibles.
@@ -287,7 +291,7 @@ Adjuntar evidencia
 Documentar decisión
 CoA y reporting documental
 Portal cliente
-Producto pendiente de revisión técnica
+Candidato a evaluar · Requiere revisión técnica
 Definir plantilla de informe, reglas de publicación y destinatarios.
 El municipio comunica con evidencia consistente.
 Generar un informe revisado de muestra antes de abrir acceso más amplio.
@@ -298,7 +302,7 @@ Comparar zonas
 Revisar incidencias
 Priorizar acciones
 Dashboards y tendencias
-Producto pendiente de revisión técnica
+Candidato a evaluar · Requiere revisión técnica
 Usar dashboards solo cuando punto, muestra, revisión y acción sean fiables.
 Los problemas recurrentes se vuelven visibles.
 Seleccionar dos o tres indicadores antes de escalar a toda la cartera.
@@ -366,15 +370,16 @@ Ruta analítica pendiente de revisión técnica
 Revisión técnica necesaria
 La ruta analítica sigue abierta. Las respuestas mencionan Cualitativo y cuantitativo, 100 mL y Colífagos somáticos, E. coli, Microbiología general, Parámetros químicos del agua, pero deben confirmarse matriz, método, país, uso previsto y laboratorio antes de evaluar INDICA, ENUMERA, PLAQUE o kits ISO/EPA.
 Preparar una revisión técnica no sensible con matriz, volumen, método, país, uso previsto y rol del laboratorio.
+Solicitar revisión técnica gratuita
 INDICA
-No recomendación cerrada
-Presencia/ausencia o cribado, sujeto a revisión.
+Candidato a evaluar · Requiere revisión técnica
+INDICA podría ser relevante si el objetivo es presencia/ausencia o cribado. Antes de considerarlo una opción aplicable deben confirmarse matriz, organismo, volumen, método, país, laboratorio y uso previsto. Contacta con nuestros expertos en biotecnología del agua para una revisión técnica profesional, gratuita y sin compromiso.
 ENUMERA
-No recomendación cerrada
-Cuantificación, sujeto a revisión.
+Candidato a evaluar · Requiere revisión técnica
+ENUMERA podría ser relevante si se necesita un resultado cuantitativo o una enumeración microbiológica. Antes de considerarlo una opción aplicable deben confirmarse organismo, matriz, volumen, método, país, laboratorio, uso previsto y alcance del flujo analítico. Contacta con nuestros expertos en biotecnología del agua para una revisión técnica profesional, gratuita y sin compromiso.
 PLAQUE / Kits ISO/EPA
-No recomendación cerrada
-Referencia o placa, sujeto a revisión.
+Candidato a evaluar · Requiere revisión técnica
+PLAQUE o los kits orientados a referencias ISO/EPA pueden ser relevantes cuando el laboratorio necesita un flujo de placa, una referencia metodológica o una revisión técnica específica. Antes de considerarlos una opción aplicable deben confirmarse método, matriz, organismo, país, laboratorio, uso previsto y requisitos del procedimiento. Contacta con nuestros expertos en biotecnología del agua para una revisión técnica profesional, gratuita y sin compromiso.
 Método o referencia exacta
 Define si la ruta analítica debe orientarse a presencia/ausencia, enumeración, placa, referencia ISO/EPA o revisión específica.
 Laboratorio o responsable técnico.
