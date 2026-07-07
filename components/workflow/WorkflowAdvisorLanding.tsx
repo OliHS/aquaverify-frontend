@@ -617,6 +617,102 @@ const STEP_FIELDS = [
   []
 ] as const;
 
+const REPORT_SECTION_TITLES: Record<Language, Record<string, string>> = {
+  en: {
+    interpretedContext: 'Interpreted context',
+    workflowAnalysis: 'Workflow analysis',
+    quickRead: 'Quick read',
+    maturity: 'Maturity by dimension',
+    priorityProblems: 'Priority problems',
+    improvementPlan: 'Improvement plan',
+    digitalModules: 'Digital modules within the plan',
+    analyticalRoute: 'Analytical route / products to evaluate',
+    missingInformation: 'Missing information',
+    relatedResources: 'Related resources',
+    limitations: 'Limitations',
+    missingInfoWhy: 'Why it matters',
+    missingInfoHelp: 'Define this before closing the analytical route, product evaluation or implementation decision.',
+    firstImprovement: 'What to improve first'
+  },
+  es: {
+    interpretedContext: 'Contexto interpretado',
+    workflowAnalysis: 'Análisis del flujo',
+    quickRead: 'Lectura rápida',
+    maturity: 'Madurez por dimensiones',
+    priorityProblems: 'Problemas prioritarios',
+    improvementPlan: 'Plan de mejora',
+    digitalModules: 'Módulos digitales dentro del plan',
+    analyticalRoute: 'Ruta analítica / productos a evaluar',
+    missingInformation: 'Información que falta',
+    relatedResources: 'Recursos relacionados',
+    limitations: 'Limitaciones',
+    missingInfoWhy: 'Por qué importa',
+    missingInfoHelp: 'Define este punto antes de cerrar la ruta analítica, la evaluación de producto o la decisión de implantación.',
+    firstImprovement: 'Qué mejorar primero'
+  },
+  fr: {
+    interpretedContext: 'Contexte interprété',
+    workflowAnalysis: 'Analyse du flux',
+    quickRead: 'Lecture rapide',
+    maturity: 'Maturité par dimension',
+    priorityProblems: 'Problèmes prioritaires',
+    improvementPlan: 'Plan d’amélioration',
+    digitalModules: 'Modules numériques dans le plan',
+    analyticalRoute: 'Route analytique / produits à évaluer',
+    missingInformation: 'Informations manquantes',
+    relatedResources: 'Ressources associées',
+    limitations: 'Limites',
+    missingInfoWhy: 'Pourquoi c’est important',
+    missingInfoHelp: 'Définissez ce point avant de fermer la route analytique, l’évaluation produit ou la décision de mise en œuvre.',
+    firstImprovement: 'À améliorer en premier'
+  },
+  it: {
+    interpretedContext: 'Contesto interpretato',
+    workflowAnalysis: 'Analisi del flusso',
+    quickRead: 'Lettura rapida',
+    maturity: 'Maturità per dimensione',
+    priorityProblems: 'Problemi prioritari',
+    improvementPlan: 'Piano di miglioramento',
+    digitalModules: 'Moduli digitali nel piano',
+    analyticalRoute: 'Percorso analitico / prodotti da valutare',
+    missingInformation: 'Informazioni mancanti',
+    relatedResources: 'Risorse correlate',
+    limitations: 'Limiti',
+    missingInfoWhy: 'Perché è importante',
+    missingInfoHelp: 'Definisci questo punto prima di chiudere il percorso analitico, la valutazione del prodotto o la decisione di implementazione.',
+    firstImprovement: 'Cosa migliorare prima'
+  },
+  ca: {
+    interpretedContext: 'Context interpretat',
+    workflowAnalysis: 'Anàlisi del flux',
+    quickRead: 'Lectura ràpida',
+    maturity: 'Maduresa per dimensió',
+    priorityProblems: 'Problemes prioritaris',
+    improvementPlan: 'Pla de millora',
+    digitalModules: 'Mòduls digitals dins del pla',
+    analyticalRoute: 'Ruta analítica / productes a avaluar',
+    missingInformation: 'Informació que falta',
+    relatedResources: 'Recursos relacionats',
+    limitations: 'Limitacions',
+    missingInfoWhy: 'Per què importa',
+    missingInfoHelp: 'Defineix aquest punt abans de tancar la ruta analítica, l’avaluació de producte o la decisió d’implantació.',
+    firstImprovement: 'Què cal millorar primer'
+  }
+};
+
+const WORKFLOW_RESULT_SECTION_ORDER = [
+  'contexto-interpretado',
+  'analisis-flujo',
+  'madurez',
+  'problemas',
+  'plan-mejora',
+  'modulos',
+  'ruta-analitica',
+  'informacion-faltante',
+  'recursos',
+  'limitaciones'
+] as const;
+
 function questionHelp(id: string, lang: Language) {
   return workflowAdvisorQuestionHelp[lang][id as typeof QUESTION_HELP_KEYS[number]];
 }
@@ -786,174 +882,187 @@ const groupedRecommendations = (report: WorkflowAdvisorReportV2) => {
   return [...groups.entries()].map(([title, items]) => ({ title, items }));
 };
 
+const WorkflowReportSection = ({ id, title, children }: { id: string; title: string; children: React.ReactNode }) => (
+  <section id={id} className="workflow-report-section workflow-report-page rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
+    <h2 className="text-xl font-black text-slate-950">{title}</h2>
+    <div className="mt-4 space-y-5">{children}</div>
+  </section>
+);
+
 const WorkflowReportV2 = ({ report }: { report: WorkflowAdvisorReportV2 }) => (
-  <article className="workflow-report workflow-report-print space-y-6 bg-white text-slate-950">
-    <header className="workflow-report-page workflow-report-header rounded-2xl border border-slate-200 bg-white p-6 text-slate-950">
-      <div className="flex flex-wrap items-center justify-between gap-4">
-        <img src="/images/logo-name.png" alt="AquaVerify" className="h-10 w-auto" />
-        <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-cyan-800">Workflow Advisor</span>
-      </div>
-      <p className="mt-8 text-sm font-black text-cyan-700">{report.cover?.title || report.title}</p>
-      <h2 className="mt-2 text-3xl font-black">{report.cover?.sectorTitle || report.sector?.label}</h2>
-      <p className="mt-4 max-w-4xl text-sm font-bold leading-7 text-slate-700">{report.cover?.subtitle || report.subtitle}</p>
-      <dl className="mt-6 grid gap-3 text-sm sm:grid-cols-3">
-        <div className="rounded-xl bg-slate-50 p-3">
-          <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.generatedAtLabel}</dt>
-          <dd className="mt-1 font-bold">{report.cover?.generatedAtLocalized}</dd>
-        </div>
-        <div className="rounded-xl bg-slate-50 p-3">
-          <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.preparedByLabel}</dt>
-          <dd className="mt-1 font-bold">{report.cover?.preparedBy}</dd>
-        </div>
-        <div className="rounded-xl bg-slate-50 p-3">
-          <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.assessmentVersionLabel}</dt>
-          <dd className="mt-1 font-bold">{report.cover?.assessmentVersion}</dd>
-        </div>
-      </dl>
-      <div className="workflow-report-footer mt-8 border-t border-slate-200 pt-3 text-xs font-bold text-slate-500">AquaVerify · Safe Water for a Better World</div>
-    </header>
-
-    <section className="workflow-report-page rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950">
-      <CheckCircle2 className="h-6 w-6" />
-      <h2 className="mt-2 text-xl font-black">{report.sections.executiveSummary}</h2>
-      {(report.executiveSummary || []).map((paragraph) => (
-        <p key={paragraph} className="mt-3 text-sm leading-7">{paragraph}</p>
-      ))}
-    </section>
-
-    <section className="workflow-report-page grid gap-3 md:grid-cols-4">
-      {(report.quickReadItems || []).map((item) => (
-        <article key={item.id} className="rounded-2xl border border-slate-200 bg-white p-4">
-          <p className="text-xs font-black uppercase text-slate-400">{item.label}</p>
-          <p className="mt-2 text-sm font-bold text-slate-700">{String(item.value)}</p>
-        </article>
-      ))}
-    </section>
-
-    <section className="workflow-report-page grid gap-4 lg:grid-cols-2">
-      <article className="rounded-2xl border border-slate-200 p-5">
-        <h2 className="text-lg font-black">{report.sections.context}</h2>
-        <p className="mt-3 text-sm leading-7 text-slate-600">{report.interpretedContext?.buyerContext}</p>
-        <dl className="mt-3 grid gap-2">
-          {(report.interpretedContext?.facts || []).map((item) => (
-            <div key={item.field} className="rounded-xl bg-slate-50 p-3">
-              <dt className="text-xs font-black uppercase text-slate-400">{item.label}</dt>
-              <dd className="mt-1 text-sm font-bold">{item.value}</dd>
+  <article className="workflow-result workflow-report workflow-report-print mx-auto max-w-5xl space-y-8 bg-white text-slate-950" data-report-section-order={WORKFLOW_RESULT_SECTION_ORDER.join(' ')}>
+    {(() => {
+      const lang = report.lang as Language;
+      const titles = REPORT_SECTION_TITLES[lang];
+      const analyticalTitle = report.analyticalReview?.title || titles.analyticalRoute;
+      return (
+        <>
+          <header className="workflow-report-section workflow-report-page workflow-report-header rounded-2xl border border-slate-200 bg-white p-6 text-slate-950 shadow-sm md:p-7">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <img src="/images/logo-name.png" alt="AquaVerify" className="h-10 w-auto" />
+              <span className="rounded-full bg-cyan-50 px-3 py-1 text-xs font-black uppercase tracking-[0.14em] text-cyan-800">Workflow Advisor</span>
             </div>
-          ))}
-        </dl>
-      </article>
-      <article className="rounded-2xl border border-slate-200 p-5">
-        <h2 className="text-lg font-black">{report.sections.flow}</h2>
-        <p className="mt-3 text-sm leading-7 text-slate-600">{report.flowDiagnosis?.paragraph}</p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {(report.flowDiagnosis?.keySignals || []).map((signal) => (
-            <span key={signal} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">{signal}</span>
-          ))}
-        </div>
-      </article>
-    </section>
+            <p className="mt-8 text-sm font-black text-cyan-700">{report.cover?.title || report.title}</p>
+            <h2 className="mt-2 text-3xl font-black">{report.cover?.sectorTitle || report.sector?.label}</h2>
+            <p className="mt-4 max-w-4xl text-sm font-bold leading-7 text-slate-700">{report.cover?.subtitle || report.subtitle}</p>
+            <dl className="mt-6 grid gap-3 text-sm sm:grid-cols-3">
+              <div className="rounded-xl bg-slate-50 p-3">
+                <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.generatedAtLabel}</dt>
+                <dd className="mt-1 font-bold">{report.cover?.generatedAtLocalized}</dd>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-3">
+                <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.preparedByLabel}</dt>
+                <dd className="mt-1 font-bold">{report.cover?.preparedBy}</dd>
+              </div>
+              <div className="rounded-xl bg-slate-50 p-3">
+                <dt className="text-xs font-black uppercase text-slate-400">{report.cover?.assessmentVersionLabel}</dt>
+                <dd className="mt-1 font-bold">{report.cover?.assessmentVersion}</dd>
+              </div>
+            </dl>
+            <div className="workflow-report-footer mt-8 border-t border-slate-200 pt-3 text-xs font-bold text-slate-500">AquaVerify · Safe Water for a Better World</div>
+          </header>
 
-    <section className="workflow-report-page">
-      <h2 className="text-lg font-black">{report.sections.maturity}</h2>
-      <div className="mt-3 overflow-hidden rounded-2xl border border-slate-200">
-        <table className="w-full text-sm">
-          <tbody>
-            {(report.maturity || []).map((item) => (
-              <tr key={item.dimensionId} className="border-t border-slate-100 align-top first:border-t-0">
-                <td className="px-3 py-4 font-black text-primary">{item.title}<div className="mt-1 text-xs text-slate-400">{item.level} / 5 - {item.label}</div></td>
-                <td className="px-3 py-4 text-slate-600">{item.explanation}<div className="mt-2 font-bold text-slate-700">{item.nextImprovement}</div></td>
-              </tr>
+          <section className="workflow-report-section workflow-report-page rounded-2xl border border-emerald-200 bg-emerald-50 p-5 text-emerald-950 shadow-sm md:p-7">
+            <CheckCircle2 className="h-6 w-6" />
+            <h2 className="mt-2 text-xl font-black">{report.sections.executiveSummary}</h2>
+            {(report.executiveSummary || []).map((paragraph) => (
+              <p key={paragraph} className="mt-3 text-sm leading-7">{paragraph}</p>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
+          </section>
 
-    <section className="workflow-report-page">
-      <h2 className="text-lg font-black">{report.sections.priorityProblems}</h2>
-      <div className="mt-3 grid gap-3 md:grid-cols-2">
-        {(report.priorityProblems || []).map((problem) => (
-          <article key={`${problem.title}-${problem.priorityLabel}`} className="rounded-2xl border border-slate-200 p-4">
-            <p className="text-xs font-black uppercase text-cyan-700">{problem.priorityLabel}</p>
-            <h3 className="mt-1 font-black">{problem.title}</h3>
-            <p className="mt-2 text-sm leading-7 text-slate-600">{problem.paragraph}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section className="workflow-report-page rounded-2xl border border-slate-200 bg-slate-50 p-5">
-      <h2 className="font-black">{report.sections.plan}</h2>
-      <ol className="mt-3 grid gap-3">
-        {(report.improvementPlan?.phases || []).map((phase) => (
-          <li key={phase.phaseId} className="rounded-xl bg-white p-3 text-sm">
-            <strong>{phase.phase}. {phase.title}</strong>
-            <p className="mt-2 leading-7 text-slate-600">{phase.objective}</p>
-            {phase.actions?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{phase.actions.join(' - ')}</p> : null}
-            <p className="mt-2 font-bold text-slate-700">{phase.expectedOutcome}</p>
-          </li>
-        ))}
-      </ol>
-    </section>
-
-    <section className="workflow-report-page grid gap-4 lg:grid-cols-2">
-      <article className="rounded-2xl border border-slate-200 p-5">
-        <h2 className="text-lg font-black">{report.sections.digitalModules}</h2>
-        {groupedRecommendations(report).map((group) => (
-          <div key={group.title} className="mt-4">
-            <h3 className="text-sm font-black text-cyan-800">{group.title}</h3>
-            <div className="mt-2 grid gap-2">
-              {group.items.map((rec) => (
-                <div key={rec.recommendationId} className="rounded-xl bg-slate-50 p-3 text-sm">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <strong>{rec.title}</strong>
-                    <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-cyan-700">{rec.status}</span>
-                  </div>
-                  <p className="mt-2 leading-7 text-slate-600">{rec.paragraph}</p>
-                  {rec.whatToDefine?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{rec.whatToDefine.join(' ')}</p> : null}
-                </div>
+          <section className="workflow-report-section workflow-report-page rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
+            <h2 className="text-xl font-black text-slate-950">{titles.quickRead}</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+              {(report.quickReadItems || []).map((item) => (
+                <article key={item.id} className="workflow-report-card rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-xs font-black uppercase text-slate-400">{item.label}</p>
+                  <p className="mt-2 text-sm font-bold text-slate-700">{String(item.value)}</p>
+                </article>
               ))}
             </div>
-          </div>
-        ))}
-      </article>
-      <article className="rounded-2xl border border-slate-200 p-5">
-        <h2 className="text-lg font-black">{report.sections.analyticalReview}</h2>
-        <p className="mt-3 text-sm leading-7 text-slate-600">{report.analyticalReview?.paragraph}</p>
-        {(report.analyticalReview?.candidates || []).map((candidate) => (
-          <div key={candidate.productId} className="mt-3 rounded-xl bg-slate-50 p-3 text-sm">
-            <strong>{candidate.title}</strong>
-            <span className="ml-2 text-xs font-black text-cyan-700">{candidate.status}</span>
-            <p className="mt-2 leading-7 text-slate-600">{candidate.reason}</p>
-          </div>
-        ))}
-      </article>
-    </section>
+          </section>
 
-    <section className="workflow-report-page grid gap-4 lg:grid-cols-3">
-      <article className="rounded-2xl border border-slate-200 p-5">
-        <h2 className="font-black">{report.sections.missingInfo}</h2>
-        <ul className="mt-3 grid gap-2 text-sm leading-7 text-slate-600">
-          {(report.missingInformation || []).map((item) => <li key={item}>{item}</li>)}
-        </ul>
-      </article>
-      <article className="rounded-2xl border border-slate-200 p-5">
-        <h2 className="font-black">{report.sections.relatedResources}</h2>
-        {(report.relatedResources || []).map((resource) => (
-          <div key={`${resource.title}-${resource.url}`} className="mt-3">
-            <a href={resource.url} className="block text-sm font-bold text-cyan-700">{resource.title}</a>
-            {resource.description ? <p className="mt-1 text-xs leading-5 text-slate-500">{resource.description}</p> : null}
-          </div>
-        ))}
-      </article>
-      <article className="rounded-2xl border border-slate-200 p-5">
-        <h2 className="font-black">{report.sections.limitations}</h2>
-        {(report.limitations || []).map((item) => (
-          <p key={item} className="mt-2 text-sm leading-7 text-slate-600">{item}</p>
-        ))}
-      </article>
-    </section>
+          <WorkflowReportSection id="contexto-interpretado" title={titles.interpretedContext}>
+            <p className="text-sm leading-7 text-slate-600">{report.interpretedContext?.buyerContext}</p>
+            <dl className="grid gap-4 sm:grid-cols-2">
+              {(report.interpretedContext?.facts || []).map((item) => (
+                <div key={item.field} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4">
+                  <dt className="text-xs font-black uppercase text-slate-400">{item.label}</dt>
+                  <dd className="mt-1 text-sm font-bold">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="analisis-flujo" title={titles.workflowAnalysis}>
+            <p className="text-sm leading-7 text-slate-600">{report.flowDiagnosis?.paragraph}</p>
+            <div className="flex flex-wrap gap-2">
+              {(report.flowDiagnosis?.keySignals || []).map((signal) => (
+                <span key={signal} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">{signal}</span>
+              ))}
+            </div>
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="madurez" title={titles.maturity}>
+            <div className="space-y-4">
+              {(report.maturity || []).map((item) => (
+                <article key={item.dimensionId} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <h3 className="font-black text-primary">{item.title}</h3>
+                    <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-slate-600">{item.level} / 5 · {item.label}</span>
+                  </div>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{item.explanation}</p>
+                  <p className="mt-3 text-sm leading-7 text-slate-700"><strong>{titles.firstImprovement}:</strong> {item.nextImprovement}</p>
+                </article>
+              ))}
+            </div>
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="problemas" title={titles.priorityProblems}>
+            <div className="space-y-4">
+              {(report.priorityProblems || []).map((problem) => (
+                <article key={`${problem.title}-${problem.priorityLabel}`} className="workflow-report-card rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                  <p className="text-xs font-black uppercase text-cyan-700">{problem.priorityLabel}</p>
+                  <h3 className="mt-1 font-black">{problem.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{problem.paragraph}</p>
+                </article>
+              ))}
+            </div>
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="plan-mejora" title={titles.improvementPlan}>
+            <ol className="space-y-4">
+              {(report.improvementPlan?.phases || []).map((phase) => (
+                <li key={phase.phaseId} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm">
+                  <strong className="text-base text-slate-950">{phase.phase}. {phase.title}</strong>
+                  <p className="mt-2 leading-7 text-slate-600">{phase.objective}</p>
+                  {phase.actions?.length ? <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-600">{phase.actions.map((action) => <li key={action}>{action}</li>)}</ul> : null}
+                  <p className="mt-2 font-bold text-slate-700">{phase.expectedOutcome}</p>
+                </li>
+              ))}
+            </ol>
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="modulos" title={titles.digitalModules}>
+            {groupedRecommendations(report).map((group) => (
+              <div key={group.title} className="mt-4">
+                <h3 className="text-sm font-black text-cyan-800">{group.title}</h3>
+                <div className="mt-2 grid gap-2">
+                  {group.items.map((rec) => (
+                    <article key={rec.recommendationId} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <strong>{rec.title}</strong>
+                        <span className="rounded-full bg-white px-3 py-1 text-xs font-black text-cyan-700">{rec.status}</span>
+                      </div>
+                      <p className="mt-2 leading-7 text-slate-600">{rec.paragraph}</p>
+                      {rec.whatToDefine?.length ? <p className="mt-2 text-xs font-bold text-slate-500">{rec.whatToDefine.join(' ')}</p> : null}
+                    </article>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="ruta-analitica" title={analyticalTitle}>
+            <p className="text-sm leading-7 text-slate-600">{report.analyticalReview?.paragraph}</p>
+            {(report.analyticalReview?.candidates || []).map((candidate) => (
+              <article key={candidate.productId} className="workflow-report-card mt-3 rounded-xl border border-slate-100 bg-slate-50 p-4 text-sm">
+                <strong>{candidate.title}</strong>
+                <span className="ml-2 text-xs font-black text-cyan-700">{candidate.status}</span>
+                <p className="mt-2 leading-7 text-slate-600">{candidate.reason}</p>
+              </article>
+            ))}
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="informacion-faltante" title={titles.missingInformation}>
+            <ul className="space-y-3 text-sm leading-7 text-slate-600">
+              {(report.missingInformation || []).map((item) => (
+                <li key={item} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4">
+                  <strong className="block text-slate-950">{item}</strong>
+                  <span className="mt-1 block text-xs font-black uppercase tracking-[0.12em] text-slate-400">{titles.missingInfoWhy}</span>
+                  <span className="mt-1 block">{titles.missingInfoHelp}</span>
+                </li>
+              ))}
+            </ul>
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="recursos" title={titles.relatedResources}>
+            {(report.relatedResources || []).map((resource) => (
+              <article key={`${resource.title}-${resource.url}`} className="workflow-report-card rounded-xl border border-slate-100 bg-slate-50 p-4">
+                <a href={resource.url} className="block text-sm font-bold text-cyan-700">{resource.title}</a>
+                {resource.description ? <p className="mt-1 text-xs leading-5 text-slate-500">{resource.description}</p> : null}
+              </article>
+            ))}
+          </WorkflowReportSection>
+
+          <WorkflowReportSection id="limitaciones" title={titles.limitations}>
+            {(report.limitations || []).map((item) => (
+              <p key={item} className="mt-2 text-sm leading-7 text-slate-600">{item}</p>
+            ))}
+          </WorkflowReportSection>
+        </>
+      );
+    })()}
   </article>
 );
 
@@ -1345,7 +1454,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
                     <div className="space-y-6" aria-live="polite">
                       {reportV2 && <WorkflowReportV2 report={reportV2} />}
 
-                      <div className="no-print rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                      <div className="workflow-result-actions no-print rounded-2xl border border-slate-200 bg-slate-50 p-4">
                         <div className="flex flex-wrap gap-3">
                           <button ref={downloadButtonRef} type="button" onClick={openPdfModal} className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-sm font-black text-white"><Download className="mr-2 h-4 w-4" />{copy.downloadPdf}</button>
                           <button type="button" onClick={printWorkflowReport} className="inline-flex items-center rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-black text-slate-700"><Printer className="mr-2 h-4 w-4" />{copy.printReport}</button>
@@ -1461,6 +1570,9 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
       </section>
 
       <style>{`
+        .workflow-report-section {
+          scroll-margin-top: 7rem;
+        }
         @media print {
           @page {
             size: A4;
@@ -1530,6 +1642,14 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
           }
           body.workflow-report-print-mode .workflow-report-print > :not([hidden]) ~ :not([hidden]) {
             margin-top: 8px !important;
+          }
+          body.workflow-report-print-mode .workflow-report-section {
+            break-inside: auto;
+            page-break-inside: auto;
+          }
+          body.workflow-report-print-mode .workflow-report-card {
+            break-inside: avoid;
+            page-break-inside: avoid;
           }
           body.workflow-report-print-mode .workflow-report-print header,
           body.workflow-report-print-mode .workflow-report-print section,

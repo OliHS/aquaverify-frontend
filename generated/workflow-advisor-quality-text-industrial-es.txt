@@ -3,7 +3,7 @@ Informe de diagnóstico
 Agua de proceso industrial
 Evaluación orientativa del flujo de control de agua industrial: captación, tratamiento, circuito, activo, proceso, recirculación, refrigeración, limpieza, reutilización, efluente y acción correctiva.
 Fecha
-6 de julio de 2026
+7 de julio de 2026
 Preparado por
 AquaVerify Workflow Advisor
 Versión del diagnóstico

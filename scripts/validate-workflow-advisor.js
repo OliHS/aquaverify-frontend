@@ -37,6 +37,16 @@ function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
 
+function assertOrderedText(text, terms, message) {
+  let previousIndex = -1;
+  for (const term of terms) {
+    const index = text.indexOf(term);
+    assert(index >= 0, `${message}: missing ${term}`);
+    assert(index > previousIndex, `${message}: ${term} is out of order`);
+    previousIndex = index;
+  }
+}
+
 function htmlPath(routePath) {
   const normalized = routePath === '/' ? '' : routePath.replace(/^\/+|\/+$/g, '');
   return normalized ? path.join('dist', normalized, 'index.html') : path.join('dist', 'index.html');
@@ -147,6 +157,150 @@ function validateSource() {
   assert(!component.includes('downloadResult('), 'JSON result download must not be the primary CTA');
   assert(!component.includes('quickReadLabel'), 'Quick read labels must come localized from report V2');
   assert(!component.includes('report.reportVersion'), 'Technical report version must not be visible in the client report');
+  assert(component.includes('const REPORT_SECTION_TITLES: Record<Language, Record<string, string>>'), 'Report result section titles must be localized in the component');
+  assert(component.includes('const WORKFLOW_RESULT_SECTION_ORDER = ['), 'Report result layout must expose a locked section order');
+  assert(component.includes('data-report-section-order={WORKFLOW_RESULT_SECTION_ORDER.join'), 'Report result must expose inspectable section order metadata');
+  assert(component.includes('const lang = report.lang as Language;'), 'Report result must use the core report language');
+  assert(!component.includes('((report as any).lang ||'), 'Report result must not fallback to English through dynamic report access');
+  assert(component.includes('const WorkflowReportSection = ({ id, title, children }'), 'Report result must use the shared full-width section wrapper');
+  assert(component.includes('workflow-result workflow-report workflow-report-print mx-auto max-w-5xl space-y-8 bg-white text-slate-950'), 'Report result must render as a single readable column');
+  assert(component.includes('workflow-report-section workflow-report-page rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7'), 'Report sections must use the approved wide-card surface');
+  assert(component.includes('workflow-report-card'), 'Report content blocks must use stable printable card wrappers');
+  assert(component.includes('workflow-result-actions no-print'), 'Post-report actions must be outside the printable report');
+  const debugAnnexStart = component.indexOf('showDebugAnnex &&');
+  const debugAnnexEnd = component.indexOf('workflow-contact-request', debugAnnexStart);
+  const debugAnnex = component.slice(debugAnnexStart, debugAnnexEnd);
+  assert(debugAnnex.includes('details className="no-print') && debugAnnex.includes('downloadTechnicalExport'), 'Technical JSON export must remain in a gated no-print debug annex');
+  assert(component.includes('body.workflow-report-print-mode .workflow-report-section'), 'Print CSS must manage report section page breaks');
+  assert(component.includes('body.workflow-report-print-mode .workflow-report-card'), 'Print CSS must avoid breaking compact cards across pages');
+  [
+    'workflow-report-page grid gap-4 lg:grid-cols-2',
+    'workflow-report-page grid gap-4 lg:grid-cols-3',
+    'workflow-report-page grid gap-3 md:grid-cols-4',
+    'mt-3 grid gap-3 md:grid-cols-2',
+    '<table className="w-full text-sm">',
+    'report.sections.context',
+    'report.sections.flow',
+    'report.sections.priorityProblems',
+    'report.sections.plan',
+    'report.sections.missingInformation',
+    'report.sections.relatedResources',
+    'report.sections.limitations'
+  ].forEach((term) => {
+    assert(!component.includes(term), `Workflow report must not retain old compressed result layout: ${term}`);
+  });
+  const workflowResultAnchors = [
+    'contexto-interpretado',
+    'analisis-flujo',
+    'madurez',
+    'problemas',
+    'plan-mejora',
+    'modulos',
+    'ruta-analitica',
+    'informacion-faltante',
+    'recursos',
+    'limitaciones'
+  ];
+  workflowResultAnchors.forEach((id) => assert(component.includes(`'${id}'`) && component.includes(`id="${id}"`), `Workflow report missing anchor ${id}`));
+  assertOrderedText(
+    component,
+    workflowResultAnchors.map((id) => `'${id}'`),
+    'Workflow result order metadata must match the approved report order'
+  );
+  assertOrderedText(
+    component,
+    [
+      'workflow-report-header',
+      'report.sections.executiveSummary',
+      '{titles.quickRead}',
+      'id="contexto-interpretado"',
+      'id="analisis-flujo"',
+      'id="madurez"',
+      'id="problemas"',
+      'id="plan-mejora"',
+      'id="modulos"',
+      'id="ruta-analitica"',
+      'id="informacion-faltante"',
+      'id="recursos"',
+      'id="limitaciones"'
+    ],
+    'Workflow result sections must keep the approved vertical reading order'
+  );
+  [
+    "interpretedContext: 'Interpreted context'",
+    "workflowAnalysis: 'Workflow analysis'",
+    "quickRead: 'Quick read'",
+    "maturity: 'Maturity by dimension'",
+    "priorityProblems: 'Priority problems'",
+    "improvementPlan: 'Improvement plan'",
+    "digitalModules: 'Digital modules within the plan'",
+    "analyticalRoute: 'Analytical route / products to evaluate'",
+    "missingInformation: 'Missing information'",
+    "relatedResources: 'Related resources'",
+    "limitations: 'Limitations'",
+    "interpretedContext: 'Contexto interpretado'",
+    "workflowAnalysis: 'Análisis del flujo'",
+    "quickRead: 'Lectura rápida'",
+    "maturity: 'Madurez por dimensiones'",
+    "priorityProblems: 'Problemas prioritarios'",
+    "improvementPlan: 'Plan de mejora'",
+    "digitalModules: 'Módulos digitales dentro del plan'",
+    "analyticalRoute: 'Ruta analítica / productos a evaluar'",
+    "missingInformation: 'Información que falta'",
+    "relatedResources: 'Recursos relacionados'",
+    "limitations: 'Limitaciones'",
+    "interpretedContext: 'Contexte interprété'",
+    "workflowAnalysis: 'Analyse du flux'",
+    "quickRead: 'Lecture rapide'",
+    "maturity: 'Maturité par dimension'",
+    "priorityProblems: 'Problèmes prioritaires'",
+    "improvementPlan: 'Plan d’amélioration'",
+    "digitalModules: 'Modules numériques dans le plan'",
+    "analyticalRoute: 'Route analytique / produits à évaluer'",
+    "missingInformation: 'Informations manquantes'",
+    "relatedResources: 'Ressources associées'",
+    "limitations: 'Limites'",
+    "interpretedContext: 'Contesto interpretato'",
+    "workflowAnalysis: 'Analisi del flusso'",
+    "quickRead: 'Lettura rapida'",
+    "maturity: 'Maturità per dimensione'",
+    "priorityProblems: 'Problemi prioritari'",
+    "improvementPlan: 'Piano di miglioramento'",
+    "digitalModules: 'Moduli digitali nel piano'",
+    "analyticalRoute: 'Percorso analitico / prodotti da valutare'",
+    "missingInformation: 'Informazioni mancanti'",
+    "relatedResources: 'Risorse correlate'",
+    "limitations: 'Limiti'",
+    "interpretedContext: 'Context interpretat'",
+    "workflowAnalysis: 'Anàlisi del flux'",
+    "quickRead: 'Lectura ràpida'",
+    "maturity: 'Maduresa per dimensió'",
+    "priorityProblems: 'Problemes prioritaris'",
+    "improvementPlan: 'Pla de millora'",
+    "digitalModules: 'Mòduls digitals dins del pla'",
+    "analyticalRoute: 'Ruta analítica / productes a avaluar'",
+    "missingInformation: 'Informació que falta'",
+    "relatedResources: 'Recursos relacionats'",
+    "limitations: 'Limitacions'"
+  ].forEach((term) => assert(component.includes(term), `Workflow report localized result title missing ${term}`));
+  const esReportTitleBlockStart = component.indexOf('  es: {', component.indexOf('const REPORT_SECTION_TITLES'));
+  const esReportTitleBlockEnd = component.indexOf('  fr: {', esReportTitleBlockStart);
+  const esReportTitleBlock = component.slice(esReportTitleBlockStart, esReportTitleBlockEnd);
+  [
+    'Analisis del flujo',
+    'Lectura rapida',
+    'Modulos digitales',
+    'Ruta analitica',
+    'Informacion que falta'
+  ].forEach((term) => assert(!esReportTitleBlock.includes(term), `Spanish report title must keep accents: ${term}`));
+  [
+    ['docs/seo/workflow-advisor-result-layout.md', 'single-column report layout'],
+    ['docs/seo/workflow-advisor-report-readability.md', 'readability'],
+    ['docs/seo/workflow-advisor-pdf-layout.md', 'print/PDF']
+  ].forEach(([file, term]) => {
+    assert(fs.existsSync(file), `Missing Workflow Advisor documentation file ${file}`);
+    assert(readText(file).includes(term), `Workflow Advisor documentation ${file} missing ${term}`);
+  });
   assert(component.includes("credentials: 'omit'"), 'Public API calls must omit credentials');
   assert(component.includes('researchConsent') && component.includes('contactConsent') && component.includes('marketingConsent'), 'Consent switches must remain separate');
   assert(component.includes('Idempotency-Key'), 'Assessment save should use idempotency key');
