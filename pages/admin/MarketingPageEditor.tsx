@@ -15,6 +15,7 @@ import {
 import { scanProductClaimFields } from '../../utils/productClaims.js';
 import { useLanguage } from '../../context/LanguageContext';
 import { MarketingPagePreview } from '../../components/marketing/MarketingPagePreview';
+import { saveCmsDraft } from '../../utils/cmsWorkflow';
 
 type MarketingLanguage = 'en' | 'es' | 'fr' | 'it' | 'ca';
 
@@ -697,28 +698,7 @@ export const MarketingPageEditor: React.FC = () => {
     }
 
     try {
-      const { data: pageRow, error: pageError } = await supabase
-        .from('pages')
-        .upsert({
-          slug,
-          title: content.title || defaultContent.title,
-          seo_title: content.seoTitle || content.title || defaultContent.seoTitle || defaultContent.title,
-          seo_description: content.seoDescription || content.description || defaultContent.seoDescription || defaultContent.description
-        }, { onConflict: 'slug' })
-        .select('id')
-        .single();
-
-      if (pageError) throw pageError;
-
-      const { error: blockError } = await supabase
-        .from('content_blocks')
-        .upsert({
-          page_id: pageRow.id,
-          section_id: MARKETING_OVERRIDE_SECTION_ID,
-          content
-        }, { onConflict: 'page_id,section_id' });
-
-      if (blockError) throw blockError;
+      await saveCmsDraft({ entityType: 'marketing_page', entityKey: slug, locale: lang, payload: content });
 
       setSaveSuccess(true);
       setTimeout(() => setSaveSuccess(false), 3000);

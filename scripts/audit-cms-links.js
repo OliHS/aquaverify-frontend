@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
+import { guardCmsEndpoint } from './lib/remote-cms-audit-guard.js';
 
 dotenv.config({ path: '.env.local' });
 dotenv.config({ path: '.env' });
@@ -191,6 +192,7 @@ function matchesLegacyManagedLink(section, field, value) {
 
 async function run() {
   ensureEnv();
+  guardCmsEndpoint({ url: supabaseUrl, mutationRequested: shouldFix, purpose: shouldFix ? 'cms-links-fix' : 'cms-links-audit' });
   const supabase = createClient(supabaseUrl, supabaseKey);
   const { data, error } = await supabase
     .from('content_blocks')

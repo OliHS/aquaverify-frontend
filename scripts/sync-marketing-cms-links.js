@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
+import { guardCmsEndpoint } from './lib/remote-cms-audit-guard.js';
 import {
   MARKETING_LANGUAGES,
   MARKETING_PAGES
@@ -108,6 +109,7 @@ async function insertBlocks(supabase, missingBlocks) {
 
 async function run() {
   ensureEnv();
+  guardCmsEndpoint({ url: supabaseUrl, mutationRequested: shouldSync, purpose: shouldSync ? 'cms-marketing-sync' : 'cms-marketing-audit' });
   const supabase = createClient(supabaseUrl, supabaseKey);
   const expected = expectedRows();
   const expectedSlugs = expected.map((row) => row.slug);

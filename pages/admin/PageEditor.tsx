@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { supabase } from '../../utils/supabase';
 import { Save, ArrowLeft, CheckCircle2, Plus, Trash2 } from 'lucide-react';
 import { sanitizeCmsContentLinks } from '../../utils/cmsLinks';
+import { saveCmsDraft } from '../../utils/cmsWorkflow';
 
 export const PageEditor: React.FC = () => {
     const { id } = useParams();
@@ -87,32 +88,12 @@ export const PageEditor: React.FC = () => {
             setBlocks(sanitized.content);
         }
 
-        // Update SEO
-        await supabase.from('pages').update({
-            seo_title: seoTitle,
-            seo_description: seoDescription
-        }).eq('id', id);
-
-        // Upsert all blocks
-        for (const [sectionId, content] of Object.entries(sanitized.content)) {
-            // Check if exists
-            const { data: existing } = await supabase
-                .from('content_blocks')
-                .select('id')
-                .eq('page_id', id)
-                .eq('section_id', sectionId)
-                .single();
-
-            if (existing) {
-                await supabase.from('content_blocks').update({ content }).eq('id', existing.id);
-            } else {
-                await supabase.from('content_blocks').insert({
-                    page_id: id,
-                    section_id: sectionId,
-                    content
-                });
-            }
-        }
+        await saveCmsDraft({
+            entityType: 'page',
+            entityKey: String(page.slug || id),
+            locale: 'en',
+            payload: { seoTitle, seoDescription, blocks: sanitized.content }
+        });
 
         setSaving(false);
         setSaveSuccess(true);
@@ -137,7 +118,7 @@ export const PageEditor: React.FC = () => {
             {saveSuccess && (
                 <div className="bg-green-50 text-green-700 p-4 rounded-lg flex items-center shadow-sm border border-green-200">
                     <CheckCircle2 size={20} className="mr-2" />
-                    Site content saved and published successfully!
+                    Draft saved. Review and publisher approval are required before publication.
                 </div>
             )}
 

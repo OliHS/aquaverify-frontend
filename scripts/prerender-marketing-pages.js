@@ -3,6 +3,7 @@ import fsSync from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
+import { shouldUseRemoteCms } from './lib/remote-cms-audit-guard.js';
 import {
   MARKETING_LANGUAGES,
   MARKETING_PAGES,
@@ -2333,6 +2334,7 @@ async function fetchMarketingOverrides() {
     console.warn('Skipping marketing CMS overrides: missing Supabase env.');
     return new Map();
   }
+  if (!shouldUseRemoteCms(supabaseUrl, 'cms-build-overrides')) return new Map();
 
   const supabase = createClient(supabaseUrl, supabaseKey);
   const { data: pages, error: pagesError } = await supabase
