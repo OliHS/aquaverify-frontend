@@ -1,6 +1,11 @@
 export const MARKETING_OVERRIDE_SECTION_ID = 'marketing_page';
 
 const PUBLIC_COPY_REPLACEMENTS = [
+  ['ENUMERA Soma100 for somatic coliphage workflows', 'ENUMERA Soma100 for somatic coliphages as viral indicators'],
+  ['ENUMERA Soma100 para flujos de colífagos somáticos', 'ENUMERA Soma100 para colífagos somáticos como indicadores víricos'],
+  ['ENUMERA Soma100 pour les coliphages somatiques', 'ENUMERA Soma100 pour les coliphages somatiques comme indicateurs viraux'],
+  ['ENUMERA Soma100 per colifagi somatici', 'ENUMERA Soma100 per i colifagi somatici come indicatori virali'],
+  ['ENUMERA Soma100 per a colífags somàtics', 'ENUMERA Soma100 per a colífags somàtics com a indicadors vírics'],
   ['CRM attribution from web leads to partner conversations', 'Qualified web enquiries connected to partner conversations'],
   ['Whitepaper on software evidence, audit trails, sample traceability and CRM attribution for water quality compliance workflows.', 'Whitepaper on software evidence, audit trails, sample traceability and customer follow-up for water quality compliance workflows.'],
   ['Whitepaper sobre evidencia software, audit trail, trazabilidad de muestras y atribución CRM para flujos de cumplimiento en calidad del agua.', 'Whitepaper sobre evidencia software, audit trail, trazabilidad de muestras y seguimiento de clientes para flujos de cumplimiento en calidad del agua.'],
