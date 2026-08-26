@@ -25,6 +25,14 @@ type Answers = Record<string, string | string[] | number | boolean | null>;
 
 const API_BASE = (import.meta.env.VITE_PLATFORM_URL || 'https://app.aquaverify.com').replace(/\/+$/, '');
 
+const createWorkflowIdempotencyKey = () => {
+  if (typeof crypto === 'undefined') throw new Error('SECURE_RANDOM_UNAVAILABLE');
+  if (typeof crypto.randomUUID === 'function') return `wa-${crypto.randomUUID()}`;
+  if (typeof crypto.getRandomValues !== 'function') throw new Error('SECURE_RANDOM_UNAVAILABLE');
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return `wa-${Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
+};
+
 const UI = {
   en: {
     progress: 'Step',
@@ -1280,6 +1288,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   const [saveMessage, setSaveMessage] = useState('');
   const [publicId, setPublicId] = useState('');
   const [contact, setContact] = useState({ name: '', email: '', company: '', countryCode: '', buyerRole: '', phone: '', requestType: 'technical_review', comment: '' });
+  const assessmentStartedAtRef = useRef(Date.now());
   const questionnaireTopRef = useRef<HTMLElement | null>(null);
   const resultTopRef = useRef<HTMLDivElement | null>(null);
   const stepHeadingRef = useRef<HTMLHeadingElement | null>(null);
@@ -1410,7 +1419,7 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
         credentials: 'omit',
         headers: {
           'Content-Type': 'application/json',
-          'Idempotency-Key': `wa-${Date.now()}-${Math.random().toString(36).slice(2)}`
+          'Idempotency-Key': createWorkflowIdempotencyKey()
         },
         body: JSON.stringify({
           input,
@@ -1419,7 +1428,8 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
           marketingConsent: isContactSave ? marketingConsent : false,
           sourcePath: window.location.pathname,
           referrerHost: document.referrer ? new URL(document.referrer).hostname : '',
-          utm: Object.fromEntries(new URLSearchParams(window.location.search).entries())
+          utm: Object.fromEntries(new URLSearchParams(window.location.search).entries()),
+          elapsedMs: Math.max(0, Math.min(Date.now() - assessmentStartedAtRef.current, 86_400_000))
         })
       });
       const data = await response.json().catch(() => ({}));
