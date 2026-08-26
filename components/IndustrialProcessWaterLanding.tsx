@@ -5,9 +5,11 @@ import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
 import { IndustryGlossaryTerms } from './IndustryGlossaryTerms';
 import { IndustryBuyerProblemsSection, type IndustryBuyerProblemsContent } from './industries/IndustryBuyerProblemsSection';
+import { MarketingLeadFormControls } from './MarketingLeadFormControls';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
+import { useMarketingLeadCapture } from '../utils/marketingLeadCapture';
 
 type MarketingSection = {
   title: string;
@@ -284,47 +286,25 @@ export const IndustrialProcessWaterLanding: React.FC<Props> = ({ content, pageLa
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const fields = {
-      name: String(form.get('name') || '').trim(),
-      company: String(form.get('company') || '').trim(),
-      email: String(form.get('email') || '').trim(),
-      country: String(form.get('country') || '').trim(),
-      facility_type: String(form.get('facility_type') || '').trim(),
-      water_use: String(form.get('water_use') || '').trim(),
-      lab_model: String(form.get('lab_model') || '').trim(),
-      sample_volume: String(form.get('sample_volume') || '').trim(),
-      current_method: String(form.get('current_method') || '').trim(),
-      main_need: String(form.get('main_need') || '').trim()
-    };
-
-    trackCorporateEvent('industrial_process_water_diagnosis_submit', {
+  const leadCapture = useMarketingLeadCapture({
+    formKey: 'industrial-process-water-diagnosis',
+    requestType: 'industrial_process_water',
+    lang: pageLang,
+    sourcePath: content.path,
+    detailFields: ['facility_type', 'water_use', 'lab_model', 'sample_volume', 'current_method'],
+    details: { page: 'industrial-process-water', category: 'industries', profile: 'industrial', module: 'industrial-process-water-diagnosis' },
+    onAccepted: (_result, payload) => trackCorporateEvent('industrial_process_water_diagnosis_submit', {
       lang: pageLang,
       page: 'industrial-process-water',
       category: 'industries',
       intent: 'industrial_process_water',
       profile: 'industrial',
-      country: fields.country,
-      facility_type: fields.facility_type,
-      water_use: fields.water_use,
+      country: payload.details.country,
+      facility_type: payload.details.facility_type,
+      water_use: payload.details.water_use,
       module: 'industrial-process-water-diagnosis'
-    });
-
-    window.location.href = getPlatformSignupUrl({
-      intent: 'industrial_process_water',
-      page: 'industrial-process-water',
-      category: 'industries',
-      profile: 'industrial',
-      module: 'industrial-process-water-diagnosis',
-      product: 'industrial-process-water',
-      ...fields,
-      prefill_name: fields.name,
-      prefill_email: fields.email,
-      prefill_company: fields.company
-    }, pageLang);
-  };
+    })
+  });
 
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
@@ -555,7 +535,7 @@ export const IndustrialProcessWaterLanding: React.FC<Props> = ({ content, pageLa
         <section id="diagnostico" className="bg-slate-50 py-16 pb-24 md:py-20">
           <div className="container mx-auto px-6">
             <SectionHead eyebrow={copy.formEyebrow} title={copy.formTitle} body={copy.formBody} center />
-            <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-8">
+            <form onSubmit={leadCapture.handleSubmit} className="relative mx-auto mt-8 max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-8">
               <div className="grid gap-4 md:grid-cols-2">
                 <FormField label={copy.formLabels[0]} name="name" placeholder={copy.formPlaceholders[0]} required />
                 <FormField label={copy.formLabels[1]} name="company" placeholder={copy.formPlaceholders[1]} required />
@@ -580,13 +560,7 @@ export const IndustrialProcessWaterLanding: React.FC<Props> = ({ content, pageLa
                   {copy.formLabels[9]}
                   <textarea name="main_need" placeholder={copy.formPlaceholders[8]} className="min-h-28 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" />
                 </label>
-                <div className="md:col-span-2">
-                  <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
-                    {copy.formSubmit}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
-                  <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">{copy.formPrivacy}</p>
-                </div>
+                <MarketingLeadFormControls lang={pageLang} submitLabel={copy.formSubmit} privacyNote={copy.formPrivacy} status={leadCapture.status} copy={leadCapture.copy} />
               </div>
             </form>
           </div>
