@@ -28,31 +28,11 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     (function () {
-      var analyticsStorage = 'denied';
-      var marketingStorage = 'denied';
-
-      try {
-        var rawConsent = window.localStorage && window.localStorage.getItem('aquaverify_cookie_consent');
-        if (!rawConsent) {
-          var cookieMatch = document.cookie.match(/(?:^|; )aquaverify_cookie_consent=([^;]+)/);
-          rawConsent = cookieMatch ? decodeURIComponent(cookieMatch[1]) : null;
-        }
-
-        if (rawConsent) {
-          var consent = JSON.parse(rawConsent);
-          analyticsStorage = consent && consent.analytics ? 'granted' : 'denied';
-          marketingStorage = consent && consent.marketing ? 'granted' : 'denied';
-        }
-      } catch (error) {
-        analyticsStorage = 'denied';
-        marketingStorage = 'denied';
-      }
-
       gtag('consent', 'default', {
-        ad_storage: marketingStorage,
-        analytics_storage: analyticsStorage,
-        ad_user_data: marketingStorage,
-        ad_personalization: marketingStorage,
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
         functionality_storage: 'granted',
         security_storage: 'granted',
         wait_for_update: 500
@@ -132,10 +112,6 @@
 </head>
 
 <body class="bg-white text-text antialiased">
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TXHGB5D4" height="0" width="0"
-      style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
   <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

@@ -241,15 +241,12 @@ export const PharmaCosmeticsWaterLanding: React.FC<Props> = ({ content, pageLang
     sourcePath: content.path,
     detailFields: ['water_type', 'product_type', 'site_model', 'sample_volume', 'current_method'],
     details: { page: pageId, category: 'industries', profile: 'pharma-cosmetics', module: 'pharma-cosmetics-water-diagnosis' },
-    onAccepted: (_result, payload) => trackCorporateEvent('pharma_cosmetics_water_diagnosis_submit', {
+    onAccepted: () => trackCorporateEvent('pharma_cosmetics_water_diagnosis_submit', {
       lang: pageLang,
       page: pageId,
       category: 'industries',
       intent: 'pharma_cosmetics_water',
       profile: 'pharma-cosmetics',
-      country: payload.details.country,
-      water_type: payload.details.water_type,
-      site_model: payload.details.site_model,
       module: 'pharma-cosmetics-water-diagnosis'
     })
   });

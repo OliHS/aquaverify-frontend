@@ -293,15 +293,12 @@ export const IndustrialProcessWaterLanding: React.FC<Props> = ({ content, pageLa
     sourcePath: content.path,
     detailFields: ['facility_type', 'water_use', 'lab_model', 'sample_volume', 'current_method'],
     details: { page: 'industrial-process-water', category: 'industries', profile: 'industrial', module: 'industrial-process-water-diagnosis' },
-    onAccepted: (_result, payload) => trackCorporateEvent('industrial_process_water_diagnosis_submit', {
+    onAccepted: () => trackCorporateEvent('industrial_process_water_diagnosis_submit', {
       lang: pageLang,
       page: 'industrial-process-water',
       category: 'industries',
       intent: 'industrial_process_water',
       profile: 'industrial',
-      country: payload.details.country,
-      facility_type: payload.details.facility_type,
-      water_use: payload.details.water_use,
       module: 'industrial-process-water-diagnosis'
     })
   });

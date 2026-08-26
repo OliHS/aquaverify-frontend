@@ -359,14 +359,12 @@ export const MunicipalWaterLanding: React.FC<Props> = ({ content, pageLang, show
     sourcePath: content.path,
     detailFields: ['source_type', 'network_size', 'lab_model', 'sample_volume', 'current_method'],
     details: { page: 'municipal-water-testing', category: 'industries', profile: 'municipal', module: 'municipal-water-diagnosis' },
-    onAccepted: (_result, payload) => trackCorporateEvent('municipal_water_diagnosis_submit', {
+    onAccepted: () => trackCorporateEvent('municipal_water_diagnosis_submit', {
       lang: pageLang,
       page: 'municipal-water-testing',
       category: 'industries',
       intent: 'municipal',
       profile: 'municipal',
-      country: payload.details.country,
-      source_type: payload.details.source_type,
       module: 'municipal-water-diagnosis'
     })
   });

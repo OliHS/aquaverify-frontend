@@ -253,15 +253,12 @@ export const AgricultureWaterLanding: React.FC<Props> = ({ content, pageLang, sh
     sourcePath: content.path,
     detailFields: ['crop_type', 'water_source', 'lab_model', 'sample_volume', 'current_method'],
     details: { page: 'agriculture-water', category: 'industries', profile: 'agriculture', module: 'agriculture-water-diagnosis' },
-    onAccepted: (_result, payload) => trackCorporateEvent('agriculture_water_diagnosis_submit', {
+    onAccepted: () => trackCorporateEvent('agriculture_water_diagnosis_submit', {
       lang: pageLang,
       page: 'agriculture-water',
       category: 'industries',
       intent: 'agriculture_water',
       profile: 'agriculture',
-      country: payload.details.country,
-      crop_type: payload.details.crop_type,
-      water_source: payload.details.water_source,
       module: 'agriculture-water-diagnosis'
     })
   });

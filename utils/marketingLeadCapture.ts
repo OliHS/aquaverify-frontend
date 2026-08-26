@@ -1,6 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
-import { PLATFORM_BASE_URL } from './platformLinks';
+import {
+  PLATFORM_BASE_URL,
+  containsLikelyPersonalData,
+  getPrivacySafeCorporateAttributionParams,
+  getPrivacySafePagePath,
+  normalizePrivacySafeCorporateSourcePath
+} from './platformLinks';
 import type { Language } from './translations';
 
 const MARKETING_LEAD_ENDPOINT = `${PLATFORM_BASE_URL}/api/public/v1/marketing/leads`;
@@ -15,6 +21,8 @@ const UTM_KEYS = [
   'utm_term',
   'utm_id'
 ] as const;
+const GOVERNED_UTM_VALUE_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._:+~-]*$/;
+const PUBLIC_DNS_HOST_PATTERN = /^(?=.{1,253}$)(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z](?:[a-z0-9-]{0,61}[a-z0-9])?$/i;
 
 type UtmKey = typeof UTM_KEYS[number];
 type UtmValues = Record<UtmKey, string>;
@@ -133,68 +141,121 @@ const stringField = (form: FormData, key: string, maxLength = 2_000) => {
   return typeof value === 'string' ? value : String(value);
 };
 
-function readCurrentUtm(): UtmValues {
+function privacySafeUtmValue(value: unknown) {
+  const raw = typeof value === 'string' ? value : '';
+  if (!raw || raw.length > 500 || /[\u0000-\u001F\u007F<>]/u.test(raw)) return '';
+  const normalized = raw.trim();
+  if (
+    !normalized
+    || !GOVERNED_UTM_VALUE_PATTERN.test(normalized)
+    || containsLikelyPersonalData(normalized)
+  ) return '';
+  return normalized.toLowerCase();
+}
+
+function sanitizeStoredUtm(value: unknown): UtmValues {
+  const values = emptyUtm();
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return values;
+  const candidate = value as Partial<UtmValues>;
+  UTM_KEYS.forEach((key) => {
+    values[key] = privacySafeUtmValue(candidate[key]);
+  });
+  return values;
+}
+
+function persistUtm(values: UtmValues) {
+  try {
+    window.sessionStorage.setItem(ATTRIBUTION_SESSION_KEY, JSON.stringify(values));
+  } catch {
+    // Storage can be disabled; submission must still work without persistence.
+  }
+}
+
+export function readPrivacySafeMarketingUtm(): UtmValues {
   const values = emptyUtm();
   if (typeof window === 'undefined') return values;
 
-  let stored: Partial<UtmValues> = {};
+  let stored: unknown = {};
   try {
-    stored = JSON.parse(window.sessionStorage.getItem(ATTRIBUTION_SESSION_KEY) || '{}') as Partial<UtmValues>;
+    stored = JSON.parse(window.sessionStorage.getItem(ATTRIBUTION_SESSION_KEY) || '{}') as unknown;
   } catch {
     stored = {};
   }
+  const storedValues = sanitizeStoredUtm(stored);
 
   const query = new URLSearchParams(window.location.search);
+  const safeCurrentAttribution = getPrivacySafeCorporateAttributionParams();
   const currentValues = emptyUtm();
+  let hasInvalidCurrentAttribution = false;
   UTM_KEYS.forEach((key) => {
-    const current = clean(query.get(key), 500);
-    currentValues[key] = typeof current === 'string' ? current : '';
+    const raw = query.get(key);
+    const supplied = typeof raw === 'string' && Boolean(raw.trim());
+    const safe = privacySafeUtmValue(safeCurrentAttribution[key]);
+    if (supplied && !safe) hasInvalidCurrentAttribution = true;
+    currentValues[key] = safe;
   });
   const hasCurrentAttribution = UTM_KEYS.some((key) => Boolean(currentValues[key]));
 
-  if (hasCurrentAttribution) {
-    try {
-      window.sessionStorage.setItem(ATTRIBUTION_SESSION_KEY, JSON.stringify(currentValues));
-    } catch {
-      // Storage can be disabled; submission must still work with current URL values.
-    }
+  if (hasCurrentAttribution && !hasInvalidCurrentAttribution) {
+    persistUtm(currentValues);
     return currentValues;
   }
 
-  UTM_KEYS.forEach((key) => {
-    const fallback = clean(stored[key], 500);
-    values[key] = typeof fallback === 'string' ? fallback : '';
-  });
-  return values;
+  // A poisoned current URL never replaces a previously validated first-touch
+  // attribution. Rewriting the stored value also removes any legacy unsafe data.
+  persistUtm(storedValues);
+  return storedValues;
+}
+
+function privacySafeReferrerHost(value: unknown) {
+  const raw = typeof value === 'string' ? value : '';
+  if (!raw || raw.length > 255 || containsLikelyPersonalData(raw)) return '';
+  const hostname = raw.trim().toLowerCase().replace(/\.$/u, '');
+  return PUBLIC_DNS_HOST_PATTERN.test(hostname) ? hostname : '';
 }
 
 function getReferrerHost() {
   if (typeof window === 'undefined' || typeof document === 'undefined') return '';
   let current = '';
   try {
-    current = document.referrer ? new URL(document.referrer).hostname.slice(0, 255) : '';
+    current = document.referrer ? privacySafeReferrerHost(new URL(document.referrer).hostname) : '';
   } catch {
     current = '';
   }
 
   try {
-    const stored = clean(window.sessionStorage.getItem(REFERRER_SESSION_KEY), 255);
+    const stored = privacySafeReferrerHost(window.sessionStorage.getItem(REFERRER_SESSION_KEY));
     const isExternal = Boolean(current && current !== window.location.hostname);
     if (isExternal) {
       window.sessionStorage.setItem(REFERRER_SESSION_KEY, current);
       return current;
     }
-    return typeof stored === 'string' ? stored : '';
+    window.sessionStorage.setItem(REFERRER_SESSION_KEY, stored);
+    return stored;
   } catch {
     return current;
   }
 }
 
+function privacySafeConfiguredPath(value: unknown) {
+  return normalizePrivacySafeCorporateSourcePath(value);
+}
+
 function createIdempotencyKey(formKey: string) {
-  const randomPart = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-    ? crypto.randomUUID()
-    : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-  return `${formKey}:${randomPart}`.slice(0, 200);
+  if (typeof crypto === 'undefined') throw new Error('SECURE_RANDOM_UNAVAILABLE');
+  let randomPart: string;
+  if (typeof crypto.randomUUID === 'function') {
+    randomPart = crypto.randomUUID();
+  } else if (typeof crypto.getRandomValues === 'function') {
+    const bytes = crypto.getRandomValues(new Uint8Array(16));
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
+    randomPart = `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  } else {
+    throw new Error('SECURE_RANDOM_UNAVAILABLE');
+  }
+  return `${formKey}:${randomPart}`;
 }
 
 function buildPayload(
@@ -231,12 +292,11 @@ function buildPayload(
     contactConsent: true,
     marketingConsent: false,
     lang: config.lang,
-    sourcePath: clean(
-      typeof window !== 'undefined' ? window.location.pathname : config.sourcePath || '',
-      500
-    ) as string,
+    sourcePath: typeof window !== 'undefined'
+      ? getPrivacySafePagePath()
+      : privacySafeConfiguredPath(config.sourcePath),
     referrerHost: getReferrerHost(),
-    utm: readCurrentUtm(),
+    utm: readPrivacySafeMarketingUtm(),
     details: {
       ...(config.details || {}),
       ...(country ? { country } : {}),
@@ -312,7 +372,7 @@ export function useMarketingLeadCapture(config: MarketingLeadCaptureConfig) {
   configRef.current = config;
 
   useEffect(() => {
-    readCurrentUtm();
+    readPrivacySafeMarketingUtm();
   }, []);
 
   const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>) => {

@@ -416,15 +416,13 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
       profile: 'labs',
       module: 'lab-diagnosis'
     },
-    onAccepted: (_result, payload) => {
+    onAccepted: () => {
       trackCorporateEvent('water_testing_lab_diagnosis_submit', {
         lang: pageLang,
         page: 'water-testing-labs',
         category: 'industries',
         intent: 'quote',
         profile: 'labs',
-        country: payload.details.country,
-        product: payload.details.water_type,
         module: 'lab-diagnosis'
       });
     }

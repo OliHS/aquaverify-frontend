@@ -276,15 +276,12 @@ export const FoodBeverageWaterLanding: React.FC<Props> = ({ content, pageLang, s
     sourcePath: content.path,
     detailFields: ['facility_type', 'water_use', 'lab_model', 'sample_volume', 'current_method'],
     details: { page: 'food-beverage-water-quality', category: 'industries', profile: 'food-beverage', module: 'food-beverage-water-diagnosis' },
-    onAccepted: (_result, payload) => trackCorporateEvent('food_beverage_water_diagnosis_submit', {
+    onAccepted: () => trackCorporateEvent('food_beverage_water_diagnosis_submit', {
       lang: pageLang,
       page: 'food-beverage-water-quality',
       category: 'industries',
       intent: 'food_beverage',
       profile: 'food-beverage',
-      country: payload.details.country,
-      facility_type: payload.details.facility_type,
-      water_use: payload.details.water_use,
       module: 'food-beverage-water-diagnosis'
     })
   });

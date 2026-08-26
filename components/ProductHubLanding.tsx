@@ -372,7 +372,7 @@ export const ProductHubLanding: React.FC<ProductHubLandingProps> = ({
                 </a>
                 <Link
                   to={distributorUrl}
-                  onClick={() => trackClick('click_distributor_cta', { location: 'products_hero' })}
+                  onClick={() => trackClick('click_distributor_cta', { page: 'distributors', location: 'products_hero' })}
                   className="aq-cta-secondary"
                 >
                   {copy.distributor}
@@ -429,7 +429,7 @@ export const ProductHubLanding: React.FC<ProductHubLandingProps> = ({
                   <Link
                     key={family.id}
                     to={url}
-                    onClick={() => trackClick('click_product_card', { product: family.pageId, location: 'products_decision' })}
+                    onClick={() => trackClick('click_product_card', { page: family.pageId, location: 'products_decision' })}
                     className="group flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-5 shadow-sm transition hover:-translate-y-1 hover:border-primary/30 hover:bg-white hover:shadow-lg"
                   >
                     <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white text-primary shadow-sm transition group-hover:bg-secondary group-hover:text-white">
@@ -466,7 +466,7 @@ export const ProductHubLanding: React.FC<ProductHubLandingProps> = ({
                       <div className="font-semibold text-slate-600">{family.buyer}</div>
                       <Link
                         to={url}
-                        onClick={() => trackClick('click_compare_products', { product: family.pageId, location: 'products_comparison' })}
+                        onClick={() => trackClick('click_compare_products', { page: family.pageId, location: 'products_comparison' })}
                         className="inline-flex w-fit items-center rounded-full border border-cyan-100 bg-cyan-50 px-4 py-2 text-xs font-black text-primary transition hover:border-primary hover:bg-white"
                       >
                         {family.cta}
@@ -529,7 +529,7 @@ export const ProductHubLanding: React.FC<ProductHubLandingProps> = ({
                 <Link
                   key={card.pageId}
                   to={getMarketingPagePath(card.pageId, pageLang)}
-                  onClick={() => trackClick(card.intent === 'oem_program' ? 'click_oem_cta' : 'click_distributor_cta', { location: 'products_partner_paths' })}
+                  onClick={() => trackClick(card.intent === 'oem_program' ? 'click_oem_cta' : 'click_distributor_cta', { page: card.pageId, location: 'products_partner_paths' })}
                   className="group rounded-2xl border border-white/15 bg-white/10 p-6 shadow-lg transition hover:-translate-y-1 hover:bg-white hover:text-primary"
                 >
                   <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/10 text-secondary">

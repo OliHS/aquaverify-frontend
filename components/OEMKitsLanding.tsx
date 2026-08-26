@@ -18,10 +18,11 @@ import {
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
+import { MarketingLeadFormControls } from './MarketingLeadFormControls';
 import type { Language } from '../utils/translations';
 import { getMarketingPagePath } from '../utils/marketingRoutes.js';
-import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
+import { useMarketingLeadCapture } from '../utils/marketingLeadCapture';
 
 type Card = {
   title: string;
@@ -135,6 +136,34 @@ const referenceHrefs = [
   '#solicitud'
 ];
 
+const oemFormFallbacks: Record<Language, { name: string; company: string; privacy: string }> = {
+  en: {
+    name: 'Contact name',
+    company: 'Company or organisation',
+    privacy: 'The commercial team receives the request with its source, OEM profile and private-label context.'
+  },
+  es: {
+    name: 'Nombre de contacto',
+    company: 'Empresa u organización',
+    privacy: 'El equipo comercial recibe la solicitud con su origen, perfil OEM y contexto de marca privada.'
+  },
+  fr: {
+    name: 'Nom du contact',
+    company: 'Entreprise ou organisation',
+    privacy: 'L’équipe commerciale reçoit la demande avec son origine, le profil OEM et le contexte de marque blanche.'
+  },
+  it: {
+    name: 'Nome del referente',
+    company: 'Azienda o organizzazione',
+    privacy: 'Il team commerciale riceve la richiesta con la sua origine, il profilo OEM e il contesto private label.'
+  },
+  ca: {
+    name: 'Nom de contacte',
+    company: 'Empresa o organització',
+    privacy: 'L’equip comercial rep la sol·licitud amb el seu origen, el perfil OEM i el context de marca privada.'
+  }
+};
+
 const AnswerLayer: React.FC<{
   directAnswer?: DirectAnswerContent;
   technicalTable?: TechnicalTableContent;
@@ -193,22 +222,28 @@ function scrollToId(id: string) {
   target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
-function collectFields(form: HTMLFormElement) {
-  const fields: Record<string, string> = {};
-  new FormData(form).forEach((value, key) => {
-    if (typeof value !== 'string') return;
-    const clean = value.trim();
-    if (clean) fields[key] = clean;
-  });
-  return fields;
-}
-
 export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieConsent = true }) => {
   const [selectedRoute, setSelectedRoute] = useState(routeKeys[0]);
   const route = content.routes?.[selectedRoute] || content.routes?.distributor;
   const routeNote = content.routeNotes?.[selectedRoute] || '';
 
   const partnerUrl = useMemo(() => getMarketingPagePath('distributors', pageLang), [pageLang]);
+
+  const leadCapture = useMarketingLeadCapture({
+    formKey: 'oem-private-label-request',
+    requestType: 'oem',
+    lang: pageLang,
+    sourcePath: content.path,
+    detailFields: ['country', 'site_model'],
+    buyerRoleFields: ['company_type'],
+    onAccepted: () => trackCorporateEvent('oem_form_submit', {
+      lang: pageLang,
+      page: 'oem',
+      category: 'partners',
+      intent: 'oem',
+      module: 'private-label-program'
+    })
+  });
 
   const handleHeroCta = (label: string, target: string, eventName: string) => {
     trackCorporateEvent(eventName, {
@@ -218,34 +253,6 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
       label
     });
     scrollToId(target);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const fields = collectFields(event.currentTarget);
-
-    trackCorporateEvent('oem_form_submit', {
-      lang: pageLang,
-      page: 'oem',
-      category: 'partners',
-      intent: 'oem',
-      country: fields.country,
-      model: fields.model,
-      sector: fields.sector,
-      company_type: fields.company_type
-    });
-
-    window.location.href = getPlatformSignupUrl({
-      intent: 'oem',
-      page: 'oem',
-      category: 'partners',
-      profile: 'oem',
-      module: 'private-label-program',
-      ...fields,
-      prefill_name: fields.name,
-      prefill_email: fields.email,
-      prefill_company: fields.company_type || fields.name
-    }, pageLang);
   };
 
   return (
@@ -572,7 +579,8 @@ export const OEMKitsLanding: React.FC<Props> = ({ content, pageLang, showCookieC
             <div className="mx-auto mt-10 max-w-3xl">
               <OEMForm
                 content={content}
-                onSubmit={handleSubmit}
+                pageLang={pageLang}
+                leadCapture={leadCapture}
               />
             </div>
           </div>
@@ -666,12 +674,14 @@ function ChecklistCard({ title, items }: { title?: string; items: string[] }) {
   );
 }
 
-function OEMForm({ content, onSubmit }: {
+function OEMForm({ content, pageLang, leadCapture }: {
   content: OEMContent;
-  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  pageLang: Language;
+  leadCapture: ReturnType<typeof useMarketingLeadCapture>;
 }) {
   const form = content.forms?.oem;
   const labels = content.formLabels || {};
+  const fallback = oemFormFallbacks[pageLang] || oemFormFallbacks.en;
 
   if (!form) return null;
 
@@ -682,31 +692,32 @@ function OEMForm({ content, onSubmit }: {
       </div>
       <h3 className="font-heading text-2xl font-black text-slate-950">{form.title}</h3>
       <p className="mt-3 text-sm font-semibold leading-6 text-slate-600">{form.body}</p>
-      <form className="mt-6 grid gap-4" onSubmit={onSubmit}>
-        <input type="hidden" name="request_type" value="oem-private-label" />
-        <Field label={labels.name} name="name" autoComplete="name" />
-        <Field label={labels.email} name="email" type="email" autoComplete="email" />
+      <form className="relative mt-6 grid gap-4" onSubmit={leadCapture.handleSubmit}>
+        <Field label={labels.contactName || fallback.name} name="name" autoComplete="name" required />
+        <Field label={labels.company || fallback.company} name="company" autoComplete="organization" required />
+        <Field label={labels.email} name="email" type="email" autoComplete="email" required />
         <SelectField label={labels.country} name="country" options={content.countries || []} />
         <Field label={labels.companyType} name="company_type" />
-        <SelectField label={labels.model} name="model" options={content.modelOptions || []} />
-        <TextAreaField label={labels.volume} name="volume" />
-        <button
-          type="submit"
-          className="aq-cta-primary mt-2"
-        >
-          {form.submit}
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </button>
+        <SelectField label={labels.model} name="site_model" options={content.modelOptions || []} />
+        <TextAreaField label={labels.volume} name="main_need" />
+        <MarketingLeadFormControls
+          lang={pageLang}
+          submitLabel={form.submit}
+          privacyNote={fallback.privacy}
+          status={leadCapture.status}
+          copy={leadCapture.copy}
+        />
       </form>
     </article>
   );
 }
 
-function Field({ label, name, type = 'text', autoComplete }: {
+function Field({ label, name, type = 'text', autoComplete, required = false }: {
   label?: string;
   name: string;
   type?: string;
   autoComplete?: string;
+  required?: boolean;
 }) {
   return (
     <label className="grid gap-2 text-sm font-black text-slate-800">
@@ -715,6 +726,7 @@ function Field({ label, name, type = 'text', autoComplete }: {
         name={name}
         type={type}
         autoComplete={autoComplete}
+        required={required}
         className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100"
       />
     </label>

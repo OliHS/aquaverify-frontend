@@ -771,15 +771,12 @@ export const HospitalityTourismWaterLanding: React.FC<Props> = ({ content, pageL
     sourcePath: content.path,
     detailFields: ['water_type', 'product_type', 'site_model', 'sample_volume', 'current_method'],
     details: { page: pageId, category: 'industries', profile: 'hospitality-tourism', module: 'hospitality-tourism-water-diagnosis' },
-    onAccepted: (_result, payload) => trackCorporateEvent('hospitality_tourism_water_diagnosis_submit', {
+    onAccepted: () => trackCorporateEvent('hospitality_tourism_water_diagnosis_submit', {
       lang: pageLang,
       page: pageId,
       category: 'industries',
       intent: 'hospitality_tourism_water',
       profile: 'hospitality-tourism',
-      country: payload.details.country,
-      water_type: payload.details.water_type,
-      site_model: payload.details.site_model,
       module: 'hospitality-tourism-water-diagnosis'
     })
   });

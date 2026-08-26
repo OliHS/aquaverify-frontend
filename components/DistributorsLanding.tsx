@@ -24,10 +24,12 @@ import {
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
+import { MarketingLeadFormControls } from './MarketingLeadFormControls';
 import type { Language } from '../utils/translations';
 import { getMarketingPagePath } from '../utils/marketingRoutes.js';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
+import { useMarketingLeadCapture } from '../utils/marketingLeadCapture';
 import { supabase } from '../utils/supabase';
 import type { DistributorPartner } from './DistributorsGlobe';
 
@@ -137,6 +139,20 @@ type Props = {
 const sectorIcons = [FlaskConical, ShieldCheck, Landmark, Factory, Waves, Building2, Leaf, PackageCheck, Hotel];
 const buyerIcons = [PackageCheck, ShieldCheck, ClipboardCheck, Sparkles, CheckCircle2, Network];
 const programIcons = [PackageCheck, ClipboardCheck, ShieldCheck, Network, Handshake, Sparkles];
+const COMPANY_LABELS: Record<Language, string> = {
+  en: 'Company',
+  es: 'Empresa',
+  fr: 'Entreprise',
+  it: 'Azienda',
+  ca: 'Empresa'
+};
+const CONTACT_NAME_LABELS: Record<Language, string> = {
+  en: 'Contact name',
+  es: 'Nombre de contacto',
+  fr: 'Nom du contact',
+  it: 'Nome del referente',
+  ca: 'Nom de contacte'
+};
 
 const AnswerLayer: React.FC<{
   directAnswer?: DirectAnswerContent;
@@ -383,6 +399,8 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
   const partnerPath = content.partnerPath;
   const buyerFormId = 'buscar-distribuidor';
   const partnerFormId = 'ser-distribuidor';
+  const companyLabel = COMPANY_LABELS[pageLang] || COMPANY_LABELS.en;
+  const contactNameLabel = CONTACT_NAME_LABELS[pageLang] || CONTACT_NAME_LABELS.en;
   const buyerUrl = getPlatformSignupUrl({
     intent: 'find_distributor',
     page: 'distributors',
@@ -460,39 +478,50 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>, type: 'buyer' | 'partner') => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const fields: Record<string, string> = {};
-    form.forEach((value, key) => {
-      if (typeof value !== 'string') return;
-      const clean = value.trim();
-      if (clean) fields[key] = clean;
-    });
-
-    const intent = type === 'buyer' ? 'find_distributor' : 'distributor';
-    trackCorporateEvent(type === 'buyer' ? 'distributor_contact_submit' : 'distributor_partner_submit', {
+  const buyerLeadCapture = useMarketingLeadCapture({
+    formKey: 'distributor-buyer-request',
+    requestType: 'find_distributor',
+    lang: pageLang,
+    sourcePath: content.path,
+    detailFields: ['country', 'sector'],
+    details: {
+      page: 'distributors',
+      category: 'partners',
+      profile: 'buyer',
+      module: 'local-distributor-routing'
+    },
+    onAccepted: () => trackCorporateEvent('distributor_contact_submit', {
       lang: pageLang,
       page: 'distributors',
       category: 'partners',
-      intent,
-      country: fields.country,
-      sector: fields.sector,
-      company_type: fields.company_type
-    });
+      intent: 'find_distributor',
+      profile: 'buyer',
+      module: 'local-distributor-routing'
+    })
+  });
 
-    window.location.href = getPlatformSignupUrl({
-      intent,
+  const partnerLeadCapture = useMarketingLeadCapture({
+    formKey: 'distributor-partner-request',
+    requestType: 'distributor',
+    lang: pageLang,
+    sourcePath: content.path,
+    detailFields: ['country'],
+    buyerRoleFields: ['company_type'],
+    details: {
       page: 'distributors',
       category: 'partners',
-      profile: type,
-      module: type === 'buyer' ? 'local-distributor-routing' : 'partner-review',
-      ...fields,
-      prefill_name: fields.name,
-      prefill_email: fields.email,
-      prefill_company: fields.name
-    }, pageLang);
-  };
+      profile: 'partner',
+      module: 'partner-review'
+    },
+    onAccepted: () => trackCorporateEvent('distributor_partner_submit', {
+      lang: pageLang,
+      page: 'distributors',
+      category: 'partners',
+      intent: 'distributor',
+      profile: 'partner',
+      module: 'partner-review'
+    })
+  });
 
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
@@ -880,18 +909,14 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                 <article id={buyerFormId} className="scroll-mt-28 rounded-lg border border-slate-200 bg-white p-6 shadow-xl">
                   <h3 className="font-heading text-2xl font-black text-primary">{content.forms.buyer.title}</h3>
                   <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{content.forms.buyer.body}</p>
-                  <form onSubmit={(event) => handleSubmit(event, 'buyer')} className="mt-6 grid gap-4 md:grid-cols-2">
-                    <TextInput id="find-name" name="name" label={content.forms.buyer.fields.name} required autoComplete="name" />
+                  <form onSubmit={buyerLeadCapture.handleSubmit} className="relative mt-6 grid gap-4 md:grid-cols-2">
+                    <TextInput id="find-name" name="name" label={contactNameLabel} required autoComplete="name" />
+                    <TextInput id="find-company" name="company" label={content.forms.buyer.fields.company || companyLabel} required autoComplete="organization" />
                     <TextInput id="find-email" name="email" label={content.forms.buyer.fields.email} type="email" required autoComplete="email" />
                     <SelectField id="find-country" name="country" label={content.forms.buyer.fields.country} options={countries} required />
                     <SelectField id="find-sector" name="sector" label={content.forms.buyer.fields.sector} options={content.sectorOptions || []} />
-                    <TextAreaField id="find-message" name="message" label={content.forms.buyer.fields.message} />
-                    <div className="md:col-span-2">
-                      <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
-                        {content.forms.buyer.submit}
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </button>
-                    </div>
+                    <TextAreaField id="find-message" name="main_need" label={content.forms.buyer.fields.message} />
+                    <MarketingLeadFormControls lang={pageLang} submitLabel={content.forms.buyer.submit} status={buyerLeadCapture.status} copy={buyerLeadCapture.copy} />
                   </form>
                 </article>
               )}
@@ -900,18 +925,14 @@ export const DistributorsLanding: React.FC<Props> = ({ content, pageLang, showCo
                 <article id={partnerFormId} className="scroll-mt-28 rounded-lg border border-slate-200 bg-white p-6 shadow-xl">
                   <h3 className="font-heading text-2xl font-black text-primary">{content.forms.partner.title}</h3>
                   <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">{content.forms.partner.body}</p>
-                  <form onSubmit={(event) => handleSubmit(event, 'partner')} className="mt-6 grid gap-4 md:grid-cols-2">
-                    <TextInput id="partner-name" name="name" label={content.forms.partner.fields.name} required autoComplete="name" />
+                  <form onSubmit={partnerLeadCapture.handleSubmit} className="relative mt-6 grid gap-4 md:grid-cols-2">
+                    <TextInput id="partner-name" name="name" label={contactNameLabel} required autoComplete="name" />
+                    <TextInput id="partner-company" name="company" label={content.forms.partner.fields.company || companyLabel} required autoComplete="organization" />
                     <TextInput id="partner-email" name="email" label={content.forms.partner.fields.email} type="email" required autoComplete="email" />
                     <SelectField id="partner-country" name="country" label={content.forms.partner.fields.country} options={countries} required />
                     <TextInput id="partner-company-type" name="company_type" label={content.forms.partner.fields.companyType} />
-                    <TextAreaField id="partner-portfolio" name="portfolio" label={content.forms.partner.fields.portfolio} />
-                    <div className="md:col-span-2">
-                      <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
-                        {content.forms.partner.submit}
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </button>
-                    </div>
+                    <TextAreaField id="partner-portfolio" name="main_need" label={content.forms.partner.fields.portfolio} />
+                    <MarketingLeadFormControls lang={pageLang} submitLabel={content.forms.partner.submit} status={partnerLeadCapture.status} copy={partnerLeadCapture.copy} />
                   </form>
                 </article>
               )}

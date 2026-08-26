@@ -283,15 +283,12 @@ export const FacilityWaterRiskLanding: React.FC<Props> = ({ content, pageLang, s
     sourcePath: content.path,
     detailFields: ['facility_type', 'water_use', 'lab_model', 'sample_volume', 'current_method'],
     details: { page: 'facility-water-risk', category: 'industries', profile: 'facilities', module: 'facility-water-risk-diagnosis' },
-    onAccepted: (_result, payload) => trackCorporateEvent('facility_water_risk_diagnosis_submit', {
+    onAccepted: () => trackCorporateEvent('facility_water_risk_diagnosis_submit', {
       lang: pageLang,
       page: 'facility-water-risk',
       category: 'industries',
       intent: 'facility_water_risk',
       profile: 'facilities',
-      country: payload.details.country,
-      facility_type: payload.details.facility_type,
-      water_use: payload.details.water_use,
       module: 'facility-water-risk-diagnosis'
     })
   });
