@@ -5,6 +5,7 @@ import { createServer } from 'vite';
 const indexHtml = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const productHubSource = await readFile(new URL('../components/ProductHubLanding.tsx', import.meta.url), 'utf8');
 const workflowAdvisorSource = await readFile(new URL('../components/workflow/WorkflowAdvisorLanding.tsx', import.meta.url), 'utf8');
+const cookieConsentSource = await readFile(new URL('../components/CookieConsent.tsx', import.meta.url), 'utf8');
 assert.doesNotMatch(indexHtml, /localStorage|aquaverify_cookie_consent/);
 assert.match(indexHtml, /analytics_storage:\s*'denied'/);
 assert.match(indexHtml, /ad_storage:\s*'denied'/);
@@ -24,6 +25,7 @@ assert.match(workflowAdvisorSource, /assessmentIdempotencyKeyRef\s*=\s*useRef\('
 assert.match(workflowAdvisorSource, /JSON\.stringify\(\{\s*\.\.\.assessmentPayload,\s*elapsedMs:\s*0\s*}\)/);
 assert.match(workflowAdvisorSource, /'Idempotency-Key':\s*assessmentIdempotencyKeyRef\.current/);
 assert.doesNotMatch(workflowAdvisorSource, /'Idempotency-Key':\s*createWorkflowIdempotencyKey\(\)/);
+assert.doesNotMatch(cookieConsentSource, /Object\.entries\(getPrivacySafeCorporateAttributionParams\(\)\)/);
 
 const session = new Map([['aquaverify:analytics_session', 'person@example.invalid']]);
 const local = new Map([[
@@ -36,7 +38,8 @@ globalThis.window = {
   location: new URL('https://aquaverify.com/es/industrias/laboratorios-analisis-agua?utm_campaign=person%2525252540example.invalid&utm_id=opaque_123456'),
   sessionStorage: {
     getItem: (key) => session.get(key) || null,
-    setItem: (key, value) => session.set(key, value)
+    setItem: (key, value) => session.set(key, value),
+    removeItem: (key) => session.delete(key)
   },
   localStorage: {
     getItem: (key) => local.get(key) || null
@@ -294,7 +297,40 @@ try {
   assert.equal(deepEntityAttribution.utm_campaign, undefined);
   assert.equal(new URL(links.getPlatformSignupUrl({ intent: 'quote' }, 'es')).searchParams.get('utm_campaign'), null);
 
+  const analytics = await vite.ssrLoadModule('/utils/corporateAnalytics.ts');
   const leadCapture = await vite.ssrLoadModule('/utils/marketingLeadCapture.ts');
+  analytics.clearVerifiedCorporateAnalyticsConsent();
+  session.set('aquaverify:marketing_attribution', JSON.stringify({
+    utm_source: 'linkedin',
+    utm_campaign: 'person&commat;example&period;invalid',
+    utm_content: 'launch_2026'
+  }));
+  window.location = new URL('https://aquaverify.com/es/industrias/laboratorios-analisis-agua?utm_campaign=person%2525252540example.invalid');
+  assert.deepEqual(leadCapture.readPrivacySafeMarketingUtm(), {
+    utm_source: '',
+    utm_medium: '',
+    utm_campaign: '',
+    utm_content: '',
+    utm_term: '',
+    utm_id: ''
+  });
+  assert.equal(session.has('aquaverify:marketing_attribution'), false);
+
+  window.location = new URL('https://aquaverify.com/es/industrias/laboratorios-analisis-agua?utm_source=bluesky&utm_campaign=q3-launch');
+  assert.deepEqual(leadCapture.readPrivacySafeMarketingUtm(), {
+    utm_source: 'bluesky',
+    utm_medium: '',
+    utm_campaign: 'q3-launch',
+    utm_content: '',
+    utm_term: '',
+    utm_id: ''
+  });
+  assert.equal(session.has('aquaverify:marketing_attribution'), false);
+
+  assert.equal(analytics.markCorporateAnalyticsConsentVerified({
+    status: 'accepted', necessary: true, analytics: true, marketing: true,
+    version: '2026-08', updatedAt: new Date().toISOString()
+  }, '2026-08'), true);
   session.set('aquaverify:marketing_attribution', JSON.stringify({
     utm_source: 'linkedin',
     utm_campaign: 'person&commat;example&period;invalid',
@@ -335,8 +371,16 @@ try {
     utm_id: ''
   });
 
+  session.set('aquaverify:marketing_referrer_host', 'www.linkedin.com');
+  analytics.markCorporateAnalyticsConsentVerified({
+    status: 'custom', necessary: true, analytics: false, marketing: false,
+    version: '2026-08', updatedAt: new Date().toISOString()
+  }, '2026-08');
+  leadCapture.refreshPrivacySafeMarketingAttribution();
+  assert.equal(session.has('aquaverify:marketing_attribution'), false);
+  assert.equal(session.has('aquaverify:marketing_referrer_host'), false);
+
   window.location = new URL('https://aquaverify.com/es/industrias/laboratorios-analisis-agua?utm_source=linkedin&utm_content=612%20345%20678');
-  const analytics = await vite.ssrLoadModule('/utils/corporateAnalytics.ts');
   assert.equal(analytics.parseConsent(JSON.stringify({
     status: 'custom', necessary: true, analytics: 'false', marketing: false,
     version: '2026-08', updatedAt: new Date().toISOString()
@@ -659,6 +703,34 @@ try {
     analytics: 'false'
   }), consentPolicy, consentNowMs), null);
 
+  let rejectedPreferenceBody = null;
+  globalThis.fetch = async (_url, options = {}) => {
+    rejectedPreferenceBody = options.body;
+    return {
+      ok: true,
+      async json() {
+        return {
+          ok: true,
+          consent: {
+            status: 'custom', necessary: true, analytics: false, marketing: false,
+            version: consentPolicy.version, updatedAt: new Date().toISOString()
+          }
+        };
+      }
+    };
+  };
+  const rejectedPreference = await cookie.syncConsentWithPlatform({
+    status: 'custom', necessary: true, analytics: false, marketing: false,
+    version: consentPolicy.version, updatedAt: new Date().toISOString()
+  }, 'es', consentPolicy);
+  assert.equal(rejectedPreference.analytics, false);
+  assert.equal(rejectedPreference.marketing, false);
+  assert.ok(rejectedPreferenceBody instanceof URLSearchParams);
+  [
+    'source_url', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign',
+    'utm_content', 'utm_term', 'utm_id', 'gclid', 'fbclid', 'msclkid'
+  ].forEach((key) => assert.equal(rejectedPreferenceBody.get(key), null));
+
   let consentFetches = [];
   globalThis.fetch = async (url, options = {}) => {
     consentFetches.push({ url: String(url), options });
@@ -715,6 +787,10 @@ try {
   assert.equal(policyReads, 2);
   assert.equal(preferenceWrites, 2);
   assert.deepEqual(consentFetches.map((entry) => entry.options.method || 'GET'), ['GET', 'POST', 'GET', 'POST']);
+  consentFetches.filter((entry) => entry.options.method === 'POST').forEach((entry) => {
+    const keys = [...new Set([...entry.options.body.keys()])].sort();
+    assert.deepEqual(keys, ['analytics', 'lang', 'marketing', 'status', 'version']);
+  });
 
   let outageReads = 0;
   globalThis.fetch = async () => {
@@ -731,7 +807,8 @@ try {
       'encoded-email', 'phone', 'safe-url', 'origin-only-referrer', 'utm-filter',
       'signup-allowlist', 'reserved-attribution', 'event-schema-filter',
       'data-layer-filter', 'gtag-filter', 'payload-filter', 'session-id-filter',
-      'exact-path-registry', 'consent-gate', 'consent-server-restore', 'consent-policy-retry'
+      'exact-path-registry', 'consent-gate', 'consent-server-restore', 'consent-policy-retry',
+      'consent-purpose-limitation', 'campaign-storage-consent-gate'
     ]
   }));
 } finally {

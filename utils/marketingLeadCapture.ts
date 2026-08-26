@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import type { FormEvent } from 'react';
 import {
   PLATFORM_BASE_URL,
@@ -8,6 +8,7 @@ import {
   normalizePrivacySafeCorporateSourcePath
 } from './platformLinks';
 import type { Language } from './translations';
+import { hasMarketingConsent } from './corporateAnalytics';
 
 const MARKETING_LEAD_ENDPOINT = `${PLATFORM_BASE_URL}/api/public/v1/marketing/leads`;
 const ATTRIBUTION_SESSION_KEY = 'aquaverify:marketing_attribution';
@@ -164,6 +165,7 @@ function sanitizeStoredUtm(value: unknown): UtmValues {
 }
 
 function persistUtm(values: UtmValues) {
+  if (!hasMarketingConsent()) return;
   try {
     window.sessionStorage.setItem(ATTRIBUTION_SESSION_KEY, JSON.stringify(values));
   } catch {
@@ -171,15 +173,30 @@ function persistUtm(values: UtmValues) {
   }
 }
 
+export function clearMarketingAttributionStorage() {
+  if (typeof window === 'undefined') return;
+  try {
+    window.sessionStorage.removeItem(ATTRIBUTION_SESSION_KEY);
+    window.sessionStorage.removeItem(REFERRER_SESSION_KEY);
+  } catch {
+    // Storage can be unavailable; there is no persistent attribution to clear.
+  }
+}
+
 export function readPrivacySafeMarketingUtm(): UtmValues {
   const values = emptyUtm();
   if (typeof window === 'undefined') return values;
 
+  const storageAllowed = hasMarketingConsent();
+  if (!storageAllowed) clearMarketingAttributionStorage();
+
   let stored: unknown = {};
-  try {
-    stored = JSON.parse(window.sessionStorage.getItem(ATTRIBUTION_SESSION_KEY) || '{}') as unknown;
-  } catch {
-    stored = {};
+  if (storageAllowed) {
+    try {
+      stored = JSON.parse(window.sessionStorage.getItem(ATTRIBUTION_SESSION_KEY) || '{}') as unknown;
+    } catch {
+      stored = {};
+    }
   }
   const storedValues = sanitizeStoredUtm(stored);
 
@@ -200,6 +217,8 @@ export function readPrivacySafeMarketingUtm(): UtmValues {
     persistUtm(currentValues);
     return currentValues;
   }
+
+  if (!storageAllowed) return values;
 
   // A poisoned current URL never replaces a previously validated first-touch
   // attribution. Rewriting the stored value also removes any legacy unsafe data.
@@ -223,9 +242,18 @@ function getReferrerHost() {
     current = '';
   }
 
+  const isExternal = Boolean(current && current !== window.location.hostname);
+  if (!hasMarketingConsent()) {
+    try {
+      window.sessionStorage.removeItem(REFERRER_SESSION_KEY);
+    } catch {
+      // Storage can be unavailable; return only the current-page referrer.
+    }
+    return isExternal ? current : '';
+  }
+
   try {
     const stored = privacySafeReferrerHost(window.sessionStorage.getItem(REFERRER_SESSION_KEY));
-    const isExternal = Boolean(current && current !== window.location.hostname);
     if (isExternal) {
       window.sessionStorage.setItem(REFERRER_SESSION_KEY, current);
       return current;
@@ -235,6 +263,15 @@ function getReferrerHost() {
   } catch {
     return current;
   }
+}
+
+export function refreshPrivacySafeMarketingAttribution() {
+  if (!hasMarketingConsent()) {
+    clearMarketingAttributionStorage();
+    return;
+  }
+  readPrivacySafeMarketingUtm();
+  getReferrerHost();
 }
 
 function privacySafeConfiguredPath(value: unknown) {
@@ -370,10 +407,6 @@ export function useMarketingLeadCapture(config: MarketingLeadCaptureConfig) {
   const submitting = useRef(false);
   const configRef = useRef(config);
   configRef.current = config;
-
-  useEffect(() => {
-    readPrivacySafeMarketingUtm();
-  }, []);
 
   const handleSubmit = useCallback(async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();

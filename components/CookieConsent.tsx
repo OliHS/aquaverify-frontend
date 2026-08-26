@@ -4,9 +4,12 @@ import { useLanguage } from '../context/LanguageContext';
 import {
   getPlatformCorporateCookiePolicyUrl,
   getPlatformCorporateCookiePreferencesUrl,
-  getPlatformLegalUrl,
-  getPrivacySafeCorporateAttributionParams
+  getPlatformLegalUrl
 } from '../utils/platformLinks';
+import {
+  clearMarketingAttributionStorage,
+  refreshPrivacySafeMarketingAttribution
+} from '../utils/marketingLeadCapture';
 import {
   clearVerifiedCorporateAnalyticsConsent,
   flushPendingCorporatePageView,
@@ -322,9 +325,6 @@ export async function syncConsentWithPlatform(consent: CookieConsentState, lang:
   });
   if (consent.status === 'accepted' && consent.analytics && consent.marketing) body.set('accept_all', '1');
   if (!consent.analytics && !consent.marketing) body.set('reject_optional', '1');
-  Object.entries(getPrivacySafeCorporateAttributionParams()).forEach(([key, value]) => {
-    if (value !== null && value !== undefined && value !== '') body.set(key, String(value));
-  });
 
   try {
     const response = await fetch(getPlatformCorporateCookiePreferencesUrl(), {
@@ -396,6 +396,7 @@ export const CookieConsent: React.FC = () => {
       const livePolicy = await fetchPlatformCookiePolicy();
       if (!isMounted) return;
       if (!livePolicy) {
+        clearMarketingAttributionStorage();
         setSyncError('cookie_policy_unavailable');
         setIsReady(true);
         return;
@@ -406,6 +407,8 @@ export const CookieConsent: React.FC = () => {
       if (!isMounted) return;
 
       if (persistedConsent && markCorporateAnalyticsConsentVerified(persistedConsent, livePolicy.version)) {
+        if (persistedConsent.marketing) refreshPrivacySafeMarketingAttribution();
+        else clearMarketingAttributionStorage();
         persistConsent(persistedConsent, livePolicy.maxAgeDays);
         setConsent(persistedConsent);
         updateGoogleConsentMode(persistedConsent);
@@ -416,6 +419,9 @@ export const CookieConsent: React.FC = () => {
         });
       } else if (rawStoredConsent) {
         clearStoredConsent();
+        clearMarketingAttributionStorage();
+      } else {
+        clearMarketingAttributionStorage();
       }
 
       setIsReady(true);
@@ -440,6 +446,7 @@ export const CookieConsent: React.FC = () => {
     setIsSaving(true);
     setSyncError('');
     clearVerifiedCorporateAnalyticsConsent();
+    if (!marketing) clearMarketingAttributionStorage();
     updateGoogleConsentMode({ analytics: false, marketing: false });
 
     const result = await persistConsentAgainstLivePolicy(analytics, marketing, status, lang);
@@ -454,6 +461,9 @@ export const CookieConsent: React.FC = () => {
       setIsSaving(false);
       return;
     }
+
+    if (persistedConsent.marketing) refreshPrivacySafeMarketingAttribution();
+    else clearMarketingAttributionStorage();
 
     persistConsent(persistedConsent, livePolicy.maxAgeDays);
     updateGoogleConsentMode(persistedConsent);

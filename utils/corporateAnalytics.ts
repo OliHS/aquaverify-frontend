@@ -517,6 +517,10 @@ export function hasAnalyticsConsent() {
   return verifiedCorporateConsent?.analytics === true;
 }
 
+export function hasMarketingConsent() {
+  return verifiedCorporateConsent?.marketing === true;
+}
+
 export function isPlatformUrl(href: string) {
   try {
     return new URL(href).origin === new URL(PLATFORM_BASE_URL).origin;
