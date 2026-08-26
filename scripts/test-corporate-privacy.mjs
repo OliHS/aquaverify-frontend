@@ -4,6 +4,7 @@ import { createServer } from 'vite';
 
 const indexHtml = await readFile(new URL('../index.html', import.meta.url), 'utf8');
 const productHubSource = await readFile(new URL('../components/ProductHubLanding.tsx', import.meta.url), 'utf8');
+const workflowAdvisorSource = await readFile(new URL('../components/workflow/WorkflowAdvisorLanding.tsx', import.meta.url), 'utf8');
 assert.doesNotMatch(indexHtml, /localStorage|aquaverify_cookie_consent/);
 assert.match(indexHtml, /analytics_storage:\s*'denied'/);
 assert.match(indexHtml, /ad_storage:\s*'denied'/);
@@ -14,6 +15,11 @@ assert.match(productHubSource, /click_product_card',[\s\S]{0,120}\{ page: family
 assert.match(productHubSource, /click_compare_products',[\s\S]{0,120}\{ page: family\.pageId/);
 assert.match(productHubSource, /page: card\.pageId, location: 'products_partner_paths'/);
 assert.doesNotMatch(productHubSource, /\{ product: family\.pageId/);
+assert.match(workflowAdvisorSource, /getPrivacySafeCorporateAttributionParams\(\)/);
+assert.match(workflowAdvisorSource, /sourcePath:\s*getPrivacySafePagePath\(\)/);
+assert.doesNotMatch(workflowAdvisorSource, /sourcePath:\s*window\.location\.pathname/);
+assert.doesNotMatch(workflowAdvisorSource, /new URLSearchParams\(window\.location\.search\)/);
+assert.doesNotMatch(workflowAdvisorSource, /document\.referrer\s*\?/);
 
 const session = new Map([['aquaverify:analytics_session', 'person@example.invalid']]);
 const local = new Map([[
