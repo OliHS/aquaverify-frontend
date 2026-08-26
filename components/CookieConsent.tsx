@@ -396,9 +396,9 @@ export const CookieConsent: React.FC = () => {
       const livePolicy = await fetchPlatformCookiePolicy();
       if (!isMounted) return;
       if (!livePolicy) {
-      setSyncError('cookie_policy_unavailable');
-      setIsReady(true);
-      return;
+        setSyncError('cookie_policy_unavailable');
+        setIsReady(true);
+        return;
       }
 
       const rawStoredConsent = readStoredConsent();
@@ -480,7 +480,7 @@ export const CookieConsent: React.FC = () => {
           <p className="mt-2 text-sm leading-6 text-slate-600">{labels.copy}</p>
           {syncError && (
             <p role="alert" className="mt-2 text-xs font-bold text-rose-700">
-              {labels.error || 'Cookie preferences could not be verified. Please try again.'}
+              {labels.error}
             </p>
           )}
           <a href={cookiePolicyUrl} className="mt-3 inline-flex text-xs font-bold text-cyan-700 hover:text-cyan-900">
@@ -576,7 +576,7 @@ export const CookieConsent: React.FC = () => {
             <div className="flex flex-col gap-2 border-t border-slate-100 px-6 py-5 sm:flex-row sm:justify-end">
               {syncError && (
                 <p role="alert" className="mr-auto self-center text-xs font-bold text-rose-700">
-                  {labels.error || 'Cookie preferences could not be verified. Please try again.'}
+                  {labels.error}
                 </p>
               )}
               <button

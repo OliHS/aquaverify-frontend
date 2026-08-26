@@ -1327,6 +1327,8 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   const [publicId, setPublicId] = useState('');
   const [contact, setContact] = useState({ name: '', email: '', company: '', countryCode: '', buyerRole: '', phone: '', requestType: 'technical_review', comment: '' });
   const assessmentStartedAtRef = useRef(Date.now());
+  const assessmentIdempotencyKeyRef = useRef('');
+  const assessmentIdempotencyPayloadRef = useRef('');
   const questionnaireTopRef = useRef<HTMLElement | null>(null);
   const resultTopRef = useRef<HTMLDivElement | null>(null);
   const stepHeadingRef = useRef<HTMLHeadingElement | null>(null);
@@ -1452,22 +1454,31 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
     const isResearchSave = purpose === 'research';
     const isContactSave = purpose === 'contact';
     const attribution = getWorkflowAttributionContext();
+    const assessmentPayload = {
+      input,
+      researchConsent: isResearchSave,
+      contactConsent: isContactSave,
+      marketingConsent: isContactSave ? marketingConsent : false,
+      ...attribution,
+      elapsedMs: Math.max(0, Math.min(Date.now() - assessmentStartedAtRef.current, 86_400_000))
+    };
+    const idempotencyPayload = JSON.stringify({ ...assessmentPayload, elapsedMs: 0 });
+    if (
+      !assessmentIdempotencyKeyRef.current
+      || assessmentIdempotencyPayloadRef.current !== idempotencyPayload
+    ) {
+      assessmentIdempotencyKeyRef.current = createWorkflowIdempotencyKey();
+      assessmentIdempotencyPayloadRef.current = idempotencyPayload;
+    }
     try {
       const response = await fetch(`${API_BASE}/api/public/v1/workflow-assessments`, {
         method: 'POST',
         credentials: 'omit',
         headers: {
           'Content-Type': 'application/json',
-          'Idempotency-Key': createWorkflowIdempotencyKey()
+          'Idempotency-Key': assessmentIdempotencyKeyRef.current
         },
-        body: JSON.stringify({
-          input,
-          researchConsent: isResearchSave,
-          contactConsent: isContactSave,
-          marketingConsent: isContactSave ? marketingConsent : false,
-          ...attribution,
-          elapsedMs: Math.max(0, Math.min(Date.now() - assessmentStartedAtRef.current, 86_400_000))
-        })
+        body: JSON.stringify(assessmentPayload)
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {

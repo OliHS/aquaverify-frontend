@@ -20,6 +20,10 @@ assert.match(workflowAdvisorSource, /sourcePath:\s*getPrivacySafePagePath\(\)/);
 assert.doesNotMatch(workflowAdvisorSource, /sourcePath:\s*window\.location\.pathname/);
 assert.doesNotMatch(workflowAdvisorSource, /new URLSearchParams\(window\.location\.search\)/);
 assert.doesNotMatch(workflowAdvisorSource, /document\.referrer\s*\?/);
+assert.match(workflowAdvisorSource, /assessmentIdempotencyKeyRef\s*=\s*useRef\(''\)/);
+assert.match(workflowAdvisorSource, /JSON\.stringify\(\{\s*\.\.\.assessmentPayload,\s*elapsedMs:\s*0\s*}\)/);
+assert.match(workflowAdvisorSource, /'Idempotency-Key':\s*assessmentIdempotencyKeyRef\.current/);
+assert.doesNotMatch(workflowAdvisorSource, /'Idempotency-Key':\s*createWorkflowIdempotencyKey\(\)/);
 
 const session = new Map([['aquaverify:analytics_session', 'person@example.invalid']]);
 const local = new Map([[
