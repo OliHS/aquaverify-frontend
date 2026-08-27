@@ -356,7 +356,8 @@ async function run() {
         method: 'OPTIONS',
         headers: {
           Origin: CORPORATE_SITE_URL,
-          'Access-Control-Request-Method': 'POST'
+          'Access-Control-Request-Method': 'GET',
+          'Access-Control-Request-Headers': 'cache-control'
         }
       }
     );
@@ -364,6 +365,29 @@ async function run() {
     assert(
       response.headers.get('access-control-allow-origin') === CORPORATE_SITE_URL,
       'Corporate cookie CORS allow-origin header is incorrect'
+    );
+    assert(
+      /(?:^|,\s*)cache-control(?:\s*,|$)/i.test(response.headers.get('access-control-allow-headers') || ''),
+      'Corporate cookie CORS does not allow the cache-control preflight header'
+    );
+  });
+
+  await check('corporate cookie policy preflight allows cache-control', async () => {
+    const response = await expectStatus(
+      `${PLATFORM_URL}/legal/cookies/corporate-policy`,
+      204,
+      {
+        method: 'OPTIONS',
+        headers: {
+          Origin: CORPORATE_SITE_URL,
+          'Access-Control-Request-Method': 'GET',
+          'Access-Control-Request-Headers': 'cache-control'
+        }
+      }
+    );
+    assert(
+      /(?:^|,\s*)cache-control(?:\s*,|$)/i.test(response.headers.get('access-control-allow-headers') || ''),
+      'Corporate cookie policy CORS does not allow the cache-control preflight header'
     );
   });
 

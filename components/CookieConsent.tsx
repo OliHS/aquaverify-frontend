@@ -257,7 +257,7 @@ export async function fetchPlatformCookiePolicy(): Promise<CookiePolicyState | n
       method: 'GET',
       credentials: 'include',
       cache: 'no-store',
-      headers: { Accept: 'application/json', 'Cache-Control': 'no-cache' }
+      headers: { Accept: 'application/json' }
     });
     if (!response.ok) throw new Error('Policy endpoint unavailable');
     const data = await response.json();
@@ -285,7 +285,7 @@ export async function fetchPersistedConsentFromPlatform(policy: CookiePolicyStat
       method: 'GET',
       credentials: 'include',
       cache: 'no-store',
-      headers: { Accept: 'application/json', 'Cache-Control': 'no-cache' }
+      headers: { Accept: 'application/json' }
     });
     if (!response.ok) return null;
     const data = await response.json();

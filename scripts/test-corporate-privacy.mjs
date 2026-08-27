@@ -26,6 +26,7 @@ assert.match(workflowAdvisorSource, /JSON\.stringify\(\{\s*\.\.\.assessmentPaylo
 assert.match(workflowAdvisorSource, /'Idempotency-Key':\s*assessmentIdempotencyKeyRef\.current/);
 assert.doesNotMatch(workflowAdvisorSource, /'Idempotency-Key':\s*createWorkflowIdempotencyKey\(\)/);
 assert.doesNotMatch(cookieConsentSource, /Object\.entries\(getPrivacySafeCorporateAttributionParams\(\)\)/);
+assert.doesNotMatch(cookieConsentSource, /['"]Cache-Control['"]\s*:\s*['"]no-cache['"]/);
 
 const session = new Map([['aquaverify:analytics_session', 'person@example.invalid']]);
 const local = new Map([[
