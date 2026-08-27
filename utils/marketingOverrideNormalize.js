@@ -1,6 +1,11 @@
 export const MARKETING_OVERRIDE_SECTION_ID = 'marketing_page';
 
 const PUBLIC_COPY_REPLACEMENTS = [
+  ['ENUMERA Soma100 for somatic coliphage workflows', 'ENUMERA Soma100 for somatic coliphages as viral indicators'],
+  ['ENUMERA Soma100 para flujos de colífagos somáticos', 'ENUMERA Soma100 para colífagos somáticos como indicadores víricos'],
+  ['ENUMERA Soma100 pour les coliphages somatiques', 'ENUMERA Soma100 pour les coliphages somatiques comme indicateurs viraux'],
+  ['ENUMERA Soma100 per colifagi somatici', 'ENUMERA Soma100 per i colifagi somatici come indicatori virali'],
+  ['ENUMERA Soma100 per a colífags somàtics', 'ENUMERA Soma100 per a colífags somàtics com a indicadors vírics'],
   ['CRM attribution from web leads to partner conversations', 'Qualified web enquiries connected to partner conversations'],
   ['Whitepaper on software evidence, audit trails, sample traceability and CRM attribution for water quality compliance workflows.', 'Whitepaper on software evidence, audit trails, sample traceability and customer follow-up for water quality compliance workflows.'],
   ['Whitepaper sobre evidencia software, audit trail, trazabilidad de muestras y atribución CRM para flujos de cumplimiento en calidad del agua.', 'Whitepaper sobre evidencia software, audit trail, trazabilidad de muestras y seguimiento de clientes para flujos de cumplimiento en calidad del agua.'],
@@ -100,6 +105,70 @@ function normalizeSections(value) {
   return sections.length > 0 ? sections : null;
 }
 
+function normalizeDirectAnswer(value) {
+  if (!value || typeof value !== 'object') return null;
+  const directAnswer = {
+    title: cleanText(value.title),
+    body: cleanText(value.body)
+  };
+  return directAnswer.title && directAnswer.body ? directAnswer : null;
+}
+
+function normalizePillars(value) {
+  if (!Array.isArray(value)) return null;
+  const pillars = value
+    .map((item) => ({
+      title: cleanText(item?.title),
+      body: cleanText(item?.body)
+    }))
+    .filter((item) => item.title && item.body);
+  return pillars.length > 0 ? pillars : null;
+}
+
+function normalizeTable(value) {
+  if (!value || typeof value !== 'object') return null;
+  const columns = normalizeBullets(value.columns);
+  const rows = Array.isArray(value.rows)
+    ? value.rows
+      .map((row) => normalizeBullets(row))
+      .filter((row) => row.length > 0)
+    : [];
+  const table = {
+    title: cleanText(value.title),
+    columns,
+    rows
+  };
+  return table.title && columns.length > 0 && rows.length > 0 ? table : null;
+}
+
+function normalizeStringArray(value) {
+  if (!Array.isArray(value)) return null;
+  const items = value.map((item) => cleanText(item).trim()).filter(Boolean);
+  return items.length > 0 ? items : null;
+}
+
+function normalizeRelations(value) {
+  if (!value || typeof value !== 'object') return null;
+  const relations = Object.fromEntries(
+    Object.entries(value)
+      .map(([key, item]) => [cleanText(key).trim(), cleanText(item).trim()])
+      .filter(([key, item]) => key && item)
+  );
+  return Object.keys(relations).length > 0 ? relations : null;
+}
+
+function normalizeLinks(value) {
+  if (!Array.isArray(value)) return null;
+  const links = value
+    .map((item) => ({
+      routeId: cleanText(item?.routeId),
+      label: cleanText(item?.label),
+      body: cleanText(item?.body)
+    }))
+    .filter((item) => item.routeId && item.label && item.body);
+  return links.length > 0 ? links : null;
+}
+
 function normalizeFaqs(value) {
   if (!Array.isArray(value)) return null;
   const faqs = value
@@ -179,6 +248,37 @@ function normalizeVisuals(value) {
   return Object.keys(cleaned).length > 0 ? cleaned : null;
 }
 
+function normalizeBuyerProblemItems(value) {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) => ({
+      id: cleanText(item?.id),
+      question: cleanText(item?.question),
+      answer: cleanText(item?.answer)
+    }))
+    .filter((item) => item.id && item.question && item.answer);
+}
+
+function normalizeBuyerProblems(value) {
+  if (!value || typeof value !== 'object') return null;
+  const problems = normalizeBuyerProblemItems(value.problems);
+  const buyerProblems = {
+    eyebrow: cleanText(value.eyebrow),
+    title: cleanText(value.title),
+    intro: cleanText(value.intro),
+    cta: cleanText(value.cta),
+    problems,
+    relatedResourceIds: normalizeStringArray(value.relatedResourceIds) || [],
+    relatedGlossaryTermIds: normalizeStringArray(value.relatedGlossaryTermIds) || [],
+    relatedToolIds: normalizeStringArray(value.relatedToolIds) || [],
+    dateModified: cleanText(value.dateModified)
+  };
+
+  return buyerProblems.eyebrow && buyerProblems.title && buyerProblems.intro && buyerProblems.cta && problems.length > 0
+    ? buyerProblems
+    : null;
+}
+
 export function normalizeMarketingOverride(value) {
   if (!value || typeof value !== 'object') return null;
 
@@ -197,11 +297,24 @@ export function normalizeMarketingOverride(value) {
     datasheetLabel: cleanText(value.datasheetLabel),
     seoTitle: cleanText(value.seoTitle),
     seoDescription: cleanText(value.seoDescription),
+    directAnswer: normalizeDirectAnswer(value.directAnswer),
+    pillars: normalizePillars(value.pillars),
+    ecosystemTable: normalizeTable(value.ecosystemTable),
+    keyConceptIds: normalizeStringArray(value.keyConceptIds),
+    keyConceptRelations: normalizeRelations(value.keyConceptRelations),
+    schemaKnowsAbout: normalizeStringArray(value.schemaKnowsAbout),
+    ecosystemLinksTitle: cleanText(value.ecosystemLinksTitle),
+    ecosystemLinks: normalizeLinks(value.ecosystemLinks),
+    evidenceLinksTitle: cleanText(value.evidenceLinksTitle),
+    evidenceLinks: normalizeLinks(value.evidenceLinks),
+    commercialLinksTitle: cleanText(value.commercialLinksTitle),
+    commercialLinks: normalizeLinks(value.commercialLinks),
     sections: normalizeSections(value.sections),
     faqs: normalizeFaqs(value.faqs),
     cta: normalizeCta(value.cta),
     gallery: normalizeGallery(value.gallery),
-    visuals: normalizeVisuals(value.visuals)
+    visuals: normalizeVisuals(value.visuals),
+    buyerProblems: normalizeBuyerProblems(value.buyerProblems)
   };
 
   return Object.fromEntries(

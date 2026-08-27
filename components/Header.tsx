@@ -18,6 +18,17 @@ import { trackCorporateEvent } from '../utils/corporateAnalytics';
 const logoSrc = '/images/logo-mark-160.png';
 
 const NAV_ROUTE_GROUPS: Record<string, string[]> = {
+  tools: [
+    'aquatools',
+    'aquatool-dilution',
+    'aquatool-molarity',
+    'aquatool-unit-converter',
+    'aquatool-rpm-rcf',
+    'aquatool-cfu',
+    'aquatool-recovery-rpd',
+    'aquatool-hardness-alkalinity',
+    'aquatool-chemical-species'
+  ],
   solutions: [
     'industries-hub',
     'water-quality-control',
@@ -46,6 +57,14 @@ const NAV_ROUTE_GROUPS: Record<string, string[]> = {
   oem: ['oem']
 };
 
+const FREE_TOOLS_LABELS: Record<Language, string> = {
+  en: 'Tools',
+  es: 'Herramientas',
+  fr: 'Outils',
+  it: 'Strumenti',
+  ca: 'Eines'
+};
+
 export const Header: React.FC = () => {
   const { lang, setLang, t } = useLanguage();
   const { isEditing } = usePageContent();
@@ -55,7 +74,6 @@ export const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const platformLoginUrl = getPlatformLoginUrl(lang);
-  const platformSignupUrl = getPlatformSignupUrl({ intent: 'signup' }, lang);
   const platformQuoteUrl = getPlatformSignupUrl({ intent: 'quote', page: 'header' }, lang);
   const homePaths = ['/', '/en', '/es', '/fr', '/it', '/ca'];
   const isHomePath = homePaths.includes(location.pathname.replace(/\/+$/, '') || '/');
@@ -76,6 +94,7 @@ export const Header: React.FC = () => {
     products: getMarketingPagePath('products', lang),
     platform: getMarketingPagePath('platform', lang),
     resources: getMarketingPagePath('resources', lang),
+    tools: getMarketingPagePath('aquatools', lang),
     distributors: getMarketingPagePath('distributors', lang),
     oem: getMarketingPagePath('oem', lang)
   };
@@ -83,13 +102,13 @@ export const Header: React.FC = () => {
     { id: 'products', label: t.nav.products, field: 'link_products', legacyFallbacks: ['#', '#products'] },
     { id: 'platform', label: t.nav.platform, field: 'link_platform', legacyFallbacks: ['#', '#platform', '#saas'] },
     { id: 'solutions', label: t.nav.solutions, field: 'link_solutions', legacyFallbacks: ['#', '#solutions'] },
+    { id: 'tools', label: FREE_TOOLS_LABELS[lang], field: 'link_tools', legacyFallbacks: ['#', '#tools'] },
     { id: 'distributors', label: t.nav.distributors, field: 'link_distributors', legacyFallbacks: ['#', '#distributors'] },
     { id: 'oem', label: t.nav.oem, field: 'link_oem', legacyFallbacks: ['#', '#oem'] },
     { id: 'resources', label: t.nav.resources, field: 'link_resources', legacyFallbacks: ['#', '#resources'] }
   ] as const;
   const navButtonBase = 'inline-flex items-center justify-center gap-2.5 rounded-full px-[18px] py-[13px] text-sm font-black leading-none border transition duration-200 hover:-translate-y-0.5';
   const signInButtonClasses = `${navButtonBase} border-slate-200 bg-white text-primary hover:border-cyan-200 hover:bg-cyan-50`;
-  const signUpButtonClasses = `${navButtonBase} border-transparent bg-secondary text-white shadow-lg shadow-cyan-500/20 hover:bg-primary`;
   const quoteButtonClasses = `${navButtonBase} border-transparent bg-primary text-white shadow-lg shadow-primary/20 hover:bg-secondary whitespace-nowrap`;
 
   useEffect(() => {
@@ -198,10 +217,10 @@ export const Header: React.FC = () => {
       className={`${isEditing ? 'absolute top-0' : 'fixed'} w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-soft py-3' : 'bg-white py-5'
         }`}
     >
-      <div className="container mx-auto px-6 flex justify-between items-center">
+      <div className="container mx-auto flex items-center justify-between gap-4 px-6 xl:grid xl:grid-cols-[minmax(205px,0.82fr)_minmax(0,auto)_minmax(290px,0.9fr)] xl:gap-6">
         {/* Logo */}
         <div
-          className="flex items-center space-x-3 group cursor-pointer"
+          className="group flex shrink-0 cursor-pointer items-center space-x-3 xl:justify-self-start"
           onClick={handleLogoClick}
         >
           {/* Logo Image */}
@@ -218,7 +237,7 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Desktop Nav */}
-        <nav className="hidden xl:flex items-center space-x-7">
+        <nav className="hidden min-w-0 items-center justify-center gap-4 xl:flex 2xl:gap-6">
           {navItems.map((item) => (
             <EditableLinkWrapper
               key={item.id}
@@ -230,7 +249,7 @@ export const Header: React.FC = () => {
               <a
                 href={navHrefs[item.id]}
                 onClick={(e) => handleSmoothScroll(e, item.id)}
-                className={getNavLinkClasses(item.id)}
+                className={`${getNavLinkClasses(item.id)} whitespace-nowrap text-center leading-5`}
               >
                 {item.label}
               </a>
@@ -239,8 +258,8 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Desktop CTA & Lang Switcher */}
-        <div className="hidden xl:flex items-center space-x-3">
-          <div className="relative group mr-2">
+        <div className="hidden min-w-0 items-center justify-end gap-3 xl:flex xl:justify-self-end">
+          <div className="relative group">
             <button className="flex items-center space-x-1 text-gray-500 hover:text-primary transition-colors text-xs font-bold uppercase">
               <Globe size={16} />
               <span>{lang}</span>
@@ -263,11 +282,6 @@ export const Header: React.FC = () => {
           <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={LEGACY_PLATFORM_LOGIN_URLS}>
             <a href={platformLoginUrl} className={signInButtonClasses}>
               Sign in
-            </a>
-          </EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="url_signup" fallback={platformSignupUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
-            <a href={platformSignupUrl} className={signUpButtonClasses}>
-              Sign up
             </a>
           </EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="url_quote" fallback={platformQuoteUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
@@ -322,11 +336,6 @@ export const Header: React.FC = () => {
           <EditableLinkWrapper sectionId="nav" field="url_login" fallback={platformLoginUrl} legacyFallbacks={LEGACY_PLATFORM_LOGIN_URLS}>
             <a href={platformLoginUrl} onClick={() => setIsMenuOpen(false)} className={`${signInButtonClasses} w-full`}>
               Sign in
-            </a>
-          </EditableLinkWrapper>
-          <EditableLinkWrapper sectionId="nav" field="url_signup" fallback={platformSignupUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>
-            <a href={platformSignupUrl} onClick={() => setIsMenuOpen(false)} className={`${signUpButtonClasses} w-full`}>
-              Sign up
             </a>
           </EditableLinkWrapper>
           <EditableLinkWrapper sectionId="nav" field="url_quote" fallback={platformQuoteUrl} legacyFallbacks={LEGACY_PLATFORM_SIGNUP_URLS}>

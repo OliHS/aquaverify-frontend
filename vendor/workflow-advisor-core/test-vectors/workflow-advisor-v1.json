@@ -1,0 +1,266 @@
+[
+  {
+    "id": "water-testing-labs-high-volume-excel",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "en",
+      "sectorId": "water-testing-labs",
+      "answers": {
+        "organization_type": "private_laboratory",
+        "buyer_role": "laboratory",
+        "site_count_band": "two_to_five",
+        "lab_model": "internal",
+        "sample_volume_band": "200_to_999_month",
+        "current_systems": ["spreadsheets", "email"],
+        "digitised_stages": ["analysis", "reading"],
+        "priority_problem_ids": ["increase-throughput", "reduce-turnaround"],
+        "evidence_needs": ["chain_of_custody", "technical_review", "coa"],
+        "implementation_timeline": "within_three_months",
+        "preferred_route": "product_and_software",
+        "target_groups": ["somatic_coliphages"],
+        "result_type": "enumeration",
+        "intended_use": "routine_internal_control",
+        "method_context": "iso_10705_2",
+        "sample_volume_context": "one_hundred_ml",
+        "laboratory_workflow_needs": ["new_service", "reading_review", "plate_workflow"]
+      }
+    },
+    "expectedScores": { "workflow_maturity": 2 },
+    "expectedRecommendations": ["module.sample-management", "module.lims-review", "product.enumera-soma100"],
+    "expectedConstraints": [],
+    "mustNotRecommend": []
+  },
+  {
+    "id": "local-only-no-storage",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "es",
+      "sectorId": "water-quality-control",
+      "answers": {
+        "organization_type": "manufacturer",
+        "buyer_role": "quality",
+        "site_count_band": "one",
+        "lab_model": "external",
+        "sample_volume_band": "10_to_49_month",
+        "current_systems": ["paper"],
+        "digitised_stages": ["control_plan"],
+        "priority_problem_ids": ["standardize-control-plan"],
+        "evidence_needs": ["audit_trail"],
+        "implementation_timeline": "exploring",
+        "preferred_route": "not_sure"
+      }
+    },
+    "processingPurpose": "local_only",
+    "expectedScores": { "workflow_maturity": 2 },
+    "expectedRecommendations": ["next_step.technical-review"],
+    "expectedConstraints": ["constraint.no_compliance_score"],
+    "mustNotRecommend": ["product.enumera-soma100", "product.indica-screening"]
+  },
+  {
+    "id": "contact-only-excluded-from-research",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "fr",
+      "sectorId": "municipal-water-testing",
+      "answers": {
+        "organization_type": "municipal_operator",
+        "buyer_role": "operations",
+        "site_count_band": "six_to_twenty",
+        "lab_model": "external",
+        "sample_volume_band": "50_to_199_month",
+        "current_systems": ["email", "external_lab_portal"],
+        "digitised_stages": ["sampling", "reception"],
+        "priority_problem_ids": ["coordinate-network-sampling"],
+        "evidence_needs": ["sampling_context", "multi_site_history", "dashboards"],
+        "implementation_timeline": "three_to_six_months",
+        "preferred_route": "technical_review",
+        "target_groups": ["e_coli", "total_coliforms"],
+        "result_type": "presence_absence",
+        "intended_use": "treatment_verification",
+        "method_context": "internal_sop",
+        "sample_volume_context": "one_hundred_ml"
+      }
+    },
+    "processingPurpose": "contact",
+    "expectedRecommendations": ["module.field-sampling", "module.customer-portal", "product.indica-screening"],
+    "expectedConstraints": ["constraint.no_compliance_score"],
+    "mustNotRecommend": ["product.enumera-soma100"]
+  },
+  {
+    "id": "research-and-contact-regulatory-method-review",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "it",
+      "sectorId": "food-beverage-water-quality",
+      "answers": {
+        "organization_type": "manufacturer",
+        "buyer_role": "quality",
+        "site_count_band": "two_to_five",
+        "lab_model": "mixed",
+        "sample_volume_band": "50_to_199_month",
+        "current_systems": ["qms", "spreadsheets"],
+        "digitised_stages": ["control_plan", "sampling", "analysis", "coa_reporting"],
+        "priority_problem_ids": ["reduce-release-delays", "prepare-customer-audit-evidence"],
+        "evidence_needs": ["coa", "audit_trail", "deviations_and_capa"],
+        "implementation_timeline": "within_three_months",
+        "preferred_route": "product_and_software",
+        "target_groups": ["e_coli", "total_coliforms"],
+        "result_type": "both",
+        "intended_use": "regulatory_reporting",
+        "method_context": "iso_9308",
+        "sample_volume_context": "one_hundred_ml",
+        "release_decision_context": ["batch_release", "customer_audit"]
+      }
+    },
+    "processingPurpose": "research_and_contact",
+    "expectedRecommendations": ["product.iso-epa-kits"],
+    "expectedConstraints": ["constraint.no_automatic_regulatory_acceptance", "constraint.regulated_use_review"],
+    "mustNotRecommend": []
+  },
+  {
+    "id": "pharma-wfi-technical-review",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "ca",
+      "sectorId": "pharma-cosmetics-water",
+      "answers": {
+        "organization_type": "manufacturer",
+        "buyer_role": "quality",
+        "site_count_band": "one",
+        "lab_model": "mixed",
+        "sample_volume_band": "50_to_199_month",
+        "current_systems": ["qms", "lims"],
+        "digitised_stages": ["sampling", "chain_of_custody", "analysis", "technical_review", "coa_reporting"],
+        "priority_problem_ids": ["avoid-unreviewed-wfi-assumptions"],
+        "evidence_needs": ["method_traceability", "technical_review", "electronic_approval"],
+        "implementation_timeline": "three_to_six_months",
+        "preferred_route": "technical_review",
+        "target_groups": ["general_microbiology"],
+        "result_type": "presence_absence",
+        "intended_use": "accredited_testing",
+        "method_context": "internal_sop",
+        "sample_volume_context": "varies",
+        "water_use_context": ["wfi"],
+        "pharma_quality_context": ["wfi", "loop", "batch", "data_integrity", "signature"]
+      }
+    },
+    "expectedRecommendations": ["next_step.technical-review"],
+    "expectedConstraints": ["constraint.wfi_not_assumed"],
+    "mustNotRecommend": []
+  },
+  {
+    "id": "facility-legionella-followup",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "es",
+      "sectorId": "facility-water-risk",
+      "answers": {
+        "organization_type": "facility_operator",
+        "buyer_role": "ehs",
+        "site_count_band": "six_to_twenty",
+        "lab_model": "external",
+        "sample_volume_band": "variable",
+        "current_systems": ["paper", "email"],
+        "digitised_stages": ["control_plan", "sampling"],
+        "priority_problem_ids": ["manage-legionella-follow-up"],
+        "evidence_needs": ["sampling_context", "deviations_and_capa", "dashboards", "multi_site_history"],
+        "implementation_timeline": "urgent_incident",
+        "preferred_route": "software_only",
+        "target_groups": ["legionella"],
+        "result_type": "not_defined",
+        "intended_use": "incident_investigation",
+        "method_context": "iso_11731",
+        "facility_assets": ["cooling_towers", "showers", "terminal_points"]
+      }
+    },
+    "expectedRecommendations": ["module.field-sampling", "module.deviations-capa", "module.dashboards"],
+    "expectedConstraints": ["constraint.insufficient_analytical_context"],
+    "mustNotRecommend": ["product.indica-screening"]
+  },
+  {
+    "id": "agriculture-reclaimed-water",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "en",
+      "sectorId": "agriculture-water",
+      "answers": {
+        "organization_type": "farm_or_grower",
+        "buyer_role": "operations",
+        "site_count_band": "two_to_five",
+        "lab_model": "external",
+        "sample_volume_band": "10_to_49_month",
+        "current_systems": ["spreadsheets"],
+        "digitised_stages": ["sampling"],
+        "priority_problem_ids": ["manage-reclaimed-water-evidence"],
+        "evidence_needs": ["sampling_context", "multi_site_history", "audit_trail"],
+        "implementation_timeline": "six_to_twelve_months",
+        "preferred_route": "authorised_distributor",
+        "target_groups": ["e_coli"],
+        "result_type": "presence_absence",
+        "intended_use": "customer_audit_evidence",
+        "method_context": "internal_sop",
+        "water_use_context": ["reclaimed_water", "irrigation_water"]
+      }
+    },
+    "expectedRecommendations": ["module.field-sampling", "product.indica-screening"],
+    "expectedConstraints": [],
+    "mustNotRecommend": []
+  },
+  {
+    "id": "hospitality-reopening",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "fr",
+      "sectorId": "hospitality-tourism-water",
+      "answers": {
+        "organization_type": "hospitality_operator",
+        "buyer_role": "operations",
+        "site_count_band": "more_than_twenty",
+        "lab_model": "mixed",
+        "sample_volume_band": "variable",
+        "current_systems": ["shared_forms", "email"],
+        "digitised_stages": ["control_plan", "sampling", "customer_delivery"],
+        "priority_problem_ids": ["manage-seasonal-reopening", "standardize-chain-reporting"],
+        "evidence_needs": ["sampling_context", "dashboards", "customer_portal"],
+        "implementation_timeline": "within_three_months",
+        "preferred_route": "software_only",
+        "target_groups": ["legionella", "general_microbiology"],
+        "result_type": "not_defined",
+        "intended_use": "routine_internal_control",
+        "method_context": "not_defined",
+        "hospitality_context": ["hotels", "pools", "spa", "seasonal_reopening", "multi_site_chain"]
+      }
+    },
+    "expectedRecommendations": ["module.dashboards", "module.customer-portal", "next_step.technical-review"],
+    "expectedConstraints": ["constraint.no_compliance_score"],
+    "mustNotRecommend": []
+  },
+  {
+    "id": "unsupported-organism-review",
+    "input": {
+      "questionnaireVersion": "workflow-advisor-v1",
+      "lang": "en",
+      "sectorId": "industrial-process-water",
+      "answers": {
+        "organization_type": "manufacturer",
+        "buyer_role": "engineering_maintenance",
+        "site_count_band": "one",
+        "lab_model": "external",
+        "sample_volume_band": "unknown",
+        "current_systems": ["paper"],
+        "digitised_stages": [],
+        "priority_problem_ids": ["control-critical-process-points"],
+        "evidence_needs": ["method_traceability"],
+        "implementation_timeline": "exploring",
+        "preferred_route": "technical_review",
+        "target_groups": ["other_not_listed"],
+        "result_type": "enumeration",
+        "intended_use": "research_validation",
+        "method_context": "other_reference"
+      }
+    },
+    "expectedRecommendations": ["next_step.technical-review"],
+    "expectedConstraints": ["constraint.insufficient_analytical_context"],
+    "mustNotRecommend": ["product.enumera-coli100", "product.indica-screening"]
+  }
+]

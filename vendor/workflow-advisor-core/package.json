@@ -1,0 +1,12 @@
+{
+  "name": "@aquaverify/workflow-advisor-core",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Deterministic AquaVerify Workflow Advisor questionnaire, rules and assessment contract.",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "sideEffects": false,
+  "license": "UNLICENSED",
+  "type": "module",
+  "module": "./index.js"
+}

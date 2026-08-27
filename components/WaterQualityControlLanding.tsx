@@ -1,12 +1,14 @@
-import React, { useMemo, useState } from 'react';
-import { ArrowRight, CheckCircle2, ChevronRight, FileCheck2, FlaskConical, Gauge, Layers3, MapPin, ShieldCheck, Timer, Waves } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, CheckCircle2, ChevronRight } from 'lucide-react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
 import { IndustryGlossaryTerms } from './IndustryGlossaryTerms';
+import { IndustryBuyerProblemsSection, type IndustryBuyerProblemsContent } from './industries/IndustryBuyerProblemsSection';
+import { MarketingLeadFormControls } from './MarketingLeadFormControls';
 import type { Language } from '../utils/translations';
-import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
+import { useMarketingLeadCapture } from '../utils/marketingLeadCapture';
 
 type MarketingContent = {
   path: string;
@@ -23,6 +25,7 @@ type MarketingContent = {
     maturity?: HtmlVisualBlock;
   };
   faqs?: Array<{ question: string; answer: string }>;
+  buyerProblems?: IndustryBuyerProblemsContent;
 };
 
 type HtmlVisualItem = {
@@ -45,17 +48,6 @@ type Props = {
   content: MarketingContent;
   pageLang: Language;
   showCookieConsent?: boolean;
-};
-
-const iconMap = {
-  shield: ShieldCheck,
-  timer: Timer,
-  file: FileCheck2,
-  gauge: Gauge,
-  flask: FlaskConical,
-  map: MapPin,
-  layers: Layers3,
-  waves: Waves
 };
 
 const COPY: Record<Language, any> = {
@@ -580,53 +572,26 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
   const [openFaq, setOpenFaq] = useState(0);
   const sampleFlowVisual = content.visuals?.sampleFlow;
   const maturityVisual = content.visuals?.maturity;
-  const diagnosisHref = useMemo(() => getPlatformSignupUrl({
-    intent: 'contact',
-    page: 'water-quality-control',
-    category: 'industries',
-    module: 'water-quality-diagnosis'
-  }, pageLang), [pageLang]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const name = String(form.get('name') || '').trim();
-    const company = String(form.get('company') || '').trim();
-    const email = String(form.get('email') || '').trim();
-    const sector = String(form.get('sector') || '').trim();
-    const country = String(form.get('country') || '').trim();
-    const waterType = String(form.get('water_type') || '').trim();
-    const sampleVolume = String(form.get('sample_volume') || '').trim();
-    const currentMethod = String(form.get('current_method') || '').trim();
-    const mainNeed = String(form.get('main_need') || '').trim();
-
-    trackCorporateEvent('water_quality_diagnosis_submit', {
-      lang: pageLang,
-      page: 'water-quality-control',
-      intent: 'contact',
-      profile: sector,
-      country,
-      product: waterType,
-      module: 'water-quality-diagnosis'
-    });
-
-    window.location.href = getPlatformSignupUrl({
-      intent: 'contact',
+  const leadCapture = useMarketingLeadCapture({
+    formKey: 'water-quality-control-diagnosis',
+    requestType: 'contact',
+    lang: pageLang,
+    sourcePath: content.path,
+    detailFields: ['sector', 'water_type', 'sample_volume', 'current_method'],
+    details: {
       page: 'water-quality-control',
       category: 'industries',
-      profile: sector,
-      product: waterType,
-      module: 'water-quality-diagnosis',
-      country,
-      water_type: waterType,
-      sample_volume: sampleVolume,
-      current_method: currentMethod,
-      main_need: mainNeed,
-      prefill_name: name,
-      prefill_email: email,
-      prefill_company: company
-    }, pageLang);
-  };
+      module: 'water-quality-diagnosis'
+    },
+    onAccepted: () => trackCorporateEvent('water_quality_diagnosis_submit', {
+      lang: pageLang,
+      page: 'water-quality-control',
+      category: 'industries',
+      intent: 'contact',
+      module: 'water-quality-diagnosis'
+    })
+  });
 
   return (
     <div className="flex min-h-screen flex-col bg-[#f8fdfd] font-sans text-slate-900">
@@ -705,23 +670,7 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
           </div>
         </nav>
 
-        <section id="problema" className="bg-white py-16 md:py-20">
-          <div className="container mx-auto px-6">
-            <SectionHead eyebrow={copy.problem.eyebrow} title={copy.problem.title} body={copy.problem.body} />
-            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {copy.problem.cards.map((card: string[]) => {
-                const Icon = iconMap[card[2] as keyof typeof iconMap] || ShieldCheck;
-                return (
-                  <article key={card[0]} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                    <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-700"><Icon className="h-5 w-5" /></div>
-                    <h3 className="font-heading text-lg font-black text-slate-950">{card[0]}</h3>
-                    <p className="mt-3 text-sm leading-6 text-slate-600">{card[1]}</p>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        <IndustryBuyerProblemsSection buyerProblems={content.buyerProblems} pageLang={pageLang} />
 
         <SampleFlowSection
           id="infografia-flujo"
@@ -864,7 +813,7 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
         <section id="diagnostico" className="bg-slate-50 py-16 pb-28 md:py-20">
           <div className="container mx-auto px-6">
             <SectionHead eyebrow={copy.form.eyebrow} title={copy.form.title} body={copy.form.body} center />
-            <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-8">
+            <form onSubmit={leadCapture.handleSubmit} className="relative mx-auto mt-8 max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-8">
               <div className="grid gap-4 md:grid-cols-2">
                 <FormField label={copy.form.labels[0]} name="name" placeholder={copy.form.placeholders[0]} required />
                 <FormField label={copy.form.labels[1]} name="company" placeholder={copy.form.placeholders[1]} required />
@@ -883,12 +832,7 @@ export const WaterQualityControlLanding: React.FC<Props> = ({ content, pageLang,
                   {copy.form.labels[8]}
                   <textarea name="main_need" placeholder={copy.form.placeholders[7]} className="min-h-28 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" />
                 </label>
-                <div className="md:col-span-2">
-                  <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
-                    {copy.form.submit}<ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
-                  <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">{copy.form.privacy}</p>
-                </div>
+                <MarketingLeadFormControls lang={pageLang} submitLabel={copy.form.submit} privacyNote={copy.form.privacy} status={leadCapture.status} copy={leadCapture.copy} />
               </div>
             </form>
           </div>

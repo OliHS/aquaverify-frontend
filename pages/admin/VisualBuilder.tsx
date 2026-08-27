@@ -7,6 +7,7 @@ import { PageContentContext } from '../../context/PageContentContext';
 import { LanguageProvider, useLanguage } from '../../context/LanguageContext';
 import { LanguageSelector } from '../../components/LanguageSelector';
 import { sanitizeCmsContentLinks } from '../../utils/cmsLinks';
+import { saveCmsDraft } from '../../utils/cmsWorkflow';
 import { scanProductClaimFields } from '../../utils/productClaims.js';
 
 const LEGACY_CONTACT_FORM_HELPER = 'Use the contact form for the fastest response';
@@ -221,48 +222,18 @@ const VisualBuilderInner: React.FC = () => {
             return;
         }
 
-        // Update SEO
-        await supabase.from('pages').update({
-            seo_title: seoTitle,
-            seo_description: seoDescription
-        }).eq('id', id);
-
-        // Upsert all blocks
         let hasError = false;
-        let errorMessage = 'Error saving to database! Check browser console.';
-
-        for (const [sectionId, content] of Object.entries(sanitized.content)) {
-            const { data: existing, error: selectError } = await supabase
-                .from('content_blocks')
-                .select('id')
-                .eq('page_id', id)
-                .eq('section_id', sectionId)
-                .single();
-
-            if (selectError && selectError.code !== 'PGRST116') {
-                console.error('Select error:', selectError);
-                hasError = true;
-                errorMessage = `Database Read Failed: ${selectError.message}. Are your Vercel Supabase API Keys valid?`;
-                break; // Stop processing further blocks
-            }
-
-            if (existing) {
-                const { error } = await supabase.from('content_blocks').update({ content }).eq('id', existing.id);
-                if (error) {
-                    console.error('Update error:', error);
-                    hasError = true;
-                }
-            } else {
-                const { error } = await supabase.from('content_blocks').insert({
-                    page_id: id,
-                    section_id: sectionId,
-                    content
-                });
-                if (error) {
-                    console.error('Insert error:', error);
-                    hasError = true;
-                }
-            }
+        let errorMessage = 'Error saving CMS draft.';
+        try {
+            await saveCmsDraft({
+                entityType: 'visual_page',
+                entityKey: String(page.slug || id),
+                locale: 'en',
+                payload: { seoTitle, seoDescription, blocks: sanitized.content }
+            });
+        } catch (error: any) {
+            hasError = true;
+            errorMessage = error?.message || errorMessage;
         }
 
         setSaving(false);

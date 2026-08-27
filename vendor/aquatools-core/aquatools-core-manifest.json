@@ -1,0 +1,15 @@
+{
+  "sourceRepository": "aquaverify-cloud",
+  "sourceCommit": "36426ce8cc3695d9ad556dbdeac93ea57d2f9b05",
+  "packageVersion": "1.0.0",
+  "calculationVersion": "1.0.0",
+  "sha256": "6b9e62169085e667d5f49e81197a43748346689ca82585ef990a6d5d0a27225c",
+  "exportedAt": "2026-06-22",
+  "files": [
+    "package.json",
+    "index.js",
+    "index.d.ts",
+    "aquaToolsCalculations.esm.js",
+    "test-vectors/aquatools-free-v1.json"
+  ]
+}

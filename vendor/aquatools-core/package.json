@@ -1,0 +1,12 @@
+{
+  "name": "@aquaverify/aquatools-core",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pure AquaTools calculation contract for AquaVerify Cloud and AquaTools Free.",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "sideEffects": false,
+  "license": "UNLICENSED",
+  "type": "module",
+  "module": "./index.js"
+}

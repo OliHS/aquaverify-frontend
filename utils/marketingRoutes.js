@@ -1,5 +1,7 @@
 import { GLOSSARY_HUB_PATHS, GLOSSARY_TERM_ROUTE_PATHS } from './glossaryRoutes.js';
 import { RESOURCE_CATEGORY_PATHS } from './resourceCategoryPaths.js';
+import { AQUATOOLS_ROUTE_PATHS } from './aquatoolsRoutes.js';
+import { getWorkflowAdvisorPath } from './workflowAdvisorContent.js';
 
 export const MARKETING_ROUTE_LANGUAGES = ['en', 'es', 'fr', 'it', 'ca'];
 
@@ -62,9 +64,11 @@ export const MARKETING_ROUTE_PATHS = {
   oem: { en: '/oem-water-testing-kits', es: '/es/oem-kits-analisis-agua', fr: '/fr/oem-kits-analyse-eau', it: '/it/oem-kit-analisi-acqua', ca: '/ca/oem-kits-analisi-aigua' },
   distributors: { en: '/distributors', es: '/es/distribuidores', fr: '/fr/distributeurs', it: '/it/distributori', ca: '/ca/distribuidors' },
   'industries-hub': { en: '/industries', es: '/es/industrias', fr: '/fr/industries', it: '/it/settori', ca: '/ca/sectors' },
+  'workflow-advisor': { en: getWorkflowAdvisorPath('en'), es: getWorkflowAdvisorPath('es'), fr: getWorkflowAdvisorPath('fr'), it: getWorkflowAdvisorPath('it'), ca: getWorkflowAdvisorPath('ca') },
   'water-testing-labs': { en: '/industries/water-testing-laboratories', es: '/es/industrias/laboratorios-analisis-agua', fr: '/fr/industries/laboratoires-analyse-eau', it: '/it/settori/laboratori-analisi-acqua', ca: '/ca/sectors/laboratoris-analisi-aigua' },
   'water-quality-control': { en: '/industries/water-quality-control', es: '/es/industrias/control-calidad-agua', fr: '/fr/industries/controle-qualite-eau', it: '/it/settori/controllo-qualita-acqua', ca: '/ca/sectors/control-qualitat-aigua' },
   resources: { en: '/resources', es: '/es/recursos', fr: '/fr/ressources', it: '/it/risorse', ca: '/ca/recursos' },
+  ...AQUATOOLS_ROUTE_PATHS,
   ...RESOURCE_CATEGORY_PATHS,
   'iso-10705-2': { en: '/resources/iso-10705-2-somatic-coliphages', es: '/es/recursos/iso-10705-2-colifagos-somaticos', fr: '/fr/ressources/iso-10705-2-coliphages-somatiques', it: '/it/risorse/iso-10705-2-colifagi-somatici', ca: '/ca/recursos/iso-10705-2-colifags-somatics' },
   'epa-1602': { en: '/resources/epa-1602-coliphage-testing', es: '/es/recursos/epa-1602-colifagos', fr: '/fr/ressources/epa-1602-coliphages', it: '/it/risorse/epa-1602-colifagi', ca: '/ca/recursos/epa-1602-colifags' },
@@ -118,8 +122,25 @@ function pathMatchesAny(translations, patterns) {
 }
 
 function getMarketingRouteFamily(id, translations) {
+  if (id === 'workflow-advisor') {
+    return 'workflow-advisor';
+  }
+
   if (id === 'glossary' || Object.prototype.hasOwnProperty.call(GLOSSARY_TERM_ROUTE_PATHS, id)) {
     return 'glossary';
+  }
+
+  if (
+    id === 'aquatools' ||
+    pathMatchesAny(translations, [
+      /^\/tools(?:\/|$)/,
+      /^\/es\/herramientas(?:\/|$)/,
+      /^\/fr\/outils(?:\/|$)/,
+      /^\/it\/strumenti(?:\/|$)/,
+      /^\/ca\/eines(?:\/|$)/
+    ])
+  ) {
+    return 'aquatools';
   }
 
   if (
@@ -234,6 +255,10 @@ function getMarketingRouteParentId(id, family, category) {
 
   if (category === 'industry-detail') {
     return 'industries-hub';
+  }
+
+  if (family === 'aquatools' && id !== 'aquatools') {
+    return 'aquatools';
   }
 
   if (id === 'saas-biotech') {

@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
+import { guardCmsEndpoint } from './lib/remote-cms-audit-guard.js';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -51,6 +52,7 @@ function expectedRows() {
 
 async function run() {
   ensureEnv();
+  guardCmsEndpoint({ url: supabaseUrl, mutationRequested: false, purpose: 'cms-assets-audit' });
   const supabase = createClient(supabaseUrl, supabaseKey);
   const expected = expectedRows();
 

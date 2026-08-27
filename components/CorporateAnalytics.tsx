@@ -70,6 +70,7 @@ export const CorporateAnalytics: React.FC = () => {
   const { lang } = useLanguage();
 
   useEffect(() => {
+    if (location.pathname === '/admin' || location.pathname.startsWith('/admin/')) return undefined;
     return scheduleAnalyticsTask(() => trackCorporateEvent('page_view', {
       lang,
       path: location.pathname,
@@ -80,6 +81,7 @@ export const CorporateAnalytics: React.FC = () => {
 
   useEffect(() => {
     const handleClick = (event: MouseEvent) => {
+      if (window.location.pathname === '/admin' || window.location.pathname.startsWith('/admin/')) return;
       const target = event.target as Element | null;
       const anchor = target?.closest?.('a[href]') as HTMLAnchorElement | null;
       if (!anchor || !anchor.href || !isPlatformUrl(anchor.href)) return;

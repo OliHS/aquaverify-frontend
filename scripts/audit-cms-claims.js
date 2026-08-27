@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
+import { guardCmsEndpoint } from './lib/remote-cms-audit-guard.js';
 import { sanitizeProductClaimFields, scanProductClaimFields } from '../utils/productClaims.js';
 import {
   MARKETING_LANGUAGES,
@@ -57,6 +58,7 @@ function getMarketingDefaultsBySlug() {
 
 async function run() {
   ensureEnv();
+  guardCmsEndpoint({ url: supabaseUrl, mutationRequested: false, purpose: 'cms-claims-audit' });
   const supabase = createClient(supabaseUrl, supabaseKey);
   const result = { findings: [], reviews: [], publicCatalogSanitizations: [] };
 

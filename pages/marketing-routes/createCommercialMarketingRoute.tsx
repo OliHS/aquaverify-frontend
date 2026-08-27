@@ -5,7 +5,7 @@ import type { Language } from '../../utils/translations';
 import { applyMarketingSeo } from '../../utils/seo';
 import { fetchMarketingPageOverride } from '../../utils/publicMarketingOverrides';
 import { mergeMarketingContent } from '../../utils/marketingContentMerge.js';
-import { findMarketingRouteByPath } from '../../utils/marketingRoutes.js';
+import { findMarketingRouteByPath, getMarketingPagePath } from '../../utils/marketingRoutes.js';
 import { MARKETING_LANGUAGES } from '../../utils/marketing-pages/shared.js';
 import {
   CommercialMarketingPageDocument,
@@ -97,6 +97,31 @@ function buildBreadcrumbs(familyPages: any[], page: any, content: MarketingConte
   return crumbs.filter((crumb, index, all) => all.findIndex((item) => item.path === crumb.path) === index);
 }
 
+function buildAboutPageSchema(content: MarketingContentMeta, lang: Language) {
+  const links = [
+    ...((content as any).ecosystemLinks || []),
+    ...((content as any).evidenceLinks || []),
+    ...((content as any).commercialLinks || [])
+  ];
+  const seen = new Set<string>();
+  const itemList = links
+    .map((item: any) => ({
+      name: item.label,
+      path: getMarketingPagePath(item.routeId, lang)
+    }))
+    .filter((item: any) => {
+      if (!item.name || !item.path || item.path === '/' || seen.has(item.path)) return false;
+      seen.add(item.path);
+      return true;
+    });
+
+  return {
+    knowsAbout: content.schemaKnowsAbout || [],
+    itemListName: (content as any).ecosystemLinksTitle || content.title,
+    itemList
+  };
+}
+
 export function createCommercialMarketingRoute(family: 'platform' | 'partners' | 'company', familyPages: any[]) {
   const CommercialFamilyRoute: React.FC<CommercialRouteProps> = ({ route }) => {
     const location = useLocation();
@@ -148,7 +173,9 @@ export function createCommercialMarketingRoute(family: 'platform' | 'partners' |
         pageType: (page as MarketingPageMeta).schemaType || page.category,
         imageUrl: toPublicAssetUrl(contentMeta.ogImage || contentMeta.heroImage),
         faqs: contentMeta.faqs,
-        breadcrumbs
+        breadcrumbs,
+        pageId: page.id,
+        aboutPage: page.id === 'about' ? buildAboutPageSchema(contentMeta, pageLang) : undefined
       });
     }, [page, pageLang, mergedContent]);
 

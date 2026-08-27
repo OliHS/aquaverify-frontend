@@ -1,0 +1,17 @@
+{
+  "sourceRepository": "aquaverify-cloud",
+  "sourceCommit": "15cbb95444c831923eee36c879a10f02fcba2e02",
+  "packageVersion": "1.0.0",
+  "assessmentVersion": "1.0.0",
+  "questionnaireVersion": "workflow-advisor-v1",
+  "rulesVersion": "workflow-advisor-rules-v1",
+  "catalogVersion": "workflow-advisor-catalog-v1",
+  "sha256": "23d3fcf02a54444443f7bd7abbc374645c681d744b13cc70a105ff610dabcfcf",
+  "exportedAt": "2026-06-23",
+  "files": [
+    "package.json",
+    "index.js",
+    "index.d.ts",
+    "test-vectors/workflow-advisor-v1.json"
+  ]
+}

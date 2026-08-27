@@ -1,0 +1,150 @@
+{
+  "version": "aquatools-free-v1",
+  "calculationVersion": "1.0.0",
+  "vectors": [
+    {
+      "id": "molarity-mass-glucose",
+      "toolId": "molarity",
+      "mode": "mass",
+      "inputs": { "mode": "mass", "mass": "0,5", "massUnit": "g", "molarMass": "180.16", "volume": "500", "volumeUnit": "mL" },
+      "expected": { "path": "primaryResult.valueM", "value": 0.005550621669626998 },
+      "tolerance": 1e-12,
+      "unit": "M",
+      "warningCodes": [],
+      "formulaId": "molarity.mass.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "dilution-direct-stock",
+      "toolId": "dilution",
+      "mode": "direct",
+      "inputs": { "mode": "direct", "cStock": "1", "cStockUnit": "g/L", "cTarget": "2", "cTargetUnit": "µg/L", "finalVolume": "2", "finalVolumeUnit": "L" },
+      "expected": { "path": "primaryResult.stockVolumeL", "value": 0.000004 },
+      "tolerance": 1e-15,
+      "unit": "L",
+      "warningCodes": [],
+      "formulaId": "dilution.direct.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "dilution-serial-100mm-seven",
+      "toolId": "dilution",
+      "mode": "serial",
+      "inputs": { "mode": "serial", "c0": "100", "c0Unit": "mM", "factor": "10", "steps": "7", "transfer": "100", "transferUnit": "µL" },
+      "expected": { "path": "primaryResult.finalConcentration.value", "value": 1e-8 },
+      "tolerance": 1e-15,
+      "unit": "M",
+      "warningCodes": [],
+      "formulaId": "dilution.serial.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "unit-volume-ml-ul",
+      "toolId": "unit-converter",
+      "mode": "volume",
+      "inputs": { "category": "volume", "value": "1", "fromUnit": "mL", "toUnit": "µL" },
+      "expected": { "path": "primaryResult.value", "value": 1000 },
+      "tolerance": 1e-12,
+      "unit": "µL",
+      "warningCodes": [],
+      "formulaId": "unit-converter.volume.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "unit-temperature-c-f",
+      "toolId": "unit-converter",
+      "mode": "temperature",
+      "inputs": { "category": "temperature", "value": "25", "fromUnit": "°C", "toUnit": "°F" },
+      "expected": { "path": "primaryResult.value", "value": 77 },
+      "tolerance": 1e-12,
+      "unit": "°F",
+      "warningCodes": [],
+      "formulaId": "unit-converter.temperature.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "rpm-rcf-10000-85",
+      "toolId": "rpm-rcf",
+      "mode": "rpm_to_rcf",
+      "inputs": { "mode": "rpm_to_rcf", "value": "10000", "radiusCm": "8.5" },
+      "expected": { "path": "primaryResult.rcf", "value": 9503 },
+      "tolerance": 0.5,
+      "unit": "xg",
+      "warningCodes": ["use_actual_rotor_radius"],
+      "formulaId": "rpm-rcf.rpm_to_rcf.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "cfu-plate-basic",
+      "toolId": "cfu-calculator",
+      "mode": "plate-count",
+      "inputs": { "colonies": "50", "dilution": "10^-3", "platedVolume": "0,1", "platedVolumeUnit": "mL" },
+      "expected": { "path": "primaryResult.cfuPerMl", "value": 500000 },
+      "tolerance": 1e-9,
+      "unit": "CFU/mL",
+      "warningCodes": ["cfu_method_range_user_defined"],
+      "formulaId": "cfu-calculator.plate-count.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "recovery-basic",
+      "toolId": "recovery-rpd",
+      "mode": "recovery",
+      "inputs": { "mode": "recovery", "unspiked": "2,0", "spikedMeasured": "6.8", "added": "5.0" },
+      "expected": { "path": "primaryResult.recovery", "value": 96 },
+      "tolerance": 1e-12,
+      "unit": "%",
+      "warningCodes": ["criteria_defined_by_method"],
+      "formulaId": "recovery-rpd.recovery.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "rpd-basic",
+      "toolId": "recovery-rpd",
+      "mode": "rpd",
+      "inputs": { "mode": "rpd", "a": "10", "b": "11" },
+      "expected": { "path": "primaryResult.rpd", "value": 9.523809523809524 },
+      "tolerance": 1e-12,
+      "unit": "%",
+      "warningCodes": ["criteria_defined_by_method"],
+      "formulaId": "recovery-rpd.rpd.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "hardness-ca-mg",
+      "toolId": "hardness-alkalinity",
+      "mode": "hardness",
+      "inputs": { "mode": "hardness", "ca": "40", "mg": "12" },
+      "expected": { "path": "primaryResult.totalHardnessAsCaCO3", "value": 149.296 },
+      "tolerance": 1e-12,
+      "unit": "mg/L as CaCO3",
+      "warningCodes": [],
+      "formulaId": "hardness-alkalinity.hardness.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "alkalinity-titration",
+      "toolId": "hardness-alkalinity",
+      "mode": "alkalinity",
+      "inputs": { "mode": "alkalinity", "acidVolume": "10", "acidVolumeUnit": "mL", "acidNormality": "0.02", "sampleVolume": "100", "sampleVolumeUnit": "mL" },
+      "expected": { "path": "primaryResult.alkalinityAsCaCO3", "value": 100 },
+      "tolerance": 1e-12,
+      "unit": "mg/L as CaCO3",
+      "warningCodes": [],
+      "formulaId": "hardness-alkalinity.alkalinity.v1",
+      "source": "AquaTools Free acceptance case"
+    },
+    {
+      "id": "chemical-species-nitrate",
+      "toolId": "chemical-species-converter",
+      "mode": "mass-ratio",
+      "inputs": { "value": "10", "unit": "mg/L", "fromSpecies": "NO3", "toSpecies": "NO3-N" },
+      "expected": { "path": "primaryResult.value", "value": 2.259 },
+      "tolerance": 0.001,
+      "unit": "mg/L",
+      "warningCodes": ["confirm_reported_chemical_form"],
+      "formulaId": "chemical-species-converter.mass-ratio.v1",
+      "source": "AquaTools Free acceptance case"
+    }
+  ]
+}
