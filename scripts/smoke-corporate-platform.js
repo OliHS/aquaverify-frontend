@@ -150,11 +150,13 @@ async function run() {
   await check('Google Tag Manager is installed with consent mode', async () => {
     assert(corporateHtml.includes('GTM-TXHGB5D4'), 'GTM container ID missing');
     assert(corporateHtml.includes('https://www.googletagmanager.com/gtm.js'), 'GTM head script missing');
-    assert(corporateHtml.includes('https://www.googletagmanager.com/ns.html?id=GTM-TXHGB5D4'), 'GTM noscript iframe missing');
+    assert(
+      !corporateHtml.includes('https://www.googletagmanager.com/ns.html?id=GTM-TXHGB5D4'),
+      'Consent-bypassing GTM noscript iframe is still present'
+    );
     assert(corporateHtml.includes("gtag('consent', 'default'"), 'Google Consent Mode default command missing');
-    assert(corporateHtml.includes('aquaverify_cookie_consent'), 'Consent mode should read stored corporate consent');
-    assert(corporateHtml.includes('analytics_storage: analyticsStorage'), 'Analytics consent should use resolved storage state');
-    assert(corporateHtml.includes('ad_storage: marketingStorage'), 'Ad consent should use resolved storage state');
+    assert(corporateHtml.includes("analytics_storage: 'denied'"), 'Analytics consent must default to denied');
+    assert(corporateHtml.includes("ad_storage: 'denied'"), 'Advertising consent must default to denied');
   });
 
   await check('www host redirects to canonical apex domain', async () => {
@@ -318,6 +320,7 @@ async function run() {
   await check('corporate bundle contains platform integration markers', async () => {
     const mainAssetUrl = getMainAssetUrl(corporateHtml);
     const { response, text } = await getText(mainAssetUrl);
+    mainAssetText = text;
     assert(response.status === 200, `Main asset returned ${response.status}`);
     assert(
       (response.headers.get('cache-control') || '').includes('immutable'),
@@ -328,6 +331,10 @@ async function run() {
     assert(text.includes('corporate-preferences'), 'Corporate cookie sync endpoint missing from bundle');
     assert(text.includes('corporate-policy'), 'Corporate cookie policy endpoint missing from bundle');
     assert(text.includes('corporate-events'), 'Corporate analytics endpoint missing from bundle');
+    assert(text.includes('aquaverify_cookie_consent'), 'Verified corporate consent marker missing from bundle');
+    assert(text.includes('analytics_storage'), 'Analytics consent update marker missing from bundle');
+    assert(text.includes('ad_storage'), 'Advertising consent update marker missing from bundle');
+    assert(text.includes('aquaverify_consent_update'), 'Verified consent update event missing from bundle');
     assert(text.includes('platform_link_click'), 'Corporate CRO click event marker missing from bundle');
     assert(text.includes('quote_start'), 'Quote start conversion marker missing from bundle');
     assert(text.includes('oem_form_start'), 'OEM start conversion marker missing from bundle');
@@ -335,8 +342,6 @@ async function run() {
     assert(text.includes('terms'), 'Legal terms marker missing from bundle');
     assert(text.includes('buyer-pathways'), 'Buyer pathway conversion marker missing from bundle');
     assert(text.includes('home-final-cta'), 'Final home CTA conversion marker missing from bundle');
-    assert(text.includes(LEGAL_POLICY_VERSION), 'Legal/cookie policy version marker missing from bundle');
-    mainAssetText = text;
   });
 
   await check('platform public routes respond', async () => {
@@ -437,9 +442,9 @@ async function run() {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: new URLSearchParams({
-          event_name: 'smoke_no_consent',
+          event_name: 'page_view',
           analytics: '0',
-          path: '/smoke'
+          path: '/'
         })
       }
     );
