@@ -34,6 +34,7 @@ export const PageEditor: React.FC = () => {
             email: '',
             phone: '',
             url_linkedin: '',
+            url_bluesky: '',
             url_twitter: '',
             url_facebook: '',
             url_contact: '',
@@ -513,6 +514,16 @@ export const PageEditor: React.FC = () => {
                                         className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
                                         value={blocks.footer?.url_linkedin || ''}
                                         onChange={(e) => handleBlockChange('footer', 'url_linkedin', e.target.value)}
+                                    />
+                                </div>
+                                <div>
+                                    <label className="block text-sm font-medium text-slate-700 mb-1">Bluesky URL</label>
+                                    <input
+                                        type="url"
+                                        className="w-full px-4 py-2 border border-slate-300 rounded-md focus:ring-blue-500 focus:border-blue-500"
+                                        value={blocks.footer?.url_bluesky || ''}
+                                        onChange={(e) => handleBlockChange('footer', 'url_bluesky', e.target.value)}
+                                        placeholder="https://bsky.app/profile/aquaverify.com"
                                     />
                                 </div>
                                 <div>

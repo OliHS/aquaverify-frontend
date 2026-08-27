@@ -46,6 +46,7 @@ function validateVisibilityLogic() {
 function validateSource() {
   const home = read('components/HomeEcosystemLanding.tsx');
   const cta = read('components/home/HomeWorkflowAdvisorCta.tsx');
+  const footer = read('components/Footer.tsx');
   const app = read('App.tsx');
   const marketingRoute = read('pages/MarketingRoutePage.tsx');
   const prerender = read('scripts/prerender-marketing-pages.js');
@@ -74,6 +75,14 @@ function validateSource() {
   assert(!marketingRoute.includes('min-h-screen bg-white" aria-busy="true" aria-live="polite" />'), 'Marketing route fallback must not be blank white');
   assert(prerender.includes('renderHomeWorkflowAdvisorCta'), 'Home prerender must include Workflow Advisor CTA renderer');
   assert(prerender.includes('data-home-workflow-advisor-cta'), 'Prerendered CTA must be inspectable');
+  assert(footer.includes('https://www.linkedin.com/company/aquaverify'), 'Footer must link to the official AquaVerify LinkedIn profile');
+  assert(footer.includes('https://bsky.app/profile/aquaverify.com'), 'Footer must link to the official AquaVerify Bluesky profile');
+  assert(footer.includes('field="url_linkedin"'), 'Footer LinkedIn URL must remain CMS-editable');
+  assert(footer.includes('field="url_bluesky"'), 'Footer Bluesky URL must remain CMS-editable');
+  assert(footer.includes('target="_blank"') && footer.includes('rel="noopener noreferrer"'), 'Footer social links must open external profiles safely');
+  ['en', 'es', 'fr', 'it', 'ca'].forEach((lang) => {
+    assert(footer.includes(`${lang}: {`), `Footer must retain ${lang} localized copy`);
+  });
 }
 
 function validateDist() {

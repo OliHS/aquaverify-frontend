@@ -511,6 +511,28 @@ async function run() {
     );
   });
 
+  await check('footer exposes the official social profiles', async () => {
+    const footerAssetPath = findAssetPath(
+      mainAssetText,
+      /(?:assets\/|\.\/)?(Footer-[^"',)]+\.js)/,
+      'Footer asset reference missing from main bundle'
+    );
+    const { response, text: footerAssetText } = await getText(`${CORPORATE_SITE_URL}/${footerAssetPath}`);
+
+    assert(response.status === 200, `Footer asset returned ${response.status}`);
+    assert(
+      footerAssetText.includes('https://www.linkedin.com/company/aquaverify'),
+      'Official AquaVerify LinkedIn profile missing from footer bundle'
+    );
+    assert(
+      footerAssetText.includes('https://bsky.app/profile/aquaverify.com'),
+      'Official AquaVerify Bluesky profile missing from footer bundle'
+    );
+    assert(footerAssetText.includes('url_linkedin'), 'CMS LinkedIn footer field missing from footer bundle');
+    assert(footerAssetText.includes('url_bluesky'), 'CMS Bluesky footer field missing from footer bundle');
+    assert(footerAssetText.includes('noopener noreferrer'), 'Footer external-link protection missing');
+  });
+
   const failedChecks = checks.filter((item) => !item.ok);
   console.log(JSON.stringify({
     ok: failedChecks.length === 0,

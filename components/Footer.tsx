@@ -1,4 +1,5 @@
 import React from 'react';
+import { Linkedin } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 import { EditableText } from './admin/EditableText';
 import { EditableLinkWrapper } from './admin/EditableLinkWrapper';
@@ -37,6 +38,8 @@ const FOOTER_COPY: Record<Language, {
   resources: string;
   glossary: string;
   tools: string;
+  linkedinLabel: string;
+  blueskyLabel: string;
 }> = {
   en: {
     tagline: 'Innovative products for detecting viruses and bacteria in water, connected with AquaVerify Cloud, authorized distributors and OEM programs.',
@@ -67,7 +70,9 @@ const FOOTER_COPY: Record<Language, {
     contact: 'Contact',
     resources: 'Resources',
     glossary: 'Technical glossary',
-    tools: 'Free tools'
+    tools: 'Free tools',
+    linkedinLabel: 'Follow AquaVerify on LinkedIn',
+    blueskyLabel: 'Follow AquaVerify on Bluesky'
   },
   es: {
     tagline: 'Productos innovadores para la detección de virus y bacterias en el agua, conectados con AquaVerify Cloud, distribuidores autorizados y programas OEM.',
@@ -98,7 +103,9 @@ const FOOTER_COPY: Record<Language, {
     contact: 'Contacto',
     resources: 'Recursos',
     glossary: 'Glosario técnico',
-    tools: 'Herramientas gratuitas'
+    tools: 'Herramientas gratuitas',
+    linkedinLabel: 'Seguir a AquaVerify en LinkedIn',
+    blueskyLabel: 'Seguir a AquaVerify en Bluesky'
   },
   fr: {
     tagline: 'Produits innovants pour la détection de virus et bactéries dans l’eau, connectés à AquaVerify Cloud, distributeurs autorisés et programmes OEM.',
@@ -129,7 +136,9 @@ const FOOTER_COPY: Record<Language, {
     contact: 'Contact',
     resources: 'Ressources',
     glossary: 'Glossaire technique',
-    tools: 'Outils gratuits'
+    tools: 'Outils gratuits',
+    linkedinLabel: 'Suivre AquaVerify sur LinkedIn',
+    blueskyLabel: 'Suivre AquaVerify sur Bluesky'
   },
   it: {
     tagline: 'Prodotti innovativi per la rilevazione di virus e batteri nell’acqua, connessi ad AquaVerify Cloud, distributori autorizzati e programmi OEM.',
@@ -160,7 +169,9 @@ const FOOTER_COPY: Record<Language, {
     contact: 'Contatto',
     resources: 'Risorse',
     glossary: 'Glossario tecnico',
-    tools: 'Strumenti gratuiti'
+    tools: 'Strumenti gratuiti',
+    linkedinLabel: 'Segui AquaVerify su LinkedIn',
+    blueskyLabel: 'Segui AquaVerify su Bluesky'
   },
   ca: {
     tagline: 'Productes innovadors per a la detecció de virus i bacteris a l’aigua, connectats amb AquaVerify Cloud, distribuïdors autoritzats i programes OEM.',
@@ -191,9 +202,29 @@ const FOOTER_COPY: Record<Language, {
     contact: 'Contacte',
     resources: 'Recursos',
     glossary: 'Glossari tècnic',
-    tools: 'Eines gratuïtes'
+    tools: 'Eines gratuïtes',
+    linkedinLabel: 'Segueix AquaVerify a LinkedIn',
+    blueskyLabel: 'Segueix AquaVerify a Bluesky'
   }
 };
+
+const LINKEDIN_PROFILE_URL = 'https://www.linkedin.com/company/aquaverify';
+const BLUESKY_PROFILE_URL = 'https://bsky.app/profile/aquaverify.com';
+
+const BlueskyIcon: React.FC<{ className?: string }> = ({ className }) => (
+  <svg
+    aria-hidden="true"
+    className={className}
+    focusable="false"
+    viewBox="0 0 568 501"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z"
+      fill="currentColor"
+    />
+  </svg>
+);
 
 export const Footer: React.FC = () => {
   const { t, lang } = useLanguage();
@@ -310,14 +341,42 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500">
-          <p>&copy; {new Date().getFullYear()} <EditableText as="span" sectionId="footer" field="rights" fallback={t.footer.rights} /></p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <EditableLinkWrapper sectionId="footer" field="url_privacy" fallback={privacyUrl} legacyFallbacks={['#']}><a href={privacyUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="privacy" fallback={t.footer.privacy} /></a></EditableLinkWrapper>
-            <EditableLinkWrapper sectionId="footer" field="url_terms" fallback={termsUrl} legacyFallbacks={['#']}><a href={termsUrl} className="hover:text-white"><EditableText as="span" sectionId="footer" field="terms" fallback={t.footer.terms} /></a></EditableLinkWrapper>
-            <button type="button" onClick={openCookiePreferences} className="hover:text-white">
-              <EditableText as="span" sectionId="footer" field="cookie" fallback={t.footer.cookie} />
-            </button>
+        <div className="border-t border-gray-800 pt-8 flex flex-col gap-4 md:flex-row md:justify-between md:items-center text-xs text-gray-500">
+          <p className="text-center md:text-left">&copy; {new Date().getFullYear()} <EditableText as="span" sectionId="footer" field="rights" fallback={t.footer.rights} /></p>
+          <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center md:justify-end">
+            <div className="flex items-center gap-2">
+              <EditableLinkWrapper sectionId="footer" field="url_linkedin" fallback={LINKEDIN_PROFILE_URL} legacyFallbacks={['#']}>
+                <a
+                  href={LINKEDIN_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={copy.linkedinLabel}
+                  title={copy.linkedinLabel}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-700 text-gray-400 transition-colors hover:border-gray-500 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                >
+                  <Linkedin aria-hidden="true" className="h-[18px] w-[18px]" strokeWidth={2.25} />
+                </a>
+              </EditableLinkWrapper>
+              <EditableLinkWrapper sectionId="footer" field="url_bluesky" fallback={BLUESKY_PROFILE_URL} legacyFallbacks={['#']}>
+                <a
+                  href={BLUESKY_PROFILE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={copy.blueskyLabel}
+                  title={copy.blueskyLabel}
+                  className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-700 text-gray-400 transition-colors hover:border-gray-500 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                >
+                  <BlueskyIcon className="h-[18px] w-5" />
+                </a>
+              </EditableLinkWrapper>
+            </div>
+            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+              <EditableLinkWrapper sectionId="footer" field="url_privacy" fallback={privacyUrl} legacyFallbacks={['#']}><a href={privacyUrl} className="transition-colors hover:text-white"><EditableText as="span" sectionId="footer" field="privacy" fallback={t.footer.privacy} /></a></EditableLinkWrapper>
+              <EditableLinkWrapper sectionId="footer" field="url_terms" fallback={termsUrl} legacyFallbacks={['#']}><a href={termsUrl} className="transition-colors hover:text-white"><EditableText as="span" sectionId="footer" field="terms" fallback={t.footer.terms} /></a></EditableLinkWrapper>
+              <button type="button" onClick={openCookiePreferences} className="transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900">
+                <EditableText as="span" sectionId="footer" field="cookie" fallback={t.footer.cookie} />
+              </button>
+            </div>
           </div>
         </div>
       </div>

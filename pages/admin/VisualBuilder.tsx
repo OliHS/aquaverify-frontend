@@ -622,6 +622,16 @@ const VisualBuilderInner: React.FC = () => {
                                         />
                                     </div>
                                     <div>
+                                        <label className="block text-xs font-medium text-slate-700 mb-1">Bluesky URL</label>
+                                        <input
+                                            type="url"
+                                            className="w-full px-3 py-2 text-sm border border-slate-300 rounded focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+                                            value={getRawValue('footer', 'url_bluesky')}
+                                            onChange={e => handleBlockChange('footer', 'url_bluesky', e.target.value)}
+                                            placeholder="https://bsky.app/profile/aquaverify.com"
+                                        />
+                                    </div>
+                                    <div>
                                         <label className="block text-xs font-medium text-slate-700 mb-1">X URL</label>
                                         <input
                                             type="url"
