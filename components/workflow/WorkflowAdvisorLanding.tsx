@@ -15,6 +15,10 @@ import {
   type WorkflowAdvisorReportV2
 } from '../../vendor/workflow-advisor-core/index.js';
 import { getIndustryBuyerProblems } from '../../utils/industryBuyerProblemsContent.js';
+import {
+  getPrivacySafeCorporateAttributionParams,
+  getPrivacySafePagePath
+} from '../../utils/platformLinks';
 
 type Props = {
   content: any;
@@ -24,6 +28,48 @@ type Props = {
 type Answers = Record<string, string | string[] | number | boolean | null>;
 
 const API_BASE = (import.meta.env.VITE_PLATFORM_URL || 'https://app.aquaverify.com').replace(/\/+$/, '');
+
+const createWorkflowIdempotencyKey = () => {
+  if (typeof crypto === 'undefined') throw new Error('SECURE_RANDOM_UNAVAILABLE');
+  if (typeof crypto.randomUUID === 'function') return `wa-${crypto.randomUUID()}`;
+  if (typeof crypto.getRandomValues !== 'function') throw new Error('SECURE_RANDOM_UNAVAILABLE');
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return `wa-${Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')}`;
+};
+
+const WORKFLOW_UTM_KEYS = [
+  'utm_source',
+  'utm_medium',
+  'utm_campaign',
+  'utm_content',
+  'utm_term',
+  'utm_id'
+] as const;
+
+const getWorkflowAttributionContext = () => {
+  const safeAttribution = getPrivacySafeCorporateAttributionParams();
+  const utm: Record<string, string> = {};
+  WORKFLOW_UTM_KEYS.forEach((key) => {
+    const value = safeAttribution[key];
+    if (typeof value === 'string' && value) utm[key] = value;
+  });
+
+  let referrerHost = '';
+  if (typeof safeAttribution.referrer === 'string' && safeAttribution.referrer) {
+    try {
+      referrerHost = new URL(safeAttribution.referrer).hostname;
+    } catch {
+      referrerHost = '';
+    }
+  }
+
+  return {
+    sourcePath: getPrivacySafePagePath(),
+    landingUrl: typeof safeAttribution.source_url === 'string' ? safeAttribution.source_url : '',
+    referrerHost,
+    utm
+  };
+};
 
 const UI = {
   en: {
@@ -1280,6 +1326,9 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
   const [saveMessage, setSaveMessage] = useState('');
   const [publicId, setPublicId] = useState('');
   const [contact, setContact] = useState({ name: '', email: '', company: '', countryCode: '', buyerRole: '', phone: '', requestType: 'technical_review', comment: '' });
+  const assessmentStartedAtRef = useRef(Date.now());
+  const assessmentIdempotencyKeyRef = useRef('');
+  const assessmentIdempotencyPayloadRef = useRef('');
   const questionnaireTopRef = useRef<HTMLElement | null>(null);
   const resultTopRef = useRef<HTMLDivElement | null>(null);
   const stepHeadingRef = useRef<HTMLHeadingElement | null>(null);
@@ -1404,23 +1453,32 @@ export const WorkflowAdvisorLanding: React.FC<Props> = ({ content, pageLang }) =
     const input = buildInput(pageLang, answers);
     const isResearchSave = purpose === 'research';
     const isContactSave = purpose === 'contact';
+    const attribution = getWorkflowAttributionContext();
+    const assessmentPayload = {
+      input,
+      researchConsent: isResearchSave,
+      contactConsent: isContactSave,
+      marketingConsent: isContactSave ? marketingConsent : false,
+      ...attribution,
+      elapsedMs: Math.max(0, Math.min(Date.now() - assessmentStartedAtRef.current, 86_400_000))
+    };
+    const idempotencyPayload = JSON.stringify({ ...assessmentPayload, elapsedMs: 0 });
+    if (
+      !assessmentIdempotencyKeyRef.current
+      || assessmentIdempotencyPayloadRef.current !== idempotencyPayload
+    ) {
+      assessmentIdempotencyKeyRef.current = createWorkflowIdempotencyKey();
+      assessmentIdempotencyPayloadRef.current = idempotencyPayload;
+    }
     try {
       const response = await fetch(`${API_BASE}/api/public/v1/workflow-assessments`, {
         method: 'POST',
         credentials: 'omit',
         headers: {
           'Content-Type': 'application/json',
-          'Idempotency-Key': `wa-${Date.now()}-${Math.random().toString(36).slice(2)}`
+          'Idempotency-Key': assessmentIdempotencyKeyRef.current
         },
-        body: JSON.stringify({
-          input,
-          researchConsent: isResearchSave,
-          contactConsent: isContactSave,
-          marketingConsent: isContactSave ? marketingConsent : false,
-          sourcePath: window.location.pathname,
-          referrerHost: document.referrer ? new URL(document.referrer).hostname : '',
-          utm: Object.fromEntries(new URLSearchParams(window.location.search).entries())
-        })
+        body: JSON.stringify(assessmentPayload)
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {

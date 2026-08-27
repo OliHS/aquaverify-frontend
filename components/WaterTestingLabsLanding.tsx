@@ -14,9 +14,11 @@ import { Footer } from './Footer';
 import { CookieConsent } from './CookieConsent';
 import { IndustryGlossaryTerms } from './IndustryGlossaryTerms';
 import { IndustryBuyerProblemsSection, type IndustryBuyerProblemsContent } from './industries/IndustryBuyerProblemsSection';
+import { MarketingLeadFormControls } from './MarketingLeadFormControls';
 import type { Language } from '../utils/translations';
 import { getPlatformSignupUrl } from '../utils/platformLinks';
 import { trackCorporateEvent } from '../utils/corporateAnalytics';
+import { useMarketingLeadCapture } from '../utils/marketingLeadCapture';
 
 type MarketingSection = {
   title: string;
@@ -402,47 +404,29 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
     });
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const name = String(form.get('name') || '').trim();
-    const company = String(form.get('company') || '').trim();
-    const email = String(form.get('email') || '').trim();
-    const sector = String(form.get('sector') || '').trim();
-    const country = String(form.get('country') || '').trim();
-    const waterType = String(form.get('water_type') || '').trim();
-    const sampleVolume = String(form.get('sample_volume') || '').trim();
-    const currentMethod = String(form.get('current_method') || '').trim();
-    const mainNeed = String(form.get('main_need') || '').trim();
-
-    trackCorporateEvent('water_testing_lab_diagnosis_submit', {
-      lang: pageLang,
+  const leadCapture = useMarketingLeadCapture({
+    formKey: 'water-testing-labs-diagnosis',
+    requestType: 'quote',
+    lang: pageLang,
+    sourcePath: content.path,
+    detailFields: ['sector', 'water_type', 'sample_volume', 'current_method'],
+    details: {
       page: 'water-testing-labs',
       category: 'industries',
-      intent: 'quote',
-      profile: sector || 'labs',
-      country,
-      product: waterType,
+      profile: 'labs',
       module: 'lab-diagnosis'
-    });
-
-    window.location.href = getPlatformSignupUrl({
-      intent: 'quote',
-      page: 'water-testing-labs',
-      category: 'industries',
-      profile: sector || 'labs',
-      product: waterType,
-      module: 'lab-diagnosis',
-      country,
-      water_type: waterType,
-      sample_volume: sampleVolume,
-      current_method: currentMethod,
-      main_need: mainNeed,
-      prefill_name: name,
-      prefill_email: email,
-      prefill_company: company
-    }, pageLang);
-  };
+    },
+    onAccepted: () => {
+      trackCorporateEvent('water_testing_lab_diagnosis_submit', {
+        lang: pageLang,
+        page: 'water-testing-labs',
+        category: 'industries',
+        intent: 'quote',
+        profile: 'labs',
+        module: 'lab-diagnosis'
+      });
+    }
+  });
 
   return (
     <div className="flex min-h-screen flex-col bg-white font-sans text-slate-900">
@@ -629,7 +613,7 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
         <section id="diagnostico" className="bg-slate-50 py-16 pb-24 md:py-20">
           <div className="container mx-auto px-6">
             <SectionHead eyebrow={copy.formEyebrow} title={copy.formTitle} body={copy.formBody} center />
-            <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-8">
+            <form onSubmit={leadCapture.handleSubmit} className="relative mx-auto mt-8 max-w-4xl rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:p-8">
               <div className="grid gap-4 md:grid-cols-2">
                 <FormField label={copy.formLabels[0]} name="name" placeholder={copy.formPlaceholders[0]} required />
                 <FormField label={copy.formLabels[1]} name="company" placeholder={copy.formPlaceholders[1]} required />
@@ -648,13 +632,13 @@ export const WaterTestingLabsLanding: React.FC<Props> = ({ content, pageLang, sh
                   {copy.formLabels[8]}
                   <textarea name="main_need" placeholder={copy.formPlaceholders[7]} className="min-h-28 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm font-semibold text-slate-700 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-100" />
                 </label>
-                <div className="md:col-span-2">
-                  <button type="submit" className="aq-cta-primary w-full py-4 md:w-auto">
-                    {copy.formSubmit}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </button>
-                  <p className="mt-3 text-xs font-semibold leading-5 text-slate-500">{copy.formPrivacy}</p>
-                </div>
+                <MarketingLeadFormControls
+                  lang={pageLang}
+                  submitLabel={copy.formSubmit}
+                  privacyNote={copy.formPrivacy}
+                  status={leadCapture.status}
+                  copy={leadCapture.copy}
+                />
               </div>
             </form>
           </div>
